@@ -11,11 +11,11 @@ unless (@ARGV == 1) {
   exit;
 }
 
-open (my $list, "<", "$ARGV[0]") or die $!;
+open my $list, '<', "$ARGV[0]" or die $!;
 
 while (<$list>) {
   chomp;
   print "https://species.wikimedia.org/wiki/$_\n";
 }
 
-close($list);
+close $list or die $!;
