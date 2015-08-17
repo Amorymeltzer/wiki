@@ -17,14 +17,14 @@ unless (@ARGV == 1)
 
 my $input = $ARGV[0];
 
-open (my $list, "<", "$input") or die $!;
+open my $list, '<', "$input" or die $!;
 while (<$list>) {
   chomp;
 
   # Cleanup titles before checking
-  s/\(.*\)//x;        # get rid of text in parentheses
-  s/__/_/;            # potential formatting issue as a result of above
-  s/[\+\?\(\)]//gx;   # odd characters
+  s/\(.*\)//x;		     # get rid of text in parentheses
+  s/__/_/;		     # potential formatting issue as a result of above
+  s/[\+\?\(\)]//gx;	     # odd characters
   # Should probably test the following more... #####FIXME######
   #    s/×//x; # NOT AN X (x Vs. ×) this denotes crosses, muddies things up if you uncomment
 
@@ -34,7 +34,7 @@ while (<$list>) {
   s/var\..*$//x;
 
 
-  my @words = split /_/; # array to hold each name
+  my @words = split /_/;	# array to hold each name
   print "$words[0]_$words[1]\n" if ((@words == 2) && ($words[0] =~ m/^$words[1]$/ix));
 }
-close ($list); # tidy up
+close $list or die $!;			# tidy up
