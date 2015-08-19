@@ -82,6 +82,6 @@ sub basicFormat
     my ($line) = @_;
     chomp $line;
     #    $line =~ s/\"//g; #names with commas are exported in quotes by excel
-    my @array = split(/\t/,$line);
+    my @array = split /\t/, $line;
     return @array;
   }
