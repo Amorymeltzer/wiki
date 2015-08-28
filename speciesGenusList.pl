@@ -37,4 +37,4 @@ while (<$list>) {
   my @words = split /_/;	# array to hold each name
   print "$words[0]_$words[1]\n" if ((@words == 2) && ($words[0] =~ m/^$words[1]$/ix));
 }
-close $list or die $!;			# tidy up
+close $list or die $!;		# tidy up
