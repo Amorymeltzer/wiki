@@ -15,7 +15,8 @@ my @months = qw (err, jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec
 my $yearCount = scalar @years - 1;
 my $monthCount = scalar @months - 1;
 
-my $which = $ARGV[0] // ""; # $ARGV[0] if defined, empty (so the ifs don't fail) if not
+# $ARGV[0] if defined, empty (so the ifs don't fail) if not
+my $which = $ARGV[0] // "";
 
 if ($which =~ m/all/i) {
   print "All\n\n";
