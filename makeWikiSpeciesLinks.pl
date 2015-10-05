@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use diagnostics;
 
-unless (@ARGV == 1) {
+if (@ARGV != 1) {
   print "Usage: makeWikiSpeciesLinks.pl <species_list.txt>\n";
   exit;
 }
