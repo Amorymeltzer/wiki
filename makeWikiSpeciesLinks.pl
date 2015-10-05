@@ -7,7 +7,7 @@ use warnings;
 use diagnostics;
 
 unless (@ARGV == 1) {
-  print "Usage: makeWikiSpeciesLinks.pl <article_title.txt>\n";
+  print "Usage: makeWikiSpeciesLinks.pl <species_list.txt>\n";
   exit;
 }
 
