@@ -25,6 +25,7 @@ $mon++;
 # 1900-indexed
 my $endYear = $year+1900;
 
+# Date of last data grab
 open my $latest, '<', "$ARGV[0]" or croak $ERRNO;
 while (<$latest>) {
   chomp;
@@ -34,12 +35,24 @@ while (<$latest>) {
 }
 close $latest or croak $ERRNO;
 
+# Process dates, grab data
+my $date;
 for my $year (($startYear..$endYear)) {
   for my $month (1..12) {
+    # Don't start too early
     next if ($year == $startYear && $month <= $startMonth);
+    # Don't go into the future
     next if ($year == $endYear && $month > $mon);
+
     $month = sprintf '%02d', $month ;
-    my $date = $year.q{-}.$month.q{-}.'01';
-    print "$date\n";
+    $date = $year.q{-}.$month;
+    print "$date-01\n";
   }
+}
+
+# Record latest date
+if ($date) {
+  open my $latout, '>', 'latest' or croak $ERRNO;
+  print $latout $date;
+  close $latout or croak $ERRNO;
 }
