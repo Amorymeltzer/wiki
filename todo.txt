@@ -1,0 +1,19 @@
+### Todo List
+
+#### Wikispecies
+1. Confirm pipeline
+2. Move files into subdirectory
+3. Investigate linking and output (pdf?  wikitext?)
+4. Cleanup, rerun, maybe publish?
+
+#### S-index
+1. Investigate old code (i.e., what the hell does each script do)
+2. Map out pipline (what categories, what measures, etc.) (do I need to remove bots or...?)
+3. Figure out how I want to graph various data (quarters, months, years, etc.) (also include number of sysops, number of active sysops, etc.?)
+4. Rewrite analysis based off downloadable data?  Wikitable to csv script
+5. Bash shim to lump it all together and update?  Make sure don't re-download everything
+6. Easy way to get graphs on wiki (ugh commons)
+7. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN
+
+
+curl -d "" 'https://en.wikipedia.org/w/index.php?title=Special:Export&pages=User:JamesR/AdminStats&offset=2018-02-21T15:00:00Z&limit=1&action=submit' -o james
