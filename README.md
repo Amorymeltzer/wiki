@@ -5,3 +5,5 @@
 
 #### Wikispecies
 - `speciesGenusList`, `makeWikiSpeciesLinks` - Create a list of identical *Genus-species* pairs from WikiSpecies
+
+Licensed under the WTFPL http://www.wtfpl.net/
