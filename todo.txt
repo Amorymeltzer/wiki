@@ -1,10 +1,9 @@
 ### Todo List
 
 #### Wikispecies
-1. Confirm pipeline
-2. Move files into subdirectory
-3. Investigate linking and output (pdf?  wikitext?)
-4. Cleanup, rerun, maybe publish?
+1. Maybe figure out redirects?
+2. Investigate linking and output (pdf?  wikitext?)
+3. Cleanup, rerun, maybe publish?
 
 #### S-index
 1. Investigate old code (i.e., what the hell does each script do)
