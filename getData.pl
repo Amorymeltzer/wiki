@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # getData.pl by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 ## Data starts September 2008 (could do August, but meh)
 ## Should check timestamps to confirm data quality

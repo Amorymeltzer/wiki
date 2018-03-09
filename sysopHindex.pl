@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # sysopHindex.pl by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
 # Interesting value for administrator activity
 # Approximate the h-index/Eddington number for admin actions from User:JamesR/AdminStats
 

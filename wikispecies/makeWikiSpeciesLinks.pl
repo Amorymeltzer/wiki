@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # makeWikiSpeciesLinks.pl by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
 # Make a list of links to various Wikispecies pages
 
 use strict;
