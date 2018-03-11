@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # table2csv.pl by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
 # Process the wiki format from Special:Export, convert the relevant table to a
 # csv file for processing
 
