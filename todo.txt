@@ -6,20 +6,21 @@
 3. Cleanup, rerun, maybe publish?
 
 #### S-index
-1. Investigate old code (i.e., what the hell does each script do)
 - calch = bulk calc over period, goes through h_index files for each month, calls sysop
 - sysop = actual calculations
-2. Map out pipline (what categories, what measures, etc.) (do I need to remove bots or...?)
+1. (Re)Write
+- sysop to take only user and total
+- getdata to save and name
+- table to take name and save
+2. Map out pipline (what categories, what measures, etc.)
 - finance isn't rolling, quarter is
 - could set up rolling average, allow x number of months
 - then make quarters quarters like finance
 - make years years
 - add academic calendar a la non rolling
+- remove problematic users?
 3. Figure out how I want to graph various data (quarters, months, years, etc.) (also include number of sysops, number of active sysops, etc.?)
-4. Rewrite analysis based off downloadable data?  Wikitable to csv script
-- Bulk download historical data one time
-- Check to see if have most recent month; if not, download
-- Parse data (only get all totals, turn to csv?)
+4. Rewrite analysis based off downloadable data?
 - No data from March 6 to May 9 in 2012
 - Use data in timestamps from each month to confirm source
 5. Bash shim to lump it all together and update?  Make sure don't re-download everything
