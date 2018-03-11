@@ -9,6 +9,8 @@
 - calch = bulk calc over period, goes through h_index files for each month, calls sysop
 - sysop = actual calculations
 1. (Re)Write
+- Format changed between 18 feb 2010 and 21 feb 2010
+- Start March 2010, or process separately
 - sysop to take only user and total
 - getdata to save and name
 - table to take name and save
