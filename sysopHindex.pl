@@ -7,10 +7,11 @@
 use strict;
 use warnings;
 use diagnostics;
+use English qw( -no_match_vars);
 
-unless (@ARGV == 2)
+if (@ARGV != 2)
   {
-    print "Usage: $0 <then.txt> <now.txt>\n";
+    print "Usage: $PROGRAM_NAME <then.txt> <now.txt>\n";
     exit;
   }
 
@@ -20,23 +21,23 @@ my %final;			# holds the difference
 my $count = 0;			# global
 
 # Populate hashes from relevant data source
-open my $old, '<', "$ARGV[0]" or die $!;
+open my $old, '<', "$ARGV[0]" or croak $ERRNO;
 while (<$old>) {
   my @array = basicFormat($_);
   next if $array[0] =~ m/^User$|^Totals$/o;
   next if $array[0] =~ m/[bB]ot$/o;
   $oldAdmin{$array[0]} = $array[-1];
 }
-close $old or die $!;
+close $old or croak $ERRNO;
 
-open my $new, '<', "$ARGV[1]" or die $!;
+open my $new, '<', "$ARGV[1]" or croak $ERRNO;
 while (<$new>) {
   my @array = basicFormat($_);
   next if $array[0] =~ m/^User$|^Totals$/o;
   next if $array[0] =~ m/[bB]ot$/o;
   $newAdmin{$array[0]} = $array[-1];
 }
-close $new or die $!;
+close $new or croak $ERRNO;
 
 
 # The difference for each individual sysop aka total log actions for that time period
@@ -83,6 +84,5 @@ sub basicFormat
     my ($line) = @_;
     chomp $line;
     #    $line =~ s/\"//g; #names with commas are exported in quotes by excel
-    my @array = split /\t/, $line;
-    return @array;
+    return split /\t/, $line;
   }
