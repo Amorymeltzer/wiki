@@ -2,8 +2,10 @@
 # table2csv.pl by Amory Meltzer
 # Process the wiki format from Special:Export, convert the relevant table to a
 # csv file for processing
-## Only want the totals???
-## Quote names with commas?
+
+## Maybe remove users known to never have been sysops?  Likely to come out in
+## the wash.  Could also set a threshold?
+
 
 use strict;
 use warnings;
@@ -15,6 +17,8 @@ my $thereyet = 0;
 my $line;
 
 open my $input, '<', "$ARGV[0]" or croak $ERRNO;
+# We really don't need to process the column headers, I know what I want
+print "User,Totals\n";
 while (<$input>) {
   chomp;
 
@@ -28,22 +32,16 @@ while (<$input>) {
     }
   }
 
-  # Skip the early ugliness and the useless number column
-  if ($NR > $line+7) {
-    # Remove annotations, probably just want totals anyway though
-    s/&lt;span title=&quot;//;
-    s/&quot;&gt;\w+&lt;\/span&gt;//;
-    # thisiswherethefunbegins.gif
-    if (/^! /) {
-      s/! //;
-      print "$_,";
-    } elsif (/\|-/) {
-      print "\n";
+  # Skip the early ugliness, could probably jump ahead further...
+  if ($NR > $line+6) {
+    if (/^[!(\|\-)\{] /) {
       next;
     } elsif (/^\|\| /) {
-      my @line = split / \|\| /;
-      shift @line;
+      # Only want user and totals
+      my @line = (split / \|\| /)[1,-1];
+      $line[0] =~ s/,//g;	# Remove commas in usernames
       print join q{,}, @line;
+      print "\n";
     }
   }
 }
