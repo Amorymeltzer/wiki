@@ -30,6 +30,7 @@ my $count = 0;			# global
 # Populate hashes from relevant data source
 open my $old, '<', "$ARGV[0]" or croak $ERRNO;
 while (<$old>) {
+  next if $NR == 1;
   my @array = basicFormat($_);
   next if $array[0] =~ m/^User$|^Totals$/o;
   next if $array[0] =~ m/[bB]ot$/o;
@@ -91,5 +92,5 @@ sub basicFormat
     my ($line) = @_;
     chomp $line;
     #    $line =~ s/\"//g; #names with commas are exported in quotes by excel
-    return split /\t/, $line;
+    return split /,/, $line;
   }
