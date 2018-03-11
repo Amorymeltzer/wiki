@@ -72,6 +72,7 @@ sub parseFile
       my ($file,$hashRef) = @_;
       open my $data, '<', "$file" or croak $ERRNO;
       while (<$data>) {
+	# Column names not needed, but nice to have in the input files
 	next if $NR == 1;
 	chomp;
 	my @array = split /,/;

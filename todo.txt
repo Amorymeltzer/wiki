@@ -21,6 +21,7 @@
 - make years years
 - add academic calendar a la non rolling
 - remove problematic users?
+- allow for deletion, protection, etc indicdes
 3. Figure out how I want to graph various data (quarters, months, years, etc.) (also include number of sysops, number of active sysops, etc.?)
 4. Rewrite analysis based off downloadable data?
 - No data from March 6 to May 9 in 2012
