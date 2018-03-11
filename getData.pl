@@ -4,6 +4,7 @@
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 ## Data starts September 2008 (could do August, but meh)
 ## Should check timestamps to confirm data quality
+## Grab midnight (technically end of last month) or 1AM (start of this month)?
 
 
 use strict;
@@ -15,6 +16,10 @@ if (@ARGV != 1) {
   print "Usage: $PROGRAM_NAME <getData.pl> <latest>\n";
   exit;
 }
+
+# url format, midnight of new month
+my $urlStart = 'https://en.wikipedia.org/w/index.php?title=Special:Export&pages=User:JamesR/AdminStats&offset=';
+my $urlEnd = 'T00:00:01Z&limit=1&action=submit';
 
 # Earliest reliable data is from Semptember 2008, don't use anything older
 my ($startYear,$startMonth) = (2008,8);
@@ -46,7 +51,8 @@ for my $year (($startYear..$endYear)) {
 
     $month = sprintf '%02d', $month ;
     $date = $year.q{-}.$month;
-    print "$date-01\n";
+    print $urlStart."$date-01".$urlEnd;
+    print "\n";
   }
 }
 
