@@ -8,12 +8,22 @@
 #### S-index
 - calch = bulk calc over period, goes through h_index files for each month, calls sysop
 - sysop = actual calculations
+- workflow:
+-- bash shim
+-- getData -> getDates
+-- shim curl
+-- shim calc md5
+-- checkData confirm timestamp
+-- table
+-- calcH (calls sysop)
 1. (Re)Write
 - Format changed between 18 feb 2010 and 21 feb 2010
 - Start March 2010, or process separately
-- sysop to take only user and total
-- getdata to save and name
-- table to take name and save
+- sysopdev to take only user and total
+- table to take name and save... somewhere
+- also calculate md5, export to list
+- bash shim checks lists
+- checkData finds timestamp, ensures reasonable given title
 2. Map out pipline (what categories, what measures, etc.)
 - finance isn't rolling, quarter is
 - could set up rolling average, allow x number of months

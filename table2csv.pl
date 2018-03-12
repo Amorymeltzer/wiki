@@ -46,4 +46,4 @@ while (<$input>) {
     }
   }
 }
-close $input or croak $ERRNO;
+close $input or die $ERRNO;

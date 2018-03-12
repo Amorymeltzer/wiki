@@ -28,23 +28,23 @@ my %final;			# holds the difference
 my $count = 0;			# global
 
 # Populate hashes from relevant data source
-open my $old, '<', "$ARGV[0]" or croak $ERRNO;
+open my $old, '<', "$ARGV[0]" or die $ERRNO;
 while (<$old>) {
   my @array = basicFormat($_);
   next if $array[0] =~ m/^User$|^Totals$/o;
   next if $array[0] =~ m/[bB]ot$/o;
   $oldAdmin{$array[0]} = $array[-1];
 }
-close $old or croak $ERRNO;
+close $old or die $ERRNO;
 
-open my $new, '<', "$ARGV[1]" or croak $ERRNO;
+open my $new, '<', "$ARGV[1]" or die $ERRNO;
 while (<$new>) {
   my @array = basicFormat($_);
   next if $array[0] =~ m/^User$|^Totals$/o;
   next if $array[0] =~ m/[bB]ot$/o;
   $newAdmin{$array[0]} = $array[-1];
 }
-close $new or croak $ERRNO;
+close $new or die $ERRNO;
 
 
 # The difference for each individual sysop aka total log actions for that time period

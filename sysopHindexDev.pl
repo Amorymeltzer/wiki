@@ -70,7 +70,7 @@ print "$count\n";
 sub parseFile
     {
       my ($file,$hashRef) = @_;
-      open my $data, '<', "$file" or croak $ERRNO;
+      open my $data, '<', "$file" or die $ERRNO;
       while (<$data>) {
 	# Column names not needed, but nice to have in the input files
 	next if $NR == 1;
@@ -79,6 +79,6 @@ sub parseFile
 	next if $array[0] =~ m/[bB]ot$/o;
 	${$hashRef}{$array[0]} = $array[-1];
       }
-      close $data or croak $ERRNO;
+      close $data or die $ERRNO;
       return;
     }
