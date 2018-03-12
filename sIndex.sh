@@ -58,14 +58,17 @@ if [ -z "$dates" ]; then
     dienice "No more dates to process!"
 fi
 
+urlBase="https://en.wikipedia.org/w/index.php?title=Special:Export"
+urlStart="&pages=User:JamesR/AdminStats&offset="
+urlEnd="T00:00:02Z&limit=1&action=submit"
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 for date in $dates
 do
-    echo "curl $date"
-    curl -d '' "www.google.com/$date" -o $date
+    url="$urlBase$urlStart$date$urlEnd"
+    curl -d '' "$url" -o $date
     md5 -r $date >> "md5raw.txt"
 
-    timestamp=$(grep timestamp "james")
+    timestamp=$(grep timestamp "$date")
 
     perl checkData.pl $date $timestamp
     # Die angrily if timestamps don't match

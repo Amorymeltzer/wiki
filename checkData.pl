@@ -19,8 +19,6 @@ $dateFile =~ s/.txt//;
 $timestamp =~ s/<\/?timestamp>//g;
 $timestamp =~ s/T.*Z//;
 
-print "$dateFile\t$timestamp\n";
-
 if ($dateFile ne $timestamp) {
   #exit 1;
 }
