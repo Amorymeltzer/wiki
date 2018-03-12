@@ -13,8 +13,9 @@
 ## checkData confirms timestamp in file
 ## table on file, save elsewhere and calculate m5d > list2
 ### ENDLOOP
-## cehck list and list2 for duplicates with sort uniq
-## call calch with options (cals sysophindex)
+## check list and list2 for duplicates with sort uniq
+## call calch with options (calls sysophindex)
+### Write calch dev
 
 function get_help {
     cat <<END_HELP
@@ -89,11 +90,14 @@ rawDups=$(sort "md5raw.txt" | uniq -d)
 processDups=$(sort "md5process.txt" | uniq -d)
 
 if [[ -n $rawDups ]]; then
-    echo "Duplicates raw data files found"
+    echo "Duplicate raw data files found"
     echo $rawDups
+    dienice "You should investigate manually"
 fi
 
 if [[ -n $processDups ]]; then
-    echo "Duplicates raw data files found"
+    echo "Duplicate raw data files found"
     echo $rawDups
+    dienice "You should investigate manually"
 fi
+
