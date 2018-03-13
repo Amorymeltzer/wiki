@@ -16,6 +16,7 @@
 ## check list and list2 for duplicates with sort uniq
 ## call calch with options (calls sysophindex)
 ### Write calch dev
+### Should grab all files in directory, sort by time, then process
 
 function get_help {
     cat <<END_HELP
@@ -59,19 +60,24 @@ if [ -z "$dates" ]; then
     dienice "No more dates to process!"
 fi
 
+# Directories
+rawD="rawData"
+csvD="csvData"
+# URL basics
 urlBase="https://en.wikipedia.org/w/index.php?title=Special:Export"
 urlStart="&pages=User:JamesR/AdminStats&offset="
 urlEnd="T00:00:02Z&limit=1&action=submit"
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 for date in $dates
 do
+    raw=$rawD/$date
     url="$urlBase$urlStart$date$urlEnd"
-    curl -d '' "$url" -o $date
-    md5 -r $date >> "md5raw.txt"
+    curl -d '' "$url" -o $raw
+    md5 -r $raw >> "md5raw.txt"
 
-    timestamp=$(grep timestamp "$date")
+    timestamp=$(grep timestamp "$raw")
 
-    perl checkData.pl $date $timestamp
+    perl checkData.pl $raw $timestamp
     # Die angrily if timestamps don't match
     if [ $? != 0 ]; then
 	echo
@@ -81,13 +87,13 @@ do
 	echo
     fi
 
-    process=$date."csv"
-    perl table2csv.pl $date > $process
-    md5 -r $process >> "md5process.txt"
+    csv=$csvD/$date."csv"
+    perl table2csv.pl $raw > $csv
+    md5 -r $csv >> "md5csv.txt"
 done
 
 rawDups=$(sort "md5raw.txt" | uniq -d)
-processDups=$(sort "md5process.txt" | uniq -d)
+csvDups=$(sort "md5csv.txt" | uniq -d)
 
 if [[ -n $rawDups ]]; then
     echo "Duplicate raw data files found"
@@ -95,9 +101,9 @@ if [[ -n $rawDups ]]; then
     dienice "You should investigate manually"
 fi
 
-if [[ -n $processDups ]]; then
-    echo "Duplicate raw data files found"
-    echo $rawDups
+if [[ -n $csvDups ]]; then
+    echo "Duplicate csv data files found"
+    echo $csvDups
     dienice "You should investigate manually"
 fi
 
