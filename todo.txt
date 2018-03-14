@@ -39,6 +39,7 @@
 5. Bash shim to lump it all together and update?  Make sure don't re-download everything
 - Need to deal with renames, etc
 6. Easy way to get graphs on wiki (ugh commons)
+- Use https://en.wikipedia.org/wiki/Template:Graph:Chart
 7. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN
 
 

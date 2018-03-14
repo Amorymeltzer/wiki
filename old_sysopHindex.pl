@@ -4,6 +4,9 @@
 # Interesting value for administrator activity
 # Approximate the h-index/Eddington number for admin actions from User:JamesR/AdminStats
 
+## Just skip first line with $NR
+## Keep bot thing
+## Make subroutine basicFormat handle file openings, etc., then call twice
 ## Probably need more efficient index calculation
 
 
@@ -13,10 +16,11 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
-if (@ARGV != 2) {
-  print "Usage: $PROGRAM_NAME <then.txt> <now.txt>\n";
-  exit;
-}
+if (@ARGV != 2)
+  {
+    print "Usage: $PROGRAM_NAME <then.txt> <now.txt>\n";
+    exit;
+  }
 
 my %oldAdmin;
 my %newAdmin;
@@ -24,8 +28,23 @@ my %final;			# holds the difference
 my $count = 0;			# global
 
 # Populate hashes from relevant data source
-parseFile($ARGV[0],\%oldAdmin);
-parseFile($ARGV[1],\%newAdmin);
+open my $old, '<', "$ARGV[0]" or die $ERRNO;
+while (<$old>) {
+  my @array = basicFormat($_);
+  next if $array[0] =~ m/^User$|^Totals$/o;
+  next if $array[0] =~ m/[bB]ot$/o;
+  $oldAdmin{$array[0]} = $array[-1];
+}
+close $old or die $ERRNO;
+
+open my $new, '<', "$ARGV[1]" or die $ERRNO;
+while (<$new>) {
+  my @array = basicFormat($_);
+  next if $array[0] =~ m/^User$|^Totals$/o;
+  next if $array[0] =~ m/[bB]ot$/o;
+  $newAdmin{$array[0]} = $array[-1];
+}
+close $new or die $ERRNO;
 
 
 # The difference for each individual sysop aka total log actions for that time period
@@ -67,18 +86,10 @@ foreach my $key (sort {$final{$b} <=> $final{$a} || $a cmp $b} (keys %final)) #h
 print "$count\n";
 
 
-sub parseFile
-    {
-      my ($file,$hashRef) = @_;
-      open my $data, '<', "$file" or die $ERRNO;
-      while (<$data>) {
-	# Column names not needed, but nice to have in the input files
-	next if $NR == 1;
-	chomp;
-	my @array = split /,/;
-	next if $array[0] =~ m/[bB]ot$/o;
-	${$hashRef}{$array[0]} = $array[-1];
-      }
-      close $data or die $ERRNO;
-      return;
-    }
+sub basicFormat
+  {
+    my ($line) = @_;
+    chomp $line;
+    #    $line =~ s/\"//g; #names with commas are exported in quotes by excel
+    return split /\t/, $line;
+  }

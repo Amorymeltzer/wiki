@@ -17,6 +17,7 @@
 ## call calch with options (calls sysophindex)
 ### Write calch dev
 ### Should grab all files in directory, sort by time, then process
+## Should only replace latest when suessfully finished downloadin and processing
 
 function get_help {
     cat <<END_HELP

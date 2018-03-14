@@ -8,7 +8,8 @@ use diagnostics;
 use English qw( -no_match_vars);
 
 # 0-indexed
-my @years = (2009,2010,2011,2012,2013);
+#  my @years = (2009,2010,2011,2012,2013);
+my @years = (2018);
 # 1-indexed to make month numbers familiar
 my @months = qw (err jan feb mar apr may jun jul aug sep oct nov dec);
 

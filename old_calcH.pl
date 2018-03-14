@@ -8,8 +8,7 @@ use diagnostics;
 use English qw( -no_match_vars);
 
 # 0-indexed
-#  my @years = (2009,2010,2011,2012,2013);
-my @years = (2018);
+my @years = (2009,2010,2011,2012,2013);
 # 1-indexed to make month numbers familiar
 my @months = qw (err jan feb mar apr may jun jul aug sep oct nov dec);
 
@@ -68,7 +67,7 @@ sub all
 	  }
 
 	print "$months[$month] $years[$year] to $months[$newM] $years[$newY]\t";
-	system "perl sysopHindexDev.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
+	system "perl old_sysopHindex.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
       }
     }
     return;
@@ -91,7 +90,7 @@ sub year
 	my $newY = $year+1;
 
 	print "$months[$month] $years[$year] to $months[$newM] $years[$newY]\t";
-	system "perl sysopHindexDev.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
+	system "perl old_sysopHindex.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
       }
     }
     return;
@@ -119,7 +118,7 @@ sub quarter
 	  }
 
 	print "$months[$month] $years[$year] to $months[$newM] $years[$newY]\t";
-	system "perl sysopHindexDev.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
+	system "perl old_sysopHindex.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
       }
     }
     return;
@@ -150,7 +149,7 @@ sub finance
 	  }
 
 	print "$months[$month] $years[$year] to $months[$newM] $years[$newY]\t";
-	system "perl sysopHindexDev.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
+	system "perl old_sysopHindex.pl hIndex_files/$months[$month]$years[$year].txt hIndex_files/$months[$newM]$years[$newY].txt";
       }
     }
     return;
