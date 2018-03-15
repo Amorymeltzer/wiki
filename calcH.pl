@@ -8,6 +8,10 @@
 ## For non-rolling, can determine when to start:
 ## year: +1 year; quarter/fin/acad: sub to find next start of quarter
 ## Or maybe just do ALL and pick later?
+## Nah just completely revamp this:
+## n-month rolling average (1-24, maybe show 1, 3, 6, 12 above the fold)
+## Below show hard limits
+## calendar year, acad year, quarter, financial
 
 use strict;
 use warnings;
@@ -29,13 +33,27 @@ my @files = readdir $dir;
 closedir $dir or die $ERRNO;
 splice @files, 0, 2;		# Remove dots
 print "@files\n";
-exit;
+
+my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
+my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
+
+print "$firstYear,$firstMonth\n$lastYear,$lastMonth\n";
+my $suf = '-01-01.csv';
+$firstYear = 2012;
+###### NON ROLLING OPTIONS ######
+### CALENDAR YEAR ###
+# Reach back
+foreach my $year ($firstYear+1..$lastYear-1) {
+  my $yearN = $year+1;
+  print "$year to $yearN\t";
+  system "perl sysopHindex.pl $ARGV[1]/$year$suf $ARGV[1]/$yearN$suf";
+}
 
 # 0-indexed
-#  my @years = (2009,2010,2011,2012,2013);
-my @years = (2018);
+my @years = $firstYear..$lastYear;
 # 1-indexed to make month numbers familiar
 my @months = qw (err jan feb mar apr may jun jul aug sep oct nov dec);
+exit;
 
 # If months/years are referenced as numbers, jumping around is easy
 my $yearCount = scalar @years - 1;
