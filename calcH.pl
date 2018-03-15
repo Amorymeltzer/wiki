@@ -1,11 +1,34 @@
 #!/usr/bin/env perl
 # calcH.pl by Amory Meltzer
 # Bulk calculate the sysop H-index for a given period
+## Need to add -r option to allow for rolling
+## Maybe just make the usage below an option as well???
+## Need to figure out first and last year/months from @files
+## Take that, process for rolling
+## For non-rolling, can determine when to start:
+## year: +1 year; quarter/fin/acad: sub to find next start of quarter
 
 use strict;
 use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
+
+# Usage information
+if (@ARGV != 2) {
+  print "Usage: $PROGRAM_NAME <opt> <directory>\n";
+  print "all:\t Calculate H-index for each month\n";
+  print "year:\t Calculate H-index for each annual period\n";
+  print "quarter: Calculate H-index for each quarterly period\n";
+  print "finance: Calculate H-index for each fiscal quarter\n";
+  exit;
+}
+
+opendir my $dir, "$ARGV[1]" or die $ERRNO;
+my @files = readdir $dir;
+closedir $dir or die $ERRNO;
+splice @files, 0, 2;		# Remove dots
+print "@files\n";
+exit;
 
 # 0-indexed
 #  my @years = (2009,2010,2011,2012,2013);
@@ -17,30 +40,20 @@ my @months = qw (err jan feb mar apr may jun jul aug sep oct nov dec);
 my $yearCount = scalar @years - 1;
 my $monthCount = scalar @months - 1;
 
-# $ARGV[0] if defined, empty (so the ifs don't fail) if not
-my $which = $ARGV[0] // q{};
-
-if ($which =~ m/all/i) {
+if ($ARGV[0] =~ m/all/i) {
   print "All\n\n";
   all();
-} elsif ($which =~ m/year/i) {
+} elsif ($ARGV[0] =~ m/year/i) {
   print "Year\n\n";
   year();
-} elsif ($which =~ m/quarter/i) {
+} elsif ($ARGV[0] =~ m/quarter/i) {
   print "Quarter\n\n";
   quarter();
-} elsif ($which =~ m/finance/i) {
+} elsif ($ARGV[0] =~ m/finance/i) {
   print "Finance\n\n";
   finance();
-}
-
-# Usage information
-else {
-  print "Usage: $0 <opt>\n";
-  print "all:\t Calculate H-index for each month\n";
-  print "year:\t Calculate H-index for each annual period\n";
-  print "quarter: Calculate H-index for each quarterly period\n";
-  print "finance: Calculate H-index for each fiscal quarter\n";
+} else {
+  print "Enter a damn option!\n";
   exit;
 }
 

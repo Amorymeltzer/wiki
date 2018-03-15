@@ -108,3 +108,5 @@ if [[ -n $csvDups ]]; then
     dienice "You should investigate manually"
 fi
 
+# Rewrite calcH to take list of files, pass directory name from here
+# https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
