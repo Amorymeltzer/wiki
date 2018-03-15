@@ -10,11 +10,6 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
-if (@ARGV != 1) {
-  print "Usage: $PROGRAM_NAME <latest>\n";
-  exit;
-}
-
 # Earliest reliable data is from Semptember 2008, don't use anything older
 # my ($startYear,$startMonth) = (2008,8);
 # Format changed in feb 2010, so for now can just do this.
@@ -27,7 +22,10 @@ $mon++;
 my $endYear = $year+1900;
 
 # Date of last data grab
-($startYear,$startMonth) = split /-/, $ARGV[0];
+if (@ARGV) {
+  ($startYear,$startMonth) = split /-/, $ARGV[0];
+}
+
 
 # Process dates, grab data
 my $date;

@@ -1,0 +1,5401 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
+  <siteinfo>
+    <sitename>Wikipedia</sitename>
+    <dbname>enwiki</dbname>
+    <base>https://en.wikipedia.org/wiki/Main_Page</base>
+    <generator>MediaWiki 1.31.0-wmf.24</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Media</namespace>
+      <namespace key="-1" case="first-letter">Special</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Talk</namespace>
+      <namespace key="2" case="first-letter">User</namespace>
+      <namespace key="3" case="first-letter">User talk</namespace>
+      <namespace key="4" case="first-letter">Wikipedia</namespace>
+      <namespace key="5" case="first-letter">Wikipedia talk</namespace>
+      <namespace key="6" case="first-letter">File</namespace>
+      <namespace key="7" case="first-letter">File talk</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
+      <namespace key="10" case="first-letter">Template</namespace>
+      <namespace key="11" case="first-letter">Template talk</namespace>
+      <namespace key="12" case="first-letter">Help</namespace>
+      <namespace key="13" case="first-letter">Help talk</namespace>
+      <namespace key="14" case="first-letter">Category</namespace>
+      <namespace key="15" case="first-letter">Category talk</namespace>
+      <namespace key="100" case="first-letter">Portal</namespace>
+      <namespace key="101" case="first-letter">Portal talk</namespace>
+      <namespace key="108" case="first-letter">Book</namespace>
+      <namespace key="109" case="first-letter">Book talk</namespace>
+      <namespace key="118" case="first-letter">Draft</namespace>
+      <namespace key="119" case="first-letter">Draft talk</namespace>
+      <namespace key="446" case="first-letter">Education Program</namespace>
+      <namespace key="447" case="first-letter">Education Program talk</namespace>
+      <namespace key="710" case="first-letter">TimedText</namespace>
+      <namespace key="711" case="first-letter">TimedText talk</namespace>
+      <namespace key="828" case="first-letter">Module</namespace>
+      <namespace key="829" case="first-letter">Module talk</namespace>
+      <namespace key="2300" case="first-letter">Gadget</namespace>
+      <namespace key="2301" case="first-letter">Gadget talk</namespace>
+      <namespace key="2302" case="case-sensitive">Gadget definition</namespace>
+      <namespace key="2303" case="case-sensitive">Gadget definition talk</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>User:JamesR/AdminStats</title>
+    <ns>2</ns>
+    <id>18530389</id>
+    <revision>
+      <id>597595471</id>
+      <parentid>597588400</parentid>
+      <timestamp>2014-03-01T00:06:10Z</timestamp>
+      <contributor>
+        <username>AdminStatsBot</username>
+        <id>7513046</id>
+      </contributor>
+      <comment>Updating statistics (BOT).</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve" bytes="164487">{{User:JamesR/AdminStats/header}}
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Deletions&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || East718 || 225964
+|-
+|| 2 || Misza13 || 223291
+|-
+|| 3 || NawlinWiki || 222720
+|-
+|| 4 || RHaworth || 165158
+|-
+|| 5 || Explicit || 158970
+|-
+|| 6 || DerHexer || 134670
+|-
+|| 7 || Maxim || 131770
+|-
+|| 8 || Cydebot || 128873
+|-
+|| 9 || Athaenara || 112610
+|-
+|| 10 || Quadell || 100919
+|-
+|| 11 || Gogo Dodo || 84428
+|-
+|| 12 || Magog the Ogre || 75583
+|-
+|| 13 || Courcelles || 74808
+|-
+|| 14 || Edgar181 || 71541
+|-
+|| 15 || JohnCD || 67947
+|-
+|| 16 || Jimfbleak || 65338
+|-
+|| 17 || MBisanz || 62624
+|-
+|| 18 || DragonflySixtyseven || 61855
+|-
+|| 19 || Nv8200p || 59667
+|-
+|| 20 || Sphilbrick || 58896
+|-
+|| 21 || Acroterion || 56430
+|-
+|| 22 || Luk || 54638
+|-
+|| 23 || After Midnight || 52878
+|-
+|| 24 || Mailer diablo || 49352
+|-
+|| 25 || Alexf || 48053
+|-
+|| 26 || Kimchi.sg || 45415
+|-
+|| 27 || Mark Arsten || 44393
+|-
+|| 28 || Plastikspork || 43661
+|-
+|| 29 || Diannaa || 42815
+|-
+|| 30 || Sherool || 42753
+|-
+|| 31 || Melesse || 41652
+|-
+|| 32 || Nakon || 39439
+|-
+|| 33 || Anthony Appleyard || 38344
+|-
+|| 34 || ST47 || 37727
+|-
+|| 35 || MGA73 || 34577
+|-
+|| 36 || Angr || 34559
+|-
+|| 37 || Peridon || 34330
+|-
+|| 38 || Closedmouth || 33755
+|-
+|| 39 || Nyttend || 33409
+|-
+|| 40 || Malik Shabazz || 31978
+|-
+|| 41 || R'n'B || 30751
+|-
+|| 42 || Orangemike || 29512
+|-
+|| 43 || TheCoffee || 29338
+|-
+|| 44 || Fang Aili || 29308
+|-
+|| 45 || PhilKnight || 29211
+|-
+|| 46 || JesseW || 29060
+|-
+|| 47 || ^demon || 28650
+|-
+|| 48 || Jac16888 || 27615
+|-
+|| 49 || Jni || 26495
+|-
+|| 50 || Anthony Bradbury || 26288
+|-
+|| 51 || JamesBWatson || 26055
+|-
+|| 52 || DGG || 25091
+|-
+|| 53 || TexasAndroid || 24393
+|-
+|| 54 || Lectonar || 23662
+|-
+|| 55 || Discospinster || 23325
+|-
+|| 56 || Rettetast || 22560
+|-
+|| 57 || Kbdank71 || 22545
+|-
+|| 58 || Wizardman || 22180
+|-
+|| 59 || Mushroom || 22013
+|-
+|| 60 || Stifle || 21465
+|-
+|| 61 || Angusmclellan || 20904
+|-
+|| 62 || Mike Rosoft || 20682
+|-
+|| 63 || Deb || 20551
+|-
+|| 64 || Academic Challenger || 20117
+|-
+|| 65 || Mr.Z-man || 19745
+|-
+|| 66 || Rjd0060 || 19522
+|-
+|| 67 || Howcheng || 19230
+|-
+|| 68 || Cyde || 19117
+|-
+|| 69 || Tone || 18919
+|-
+|| 70 || Ronhjones || 18825
+|-
+|| 71 || B || 18752
+|-
+|| 72 || Bongwarrior || 18493
+|-
+|| 73 || Tiptoety || 17876
+|-
+|| 74 || Juliancolton || 17788
+|-
+|| 75 || CambridgeBayWeather || 17524
+|-
+|| 76 || Good Olfactory || 17503
+|-
+|| 77 || Wknight94 || 17270
+|-
+|| 78 || Drilnoth || 17221
+|-
+|| 79 || C.Fred || 17084
+|-
+|| 80 || Shyam || 16930
+|-
+|| 81 || Tassedethe || 16327
+|-
+|| 82 || VegaDark || 16094
+|-
+|| 83 || Future Perfect at Sunrise || 15898
+|-
+|| 84 || James086 || 15800
+|-
+|| 85 || Materialscientist || 15643
+|-
+|| 86 || Nancy || 15557
+|-
+|| 87 || Calmer Waters || 14926
+|-
+|| 88 || Fran Rogers || 14909
+|-
+|| 89 || JLaTondre || 14900
+|-
+|| 90 || Moonriddengirl || 14790
+|-
+|| 91 || RedWolf || 14661
+|-
+|| 92 || Fram || 14578
+|-
+|| 93 || Graeme Bartlett || 14509
+|-
+|| 94 || Riana || 14488
+|-
+|| 95 || Zscout370 || 14425
+|-
+|| 96 || Jeffrey O. Gustafson || 14386
+|-
+|| 97 || CLW || 13930
+|-
+|| 98 || Vegaswikian || 13907
+|-
+|| 99 || Garion96 || 13638
+|-
+|| 100 || Nihiltres || 13576
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Undeletions&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Graham87 || 15231
+|-
+|| 2 || CapitalR || 11481
+|-
+|| 3 || NawlinWiki || 8707
+|-
+|| 4 || Anthony Appleyard || 8608
+|-
+|| 5 || ST47 || 4965
+|-
+|| 6 || RHaworth || 4961
+|-
+|| 7 || BD2412 || 4193
+|-
+|| 8 || Mikaey || 2737
+|-
+|| 9 || Moonriddengirl || 2152
+|-
+|| 10 || East718 || 1913
+|-
+|| 11 || JohnCD || 1854
+|-
+|| 12 || Explicit || 1476
+|-
+|| 13 || Magog the Ogre || 1466
+|-
+|| 14 || Protonk || 1386
+|-
+|| 15 || Nyttend || 1239
+|-
+|| 16 || Graeme Bartlett || 1176
+|-
+|| 17 || Tikiwont || 1165
+|-
+|| 18 || Maxim || 1090
+|-
+|| 19 || Plastikspork || 1056
+|-
+|| 20 || Courcelles || 1030
+|-
+|| 21 || R'n'B || 934
+|-
+|| 22 || DGG || 927
+|-
+|| 23 || Good Olfactory || 890
+|-
+|| 24 || Rossami || 882
+|-
+|| 25 || BOZ || 870
+|-
+|| 26 || Keith D || 863
+|-
+|| 27 || Sphilbrick || 856
+|-
+|| 28 || Xeno || 849
+|-
+|| 29 || Xoloz || 812
+|-
+|| 30 || Kimchi.sg || 791
+|-
+|| 31 || MBisanz || 773
+|-
+|| 32 || MGA73 || 731
+|-
+|| 33 || Timotheus Canens || 731
+|-
+|| 34 || TexasAndroid || 718
+|-
+|| 35 || Bearcat || 708
+|-
+|| 36 || Stifle || 655
+|-
+|| 37 || Ilmari Karonen || 642
+|-
+|| 38 || JamesBWatson || 634
+|-
+|| 39 || A. B. || 629
+|-
+|| 40 || DragonflySixtyseven || 624
+|-
+|| 41 || Cool Hand Luke || 590
+|-
+|| 42 || AnemoneProjectors || 556
+|-
+|| 43 || Mike Rosoft || 548
+|-
+|| 44 || Tassedethe || 531
+|-
+|| 45 || JHunterJ || 509
+|-
+|| 46 || PhilKnight || 504
+|-
+|| 47 || King of Hearts || 504
+|-
+|| 48 || Ezhiki || 493
+|-
+|| 49 || Joy || 479
+|-
+|| 50 || Djsasso || 475
+|-
+|| 51 || Od Mishehu || 472
+|-
+|| 52 || CT Cooper || 472
+|-
+|| 53 || Spartaz || 455
+|-
+|| 54 || SlimVirgin || 451
+|-
+|| 55 || Jimp || 442
+|-
+|| 56 || Athaenara || 440
+|-
+|| 57 || Mark Arsten || 432
+|-
+|| 58 || Spellcast || 428
+|-
+|| 59 || Discospinster || 427
+|-
+|| 60 || Titoxd || 426
+|-
+|| 61 || Rjd0060 || 423
+|-
+|| 62 || Nakon || 419
+|-
+|| 63 || Nihonjoe || 411
+|-
+|| 64 || Edgar181 || 403
+|-
+|| 65 || Wknight94 || 402
+|-
+|| 66 || Quadell || 398
+|-
+|| 67 || Sjakkalle || 395
+|-
+|| 68 || Fram || 393
+|-
+|| 69 || NuclearWarfare || 379
+|-
+|| 70 || Ron Ritzman || 376
+|-
+|| 71 || ThaddeusB || 372
+|-
+|| 72 || Anetode || 369
+|-
+|| 73 || CambridgeBayWeather || 367
+|-
+|| 74 || John Vandenberg || 362
+|-
+|| 75 || Dcoetzee || 362
+|-
+|| 76 || Ronhjones || 361
+|-
+|| 77 || After Midnight || 358
+|-
+|| 78 || VegaDark || 350
+|-
+|| 79 || Nishkid64 || 349
+|-
+|| 80 || Zzyzx11 || 344
+|-
+|| 81 || IronGargoyle || 342
+|-
+|| 82 || Malik Shabazz || 337
+|-
+|| 83 || Garion96 || 337
+|-
+|| 84 || Geni || 332
+|-
+|| 85 || Julia W || 331
+|-
+|| 86 || B || 331
+|-
+|| 87 || Prodego || 331
+|-
+|| 88 || Splash || 326
+|-
+|| 89 || Bryan Derksen || 324
+|-
+|| 90 || Zscout370 || 323
+|-
+|| 91 || Juliancolton || 322
+|-
+|| 92 || Arbitrarily0 || 319
+|-
+|| 93 || Kingboyk || 317
+|-
+|| 94 || VernoWhitney || 315
+|-
+|| 95 || Future Perfect at Sunrise || 312
+|-
+|| 96 || Xaosflux || 311
+|-
+|| 97 || Aervanath || 309
+|-
+|| 98 || Jimfbleak || 302
+|-
+|| 99 || GiantSnowman || 302
+|-
+|| 100 || Trialsanderrors || 297
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Revision deletions&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || NawlinWiki || 17298
+|-
+|| 2 || Moonriddengirl || 2378
+|-
+|| 3 || Courcelles || 2358
+|-
+|| 4 || Edgar181 || 2222
+|-
+|| 5 || Zzuuzz || 1420
+|-
+|| 6 || Discospinster || 1404
+|-
+|| 7 || Reaper Eternal || 970
+|-
+|| 8 || Bsadowski1 || 969
+|-
+|| 9 || HJ Mitchell || 888
+|-
+|| 10 || Gogo Dodo || 816
+|-
+|| 11 || Malik Shabazz || 766
+|-
+|| 12 || Mark Arsten || 763
+|-
+|| 13 || Mike Rosoft || 755
+|-
+|| 14 || Fred Bauder || 698
+|-
+|| 15 || Alexf || 690
+|-
+|| 16 || Acroterion || 648
+|-
+|| 17 || 5 albert square || 608
+|-
+|| 18 || Elockid || 486
+|-
+|| 19 || Favonian || 486
+|-
+|| 20 || Drmies || 470
+|-
+|| 21 || JamesBWatson || 453
+|-
+|| 22 || Alison || 427
+|-
+|| 23 || Ponyo || 419
+|-
+|| 24 || January || 383
+|-
+|| 25 || Bongwarrior || 364
+|-
+|| 26 || Kww || 339
+|-
+|| 27 || Risker || 325
+|-
+|| 28 || Nakon || 302
+|-
+|| 29 || Materialscientist || 272
+|-
+|| 30 || JohnCD || 257
+|-
+|| 31 || Salvio giuliano || 256
+|-
+|| 32 || DeltaQuad || 254
+|-
+|| 33 || Od Mishehu || 249
+|-
+|| 34 || Madman || 246
+|-
+|| 35 || 7 || 241
+|-
+|| 36 || Shirik || 230
+|-
+|| 37 || Wizardman || 227
+|-
+|| 38 || Rschen7754 || 225
+|-
+|| 39 || GorillaWarfare || 224
+|-
+|| 40 || Beeblebrox || 223
+|-
+|| 41 || Dougweller || 220
+|-
+|| 42 || Diannaa || 218
+|-
+|| 43 || Mike V || 217
+|-
+|| 44 || Closedmouth || 202
+|-
+|| 45 || Connormah || 200
+|-
+|| 46 || Fluffernutter || 196
+|-
+|| 47 || Daniel Case || 187
+|-
+|| 48 || Barek || 183
+|-
+|| 49 || DragonflySixtyseven || 179
+|-
+|| 50 || Nlu || 174
+|-
+|| 51 || John Vandenberg || 171
+|-
+|| 52 || Satori Son || 171
+|-
+|| 53 || It Is Me Here || 170
+|-
+|| 54 || Dreadstar || 170
+|-
+|| 55 || C.Fred || 168
+|-
+|| 56 || AnemoneProjectors || 167
+|-
+|| 57 || Phantomsteve || 164
+|-
+|| 58 || JzG || 164
+|-
+|| 59 || The Bushranger || 163
+|-
+|| 60 || Future Perfect at Sunrise || 161
+|-
+|| 61 || Calliopejen1 || 160
+|-
+|| 62 || CT Cooper || 154
+|-
+|| 63 || Ckatz || 147
+|-
+|| 64 || Timotheus Canens || 147
+|-
+|| 65 || Chase me ladies, I'm the Cavalry || 146
+|-
+|| 66 || VernoWhitney || 145
+|-
+|| 67 || MLauba || 143
+|-
+|| 68 || Bencherlite || 143
+|-
+|| 69 || Black Kite || 139
+|-
+|| 70 || FloNight || 137
+|-
+|| 71 || Someguy1221 || 135
+|-
+|| 72 || DMacks || 128
+|-
+|| 73 || DoRD || 128
+|-
+|| 74 || Legoktm || 126
+|-
+|| 75 || NuclearWarfare || 126
+|-
+|| 76 || Tiptoety || 123
+|-
+|| 77 || Avraham || 122
+|-
+|| 78 || Dpmuk || 118
+|-
+|| 79 || Callanecc || 117
+|-
+|| 80 || Floquenbeam || 115
+|-
+|| 81 || Keegan || 115
+|-
+|| 82 || Dcoetzee || 112
+|-
+|| 83 || OlEnglish || 111
+|-
+|| 84 || Fuhghettaboutit || 111
+|-
+|| 85 || Toddst1 || 108
+|-
+|| 86 || GB fan || 107
+|-
+|| 87 || Ronhjones || 105
+|-
+|| 88 || Darkwind || 104
+|-
+|| 89 || The ed17 || 103
+|-
+|| 90 || GiantSnowman || 100
+|-
+|| 91 || WereSpielChequers || 100
+|-
+|| 92 || Gfoley4 || 99
+|-
+|| 93 || Eagles247 || 96
+|-
+|| 94 || Ohnoitsjamie || 90
+|-
+|| 95 || Deskana || 85
+|-
+|| 96 || Sphilbrick || 85
+|-
+|| 97 || Xeno || 84
+|-
+|| 98 || Thehelpfulone || 84
+|-
+|| 99 || Evil saltine || 83
+|-
+|| 100 || Magog the Ogre || 81
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Event suppressions&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Protections&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || NawlinWiki || 14050
+|-
+|| 2 || Courcelles || 5990
+|-
+|| 3 || East718 || 5648
+|-
+|| 4 || HJ Mitchell || 5308
+|-
+|| 5 || Materialscientist || 4887
+|-
+|| 6 || RHaworth || 4242
+|-
+|| 7 || Jarry1250 || 4123
+|-
+|| 8 || AGK || 4110
+|-
+|| 9 || Mark Arsten || 3905
+|-
+|| 10 || Ged UK || 3052
+|-
+|| 11 || Acalamari || 3012
+|-
+|| 12 || Maxim || 2542
+|-
+|| 13 || Fl || 2150
+|-
+|| 14 || SlimVirgin || 1974
+|-
+|| 15 || JamesBWatson || 1855
+|-
+|| 16 || Kww || 1797
+|-
+|| 17 || Gogo Dodo || 1780
+|-
+|| 18 || Raul654 || 1709
+|-
+|| 19 || Bongwarrior || 1698
+|-
+|| 20 || AlexiusHoratius || 1553
+|-
+|| 21 || Nishkid64 || 1519
+|-
+|| 22 || Alison || 1488
+|-
+|| 23 || Elockid || 1482
+|-
+|| 24 || EdJohnston || 1478
+|-
+|| 25 || Zzuuzz || 1434
+|-
+|| 26 || Tiptoety || 1363
+|-
+|| 27 || BorgQueen || 1361
+|-
+|| 28 || NuclearWarfare || 1320
+|-
+|| 29 || Acroterion || 1313
+|-
+|| 30 || Zzyzx11 || 1304
+|-
+|| 31 || Toddst1 || 1294
+|-
+|| 32 || Yamla || 1224
+|-
+|| 33 || Steel || 1100
+|-
+|| 34 || Jimfbleak || 1096
+|-
+|| 35 || Riana || 1088
+|-
+|| 36 || Favonian || 1035
+|-
+|| 37 || PhilKnight || 982
+|-
+|| 38 || Beeblebrox || 945
+|-
+|| 39 || Tedder || 941
+|-
+|| 40 || Kralizec! || 927
+|-
+|| 41 || Lectonar || 926
+|-
+|| 42 || Tariqabjotu || 920
+|-
+|| 43 || JzG || 908
+|-
+|| 44 || PFHLai || 904
+|-
+|| 45 || Future Perfect at Sunrise || 890
+|-
+|| 46 || Wknight94 || 888
+|-
+|| 47 || Edgar181 || 879
+|-
+|| 48 || Orangemike || 863
+|-
+|| 49 || J.delanoy || 860
+|-
+|| 50 || Rjd0060 || 849
+|-
+|| 51 || Reaper Eternal || 807
+|-
+|| 52 || Mike Rosoft || 794
+|-
+|| 53 || Allen3 || 780
+|-
+|| 54 || DGG || 732
+|-
+|| 55 || Diannaa || 728
+|-
+|| 56 || Airplaneman || 724
+|-
+|| 57 || SoWhy || 723
+|-
+|| 58 || Kinu || 704
+|-
+|| 59 || Drmies || 704
+|-
+|| 60 || Nakon || 703
+|-
+|| 61 || Black Kite || 686
+|-
+|| 62 || CBDunkerson || 683
+|-
+|| 63 || DMacks || 679
+|-
+|| 64 || Juliancolton || 672
+|-
+|| 65 || Daniel || 670
+|-
+|| 66 || King of Hearts || 666
+|-
+|| 67 || MastCell || 664
+|-
+|| 68 || Hut 8.5 || 654
+|-
+|| 69 || Bencherlite || 647
+|-
+|| 70 || Dougweller || 642
+|-
+|| 71 || Spellcast || 640
+|-
+|| 72 || Nlu || 638
+|-
+|| 73 || El C || 637
+|-
+|| 74 || Alexf || 635
+|-
+|| 75 || Luk || 628
+|-
+|| 76 || Gwen Gale || 615
+|-
+|| 77 || Xaosflux || 614
+|-
+|| 78 || Netsnipe || 606
+|-
+|| 79 || Qwyrxian || 598
+|-
+|| 80 || DeltaQuad || 597
+|-
+|| 81 || Pharos || 595
+|-
+|| 82 || Kudpung || 588
+|-
+|| 83 || Enigmaman || 585
+|-
+|| 84 || MBisanz || 582
+|-
+|| 85 || Jayjg || 580
+|-
+|| 86 || Plastikspork || 570
+|-
+|| 87 || Wizardman || 566
+|-
+|| 88 || Kimchi.sg || 565
+|-
+|| 89 || Ohnoitsjamie || 564
+|-
+|| 90 || Rschen7754 || 564
+|-
+|| 91 || Stifle || 561
+|-
+|| 92 || Closedmouth || 546
+|-
+|| 93 || Mr. Stradivarius || 542
+|-
+|| 94 || Chase me ladies, I'm the Cavalry || 542
+|-
+|| 95 || Alex Bakharev || 538
+|-
+|| 96 || AuburnPilot || 528
+|-
+|| 97 || Bearian || 527
+|-
+|| 98 || Salvio giuliano || 512
+|-
+|| 99 || Woohookitty || 503
+|-
+|| 100 || Mr.Z-man || 497
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Unprotections&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Jarry1250 || 4119
+|-
+|| 2 || Aaron Schulz || 2115
+|-
+|| 3 || East718 || 1633
+|-
+|| 4 || Zzuuzz || 1272
+|-
+|| 5 || Tiptoety || 1230
+|-
+|| 6 || PFHLai || 777
+|-
+|| 7 || Courcelles || 771
+|-
+|| 8 || Splash || 761
+|-
+|| 9 || Nishkid64 || 641
+|-
+|| 10 || Dbenbenn || 583
+|-
+|| 11 || Zzyzx11 || 576
+|-
+|| 12 || WJBscribe || 508
+|-
+|| 13 || Raul654 || 508
+|-
+|| 14 || Woohookitty || 475
+|-
+|| 15 || SlimVirgin || 470
+|-
+|| 16 || Steel || 343
+|-
+|| 17 || Ixfd64 || 326
+|-
+|| 18 || Xaosflux || 288
+|-
+|| 19 || Maxim || 280
+|-
+|| 20 || SimonP || 277
+|-
+|| 21 || MSGJ || 261
+|-
+|| 22 || BanyanTree || 245
+|-
+|| 23 || Risker || 234
+|-
+|| 24 || Nlu || 226
+|-
+|| 25 || Xeno || 225
+|-
+|| 26 || Prodego || 212
+|-
+|| 27 || Kralizec! || 206
+|-
+|| 28 || Alison || 203
+|-
+|| 29 || Wknight94 || 200
+|-
+|| 30 || HJ Mitchell || 198
+|-
+|| 31 || Dominic || 186
+|-
+|| 32 || Lectonar || 174
+|-
+|| 33 || John Reaves || 164
+|-
+|| 34 || Michael Snow || 164
+|-
+|| 35 || Shanes || 162
+|-
+|| 36 || Pharos || 157
+|-
+|| 37 || Riana || 157
+|-
+|| 38 || Cenarium || 153
+|-
+|| 39 || VegaDark || 151
+|-
+|| 40 || Alphachimp || 150
+|-
+|| 41 || BorgQueen || 137
+|-
+|| 42 || Doug || 137
+|-
+|| 43 || DYKUpdateBot || 134
+|-
+|| 44 || Samir || 132
+|-
+|| 45 || RockMFR || 124
+|-
+|| 46 || Howcheng || 123
+|-
+|| 47 || Kimchi.sg || 120
+|-
+|| 48 || EncMstr || 116
+|-
+|| 49 || Materialscientist || 116
+|-
+|| 50 || Tom harrison || 115
+|-
+|| 51 || Amalthea || 114
+|-
+|| 52 || Yamamoto Ichiro || 111
+|-
+|| 53 || King of Hearts || 109
+|-
+|| 54 || Geni || 105
+|-
+|| 55 || Tariqabjotu || 105
+|-
+|| 56 || CBM || 103
+|-
+|| 57 || AGK || 102
+|-
+|| 58 || Rettetast || 101
+|-
+|| 59 || Gurubrahma || 93
+|-
+|| 60 || CT Cooper || 91
+|-
+|| 61 || Netsnipe || 91
+|-
+|| 62 || HappyCamper || 87
+|-
+|| 63 || Deskana || 85
+|-
+|| 64 || Gamaliel || 84
+|-
+|| 65 || Toddst1 || 83
+|-
+|| 66 || Mark Arsten || 83
+|-
+|| 67 || ST47 || 83
+|-
+|| 68 || Golbez || 82
+|-
+|| 69 || Aaron Brenneman || 81
+|-
+|| 70 || Future Perfect at Sunrise || 79
+|-
+|| 71 || Acalamari || 76
+|-
+|| 72 || Ricky81682 || 74
+|-
+|| 73 || Cbrown1023 || 74
+|-
+|| 74 || Ged UK || 73
+|-
+|| 75 || Mike V || 72
+|-
+|| 76 || Zscout370 || 71
+|-
+|| 77 || Jayjg || 71
+|-
+|| 78 || Nakon || 70
+|-
+|| 79 || AuburnPilot || 70
+|-
+|| 80 || JamesBWatson || 68
+|-
+|| 81 || Black Kite || 68
+|-
+|| 82 || BrokenSegue || 67
+|-
+|| 83 || Bongwarrior || 66
+|-
+|| 84 || WOSlinker || 66
+|-
+|| 85 || RHaworth || 66
+|-
+|| 86 || Jimfbleak || 65
+|-
+|| 87 || David Levy || 64
+|-
+|| 88 || AnemoneProjectors || 63
+|-
+|| 89 || NuclearWarfare || 63
+|-
+|| 90 || Causa sui || 63
+|-
+|| 91 || Tedder || 62
+|-
+|| 92 || MarkGallagher || 62
+|-
+|| 93 || Trialsanderrors || 61
+|-
+|| 94 || Stifle || 60
+|-
+|| 95 || Yamla || 60
+|-
+|| 96 || Ryan Postlethwaite || 60
+|-
+|| 97 || Antandrus || 59
+|-
+|| 98 || SoWhy || 59
+|-
+|| 99 || Thatcher || 59
+|-
+|| 100 || Plastikspork || 58
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Protection modifications&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || WOSlinker || 3818
+|-
+|| 2 || AGK || 3644
+|-
+|| 3 || NawlinWiki || 1481
+|-
+|| 4 || HJ Mitchell || 1359
+|-
+|| 5 || Courcelles || 1183
+|-
+|| 6 || Mark Arsten || 753
+|-
+|| 7 || Materialscientist || 701
+|-
+|| 8 || Zzuuzz || 672
+|-
+|| 9 || Maxim || 591
+|-
+|| 10 || Xeno || 502
+|-
+|| 11 || Bongwarrior || 368
+|-
+|| 12 || Ged UK || 363
+|-
+|| 13 || NuclearWarfare || 349
+|-
+|| 14 || AlexiusHoratius || 344
+|-
+|| 15 || Elockid || 332
+|-
+|| 16 || Fuhghettaboutit || 322
+|-
+|| 17 || JamesBWatson || 320
+|-
+|| 18 || SlimVirgin || 320
+|-
+|| 19 || Tiptoety || 298
+|-
+|| 20 || East718 || 290
+|-
+|| 21 || Mr.Z-man || 287
+|-
+|| 22 || J.delanoy || 265
+|-
+|| 23 || Acalamari || 259
+|-
+|| 24 || Xaosflux || 256
+|-
+|| 25 || Alison || 254
+|-
+|| 26 || Bsadowski1 || 251
+|-
+|| 27 || Mr. Stradivarius || 249
+|-
+|| 28 || Juliancolton || 246
+|-
+|| 29 || EdJohnston || 238
+|-
+|| 30 || Favonian || 236
+|-
+|| 31 || Risker || 234
+|-
+|| 32 || Cenarium || 224
+|-
+|| 33 || Reaper Eternal || 213
+|-
+|| 34 || Yamamoto Ichiro || 196
+|-
+|| 35 || Tedder || 189
+|-
+|| 36 || Gogo Dodo || 183
+|-
+|| 37 || Lectonar || 181
+|-
+|| 38 || Coffee || 176
+|-
+|| 39 || CambridgeBayWeather || 175
+|-
+|| 40 || Toddst1 || 155
+|-
+|| 41 || Prodego || 150
+|-
+|| 42 || SoWhy || 150
+|-
+|| 43 || Kww || 148
+|-
+|| 44 || Enigmaman || 145
+|-
+|| 45 || Rjd0060 || 138
+|-
+|| 46 || DMacks || 135
+|-
+|| 47 || Airplaneman || 135
+|-
+|| 48 || Anomie || 133
+|-
+|| 49 || Luk || 131
+|-
+|| 50 || Nishkid64 || 130
+|-
+|| 51 || Kralizec! || 129
+|-
+|| 52 || Closedmouth || 125
+|-
+|| 53 || Gimmetrow || 124
+|-
+|| 54 || MSGJ || 123
+|-
+|| 55 || RegentsPark || 122
+|-
+|| 56 || Beeblebrox || 122
+|-
+|| 57 || Gfoley4 || 119
+|-
+|| 58 || Wknight94 || 119
+|-
+|| 59 || CT Cooper || 118
+|-
+|| 60 || Riana || 117
+|-
+|| 61 || Slakr || 114
+|-
+|| 62 || Plastikspork || 114
+|-
+|| 63 || Connormah || 112
+|-
+|| 64 || Dougweller || 111
+|-
+|| 65 || Alexf || 111
+|-
+|| 66 || Amalthea || 106
+|-
+|| 67 || VegaDark || 104
+|-
+|| 68 || Casliber || 102
+|-
+|| 69 || Acroterion || 102
+|-
+|| 70 || ST47 || 102
+|-
+|| 71 || MBisanz || 100
+|-
+|| 72 || Shirik || 97
+|-
+|| 73 || Thehelpfulone || 95
+|-
+|| 74 || Mike V || 95
+|-
+|| 75 || Timotheus Canens || 95
+|-
+|| 76 || Black Kite || 94
+|-
+|| 77 || Malinaccier || 93
+|-
+|| 78 || DeltaQuad || 92
+|-
+|| 79 || Callanecc || 92
+|-
+|| 80 || Nev1 || 89
+|-
+|| 81 || Tariqabjotu || 89
+|-
+|| 82 || King of Hearts || 88
+|-
+|| 83 || Ronhjones || 86
+|-
+|| 84 || Vsmith || 86
+|-
+|| 85 || Tcncv || 84
+|-
+|| 86 || DarkFalls || 83
+|-
+|| 87 || Future Perfect at Sunrise || 82
+|-
+|| 88 || TimVickers || 82
+|-
+|| 89 || Mike Rosoft || 79
+|-
+|| 90 || Snowolf || 78
+|-
+|| 91 || Soap || 77
+|-
+|| 92 || Drmies || 77
+|-
+|| 93 || Amatulic || 76
+|-
+|| 94 || Diannaa || 74
+|-
+|| 95 || MastCell || 74
+|-
+|| 96 || Bencherlite || 74
+|-
+|| 97 || Rschen7754 || 73
+|-
+|| 98 || Master of Puppets || 72
+|-
+|| 99 || Qwyrxian || 72
+|-
+|| 100 || Ryan Postlethwaite || 69
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Blocks&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || ProcseeBot || 1124956
+|-
+|| 2 || Materialscientist || 63748
+|-
+|| 3 || Edgar181 || 33610
+|-
+|| 4 || TorNodeBot || 32123
+|-
+|| 5 || NawlinWiki || 31330
+|-
+|| 6 || Alexf || 26104
+|-
+|| 7 || J.delanoy || 19831
+|-
+|| 8 || Gogo Dodo || 15962
+|-
+|| 9 || Nakon || 14743
+|-
+|| 10 || Zzuuzz || 14402
+|-
+|| 11 || Daniel Case || 13895
+|-
+|| 12 || Elockid || 13311
+|-
+|| 13 || Orangemike || 13223
+|-
+|| 14 || Toddst1 || 13214
+|-
+|| 15 || Favonian || 12768
+|-
+|| 16 || Bongwarrior || 12205
+|-
+|| 17 || DragonflySixtyseven || 12053
+|-
+|| 18 || Gilliam || 11593
+|-
+|| 19 || Wknight94 || 9791
+|-
+|| 20 || Slakr || 9474
+|-
+|| 21 || Spellcast || 9286
+|-
+|| 22 || JohnCD || 8854
+|-
+|| 23 || JamesBWatson || 8328
+|-
+|| 24 || HJ Mitchell || 8209
+|-
+|| 25 || Vsmith || 7987
+|-
+|| 26 || Kuru || 7972
+|-
+|| 27 || Infrogmation || 7649
+|-
+|| 28 || Mentifisto || 7508
+|-
+|| 29 || Nishkid64 || 7483
+|-
+|| 30 || Gadfium || 7385
+|-
+|| 31 || Alison || 6821
+|-
+|| 32 || Tiptoety || 6706
+|-
+|| 33 || The Anome || 6490
+|-
+|| 34 || Acroterion || 6036
+|-
+|| 35 || DerHexer || 5904
+|-
+|| 36 || Antandrus || 5842
+|-
+|| 37 || PhilKnight || 5799
+|-
+|| 38 || DoRD || 5594
+|-
+|| 39 || ST47 || 5576
+|-
+|| 40 || Bsadowski1 || 5519
+|-
+|| 41 || Dank || 5429
+|-
+|| 42 || Jimfbleak || 5274
+|-
+|| 43 || Reaper Eternal || 5174
+|-
+|| 44 || Jpgordon || 4862
+|-
+|| 45 || Dougweller || 4759
+|-
+|| 46 || HelloAnnyong || 4756
+|-
+|| 47 || Mark Arsten || 4693
+|-
+|| 48 || RHaworth || 4680
+|-
+|| 49 || DeltaQuad || 4653
+|-
+|| 50 || MichaelBillington || 4567
+|-
+|| 51 || Glen || 4458
+|-
+|| 52 || Luk || 4444
+|-
+|| 53 || Misza13 || 4399
+|-
+|| 54 || Graeme Bartlett || 4376
+|-
+|| 55 || Yamla || 4165
+|-
+|| 56 || Kralizec! || 4013
+|-
+|| 57 || Ohnoitsjamie || 3977
+|-
+|| 58 || Alphachimp || 3924
+|-
+|| 59 || Nlu || 3900
+|-
+|| 60 || Courcelles || 3879
+|-
+|| 61 || Salvio giuliano || 3855
+|-
+|| 62 || Fran Rogers || 3840
+|-
+|| 63 || Closedmouth || 3739
+|-
+|| 64 || NuclearWarfare || 3739
+|-
+|| 65 || Syrthiss || 3716
+|-
+|| 66 || Netsnipe || 3685
+|-
+|| 67 || BorgQueen || 3683
+|-
+|| 68 || Mike Rosoft || 3539
+|-
+|| 69 || Future Perfect at Sunrise || 3533
+|-
+|| 70 || Theda || 3533
+|-
+|| 71 || East718 || 3477
+|-
+|| 72 || Dominic || 3467
+|-
+|| 73 || Pschemp || 3311
+|-
+|| 74 || Thatcher || 3034
+|-
+|| 75 || Discospinster || 3024
+|-
+|| 76 || Tide rolls || 3006
+|-
+|| 77 || El C || 2994
+|-
+|| 78 || Juliancolton || 2964
+|-
+|| 79 || King of Hearts || 2882
+|-
+|| 80 || A. B. || 2859
+|-
+|| 81 || Willking1979 || 2739
+|-
+|| 82 || 7 || 2701
+|-
+|| 83 || WJBscribe || 2694
+|-
+|| 84 || Academic Challenger || 2692
+|-
+|| 85 || Chris G || 2690
+|-
+|| 86 || Maxim || 2686
+|-
+|| 87 || John Reaves || 2684
+|-
+|| 88 || Drmies || 2671
+|-
+|| 89 || Kinu || 2621
+|-
+|| 90 || C.Fred || 2579
+|-
+|| 91 || Utcursch || 2578
+|-
+|| 92 || Beeblebrox || 2553
+|-
+|| 93 || Riana || 2528
+|-
+|| 94 || Raul654 || 2523
+|-
+|| 95 || Dreadstar || 2447
+|-
+|| 96 || Excirial || 2446
+|-
+|| 97 || DMacks || 2431
+|-
+|| 98 || Timotheus Canens || 2416
+|-
+|| 99 || Pathoschild || 2407
+|-
+|| 100 || Prolog || 2384
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Unblocks&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Nakon || 6243
+|-
+|| 2 || Ixfd64 || 3743
+|-
+|| 3 || ST47 || 2025
+|-
+|| 4 || Netsnipe || 1763
+|-
+|| 5 || Zzuuzz || 1144
+|-
+|| 6 || East718 || 985
+|-
+|| 7 || Yamla || 981
+|-
+|| 8 || King of Hearts || 761
+|-
+|| 9 || Fran Rogers || 744
+|-
+|| 10 || Xeno || 737
+|-
+|| 11 || Pathoschild || 703
+|-
+|| 12 || Spellcast || 650
+|-
+|| 13 || Dominic || 631
+|-
+|| 14 || NawlinWiki || 592
+|-
+|| 15 || VegaDark || 503
+|-
+|| 16 || Jpgordon || 476
+|-
+|| 17 || HappyCamper || 458
+|-
+|| 18 || Mike Rosoft || 416
+|-
+|| 19 || Alison || 413
+|-
+|| 20 || Toddst1 || 394
+|-
+|| 21 || Future Perfect at Sunrise || 378
+|-
+|| 22 || Fish and karate || 375
+|-
+|| 23 || Titoxd || 368
+|-
+|| 24 || Luk || 361
+|-
+|| 25 || David Gerard || 359
+|-
+|| 26 || Antandrus || 357
+|-
+|| 27 || JamesBWatson || 353
+|-
+|| 28 || Tawker || 350
+|-
+|| 29 || Thatcher || 338
+|-
+|| 30 || Pschemp || 319
+|-
+|| 31 || Animum || 319
+|-
+|| 32 || Daniel Case || 318
+|-
+|| 33 || Nishkid64 || 306
+|-
+|| 34 || Beeblebrox || 292
+|-
+|| 35 || J.delanoy || 278
+|-
+|| 36 || Misza13 || 272
+|-
+|| 37 || Prodego || 270
+|-
+|| 38 || Sandstein || 269
+|-
+|| 39 || Anomie || 260
+|-
+|| 40 || Winhunter || 252
+|-
+|| 41 || SlimVirgin || 249
+|-
+|| 42 || Jimfbleak || 248
+|-
+|| 43 || Malo || 246
+|-
+|| 44 || Tiptoety || 245
+|-
+|| 45 || Fred Bauder || 240
+|-
+|| 46 || Jayron32 || 238
+|-
+|| 47 || Mackensen || 237
+|-
+|| 48 || DragonflySixtyseven || 236
+|-
+|| 49 || John Reaves || 236
+|-
+|| 50 || Jayjg || 231
+|-
+|| 51 || Edgar181 || 229
+|-
+|| 52 || Raul654 || 226
+|-
+|| 53 || Nlu || 222
+|-
+|| 54 || Bishonen || 219
+|-
+|| 55 || The Anome || 212
+|-
+|| 56 || CesarB || 212
+|-
+|| 57 || Kimchi.sg || 211
+|-
+|| 58 || Wknight94 || 207
+|-
+|| 59 || FF2010 || 204
+|-
+|| 60 || Glen || 198
+|-
+|| 61 || PhilKnight || 193
+|-
+|| 62 || Riana || 192
+|-
+|| 63 || Gadfium || 191
+|-
+|| 64 || Elockid || 191
+|-
+|| 65 || Alex Bakharev || 190
+|-
+|| 66 || Mr.Z-man || 185
+|-
+|| 67 || Gwen Gale || 182
+|-
+|| 68 || DeltaQuad || 174
+|-
+|| 69 || Gamaliel || 174
+|-
+|| 70 || Woohookitty || 173
+|-
+|| 71 || Reaper Eternal || 171
+|-
+|| 72 || BorgQueen || 171
+|-
+|| 73 || Golbez || 169
+|-
+|| 74 || WJBscribe || 169
+|-
+|| 75 || Cyde || 168
+|-
+|| 76 || Kuru || 167
+|-
+|| 77 || Syrthiss || 158
+|-
+|| 78 || Ryan Postlethwaite || 152
+|-
+|| 79 || Black Kite || 149
+|-
+|| 80 || Maxim || 149
+|-
+|| 81 || HJ Mitchell || 147
+|-
+|| 82 || Chaser || 147
+|-
+|| 83 || AuburnPilot || 145
+|-
+|| 84 || Rjd0060 || 140
+|-
+|| 85 || Avraham || 138
+|-
+|| 86 || DangerousPanda || 138
+|-
+|| 87 || Astronautics || 137
+|-
+|| 88 || AGK || 136
+|-
+|| 89 || Splash || 136
+|-
+|| 90 || NuclearWarfare || 135
+|-
+|| 91 || Deskana || 132
+|-
+|| 92 || MaxSem || 127
+|-
+|| 93 || AmiDaniel || 126
+|-
+|| 94 || SQL || 126
+|-
+|| 95 || Alphachimp || 118
+|-
+|| 96 || Dreadstar || 118
+|-
+|| 97 || MBisanz || 117
+|-
+|| 98 || Infrogmation || 116
+|-
+|| 99 || El C || 116
+|-
+|| 100 || Georgewilliamherbert || 115
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Block modifications&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Anomie || 9357
+|-
+|| 2 || NawlinWiki || 2841
+|-
+|| 3 || ProcseeBot || 2776
+|-
+|| 4 || Fran Rogers || 2050
+|-
+|| 5 || Materialscientist || 1162
+|-
+|| 6 || Elockid || 1120
+|-
+|| 7 || Zzuuzz || 1061
+|-
+|| 8 || Bsadowski1 || 1053
+|-
+|| 9 || J.delanoy || 1005
+|-
+|| 10 || JamesBWatson || 973
+|-
+|| 11 || Kuru || 708
+|-
+|| 12 || Favonian || 707
+|-
+|| 13 || Tiptoety || 674
+|-
+|| 14 || Jac16888 || 669
+|-
+|| 15 || Gogo Dodo || 658
+|-
+|| 16 || Reaper Eternal || 654
+|-
+|| 17 || Nishkid64 || 652
+|-
+|| 18 || DeltaQuad || 597
+|-
+|| 19 || Edgar181 || 583
+|-
+|| 20 || Toddst1 || 568
+|-
+|| 21 || Timotheus Canens || 511
+|-
+|| 22 || Kanonkas || 497
+|-
+|| 23 || Bongwarrior || 390
+|-
+|| 24 || Jpgordon || 368
+|-
+|| 25 || Beeblebrox || 352
+|-
+|| 26 || HJ Mitchell || 350
+|-
+|| 27 || Acroterion || 316
+|-
+|| 28 || Courcelles || 304
+|-
+|| 29 || DoRD || 301
+|-
+|| 30 || FisherQueen || 300
+|-
+|| 31 || DragonflySixtyseven || 293
+|-
+|| 32 || DangerousPanda || 289
+|-
+|| 33 || Rschen7754 || 277
+|-
+|| 34 || Daniel Case || 249
+|-
+|| 35 || HelloAnnyong || 245
+|-
+|| 36 || Kinu || 243
+|-
+|| 37 || Enigmaman || 241
+|-
+|| 38 || Dennis Brown || 241
+|-
+|| 39 || Orangemike || 229
+|-
+|| 40 || Syrthiss || 228
+|-
+|| 41 || The Anome || 220
+|-
+|| 42 || Xeno || 219
+|-
+|| 43 || DMacks || 212
+|-
+|| 44 || Ponyo || 209
+|-
+|| 45 || PhilKnight || 205
+|-
+|| 46 || NuclearWarfare || 194
+|-
+|| 47 || JohnCD || 192
+|-
+|| 48 || Yunshui || 189
+|-
+|| 49 || Kww || 185
+|-
+|| 50 || Floquenbeam || 184
+|-
+|| 51 || Chris G || 172
+|-
+|| 52 || Drmies || 170
+|-
+|| 53 || Someguy1221 || 167
+|-
+|| 54 || Prodego || 167
+|-
+|| 55 || RHaworth || 166
+|-
+|| 56 || Closedmouth || 165
+|-
+|| 57 || Luk || 158
+|-
+|| 58 || Future Perfect at Sunrise || 145
+|-
+|| 59 || Alison || 145
+|-
+|| 60 || Bbb23 || 138
+|-
+|| 61 || Shirik || 132
+|-
+|| 62 || MaxSem || 130
+|-
+|| 63 || King of Hearts || 127
+|-
+|| 64 || Spellcast || 126
+|-
+|| 65 || Fluffernutter || 125
+|-
+|| 66 || Excirial || 123
+|-
+|| 67 || Od Mishehu || 122
+|-
+|| 68 || Jayron32 || 121
+|-
+|| 69 || Nakon || 118
+|-
+|| 70 || Mark Arsten || 118
+|-
+|| 71 || 5 albert square || 116
+|-
+|| 72 || Amalthea || 114
+|-
+|| 73 || Sandstein || 113
+|-
+|| 74 || AGK || 112
+|-
+|| 75 || Barek || 111
+|-
+|| 76 || NativeForeigner || 111
+|-
+|| 77 || Alexf || 111
+|-
+|| 78 || Risker || 109
+|-
+|| 79 || Gwen Gale || 109
+|-
+|| 80 || Vianello || 107
+|-
+|| 81 || Antandrus || 105
+|-
+|| 82 || Coffee || 104
+|-
+|| 83 || Salvio giuliano || 103
+|-
+|| 84 || Deskana || 102
+|-
+|| 85 || Nick-D || 101
+|-
+|| 86 || Gfoley4 || 100
+|-
+|| 87 || Black Kite || 100
+|-
+|| 88 || EdJohnston || 99
+|-
+|| 89 || The Bushranger || 96
+|-
+|| 90 || Fred Bauder || 94
+|-
+|| 91 || Willking1979 || 92
+|-
+|| 92 || Maxim || 91
+|-
+|| 93 || Avraham || 90
+|-
+|| 94 || Rjd0060 || 90
+|-
+|| 95 || NJA || 88
+|-
+|| 96 || Ohnoitsjamie || 87
+|-
+|| 97 || Mentifisto || 81
+|-
+|| 98 || SilkTork || 78
+|-
+|| 99 || Peridon || 78
+|-
+|| 100 || Anthony Bradbury || 77
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;User renames&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || MBisanz || 5909
+|-
+|| 2 || WJBscribe || 3217
+|-
+|| 3 || Xeno || 2431
+|-
+|| 4 || Nihonjoe || 1783
+|-
+|| 5 || Kingturtle || 1576
+|-
+|| 6 || Andrevan || 1269
+|-
+|| 7 || Bibliomaniac15 || 1005
+|-
+|| 8 || Secretlondon || 848
+|-
+|| 9 || Anonymous Dissident || 723
+|-
+|| 10 || Maxim || 682
+|-
+|| 11 || Avraham || 666
+|-
+|| 12 || EVula || 553
+|-
+|| 13 || 28bytes || 537
+|-
+|| 14 || Dweller || 425
+|-
+|| 15 || Deskana || 360
+|-
+|| 16 || The Rambling Man || 321
+|-
+|| 17 || Warofdreams || 257
+|-
+|| 18 || Useight || 253
+|-
+|| 19 || Cecropia || 215
+|-
+|| 20 || Angela || 158
+|-
+|| 21 || Addshore || 156
+|-
+|| 22 || Raul654 || 149
+|-
+|| 23 || Pakaran || 137
+|-
+|| 24 || Acalamari || 134
+|-
+|| 25 || X! || 74
+|-
+|| 26 || UninvitedCompany || 65
+|-
+|| 27 || Taxman || 34
+|-
+|| 28 || Wizardman || 27
+|-
+|| 29 || Writ Keeper || 27
+|-
+|| 30 || Ilyanep || 16
+|-
+|| 31 || Bastique || 10
+|-
+|| 32 || Cimon Avaro || 6
+|-
+|| 33 || Tim Starling || 5
+|-
+|| 34 || Danny || 4
+|-
+|| 35 || Infrogmation || 2
+|-
+|| 36 || Bcorr || 2
+|-
+|| 37 || Stan Shebs || 1
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;User rights modifications&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Courcelles || 3630
+|-
+|| 2 || Acalamari || 1679
+|-
+|| 3 || HJ Mitchell || 1169
+|-
+|| 4 || Xeno || 648
+|-
+|| 5 || MBisanz || 645
+|-
+|| 6 || WJBscribe || 503
+|-
+|| 7 || Tiptoety || 481
+|-
+|| 8 || Juliancolton || 444
+|-
+|| 9 || Karanacs || 426
+|-
+|| 10 || Pedro || 352
+|-
+|| 11 || Taxman || 337
+|-
+|| 12 || Cecropia || 334
+|-
+|| 13 || Malinaccier || 313
+|-
+|| 14 || DragonflySixtyseven || 311
+|-
+|| 15 || Nakon || 306
+|-
+|| 16 || Reaper Eternal || 277
+|-
+|| 17 || Maxim || 264
+|-
+|| 18 || WereSpielChequers || 236
+|-
+|| 19 || DoRD || 219
+|-
+|| 20 || Deskana || 203
+|-
+|| 21 || The Rambling Man || 201
+|-
+|| 22 || NuclearWarfare || 190
+|-
+|| 23 || Warofdreams || 184
+|-
+|| 24 || Elockid || 182
+|-
+|| 25 || Avraham || 181
+|-
+|| 26 || Kudpung || 179
+|-
+|| 27 || Gfoley4 || 140
+|-
+|| 28 || Feezo || 135
+|-
+|| 29 || Mifter || 129
+|-
+|| 30 || Salvio giuliano || 125
+|-
+|| 31 || Amorymeltzer || 124
+|-
+|| 32 || Arbitrarily0 || 117
+|-
+|| 33 || Amalthea || 110
+|-
+|| 34 || Calmer Waters || 105
+|-
+|| 35 || AGK || 102
+|-
+|| 36 || DeltaQuad || 101
+|-
+|| 37 || J.delanoy || 101
+|-
+|| 38 || Ruslik0 || 95
+|-
+|| 39 || Prodego || 92
+|-
+|| 40 || Wifione || 92
+|-
+|| 41 || Alison || 87
+|-
+|| 42 || Beeblebrox || 84
+|-
+|| 43 || OhanaUnited || 84
+|-
+|| 44 || Kingturtle || 83
+|-
+|| 45 || Raul654 || 83
+|-
+|| 46 || Mentifisto || 81
+|-
+|| 47 || EVula || 81
+|-
+|| 48 || UpstateNYer || 81
+|-
+|| 49 || Daniel Case || 80
+|-
+|| 50 || Bibliomaniac15 || 78
+|-
+|| 51 || Toddst1 || 77
+|-
+|| 52 || Magog the Ogre || 74
+|-
+|| 53 || Andrevan || 74
+|-
+|| 54 || TParis || 73
+|-
+|| 55 || Thehelpfulone || 73
+|-
+|| 56 || MSGJ || 73
+|-
+|| 57 || Optimist on the run || 71
+|-
+|| 58 || Nihonjoe || 70
+|-
+|| 59 || Pharos || 70
+|-
+|| 60 || Anonymous Dissident || 68
+|-
+|| 61 || Yamamoto Ichiro || 68
+|-
+|| 62 || Swarm || 67
+|-
+|| 63 || King of Hearts || 66
+|-
+|| 64 || John Reaves || 64
+|-
+|| 65 || Zzuuzz || 64
+|-
+|| 66 || Meno25 || 63
+|-
+|| 67 || Rschen7754 || 63
+|-
+|| 68 || Stwalkerster || 60
+|-
+|| 69 || Ryan Postlethwaite || 60
+|-
+|| 70 || NJA || 60
+|-
+|| 71 || CBM || 59
+|-
+|| 72 || CT Cooper || 58
+|-
+|| 73 || Cenarium || 58
+|-
+|| 74 || Legoktm || 58
+|-
+|| 75 || JamesBWatson || 57
+|-
+|| 76 || Closedmouth || 56
+|-
+|| 77 || Wehwalt || 56
+|-
+|| 78 || Tom Morris || 56
+|-
+|| 79 || Guerillero || 55
+|-
+|| 80 || Stifle || 55
+|-
+|| 81 || Timotheus Canens || 54
+|-
+|| 82 || Jake Wartenberg || 53
+|-
+|| 83 || Bastique || 51
+|-
+|| 84 || X! || 51
+|-
+|| 85 || Tyrol5 || 50
+|-
+|| 86 || Jac16888 || 50
+|-
+|| 87 || JamieS93 || 49
+|-
+|| 88 || Graeme Bartlett || 49
+|-
+|| 89 || Sarah || 49
+|-
+|| 90 || Mr. Stradivarius || 47
+|-
+|| 91 || 28bytes || 47
+|-
+|| 92 || UninvitedCompany || 47
+|-
+|| 93 || 7 || 47
+|-
+|| 94 || Fred Bauder || 47
+|-
+|| 95 || Kevin Gorman || 46
+|-
+|| 96 || NoSeptember || 45
+|-
+|| 97 || Yunshui || 45
+|-
+|| 98 || Pakaran || 44
+|-
+|| 99 || Addshore || 44
+|-
+|| 100 || Callanecc || 41
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Whitelistings&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Zzuuzz || 6
+|-
+|| 2 || Madman || 4
+|-
+|| 3 || Kanonkas || 4
+|-
+|| 4 || DeltaQuad || 3
+|-
+|| 5 || BirgitteSB || 1
+|-
+|| 6 || AGK || 1
+|-
+|| 7 || MBisanz || 1
+|-
+|| 8 || Fred Bauder || 1
+|-
+|| 9 || Avraham || 1
+|-
+|| 10 || Werdna || 1
+|-
+|| 11 || King of Hearts || 1
+|-
+|| 12 || Meno25 || 1
+|-
+|| 13 || Alex Bakharev || 1
+|-
+|| 14 || Ronhjones || 1
+|-
+|| 15 || Materialscientist || 1
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;De-whitelistings&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Kanonkas || 1
+|-
+|| 2 || King of Hearts || 1
+|-
+|| 3 || East718 || 1
+|-
+|| 4 || Meno25 || 1
+|-
+|| 5 || Werdna || 1
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;Interwiki imports&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+{| class=&quot;wikitable sortable&quot; style=&quot;width:23em;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! Count
+|-
+|| 1 || Graham87 || 9815
+|-
+|| 2 || Acroterion || 197
+|-
+|| 3 || Nyttend || 20
+|-
+|| 4 || Mifter || 7
+|-
+|| 5 || MSGJ || 6
+|-
+|| 6 || Juliancolton || 6
+|-
+|| 7 || WOSlinker || 5
+|-
+|| 8 || MBisanz || 5
+|-
+|| 9 || Amalthea || 5
+|-
+|| 10 || TheDJ || 3
+|-
+|| 11 || Sandstein || 3
+|-
+|| 12 || Dominic || 3
+|-
+|| 13 || Anomie || 3
+|-
+|| 14 || Calliopejen1 || 3
+|-
+|| 15 || Addshore || 2
+|-
+|| 16 || Courcelles || 2
+|-
+|| 17 || Huon || 2
+|-
+|| 18 || Killiondude || 2
+|-
+|| 19 || Rschen7754 || 2
+|-
+|| 20 || Graeme Bartlett || 2
+|-
+|| 21 || Billinghurst || 1
+|-
+|| 22 || Leyo || 1
+|-
+|| 23 || Ryan Postlethwaite || 1
+|-
+|| 24 || Dinoguy1000 || 1
+|-
+|| 25 || Salvio giuliano || 1
+|-
+|| 26 || Doug || 1
+|-
+|| 27 || Shirik || 1
+|-
+|}
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;div class=&quot;NavFrame collapsed&quot; style=&quot;text-align:left&quot;&gt;
+  &lt;div class=&quot;NavHead&quot; style=&quot;font-size: 10pt;&quot;&gt;&amp;nbsp;All Totals&lt;/div&gt;
+  &lt;div class=&quot;NavContent&quot;&gt;
+&lt;div style=&quot;text-align: left;&quot;&gt;
+Hover over the abbreviations to see the full action name.
+
+{| class=&quot;wikitable sortable&quot; style=&quot;width:100%; margin:auto;&quot;
+|- style=&quot;white-space:nowrap;&quot;
+! No.
+! User
+! &lt;span title=&quot;Deletions&quot;&gt;DL&lt;/span&gt;
+! &lt;span title=&quot;Undeletions&quot;&gt;UD&lt;/span&gt;
+! &lt;span title=&quot;Revision deletions&quot;&gt;RD&lt;/span&gt;
+! &lt;span title=&quot;Protections&quot;&gt;PT&lt;/span&gt;
+! &lt;span title=&quot;Unprotections&quot;&gt;UP&lt;/span&gt;
+! &lt;span title=&quot;Protection modifications&quot;&gt;PM&lt;/span&gt;
+! &lt;span title=&quot;Blocks&quot;&gt;BL&lt;/span&gt;
+! &lt;span title=&quot;Unblocks&quot;&gt;UB&lt;/span&gt;
+! &lt;span title=&quot;Block modifications&quot;&gt;BM&lt;/span&gt;
+! &lt;span title=&quot;User rights modifications&quot;&gt;RM&lt;/span&gt;
+! Total
+|-
+|| 1 || (aeropagitica) || 11929 || 38 || 0 || 50 || 2 || 0 || 1729 || 42 || 0 || 0 || 13790 
+|-
+|| 2 || 28bytes || 1890 || 119 || 56 || 38 || 1 || 12 || 126 || 21 || 23 || 47 || 2333 
+|-
+|| 3 || 2over0 || 1145 || 55 || 30 || 191 || 11 || 48 || 242 || 19 || 5 || 8 || 1754 
+|-
+|| 4 || 5 albert square || 1439 || 16 || 608 || 192 || 11 || 55 || 1024 || 12 || 116 || 6 || 3479 
+|-
+|| 5 || 7 || 1625 || 48 || 241 || 73 || 2 || 20 || 2701 || 21 || 66 || 47 || 4844 
+|-
+|| 6 || 7SeriesBOT || 6403 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 6403 
+|-
+|| 7 || @pple || 576 || 51 || 0 || 7 || 1 || 0 || 85 || 9 || 0 || 0 || 729 
+|-
+|| 8 || A. B. || 221 || 629 || 4 || 202 || 4 || 6 || 2859 || 42 || 74 || 0 || 4041 
+|-
+|| 9 || AA || 932 || 7 || 0 || 2 || 2 || 1 || 14 || 2 || 0 || 0 || 960 
+|-
+|| 10 || ABCD || 3138 || 29 || 0 || 432 || 27 || 0 || 61 || 41 || 2 || 2 || 3732 
+|-
+|| 11 || AGK || 2791 || 261 || 55 || 4110 || 102 || 3644 || 2038 || 136 || 112 || 102 || 13351 
+|-
+|| 12 || AKeen || 11 || 7 || 0 || 15 || 1 || 3 || 3 || 0 || 0 || 0 || 40 
+|-
+|| 13 || Aaron Brenneman || 1113 || 36 || 0 || 42 || 81 || 1 || 138 || 14 || 0 || 0 || 1425 
+|-
+|| 14 || Aaron Schulz || 5641 || 84 || 1 || 489 || 2115 || 6 || 1046 || 108 || 0 || 6 || 9496 
+|-
+|| 15 || Academic Challenger || 20117 || 39 || 0 || 183 || 34 || 0 || 2692 || 22 || 5 || 0 || 23092 
+|-
+|| 16 || Acalamari || 6749 || 89 || 45 || 3012 || 76 || 259 || 1690 || 102 || 24 || 1679 || 13725 
+|-
+|| 17 || Acather96 || 351 || 1 || 9 || 4 || 1 || 0 || 65 || 1 || 2 || 1 || 435 
+|-
+|| 18 || Acdixon || 194 || 0 || 17 || 13 || 0 || 1 || 4 || 0 || 0 || 0 || 229 
+|-
+|| 19 || Acetic Acid || 65 || 3 || 0 || 7 || 2 || 0 || 65 || 9 || 0 || 0 || 151 
+|-
+|| 20 || Acroterion || 56430 || 218 || 648 || 1313 || 27 || 102 || 6036 || 82 || 316 || 31 || 65203 
+|-
+|| 21 || Adam Bishop || 3656 || 20 || 0 || 46 || 14 || 2 || 124 || 22 || 0 || 1 || 3885 
+|-
+|| 22 || Addshore || 3484 || 48 || 43 || 108 || 5 || 37 || 340 || 21 || 16 || 44 || 4146 
+|-
+|| 23 || Adjwilley || 1 || 0 || 0 || 9 || 0 || 5 || 9 || 1 || 0 || 0 || 25 
+|-
+|| 24 || Admrboltz || 3575 || 9 || 25 || 59 || 15 || 4 || 1572 || 35 || 18 || 15 || 5327 
+|-
+|| 25 || Aervanath || 2153 || 309 || 0 || 48 || 6 || 6 || 53 || 10 || 2 || 0 || 2587 
+|-
+|| 26 || After Midnight || 52878 || 358 || 0 || 32 || 7 || 0 || 61 || 6 || 0 || 0 || 53342 
+|-
+|| 27 || Agathoclea || 1252 || 67 || 3 || 55 || 7 || 5 || 175 || 16 || 1 || 2 || 1583 
+|-
+|| 28 || Ahoerstemeier || 13561 || 107 || 0 || 43 || 5 || 1 || 2020 || 11 || 2 || 0 || 15750 
+|-
+|| 29 || Airplaneman || 4234 || 77 || 29 || 724 || 27 || 135 || 117 || 0 || 2 || 6 || 5351 
+|-
+|| 30 || Akhilleus || 861 || 5 || 0 || 46 || 3 || 4 || 433 || 30 || 1 || 0 || 1383 
+|-
+|| 31 || Al Ameer son || 121 || 5 || 1 || 8 || 2 || 3 || 7 || 1 || 0 || 1 || 149 
+|-
+|| 32 || AlainV || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 1 
+|-
+|| 33 || Alasdair || 547 || 3 || 0 || 11 || 1 || 0 || 227 || 11 || 1 || 0 || 801 
+|-
+|| 34 || Aldux || 124 || 1 || 0 || 170 || 36 || 0 || 201 || 18 || 0 || 0 || 550 
+|-
+|| 35 || Ale jrb || 1473 || 10 || 0 || 7 || 1 || 0 || 423 || 26 || 1 || 4 || 1945 
+|-
+|| 36 || Alex Bakharev || 1765 || 159 || 4 || 538 || 47 || 60 || 1946 || 190 || 6 || 0 || 4715 
+|-
+|| 37 || Alex Shih || 553 || 14 || 0 || 48 || 8 || 1 || 74 || 1 || 4 || 0 || 703 
+|-
+|| 38 || Alex.muller || 567 || 26 || 5 || 25 || 1 || 3 || 309 || 15 || 0 || 11 || 962 
+|-
+|| 39 || AlexandrDmitri || 2434 || 12 || 8 || 26 || 1 || 4 || 398 || 4 || 14 || 7 || 2908 
+|-
+|| 40 || Alexandria || 2629 || 23 || 11 || 89 || 6 || 20 || 521 || 37 || 25 || 1 || 3362 
+|-
+|| 41 || Alexf || 48053 || 253 || 690 || 635 || 13 || 111 || 26104 || 77 || 111 || 1 || 76048 
+|-
+|| 42 || AlexiusHoratius || 215 || 0 || 0 || 1553 || 21 || 344 || 555 || 0 || 10 || 0 || 2698 
+|-
+|| 43 || Alison || 2899 || 212 || 427 || 1488 || 203 || 254 || 6821 || 413 || 145 || 87 || 12949 
+|-
+|| 44 || AlisonW || 496 || 11 || 0 || 59 || 5 || 2 || 131 || 10 || 0 || 0 || 714 
+|-
+|| 45 || AlistairMcMillan || 265 || 22 || 0 || 18 || 1 || 1 || 65 || 4 || 0 || 0 || 376 
+|-
+|| 46 || AliveFreeHappy || 222 || 1 || 0 || 4 || 0 || 0 || 7 || 0 || 0 || 0 || 234 
+|-
+|| 47 || Allen3 || 11590 || 93 || 7 || 780 || 56 || 20 || 150 || 5 || 0 || 1 || 12702 
+|-
+|| 48 || Alphachimp || 6552 || 108 || 0 || 292 || 150 || 1 || 3924 || 118 || 2 || 0 || 11147 
+|-
+|| 49 || Alteripse || 6 || 0 || 0 || 3 || 1 || 0 || 14 || 1 || 0 || 0 || 25 
+|-
+|| 50 || Alvestrand || 470 || 30 || 0 || 8 || 4 || 0 || 56 || 4 || 2 || 0 || 574 
+|-
+|| 51 || Amalthea || 4514 || 215 || 17 || 192 || 114 || 106 || 884 || 75 || 114 || 110 || 6341 
+|-
+|| 52 || Amatulic || 5331 || 107 || 21 || 452 || 11 || 76 || 1368 || 58 || 59 || 21 || 7504 
+|-
+|| 53 || Amberrock || 753 || 9 || 0 || 23 || 5 || 0 || 121 || 9 || 0 || 0 || 920 
+|-
+|| 54 || Ameliorate! || 435 || 8 || 0 || 46 || 3 || 2 || 127 || 8 || 1 || 2 || 632 
+|-
+|| 55 || AmiDaniel || 2804 || 138 || 0 || 165 || 44 || 2 || 749 || 126 || 1 || 1 || 4030 
+|-
+|| 56 || Amire80 || 466 || 46 || 0 || 10 || 2 || 1 || 36 || 5 || 1 || 1 || 568 
+|-
+|| 57 || Amorymeltzer || 9151 || 105 || 13 || 108 || 15 || 14 || 651 || 11 || 27 || 124 || 10219 
+|-
+|| 58 || Ancheta Wis || 17 || 3 || 1 || 3 || 0 || 1 || 11 || 0 || 0 || 0 || 36 
+|-
+|| 59 || Andonic || 437 || 29 || 0 || 361 || 41 || 52 || 1371 || 53 || 0 || 4 || 2348 
+|-
+|| 60 || Andres || 3 || 4 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 8 
+|-
+|| 61 || Andrevan || 721 || 98 || 1 || 24 || 13 || 0 || 93 || 31 || 3 || 74 || 1058 
+|-
+|| 62 || Andrew Gray || 1526 || 153 || 3 || 177 || 7 || 12 || 45 || 20 || 1 || 23 || 1967 
+|-
+|| 63 || Andrew Levine || 719 || 15 || 0 || 19 || 2 || 0 || 36 || 6 || 0 || 0 || 797 
+|-
+|| 64 || Andrew Yong || 24 || 7 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 31 
+|-
+|| 65 || Andrew c || 1449 || 65 || 4 || 39 || 3 || 2 || 125 || 8 || 2 || 3 || 1700 
+|-
+|| 66 || Andrewa || 374 || 19 || 0 || 1 || 0 || 0 || 7 || 0 || 0 || 0 || 401 
+|-
+|| 67 || Andrwsc || 8680 || 120 || 2 || 87 || 56 || 11 || 133 || 2 || 1 || 0 || 9092 
+|-
+|| 68 || AnemoneProjectors || 3700 || 556 || 167 || 310 || 63 || 23 || 452 || 4 || 26 || 1 || 5302 
+|-
+|| 69 || Anetode || 9726 || 369 || 1 || 263 || 14 || 8 || 1287 || 61 || 0 || 8 || 11737 
+|-
+|| 70 || AngelOfSadness || 1615 || 5 || 0 || 57 || 2 || 6 || 223 || 14 || 11 || 0 || 1933 
+|-
+|| 71 || Angela || 2360 || 44 || 0 || 5 || 2 || 0 || 59 || 30 || 0 || 7 || 2507 
+|-
+|| 72 || Angelo.romano || 1109 || 122 || 0 || 164 || 20 || 16 || 90 || 2 || 2 || 0 || 1525 
+|-
+|| 73 || Angr || 34559 || 219 || 3 || 233 || 57 || 36 || 832 || 30 || 5 || 0 || 35974 
+|-
+|| 74 || Angusmclellan || 20904 || 228 || 3 || 14 || 2 || 1 || 74 || 10 || 2 || 17 || 21255 
+|-
+|| 75 || AniMate || 318 || 10 || 28 || 24 || 3 || 1 || 153 || 13 || 19 || 3 || 572 
+|-
+|| 76 || Animum || 1922 || 276 || 2 || 227 || 29 || 56 || 1712 || 319 || 4 || 28 || 4575 
+|-
+|| 77 || Anna Frodesiak || 2114 || 14 || 20 || 101 || 6 || 7 || 1152 || 13 || 33 || 0 || 3460 
+|-
+|| 78 || Anomie || 278 || 16 || 4 || 146 || 3 || 133 || 281 || 260 || 9357 || 4 || 10482 
+|-
+|| 79 || AnomieBOT III || 191 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 191 
+|-
+|| 80 || Anonymous Dissident || 1515 || 45 || 0 || 386 || 34 || 59 || 502 || 15 || 7 || 68 || 2631 
+|-
+|| 81 || Antandrus || 7701 || 27 || 24 || 449 || 59 || 44 || 5842 || 357 || 105 || 5 || 14613 
+|-
+|| 82 || Anthere || 40 || 1 || 0 || 4 || 4 || 0 || 4 || 2 || 0 || 2 || 57 
+|-
+|| 83 || Anthony Appleyard || 38344 || 8608 || 1 || 187 || 16 || 45 || 1 || 0 || 0 || 0 || 47202 
+|-
+|| 84 || Anthony Bradbury || 26288 || 113 || 5 || 142 || 4 || 6 || 2060 || 77 || 77 || 13 || 28785 
+|-
+|| 85 || AntonioMartin || 11 || 6 || 0 || 13 || 5 || 2 || 5 || 18 || 0 || 0 || 60 
+|-
+|| 86 || Aqwis || 254 || 30 || 0 || 77 || 6 || 29 || 55 || 2 || 0 || 8 || 461 
+|-
+|| 87 || Arbitrarily0 || 2480 || 319 || 2 || 59 || 2 || 11 || 0 || 0 || 0 || 117 || 2990 
+|-
+|| 88 || Arcadian || 348 || 33 || 0 || 33 || 1 || 0 || 79 || 5 || 0 || 0 || 499 
+|-
+|| 89 || Arctic.gnome || 691 || 68 || 1 || 40 || 5 || 5 || 30 || 1 || 3 || 3 || 847 
+|-
+|| 90 || ArnoldReinhold || 290 || 3 || 0 || 8 || 2 || 2 || 10 || 2 || 1 || 0 || 318 
+|-
+|| 91 || Arsenikk || 605 || 5 || 0 || 2 || 0 || 0 || 1 || 0 || 0 || 1 || 614 
+|-
+|| 92 || Art LaPella || 78 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 80 
+|-
+|| 93 || Arthur Rubin || 596 || 69 || 71 || 55 || 11 || 6 || 748 || 53 || 26 || 2 || 1637 
+|-
+|| 94 || Arvindn || 17 || 0 || 0 || 1 || 1 || 0 || 0 || 0 || 0 || 0 || 19 
+|-
+|| 95 || Arwel Parry || 149 || 8 || 0 || 46 || 8 || 1 || 689 || 39 || 1 || 0 || 941 
+|-
+|| 96 || Asterion || 98 || 7 || 0 || 72 || 8 || 3 || 126 || 15 || 0 || 1 || 330 
+|-
+|| 97 || Astronautics || 523 || 6 || 0 || 35 || 41 || 0 || 139 || 137 || 0 || 0 || 881 
+|-
+|| 98 || Atama || 2739 || 51 || 27 || 43 || 8 || 3 || 213 || 88 || 25 || 1 || 3198 
+|-
+|| 99 || Athaenara || 112610 || 440 || 0 || 36 || 2 || 2 || 54 || 6 || 2 || 0 || 113152 
+|-
+|| 100 || Atlant || 92 || 1 || 0 || 11 || 0 || 0 || 573 || 20 || 2 || 0 || 699 
+|-
+|| 101 || AuburnPilot || 3180 || 247 || 7 || 528 || 70 || 55 || 1202 || 145 || 30 || 20 || 5484 
+|-
+|| 102 || Audacity || 29 || 4 || 0 || 2 || 1 || 0 || 2 || 1 || 0 || 0 || 39 
+|-
+|| 103 || Aude || 1204 || 41 || 0 || 48 || 11 || 6 || 520 || 17 || 1 || 2 || 1850 
+|-
+|| 104 || Ausir || 27 || 2 || 0 || 1 || 0 || 0 || 1 || 0 || 0 || 0 || 31 
+|-
+|| 105 || Avraham || 1739 || 166 || 122 || 218 || 46 || 25 || 1349 || 138 || 90 || 181 || 4074 
+|-
+|| 106 || Awiseman || 21 || 2 || 0 || 16 || 0 || 0 || 9 || 0 || 0 || 0 || 48 
+|-
+|| 107 || AxelBoldt || 55 || 8 || 0 || 10 || 2 || 0 || 0 || 0 || 0 || 0 || 75 
+|-
+|| 108 || AzaToth || 1919 || 134 || 32 || 126 || 43 || 37 || 251 || 28 || 1 || 8 || 2579 
+|-
+|| 109 || B || 18752 || 331 || 35 || 338 || 29 || 38 || 894 || 106 || 12 || 13 || 20548 
+|-
+|| 110 || BD2412 || 7624 || 4193 || 5 || 76 || 17 || 5 || 274 || 27 || 8 || 1 || 12230 
+|-
+|| 111 || BDD || 4652 || 112 || 3 || 25 || 1 || 1 || 3 || 1 || 0 || 0 || 4798 
+|-
+|| 112 || BOZ || 85 || 870 || 3 || 90 || 10 || 20 || 10 || 0 || 0 || 0 || 1088 
+|-
+|| 113 || Babajobu || 298 || 3 || 0 || 1 || 1 || 0 || 21 || 3 || 2 || 0 || 329 
+|-
+|| 114 || Bagumba || 24 || 2 || 14 || 120 || 9 || 24 || 85 || 6 || 6 || 0 || 290 
+|-
+|| 115 || Bald Zebra || 702 || 17 || 0 || 33 || 2 || 0 || 11 || 1 || 2 || 0 || 768 
+|-
+|| 116 || Banno || 9 || 5 || 0 || 9 || 2 || 0 || 50 || 2 || 0 || 0 || 77 
+|-
+|| 117 || BanyanTree || 2273 || 70 || 1 || 204 || 245 || 6 || 414 || 11 || 0 || 0 || 3224 
+|-
+|| 118 || Barek || 905 || 30 || 183 || 410 || 3 || 57 || 1336 || 14 || 111 || 0 || 3049 
+|-
+|| 119 || BaronLarf || 211 || 26 || 0 || 26 || 1 || 1 || 190 || 1 || 2 || 0 || 458 
+|-
+|| 120 || Basalisk || 589 || 9 || 12 || 30 || 1 || 2 || 291 || 15 || 28 || 4 || 981 
+|-
+|| 121 || Bastique || 365 || 97 || 9 || 48 || 8 || 5 || 119 || 51 || 0 || 51 || 753 
+|-
+|| 122 || Bbatsell || 391 || 9 || 0 || 18 || 2 || 0 || 348 || 18 || 0 || 0 || 786 
+|-
+|| 123 || Bbb23 || 7948 || 29 || 19 || 372 || 10 || 44 || 1879 || 40 || 138 || 0 || 10479 
+|-
+|| 124 || Bcorr || 136 || 9 || 0 || 13 || 1 || 0 || 73 || 10 || 0 || 1 || 243 
+|-
+|| 125 || Bdesham || 27 || 0 || 0 || 3 || 0 || 0 || 0 || 0 || 0 || 0 || 30 
+|-
+|| 126 || Bduke || 269 || 19 || 0 || 32 || 9 || 3 || 34 || 0 || 0 || 0 || 366 
+|-
+|| 127 || Bearcat || 9239 || 708 || 36 || 355 || 39 || 11 || 100 || 8 || 2 || 0 || 10498 
+|-
+|| 128 || Bearian || 2169 || 24 || 0 || 527 || 8 || 33 || 937 || 42 || 11 || 1 || 3752 
+|-
+|| 129 || Beeblebrox || 7017 || 89 || 223 || 945 || 30 || 122 || 2553 || 292 || 352 || 84 || 11707 
+|-
+|| 130 || Beetstra || 1185 || 123 || 12 || 152 || 30 || 22 || 918 || 58 || 44 || 2 || 2546 
+|-
+|| 131 || Beland || 201 || 1 || 0 || 14 || 12 || 1 || 14 || 0 || 0 || 0 || 243 
+|-
+|| 132 || Ben MacDui || 1308 || 10 || 0 || 30 || 0 || 1 || 45 || 1 || 0 || 0 || 1395 
+|-
+|| 133 || Bencherlite || 6603 || 212 || 143 || 647 || 27 || 74 || 755 || 11 || 29 || 20 || 8521 
+|-
+|| 134 || Berean Hunter || 75 || 30 || 4 || 130 || 2 || 24 || 953 || 5 || 63 || 1 || 1287 
+|-
+|| 135 || Berig || 39 || 0 || 0 || 2 || 0 || 2 || 9 || 0 || 0 || 2 || 54 
+|-
+|| 136 || Bgwhite || 217 || 4 || 4 || 33 || 1 || 3 || 55 || 1 || 0 || 0 || 318 
+|-
+|| 137 || Bhadani || 1322 || 10 || 0 || 98 || 19 || 1 || 479 || 10 || 1 || 0 || 1940 
+|-
+|| 138 || Bibliomaniac15 || 4471 || 28 || 0 || 249 || 37 || 26 || 1512 || 23 || 6 || 78 || 6430 
+|-
+|| 139 || BigDom || 535 || 10 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 546 
+|-
+|| 140 || BigHaz || 3194 || 2 || 0 || 8 || 6 || 0 || 33 || 2 || 0 || 0 || 3245 
+|-
+|| 141 || BigrTex || 967 || 10 || 0 || 2 || 0 || 0 || 1 || 0 || 0 || 0 || 980 
+|-
+|| 142 || Bigtimepeace || 566 || 9 || 0 || 5 || 1 || 1 || 81 || 4 || 2 || 1 || 670 
+|-
+|| 143 || Bilby || 49 || 3 || 62 || 12 || 0 || 1 || 52 || 0 || 0 || 0 || 179 
+|-
+|| 144 || Billinghurst || 1511 || 20 || 30 || 17 || 1 || 0 || 372 || 17 || 19 || 12 || 1999 
+|-
+|| 145 || BillyH || 48 || 2 || 0 || 0 || 1 || 0 || 1 || 0 || 0 || 0 || 52 
+|-
+|| 146 || BirgitteSB || 176 || 7 || 0 || 0 || 0 || 0 || 2 || 1 || 0 || 1 || 187 
+|-
+|| 147 || Bishonen || 725 || 79 || 9 || 317 || 54 || 35 || 791 || 219 || 18 || 5 || 2252 
+|-
+|| 148 || Bjarki S || 94 || 0 || 0 || 2 || 1 || 0 || 41 || 4 || 0 || 0 || 142 
+|-
+|| 149 || Bjelleklang || 968 || 14 || 6 || 18 || 2 || 5 || 54 || 6 || 12 || 0 || 1085 
+|-
+|| 150 || Bkell || 1525 || 32 || 8 || 16 || 2 || 1 || 4 || 0 || 0 || 0 || 1588 
+|-
+|| 151 || Bkonrad || 1181 || 223 || 19 || 14 || 1 || 0 || 170 || 2 || 0 || 0 || 1610 
+|-
+|| 152 || Black Falcon || 6810 || 89 || 1 || 6 || 1 || 0 || 29 || 1 || 0 || 0 || 6937 
+|-
+|| 153 || Black Kite || 8176 || 238 || 139 || 686 || 68 || 94 || 2186 || 149 || 100 || 19 || 11855 
+|-
+|| 154 || Blurpeace || 410 || 27 || 38 || 19 || 3 || 4 || 67 || 3 || 3 || 10 || 584 
+|-
+|| 155 || Bob the Wikipedian || 3756 || 9 || 1 || 49 || 0 || 2 || 2 || 0 || 0 || 1 || 3820 
+|-
+|| 156 || Bobak || 236 || 20 || 0 || 172 || 6 || 10 || 776 || 11 || 11 || 0 || 1242 
+|-
+|| 157 || Bobo192 || 4988 || 3 || 0 || 2 || 3 || 0 || 2 || 0 || 0 || 0 || 4998 
+|-
+|| 158 || Bogdangiusca || 3211 || 67 || 0 || 29 || 10 || 1 || 113 || 13 || 0 || 0 || 3444 
+|-
+|| 159 || Bongwarrior || 18493 || 100 || 364 || 1698 || 66 || 368 || 12205 || 43 || 390 || 7 || 33734 
+|-
+|| 160 || BorgHunter || 661 || 27 || 0 || 55 || 19 || 1 || 117 || 28 || 0 || 0 || 908 
+|-
+|| 161 || BorgQueen || 4146 || 76 || 0 || 1361 || 137 || 62 || 3683 || 171 || 25 || 0 || 9661 
+|-
+|| 162 || Borisblue || 248 || 1 || 0 || 14 || 39 || 0 || 92 || 8 || 0 || 0 || 402 
+|-
+|| 163 || Bovlb || 35 || 2 || 0 || 18 || 1 || 1 || 34 || 3 || 1 || 1 || 96 
+|-
+|| 164 || BozMo || 298 || 6 || 2 || 21 || 4 || 3 || 164 || 18 || 0 || 0 || 516 
+|-
+|| 165 || BradPatrick || 17 || 0 || 0 || 4 || 0 || 0 || 5 || 0 || 0 || 0 || 26 
+|-
+|| 166 || Brandon || 3922 || 78 || 1 || 138 || 41 || 29 || 864 || 38 || 47 || 23 || 5181 
+|-
+|| 167 || Bratsche || 568 || 16 || 0 || 18 || 46 || 0 || 140 || 19 || 0 || 0 || 807 
+|-
+|| 168 || Brendanconway || 1005 || 26 || 9 || 31 || 8 || 3 || 91 || 15 || 0 || 4 || 1192 
+|-
+|| 169 || Brian || 11 || 3 || 0 || 3 || 0 || 1 || 3 || 1 || 0 || 0 || 22 
+|-
+|| 170 || Brian Kendig || 28 || 3 || 0 || 5 || 6 || 0 || 2 || 0 || 0 || 0 || 44 
+|-
+|| 171 || Brian0918 || 932 || 79 || 0 || 258 || 47 || 4 || 2141 || 109 || 1 || 0 || 3571 
+|-
+|| 172 || Brianga || 2380 || 9 || 0 || 1 || 1 || 1 || 471 || 7 || 5 || 0 || 2875 
+|-
+|| 173 || Briangotts || 138 || 7 || 0 || 1 || 0 || 0 || 7 || 0 || 0 || 0 || 153 
+|-
+|| 174 || Brighterorange || 181 || 12 || 0 || 1 || 0 || 0 || 21 || 1 || 0 || 0 || 216 
+|-
+|| 175 || Brion VIBBER || 194 || 9 || 0 || 12 || 0 || 1 || 27 || 11 || 0 || 4 || 258 
+|-
+|| 176 || Brockert || 190 || 52 || 0 || 3 || 3 || 0 || 31 || 30 || 0 || 0 || 309 
+|-
+|| 177 || BrokenSegue || 1374 || 11 || 0 || 63 || 67 || 0 || 152 || 40 || 0 || 0 || 1707 
+|-
+|| 178 || Brookie || 4479 || 60 || 6 || 332 || 7 || 4 || 979 || 10 || 50 || 0 || 5927 
+|-
+|| 179 || BrownHairedGirl || 2996 || 219 || 0 || 170 || 11 || 13 || 148 || 18 || 4 || 0 || 3579 
+|-
+|| 180 || Bryan Derksen || 828 || 324 || 0 || 5 || 7 || 0 || 10 || 0 || 0 || 2 || 1176 
+|-
+|| 181 || Bsadowski1 || 1326 || 21 || 969 || 343 || 8 || 251 || 5519 || 84 || 1053 || 16 || 9590 
+|-
+|| 182 || Bucketsofg || 658 || 22 || 0 || 66 || 6 || 0 || 224 || 8 || 0 || 0 || 984 
+|-
+|| 183 || Buckshot06 || 544 || 15 || 0 || 57 || 0 || 8 || 58 || 2 || 1 || 0 || 685 
+|-
+|| 184 || Bumm13 || 870 || 42 || 0 || 7 || 1 || 0 || 32 || 4 || 2 || 5 || 963 
+|-
+|| 185 || Butseriouslyfolks || 5143 || 83 || 0 || 36 || 3 || 1 || 137 || 15 || 0 || 0 || 5418 
+|-
+|| 186 || C.Fred || 17084 || 163 || 168 || 387 || 9 || 16 || 2579 || 50 || 75 || 1 || 20532 
+|-
+|| 187 || CALR || 29 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 30 
+|-
+|| 188 || CBDunkerson || 3506 || 64 || 0 || 683 || 49 || 0 || 32 || 22 || 0 || 1 || 4357 
+|-
+|| 189 || CBM || 4559 || 166 || 9 || 271 || 103 || 26 || 96 || 32 || 4 || 59 || 5325 
+|-
+|| 190 || CIreland || 1752 || 44 || 28 || 247 || 17 || 34 || 545 || 17 || 25 || 1 || 2710 
+|-
+|| 191 || CJ || 1933 || 79 || 0 || 112 || 22 || 3 || 277 || 18 || 0 || 3 || 2447 
+|-
+|| 192 || CJCurrie || 454 || 23 || 9 || 131 || 9 || 2 || 129 || 13 || 0 || 0 || 770 
+|-
+|| 193 || CLW || 13930 || 54 || 0 || 3 || 0 || 0 || 26 || 0 || 0 || 0 || 14013 
+|-
+|| 194 || COGDEN || 65 || 18 || 19 || 3 || 1 || 0 || 4 || 0 || 1 || 0 || 111 
+|-
+|| 195 || CRGreathouse || 20 || 0 || 0 || 5 || 0 || 3 || 1 || 1 || 1 || 0 || 31 
+|-
+|| 196 || CT Cooper || 1449 || 472 || 154 || 447 || 91 || 118 || 545 || 38 || 73 || 58 || 3445 
+|-
+|| 197 || Cactus.man || 597 || 18 || 0 || 61 || 34 || 0 || 179 || 10 || 0 || 0 || 899 
+|-
+|| 198 || CactusWriter || 8599 || 191 || 66 || 130 || 4 || 2 || 200 || 6 || 10 || 5 || 9213 
+|-
+|| 199 || Cacycle || 189 || 11 || 0 || 26 || 2 || 1 || 13 || 1 || 0 || 1 || 244 
+|-
+|| 200 || Cailil || 204 || 4 || 14 || 36 || 0 || 2 || 139 || 15 || 23 || 0 || 437 
+|-
+|| 201 || Caknuck || 2131 || 9 || 0 || 292 || 40 || 53 || 803 || 12 || 9 || 0 || 3349 
+|-
+|| 202 || Callanecc || 1574 || 31 || 117 || 444 || 40 || 92 || 899 || 32 || 43 || 41 || 3313 
+|-
+|| 203 || Calliopejen1 || 5801 || 162 || 160 || 12 || 3 || 0 || 17 || 0 || 0 || 1 || 6156 
+|-
+|| 204 || Calmer Waters || 14926 || 13 || 23 || 90 || 1 || 7 || 646 || 9 || 19 || 105 || 15839 
+|-
+|| 205 || Caltrop || 58 || 22 || 0 || 0 || 0 || 0 || 8 || 3 || 0 || 0 || 91 
+|-
+|| 206 || CambridgeBayWeather || 17524 || 367 || 10 || 417 || 54 || 175 || 1254 || 24 || 9 || 0 || 19834 
+|-
+|| 207 || Camembert || 12 || 2 || 0 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 15 
+|-
+|| 208 || Camw || 636 || 25 || 25 || 28 || 3 || 4 || 221 || 0 || 10 || 0 || 952 
+|-
+|| 209 || Canadian Paul || 1235 || 62 || 0 || 24 || 6 || 1 || 30 || 3 || 0 || 0 || 1361 
+|-
+|| 210 || Canley || 1028 || 14 || 0 || 2 || 1 || 0 || 10 || 0 || 0 || 0 || 1055 
+|-
+|| 211 || Canterbury Tail || 2588 || 8 || 0 || 108 || 8 || 17 || 543 || 26 || 28 || 0 || 3326 
+|-
+|| 212 || CapitalR || 9234 || 11481 || 0 || 19 || 9 || 2 || 50 || 1 || 1 || 1 || 20798 
+|-
+|| 213 || Capitalistroadster || 621 || 1 || 0 || 3 || 0 || 0 || 25 || 3 || 0 || 0 || 653 
+|-
+|| 214 || Carabinieri || 454 || 7 || 0 || 9 || 3 || 0 || 3 || 2 || 0 || 0 || 478 
+|-
+|| 215 || Carcharoth || 44 || 78 || 2 || 5 || 3 || 1 || 1 || 2 || 0 || 0 || 136 
+|-
+|| 216 || Carioca || 3065 || 14 || 0 || 10 || 2 || 1 || 11 || 0 || 1 || 0 || 3104 
+|-
+|| 217 || Carlosguitar || 2921 || 20 || 0 || 30 || 1 || 3 || 167 || 11 || 0 || 0 || 3153 
+|-
+|| 218 || Carlossuarez46 || 11032 || 201 || 0 || 32 || 4 || 0 || 69 || 6 || 1 || 0 || 11345 
+|-
+|| 219 || Casliber || 202 || 126 || 41 || 424 || 42 || 102 || 141 || 6 || 2 || 18 || 1104 
+|-
+|| 220 || Catfish Jim and the soapdish || 871 || 27 || 0 || 27 || 2 || 1 || 54 || 0 || 4 || 1 || 987 
+|-
+|| 221 || CatherineMunro || 69 || 13 || 0 || 0 || 0 || 0 || 3 || 3 || 0 || 0 || 88 
+|-
+|| 222 || Causa sui || 2759 || 56 || 37 || 222 || 63 || 34 || 341 || 25 || 15 || 2 || 3554 
+|-
+|| 223 || Cbl62 || 214 || 5 || 0 || 9 || 0 || 0 || 0 || 0 || 0 || 0 || 228 
+|-
+|| 224 || Cbrown1023 || 3428 || 80 || 1 || 404 || 74 || 8 || 206 || 32 || 0 || 9 || 4242 
+|-
+|| 225 || Cburnett || 52 || 18 || 0 || 6 || 2 || 0 || 14 || 5 || 0 || 0 || 97 
+|-
+|| 226 || Cecropia || 39 || 3 || 0 || 36 || 5 || 0 || 6 || 6 || 0 || 334 || 429 
+|-
+|| 227 || Celestianpower || 745 || 9 || 0 || 19 || 3 || 0 || 170 || 70 || 0 || 0 || 1016 
+|-
+|| 228 || Cenarium || 1875 || 82 || 4 || 402 || 153 || 224 || 141 || 5 || 9 || 58 || 2953 
+|-
+|| 229 || Ceranthor || 309 || 2 || 0 || 0 || 0 || 0 || 152 || 0 || 2 || 0 || 465 
+|-
+|| 230 || Cerebellum || 31 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 31 
+|-
+|| 231 || CesarB || 3604 || 142 || 0 || 123 || 49 || 0 || 942 || 212 || 0 || 0 || 5072 
+|-
+|| 232 || Ceyockey || 1802 || 52 || 0 || 5 || 0 || 0 || 16 || 2 || 0 || 0 || 1877 
+|-
+|| 233 || Chairboy || 5162 || 13 || 0 || 69 || 8 || 0 || 189 || 14 || 0 || 0 || 5455 
+|-
+|| 234 || Chamal N || 157 || 4 || 0 || 86 || 5 || 24 || 105 || 2 || 2 || 5 || 390 
+|-
+|| 235 || Charles Matthews || 2050 || 54 || 0 || 5 || 1 || 0 || 145 || 21 || 0 || 1 || 2277 
+|-
+|| 236 || Chase me ladies, I'm the Cavalry || 4395 || 129 || 146 || 542 || 33 || 62 || 1465 || 50 || 34 || 12 || 6868 
+|-
+|| 237 || Chaser || 2371 || 135 || 7 || 346 || 46 || 43 || 897 || 147 || 30 || 17 || 4039 
+|-
+|| 238 || Ched || 188 || 14 || 9 || 10 || 2 || 2 || 37 || 11 || 6 || 8 || 287 
+|-
+|| 239 || Chick Bowen || 4895 || 231 || 1 || 90 || 15 || 9 || 143 || 30 || 0 || 1 || 5415 
+|-
+|| 240 || Chillum || 1496 || 27 || 0 || 61 || 12 || 7 || 740 || 52 || 76 || 10 || 2481 
+|-
+|| 241 || Chochopk || 27 || 37 || 0 || 1 || 0 || 0 || 2 || 1 || 0 || 0 || 68 
+|-
+|| 242 || Choess || 63 || 13 || 0 || 0 || 0 || 0 || 8 || 0 || 1 || 0 || 85 
+|-
+|| 243 || Cholmes75 || 4639 || 10 || 0 || 26 || 0 || 0 || 112 || 3 || 0 || 0 || 4790 
+|-
+|| 244 || Chris 73 || 1939 || 15 || 0 || 64 || 8 || 1 || 723 || 30 || 3 || 0 || 2783 
+|-
+|| 245 || Chris G || 6910 || 187 || 2 || 256 || 17 || 41 || 2690 || 74 || 172 || 15 || 10364 
+|-
+|| 246 || ChrisTheDude || 913 || 20 || 0 || 8 || 3 || 0 || 25 || 2 || 0 || 0 || 971 
+|-
+|| 247 || Chrislk02 || 4301 || 61 || 0 || 136 || 21 || 8 || 1626 || 91 || 12 || 6 || 6262 
+|-
+|| 248 || Christopher Parham || 749 || 10 || 0 || 4 || 2 || 0 || 24 || 1 || 0 || 0 || 790 
+|-
+|| 249 || Christopher Sundita || 66 || 39 || 0 || 10 || 4 || 0 || 17 || 2 || 0 || 0 || 138 
+|-
+|| 250 || Chuck SMITH || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 1 
+|-
+|| 251 || Chunky Rice || 347 || 1 || 0 || 5 || 3 || 0 || 31 || 2 || 0 || 0 || 389 
+|-
+|| 252 || Chuq || 229 || 21 || 4 || 14 || 2 || 1 || 95 || 10 || 0 || 0 || 376 
+|-
+|| 253 || Cimon Avaro || 239 || 10 || 0 || 2 || 5 || 1 || 4 || 0 || 0 || 5 || 266 
+|-
+|| 254 || Cindamuse || 632 || 3 || 0 || 14 || 0 || 0 || 87 || 0 || 5 || 0 || 741 
+|-
+|| 255 || Circeus || 1768 || 8 || 0 || 50 || 27 || 0 || 157 || 13 || 0 || 0 || 2023 
+|-
+|| 256 || Citicat || 791 || 22 || 0 || 24 || 1 || 0 || 36 || 4 || 0 || 0 || 878 
+|-
+|| 257 || Ckatz || 1634 || 78 || 147 || 252 || 7 || 64 || 1335 || 18 || 43 || 5 || 3583 
+|-
+|| 258 || Cleared as filed || 1346 || 19 || 0 || 0 || 0 || 0 || 53 || 2 || 0 || 0 || 1420 
+|-
+|| 259 || Climie.ca || 0 || 0 || 0 || 2 || 1 || 0 || 13 || 1 || 1 || 1 || 19 
+|-
+|| 260 || Closedmouth || 33755 || 253 || 202 || 546 || 14 || 125 || 3739 || 73 || 165 || 56 || 38928 
+|-
+|| 261 || Cobaltbluetony || 7311 || 93 || 5 || 452 || 24 || 9 || 471 || 22 || 5 || 0 || 8392 
+|-
+|| 262 || Cobi || 53 || 1 || 0 || 21 || 0 || 3 || 8 || 4 || 0 || 4 || 94 
+|-
+|| 263 || Coffee || 3835 || 185 || 10 || 229 || 10 || 176 || 527 || 18 || 104 || 18 || 5112 
+|-
+|| 264 || Cohesion || 6799 || 48 || 0 || 2 || 18 || 1 || 3 || 0 || 0 || 0 || 6871 
+|-
+|| 265 || Commander Keane || 4893 || 233 || 2 || 46 || 22 || 2 || 161 || 29 || 2 || 13 || 5403 
+|-
+|| 266 || Connormah || 130 || 31 || 200 || 203 || 4 || 112 || 1861 || 11 || 70 || 1 || 2623 
+|-
+|| 267 || Consumed Crustacean || 741 || 25 || 0 || 46 || 3 || 1 || 359 || 36 || 1 || 0 || 1212 
+|-
+|| 268 || Conti || 466 || 45 || 1 || 14 || 38 || 7 || 75 || 3 || 0 || 1 || 650 
+|-
+|| 269 || Cool Hand Luke || 959 || 590 || 1 || 65 || 12 || 21 || 96 || 18 || 0 || 0 || 1762 
+|-
+|| 270 || CorbieVreccan || 68 || 0 || 0 || 11 || 1 || 0 || 7 || 1 || 0 || 0 || 88 
+|-
+|| 271 || Coren || 965 || 29 || 61 || 68 || 8 || 10 || 418 || 58 || 28 || 4 || 1649 
+|-
+|| 272 || Courcelles || 74808 || 1030 || 2358 || 5990 || 771 || 1183 || 3879 || 71 || 304 || 3630 || 94024 
+|-
+|| 273 || Cowman109 || 432 || 36 || 0 || 101 || 43 || 4 || 359 || 44 || 0 || 0 || 1019 
+|-
+|| 274 || Crazycomputers || 775 || 14 || 71 || 87 || 15 || 13 || 980 || 96 || 24 || 6 || 2081 
+|-
+|| 275 || Crazytales || 270 || 23 || 5 || 20 || 3 || 2 || 124 || 30 || 5 || 1 || 483 
+|-
+|| 276 || Crisco 1492 || 3013 || 126 || 61 || 109 || 10 || 14 || 47 || 0 || 8 || 0 || 3388 
+|-
+|| 277 || Crum375 || 187 || 18 || 1 || 98 || 8 || 24 || 291 || 13 || 2 || 0 || 642 
+|-
+|| 278 || Cryptic || 9387 || 240 || 0 || 137 || 15 || 1 || 322 || 21 || 0 || 0 || 10123 
+|-
+|| 279 || Cuchullain || 981 || 114 || 3 || 30 || 1 || 5 || 75 || 1 || 0 || 0 || 1210 
+|-
+|| 280 || Cutler || 69 || 0 || 0 || 0 || 0 || 0 || 7 || 0 || 0 || 0 || 76 
+|-
+|| 281 || Cyde || 19117 || 111 || 0 || 258 || 32 || 2 || 830 || 168 || 0 || 0 || 20518 
+|-
+|| 282 || Cydebot || 128873 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 128873 
+|-
+|| 283 || Cyp || 3 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 3 
+|-
+|| 284 || Cyrius || 1641 || 102 || 0 || 30 || 13 || 0 || 72 || 8 || 0 || 0 || 1866 
+|-
+|| 285 || DDima || 622 || 20 || 0 || 2 || 0 || 1 || 1 || 0 || 0 || 0 || 646 
+|-
+|| 286 || DESiegel || 1726 || 218 || 1 || 13 || 2 || 0 || 66 || 31 || 1 || 3 || 2061 
+|-
+|| 287 || DGG || 25091 || 927 || 48 || 732 || 15 || 23 || 223 || 19 || 16 || 10 || 27104 
+|-
+|| 288 || DMacks || 10839 || 119 || 128 || 679 || 23 || 135 || 2431 || 19 || 212 || 1 || 14586 
+|-
+|| 289 || DYKUpdateBot || 1995 || 0 || 0 || 0 || 134 || 0 || 0 || 0 || 0 || 0 || 2129 
+|-
+|| 290 || DaGizza || 1351 || 1 || 0 || 8 || 4 || 1 || 57 || 3 || 0 || 0 || 1425 
+|-
+|| 291 || Dale Arnett || 72 || 2 || 0 || 2 || 0 || 0 || 4 || 0 || 0 || 0 || 80 
+|-
+|| 292 || Dana boomer || 134 || 2 || 28 || 7 || 0 || 2 || 2 || 0 || 0 || 0 || 175 
+|-
+|| 293 || Danaman5 || 293 || 4 || 0 || 6 || 0 || 0 || 4 || 4 || 0 || 2 || 313 
+|-
+|| 294 || DangerousPanda || 5790 || 74 || 15 || 253 || 4 || 22 || 823 || 138 || 289 || 24 || 7432 
+|-
+|| 295 || Daniel || 5493 || 269 || 24 || 670 || 45 || 67 || 583 || 75 || 7 || 13 || 7246 
+|-
+|| 296 || Daniel Case || 3651 || 41 || 187 || 370 || 17 || 13 || 13895 || 318 || 249 || 80 || 18821 
+|-
+|| 297 || Daniel J. Leivick || 936 || 9 || 0 || 28 || 1 || 3 || 124 || 7 || 3 || 0 || 1111 
+|-
+|| 298 || Daniel Quinlan || 54 || 3 || 0 || 0 || 2 || 0 || 2 || 0 || 0 || 0 || 61 
+|-
+|| 299 || DanielCD || 342 || 1 || 0 || 15 || 11 || 0 || 37 || 2 || 0 || 0 || 408 
+|-
+|| 300 || Dank || 12035 || 98 || 0 || 144 || 9 || 2 || 5429 || 18 || 18 || 2 || 17755 
+|-
+|| 301 || Danny || 1076 || 126 || 0 || 26 || 9 || 0 || 105 || 29 || 0 || 7 || 1378 
+|-
+|| 302 || Dante Alighieri || 770 || 20 || 0 || 21 || 17 || 3 || 182 || 29 || 0 || 0 || 1042 
+|-
+|| 303 || DarkFalls || 3274 || 170 || 3 || 321 || 39 || 83 || 952 || 48 || 18 || 8 || 4916 
+|-
+|| 304 || Darkwind || 1706 || 53 || 104 || 113 || 6 || 17 || 660 || 11 || 31 || 4 || 2705 
+|-
+|| 305 || Darwinek || 2396 || 14 || 0 || 82 || 7 || 2 || 201 || 6 || 1 || 0 || 2709 
+|-
+|| 306 || Dave souza || 79 || 3 || 0 || 14 || 2 || 0 || 623 || 20 || 7 || 0 || 748 
+|-
+|| 307 || Davewild || 4956 || 57 || 3 || 30 || 13 || 7 || 772 || 1 || 0 || 1 || 5840 
+|-
+|| 308 || David Eppstein || 3385 || 85 || 2 || 78 || 10 || 4 || 85 || 6 || 5 || 0 || 3660 
+|-
+|| 309 || David Fuchs || 1133 || 38 || 3 || 86 || 10 || 24 || 110 || 15 || 1 || 2 || 1422 
+|-
+|| 310 || David Gerard || 554 || 51 || 2 || 78 || 7 || 3 || 1479 || 359 || 0 || 3 || 2536 
+|-
+|| 311 || David Levy || 1345 || 200 || 4 || 368 || 64 || 5 || 168 || 11 || 11 || 7 || 2183 
+|-
+|| 312 || David Newton || 54 || 3 || 0 || 4 || 0 || 0 || 12 || 12 || 0 || 0 || 85 
+|-
+|| 313 || David.Monniaux || 523 || 62 || 0 || 100 || 13 || 0 || 222 || 30 || 3 || 0 || 953 
+|-
+|| 314 || DavidLevinson || 35 || 52 || 0 || 9 || 0 || 0 || 9 || 0 || 0 || 0 || 105 
+|-
+|| 315 || DavidWBrooks || 1205 || 1 || 0 || 20 || 2 || 4 || 101 || 0 || 0 || 0 || 1333 
+|-
+|| 316 || Davidcannon || 155 || 69 || 0 || 32 || 4 || 0 || 137 || 26 || 1 || 0 || 424 
+|-
+|| 317 || Davidgothberg || 115 || 66 || 0 || 220 || 11 || 51 || 28 || 7 || 2 || 3 || 503 
+|-
+|| 318 || Davidruben || 35 || 0 || 0 || 7 || 1 || 1 || 80 || 2 || 0 || 0 || 126 
+|-
+|| 319 || Davodd || 193 || 32 || 1 || 3 || 3 || 1 || 26 || 1 || 1 || 0 || 261 
+|-
+|| 320 || Dbachmann || 513 || 38 || 2 || 164 || 41 || 27 || 213 || 20 || 1 || 0 || 1019 
+|-
+|| 321 || Dbenbenn || 6087 || 109 || 0 || 260 || 583 || 0 || 26 || 7 || 0 || 0 || 7072 
+|-
+|| 322 || Dcoetzee || 761 || 362 || 112 || 198 || 6 || 1 || 91 || 18 || 8 || 38 || 1595 
+|-
+|| 323 || Ddstretch || 13 || 0 || 0 || 29 || 6 || 6 || 223 || 20 || 8 || 0 || 305 
+|-
+|| 324 || De728631 || 1970 || 26 || 36 || 54 || 1 || 7 || 458 || 4 || 21 || 2 || 2579 
+|-
+|| 325 || Deacon of Pndapetzim || 874 || 51 || 2 || 39 || 4 || 5 || 199 || 20 || 14 || 35 || 1243 
+|-
+|| 326 || Deathphoenix || 1168 || 49 || 0 || 17 || 5 || 0 || 420 || 80 || 0 || 0 || 1739 
+|-
+|| 327 || Deb || 20551 || 118 || 0 || 92 || 3 || 3 || 597 || 6 || 5 || 0 || 21375 
+|-
+|| 328 || Deckiller || 1244 || 35 || 0 || 82 || 14 || 3 || 301 || 46 || 0 || 0 || 1725 
+|-
+|| 329 || Decltype || 2666 || 84 || 9 || 14 || 2 || 2 || 269 || 11 || 14 || 19 || 3090 
+|-
+|| 330 || Deiz || 955 || 16 || 0 || 164 || 8 || 3 || 392 || 20 || 0 || 0 || 1558 
+|-
+|| 331 || Dekimasu || 1166 || 65 || 0 || 16 || 1 || 0 || 20 || 6 || 7 || 1 || 1282 
+|-
+|| 332 || Delirium || 3477 || 23 || 0 || 20 || 11 || 0 || 306 || 18 || 0 || 0 || 3855 
+|-
+|| 333 || Delldot || 2710 || 42 || 0 || 16 || 6 || 1 || 608 || 9 || 0 || 4 || 3396 
+|-
+|| 334 || DeltaQuad || 2101 || 145 || 254 || 597 || 19 || 92 || 4653 || 174 || 597 || 101 || 8733 
+|-
+|| 335 || Deltabeignet || 844 || 1 || 0 || 5 || 6 || 0 || 130 || 2 || 0 || 0 || 988 
+|-
+|| 336 || Denelson83 || 1178 || 18 || 0 || 58 || 12 || 11 || 38 || 6 || 0 || 0 || 1321 
+|-
+|| 337 || Dennis Brown || 335 || 31 || 70 || 387 || 19 || 53 || 1561 || 18 || 241 || 14 || 2729 
+|-
+|| 338 || DerHexer || 134670 || 56 || 19 || 104 || 3 || 10 || 5904 || 51 || 5 || 33 || 140855 
+|-
+|| 339 || Derek Ross || 528 || 11 || 0 || 15 || 4 || 3 || 2 || 0 || 0 || 0 || 563 
+|-
+|| 340 || Deryck Chan || 208 || 16 || 3 || 181 || 9 || 22 || 23 || 1 || 3 || 4 || 470 
+|-
+|| 341 || Deskana || 1640 || 98 || 85 || 234 || 85 || 28 || 1438 || 132 || 102 || 203 || 4045 
+|-
+|| 342 || Deville || 1024 || 6 || 0 || 17 || 1 || 0 || 308 || 4 || 4 || 0 || 1364 
+|-
+|| 343 || Dgies || 575 || 29 || 0 || 27 || 4 || 3 || 223 || 18 || 0 || 2 || 881 
+|-
+|| 344 || Dgrant || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 1 
+|-
+|| 345 || Diannaa || 42815 || 202 || 218 || 728 || 41 || 74 || 869 || 13 || 24 || 16 || 45000 
+|-
+|| 346 || Diberri || 130 || 3 || 0 || 3 || 1 || 0 || 5 || 0 || 0 || 0 || 142 
+|-
+|| 347 || Dino || 27 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 27 
+|-
+|| 348 || Dinoguy1000 || 128 || 9 || 0 || 45 || 1 || 4 || 7 || 1 || 0 || 1 || 196 
+|-
+|| 349 || Discospinster || 23325 || 427 || 1404 || 357 || 16 || 34 || 3024 || 8 || 73 || 3 || 28671 
+|-
+|| 350 || Djsasso || 1864 || 475 || 53 || 76 || 9 || 12 || 451 || 12 || 10 || 9 || 2971 
+|-
+|| 351 || Dlohcierekim || 8515 || 246 || 7 || 204 || 13 || 23 || 670 || 47 || 24 || 1 || 9750 
+|-
+|| 352 || Dmn || 36 || 1 || 0 || 10 || 4 || 0 || 12 || 15 || 0 || 0 || 78 
+|-
+|| 353 || DoRD || 1593 || 94 || 128 || 59 || 1 || 12 || 5594 || 71 || 301 || 219 || 8072 
+|-
+|| 354 || Docu || 1191 || 65 || 0 || 124 || 2 || 15 || 11 || 5 || 0 || 3 || 1416 
+|-
+|| 355 || Doczilla || 76 || 5 || 0 || 19 || 6 || 2 || 101 || 8 || 1 || 0 || 218 
+|-
+|| 356 || Dominic || 13335 || 67 || 50 || 81 || 186 || 3 || 3467 || 631 || 33 || 36 || 17889 
+|-
+|| 357 || Donald Albury || 1313 || 6 || 12 || 11 || 2 || 3 || 196 || 6 || 8 || 0 || 1557 
+|-
+|| 358 || Doug || 475 || 56 || 2 || 22 || 137 || 8 || 43 || 11 || 12 || 16 || 782 
+|-
+|| 359 || Doug Bell || 2427 || 36 || 0 || 29 || 12 || 0 || 25 || 3 || 0 || 0 || 2532 
+|-
+|| 360 || Dougweller || 1904 || 37 || 220 || 642 || 28 || 111 || 4759 || 68 || 75 || 3 || 7847 
+|-
+|| 361 || Dpbsmith || 134 || 4 || 0 || 3 || 2 || 0 || 17 || 0 || 0 || 0 || 160 
+|-
+|| 362 || Dpmuk || 357 || 7 || 118 || 10 || 0 || 2 || 45 || 4 || 0 || 4 || 547 
+|-
+|| 363 || Dppowell || 5 || 1 || 0 || 6 || 1 || 0 || 116 || 6 || 0 || 0 || 135 
+|-
+|| 364 || DrKiernan || 3256 || 82 || 19 || 67 || 10 || 14 || 236 || 10 || 3 || 4 || 3701 
+|-
+|| 365 || DragonflySixtyseven || 61855 || 624 || 179 || 465 || 42 || 29 || 12053 || 236 || 293 || 311 || 76087 
+|-
+|| 366 || Dragons flight || 699 || 67 || 0 || 130 || 36 || 7 || 121 || 28 || 0 || 1 || 1089 
+|-
+|| 367 || Dravecky || 1378 || 39 || 0 || 131 || 5 || 2 || 32 || 0 || 3 || 0 || 1590 
+|-
+|| 368 || Dreadstar || 1471 || 160 || 170 || 444 || 16 || 42 || 2447 || 118 || 30 || 3 || 4901 
+|-
+|| 369 || Drilnoth || 17221 || 70 || 0 || 54 || 2 || 13 || 0 || 0 || 0 || 6 || 17366 
+|-
+|| 370 || Drmies || 3821 || 93 || 470 || 704 || 35 || 77 || 2671 || 27 || 170 || 21 || 8089 
+|-
+|| 371 || Dumelow || 61 || 5 || 1 || 25 || 1 || 0 || 0 || 0 || 0 || 0 || 93 
+|-
+|| 372 || Dweller || 1921 || 32 || 31 || 160 || 4 || 13 || 397 || 14 || 4 || 34 || 2610 
+|-
+|| 373 || ERcheck || 2944 || 9 || 0 || 66 || 10 || 0 || 995 || 29 || 1 || 0 || 4054 
+|-
+|| 374 || ESkog || 12250 || 80 || 3 || 134 || 22 || 6 || 1118 || 109 || 3 || 0 || 13725 
+|-
+|| 375 || EVula || 2636 || 99 || 9 || 167 || 21 || 13 || 969 || 28 || 1 || 81 || 4024 
+|-
+|| 376 || EWS23 || 661 || 3 || 0 || 9 || 3 || 2 || 135 || 11 || 0 || 0 || 824 
+|-
+|| 377 || Eagles247 || 1702 || 68 || 96 || 281 || 9 || 28 || 573 || 22 || 61 || 12 || 2852 
+|-
+|| 378 || Earl Andrew || 128 || 36 || 2 || 32 || 9 || 0 || 89 || 15 || 0 || 0 || 311 
+|-
+|| 379 || East718 || 225964 || 1913 || 1 || 5648 || 1633 || 290 || 3477 || 985 || 15 || 32 || 239958 
+|-
+|| 380 || Ed g2s || 3053 || 69 || 0 || 30 || 28 || 3 || 51 || 5 || 0 || 0 || 3239 
+|-
+|| 381 || EdJohnston || 1442 || 38 || 7 || 1478 || 55 || 238 || 1671 || 86 || 99 || 13 || 5127 
+|-
+|| 382 || Edcolins || 55 || 8 || 0 || 3 || 3 || 0 || 45 || 0 || 1 || 0 || 115 
+|-
+|| 383 || Edgar181 || 71541 || 403 || 2222 || 879 || 28 || 43 || 33610 || 229 || 583 || 31 || 109569 
+|-
+|| 384 || Edison || 1007 || 31 || 0 || 4 || 1 || 1 || 233 || 4 || 4 || 0 || 1285 
+|-
+|| 385 || Edokter || 1856 || 68 || 11 || 89 || 20 || 34 || 70 || 5 || 2 || 2 || 2157 
+|-
+|| 386 || Edward || 375 || 1 || 0 || 2 || 1 || 0 || 22 || 3 || 0 || 0 || 404 
+|-
+|| 387 || Edward Z. Yang || 12 || 0 || 0 || 3 || 0 || 0 || 8 || 1 || 0 || 0 || 24 
+|-
+|| 388 || EdwinHJ || 601 || 7 || 0 || 15 || 4 || 1 || 23 || 7 || 0 || 0 || 658 
+|-
+|| 389 || Efe || 1961 || 7 || 0 || 11 || 1 || 3 || 174 || 0 || 2 || 1 || 2160 
+|-
+|| 390 || Egil || 62 || 0 || 0 || 1 || 0 || 0 || 214 || 3 || 0 || 0 || 280 
+|-
+|| 391 || Ekabhishek || 5 || 0 || 2 || 38 || 0 || 7 || 0 || 0 || 0 || 0 || 52 
+|-
+|| 392 || El C || 1716 || 52 || 0 || 637 || 58 || 24 || 2994 || 116 || 0 || 3 || 5600 
+|-
+|| 393 || Eleassar || 562 || 56 || 5 || 14 || 1 || 0 || 9 || 0 || 1 || 0 || 648 
+|-
+|| 394 || Electionworld || 1285 || 33 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 1319 
+|-
+|| 395 || Elen of the Roads || 377 || 26 || 25 || 73 || 7 || 21 || 561 || 77 || 62 || 4 || 1233 
+|-
+|| 396 || Elf || 138 || 14 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 152 
+|-
+|| 397 || Eliz81 || 960 || 48 || 0 || 93 || 0 || 19 || 229 || 4 || 0 || 1 || 1354 
+|-
+|| 398 || Ellsworth || 18 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 19 
+|-
+|| 399 || Elockid || 3768 || 43 || 486 || 1482 || 25 || 332 || 13311 || 191 || 1120 || 182 || 20940 
+|-
+|| 400 || Elonka || 1351 || 25 || 0 || 48 || 13 || 2 || 544 || 26 || 8 || 1 || 2018 
+|-
+|| 401 || Eloquence || 128 || 5 || 0 || 10 || 5 || 0 || 30 || 11 || 0 || 1 || 190 
+|-
+|| 402 || Eluchil404 || 1452 || 95 || 0 || 7 || 1 || 2 || 17 || 0 || 0 || 0 || 1574 
+|-
+|| 403 || Emperor || 58 || 42 || 0 || 3 || 0 || 0 || 1 || 1 || 0 || 0 || 105 
+|-
+|| 404 || EncMstr || 1023 || 62 || 0 || 285 || 116 || 43 || 2288 || 34 || 39 || 3 || 3893 
+|-
+|| 405 || Enchanter || 14 || 0 || 0 || 1 || 3 || 0 || 2 || 0 || 0 || 0 || 20 
+|-
+|| 406 || Enigmaman || 988 || 13 || 0 || 585 || 9 || 145 || 1412 || 18 || 241 || 5 || 3416 
+|-
+|| 407 || Epbr123 || 2790 || 15 || 0 || 13 || 0 || 1 || 921 || 7 || 22 || 1 || 3770 
+|-
+|| 408 || Ericorbit || 344 || 9 || 1 || 403 || 7 || 20 || 460 || 0 || 11 || 0 || 1255 
+|-
+|| 409 || ErikHaugen || 1599 || 205 || 4 || 7 || 0 || 0 || 20 || 1 || 0 || 1 || 1837 
+|-
+|| 410 || ErrantX || 378 || 36 || 54 || 83 || 3 || 13 || 94 || 13 || 4 || 5 || 683 
+|-
+|| 411 || Esanchez7587 || 4713 || 4 || 0 || 80 || 4 || 10 || 340 || 1 || 5 || 0 || 5157 
+|-
+|| 412 || Espresso Addict || 479 || 11 || 0 || 5 || 1 || 0 || 2 || 0 || 0 || 15 || 513 
+|-
+|| 413 || Esteffect || 845 || 26 || 1 || 18 || 7 || 0 || 98 || 21 || 0 || 0 || 1016 
+|-
+|| 414 || EurekaLott || 1286 || 107 || 4 || 31 || 1 || 3 || 52 || 0 || 0 || 0 || 1484 
+|-
+|| 415 || Euryalus || 1335 || 12 || 4 || 69 || 3 || 12 || 415 || 9 || 15 || 3 || 1877 
+|-
+|| 416 || Eustress || 725 || 7 || 0 || 33 || 6 || 5 || 19 || 1 || 2 || 0 || 798 
+|-
+|| 417 || Ev || 165 || 20 || 0 || 6 || 0 || 0 || 2 || 0 || 0 || 0 || 193 
+|-
+|| 418 || EvanProdromou || 0 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 1 
+|-
+|| 419 || Evercat || 353 || 7 || 0 || 32 || 25 || 1 || 261 || 35 || 0 || 0 || 714 
+|-
+|| 420 || Everyking || 1319 || 4 || 0 || 8 || 12 || 0 || 34 || 12 || 0 || 0 || 1389 
+|-
+|| 421 || Evil saltine || 1824 || 47 || 83 || 39 || 10 || 4 || 734 || 27 || 30 || 3 || 2801 
+|-
+|| 422 || Excirial || 2339 || 85 || 53 || 173 || 8 || 33 || 2446 || 49 || 123 || 11 || 5320 
+|-
+|| 423 || Explicit || 158970 || 1476 || 32 || 280 || 10 || 36 || 647 || 3 || 20 || 5 || 161479 
+|-
+|| 424 || Exploding Boy || 1814 || 7 || 0 || 8 || 3 || 1 || 467 || 22 || 15 || 1 || 2338 
+|-
+|| 425 || Extraordinary Machine || 344 || 142 || 0 || 15 || 5 || 0 || 181 || 28 || 0 || 0 || 715 
+|-
+|| 426 || Ezeu || 922 || 31 || 0 || 38 || 35 || 4 || 125 || 9 || 0 || 0 || 1164 
+|-
+|| 427 || Ezhiki || 1697 || 493 || 9 || 64 || 15 || 14 || 80 || 25 || 0 || 7 || 2404 
+|-
+|| 428 || FF2010 || 2054 || 45 || 0 || 149 || 42 || 9 || 2287 || 204 || 0 || 0 || 4790 
+|-
+|| 429 || FT2 || 524 || 45 || 78 || 81 || 7 || 5 || 235 || 38 || 14 || 20 || 1047 
+|-
+|| 430 || Fabrictramp || 4853 || 133 || 0 || 223 || 5 || 22 || 128 || 3 || 6 || 0 || 5373 
+|-
+|| 431 || Fainites || 20 || 0 || 1 || 11 || 1 || 4 || 61 || 0 || 5 || 1 || 104 
+|-
+|| 432 || Faithlessthewonderboy || 3462 || 69 || 0 || 209 || 1 || 1 || 461 || 3 || 5 || 1 || 4212 
+|-
+|| 433 || Fang Aili || 29308 || 90 || 0 || 118 || 52 || 0 || 254 || 12 || 0 || 0 || 29834 
+|-
+|| 434 || Father Goose || 21 || 5 || 0 || 2 || 2 || 3 || 5 || 1 || 0 || 2 || 41 
+|-
+|| 435 || Favonian || 5367 || 118 || 486 || 1035 || 16 || 236 || 12768 || 80 || 707 || 5 || 20818 
+|-
+|| 436 || Fawcett5 || 813 || 11 || 0 || 3 || 2 || 0 || 58 || 0 || 0 || 0 || 887 
+|-
+|| 437 || Fayenatic london || 882 || 222 || 12 || 14 || 3 || 0 || 44 || 1 || 4 || 1 || 1183 
+|-
+|| 438 || Feezo || 630 || 13 || 30 || 130 || 7 || 31 || 218 || 2 || 7 || 135 || 1203 
+|-
+|| 439 || Fences and windows || 754 || 84 || 76 || 47 || 2 || 11 || 123 || 14 || 14 || 0 || 1125 
+|-
+|| 440 || Fennec || 18 || 3 || 0 || 5 || 3 || 0 || 30 || 3 || 0 || 0 || 62 
+|-
+|| 441 || Fetchcomms || 2199 || 65 || 46 || 43 || 7 || 10 || 104 || 5 || 9 || 18 || 2506 
+|-
+|| 442 || Feydey || 8444 || 45 || 1 || 85 || 19 || 12 || 240 || 4 || 3 || 0 || 8853 
+|-
+|| 443 || Filelakeshoe || 946 || 18 || 8 || 15 || 2 || 7 || 197 || 6 || 2 || 13 || 1214 
+|-
+|| 444 || Finlay McWalter || 380 || 3 || 3 || 26 || 6 || 2 || 501 || 19 || 5 || 0 || 945 
+|-
+|| 445 || Firsfron || 1834 || 13 || 10 || 172 || 7 || 12 || 314 || 32 || 0 || 1 || 2395 
+|-
+|| 446 || Fish and karate || 9210 || 220 || 0 || 377 || 21 || 20 || 635 || 375 || 1 || 11 || 10870 
+|-
+|| 447 || FisherQueen || 8746 || 25 || 3 || 362 || 8 || 21 || 2251 || 57 || 300 || 0 || 11773 
+|-
+|| 448 || Fishhead64 || 25 || 1 || 1 || 0 || 0 || 0 || 27 || 0 || 0 || 0 || 54 
+|-
+|| 449 || Fl || 523 || 7 || 2 || 2150 || 3 || 21 || 130 || 3 || 4 || 16 || 2859 
+|-
+|| 450 || FloNight || 518 || 12 || 137 || 77 || 7 || 3 || 158 || 20 || 1 || 1 || 934 
+|-
+|| 451 || Floquenbeam || 1133 || 43 || 115 || 235 || 16 || 44 || 1580 || 97 || 184 || 10 || 3457 
+|-
+|| 452 || Fluffernutter || 707 || 54 || 196 || 357 || 9 || 50 || 879 || 16 || 125 || 10 || 2403 
+|-
+|| 453 || Flyguy649 || 1736 || 27 || 0 || 252 || 12 || 35 || 1171 || 39 || 24 || 1 || 3297 
+|-
+|| 454 || Foxj || 2270 || 102 || 71 || 122 || 12 || 26 || 317 || 28 || 56 || 15 || 3019 
+|-
+|| 455 || Fram || 14578 || 393 || 57 || 275 || 13 || 41 || 599 || 12 || 16 || 2 || 15986 
+|-
+|| 456 || Fran Rogers || 14909 || 120 || 0 || 331 || 26 || 48 || 3840 || 744 || 2050 || 8 || 22076 
+|-
+|| 457 || Frank || 5177 || 54 || 28 || 61 || 2 || 7 || 301 || 26 || 16 || 7 || 5679 
+|-
+|| 458 || Frazzydee || 384 || 15 || 0 || 65 || 34 || 0 || 28 || 13 || 1 || 6 || 546 
+|-
+|| 459 || Fred Bauder || 242 || 88 || 698 || 169 || 38 || 11 || 460 || 240 || 94 || 47 || 2087 
+|-
+|| 460 || Fribbler || 610 || 5 || 0 || 12 || 0 || 3 || 3 || 2 || 1 || 2 || 638 
+|-
+|| 461 || Friday || 10133 || 97 || 0 || 55 || 22 || 3 || 426 || 40 || 0 || 12 || 10788 
+|-
+|| 462 || Fuhghettaboutit || 12161 || 290 || 111 || 320 || 13 || 322 || 711 || 13 || 38 || 12 || 13991 
+|-
+|| 463 || Furrykef || 112 || 11 || 0 || 0 || 1 || 0 || 1 || 0 || 0 || 0 || 125 
+|-
+|| 464 || Future Perfect at Sunrise || 15898 || 312 || 161 || 890 || 79 || 82 || 3533 || 378 || 145 || 15 || 21493 
+|-
+|| 465 || Fuzheado || 888 || 28 || 0 || 65 || 15 || 6 || 571 || 42 || 0 || 1 || 1616 
+|-
+|| 466 || Fvasconcellos || 1756 || 126 || 6 || 302 || 23 || 61 || 191 || 8 || 3 || 4 || 2480 
+|-
+|| 467 || G.A.S || 87 || 11 || 1 || 1 || 0 || 0 || 1 || 0 || 0 || 0 || 101 
+|-
+|| 468 || GB fan || 11587 || 148 || 107 || 74 || 5 || 8 || 156 || 14 || 14 || 40 || 12153 
+|-
+|| 469 || Gabbe || 685 || 1 || 1 || 1 || 1 || 2 || 24 || 3 || 1 || 0 || 719 
+|-
+|| 470 || Gadfium || 2272 || 49 || 59 || 131 || 14 || 5 || 7385 || 191 || 28 || 12 || 10146 
+|-
+|| 471 || Gadget850 || 852 || 49 || 12 || 51 || 2 || 3 || 2 || 0 || 0 || 0 || 971 
+|-
+|| 472 || Gaius Cornelius || 51 || 0 || 0 || 1 || 0 || 0 || 82 || 3 || 1 || 0 || 138 
+|-
+|| 473 || Gamaliel || 1604 || 122 || 24 || 266 || 84 || 18 || 1210 || 174 || 12 || 0 || 3514 
+|-
+|| 474 || Ganeshk || 1326 || 151 || 2 || 14 || 8 || 4 || 22 || 10 || 2 || 0 || 1539 
+|-
+|| 475 || Garion96 || 13638 || 337 || 34 || 83 || 14 || 11 || 237 || 9 || 3 || 8 || 14374 
+|-
+|| 476 || Garzo || 354 || 4 || 0 || 42 || 5 || 2 || 444 || 8 || 0 || 0 || 859 
+|-
+|| 477 || Gatoclass || 150 || 2 || 0 || 81 || 29 || 1 || 2 || 0 || 0 || 0 || 265 
+|-
+|| 478 || Gdr || 337 || 10 || 0 || 47 || 45 || 0 || 5 || 0 || 0 || 0 || 444 
+|-
+|| 479 || Ged UK || 5805 || 64 || 65 || 3052 || 73 || 363 || 815 || 2 || 49 || 5 || 10293 
+|-
+|| 480 || GeeJo || 722 || 10 || 0 || 65 || 33 || 0 || 4 || 0 || 0 || 0 || 834 
+|-
+|| 481 || Geni || 10501 || 332 || 42 || 208 || 105 || 14 || 521 || 93 || 6 || 34 || 11856 
+|-
+|| 482 || Geniac || 235 || 0 || 0 || 101 || 17 || 6 || 549 || 4 || 0 || 2 || 914 
+|-
+|| 483 || Gentgeen || 100 || 7 || 0 || 2 || 0 || 1 || 37 || 4 || 0 || 0 || 151 
+|-
+|| 484 || Geometry guy || 275 || 37 || 0 || 2 || 1 || 3 || 4 || 1 || 2 || 24 || 349 
+|-
+|| 485 || Georgewilliamherbert || 97 || 128 || 8 || 231 || 6 || 33 || 1438 || 115 || 54 || 3 || 2113 
+|-
+|| 486 || Gerald Farinas || 65 || 0 || 0 || 3 || 4 || 1 || 4 || 1 || 0 || 0 || 78 
+|-
+|| 487 || Geschichte || 7550 || 104 || 0 || 7 || 0 || 0 || 54 || 6 || 0 || 0 || 7721 
+|-
+|| 488 || Gfoley4 || 3089 || 54 || 99 || 374 || 41 || 119 || 1223 || 25 || 100 || 140 || 5264 
+|-
+|| 489 || GiantSnowman || 9554 || 302 || 100 || 160 || 4 || 1 || 386 || 5 || 19 || 4 || 10535 
+|-
+|| 490 || Gilliam || 1768 || 8 || 0 || 229 || 28 || 27 || 11593 || 22 || 53 || 0 || 13728 
+|-
+|| 491 || Gimmetrow || 975 || 73 || 6 || 294 || 4 || 124 || 765 || 33 || 25 || 10 || 2309 
+|-
+|| 492 || Ginkgo100 || 964 || 17 || 0 || 38 || 13 || 0 || 529 || 14 || 0 || 2 || 1577 
+|-
+|| 493 || GlassCobra || 2590 || 68 || 0 || 86 || 8 || 12 || 1466 || 14 || 11 || 9 || 4264 
+|-
+|| 494 || Glen || 1641 || 83 || 0 || 182 || 17 || 1 || 4458 || 198 || 0 || 0 || 6580 
+|-
+|| 495 || Gnangarra || 1815 || 41 || 0 || 218 || 21 || 7 || 266 || 42 || 3 || 8 || 2421 
+|-
+|| 496 || Gogo Dodo || 84428 || 219 || 816 || 1780 || 18 || 183 || 15962 || 45 || 658 || 3 || 104112 
+|-
+|| 497 || Golbez || 5788 || 86 || 0 || 236 || 82 || 25 || 1570 || 169 || 15 || 2 || 7973 
+|-
+|| 498 || GoldRingChip || 125 || 10 || 1 || 60 || 8 || 18 || 1 || 0 || 0 || 0 || 223 
+|-
+|| 499 || Goldom || 1940 || 7 || 0 || 8 || 0 || 0 || 50 || 4 || 0 || 0 || 2009 
+|-
+|| 500 || Good Olfactory || 17503 || 890 || 0 || 89 || 19 || 3 || 127 || 9 || 6 || 0 || 18646 
+|-
+|| 501 || Goodnightmush || 955 || 2 || 0 || 38 || 2 || 9 || 147 || 1 || 1 || 0 || 1155 
+|-
+|| 502 || Goodoldpolonius2 || 1 || 0 || 0 || 4 || 2 || 0 || 27 || 0 || 0 || 0 || 34 
+|-
+|| 503 || GorillaWarfare || 1932 || 74 || 224 || 103 || 10 || 33 || 636 || 26 || 50 || 20 || 3108 
+|-
+|| 504 || Graeme Bartlett || 14509 || 1176 || 64 || 288 || 8 || 57 || 4376 || 5 || 70 || 49 || 20602 
+|-
+|| 505 || GraemeL || 1233 || 7 || 24 || 93 || 29 || 10 || 1393 || 92 || 16 || 0 || 2897 
+|-
+|| 506 || Graft || 3 || 1 || 0 || 1 || 1 || 2 || 0 || 0 || 0 || 0 || 8 
+|-
+|| 507 || Graham87 || 9637 || 15231 || 26 || 190 || 13 || 40 || 450 || 13 || 12 || 11 || 25623 
+|-
+|| 508 || GrahamColm || 147 || 2 || 22 || 19 || 4 || 4 || 52 || 4 || 2 || 1 || 257 
+|-
+|| 509 || Grandiose || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 1 
+|-
+|| 510 || Grant65 || 12 || 9 || 0 || 2 || 1 || 0 || 3 || 0 || 0 || 0 || 27 
+|-
+|| 511 || Grenavitar || 868 || 32 || 0 || 3 || 2 || 0 || 41 || 7 || 0 || 1 || 954 
+|-
+|| 512 || Grendelkhan || 38 || 2 || 0 || 0 || 0 || 0 || 4 || 0 || 0 || 0 || 44 
+|-
+|| 513 || Ground Zero || 79 || 0 || 0 || 42 || 6 || 5 || 80 || 1 || 10 || 0 || 223 
+|-
+|| 514 || Grue || 206 || 103 || 0 || 10 || 18 || 0 || 25 || 8 || 0 || 0 || 370 
+|-
+|| 515 || Grutness || 3532 || 125 || 0 || 98 || 14 || 5 || 30 || 16 || 2 || 0 || 3822 
+|-
+|| 516 || Gryffindor || 251 || 24 || 0 || 5 || 0 || 0 || 1 || 1 || 0 || 0 || 282 
+|-
+|| 517 || Gtrmp || 403 || 12 || 0 || 3 || 0 || 0 || 1 || 0 || 0 || 0 || 419 
+|-
+|| 518 || Guerillero || 1597 || 45 || 47 || 102 || 8 || 23 || 222 || 8 || 27 || 55 || 2134 
+|-
+|| 519 || Guettarda || 216 || 83 || 1 || 50 || 31 || 8 || 73 || 19 || 0 || 1 || 482 
+|-
+|| 520 || Gurubrahma || 309 || 6 || 0 || 145 || 93 || 1 || 39 || 2 || 0 || 0 || 595 
+|-
+|| 521 || Gwalla || 969 || 10 || 0 || 2 || 1 || 0 || 84 || 8 || 0 || 0 || 1074 
+|-
+|| 522 || Gwen Gale || 7288 || 248 || 78 || 615 || 46 || 58 || 1377 || 182 || 109 || 10 || 10011 
+|-
+|| 523 || Gyrofrog || 297 || 18 || 18 || 55 || 3 || 7 || 454 || 14 || 12 || 0 || 878 
+|-
+|| 524 || HJ Mitchell || 13446 || 293 || 888 || 5308 || 198 || 1359 || 8209 || 147 || 350 || 1169 || 31367 
+|-
+|| 525 || Hadal || 2225 || 4 || 0 || 10 || 7 || 0 || 322 || 3 || 0 || 0 || 2571 
+|-
+|| 526 || Hamster Sandwich || 3 || 1 || 0 || 1 || 0 || 0 || 26 || 3 || 3 || 0 || 37 
+|-
+|| 527 || Happy-melon || 2655 || 63 || 59 || 212 || 54 || 22 || 0 || 0 || 0 || 5 || 3070 
+|-
+|| 528 || HappyCamper || 4349 || 105 || 0 || 121 || 87 || 0 || 581 || 458 || 0 || 0 || 5701 
+|-
+|| 529 || Happyme22 || 572 || 9 || 0 || 44 || 1 || 8 || 11 || 0 || 0 || 0 || 645 
+|-
+|| 530 || Harej || 2949 || 87 || 0 || 149 || 50 || 8 || 40 || 23 || 2 || 10 || 3318 
+|-
+|| 531 || Harrias || 198 || 8 || 4 || 5 || 0 || 0 || 21 || 0 || 0 || 0 || 236 
+|-
+|| 532 || Harro5 || 4810 || 33 || 0 || 72 || 4 || 0 || 168 || 10 || 0 || 0 || 5097 
+|-
+|| 533 || Harryboyles || 5207 || 10 || 0 || 13 || 3 || 3 || 4 || 1 || 0 || 0 || 5241 
+|-
+|| 534 || Hashar || 20 || 0 || 0 || 0 || 0 || 0 || 1 || 1 || 0 || 0 || 22 
+|-
+|| 535 || Haukurth || 1204 || 69 || 0 || 15 || 34 || 0 || 81 || 13 || 0 || 3 || 1419 
+|-
+|| 536 || Hawstom || 3 || 0 || 0 || 5 || 1 || 0 || 7 || 1 || 0 || 0 || 17 
+|-
+|| 537 || Hbdragon88 || 694 || 7 || 0 || 7 || 1 || 3 || 2 || 0 || 0 || 0 || 714 
+|-
+|| 538 || Hdt83 || 37 || 1 || 0 || 15 || 2 || 0 || 117 || 3 || 0 || 3 || 178 
+|-
+|| 539 || Heimstern || 489 || 19 || 1 || 104 || 9 || 8 || 1012 || 38 || 18 || 0 || 1698 
+|-
+|| 540 || HelloAnnyong || 802 || 90 || 47 || 461 || 10 || 49 || 4756 || 60 || 245 || 0 || 6520 
+|-
+|| 541 || Hemlock Martinis || 862 || 58 || 0 || 29 || 2 || 5 || 83 || 8 || 0 || 0 || 1047 
+|-
+|| 542 || Henrik || 677 || 39 || 4 || 55 || 15 || 7 || 226 || 35 || 2 || 5 || 1065 
+|-
+|| 543 || Henry Flower || 126 || 4 || 0 || 18 || 10 || 0 || 214 || 8 || 0 || 0 || 380 
+|-
+|| 544 || HereToHelp || 162 || 5 || 0 || 63 || 17 || 8 || 17 || 3 || 0 || 0 || 275 
+|-
+|| 545 || Heron || 24 || 3 || 0 || 0 || 0 || 0 || 54 || 4 || 0 || 0 || 85 
+|-
+|| 546 || Hesperian || 2310 || 203 || 0 || 98 || 19 || 4 || 367 || 55 || 2 || 2 || 3060 
+|-
+|| 547 || Hiberniantears || 1077 || 9 || 0 || 71 || 4 || 22 || 1035 || 24 || 8 || 3 || 2253 
+|-
+|| 548 || Hiding || 1907 || 143 || 0 || 37 || 25 || 3 || 53 || 14 || 0 || 4 || 2186 
+|-
+|| 549 || Hit bull, win steak || 278 || 10 || 0 || 2 || 0 || 0 || 34 || 0 || 1 || 0 || 325 
+|-
+|| 550 || Hmwith || 5452 || 52 || 3 || 43 || 2 || 1 || 69 || 4 || 3 || 1 || 5630 
+|-
+|| 551 || Hoary || 567 || 32 || 14 || 103 || 6 || 11 || 436 || 12 || 6 || 0 || 1187 
+|-
+|| 552 || Horologium || 711 || 7 || 3 || 159 || 6 || 43 || 131 || 6 || 8 || 1 || 1075 
+|-
+|| 553 || HorsePunchKid || 189 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 189 
+|-
+|| 554 || Howcheng || 19230 || 289 || 6 || 69 || 123 || 2 || 82 || 11 || 0 || 1 || 19813 
+|-
+|| 555 || Hu12 || 1968 || 62 || 0 || 408 || 14 || 4 || 1587 || 38 || 6 || 3 || 4090 
+|-
+|| 556 || Huntster || 925 || 75 || 9 || 55 || 5 || 3 || 47 || 2 || 4 || 0 || 1125 
+|-
+|| 557 || Huon || 311 || 34 || 4 || 7 || 1 || 0 || 50 || 4 || 4 || 4 || 419 
+|-
+|| 558 || Hurricanehink || 502 || 35 || 1 || 6 || 0 || 1 || 12 || 0 || 0 || 6 || 563 
+|-
+|| 559 || Husond || 1249 || 11 || 0 || 423 || 39 || 22 || 1156 || 40 || 0 || 1 || 2941 
+|-
+|| 560 || Hut 8.5 || 8355 || 167 || 23 || 654 || 26 || 44 || 1858 || 21 || 29 || 21 || 11198 
+|-
+|| 561 || Hyacinth || 2222 || 31 || 0 || 1 || 1 || 0 || 6 || 1 || 0 || 0 || 2262 
+|-
+|| 562 || Ian13 || 1953 || 53 || 0 || 32 || 9 || 2 || 72 || 21 || 0 || 0 || 2142 
+|-
+|| 563 || IanManka || 1219 || 236 || 0 || 74 || 11 || 9 || 225 || 26 || 2 || 0 || 1802 
+|-
+|| 564 || Ianblair23 || 222 || 100 || 0 || 1 || 3 || 0 || 0 || 0 || 0 || 0 || 326 
+|-
+|| 565 || IceKarma || 1745 || 8 || 0 || 2 || 2 || 0 || 0 || 1 || 0 || 0 || 1758 
+|-
+|| 566 || Idont Havaname || 159 || 5 || 0 || 3 || 2 || 0 || 48 || 0 || 0 || 0 || 217 
+|-
+|| 567 || Ihcoyc || 464 || 12 || 0 || 68 || 1 || 1 || 3 || 0 || 2 || 0 || 551 
+|-
+|| 568 || Ike9898 || 304 || 3 || 0 || 5 || 1 || 1 || 30 || 3 || 0 || 0 || 347 
+|-
+|| 569 || Ilmari Karonen || 1083 || 642 || 0 || 32 || 2 || 1 || 212 || 32 || 0 || 1 || 2005 
+|-
+|| 570 || Ilyanep || 155 || 2 || 1 || 6 || 2 || 0 || 32 || 7 || 0 || 18 || 223 
+|-
+|| 571 || InShaneee || 4568 || 20 || 0 || 94 || 5 || 0 || 542 || 56 || 0 || 0 || 5285 
+|-
+|| 572 || Infrogmation || 4810 || 110 || 0 || 159 || 9 || 10 || 7649 || 116 || 24 || 1 || 12888 
+|-
+|| 573 || Inter || 649 || 4 || 0 || 6 || 1 || 0 || 181 || 10 || 0 || 0 || 851 
+|-
+|| 574 || Ioeth || 3111 || 59 || 3 || 152 || 34 || 16 || 2079 || 43 || 12 || 13 || 5522 
+|-
+|| 575 || Iridescent || 6225 || 84 || 5 || 136 || 10 || 37 || 911 || 46 || 12 || 9 || 7475 
+|-
+|| 576 || IronGargoyle || 4812 || 342 || 20 || 189 || 26 || 22 || 655 || 4 || 14 || 0 || 6084 
+|-
+|| 577 || Ish ishwar || 46 || 3 || 0 || 1 || 0 || 0 || 11 || 1 || 0 || 0 || 62 
+|-
+|| 578 || Islander || 695 || 23 || 5 || 109 || 1 || 6 || 81 || 5 || 1 || 4 || 930 
+|-
+|| 579 || Isomorphic || 213 || 0 || 0 || 1 || 0 || 0 || 14 || 1 || 0 || 0 || 229 
+|-
+|| 580 || It Is Me Here || 786 || 18 || 170 || 34 || 4 || 5 || 176 || 3 || 5 || 9 || 1210 
+|-
+|| 581 || ItsZippy || 1016 || 20 || 24 || 200 || 7 || 31 || 299 || 2 || 8 || 36 || 1643 
+|-
+|| 582 || Ixfd64 || 3741 || 102 || 1 || 74 || 326 || 16 || 1386 || 3743 || 13 || 9 || 9411 
+|-
+|| 583 || J Greb || 4543 || 238 || 15 || 257 || 5 || 55 || 253 || 4 || 29 || 0 || 5399 
+|-
+|| 584 || J Milburn || 8781 || 209 || 5 || 90 || 13 || 28 || 110 || 3 || 0 || 17 || 9256 
+|-
+|| 585 || J.delanoy || 9047 || 274 || 74 || 860 || 33 || 265 || 19831 || 278 || 1005 || 101 || 31768 
+|-
+|| 586 || J.smith || 1180 || 50 || 1 || 27 || 7 || 2 || 241 || 43 || 0 || 0 || 1551 
+|-
+|| 587 || J04n || 3236 || 116 || 4 || 34 || 2 || 4 || 14 || 0 || 0 || 0 || 3410 
+|-
+|| 588 || JDoorjam || 1761 || 47 || 0 || 100 || 18 || 3 || 121 || 21 || 0 || 0 || 2071 
+|-
+|| 589 || JGHowes || 313 || 19 || 1 || 34 || 0 || 5 || 94 || 1 || 5 || 0 || 472 
+|-
+|| 590 || JHunterJ || 4369 || 509 || 3 || 28 || 2 || 5 || 38 || 2 || 0 || 0 || 4956 
+|-
+|| 591 || JIP || 10249 || 97 || 6 || 27 || 4 || 1 || 154 || 3 || 0 || 0 || 10541 
+|-
+|| 592 || JLaTondre || 14900 || 75 || 0 || 36 || 4 || 0 || 1293 || 15 || 0 || 0 || 16323 
+|-
+|| 593 || JPG-GR || 8349 || 82 || 0 || 15 || 2 || 0 || 24 || 0 || 0 || 0 || 8472 
+|-
+|| 594 || JYolkowski || 2385 || 22 || 0 || 11 || 27 || 0 || 137 || 10 || 2 || 0 || 2594 
+|-
+|| 595 || JaGa || 2594 || 18 || 8 || 53 || 1 || 8 || 19 || 0 || 0 || 0 || 2701 
+|-
+|| 596 || Jac16888 || 27615 || 107 || 33 || 235 || 16 || 25 || 796 || 21 || 669 || 50 || 29567 
+|-
+|| 597 || Jacoplane || 332 || 33 || 0 || 97 || 55 || 5 || 159 || 11 || 0 || 0 || 692 
+|-
+|| 598 || Jafeluv || 4975 || 195 || 38 || 20 || 5 || 3 || 677 || 2 || 22 || 2 || 5939 
+|-
+|| 599 || Jake Nelson || 21 || 1 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 23 
+|-
+|| 600 || Jake Wartenberg || 2231 || 109 || 3 || 121 || 12 || 14 || 575 || 33 || 33 || 53 || 3184 
+|-
+|| 601 || James086 || 15800 || 34 || 72 || 23 || 3 || 3 || 473 || 12 || 1 || 13 || 16434 
+|-
+|| 602 || JamesBWatson || 26055 || 634 || 453 || 1855 || 68 || 320 || 8328 || 353 || 973 || 57 || 39096 
+|-
+|| 603 || JamesR || 1214 || 8 || 0 || 58 || 5 || 12 || 111 || 10 || 2 || 3 || 1423 
+|-
+|| 604 || JamesTeterenko || 222 || 2 || 0 || 27 || 18 || 0 || 160 || 4 || 0 || 0 || 433 
+|-
+|| 605 || Jamesday || 6 || 7 || 0 || 2 || 0 || 0 || 6 || 1 || 0 || 0 || 22 
+|-
+|| 606 || Jamesofur || 134 || 23 || 40 || 22 || 6 || 14 || 99 || 12 || 11 || 16 || 377 
+|-
+|| 607 || JamieS93 || 9712 || 80 || 2 || 174 || 19 || 46 || 140 || 2 || 11 || 49 || 10235 
+|-
+|| 608 || January || 2842 || 93 || 383 || 43 || 0 || 4 || 600 || 0 || 9 || 0 || 3974 
+|-
+|| 609 || Jarry1250 || 879 || 19 || 6 || 4123 || 4119 || 5 || 37 || 2 || 3 || 4 || 9197 
+|-
+|| 610 || Jason Quinn || 25 || 2 || 3 || 2 || 1 || 2 || 9 || 0 || 1 || 0 || 45 
+|-
+|| 611 || Jauerback || 1458 || 8 || 77 || 89 || 16 || 15 || 1867 || 61 || 60 || 6 || 3657 
+|-
+|| 612 || Jay || 19 || 10 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 29 
+|-
+|| 613 || Jayjg || 3208 || 204 || 15 || 580 || 71 || 13 || 2311 || 231 || 60 || 0 || 6693 
+|-
+|| 614 || Jayron32 || 1993 || 31 || 43 || 403 || 14 || 66 || 2077 || 238 || 121 || 21 || 5007 
+|-
+|| 615 || Jbmurray || 94 || 8 || 0 || 7 || 6 || 0 || 20 || 1 || 0 || 1 || 137 
+|-
+|| 616 || Jc37 || 1660 || 127 || 2 || 94 || 13 || 32 || 87 || 8 || 3 || 6 || 2032 
+|-
+|| 617 || Jcw69 || 67 || 1 || 0 || 0 || 0 || 0 || 108 || 3 || 0 || 0 || 179 
+|-
+|| 618 || Jdavidb || 81 || 0 || 0 || 13 || 2 || 0 || 48 || 2 || 0 || 0 || 146 
+|-
+|| 619 || Jdforrester || 475 || 103 || 23 || 28 || 7 || 1 || 77 || 15 || 1 || 5 || 735 
+|-
+|| 620 || Jeepday || 604 || 10 || 0 || 18 || 1 || 1 || 742 || 10 || 9 || 0 || 1395 
+|-
+|| 621 || Jeffrey O. Gustafson || 14386 || 196 || 3 || 469 || 28 || 37 || 726 || 107 || 0 || 2 || 15954 
+|-
+|| 622 || Jehochman || 214 || 36 || 32 || 130 || 17 || 30 || 616 || 100 || 21 || 1 || 1197 
+|-
+|| 623 || Jengod || 128 || 0 || 0 || 7 || 0 || 0 || 0 || 0 || 0 || 0 || 135 
+|-
+|| 624 || Jenks24 || 3020 || 184 || 2 || 21 || 1 || 0 || 12 || 1 || 3 || 0 || 3244 
+|-
+|| 625 || JeremyA || 2467 || 23 || 44 || 60 || 17 || 7 || 461 || 15 || 14 || 0 || 3108 
+|-
+|| 626 || Jerry || 3533 || 202 || 0 || 99 || 14 || 1 || 73 || 9 || 0 || 3 || 3934 
+|-
+|| 627 || Jerzy || 353 || 186 || 0 || 4 || 0 || 0 || 114 || 5 || 3 || 0 || 665 
+|-
+|| 628 || Jesse Viviano || 2049 || 91 || 0 || 11 || 5 || 2 || 392 || 63 || 9 || 0 || 2622 
+|-
+|| 629 || JesseW || 29060 || 134 || 1 || 38 || 8 || 0 || 78 || 21 || 0 || 1 || 29341 
+|-
+|| 630 || Jfdwolff || 471 || 46 || 21 || 130 || 18 || 10 || 307 || 20 || 1 || 1 || 1025 
+|-
+|| 631 || Jiang || 391 || 19 || 0 || 17 || 5 || 0 || 91 || 3 || 0 || 0 || 526 
+|-
+|| 632 || Jimbo Wales || 314 || 18 || 6 || 63 || 14 || 5 || 80 || 42 || 0 || 9 || 551 
+|-
+|| 633 || Jimfbleak || 65338 || 302 || 5 || 1096 || 65 || 13 || 5274 || 248 || 66 || 1 || 72408 
+|-
+|| 634 || Jimp || 2402 || 442 || 0 || 38 || 7 || 5 || 3 || 0 || 0 || 0 || 2897 
+|-
+|| 635 || Jinian || 2189 || 6 || 0 || 9 || 3 || 0 || 0 || 0 || 0 || 0 || 2207 
+|-
+|| 636 || Jitse Niesen || 629 || 24 || 0 || 14 || 9 || 2 || 35 || 4 || 0 || 0 || 717 
+|-
+|| 637 || Jj137 || 5114 || 59 || 0 || 286 || 30 || 49 || 880 || 20 || 0 || 33 || 6471 
+|-
+|| 638 || Jmabel || 196 || 38 || 0 || 8 || 7 || 0 || 133 || 5 || 0 || 0 || 387 
+|-
+|| 639 || Jmh649 || 114 || 14 || 3 || 91 || 10 || 39 || 307 || 9 || 19 || 4 || 610 
+|-
+|| 640 || Jnc || 1908 || 159 || 0 || 114 || 34 || 0 || 46 || 20 || 0 || 0 || 2281 
+|-
+|| 641 || Jni || 26495 || 37 || 0 || 24 || 4 || 0 || 220 || 2 || 1 || 0 || 26783 
+|-
+|| 642 || Jnothman || 62 || 1 || 0 || 1 || 0 || 0 || 1 || 1 || 0 || 0 || 66 
+|-
+|| 643 || JoJan || 11084 || 78 || 0 || 127 || 2 || 10 || 1594 || 9 || 4 || 2 || 12910 
+|-
+|| 644 || JoanneB || 1191 || 48 || 0 || 51 || 22 || 0 || 809 || 105 || 0 || 0 || 2226 
+|-
+|| 645 || JodyB || 2327 || 43 || 6 || 41 || 5 || 9 || 356 || 26 || 5 || 2 || 2820 
+|-
+|| 646 || Joe Decker || 5452 || 121 || 61 || 234 || 19 || 33 || 36 || 2 || 5 || 22 || 5985 
+|-
+|| 647 || Joelr31 || 661 || 12 || 0 || 9 || 8 || 0 || 85 || 1 || 0 || 0 || 776 
+|-
+|| 648 || Johan Elisson || 352 || 14 || 0 || 11 || 4 || 0 || 42 || 5 || 0 || 0 || 428 
+|-
+|| 649 || John || 3157 || 24 || 13 || 170 || 7 || 27 || 1846 || 36 || 32 || 16 || 5328 
+|-
+|| 650 || John K || 218 || 36 || 0 || 4 || 3 || 0 || 8 || 4 || 0 || 0 || 273 
+|-
+|| 651 || John Reaves || 13050 || 206 || 47 || 475 || 164 || 50 || 2684 || 236 || 25 || 64 || 17001 
+|-
+|| 652 || John Vandenberg || 1377 || 362 || 171 || 128 || 27 || 33 || 274 || 53 || 8 || 36 || 2469 
+|-
+|| 653 || JohnCD || 67947 || 1854 || 257 || 376 || 13 || 26 || 8854 || 65 || 192 || 18 || 79602 
+|-
+|| 654 || JohnOwens || 6 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 7 
+|-
+|| 655 || Johnleemk || 1762 || 20 || 0 || 6 || 3 || 0 || 240 || 20 || 0 || 0 || 2051 
+|-
+|| 656 || Jon513 || 1329 || 20 || 0 || 3 || 0 || 0 || 43 || 1 || 0 || 2 || 1398 
+|-
+|| 657 || Jonathunder || 179 || 14 || 0 || 14 || 1 || 1 || 75 || 4 || 0 || 1 || 289 
+|-
+|| 658 || Jondel || 248 || 1 || 0 || 34 || 8 || 5 || 89 || 1 || 0 || 0 || 386 
+|-
+|| 659 || Jonny-mt || 1037 || 45 || 0 || 69 || 5 || 10 || 217 || 15 || 0 || 8 || 1406 
+|-
+|| 660 || Josiah Rowe || 122 || 26 || 0 || 79 || 13 || 0 || 334 || 19 || 0 || 0 || 593 
+|-
+|| 661 || Journalist || 421 || 8 || 0 || 63 || 27 || 9 || 134 || 15 || 4 || 4 || 685 
+|-
+|| 662 || Joy || 1330 || 479 || 7 || 74 || 10 || 6 || 95 || 0 || 5 || 0 || 2006 
+|-
+|| 663 || Joyous! || 8435 || 14 || 0 || 133 || 50 || 0 || 453 || 18 || 0 || 0 || 9103 
+|-
+|| 664 || Jpgordon || 1256 || 22 || 6 || 245 || 21 || 20 || 4862 || 476 || 368 || 8 || 7284 
+|-
+|| 665 || Jrdioko || 429 || 0 || 0 || 0 || 0 || 0 || 18 || 0 || 0 || 0 || 447 
+|-
+|| 666 || Jredmond || 649 || 12 || 0 || 37 || 4 || 2 || 205 || 10 || 19 || 1 || 939 
+|-
+|| 667 || Jreferee || 1890 || 57 || 0 || 146 || 8 || 28 || 37 || 4 || 0 || 3 || 2173 
+|-
+|| 668 || Jujutacular || 5939 || 36 || 22 || 21 || 0 || 6 || 211 || 3 || 8 || 7 || 6253 
+|-
+|| 669 || Julia W || 400 || 331 || 7 || 3 || 2 || 0 || 14 || 2 || 1 || 15 || 775 
+|-
+|| 670 || Juliancolton || 17788 || 322 || 3 || 672 || 39 || 246 || 2964 || 51 || 36 || 444 || 22565 
+|-
+|| 671 || Jusjih || 1607 || 91 || 0 || 10 || 1 || 1 || 5 || 0 || 0 || 0 || 1715 
+|-
+|| 672 || Justinc || 520 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 1 || 523 
+|-
+|| 673 || Jwrosenzweig || 40 || 0 || 0 || 1 || 0 || 0 || 7 || 0 || 0 || 1 || 49 
+|-
+|| 674 || JzG || 12827 || 290 || 164 || 908 || 42 || 27 || 1644 || 97 || 17 || 3 || 16019 
+|-
+|| 675 || K1Bond007 || 354 || 8 || 1 || 3 || 3 || 0 || 37 || 4 || 0 || 0 || 410 
+|-
+|| 676 || KF || 511 || 16 || 0 || 2 || 0 || 0 || 1 || 0 || 0 || 0 || 530 
+|-
+|| 677 || KFP || 906 || 161 || 20 || 263 || 8 || 6 || 102 || 14 || 2 || 12 || 1494 
+|-
+|| 678 || KTC || 823 || 12 || 13 || 35 || 1 || 8 || 34 || 1 || 1 || 18 || 946 
+|-
+|| 679 || Kaihsu || 383 || 36 || 0 || 11 || 6 || 0 || 128 || 15 || 0 || 0 || 579 
+|-
+|| 680 || Kaiser matias || 59 || 4 || 0 || 7 || 0 || 1 || 22 || 0 || 0 || 0 || 93 
+|-
+|| 681 || Kaisershatner || 70 || 0 || 0 || 14 || 3 || 2 || 482 || 16 || 0 || 0 || 587 
+|-
+|| 682 || Kaldari || 431 || 42 || 0 || 84 || 20 || 18 || 116 || 17 || 5 || 1 || 734 
+|-
+|| 683 || Kane5187 || 241 || 6 || 0 || 1 || 0 || 0 || 1 || 0 || 0 || 0 || 249 
+|-
+|| 684 || Kanonkas || 614 || 27 || 2 || 86 || 12 || 58 || 1283 || 67 || 497 || 20 || 2666 
+|-
+|| 685 || Karanacs || 755 || 14 || 0 || 18 || 0 || 3 || 17 || 0 || 2 || 426 || 1235 
+|-
+|| 686 || Karl Dickman || 2790 || 41 || 0 || 10 || 8 || 0 || 33 || 10 || 0 || 0 || 2892 
+|-
+|| 687 || Kateshortforbob || 847 || 4 || 6 || 28 || 3 || 1 || 104 || 3 || 1 || 2 || 999 
+|-
+|| 688 || Kbdank71 || 22545 || 57 || 0 || 44 || 3 || 0 || 356 || 13 || 7 || 1 || 23026 
+|-
+|| 689 || Kbh3rd || 123 || 10 || 1 || 35 || 1 || 1 || 1210 || 49 || 14 || 0 || 1444 
+|-
+|| 690 || Keegan || 4726 || 191 || 115 || 128 || 23 || 19 || 387 || 52 || 30 || 27 || 5698 
+|-
+|| 691 || Keenan Pepper || 300 || 1 || 0 || 3 || 0 || 0 || 11 || 0 || 0 || 0 || 315 
+|-
+|| 692 || Keeper76 || 3454 || 80 || 0 || 68 || 12 || 11 || 90 || 14 || 0 || 22 || 3751 
+|-
+|| 693 || Keilana || 1996 || 63 || 1 || 74 || 13 || 9 || 835 || 25 || 16 || 23 || 3055 
+|-
+|| 694 || Keith D || 1412 || 863 || 54 || 314 || 3 || 30 || 83 || 1 || 1 || 7 || 2768 
+|-
+|| 695 || Kelapstick || 276 || 8 || 13 || 18 || 3 || 4 || 33 || 5 || 5 || 0 || 365 
+|-
+|| 696 || Kevin || 4056 || 90 || 0 || 216 || 10 || 44 || 627 || 30 || 9 || 8 || 5090 
+|-
+|| 697 || Kevin Gorman || 42 || 9 || 7 || 20 || 0 || 3 || 14 || 0 || 2 || 46 || 143 
+|-
+|| 698 || Khaosworks || 331 || 12 || 0 || 10 || 4 || 0 || 162 || 80 || 0 || 0 || 599 
+|-
+|| 699 || Khendon || 4 || 0 || 0 || 1 || 2 || 0 || 0 || 0 || 0 || 0 || 7 
+|-
+|| 700 || Kicking222 || 628 || 1 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 630 
+|-
+|| 701 || KillerChihuahua || 1371 || 41 || 1 || 161 || 13 || 21 || 537 || 30 || 12 || 0 || 2187 
+|-
+|| 702 || Killervogel5 || 81 || 3 || 4 || 45 || 0 || 3 || 40 || 0 || 0 || 0 || 176 
+|-
+|| 703 || Killiondude || 3399 || 94 || 39 || 135 || 7 || 26 || 490 || 4 || 44 || 41 || 4279 
+|-
+|| 704 || Kim Dent-Brown || 594 || 5 || 2 || 50 || 3 || 3 || 114 || 11 || 14 || 0 || 796 
+|-
+|| 705 || Kimchi.sg || 45415 || 791 || 1 || 565 || 120 || 22 || 2226 || 211 || 14 || 0 || 49365 
+|-
+|| 706 || King of Hearts || 8329 || 504 || 39 || 666 || 109 || 88 || 2882 || 761 || 127 || 66 || 13571 
+|-
+|| 707 || Kingboyk || 3160 || 317 || 0 || 103 || 12 || 0 || 214 || 25 || 0 || 2 || 3833 
+|-
+|| 708 || Kingpin13 || 772 || 9 || 48 || 23 || 0 || 17 || 362 || 21 || 27 || 26 || 1305 
+|-
+|| 709 || Kingturtle || 1181 || 32 || 0 || 184 || 14 || 30 || 362 || 12 || 7 || 83 || 1905 
+|-
+|| 710 || Kinu || 13120 || 92 || 43 || 704 || 24 || 22 || 2621 || 66 || 243 || 4 || 16939 
+|-
+|| 711 || Kirill Lokshin || 2132 || 53 || 1 || 26 || 2 || 7 || 158 || 16 || 0 || 3 || 2398 
+|-
+|| 712 || Kizor || 66 || 261 || 0 || 9 || 8 || 2 || 26 || 3 || 0 || 0 || 375 
+|-
+|| 713 || Kjkolb || 557 || 15 || 0 || 1 || 2 || 0 || 139 || 8 || 0 || 0 || 722 
+|-
+|| 714 || Kmccoy || 201 || 5 || 0 || 23 || 3 || 4 || 45 || 9 || 5 || 4 || 299 
+|-
+|| 715 || KnightLago || 1072 || 54 || 8 || 209 || 16 || 39 || 863 || 78 || 12 || 1 || 2352 
+|-
+|| 716 || Knowledge Seeker || 115 || 32 || 0 || 19 || 19 || 0 || 110 || 75 || 0 || 0 || 370 
+|-
+|| 717 || Kotra || 28 || 2 || 0 || 2 || 1 || 0 || 3 || 0 || 0 || 0 || 36 
+|-
+|| 718 || Kpjas || 127 || 0 || 0 || 12 || 0 || 0 || 4 || 0 || 0 || 0 || 143 
+|-
+|| 719 || KrakatoaKatie || 3961 || 80 || 19 || 404 || 9 || 68 || 690 || 20 || 14 || 6 || 5271 
+|-
+|| 720 || Kralizec! || 914 || 105 || 0 || 927 || 206 || 129 || 4013 || 43 || 40 || 14 || 6391 
+|-
+|| 721 || Ks0stm || 596 || 17 || 26 || 245 || 9 || 53 || 368 || 7 || 68 || 40 || 1429 
+|-
+|| 722 || Ktsquare || 11 || 0 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 12 
+|-
+|| 723 || Kudpung || 5454 || 28 || 11 || 588 || 5 || 45 || 470 || 5 || 36 || 179 || 6821 
+|-
+|| 724 || Kurt Shaped Box || 2276 || 24 || 42 || 147 || 10 || 36 || 1999 || 20 || 18 || 0 || 4572 
+|-
+|| 725 || Kuru || 3344 || 14 || 46 || 447 || 14 || 21 || 7972 || 167 || 708 || 34 || 12767 
+|-
+|| 726 || Kurykh || 6340 || 110 || 5 || 187 || 21 || 42 || 600 || 72 || 4 || 5 || 7386 
+|-
+|| 727 || Kusma || 12148 || 110 || 0 || 176 || 36 || 12 || 993 || 30 || 7 || 8 || 13520 
+|-
+|| 728 || Kww || 1161 || 101 || 339 || 1797 || 12 || 148 || 2339 || 73 || 185 || 2 || 6157 
+|-
+|| 729 || Kyle Barbour || 478 || 118 || 0 || 2 || 0 || 0 || 47 || 11 || 0 || 0 || 656 
+|-
+|| 730 || Kyorosuke || 1027 || 48 || 0 || 44 || 23 || 0 || 174 || 47 || 0 || 0 || 1363 
+|-
+|| 731 || Kzollman || 125 || 34 || 0 || 1 || 0 || 0 || 2 || 1 || 0 || 0 || 163 
+|-
+|| 732 || LAX || 221 || 3 || 0 || 3 || 4 || 1 || 95 || 1 || 0 || 4 || 332 
+|-
+|| 733 || LFaraone || 1633 || 57 || 32 || 51 || 11 || 12 || 136 || 8 || 17 || 6 || 1963 
+|-
+|| 734 || Lacrimosus || 225 || 3 || 0 || 18 || 1 || 0 || 45 || 1 || 0 || 0 || 293 
+|-
+|| 735 || LadyofShalott || 3630 || 100 || 44 || 60 || 4 || 5 || 611 || 10 || 8 || 5 || 4477 
+|-
+|| 736 || Lankiveil || 1992 || 56 || 6 || 31 || 0 || 6 || 193 || 6 || 15 || 3 || 2308 
+|-
+|| 737 || Lar || 989 || 120 || 3 || 127 || 29 || 14 || 583 || 46 || 4 || 12 || 1927 
+|-
+|| 738 || Larry V || 466 || 13 || 0 || 11 || 2 || 1 || 23 || 2 || 2 || 0 || 520 
+|-
+|| 739 || Laser brain || 347 || 8 || 3 || 19 || 3 || 2 || 68 || 2 || 5 || 2 || 459 
+|-
+|| 740 || Laurascudder || 872 || 4 || 0 || 3 || 3 || 1 || 10 || 1 || 0 || 0 || 894 
+|-
+|| 741 || Lazulilasher || 212 || 10 || 0 || 16 || 4 || 5 || 60 || 1 || 2 || 2 || 312 
+|-
+|| 742 || Lear's Fool || 756 || 3 || 31 || 39 || 3 || 6 || 230 || 7 || 8 || 8 || 1091 
+|-
+|| 743 || Lectonar || 23662 || 166 || 27 || 926 || 174 || 181 || 921 || 9 || 39 || 2 || 26107 
+|-
+|| 744 || Legoktm || 8590 || 49 || 126 || 184 || 5 || 27 || 1143 || 10 || 64 || 58 || 10256 
+|-
+|| 745 || Leithp || 371 || 23 || 0 || 6 || 1 || 0 || 329 || 12 || 0 || 0 || 742 
+|-
+|| 746 || Lenticel || 439 || 9 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 449 
+|-
+|| 747 || Lethe || 35 || 16 || 0 || 4 || 3 || 0 || 34 || 16 || 0 || 0 || 108 
+|-
+|| 748 || Lexicon || 173 || 23 || 0 || 10 || 3 || 1 || 57 || 5 || 0 || 0 || 272 
+|-
+|| 749 || Lexor || 40 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 40 
+|-
+|| 750 || Leyo || 723 || 6 || 0 || 3 || 0 || 0 || 2 || 0 || 0 || 0 || 734 
+|-
+|| 751 || Lid || 2493 || 11 || 0 || 17 || 0 || 0 || 48 || 0 || 0 || 0 || 2569 
+|-
+|| 752 || LinguistAtLarge || 177 || 2 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 2 || 182 
+|-
+|| 753 || ListManBot || 0 || 1 || 0 || 0 || 0 || 0 || 1 || 1 || 0 || 0 || 3 
+|-
+|| 754 || Llywrch || 188 || 27 || 2 || 24 || 7 || 1 || 32 || 8 || 1 || 2 || 292 
+|-
+|| 755 || Lomn || 25 || 0 || 0 || 3 || 2 || 1 || 16 || 1 || 0 || 0 || 48 
+|-
+|| 756 || Longhair || 6202 || 11 || 0 || 124 || 38 || 3 || 1665 || 41 || 1 || 4 || 8089 
+|-
+|| 757 || Lord Roem || 71 || 0 || 0 || 43 || 0 || 7 || 18 || 1 || 1 || 5 || 146 
+|-
+|| 758 || Lord Voldemort || 182 || 1 || 0 || 9 || 26 || 0 || 4 || 4 || 0 || 0 || 226 
+|-
+|| 759 || LordAmeth || 52 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 53 
+|-
+|| 760 || Lowellian || 380 || 125 || 0 || 21 || 2 || 3 || 0 || 0 || 0 || 0 || 531 
+|-
+|| 761 || Lquilter || 77 || 3 || 0 || 0 || 0 || 0 || 6 || 0 || 0 || 0 || 86 
+|-
+|| 762 || Luk || 54638 || 226 || 20 || 628 || 27 || 131 || 4444 || 361 || 158 || 20 || 60653 
+|-
+|| 763 || Lupo || 1930 || 17 || 0 || 16 || 0 || 0 || 403 || 21 || 0 || 0 || 2387 
+|-
+|| 764 || Lyrl || 302 || 1 || 0 || 0 || 1 || 0 || 5 || 0 || 0 || 0 || 309 
+|-
+|| 765 || MBisanz || 62624 || 773 || 32 || 582 || 21 || 100 || 1999 || 117 || 30 || 645 || 66923 
+|-
+|| 766 || MCB || 1166 || 17 || 0 || 33 || 5 || 3 || 422 || 17 || 1 || 0 || 1664 
+|-
+|| 767 || MECU || 5357 || 21 || 0 || 3 || 0 || 1 || 8 || 0 || 0 || 0 || 5390 
+|-
+|| 768 || MER-C || 1237 || 10 || 10 || 25 || 0 || 0 || 342 || 0 || 12 || 1 || 1637 
+|-
+|| 769 || MGA73 || 34577 || 731 || 1 || 3 || 0 || 0 || 0 || 1 || 0 || 0 || 35313 
+|-
+|| 770 || MJCdetroit || 106 || 6 || 0 || 31 || 4 || 14 || 6 || 0 || 0 || 0 || 167 
+|-
+|| 771 || MLauba || 997 || 146 || 143 || 37 || 1 || 8 || 57 || 1 || 9 || 1 || 1400 
+|-
+|| 772 || MSGJ || 2029 || 229 || 3 || 196 || 261 || 123 || 133 || 9 || 9 || 73 || 3065 
+|-
+|| 773 || Mackensen || 3728 || 173 || 0 || 74 || 8 || 2 || 1605 || 237 || 1 || 0 || 5828 
+|-
+|| 774 || Madchester || 518 || 16 || 0 || 143 || 18 || 6 || 244 || 10 || 0 || 0 || 955 
+|-
+|| 775 || Madman || 1173 || 195 || 246 || 40 || 5 || 5 || 215 || 23 || 15 || 4 || 1921 
+|-
+|| 776 || Magioladitis || 5135 || 54 || 17 || 88 || 25 || 12 || 86 || 11 || 7 || 0 || 5435 
+|-
+|| 777 || Magnus Manske || 917 || 4 || 0 || 1 || 1 || 0 || 14 || 0 || 0 || 0 || 937 
+|-
+|| 778 || Magog the Ogre || 75583 || 1466 || 81 || 141 || 15 || 35 || 492 || 67 || 61 || 74 || 78015 
+|-
+|| 779 || Mahanga || 908 || 10 || 0 || 28 || 1 || 10 || 62 || 3 || 0 || 0 || 1022 
+|-
+|| 780 || Mailer diablo || 49352 || 255 || 36 || 163 || 16 || 4 || 439 || 34 || 4 || 1 || 50304 
+|-
+|| 781 || Mairi || 778 || 5 || 0 || 3 || 2 || 0 || 5 || 0 || 0 || 0 || 793 
+|-
+|| 782 || Makemi || 4808 || 53 || 0 || 79 || 13 || 0 || 378 || 25 || 0 || 0 || 5356 
+|-
+|| 783 || Malcolmxl5 || 13451 || 166 || 42 || 249 || 9 || 16 || 61 || 1 || 3 || 2 || 14000 
+|-
+|| 784 || Malik Shabazz || 31978 || 337 || 766 || 232 || 16 || 43 || 1334 || 11 || 42 || 2 || 34761 
+|-
+|| 785 || Malinaccier || 773 || 5 || 0 || 366 || 28 || 93 || 748 || 15 || 13 || 313 || 2354 
+|-
+|| 786 || Malo || 3710 || 21 || 0 || 114 || 8 || 1 || 2236 || 246 || 0 || 0 || 6336 
+|-
+|| 787 || Mandsford || 229 || 10 || 0 || 3 || 1 || 0 || 2 || 1 || 2 || 0 || 248 
+|-
+|| 788 || Manning Bartlett || 1412 || 12 || 0 || 14 || 1 || 10 || 49 || 11 || 2 || 4 || 1515 
+|-
+|| 789 || Marasmusine || 4970 || 45 || 11 || 54 || 5 || 1 || 311 || 5 || 1 || 0 || 5403 
+|-
+|| 790 || Marianocecowski || 244 || 8 || 0 || 0 || 3 || 0 || 32 || 0 || 0 || 0 || 287 
+|-
+|| 791 || Marine 69-71 || 371 || 5 || 0 || 86 || 33 || 3 || 122 || 35 || 0 || 1 || 656 
+|-
+|| 792 || Mark || 457 || 85 || 0 || 121 || 26 || 8 || 158 || 37 || 3 || 0 || 895 
+|-
+|| 793 || Mark Arsten || 44393 || 432 || 763 || 3905 || 83 || 753 || 4693 || 26 || 118 || 9 || 55175 
+|-
+|| 794 || Mark83 || 372 || 10 || 0 || 1 || 2 || 0 || 3 || 0 || 0 || 0 || 388 
+|-
+|| 795 || MarkGallagher || 1932 || 27 || 0 || 82 || 62 || 0 || 116 || 26 || 0 || 0 || 2245 
+|-
+|| 796 || Martijn Hoekstra || 3636 || 83 || 17 || 12 || 8 || 1 || 312 || 34 || 15 || 8 || 4126 
+|-
+|| 797 || Marumari || 0 || 0 || 0 || 0 || 0 || 1 || 8 || 0 || 0 || 0 || 9 
+|-
+|| 798 || Masem || 160 || 31 || 5 || 20 || 1 || 4 || 40 || 0 || 0 || 0 || 261 
+|-
+|| 799 || MastCell || 5699 || 77 || 11 || 664 || 24 || 74 || 1172 || 80 || 10 || 3 || 7814 
+|-
+|| 800 || Master Jay || 194 || 8 || 0 || 84 || 7 || 1 || 304 || 36 || 0 || 0 || 634 
+|-
+|| 801 || Master Thief Garrett || 1145 || 6 || 0 || 7 || 1 || 0 || 9 || 2 || 0 || 0 || 1170 
+|-
+|| 802 || Master of Puppets || 3177 || 81 || 15 || 351 || 44 || 72 || 1868 || 54 || 61 || 15 || 5738 
+|-
+|| 803 || Materialscientist || 15643 || 233 || 272 || 4887 || 116 || 701 || 63748 || 113 || 1162 || 6 || 86881 
+|-
+|| 804 || Mattbr || 2572 || 67 || 0 || 4 || 0 || 0 || 9 || 0 || 0 || 0 || 2652 
+|-
+|| 805 || Mattgirling || 1570 || 8 || 6 || 67 || 8 || 6 || 157 || 2 || 12 || 0 || 1836 
+|-
+|| 806 || MatthewUND || 53 || 1 || 0 || 0 || 0 || 0 || 5 || 0 || 0 || 0 || 59 
+|-
+|| 807 || Matthewedwards || 2212 || 97 || 0 || 29 || 8 || 5 || 25 || 3 || 0 || 3 || 2382 
+|-
+|| 808 || Mattinbgn || 1784 || 49 || 24 || 77 || 3 || 13 || 102 || 2 || 1 || 1 || 2056 
+|-
+|| 809 || Mattythewhite || 33 || 45 || 0 || 96 || 2 || 6 || 265 || 0 || 3 || 0 || 450 
+|-
+|| 810 || Maury Markowitz || 166 || 30 || 0 || 0 || 0 || 1 || 47 || 5 || 0 || 0 || 249 
+|-
+|| 811 || Mav || 529 || 13 || 0 || 128 || 2 || 1 || 21 || 7 || 0 || 0 || 701 
+|-
+|| 812 || MaxSem || 5342 || 26 || 4 || 180 || 26 || 10 || 479 || 127 || 130 || 16 || 6340 
+|-
+|| 813 || Maxim || 131770 || 1090 || 21 || 2542 || 280 || 591 || 2686 || 149 || 91 || 264 || 139484 
+|-
+|| 814 || Mazca || 1433 || 11 || 2 || 54 || 4 || 15 || 783 || 13 || 30 || 23 || 2368 
+|-
+|| 815 || Meelar || 1271 || 7 || 1 || 4 || 1 || 0 || 120 || 1 || 0 || 0 || 1405 
+|-
+|| 816 || Melburnian || 172 || 6 || 0 || 24 || 3 || 3 || 85 || 0 || 1 || 0 || 294 
+|-
+|| 817 || Melchoir || 1612 || 29 || 4 || 65 || 3 || 3 || 110 || 2 || 1 || 0 || 1829 
+|-
+|| 818 || Melesse || 41652 || 99 || 0 || 3 || 0 || 0 || 3 || 0 || 2 || 0 || 41759 
+|-
+|| 819 || Menchi || 302 || 7 || 2 || 0 || 0 || 0 || 2 || 0 || 0 || 0 || 313 
+|-
+|| 820 || Meno25 || 1098 || 39 || 0 || 6 || 1 || 1 || 21 || 4 || 1 || 63 || 1234 
+|-
+|| 821 || Mentifisto || 7527 || 33 || 12 || 46 || 0 || 13 || 7508 || 16 || 81 || 81 || 15317 
+|-
+|| 822 || Mentoz86 || 82 || 10 || 0 || 3 || 0 || 0 || 6 || 0 || 2 || 0 || 103 
+|-
+|| 823 || Merovingian || 2055 || 103 || 0 || 35 || 14 || 0 || 279 || 22 || 0 || 29 || 2537 
+|-
+|| 824 || Metamagician3000 || 111 || 4 || 0 || 11 || 4 || 0 || 28 || 5 || 0 || 0 || 163 
+|-
+|| 825 || Metropolitan90 || 7060 || 63 || 2 || 9 || 1 || 1 || 8 || 2 || 1 || 0 || 7147 
+|-
+|| 826 || Mets501 || 9356 || 98 || 1 || 207 || 39 || 0 || 292 || 22 || 0 || 0 || 10015 
+|-
+|| 827 || Mfield || 937 || 17 || 10 || 194 || 7 || 34 || 809 || 12 || 25 || 1 || 2046 
+|-
+|| 828 || Michael Greiner || 2499 || 18 || 0 || 69 || 7 || 7 || 33 || 1 || 5 || 0 || 2639 
+|-
+|| 829 || Michael Hardy || 428 || 112 || 0 || 1 || 0 || 0 || 18 || 6 || 1 || 0 || 566 
+|-
+|| 830 || Michael Snow || 870 || 106 || 0 || 22 || 164 || 1 || 54 || 70 || 3 || 0 || 1290 
+|-
+|| 831 || MichaelBillington || 510 || 8 || 0 || 6 || 0 || 0 || 4567 || 71 || 0 || 2 || 5164 
+|-
+|| 832 || MichaelQSchmidt || 53 || 19 || 0 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 74 
+|-
+|| 833 || Michig || 1877 || 44 || 0 || 33 || 2 || 1 || 58 || 0 || 0 || 0 || 2015 
+|-
+|| 834 || Midom || 0 || 0 || 0 || 1 || 0 || 0 || 1 || 0 || 0 || 0 || 2 
+|-
+|| 835 || Mifter || 2649 || 17 || 59 || 276 || 13 || 23 || 1032 || 2 || 41 || 129 || 4241 
+|-
+|| 836 || Mikaey || 2291 || 2737 || 0 || 18 || 1 || 3 || 92 || 0 || 1 || 2 || 5145 
+|-
+|| 837 || Mike 7 || 1700 || 21 || 0 || 48 || 3 || 0 || 426 || 6 || 5 || 0 || 2209 
+|-
+|| 838 || Mike Cline || 498 || 4 || 0 || 31 || 1 || 13 || 7 || 0 || 0 || 0 || 554 
+|-
+|| 839 || Mike Halterman || 150 || 9 || 0 || 13 || 9 || 1 || 64 || 10 || 0 || 0 || 256 
+|-
+|| 840 || Mike Peel || 3291 || 23 || 2 || 4 || 5 || 0 || 4 || 0 || 2 || 0 || 3331 
+|-
+|| 841 || Mike Rosoft || 20682 || 548 || 755 || 794 || 52 || 79 || 3539 || 416 || 74 || 0 || 26939 
+|-
+|| 842 || Mike Selinker || 4902 || 44 || 0 || 13 || 4 || 1 || 19 || 1 || 0 || 0 || 4984 
+|-
+|| 843 || Mike V || 2543 || 38 || 217 || 209 || 72 || 95 || 683 || 14 || 26 || 10 || 3907 
+|-
+|| 844 || MikeLynch || 84 || 2 || 12 || 76 || 0 || 20 || 212 || 2 || 5 || 0 || 413 
+|-
+|| 845 || Mikeblas || 128 || 2 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 131 
+|-
+|| 846 || MilborneOne || 2119 || 11 || 0 || 77 || 17 || 11 || 90 || 1 || 0 || 2 || 2328 
+|-
+|| 847 || Mindmatrix || 2434 || 39 || 9 || 38 || 2 || 3 || 55 || 1 || 1 || 1 || 2583 
+|-
+|| 848 || Mindspillage || 2301 || 75 || 0 || 53 || 27 || 2 || 88 || 46 || 0 || 1 || 2593 
+|-
+|| 849 || Minesweeper || 13 || 2 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 16 
+|-
+|| 850 || Miniapolis || 709 || 3 || 2 || 37 || 1 || 4 || 19 || 1 || 0 || 0 || 776 
+|-
+|| 851 || MisfitToys || 79 || 8 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 87 
+|-
+|| 852 || Misza13 || 223291 || 280 || 0 || 284 || 22 || 2 || 4399 || 272 || 0 || 7 || 228557 
+|-
+|| 853 || Mitchazenia || 266 || 13 || 0 || 6 || 2 || 5 || 54 || 3 || 0 || 0 || 349 
+|-
+|| 854 || Mjroots || 339 || 12 || 19 || 95 || 8 || 30 || 147 || 11 || 9 || 0 || 670 
+|-
+|| 855 || Mkdw || 2225 || 15 || 46 || 28 || 2 || 2 || 206 || 4 || 14 || 4 || 2546 
+|-
+|| 856 || Mkmcconn || 20 || 0 || 0 || 3 || 3 || 0 || 0 || 0 || 0 || 0 || 26 
+|-
+|| 857 || Mkweise || 30 || 2 || 0 || 0 || 1 || 0 || 1 || 0 || 0 || 0 || 34 
+|-
+|| 858 || Mlaffs || 1126 || 4 || 0 || 2 || 0 || 0 || 2 || 0 || 0 || 0 || 1134 
+|-
+|| 859 || MoRsE || 64 || 3 || 0 || 0 || 0 || 0 || 26 || 1 || 0 || 0 || 94 
+|-
+|| 860 || Moabdave || 11 || 0 || 0 || 5 || 0 || 1 || 30 || 2 || 0 || 1 || 50 
+|-
+|| 861 || Modemac || 14 || 0 || 0 || 3 || 5 || 0 || 7 || 1 || 0 || 0 || 30 
+|-
+|| 862 || Moink || 304 || 3 || 0 || 2 || 0 || 0 || 7 || 7 || 0 || 0 || 323 
+|-
+|| 863 || Mojo Hand || 10439 || 54 || 43 || 164 || 10 || 1 || 873 || 23 || 5 || 0 || 11612 
+|-
+|| 864 || Moncrief || 99 || 1 || 0 || 5 || 3 || 0 || 42 || 1 || 0 || 0 || 151 
+|-
+|| 865 || Moni3 || 99 || 7 || 3 || 111 || 1 || 35 || 32 || 2 || 2 || 10 || 302 
+|-
+|| 866 || Montrealais || 22 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 23 
+|-
+|| 867 || Monty845 || 400 || 6 || 13 || 43 || 4 || 9 || 225 || 2 || 4 || 12 || 718 
+|-
+|| 868 || Moondyne || 2231 || 65 || 4 || 97 || 23 || 5 || 359 || 39 || 5 || 0 || 2828 
+|-
+|| 869 || Moonriddengirl || 14790 || 2152 || 2378 || 456 || 35 || 34 || 917 || 49 || 43 || 9 || 20863 
+|-
+|| 870 || Moriori || 4346 || 8 || 0 || 0 || 0 || 0 || 413 || 6 || 7 || 0 || 4780 
+|-
+|| 871 || Morven || 814 || 26 || 0 || 7 || 1 || 0 || 224 || 54 || 1 || 0 || 1127 
+|-
+|| 872 || Morwen || 659 || 16 || 7 || 6 || 1 || 2 || 85 || 9 || 0 || 1 || 786 
+|-
+|| 873 || Mr. Stradivarius || 2084 || 72 || 54 || 542 || 49 || 249 || 139 || 2 || 14 || 47 || 3252 
+|-
+|| 874 || Mr.Z-man || 19745 || 252 || 13 || 497 || 52 || 287 || 1669 || 185 || 41 || 30 || 22771 
+|-
+|| 875 || MrDarcy || 223 || 5 || 0 || 36 || 7 || 0 || 143 || 12 || 0 || 0 || 426 
+|-
+|| 876 || MrKIA11 || 6665 || 56 || 0 || 1 || 0 || 0 || 54 || 1 || 1 || 0 || 6778 
+|-
+|| 877 || Mtmelendez || 1045 || 5 || 0 || 11 || 0 || 1 || 2 || 0 || 0 || 0 || 1064 
+|-
+|| 878 || Mufka || 3701 || 25 || 22 || 150 || 2 || 68 || 1642 || 6 || 69 || 1 || 5686 
+|-
+|| 879 || Mulad || 44 || 6 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 50 
+|-
+|| 880 || Mushroom || 22013 || 189 || 0 || 40 || 9 || 8 || 457 || 90 || 1 || 0 || 22807 
+|-
+|| 881 || MykReeve || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 2 
+|-
+|| 882 || Mysekurity || 737 || 14 || 0 || 40 || 21 || 0 || 81 || 2 || 0 || 0 || 895 
+|-
+|| 883 || Mysid || 2643 || 2 || 0 || 3 || 1 || 0 || 14 || 5 || 0 || 0 || 2668 
+|-
+|| 884 || Mzajac || 151 || 4 || 0 || 8 || 2 || 1 || 47 || 4 || 0 || 0 || 217 
+|-
+|| 885 || NCurse || 1635 || 11 || 0 || 1 || 1 || 0 || 34 || 0 || 0 || 0 || 1682 
+|-
+|| 886 || NJA || 2659 || 60 || 4 || 230 || 6 || 45 || 2014 || 58 || 88 || 60 || 5224 
+|-
+|| 887 || Nabla || 1461 || 67 || 0 || 17 || 6 || 1 || 2 || 1 || 0 || 0 || 1555 
+|-
+|| 888 || Nakon || 39439 || 419 || 302 || 703 || 70 || 62 || 14743 || 6243 || 118 || 306 || 62405 
+|-
+|| 889 || Nancy || 15557 || 118 || 6 || 417 || 21 || 16 || 1248 || 18 || 27 || 13 || 17441 
+|-
+|| 890 || Nandesuka || 701 || 29 || 10 || 100 || 16 || 3 || 387 || 27 || 1 || 0 || 1274 
+|-
+|| 891 || Nanobug || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 1 
+|-
+|| 892 || Nat || 191 || 35 || 0 || 156 || 9 || 31 || 263 || 15 || 0 || 0 || 700 
+|-
+|| 893 || Natalie Erin || 4503 || 23 || 0 || 69 || 3 || 0 || 987 || 27 || 0 || 0 || 5612 
+|-
+|| 894 || Natalya || 330 || 13 || 0 || 36 || 7 || 3 || 109 || 39 || 0 || 0 || 537 
+|-
+|| 895 || NativeForeigner || 1207 || 26 || 28 || 118 || 6 || 34 || 1149 || 34 || 111 || 31 || 2744 
+|-
+|| 896 || NawlinWiki || 222720 || 8707 || 17298 || 14050 || 44 || 1481 || 31330 || 592 || 2841 || 11 || 299074 
+|-
+|| 897 || Necrothesp || 654 || 44 || 0 || 10 || 2 || 1 || 115 || 8 || 2 || 0 || 836 
+|-
+|| 898 || Neelix || 857 || 23 || 0 || 12 || 2 || 0 || 4 || 2 || 0 || 0 || 900 
+|-
+|| 899 || Nehrams2020 || 5368 || 21 || 3 || 10 || 3 || 2 || 135 || 2 || 0 || 0 || 5544 
+|-
+|| 900 || Netsnipe || 1170 || 60 || 0 || 606 || 91 || 11 || 3685 || 1763 || 14 || 1 || 7401 
+|-
+|| 901 || Neutrality || 4761 || 34 || 0 || 49 || 12 || 6 || 181 || 58 || 1 || 0 || 5102 
+|-
+|| 902 || Nev1 || 509 || 47 || 58 || 316 || 5 || 89 || 444 || 7 || 7 || 16 || 1498 
+|-
+|| 903 || Newyorkbrad || 871 || 15 || 6 || 91 || 7 || 4 || 749 || 33 || 5 || 1 || 1782 
+|-
+|| 904 || Nick || 3271 || 159 || 58 || 297 || 25 || 26 || 814 || 71 || 32 || 6 || 4759 
+|-
+|| 905 || Nick-D || 1068 || 19 || 52 || 284 || 21 || 35 || 1108 || 42 || 101 || 10 || 2740 
+|-
+|| 906 || Nickshanks || 56 || 2 || 0 || 3 || 0 || 0 || 0 || 0 || 0 || 0 || 61 
+|-
+|| 907 || Night Gyr || 658 || 40 || 0 || 12 || 3 || 1 || 32 || 2 || 0 || 0 || 748 
+|-
+|| 908 || Nightstallion || 1810 || 129 || 0 || 72 || 7 || 0 || 29 || 2 || 0 || 0 || 2049 
+|-
+|| 909 || Nihiltres || 13576 || 214 || 7 || 123 || 32 || 28 || 287 || 17 || 4 || 14 || 14302 
+|-
+|| 910 || Nihonjoe || 8358 || 411 || 30 || 397 || 41 || 20 || 1695 || 62 || 71 || 70 || 11155 
+|-
+|| 911 || Nikkimaria || 1203 || 41 || 14 || 38 || 3 || 18 || 27 || 6 || 7 || 30 || 1387 
+|-
+|| 912 || Nilfanion || 578 || 25 || 0 || 4 || 3 || 0 || 9 || 0 || 1 || 0 || 620 
+|-
+|| 913 || Nishkid64 || 7435 || 349 || 1 || 1519 || 641 || 130 || 7483 || 306 || 652 || 30 || 18546 
+|-
+|| 914 || Nixdorf || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 2 
+|-
+|| 915 || Nlu || 1766 || 107 || 174 || 638 || 226 || 18 || 3900 || 222 || 25 || 0 || 7076 
+|-
+|| 916 || Nmajdan || 220 || 5 || 0 || 9 || 8 || 4 || 65 || 2 || 0 || 0 || 313 
+|-
+|| 917 || No Guru || 928 || 11 || 0 || 36 || 14 || 0 || 445 || 8 || 1 || 0 || 1443 
+|-
+|| 918 || NoSeptember || 1640 || 48 || 2 || 24 || 25 || 1 || 122 || 61 || 0 || 45 || 1968 
+|-
+|| 919 || Nohat || 267 || 38 || 0 || 39 || 33 || 0 || 62 || 5 || 0 || 0 || 444 
+|-
+|| 920 || Noldoaran || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 2 
+|-
+|| 921 || NrDg || 1640 || 129 || 6 || 284 || 19 || 30 || 878 || 27 || 46 || 4 || 3063 
+|-
+|| 922 || Nthep || 5074 || 33 || 3 || 9 || 2 || 1 || 18 || 2 || 1 || 2 || 5145 
+|-
+|| 923 || NuclearWarfare || 10507 || 379 || 126 || 1320 || 63 || 349 || 3739 || 135 || 194 || 190 || 17002 
+|-
+|| 924 || Number 57 || 7339 || 173 || 7 || 98 || 2 || 7 || 62 || 6 || 0 || 0 || 7694 
+|-
+|| 925 || Nunh-huh || 461 || 30 || 0 || 28 || 3 || 1 || 328 || 12 || 3 || 2 || 868 
+|-
+|| 926 || Nv8200p || 59667 || 184 || 0 || 26 || 3 || 0 || 109 || 3 || 0 || 0 || 59992 
+|-
+|| 927 || Nyttend || 33409 || 1239 || 62 || 302 || 33 || 48 || 658 || 31 || 36 || 13 || 35831 
+|-
+|| 928 || Ocaasi || 42 || 3 || 0 || 106 || 1 || 1 || 2 || 2 || 0 || 1 || 158 
+|-
+|| 929 || Ocatecir || 1340 || 11 || 0 || 106 || 18 || 1 || 250 || 9 || 0 || 0 || 1735 
+|-
+|| 930 || Ocee || 195 || 2 || 0 || 3 || 3 || 10 || 95 || 5 || 0 || 0 || 313 
+|-
+|| 931 || Od Mishehu || 12355 || 472 || 249 || 216 || 37 || 36 || 459 || 73 || 122 || 6 || 14025 
+|-
+|| 932 || OhanaUnited || 574 || 37 || 0 || 71 || 7 || 26 || 161 || 8 || 0 || 84 || 968 
+|-
+|| 933 || Ohnoitsjamie || 5621 || 69 || 90 || 564 || 16 || 65 || 3977 || 60 || 87 || 1 || 10550 
+|-
+|| 934 || OlEnglish || 996 || 55 || 111 || 104 || 17 || 32 || 315 || 0 || 21 || 41 || 1692 
+|-
+|| 935 || Olaf Davis || 360 || 7 || 1 || 4 || 0 || 0 || 13 || 1 || 0 || 1 || 387 
+|-
+|| 936 || OldakQuill || 326 || 22 || 0 || 6 || 2 || 0 || 2 || 1 || 0 || 0 || 359 
+|-
+|| 937 || Oldelpaso || 762 || 19 || 0 || 23 || 11 || 1 || 41 || 2 || 0 || 2 || 861 
+|-
+|| 938 || Oleg Alexandrov || 694 || 60 || 0 || 14 || 8 || 0 || 35 || 10 || 0 || 1 || 822 
+|-
+|| 939 || Oliver Pereira || 2 || 7 || 0 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 10 
+|-
+|| 940 || Olivier || 220 || 16 || 0 || 8 || 2 || 0 || 56 || 0 || 3 || 0 || 305 
+|-
+|| 941 || Omegatron || 308 || 90 || 0 || 27 || 13 || 0 || 16 || 0 || 0 || 0 || 454 
+|-
+|| 942 || One || 994 || 103 || 0 || 117 || 18 || 1 || 143 || 28 || 1 || 0 || 1405 
+|-
+|| 943 || Only || 5608 || 37 || 10 || 212 || 10 || 14 || 1037 || 73 || 63 || 9 || 7073 
+|-
+|| 944 || Optimist on the run || 4155 || 55 || 22 || 49 || 4 || 20 || 947 || 29 || 42 || 71 || 5394 
+|-
+|| 945 || Orangemike || 29512 || 246 || 7 || 863 || 37 || 30 || 13223 || 81 || 229 || 1 || 44229 
+|-
+|| 946 || Orderinchaos || 5531 || 163 || 1 || 125 || 24 || 10 || 326 || 38 || 5 || 1 || 6224 
+|-
+|| 947 || Oren0 || 189 || 7 || 0 || 27 || 7 || 7 || 49 || 8 || 3 || 4 || 301 
+|-
+|| 948 || Orlady || 610 || 50 || 3 || 172 || 10 || 27 || 277 || 5 || 11 || 5 || 1170 
+|-
+|| 949 || Ortolan88 || 3 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 3 
+|-
+|| 950 || Oscarthecat || 3387 || 21 || 0 || 266 || 7 || 0 || 312 || 7 || 3 || 0 || 4003 
+|-
+|| 951 || OverlordQ || 749 || 15 || 25 || 64 || 9 || 4 || 843 || 98 || 76 || 2 || 1885 
+|-
+|| 952 || Owen || 257 || 24 || 1 || 15 || 33 || 0 || 96 || 24 || 0 || 0 || 450 
+|-
+|| 953 || OwenX || 2433 || 26 || 2 || 197 || 20 || 1 || 1290 || 82 || 6 || 9 || 4066 
+|-
+|| 954 || PBS || 789 || 123 || 16 || 130 || 19 || 27 || 41 || 7 || 3 || 0 || 1155 
+|-
+|| 955 || PFHLai || 3528 || 148 || 0 || 904 || 777 || 3 || 58 || 1 || 0 || 0 || 5419 
+|-
+|| 956 || Pablo-flores || 921 || 2 || 0 || 16 || 6 || 2 || 180 || 2 || 0 || 0 || 1129 
+|-
+|| 957 || Pagrashtak || 3191 || 13 || 0 || 3 || 2 || 0 || 10 || 1 || 0 || 0 || 3220 
+|-
+|| 958 || Pakaran || 193 || 15 || 0 || 23 || 38 || 12 || 64 || 7 || 1 || 44 || 397 
+|-
+|| 959 || Panyd || 2532 || 25 || 1 || 201 || 1 || 4 || 488 || 4 || 21 || 2 || 3279 
+|-
+|| 960 || Papa November || 3227 || 50 || 7 || 28 || 6 || 18 || 243 || 14 || 1 || 2 || 3596 
+|-
+|| 961 || Parsecboy || 2966 || 160 || 29 || 69 || 8 || 1 || 534 || 12 || 6 || 10 || 3795 
+|-
+|| 962 || Patar knight || 903 || 25 || 10 || 5 || 0 || 1 || 22 || 5 || 2 || 23 || 996 
+|-
+|| 963 || Pathoschild || 8223 || 154 || 1 || 151 || 33 || 1 || 2407 || 703 || 72 || 1 || 11746 
+|-
+|| 964 || Patrick || 204 || 112 || 0 || 9 || 1 || 1 || 3 || 1 || 0 || 1 || 332 
+|-
+|| 965 || Pats1 || 829 || 89 || 0 || 224 || 11 || 20 || 494 || 9 || 9 || 0 || 1685 
+|-
+|| 966 || Paul A || 141 || 35 || 0 || 4 || 0 || 0 || 5 || 0 || 0 || 0 || 185 
+|-
+|| 967 || Paul August || 1141 || 11 || 0 || 9 || 1 || 4 || 131 || 3 || 0 || 0 || 1300 
+|-
+|| 968 || Paul Erik || 3799 || 115 || 10 || 95 || 6 || 7 || 1340 || 14 || 26 || 0 || 5412 
+|-
+|| 969 || Paulmcdonald || 7 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 8 
+|-
+|| 970 || Pax:Vobiscum || 1015 || 53 || 2 || 188 || 6 || 13 || 41 || 1 || 1 || 0 || 1320 
+|-
+|| 971 || Pb30 || 908 || 1 || 0 || 0 || 0 || 1 || 280 || 3 || 0 || 0 || 1193 
+|-
+|| 972 || PeaceNT || 5082 || 175 || 0 || 105 || 10 || 8 || 298 || 9 || 0 || 1 || 5688 
+|-
+|| 973 || PedanticallySpeaking || 41 || 8 || 0 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 51 
+|-
+|| 974 || Pedro || 9305 || 43 || 3 || 101 || 14 || 13 || 844 || 19 || 15 || 352 || 10709 
+|-
+|| 975 || Pegship || 191 || 2 || 0 || 1 || 0 || 0 || 1 || 0 || 0 || 0 || 195 
+|-
+|| 976 || Pengo || 62 || 21 || 0 || 2 || 2 || 0 || 7 || 0 || 0 || 0 || 94 
+|-
+|| 977 || Penwhale || 171 || 11 || 4 || 93 || 10 || 44 || 69 || 14 || 7 || 2 || 425 
+|-
+|| 978 || Perceval || 29 || 0 || 0 || 5 || 4 || 0 || 19 || 0 || 0 || 0 || 57 
+|-
+|| 979 || Peridon || 34330 || 138 || 51 || 145 || 6 || 3 || 2123 || 47 || 78 || 5 || 36926 
+|-
+|| 980 || Peripitus || 12940 || 84 || 7 || 114 || 18 || 14 || 198 || 10 || 9 || 4 || 13398 
+|-
+|| 981 || Peruvianllama || 624 || 7 || 0 || 18 || 4 || 0 || 367 || 6 || 0 || 0 || 1026 
+|-
+|| 982 || Peteforsyth || 102 || 16 || 1 || 6 || 2 || 4 || 15 || 4 || 6 || 9 || 165 
+|-
+|| 983 || Peter || 4910 || 66 || 11 || 89 || 23 || 0 || 959 || 52 || 15 || 3 || 6128 
+|-
+|| 984 || Phantomsteve || 5655 || 83 || 164 || 161 || 10 || 30 || 355 || 28 || 24 || 16 || 6526 
+|-
+|| 985 || Pharos || 439 || 83 || 1 || 595 || 157 || 2 || 41 || 11 || 2 || 70 || 1401 
+|-
+|| 986 || Phil Boswell || 541 || 10 || 0 || 79 || 1 || 3 || 19 || 4 || 0 || 0 || 657 
+|-
+|| 987 || PhilKnight || 29211 || 504 || 42 || 982 || 58 || 51 || 5799 || 193 || 205 || 31 || 37076 
+|-
+|| 988 || Philippe || 4764 || 67 || 6 || 479 || 40 || 55 || 1604 || 72 || 8 || 14 || 7109 
+|-
+|| 989 || Philosopher || 1399 || 40 || 19 || 58 || 2 || 8 || 46 || 2 || 7 || 33 || 1614 
+|-
+|| 990 || Phils || 15 || 1 || 0 || 0 || 0 || 0 || 26 || 2 || 0 || 0 || 44 
+|-
+|| 991 || PierreAbbat || 0 || 0 || 0 || 0 || 0 || 0 || 7 || 0 || 0 || 0 || 7 
+|-
+|| 992 || Pigman || 1028 || 9 || 4 || 16 || 0 || 1 || 25 || 4 || 0 || 0 || 1087 
+|-
+|| 993 || Pinkville || 1 || 0 || 0 || 6 || 0 || 0 || 2 || 0 || 0 || 0 || 9 
+|-
+|| 994 || Pjacobi || 230 || 6 || 0 || 16 || 3 || 0 || 100 || 2 || 0 || 0 || 357 
+|-
+|| 995 || Plastikspork || 43661 || 1056 || 0 || 570 || 58 || 114 || 57 || 0 || 12 || 1 || 45529 
+|-
+|| 996 || Ponyo || 3947 || 22 || 419 || 480 || 3 || 31 || 2174 || 53 || 209 || 12 || 7350 
+|-
+|| 997 || Postdlf || 9299 || 113 || 11 || 199 || 9 || 5 || 965 || 11 || 6 || 0 || 10618 
+|-
+|| 998 || Pratyeka || 8 || 9 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 18 
+|-
+|| 999 || Premeditated Chaos || 3585 || 35 || 0 || 3 || 0 || 0 || 24 || 1 || 0 || 0 || 3648 
+|-
+|| 1000 || PresN || 42 || 4 || 0 || 18 || 3 || 3 || 33 || 1 || 0 || 0 || 104 
+|-
+|| 1001 || PrimeHunter || 209 || 15 || 7 || 5 || 2 || 0 || 3 || 0 || 0 || 8 || 249 
+|-
+|| 1002 || ProcseeBot || 0 || 0 || 0 || 0 || 0 || 0 || 1124956 || 0 || 2776 || 0 || 1127732 
+|-
+|| 1003 || Prodego || 2833 || 331 || 76 || 204 || 212 || 150 || 1837 || 270 || 167 || 92 || 6172 
+|-
+|| 1004 || ProhibitOnions || 340 || 12 || 0 || 0 || 1 || 0 || 50 || 0 || 0 || 0 || 403 
+|-
+|| 1005 || Prolog || 1551 || 52 || 3 || 190 || 8 || 41 || 2384 || 6 || 28 || 5 || 4268 
+|-
+|| 1006 || Proteus || 126 || 0 || 0 || 2 || 0 || 0 || 11 || 10 || 0 || 0 || 149 
+|-
+|| 1007 || Protonk || 2830 || 1386 || 4 || 116 || 9 || 18 || 246 || 23 || 30 || 8 || 4670 
+|-
+|| 1008 || ProveIt || 4433 || 7 || 0 || 3 || 0 || 0 || 2 || 0 || 0 || 0 || 4445 
+|-
+|| 1009 || Pschemp || 2131 || 247 || 2 || 169 || 30 || 0 || 3311 || 319 || 0 || 0 || 6209 
+|-
+|| 1010 || Quadell || 100919 || 398 || 2 || 55 || 17 || 4 || 127 || 12 || 1 || 0 || 101535 
+|-
+|| 1011 || Quarl || 8570 || 115 || 0 || 26 || 10 || 0 || 42 || 3 || 0 || 0 || 8766 
+|-
+|| 1012 || Qwyrxian || 1652 || 49 || 53 || 598 || 10 || 72 || 1095 || 19 || 53 || 2 || 3603 
+|-
+|| 1013 || R'n'B || 30751 || 934 || 0 || 36 || 17 || 1 || 16 || 1 || 0 || 0 || 31756 
+|-
+|| 1014 || R. Baley || 8 || 3 || 0 || 26 || 2 || 12 || 80 || 6 || 0 || 1 || 138 
+|-
+|| 1015 || RG2 || 3299 || 61 || 0 || 18 || 1 || 0 || 161 || 8 || 0 || 0 || 3548 
+|-
+|| 1016 || RHM22 || 11 || 1 || 2 || 1 || 1 || 0 || 0 || 0 || 0 || 2 || 18 
+|-
+|| 1017 || RHaworth || 165158 || 4961 || 11 || 4242 || 66 || 10 || 4680 || 42 || 166 || 7 || 179343 
+|-
+|| 1018 || RJFJR || 45 || 7 || 0 || 0 || 0 || 0 || 3 || 1 || 0 || 0 || 56 
+|-
+|| 1019 || RL0919 || 3014 || 23 || 21 || 31 || 4 || 0 || 89 || 1 || 1 || 0 || 3184 
+|-
+|| 1020 || Radiant! || 2464 || 50 || 0 || 180 || 45 || 0 || 178 || 23 || 0 || 0 || 2940 
+|-
+|| 1021 || Ragesoss || 376 || 47 || 1 || 11 || 1 || 4 || 7 || 0 || 2 || 13 || 462 
+|-
+|| 1022 || Ragib || 607 || 20 || 4 || 119 || 9 || 10 || 310 || 13 || 1 || 0 || 1093 
+|-
+|| 1023 || Rama || 886 || 13 || 0 || 19 || 10 || 0 || 316 || 13 || 1 || 0 || 1258 
+|-
+|| 1024 || Rambo's Revenge || 329 || 26 || 4 || 13 || 0 || 4 || 31 || 0 || 1 || 1 || 409 
+|-
+|| 1025 || Rami R || 7 || 0 || 4 || 200 || 2 || 25 || 84 || 0 || 0 || 0 || 322 
+|-
+|| 1026 || Ramitmahajan || 797 || 7 || 0 || 27 || 6 || 2 || 112 || 6 || 0 || 0 || 957 
+|-
+|| 1027 || Raul654 || 1193 || 99 || 0 || 1709 || 508 || 46 || 2523 || 226 || 5 || 83 || 6392 
+|-
+|| 1028 || Rbrwr || 346 || 2 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 349 
+|-
+|| 1029 || Reaper Eternal || 7493 || 119 || 970 || 807 || 27 || 213 || 5174 || 171 || 654 || 277 || 15905 
+|-
+|| 1030 || RedWolf || 14661 || 51 || 0 || 3 || 0 || 0 || 3 || 0 || 0 || 0 || 14718 
+|-
+|| 1031 || RedWordSmith || 241 || 11 || 0 || 13 || 20 || 0 || 20 || 1 || 0 || 0 || 306 
+|-
+|| 1032 || Redrose64 || 350 || 17 || 29 || 69 || 2 || 18 || 53 || 2 || 1 || 1 || 542 
+|-
+|| 1033 || Reedy || 1253 || 33 || 4 || 45 || 16 || 15 || 42 || 11 || 0 || 20 || 1439 
+|-
+|| 1034 || Refdoc || 61 || 5 || 0 || 11 || 4 || 0 || 28 || 5 || 0 || 0 || 114 
+|-
+|| 1035 || RegentsPark || 622 || 16 || 18 || 379 || 55 || 122 || 138 || 24 || 9 || 9 || 1392 
+|-
+|| 1036 || Remember the dot || 817 || 12 || 0 || 26 || 2 || 7 || 18 || 1 || 0 || 13 || 896 
+|-
+|| 1037 || Renata3 || 5026 || 42 || 1 || 25 || 2 || 0 || 64 || 5 || 1 || 0 || 5166 
+|-
+|| 1038 || Renesis || 148 || 0 || 0 || 25 || 1 || 0 || 19 || 6 || 0 || 0 || 199 
+|-
+|| 1039 || Resolute || 1408 || 65 || 26 || 76 || 12 || 5 || 204 || 3 || 6 || 0 || 1805 
+|-
+|| 1040 || Rettetast || 22560 || 78 || 1 || 41 || 101 || 17 || 513 || 9 || 5 || 23 || 23348 
+|-
+|| 1041 || Revolving Bugbear || 102 || 7 || 0 || 5 || 1 || 0 || 25 || 11 || 0 || 0 || 151 
+|-
+|| 1042 || Rhobite || 719 || 15 || 0 || 67 || 26 || 0 || 617 || 47 || 0 || 0 || 1491 
+|-
+|| 1043 || Riana || 14488 || 156 || 5 || 1088 || 157 || 117 || 2528 || 192 || 5 || 19 || 18755 
+|-
+|| 1044 || Richwales || 22 || 0 || 20 || 32 || 4 || 7 || 87 || 0 || 17 || 3 || 192 
+|-
+|| 1045 || Rick Block || 638 || 3 || 0 || 3 || 2 || 0 || 63 || 2 || 0 || 0 || 711 
+|-
+|| 1046 || Ricky81682 || 4189 || 32 || 0 || 34 || 74 || 20 || 152 || 16 || 11 || 0 || 4528 
+|-
+|| 1047 || Rifleman 82 || 540 || 60 || 0 || 46 || 10 || 5 || 188 || 13 || 9 || 3 || 874 
+|-
+|| 1048 || Rigadoun || 227 || 10 || 0 || 2 || 1 || 0 || 2 || 1 || 0 || 0 || 243 
+|-
+|| 1049 || Risker || 1317 || 136 || 325 || 218 || 234 || 234 || 586 || 93 || 109 || 18 || 3270 
+|-
+|| 1050 || Rjanag || 1192 || 48 || 22 || 116 || 10 || 16 || 225 || 23 || 21 || 1 || 1674 
+|-
+|| 1051 || Rjd0060 || 19522 || 423 || 46 || 849 || 53 || 138 || 1721 || 140 || 90 || 41 || 23023 
+|-
+|| 1052 || Rkitko || 1052 || 70 || 2 || 23 || 3 || 5 || 20 || 1 || 0 || 0 || 1176 
+|-
+|| 1053 || Rklawton || 1107 || 17 || 13 || 30 || 2 || 3 || 647 || 17 || 36 || 0 || 1872 
+|-
+|| 1054 || Rlandmann || 1286 || 92 || 0 || 23 || 3 || 0 || 48 || 3 || 0 || 0 || 1455 
+|-
+|| 1055 || Rlendog || 872 || 6 || 2 || 13 || 0 || 2 || 34 || 0 || 1 || 0 || 930 
+|-
+|| 1056 || Rmhermen || 3213 || 23 || 1 || 53 || 9 || 13 || 80 || 0 || 1 || 1 || 3394 
+|-
+|| 1057 || Roadrunner || 0 || 0 || 0 || 0 || 0 || 0 || 5 || 0 || 0 || 0 || 5 
+|-
+|| 1058 || RobLa || 3 || 1 || 0 || 1 || 0 || 2 || 0 || 0 || 0 || 0 || 7 
+|-
+|| 1059 || Robert Merkel || 0 || 1 || 0 || 0 || 0 || 0 || 5 || 4 || 0 || 0 || 10 
+|-
+|| 1060 || RobertG || 6130 || 23 || 0 || 40 || 5 || 6 || 448 || 23 || 3 || 1 || 6679 
+|-
+|| 1061 || Robin Patterson || 0 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 1 
+|-
+|| 1062 || RobyWayne || 122 || 0 || 0 || 0 || 0 || 0 || 14 || 0 || 0 || 0 || 136 
+|-
+|| 1063 || RockMFR || 2061 || 191 || 2 || 184 || 124 || 29 || 325 || 5 || 2 || 1 || 2924 
+|-
+|| 1064 || RockMagnetist || 65 || 7 || 0 || 0 || 1 || 0 || 2 || 0 || 0 || 1 || 76 
+|-
+|| 1065 || Rockpocket || 515 || 21 || 0 || 34 || 9 || 5 || 147 || 17 || 1 || 1 || 750 
+|-
+|| 1066 || Roger Davies || 536 || 26 || 31 || 14 || 4 || 4 || 70 || 30 || 24 || 5 || 744 
+|-
+|| 1067 || Rogerd || 640 || 11 || 0 || 29 || 6 || 1 || 147 || 1 || 1 || 0 || 836 
+|-
+|| 1068 || Ron Ritzman || 7192 || 376 || 28 || 63 || 5 || 5 || 1 || 1 || 0 || 4 || 7675 
+|-
+|| 1069 || Ronhjones || 18825 || 361 || 105 || 456 || 14 || 86 || 1506 || 113 || 28 || 17 || 21511 
+|-
+|| 1070 || Ronline || 64 || 3 || 0 || 6 || 10 || 0 || 11 || 1 || 0 || 0 || 95 
+|-
+|| 1071 || Ronnotel || 25 || 2 || 2 || 48 || 12 || 8 || 96 || 25 || 2 || 1 || 221 
+|-
+|| 1072 || Roozbeh || 152 || 3 || 0 || 28 || 7 || 0 || 8 || 1 || 0 || 0 || 199 
+|-
+|| 1073 || Rosiestep || 31 || 5 || 0 || 2 || 2 || 0 || 0 || 0 || 0 || 2 || 42 
+|-
+|| 1074 || Rossami || 1622 || 882 || 0 || 43 || 9 || 1 || 257 || 2 || 0 || 0 || 2816 
+|-
+|| 1075 || RoyBoy || 150 || 2 || 0 || 40 || 2 || 1 || 622 || 13 || 0 || 0 || 830 
+|-
+|| 1076 || RoySmith || 463 || 14 || 0 || 32 || 8 || 0 || 237 || 10 || 1 || 0 || 765 
+|-
+|| 1077 || Royalbroil || 1135 || 26 || 0 || 100 || 23 || 6 || 67 || 4 || 0 || 3 || 1364 
+|-
+|| 1078 || Rschen7754 || 2634 || 138 || 225 || 564 || 16 || 73 || 2314 || 78 || 277 || 63 || 6382 
+|-
+|| 1079 || Rspeer || 119 || 5 || 0 || 15 || 1 || 0 || 114 || 24 || 1 || 0 || 279 
+|-
+|| 1080 || Ruhrfisch || 408 || 29 || 49 || 88 || 8 || 11 || 73 || 9 || 4 || 3 || 682 
+|-
+|| 1081 || Runningonbrains || 368 || 9 || 34 || 16 || 2 || 7 || 150 || 6 || 15 || 0 || 607 
+|-
+|| 1082 || Ruslik0 || 4509 || 57 || 3 || 264 || 23 || 57 || 236 || 8 || 12 || 95 || 5264 
+|-
+|| 1083 || Ruud Koot || 1486 || 148 || 9 || 87 || 19 || 10 || 368 || 62 || 3 || 5 || 2197 
+|-
+|| 1084 || RxS || 813 || 3 || 0 || 14 || 3 || 7 || 518 || 11 || 2 || 0 || 1371 
+|-
+|| 1085 || Ryan Norton || 772 || 135 || 7 || 27 || 16 || 2 || 36 || 7 || 0 || 0 || 1002 
+|-
+|| 1086 || Ryan Postlethwaite || 1887 || 105 || 4 || 291 || 60 || 69 || 1421 || 152 || 25 || 60 || 4074 
+|-
+|| 1087 || RyanGerbil10 || 3628 || 18 || 0 || 46 || 4 || 2 || 190 || 11 || 0 || 2 || 3901 
+|-
+|| 1088 || S@bre || 101 || 3 || 0 || 6 || 1 || 2 || 4 || 0 || 0 || 0 || 117 
+|-
+|| 1089 || SB Johnny || 47 || 3 || 0 || 10 || 1 || 8 || 9 || 15 || 0 || 0 || 93 
+|-
+|| 1090 || SCEhardt || 5235 || 51 || 0 || 12 || 0 || 0 || 306 || 3 || 0 || 1 || 5608 
+|-
+|| 1091 || SCZenz || 447 || 17 || 0 || 17 || 21 || 5 || 149 || 26 || 0 || 0 || 682 
+|-
+|| 1092 || SGGH || 2427 || 39 || 19 || 42 || 9 || 8 || 1099 || 39 || 50 || 2 || 3734 
+|-
+|| 1093 || SQL || 2455 || 47 || 0 || 382 || 11 || 67 || 302 || 126 || 3 || 34 || 3427 
+|-
+|| 1094 || ST47 || 37727 || 4965 || 0 || 241 || 83 || 102 || 5576 || 2025 || 4 || 3 || 50726 
+|-
+|| 1095 || Sabine's Sunbird || 106 || 1 || 0 || 7 || 0 || 3 || 0 || 0 || 0 || 0 || 117 
+|-
+|| 1096 || Sadads || 200 || 9 || 3 || 5 || 2 || 1 || 6 || 0 || 0 || 28 || 254 
+|-
+|| 1097 || Salix alba || 839 || 23 || 0 || 35 || 16 || 15 || 13 || 3 || 3 || 1 || 948 
+|-
+|| 1098 || Salvidrim! || 6401 || 60 || 17 || 30 || 2 || 6 || 88 || 5 || 8 || 11 || 6628 
+|-
+|| 1099 || Salvio giuliano || 8618 || 269 || 256 || 512 || 13 || 67 || 3855 || 67 || 103 || 125 || 13885 
+|-
+|| 1100 || Sam || 111 || 25 || 2 || 24 || 5 || 0 || 22 || 0 || 0 || 3 || 192 
+|-
+|| 1101 || Samir || 2672 || 100 || 3 || 263 || 132 || 10 || 503 || 70 || 3 || 16 || 3772 
+|-
+|| 1102 || Samsara || 40 || 24 || 0 || 112 || 4 || 12 || 67 || 34 || 0 || 0 || 293 
+|-
+|| 1103 || Sanchom || 247 || 4 || 0 || 4 || 1 || 0 || 58 || 8 || 0 || 0 || 322 
+|-
+|| 1104 || Sandstein || 10289 || 173 || 19 || 493 || 32 || 34 || 1487 || 269 || 113 || 4 || 12913 
+|-
+|| 1105 || Sarah || 2697 || 150 || 0 || 150 || 46 || 4 || 517 || 109 || 14 || 49 || 3736 
+|-
+|| 1106 || SarahStierch || 2260 || 80 || 10 || 107 || 2 || 4 || 93 || 1 || 3 || 1 || 2561 
+|-
+|| 1107 || Saravask || 420 || 16 || 0 || 58 || 22 || 15 || 78 || 13 || 0 || 2 || 624 
+|-
+|| 1108 || Sasquatch || 2185 || 26 || 0 || 84 || 25 || 1 || 686 || 104 || 1 || 1 || 3113 
+|-
+|| 1109 || Satori Son || 1927 || 61 || 171 || 292 || 12 || 3 || 753 || 15 || 11 || 1 || 3246 
+|-
+|| 1110 || SatyrTN || 2931 || 25 || 0 || 21 || 8 || 4 || 36 || 7 || 1 || 0 || 3033 
+|-
+|| 1111 || Savidan || 120 || 5 || 0 || 13 || 6 || 0 || 6 || 0 || 0 || 0 || 150 
+|-
+|| 1112 || Saxifrage || 292 || 2 || 0 || 10 || 4 || 0 || 13 || 0 || 0 || 0 || 321 
+|-
+|| 1113 || Schissel || 11 || 0 || 0 || 1 || 0 || 0 || 2 || 2 || 0 || 0 || 16 
+|-
+|| 1114 || Schneelocke || 60 || 8 || 0 || 15 || 2 || 0 || 11 || 2 || 0 || 0 || 98 
+|-
+|| 1115 || Schutz || 840 || 4 || 3 || 3 || 0 || 0 || 3 || 1 || 0 || 0 || 854 
+|-
+|| 1116 || Scientizzle || 4295 || 85 || 26 || 279 || 28 || 13 || 1624 || 35 || 36 || 5 || 6426 
+|-
+|| 1117 || Scott Burley || 842 || 1 || 0 || 11 || 1 || 0 || 33 || 3 || 0 || 0 || 891 
+|-
+|| 1118 || Scott MacDonald || 1093 || 39 || 7 || 60 || 6 || 10 || 82 || 17 || 5 || 1 || 1320 
+|-
+|| 1119 || Scott Martin || 887 || 81 || 38 || 43 || 2 || 6 || 68 || 4 || 1 || 0 || 1130 
+|-
+|| 1120 || Scott5114 || 1449 || 13 || 1 || 138 || 5 || 1 || 30 || 5 || 0 || 1 || 1643 
+|-
+|| 1121 || ScottDavis || 302 || 36 || 0 || 9 || 5 || 0 || 37 || 4 || 0 || 0 || 393 
+|-
+|| 1122 || Scottywong || 918 || 21 || 9 || 172 || 12 || 27 || 103 || 13 || 11 || 2 || 1288 
+|-
+|| 1123 || Sean Whitton || 439 || 16 || 0 || 18 || 7 || 0 || 55 || 3 || 0 || 3 || 541 
+|-
+|| 1124 || Seattle Skier || 296 || 10 || 2 || 12 || 0 || 2 || 34 || 1 || 1 || 0 || 358 
+|-
+|| 1125 || SebastianHelm || 235 || 28 || 6 || 10 || 2 || 2 || 10 || 6 || 0 || 0 || 299 
+|-
+|| 1126 || Sebastiankessel || 2 || 2 || 0 || 8 || 4 || 0 || 38 || 1 || 0 || 0 || 55 
+|-
+|| 1127 || Secretlondon || 454 || 7 || 0 || 8 || 0 || 1 || 799 || 30 || 17 || 26 || 1342 
+|-
+|| 1128 || Seddon || 107 || 6 || 3 || 27 || 1 || 3 || 80 || 3 || 11 || 7 || 248 
+|-
+|| 1129 || Seicer || 1875 || 44 || 0 || 341 || 37 || 47 || 714 || 48 || 12 || 0 || 3118 
+|-
+|| 1130 || Selket || 2158 || 15 || 13 || 25 || 4 || 3 || 260 || 20 || 7 || 0 || 2505 
+|-
+|| 1131 || Seraphimblade || 5302 || 27 || 2 || 74 || 10 || 3 || 1038 || 71 || 22 || 5 || 6554 
+|-
+|| 1132 || Seresin || 3063 || 97 || 2 || 187 || 9 || 29 || 174 || 1 || 2 || 5 || 3569 
+|-
+|| 1133 || Sergecross73 || 49 || 0 || 7 || 65 || 1 || 12 || 96 || 1 || 11 || 1 || 243 
+|-
+|| 1134 || Sesel || 84 || 4 || 0 || 19 || 12 || 0 || 12 || 0 || 0 || 0 || 131 
+|-
+|| 1135 || Sethant || 1 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 3 
+|-
+|| 1136 || Sgeureka || 517 || 24 || 0 || 1 || 0 || 0 || 3 || 1 || 1 || 0 || 547 
+|-
+|| 1137 || Shanes || 2437 || 21 || 0 || 92 || 162 || 4 || 1118 || 24 || 0 || 0 || 3858 
+|-
+|| 1138 || Sheldon Rampton || 2 || 2 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 5 
+|-
+|| 1139 || Shereth || 824 || 34 || 0 || 12 || 4 || 1 || 484 || 10 || 0 || 1 || 1370 
+|-
+|| 1140 || Sherool || 42753 || 70 || 0 || 19 || 6 || 0 || 18 || 1 || 0 || 0 || 42867 
+|-
+|| 1141 || Shii || 685 || 48 || 1 || 25 || 12 || 0 || 95 || 58 || 0 || 2 || 926 
+|-
+|| 1142 || Shimeru || 1752 || 15 || 4 || 27 || 0 || 0 || 18 || 1 || 0 || 0 || 1817 
+|-
+|| 1143 || Shirik || 1268 || 81 || 230 || 219 || 23 || 97 || 1316 || 33 || 132 || 31 || 3430 
+|-
+|| 1144 || Shirt58 || 1291 || 13 || 6 || 23 || 0 || 4 || 47 || 2 || 0 || 1 || 1387 
+|-
+|| 1145 || Shoeofdeath || 938 || 4 || 0 || 7 || 1 || 0 || 117 || 0 || 1 || 0 || 1068 
+|-
+|| 1146 || Shubinator || 545 || 27 || 0 || 12 || 5 || 2 || 0 || 0 || 0 || 1 || 592 
+|-
+|| 1147 || Shyam || 16930 || 58 || 0 || 19 || 2 || 0 || 58 || 1 || 0 || 1 || 17069 
+|-
+|| 1148 || Shyamal || 245 || 38 || 1 || 26 || 3 || 5 || 50 || 2 || 4 || 12 || 386 
+|-
+|| 1149 || Silence || 24 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 25 
+|-
+|| 1150 || SilkTork || 1241 || 73 || 9 || 59 || 7 || 24 || 77 || 21 || 78 || 5 || 1594 
+|-
+|| 1151 || SimonP || 5513 || 64 || 0 || 13 || 277 || 0 || 45 || 2 || 0 || 0 || 5914 
+|-
+|| 1152 || Singularity42 || 170 || 8 || 3 || 4 || 0 || 0 || 135 || 13 || 12 || 3 || 348 
+|-
+|| 1153 || Sir Nicholas de Mimsy-Porpington || 2204 || 66 || 6 || 97 || 11 || 5 || 823 || 84 || 2 || 4 || 3302 
+|-
+|| 1154 || SirFozzie || 369 || 19 || 29 || 114 || 9 || 50 || 359 || 34 || 10 || 0 || 993 
+|-
+|| 1155 || Siroxo || 73 || 4 || 0 || 0 || 0 || 0 || 18 || 0 || 0 || 0 || 95 
+|-
+|| 1156 || Sj || 159 || 180 || 0 || 13 || 11 || 2 || 58 || 8 || 1 || 0 || 432 
+|-
+|| 1157 || Sjakkalle || 5120 || 395 || 6 || 46 || 31 || 2 || 920 || 71 || 4 || 0 || 6595 
+|-
+|| 1158 || Sky Harbor || 18 || 12 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 31 
+|-
+|| 1159 || Slakr || 6339 || 74 || 35 || 484 || 28 || 114 || 9474 || 108 || 36 || 25 || 16717 
+|-
+|| 1160 || Slambo || 700 || 20 || 0 || 34 || 1 || 0 || 184 || 5 || 0 || 0 || 944 
+|-
+|| 1161 || SlimVirgin || 1540 || 451 || 25 || 1974 || 470 || 320 || 1319 || 249 || 14 || 12 || 6374 
+|-
+|| 1162 || Slon02 || 887 || 9 || 7 || 180 || 2 || 21 || 253 || 0 || 4 || 0 || 1363 
+|-
+|| 1163 || Slp1 || 646 || 19 || 45 || 52 || 10 || 10 || 224 || 5 || 14 || 0 || 1025 
+|-
+|| 1164 || Slumgum || 154 || 1 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 156 
+|-
+|| 1165 || Smalljim || 2119 || 21 || 18 || 77 || 4 || 4 || 1841 || 9 || 41 || 0 || 4134 
+|-
+|| 1166 || Smartse || 5416 || 59 || 9 || 85 || 1 || 4 || 563 || 9 || 11 || 2 || 6159 
+|-
+|| 1167 || Smith03 || 168 || 4 || 0 || 9 || 0 || 2 || 12 || 69 || 1 || 0 || 265 
+|-
+|| 1168 || Smith609 || 471 || 63 || 3 || 53 || 11 || 23 || 9 || 3 || 6 || 0 || 642 
+|-
+|| 1169 || Smurrayinchester || 68 || 4 || 0 || 10 || 6 || 0 || 17 || 6 || 0 || 0 || 111 
+|-
+|| 1170 || Sn0wflake || 406 || 3 || 0 || 15 || 2 || 0 || 108 || 2 || 1 || 0 || 537 
+|-
+|| 1171 || Snowolf || 1932 || 45 || 40 || 75 || 9 || 78 || 1205 || 40 || 26 || 24 || 3474 
+|-
+|| 1172 || SoLando || 316 || 14 || 0 || 19 || 7 || 0 || 193 || 6 || 0 || 0 || 555 
+|-
+|| 1173 || SoWhy || 8280 || 132 || 11 || 723 || 59 || 150 || 307 || 8 || 16 || 12 || 9698 
+|-
+|| 1174 || Soap || 2864 || 44 || 65 || 101 || 33 || 77 || 745 || 10 || 53 || 16 || 4008 
+|-
+|| 1175 || Someguy1221 || 2047 || 73 || 135 || 85 || 6 || 6 || 2303 || 11 || 167 || 9 || 4842 
+|-
+|| 1176 || Somno || 889 || 22 || 0 || 14 || 5 || 2 || 16 || 0 || 1 || 0 || 949 
+|-
+|| 1177 || Soumyasch || 2802 || 55 || 0 || 75 || 10 || 3 || 671 || 34 || 0 || 6 || 3656 
+|-
+|| 1178 || SouthernNights || 2247 || 53 || 0 || 137 || 36 || 12 || 259 || 6 || 4 || 0 || 2754 
+|-
+|| 1179 || SpacemanSpiff || 4057 || 49 || 62 || 419 || 6 || 34 || 993 || 3 || 50 || 10 || 5683 
+|-
+|| 1180 || Spangineer || 262 || 10 || 0 || 16 || 11 || 0 || 94 || 8 || 0 || 0 || 401 
+|-
+|| 1181 || Spartaz || 6458 || 455 || 34 || 321 || 52 || 24 || 425 || 98 || 33 || 17 || 7917 
+|-
+|| 1182 || Spellcast || 8104 || 428 || 0 || 640 || 8 || 39 || 9286 || 650 || 126 || 11 || 19292 
+|-
+|| 1183 || Spencer || 1112 || 12 || 2 || 87 || 3 || 7 || 1431 || 5 || 11 || 2 || 2672 
+|-
+|| 1184 || Sphilbrick || 58896 || 856 || 85 || 7 || 1 || 4 || 108 || 3 || 3 || 5 || 59968 
+|-
+|| 1185 || Spike Wilbury || 2796 || 105 || 4 || 47 || 7 || 4 || 189 || 5 || 1 || 1 || 3159 
+|-
+|| 1186 || Spinningspark || 1669 || 97 || 39 || 91 || 4 || 38 || 536 || 10 || 32 || 13 || 2529 
+|-
+|| 1187 || Splash || 8423 || 326 || 0 || 266 || 761 || 7 || 414 || 136 || 0 || 1 || 10334 
+|-
+|| 1188 || SpuriousQ || 624 || 1 || 0 || 17 || 1 || 0 || 569 || 5 || 0 || 0 || 1217 
+|-
+|| 1189 || Srikeit || 1842 || 18 || 0 || 86 || 45 || 0 || 382 || 22 || 0 || 0 || 2395 
+|-
+|| 1190 || Ssd || 1699 || 2 || 0 || 7 || 1 || 0 || 14 || 0 || 0 || 0 || 1723 
+|-
+|| 1191 || Staecker || 1698 || 21 || 0 || 1 || 1 || 0 || 3 || 0 || 0 || 0 || 1724 
+|-
+|| 1192 || Stan Shebs || 2669 || 76 || 1 || 1 || 0 || 0 || 26 || 0 || 0 || 0 || 2773 
+|-
+|| 1193 || Star Mississippi || 2197 || 60 || 0 || 90 || 5 || 7 || 252 || 8 || 2 || 0 || 2621 
+|-
+|| 1194 || Starblind || 3352 || 21 || 1 || 166 || 3 || 1 || 389 || 6 || 2 || 0 || 3941 
+|-
+|| 1195 || Staxringold || 350 || 11 || 1 || 11 || 0 || 0 || 48 || 0 || 0 || 0 || 421 
+|-
+|| 1196 || Steel || 9497 || 77 || 1 || 1100 || 343 || 41 || 1335 || 95 || 6 || 9 || 12504 
+|-
+|| 1197 || Stemonitis || 7075 || 191 || 2 || 27 || 17 || 7 || 94 || 3 || 0 || 0 || 7416 
+|-
+|| 1198 || Stephan Schulz || 8 || 9 || 1 || 27 || 1 || 4 || 117 || 11 || 9 || 2 || 189 
+|-
+|| 1199 || Stephen || 9661 || 138 || 6 || 135 || 4 || 1 || 1512 || 80 || 18 || 11 || 11566 
+|-
+|| 1200 || Stephen Bain || 1746 || 42 || 0 || 84 || 23 || 1 || 96 || 18 || 0 || 0 || 2010 
+|-
+|| 1201 || StephenBuxton || 2934 || 36 || 0 || 40 || 3 || 5 || 454 || 9 || 5 || 0 || 3486 
+|-
+|| 1202 || Steve Smith || 1343 || 96 || 16 || 116 || 7 || 25 || 376 || 36 || 11 || 3 || 2029 
+|-
+|| 1203 || Steven Walling || 965 || 3 || 2 || 200 || 3 || 22 || 72 || 4 || 1 || 13 || 1285 
+|-
+|| 1204 || Stevenfruitsmaak || 95 || 10 || 0 || 10 || 0 || 0 || 11 || 0 || 0 || 0 || 126 
+|-
+|| 1205 || Stevenj || 35 || 1 || 0 || 24 || 0 || 0 || 52 || 1 || 0 || 0 || 113 
+|-
+|| 1206 || Stewartadcock || 828 || 1 || 0 || 10 || 3 || 0 || 6 || 1 || 0 || 0 || 849 
+|-
+|| 1207 || Stifle || 21465 || 655 || 12 || 561 || 60 || 59 || 535 || 69 || 11 || 55 || 23482 
+|-
+|| 1208 || Stormie || 2448 || 65 || 0 || 49 || 7 || 3 || 376 || 11 || 0 || 2 || 2961 
+|-
+|| 1209 || StuffOfInterest || 173 || 5 || 0 || 29 || 2 || 0 || 106 || 2 || 0 || 0 || 317 
+|-
+|| 1210 || Stwalkerster || 4466 || 105 || 39 || 90 || 3 || 10 || 447 || 52 || 28 || 60 || 5300 
+|-
+|| 1211 || Sugarfish || 2 || 2 || 0 || 1 || 1 || 0 || 0 || 0 || 0 || 0 || 6 
+|-
+|| 1212 || Sundar || 41 || 13 || 0 || 0 || 0 || 1 || 6 || 3 || 0 || 0 || 64 
+|-
+|| 1213 || Superm401 || 266 || 26 || 0 || 23 || 22 || 24 || 48 || 12 || 0 || 1 || 422 
+|-
+|| 1214 || Sverdrup || 502 || 4 || 0 || 1 || 2 || 0 || 2 || 2 || 0 || 0 || 513 
+|-
+|| 1215 || Swarm || 419 || 5 || 13 || 32 || 5 || 4 || 333 || 10 || 20 || 67 || 908 
+|-
+|| 1216 || Swatjester || 1055 || 30 || 7 || 217 || 17 || 36 || 413 || 51 || 9 || 6 || 1841 
+|-
+|| 1217 || Syrthiss || 6018 || 66 || 41 || 434 || 28 || 13 || 3716 || 158 || 228 || 11 || 10713 
+|-
+|| 1218 || TFA Protector Bot || 10 || 7 || 0 || 115 || 0 || 11 || 0 || 0 || 0 || 0 || 143 
+|-
+|| 1219 || TParis || 4769 || 126 || 63 || 86 || 16 || 23 || 554 || 63 || 46 || 73 || 5819 
+|-
+|| 1220 || TSO1D || 89 || 1 || 0 || 34 || 8 || 2 || 21 || 2 || 0 || 0 || 157 
+|-
+|| 1221 || TShilo12 || 59 || 4 || 0 || 8 || 2 || 0 || 5 || 2 || 0 || 0 || 80 
+|-
+|| 1222 || Tabercil || 468 || 37 || 25 || 68 || 12 || 7 || 192 || 5 || 2 || 0 || 816 
+|-
+|| 1223 || Tannin || 57 || 2 || 0 || 1 || 0 || 0 || 22 || 1 || 0 || 0 || 83 
+|-
+|| 1224 || Tariqabjotu || 636 || 51 || 5 || 920 || 105 || 89 || 586 || 95 || 7 || 1 || 2495 
+|-
+|| 1225 || Tassedethe || 16327 || 531 || 1 || 65 || 12 || 10 || 12 || 0 || 2 || 0 || 16960 
+|-
+|| 1226 || Tawker || 4460 || 53 || 0 || 286 || 18 || 12 || 1755 || 350 || 0 || 10 || 6944 
+|-
+|| 1227 || Taxman || 246 || 19 || 1 || 15 || 10 || 0 || 175 || 12 || 0 || 337 || 815 
+|-
+|| 1228 || Tcncv || 250 || 60 || 3 || 306 || 9 || 84 || 589 || 8 || 20 || 4 || 1333 
+|-
+|| 1229 || TeaDrinker || 2054 || 23 || 9 || 51 || 1 || 23 || 465 || 8 || 5 || 1 || 2640 
+|-
+|| 1230 || Tedder || 1858 || 29 || 37 || 941 || 62 || 189 || 820 || 19 || 58 || 4 || 4017 
+|-
+|| 1231 || TenOfAllTrades || 432 || 18 || 3 || 87 || 5 || 16 || 824 || 42 || 19 || 5 || 1451 
+|-
+|| 1232 || TerriersFan || 3618 || 116 || 35 || 246 || 20 || 23 || 1175 || 15 || 57 || 0 || 5305 
+|-
+|| 1233 || TexasAndroid || 24393 || 718 || 5 || 453 || 44 || 17 || 659 || 39 || 2 || 1 || 26331 
+|-
+|| 1234 || ThaddeusB || 1856 || 372 || 8 || 26 || 5 || 5 || 73 || 5 || 6 || 1 || 2357 
+|-
+|| 1235 || Thatcher || 2771 || 117 || 9 || 243 || 59 || 27 || 3034 || 338 || 18 || 32 || 6648 
+|-
+|| 1236 || The Anome || 4048 || 104 || 45 || 458 || 38 || 41 || 6490 || 212 || 220 || 2 || 11658 
+|-
+|| 1237 || The Blade of the Northern Lights || 2376 || 59 || 58 || 113 || 4 || 10 || 727 || 28 || 48 || 18 || 3441 
+|-
+|| 1238 || The Bushranger || 9924 || 187 || 163 || 303 || 10 || 46 || 1206 || 11 || 96 || 2 || 11948 
+|-
+|| 1239 || The Cunctator || 8 || 63 || 0 || 5 || 17 || 0 || 11 || 6 || 0 || 0 || 110 
+|-
+|| 1240 || The Earwig || 2678 || 255 || 8 || 58 || 8 || 4 || 50 || 6 || 3 || 22 || 3092 
+|-
+|| 1241 || The Interior || 1 || 0 || 0 || 1 || 0 || 0 || 4 || 1 || 0 || 0 || 7 
+|-
+|| 1242 || The JPS || 9552 || 57 || 0 || 222 || 23 || 13 || 416 || 14 || 0 || 1 || 10298 
+|-
+|| 1243 || The Land || 461 || 6 || 0 || 15 || 9 || 0 || 97 || 13 || 0 || 0 || 601 
+|-
+|| 1244 || The Moose || 3119 || 37 || 0 || 131 || 13 || 3 || 541 || 31 || 4 || 3 || 3882 
+|-
+|| 1245 || The Rambling Man || 3548 || 16 || 5 || 206 || 7 || 15 || 1114 || 7 || 15 || 201 || 5134 
+|-
+|| 1246 || The Tom || 163 || 12 || 0 || 42 || 12 || 0 || 4 || 0 || 0 || 0 || 233 
+|-
+|| 1247 || The Wordsmith || 747 || 9 || 7 || 23 || 4 || 6 || 30 || 4 || 2 || 3 || 835 
+|-
+|| 1248 || The ed17 || 395 || 68 || 103 || 193 || 24 || 68 || 78 || 6 || 20 || 27 || 982 
+|-
+|| 1249 || The wub || 6517 || 55 || 0 || 43 || 5 || 5 || 364 || 11 || 8 || 2 || 7010 
+|-
+|| 1250 || TheCatalyst31 || 1421 || 45 || 5 || 5 || 0 || 0 || 8 || 0 || 0 || 6 || 1490 
+|-
+|| 1251 || TheCoffee || 29338 || 43 || 0 || 20 || 14 || 0 || 29 || 3 || 1 || 0 || 29448 
+|-
+|| 1252 || TheDJ || 1578 || 63 || 2 || 22 || 5 || 7 || 5 || 0 || 1 || 39 || 1722 
+|-
+|| 1253 || TheParanoidOne || 12440 || 29 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 12469 
+|-
+|| 1254 || Theda || 8794 || 104 || 19 || 408 || 8 || 16 || 3533 || 65 || 7 || 3 || 12957 
+|-
+|| 1255 || Thedemonhog || 32 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 2 || 35 
+|-
+|| 1256 || Thehelpfulone || 8641 || 62 || 84 || 367 || 16 || 95 || 333 || 17 || 31 || 73 || 9719 
+|-
+|| 1257 || Theleftorium || 477 || 23 || 28 || 9 || 1 || 1 || 24 || 4 || 2 || 0 || 569 
+|-
+|| 1258 || TheoClarke || 269 || 17 || 0 || 0 || 1 || 0 || 17 || 2 || 0 || 0 || 306 
+|-
+|| 1259 || Thespian || 3 || 1 || 2 || 6 || 0 || 0 || 3 || 1 || 0 || 0 || 16 
+|-
+|| 1260 || Thingg || 3631 || 56 || 0 || 103 || 5 || 23 || 464 || 7 || 10 || 5 || 4304 
+|-
+|| 1261 || Thryduulf || 1575 || 73 || 4 || 91 || 44 || 8 || 76 || 20 || 1 || 0 || 1892 
+|-
+|| 1262 || Thue || 8067 || 32 || 0 || 30 || 8 || 0 || 372 || 37 || 1 || 0 || 8547 
+|-
+|| 1263 || Thumperward || 254 || 15 || 3 || 13 || 16 || 5 || 31 || 4 || 2 || 2 || 345 
+|-
+|| 1264 || Thunderboltz || 618 || 29 || 0 || 13 || 6 || 0 || 80 || 0 || 0 || 0 || 746 
+|-
+|| 1265 || Tide rolls || 915 || 1 || 80 || 326 || 5 || 10 || 3006 || 10 || 48 || 2 || 4403 
+|-
+|| 1266 || TigerShark || 1186 || 55 || 0 || 54 || 18 || 4 || 1161 || 43 || 14 || 0 || 2535 
+|-
+|| 1267 || Tijuana Brass || 3169 || 48 || 0 || 33 || 4 || 0 || 103 || 10 || 0 || 0 || 3367 
+|-
+|| 1268 || Tikiwont || 9485 || 1165 || 6 || 103 || 19 || 1 || 698 || 16 || 27 || 3 || 11523 
+|-
+|| 1269 || Tim Ivorson || 8 || 5 || 0 || 1 || 0 || 0 || 0 || 0 || 0 || 0 || 14 
+|-
+|| 1270 || Tim Starling || 42 || 11 || 1 || 7 || 3 || 0 || 15 || 23 || 0 || 0 || 102 
+|-
+|| 1271 || Tim! || 1347 || 27 || 0 || 4 || 3 || 0 || 46 || 2 || 0 || 0 || 1429 
+|-
+|| 1272 || TimVickers || 1318 || 48 || 0 || 201 || 16 || 82 || 904 || 29 || 11 || 5 || 2614 
+|-
+|| 1273 || Timc || 35 || 1 || 0 || 0 || 1 || 0 || 2 || 0 || 0 || 0 || 39 
+|-
+|| 1274 || Timotheus Canens || 12027 || 731 || 147 || 312 || 9 || 95 || 2416 || 108 || 511 || 54 || 16410 
+|-
+|| 1275 || Timrollpickering || 6017 || 49 || 2 || 40 || 3 || 16 || 13 || 5 || 2 || 0 || 6147 
+|-
+|| 1276 || Timwi || 348 || 23 || 0 || 4 || 6 || 0 || 0 || 0 || 0 || 0 || 381 
+|-
+|| 1277 || Tinucherian || 17 || 2 || 0 || 63 || 1 || 12 || 0 || 0 || 0 || 5 || 100 
+|-
+|| 1278 || Tiptoety || 17876 || 229 || 123 || 1363 || 1230 || 298 || 6706 || 245 || 674 || 481 || 29225 
+|-
+|| 1279 || Titoxd || 2993 || 426 || 0 || 111 || 42 || 6 || 1595 || 368 || 6 || 5 || 5552 
+|-
+|| 1280 || Tkinias || 3 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 3 
+|-
+|| 1281 || Toby Bartels || 22 || 154 || 0 || 1 || 3 || 0 || 1 || 1 || 0 || 0 || 182 
+|-
+|| 1282 || Toddst1 || 8648 || 160 || 108 || 1294 || 83 || 155 || 13214 || 394 || 568 || 77 || 24701 
+|-
+|| 1283 || Tokyogirl79 || 8855 || 43 || 2 || 170 || 2 || 0 || 545 || 4 || 23 || 0 || 9644 
+|-
+|| 1284 || Tom || 1393 || 31 || 0 || 34 || 11 || 5 || 84 || 1 || 1 || 0 || 1560 
+|-
+|| 1285 || Tom Morris || 1664 || 36 || 64 || 207 || 3 || 31 || 142 || 5 || 11 || 56 || 2219 
+|-
+|| 1286 || Tom harrison || 3512 || 164 || 4 || 382 || 115 || 51 || 1909 || 111 || 11 || 0 || 6259 
+|-
+|| 1287 || TomStar81 || 826 || 6 || 0 || 104 || 9 || 10 || 57 || 2 || 0 || 0 || 1014 
+|-
+|| 1288 || TommyBoy || 6 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 6 
+|-
+|| 1289 || Tompagenet || 6 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 6 
+|-
+|| 1290 || Tone || 18919 || 182 || 1 || 74 || 4 || 13 || 149 || 0 || 0 || 0 || 19342 
+|-
+|| 1291 || Tony Fox || 1732 || 11 || 1 || 92 || 2 || 10 || 583 || 11 || 11 || 0 || 2453 
+|-
+|| 1292 || Tonywalton || 4031 || 20 || 10 || 39 || 6 || 13 || 647 || 31 || 52 || 3 || 4852 
+|-
+|| 1293 || Toon05 || 1388 || 110 || 1 || 59 || 12 || 5 || 159 || 7 || 16 || 6 || 1763 
+|-
+|| 1294 || Topbanana || 1546 || 41 || 0 || 23 || 1 || 3 || 7 || 0 || 1 || 0 || 1622 
+|-
+|| 1295 || TorNodeBot || 0 || 0 || 0 || 0 || 0 || 0 || 32123 || 0 || 0 || 0 || 32123 
+|-
+|| 1296 || Trappist the monk || 0 || 0 || 0 || 6 || 0 || 0 || 0 || 0 || 0 || 0 || 6 
+|-
+|| 1297 || Trevj || 64 || 10 || 0 || 7 || 0 || 0 || 1 || 0 || 0 || 1 || 83 
+|-
+|| 1298 || Trevor MacInnis || 2238 || 234 || 0 || 137 || 7 || 27 || 470 || 11 || 2 || 3 || 3129 
+|-
+|| 1299 || Trialsanderrors || 685 || 297 || 0 || 52 || 61 || 0 || 21 || 2 || 0 || 0 || 1118 
+|-
+|| 1300 || Tristanb || 5 || 12 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 17 
+|-
+|| 1301 || Tristessa de St Ange || 263 || 15 || 10 || 20 || 10 || 3 || 148 || 24 || 5 || 1 || 499 
+|-
+|| 1302 || Trödel || 215 || 34 || 0 || 7 || 2 || 0 || 63 || 14 || 1 || 0 || 336 
+|-
+|| 1303 || TwinsMetsFan || 3121 || 47 || 0 || 42 || 6 || 3 || 18 || 0 || 0 || 1 || 3238 
+|-
+|| 1304 || Tyrenius || 2648 || 63 || 0 || 69 || 12 || 9 || 271 || 31 || 1 || 7 || 3111 
+|-
+|| 1305 || Tyrol5 || 4549 || 8 || 4 || 1 || 0 || 0 || 249 || 0 || 2 || 50 || 4863 
+|-
+|| 1306 || Tznkai || 222 || 4 || 4 || 84 || 9 || 18 || 155 || 21 || 6 || 2 || 525 
+|-
+|| 1307 || Tóraí || 432 || 4 || 8 || 5 || 1 || 0 || 24 || 3 || 1 || 0 || 478 
+|-
+|| 1308 || Ucucha || 1164 || 101 || 18 || 60 || 5 || 15 || 91 || 1 || 7 || 7 || 1469 
+|-
+|| 1309 || UkPaolo || 1441 || 57 || 0 || 15 || 5 || 0 || 131 || 3 || 0 || 0 || 1652 
+|-
+|| 1310 || Ultraexactzz || 4594 || 92 || 7 || 176 || 4 || 6 || 604 || 61 || 21 || 5 || 5570 
+|-
+|| 1311 || Uncle G || 2143 || 286 || 17 || 50 || 3 || 12 || 244 || 1 || 5 || 0 || 2761 
+|-
+|| 1312 || UninvitedCompany || 1864 || 43 || 0 || 60 || 27 || 0 || 119 || 33 || 0 || 47 || 2193 
+|-
+|| 1313 || UpstateNYer || 447 || 1 || 2 || 4 || 0 || 5 || 5 || 1 || 0 || 81 || 546 
+|-
+|| 1314 || Urhixidur || 401 || 21 || 0 || 2 || 0 || 0 || 9 || 0 || 0 || 0 || 433 
+|-
+|| 1315 || Useight || 2102 || 25 || 0 || 40 || 3 || 4 || 344 || 9 || 0 || 12 || 2539 
+|-
+|| 1316 || Utcursch || 7133 || 199 || 3 || 87 || 8 || 9 || 2578 || 20 || 8 || 1 || 10046 
+|-
+|| 1317 || UtherSRG || 8405 || 159 || 0 || 143 || 10 || 5 || 770 || 22 || 3 || 0 || 9517 
+|-
+|| 1318 || Vague Rant || 27 || 4 || 0 || 0 || 2 || 0 || 4 || 1 || 0 || 0 || 38 
+|-
+|| 1319 || Valfontis || 158 || 12 || 3 || 2 || 1 || 0 || 57 || 1 || 2 || 1 || 237 
+|-
+|| 1320 || Valley2city || 716 || 8 || 3 || 26 || 5 || 8 || 228 || 2 || 9 || 18 || 1023 
+|-
+|| 1321 || Vary || 656 || 55 || 0 || 33 || 4 || 3 || 202 || 9 || 1 || 0 || 963 
+|-
+|| 1322 || VegaDark || 16094 || 350 || 0 || 171 || 151 || 104 || 813 || 503 || 6 || 0 || 18192 
+|-
+|| 1323 || Vegaswikian || 13907 || 98 || 0 || 144 || 7 || 21 || 68 || 4 || 5 || 0 || 14254 
+|-
+|| 1324 || Veinor || 2278 || 18 || 0 || 36 || 4 || 1 || 364 || 24 || 2 || 0 || 2727 
+|-
+|| 1325 || Vejvančický || 8583 || 30 || 38 || 3 || 2 || 0 || 1092 || 0 || 58 || 19 || 9825 
+|-
+|| 1326 || VernoWhitney || 1753 || 315 || 145 || 20 || 1 || 0 || 122 || 2 || 7 || 1 || 2366 
+|-
+|| 1327 || Verrai || 750 || 5 || 0 || 14 || 6 || 0 || 69 || 2 || 1 || 0 || 847 
+|-
+|| 1328 || Versageek || 7517 || 35 || 14 || 176 || 1 || 23 || 1159 || 14 || 30 || 15 || 8984 
+|-
+|| 1329 || Viajero || 52 || 4 || 0 || 10 || 9 || 0 || 15 || 4 || 0 || 0 || 94 
+|-
+|| 1330 || Vianello || 4128 || 48 || 15 || 47 || 1 || 12 || 1902 || 52 || 107 || 4 || 6316 
+|-
+|| 1331 || Victuallers || 141 || 10 || 0 || 355 || 3 || 13 || 17 || 3 || 1 || 0 || 543 
+|-
+|| 1332 || Violetriga || 1665 || 125 || 1 || 79 || 33 || 2 || 138 || 43 || 1 || 0 || 2087 
+|-
+|| 1333 || Viridae || 1107 || 102 || 0 || 86 || 34 || 26 || 561 || 88 || 12 || 19 || 2035 
+|-
+|| 1334 || Visorstuff || 6 || 1 || 0 || 4 || 1 || 0 || 0 || 0 || 0 || 0 || 12 
+|-
+|| 1335 || Visviva || 70 || 1 || 0 || 3 || 1 || 0 || 4 || 1 || 0 || 0 || 80 
+|-
+|| 1336 || Vsmith || 1548 || 4 || 56 || 331 || 12 || 86 || 7987 || 28 || 37 || 3 || 10092 
+|-
+|| 1337 || WAvegetarian || 271 || 20 || 0 || 8 || 3 || 0 || 69 || 6 || 0 || 0 || 377 
+|-
+|| 1338 || WGFinley || 163 || 5 || 3 || 31 || 3 || 5 || 51 || 30 || 18 || 1 || 310 
+|-
+|| 1339 || WJBscribe || 10642 || 232 || 16 || 407 || 508 || 45 || 2694 || 169 || 1 || 503 || 15217 
+|-
+|| 1340 || WOSlinker || 8126 || 31 || 2 || 97 || 66 || 3818 || 2 || 1 || 0 || 5 || 12148 
+|-
+|| 1341 || Waggers || 1226 || 4 || 3 || 55 || 1 || 2 || 1332 || 9 || 10 || 0 || 2642 
+|-
+|| 1342 || Waldir || 161 || 58 || 3 || 4 || 1 || 1 || 0 || 0 || 0 || 0 || 228 
+|-
+|| 1343 || Waltpohl || 29 || 0 || 0 || 2 || 0 || 0 || 0 || 0 || 0 || 0 || 31 
+|-
+|| 1344 || Wangi || 829 || 45 || 0 || 23 || 21 || 2 || 386 || 22 || 0 || 0 || 1328 
+|-
+|| 1345 || Warofdreams || 1035 || 28 || 0 || 5 || 1 || 1 || 27 || 1 || 0 || 184 || 1282 
+|-
+|| 1346 || Wassupwestcoast || 224 || 22 || 0 || 14 || 5 || 2 || 14 || 2 || 0 || 0 || 283 
+|-
+|| 1347 || Wayward || 1420 || 1 || 0 || 2 || 2 || 0 || 695 || 30 || 0 || 0 || 2150 
+|-
+|| 1348 || Wehwalt || 446 || 57 || 35 || 60 || 26 || 41 || 87 || 31 || 19 || 56 || 858 
+|-
+|| 1349 || Werdna || 364 || 10 || 2 || 37 || 2 || 4 || 75 || 25 || 4 || 10 || 533 
+|-
+|| 1350 || WereSpielChequers || 6004 || 248 || 100 || 161 || 3 || 3 || 351 || 2 || 4 || 236 || 7112 
+|-
+|| 1351 || Wesley || 0 || 1 || 0 || 0 || 0 || 0 || 2 || 0 || 0 || 0 || 3 
+|-
+|| 1352 || West.andrew.g || 5 || 0 || 0 || 0 || 0 || 0 || 1 || 0 || 0 || 0 || 6 
+|-
+|| 1353 || Where || 415 || 4 || 0 || 0 || 0 || 0 || 80 || 11 || 0 || 0 || 510 
+|-
+|| 1354 || WhisperToMe || 618 || 177 || 0 || 61 || 11 || 2 || 31 || 5 || 1 || 0 || 906 
+|-
+|| 1355 || Who || 1302 || 7 || 0 || 15 || 9 || 0 || 462 || 98 || 0 || 1 || 1894 
+|-
+|| 1356 || Whouk || 1844 || 36 || 0 || 1 || 1 || 0 || 14 || 0 || 1 || 0 || 1897 
+|-
+|| 1357 || Wickethewok || 2751 || 44 || 0 || 18 || 0 || 0 || 65 || 2 || 0 || 0 || 2880 
+|-
+|| 1358 || Wifione || 1165 || 14 || 46 || 154 || 7 || 20 || 835 || 20 || 11 || 92 || 2364 
+|-
+|| 1359 || WikiLeon || 694 || 23 || 4 || 115 || 21 || 3 || 568 || 62 || 13 || 5 || 1508 
+|-
+|| 1360 || Wikiacc || 787 || 31 || 0 || 10 || 8 || 0 || 31 || 8 || 0 || 0 || 875 
+|-
+|| 1361 || William Pietri || 450 || 4 || 0 || 1 || 0 || 0 || 10 || 0 || 0 || 0 || 465 
+|-
+|| 1362 || Willking1979 || 3427 || 66 || 54 || 109 || 2 || 19 || 2739 || 13 || 92 || 10 || 6531 
+|-
+|| 1363 || WilyD || 5626 || 116 || 15 || 73 || 3 || 9 || 232 || 16 || 2 || 1 || 6093 
+|-
+|| 1364 || Wimt || 611 || 30 || 0 || 59 || 8 || 2 || 924 || 21 || 0 || 12 || 1667 
+|-
+|| 1365 || Winhunter || 7481 || 71 || 4 || 294 || 52 || 5 || 1415 || 252 || 5 || 3 || 9582 
+|-
+|| 1366 || Wizardman || 22180 || 167 || 227 || 566 || 20 || 41 || 404 || 12 || 9 || 14 || 23640 
+|-
+|| 1367 || Wknight94 || 17270 || 402 || 37 || 888 || 200 || 119 || 9791 || 207 || 70 || 5 || 28989 
+|-
+|| 1368 || Woody || 5215 || 81 || 56 || 294 || 20 || 38 || 249 || 37 || 13 || 11 || 6014 
+|-
+|| 1369 || Woohookitty || 7914 || 163 || 0 || 503 || 475 || 5 || 1260 || 173 || 0 || 2 || 10495 
+|-
+|| 1370 || Worm That Turned || 116 || 12 || 25 || 25 || 6 || 6 || 54 || 15 || 14 || 4 || 277 
+|-
+|| 1371 || Wouterstomp || 31 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 31 
+|-
+|| 1372 || Writ Keeper || 884 || 27 || 63 || 28 || 4 || 6 || 261 || 25 || 22 || 28 || 1348 
+|-
+|| 1373 || Wrp103 || 1 || 0 || 0 || 0 || 0 || 0 || 111 || 0 || 0 || 0 || 112 
+|-
+|| 1374 || Wtmitchell || 280 || 5 || 1 || 5 || 1 || 0 || 465 || 7 || 16 || 0 || 780 
+|-
+|| 1375 || Wwoods || 394 || 98 || 0 || 94 || 4 || 11 || 66 || 0 || 0 || 0 || 667 
+|-
+|| 1376 || Wwwwolf || 2751 || 29 || 0 || 42 || 6 || 0 || 5 || 1 || 0 || 0 || 2834 
+|-
+|| 1377 || X! || 2236 || 61 || 12 || 79 || 18 || 18 || 411 || 51 || 65 || 51 || 3002 
+|-
+|| 1378 || XDanielx || 65 || 5 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 70 
+|-
+|| 1379 || XJaM || 8 || 0 || 0 || 5 || 3 || 0 || 0 || 0 || 0 || 0 || 16 
+|-
+|| 1380 || Xaosflux || 7936 || 311 || 1 || 614 || 288 || 256 || 857 || 83 || 31 || 12 || 10389 
+|-
+|| 1381 || Xavexgoem || 728 || 28 || 1 || 68 || 15 || 16 || 125 || 17 || 9 || 5 || 1012 
+|-
+|| 1382 || Xdamr || 1040 || 10 || 0 || 2 || 0 || 0 || 29 || 1 || 1 || 0 || 1083 
+|-
+|| 1383 || Xeno || 11169 || 849 || 84 || 399 || 225 || 502 || 1400 || 737 || 219 || 648 || 16232 
+|-
+|| 1384 || Xezbeth || 11218 || 165 || 11 || 115 || 15 || 2 || 505 || 6 || 2 || 0 || 12039 
+|-
+|| 1385 || Xnuala || 62 || 0 || 0 || 0 || 0 || 0 || 3 || 1 || 0 || 0 || 66 
+|-
+|| 1386 || Xoloz || 8058 || 812 || 0 || 211 || 56 || 1 || 70 || 6 || 0 || 0 || 9214 
+|-
+|| 1387 || Xymmax || 1209 || 96 || 22 || 304 || 20 || 64 || 113 || 4 || 11 || 8 || 1851 
+|-
+|| 1388 || Y || 3751 || 73 || 2 || 58 || 11 || 9 || 128 || 5 || 0 || 0 || 4037 
+|-
+|| 1389 || Yamamoto Ichiro || 1134 || 19 || 0 || 222 || 111 || 196 || 1625 || 37 || 15 || 68 || 3427 
+|-
+|| 1390 || Yamla || 3598 || 27 || 0 || 1224 || 60 || 16 || 4165 || 981 || 0 || 0 || 10071 
+|-
+|| 1391 || Yandman || 304 || 3 || 2 || 16 || 1 || 2 || 135 || 8 || 0 || 0 || 471 
+|-
+|| 1392 || Yannismarou || 298 || 2 || 0 || 20 || 7 || 2 || 48 || 1 || 0 || 1 || 379 
+|-
+|| 1393 || Yaris678 || 0 || 0 || 2 || 0 || 0 || 0 || 2 || 0 || 0 || 0 || 4 
+|-
+|| 1394 || Yelyos || 45 || 1 || 0 || 1 || 1 || 0 || 8 || 1 || 0 || 0 || 57 
+|-
+|| 1395 || Ymblanter || 1727 || 18 || 11 || 63 || 5 || 9 || 99 || 2 || 14 || 4 || 1952 
+|-
+|| 1396 || Yngvadottir || 105 || 24 || 56 || 11 || 1 || 0 || 25 || 0 || 1 || 0 || 223 
+|-
+|| 1397 || Ynhockey || 230 || 6 || 1 || 15 || 1 || 1 || 12 || 2 || 2 || 0 || 270 
+|-
+|| 1398 || Youngamerican || 1274 || 59 || 0 || 58 || 24 || 3 || 33 || 2 || 0 || 0 || 1453 
+|-
+|| 1399 || Yunshui || 11206 || 231 || 52 || 228 || 7 || 26 || 2224 || 107 || 189 || 45 || 14315 
+|-
+|| 1400 || Zad68 || 13 || 1 || 0 || 41 || 1 || 4 || 119 || 4 || 16 || 0 || 199 
+|-
+|| 1401 || Zagalejo || 30 || 8 || 17 || 258 || 38 || 5 || 53 || 0 || 5 || 0 || 414 
+|-
+|| 1402 || Zanimum || 1467 || 69 || 0 || 60 || 21 || 1 || 124 || 12 || 0 || 0 || 1754 
+|-
+|| 1403 || Zero0000 || 127 || 5 || 42 || 27 || 6 || 8 || 102 || 3 || 3 || 0 || 323 
+|-
+|| 1404 || ZimZalaBim || 2613 || 19 || 0 || 58 || 8 || 0 || 139 || 2 || 0 || 0 || 2839 
+|-
+|| 1405 || Zippy || 13 || 9 || 0 || 7 || 2 || 4 || 39 || 6 || 0 || 0 || 80 
+|-
+|| 1406 || Zocky || 264 || 18 || 0 || 21 || 8 || 0 || 21 || 8 || 0 || 0 || 340 
+|-
+|| 1407 || Zoicon5 || 33 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 0 || 33 
+|-
+|| 1408 || Zscout370 || 14425 || 323 || 15 || 368 || 71 || 44 || 632 || 98 || 6 || 12 || 15994 
+|-
+|| 1409 || Zsinj || 2665 || 13 || 0 || 38 || 2 || 0 || 437 || 39 || 0 || 0 || 3194 
+|-
+|| 1410 || Zzuuzz || 6280 || 268 || 1420 || 1434 || 1272 || 672 || 14402 || 1144 || 1061 || 64 || 28017 
+|-
+|| 1411 || Zzyzx11 || 10917 || 344 || 23 || 1304 || 576 || 48 || 410 || 53 || 8 || 5 || 13688 
+|-
+|| 1412 || ^demon || 28650 || 182 || 0 || 40 || 7 || 3 || 76 || 13 || 2 || 1 || 28974 
+|- class=&quot;sortbottom&quot;
+! colspan=&quot;2&quot; | Totals
+! style=&quot;text-align:left;&quot; | 6867324
+! style=&quot;text-align:left;&quot; | 179696
+! style=&quot;text-align:left;&quot; | 60128
+! style=&quot;text-align:left;&quot; | 242914
+! style=&quot;text-align:left;&quot; | 38794
+! style=&quot;text-align:left;&quot; | 39581
+! style=&quot;text-align:left;&quot; | 2252686
+! style=&quot;text-align:left;&quot; | 61080
+! style=&quot;text-align:left;&quot; | 52515
+! style=&quot;text-align:left;&quot; | 23502
+! style=&quot;text-align:left;&quot; | 9818220
+|}
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+[[Category:Wikipedia statistics]]</text>
+      <sha1>bkummaj4tqblz1iprl1inb3ud3u9p2d</sha1>
+    </revision>
+  </page>
+</mediawiki>
