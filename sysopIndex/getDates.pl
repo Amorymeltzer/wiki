@@ -36,7 +36,7 @@ for my $year (($startYear..$endYear)) {
     # Don't go into the future
     next if ($year == $endYear && $month > $mon);
 
-    $month = sprintf '%02d', $month ;
+    $month = sprintf '%02d', $month;
     $date = $year.q{-}.$month;
 
     print "$date-01 "

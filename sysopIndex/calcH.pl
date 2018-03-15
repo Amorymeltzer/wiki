@@ -17,6 +17,7 @@ use strict;
 use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
+use POSIX;
 
 # Usage information
 if (@ARGV != 2) {
@@ -39,14 +40,61 @@ my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
 
 print "$firstYear,$firstMonth\n$lastYear,$lastMonth\n";
 my $suf = '-01-01.csv';
-$firstYear = 2012;
+
 ###### NON ROLLING OPTIONS ######
 ### CALENDAR YEAR ###
-# Reach back
+print "Calendar year\n";
 foreach my $year ($firstYear+1..$lastYear-1) {
   my $yearN = $year+1;
-  print "$year to $yearN\t";
+  print "$year\t";
   system "perl sysopHindex.pl $ARGV[1]/$year$suf $ARGV[1]/$yearN$suf";
+}
+
+### ACADEMIC YEAR ###
+print "Academic year\n";
+my ($plus,$minus) = (0,0);
+if ($firstMonth > 9) {
+  $plus++;
+}
+if ($lastMonth < 9) {
+  $minus--;
+}
+my $aSuf = '-09-01.csv';
+foreach my $year ($firstYear+$plus..$lastYear-1+$minus) {
+  my $yearN = $year+1;
+  print "$year to $yearN\t";
+  system "perl sysopHindex.pl $ARGV[1]/$year$aSuf $ARGV[1]/$yearN$aSuf";
+}
+
+### QUARTERS ###
+print "Quarters\n";
+$minus = 0;
+if ($lastMonth < 4) {
+  $minus--;
+}
+foreach my $year ($firstYear..$lastYear+$minus) {
+  my $start = ceil $firstMonth/3;
+  $start--;
+  $start *= 3;
+  $start++;
+  if ($year != $firstYear) {
+    $start = 1;
+  }
+  $start = sprintf '%02d', $start;
+  for (my $sm = $start; $sm<=12; $sm+=3) {
+    $sm = sprintf '%02d', $sm;
+    my $en = '-'.$sm.'-01.csv';
+    my $next = $sm+3;
+    my $yearN = $year;
+    if ($next > 12) {
+      $next = 1;
+      $yearN++;
+    }
+    $next = sprintf '%02d', $next;
+    my $nen = '-'.$next.'-01.csv';
+    print "$sm-$year to $next-$yearN\t";
+    system "perl sysopHindex.pl $ARGV[1]/$year$en $ARGV[1]/$yearN$nen";
+  }
 }
 
 # 0-indexed
