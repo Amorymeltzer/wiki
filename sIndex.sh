@@ -18,6 +18,7 @@
 ### Write calch dev
 ### Should grab all files in directory, sort by time, then process
 ## Should only replace latest when suessfully finished downloadin and processing
+## Pretty print duplicates
 
 function get_help {
     cat <<END_HELP
@@ -72,6 +73,7 @@ urlEnd="T00:00:02Z&limit=1&action=submit"
 for date in $dates
 do
     raw=$rawD/$date
+    echo "Downloading $date..."
     url="$urlBase$urlStart$date$urlEnd"
     curl -d '' "$url" -o $raw
     md5 -r $raw >> "md5raw.txt"
@@ -84,8 +86,6 @@ do
 	echo
 	echo "WARNING: TIMESTAMP FOR $date seems erroneous!"
 	exit
-    else
-	echo
     fi
 
     csv=$csvD/$date."csv"
@@ -98,6 +98,10 @@ csvDups=$(sort "md5csv.txt" | uniq -d)
 
 if [[ -n $rawDups ]]; then
     echo "Duplicate raw data files found"
+    for dup in $rawDups
+    do
+	echo $dup
+    done
     echo $rawDups
     dienice "You should investigate manually"
 fi

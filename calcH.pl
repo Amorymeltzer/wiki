@@ -7,6 +7,7 @@
 ## Take that, process for rolling
 ## For non-rolling, can determine when to start:
 ## year: +1 year; quarter/fin/acad: sub to find next start of quarter
+## Or maybe just do ALL and pick later?
 
 use strict;
 use warnings;
