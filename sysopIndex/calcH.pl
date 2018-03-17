@@ -13,6 +13,9 @@
 ## Below show hard limits
 ## calendar year, acad year, quarter, financial
 
+## Rolling average just long list of everything, maybe add option to limit to
+## last X number of years/months
+
 use strict;
 use warnings;
 use diagnostics;
@@ -95,6 +98,16 @@ foreach my $year ($firstYear..$lastYear+$minus) {
     print "$sm-$year to $next-$yearN\t";
     system "perl sysopHindex.pl $ARGV[1]/$year$en $ARGV[1]/$yearN$nen";
   }
+}
+
+
+###### ROLLING AVERAGE ######
+my $roll = 3;
+foreach my $date (0..scalar @files - 1) {
+  my $end = $date+$roll;
+  print "$files[$date] to $files[$end] ($roll month avg)\t";
+  system "perl sysopHindex.pl $ARGV[1]/$files[$date] $ARGV[1]/$files[$end]";
+  last if $files[$end] eq $files[-1];
 }
 
 # 0-indexed
