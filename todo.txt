@@ -19,11 +19,14 @@
 1. (Re)Write
 - Format changed between 18 feb 2010 and 21 feb 2010
 - Start March 2010, or process separately
+- Wait 2012 or 2010?????
+- Something big hapened in 2014 between March and April
 - sysopdev to take only user and total
 - table to take name and save... somewhere
 - also calculate md5, export to list
 - bash shim checks lists
 - checkData finds timestamp, ensures reasonable given title
+- Move sysopHindex into calcH, rename.  Add option for files?
 2. Map out pipline (what categories, what measures, etc.)
 - finance isn't rolling, quarter is
 - could set up rolling average, allow x number of months
@@ -33,14 +36,11 @@
 - remove problematic users?
 - allow for deletion, protection, etc indicdes
 3. Figure out how I want to graph various data (quarters, months, years, etc.) (also include number of sysops, number of active sysops, etc.?)
-4. Rewrite analysis based off downloadable data?
-- No data from March 6 to May 9 in 2012
-- Use data in timestamps from each month to confirm source
-5. Bash shim to lump it all together and update?  Make sure don't re-download everything
+4. Bash shim to lump it all together and update?  Make sure don't re-download everything
 - Need to deal with renames, etc
-6. Easy way to get graphs on wiki (ugh commons)
+5. Easy way to get graphs on wiki (ugh commons)
 - Use https://en.wikipedia.org/wiki/Template:Graph:Chart
-7. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN
+6. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN
 
 
 curl -d "" 'https://en.wikipedia.org/w/index.php?title=Special:Export&pages=User:JamesR/AdminStats&offset=2018-02-21T15:00:00Z&limit=1&action=submit' -o james
