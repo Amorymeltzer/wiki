@@ -27,6 +27,8 @@
 - But starting data April 2014 gives us a really short timespan
 - USE ADMINSTATS XTOOL
 - [[Special:Permalink/832905359#AdminStats fix]]
+- Use API: https://xtools.readthedocs.io/en/stable/api/project.html#admin-statistics
+- Will have to parse json, but okay...
 - sysopdev to take only user and total
 - table to take name and save... somewhere
 - also calculate md5, export to list
