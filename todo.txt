@@ -25,6 +25,8 @@
 - Started listing everyone who made a logged action, not just current sysops
 - Presents an issue - data previous to this likely unreliable (See Zoe for an example)
 - But starting data April 2014 gives us a really short timespan
+- USE ADMINSTATS XTOOL
+- [[Special:Permalink/832905359#AdminStats fix]]
 - sysopdev to take only user and total
 - table to take name and save... somewhere
 - also calculate md5, export to list
