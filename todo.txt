@@ -21,7 +21,7 @@
 --- sysopHindex.pl has checking for bots, renames(?), etc.?
 0. Rewrite
 - Use xtools
-- Get a good json -> csv parser or something, can maybe rewrite table2csv.pl
+- Rewrite table2csv.pl to work on html from xtools
 - Double check results are the same
 - Double check that xtools includes everything (revdel (in del), etc.)
 1. (Re)Write
@@ -37,6 +37,8 @@
 - [[Special:Permalink/832905359#AdminStats fix]]
 - Use API: https://xtools.readthedocs.io/en/stable/api/project.html#admin-statistics
 - Will have to parse json, but okay...
+- Actually, can't use json, API is only limited to <=30 days before present
+- Just pull actual html and parse.  Annoying but that's what perl is for.
 - Date in xtool probably 00:00 UTC so for all of Jan need to go 0101 to 0201 not 0131
 -- Actually maybe not!
 - sysopdev to take only user and total
