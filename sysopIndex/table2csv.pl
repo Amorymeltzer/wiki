@@ -23,9 +23,9 @@ print "User,Totals\n";
 while (<$input>) {
   chomp;
 
-  # Only grab the totals table
+  # Only start looking once we get to the results table
   if ($thereyet == 0) {
-    if (/All Totals/) {
+    if (/sort-entry--rank/) {
       $thereyet++;
       $line = $NR;
     } else {
@@ -34,16 +34,12 @@ while (<$input>) {
   }
 
   # Skip the early ugliness, could probably jump ahead further...
-  if ($NR > $line+6) {
-    if (/^[!(\|\-)\{] /) {
-      next;
-    } elsif (/^\|\| /) {
-      # Only want user and totals
-      my @line = (split / \|\| /)[1,-1];
-      $line[0] =~ s/,//g;	# Remove commas in usernames
-      print join q{,}, @line;
-      print "\n";
-    }
+  if (/sort-entry--username/) {
+    s/.*sort-entry--username" data-value="(.*)">$/$1/;
+    print "$_,";
+  } elsif (/sort-entry--total/) {
+    s/.*sort-entry--total" data-value="(.*)">\d+.*$/$1/;
+    print "$_\n";
   }
 }
 close $input or die $ERRNO;
