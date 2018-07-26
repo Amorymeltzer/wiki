@@ -27,6 +27,9 @@
 -- There is no need to calculate differences anymore
 -- Instead, just count lines until S is found
 -- Be careful, since total for jan via AS is 2018-02-01 minus 2018-02-01
+- Could also take multiple months and dump into a hash for username, thus allowing other timelines
+-- Would have sysopHindex.pl parse all inputs, tally them all up regardless, then calc
+-- If it's just one, no need to add up, so then calculate
 - Since Xtools has ranked list, can actually avoid calculating/process anything for the monthly data aka the big kahuna
 -- Basically, just check if the rank is >= the total.  When it's not (i.e. #40 has 40 actions but #41 does too) the previous rank (i.e., 40) is the index
 -- Only works if we include *all* users (i.e., also bots).  Maybe a second graph?  Might be interesting...
