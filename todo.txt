@@ -9,13 +9,21 @@
 - calch = bulk calc over period, goes through h_index files for each month, calls sysop
 - sysop = actual calculations
 - workflow:
--- bash shim
--- getData -> getDates
--- shim curl
--- shim calc md5
--- checkData confirm timestamp
--- table
--- calcH (calls sysop)
+-- bash shim (needs updating)
+-- check time of last data grab
+-- getDates.pl
+-- shim curls all data
+-- shim calc md5 for raw data files
+-- checkData confirms timestamp (this might need to change with new data source)
+-- table2csv.pl (needs updating) converts to processed csv
+-- shim check for dupes
+-- calcH.pl (handles dates ranges/styles (currently does all of them) and calls sysopHindex.pl
+--- sysopHindex.pl has checking for bots, renames(?), etc.?
+0. Rewrite
+- Use xtools
+- Get a good json -> csv parser or something, can maybe rewrite table2csv.pl
+- Double check results are the same
+- Double check that xtools includes everything (revdel (in del), etc.)
 1. (Re)Write
 - Format changed between 18 feb 2010 and 21 feb 2010
 - Start March 2010, or process separately
@@ -29,13 +37,15 @@
 - [[Special:Permalink/832905359#AdminStats fix]]
 - Use API: https://xtools.readthedocs.io/en/stable/api/project.html#admin-statistics
 - Will have to parse json, but okay...
+- Date in xtool probably 00:00 UTC so for all of Jan need to go 0101 to 0201 not 0131
+-- Actually maybe not!
 - sysopdev to take only user and total
 - table to take name and save... somewhere
 - also calculate md5, export to list
 - bash shim checks lists
 - checkData finds timestamp, ensures reasonable given title
 - Move sysopHindex into calcH, rename.  Add option for files?
-2. Map out pipline (what categories, what measures, etc.)
+2. Map out pipeline (what categories, what measures, etc.)
 - finance isn't rolling, quarter is
 - could set up rolling average, allow x number of months
 - then make quarters quarters like finance
