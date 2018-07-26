@@ -19,14 +19,18 @@
 -- shim check for dupes
 -- calcH.pl (handles dates ranges/styles (currently does all of them) and calls sysopHindex.pl
 --- sysopHindex.pl has checking for bots, renames(?), etc.?
-0. Rewrite
-- Use xtools
+0. Rewrite using xtools
+- Double check that xtools includes everything (revdel (in del), etc.)
 - Rewrite table2csv.pl to work on html from xtools
 - Double check results are the same
-- Double check that xtools includes everything (revdel (in del), etc.)
-- Since Xtools has ranked list, can actually avoid calculating anything for the monthly data aka the big kahuna
+- Massive rewrite for calcH.pl (well actually sysopHindex.pl)
+-- There is no need to calculate differences anymore
+-- Instead, just count lines until S is found
+-- Be careful, since total for jan via AS is 2018-02-01 minus 2018-02-01
+- Since Xtools has ranked list, can actually avoid calculating/process anything for the monthly data aka the big kahuna
 -- Basically, just check if the rank is >= the total.  When it's not (i.e. #40 has 40 actions but #41 does too) the previous rank (i.e., 40) is the index
 -- Only works if we include *all* users (i.e., also bots).  Maybe a second graph?  Might be interesting...
+-- Basically what we'll have to do anyway since xtools means no calculation is needed, so maybe not
 1. (Re)Write
 - Format changed between 18 feb 2010 and 21 feb 2010
 - Start March 2010, or process separately
