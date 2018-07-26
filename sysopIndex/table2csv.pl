@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 # table2csv.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Process the wiki format from Special:Export, convert the relevant table to a
-# csv file for processing
+
+# Process the table from XTools, convert the relevant to csv
 
 ## Maybe remove users known to never have been sysops?  Likely to come out in
 ## the wash.  Could also set a threshold?
