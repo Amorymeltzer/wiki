@@ -24,6 +24,9 @@
 - Rewrite table2csv.pl to work on html from xtools
 - Double check results are the same
 - Double check that xtools includes everything (revdel (in del), etc.)
+- Since Xtools has ranked list, can actually avoid calculating anything for the monthly data aka the big kahuna
+-- Basically, just check if the rank is >= the total.  When it's not (i.e. #40 has 40 actions but #41 does too) the previous rank (i.e., 40) is the index
+-- Only works if we include *all* users (i.e., also bots).  Maybe a second graph?  Might be interesting...
 1. (Re)Write
 - Format changed between 18 feb 2010 and 21 feb 2010
 - Start March 2010, or process separately
