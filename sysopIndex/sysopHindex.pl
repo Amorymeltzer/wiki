@@ -69,7 +69,7 @@ sub parseFile
       next if $NR == 1;
       chomp;
       my @array = split /,/;
-      next if $array[0] =~ m/[bB]ot$/o;
+      next if $array[0] =~ m/bot\b/io;
       ${$hashRef}{$array[0]} = $array[-1];
     }
     close $data or die $ERRNO;
