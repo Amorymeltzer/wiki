@@ -27,6 +27,7 @@
 -- There is no need to calculate differences anymore
 -- Instead, just count lines until S is found
 -- Be careful, since total for jan via AS is 2018-02-01 minus 2018-02-01
+-- Check if https://github.com/x-tools/xtools/commit/429907894301075a4686c5c46e2da79d75aeaf81 affected api versus curl
 - Could also take multiple months and dump into a hash for username, thus allowing other timelines
 -- Would have sysopHindex.pl parse all inputs, tally them all up regardless, then calc
 -- If it's just one, no need to add up, so then calculate
