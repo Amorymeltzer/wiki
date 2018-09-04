@@ -16,8 +16,8 @@ foreach (@rights) {
   my $json = `curl -s "$url"`;
 
   $json =~ s/]}}$/}/g;
-  $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{/g;
-  $json =~ s/{"userid":\d+,"name":"(.*?)"}/"$1":1/g;
+  $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
+  $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
 
   open my $out, '>', "$_.json" or die $1;
   print $out $json;
