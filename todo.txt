@@ -6,6 +6,27 @@
 3. Cleanup, rerun, maybe publish?
 
 #### S-index
+- ACTUAL NEW PLAN
+-- Enable bot not bot in sysopHindex.pl
+--- Add option to turn off/on bot filtering
+-- Update calcH.pl
+--- Remove cruft (still available in old versions)
+--- Just month by month
+--- Fix input/output formatting
+--- Output month,nobot,bot
+-- R for nice graphs
+--- Nice month x-axis
+--- Diff colors and legend
+--- Auto export image
+-- More exotic export options
+--- 3/6/9/12 rolling
+
+
+
+
+
+
+
 - calch = bulk calc over period, goes through h_index files for each month, calls sysop
 - sysop = actual calculations
 - workflow:
