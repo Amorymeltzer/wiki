@@ -13,9 +13,14 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
+my $bot = 0;
+
 if (@ARGV < 1) {
-  print "Usage: $PROGRAM_NAME month.csv <month2.csv month3.csv ...>\n";
+  print "Usage: $PROGRAM_NAME <bot?> month.csv <month2.csv month3.csv ...>\n";
   exit;
+} elsif ($ARGV[0] eq 'bot') {
+  $bot = 1;
+  shift @ARGV;
 }
 
 my %oldAdmin;
@@ -23,11 +28,11 @@ my %newAdmin;
 my $count = 0;			# global
 
 # Populate hashes from relevant data source
-parseFile($ARGV[0],\%oldAdmin);
+parseFile($ARGV[0],\%oldAdmin,$bot);
 
 foreach my $num (1..scalar @ARGV - 1) {
-  print "$num\t$ARGV[$num]\n";
-  parseFile($ARGV[$num],\%newAdmin);
+  # print "$num\t$ARGV[$num]\n";
+  parseFile($ARGV[$num],\%newAdmin,$bot);
 
   # Add latest data
   foreach my $key (keys %newAdmin) {
@@ -53,7 +58,7 @@ foreach my $key (sort {$oldAdmin{$b} <=> $oldAdmin{$a} || $a cmp $b} (keys %oldA
     next if $oldAdmin{$key} == 0;
     last if $count > $oldAdmin{$key};
     $count++;
-    print "$oldAdmin{$key}\t$key\t$count\n"; # sorted actions until h-index
+    # print "$oldAdmin{$key}\t$key\t$count\n"; # sorted actions until h-index
   }
 
 #  print "Sysop H-index:\t$count\n";
@@ -62,14 +67,14 @@ print "$count\n";
 
 sub parseFile
   {
-    my ($file,$hashRef) = @_;
+    my ($file,$hashRef,$bots) = @_;
     open my $data, '<', "$file" or die $ERRNO;
     while (<$data>) {
       # Column names not needed, but nice to have in the input files
       next if $NR == 1;
       chomp;
       my @array = split /,/;
-      next if $array[0] =~ m/bot\b/io;
+      next if (!$bot && $array[0] =~ m/bot\b/io);
       ${$hashRef}{$array[0]} = $array[-1];
     }
     close $data or die $ERRNO;

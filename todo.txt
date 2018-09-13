@@ -10,7 +10,7 @@
 -- Enable bot not bot in sysopHindex.pl
 --- Add option to turn off/on bot filtering
 -- Update calcH.pl
---- Remove cruft (still available in old versions)
+--- Remove cruft (still available in old versions, should compare regularly/readily)
 --- Just month by month
 --- Fix input/output formatting
 --- Output month,nobot,bot
@@ -20,7 +20,7 @@
 --- Auto export image
 -- More exotic export options
 --- 3/6/9/12 rolling
-
+-- Redesign so calch processes, then returns array to shim for parsing?  Eh
 
 
 
@@ -79,6 +79,7 @@
 - bash shim checks lists
 - checkData finds timestamp, ensures reasonable given title
 - Move sysopHindex into calcH, rename.  Add option for files?
+- Shouldn't open files in subroutine, do so beforehand and... pass?
 2. Map out pipeline (what categories, what measures, etc.)
 - finance isn't rolling, quarter is
 - could set up rolling average, allow x number of months
