@@ -13,11 +13,15 @@
 --- Remove cruft (still available in old versions, should compare regularly/readily)
 --- Just month by month
 --- Fix input/output formatting
+---- Need to append correct end date
 --- Output month,nobot,bot
 -- R for nice graphs
 --- Nice month x-axis
 --- Diff colors and legend
 --- Auto export image
+-- Fix workflow
+--- Update getDates.pl
+--- Update shim
 -- More exotic export options
 --- 3/6/9/12 rolling
 -- Redesign so calch processes, then returns array to shim for parsing?  Eh

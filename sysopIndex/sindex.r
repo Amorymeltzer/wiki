@@ -25,8 +25,19 @@ ggplot(data=dm, aes_string(x="month", y=names(dm)[3], group=1)) +
   geom_point()
 
 # Two lines
-ggplot(dm, aes(month)) + 
-  geom_line(aes(y = sindex, colour = "sindex")) + 
-  geom_line(aes(y = sindex.nobot, colour = "sindex.nobot"))
+ggplot(dm, aes(x = month)) + 
+  geom_line(aes_string(y = names(dm)[2]), group=1, colour = "blue") + 
+  geom_line(aes_string(y = names(dm)[3]), group=1, colour = "black")
+
+# Two lines by melting
+library(reshape)
+dm_melt = melt(dm, id = names(dm)[1])
+head(dm_melt)
+
+ggplot(dm_melt, aes(x = as.Date(month), y = value, colour = variable, group = variable)) + geom_line() + scale_x_date() +
+  ylab(label="Number of new members") + 
+  xlab("Week Number") + 
+  scale_colour_manual(values=c("grey", "blue"))
+
 
 par(opar)

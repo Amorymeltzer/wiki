@@ -34,7 +34,7 @@ if (@ARGV != 2) {
 opendir my $dir, "$ARGV[1]" or die $ERRNO;
 my @files = readdir $dir;
 closedir $dir or die $ERRNO;
-splice @files, 0, 2;		# Remove dots
+splice @files, 0, 2;		# Remove dot directories
 print "@files\n";
 
 my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
@@ -42,54 +42,31 @@ my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
 
 print "$firstYear,$firstMonth\n$lastYear,$lastMonth\n";
 
-# 0-indexed
-my @years = $firstYear..$lastYear;
-# 1-indexed to make month numbers familiar
-my @months = qw (err jan feb mar apr may jun jul aug sep oct nov dec);
-
-
-# If months/years are referenced as numbers, jumping around is easy
-my $yearCount = scalar @years - 1;
-my $monthCount = scalar @months - 1;
-
 if ($ARGV[0] =~ m/all/i) {
   print "All\n\n";
-  all();
+  all(\@files);
 }
 
 
 # Workhorses
-
 sub all
   {
+    my ($filesRef) = @_;
     open my $outF, '>', 'sindex.csv' or die $ERRNO;
     print $outF "month,sindex,sindex-nobot\n";
-    foreach my $year (0..$yearCount) {
-      foreach my $month (1..$monthCount) {
-	next if $years[$year] == 2017 && $month < 11; # data starts April 09
-	exit if $years[$year] == 2018 && $month > 2;  # most recent is May 13
+    foreach my $file (@{$filesRef}) {
+      # my $date = (split /\./, $file)[0].q{,};
+      print $outF (split /\./, $file)[0].q{,};
 
-	if ($years[$year] == 2012 && ($month == 3 || $month == 4)) {
-	  print "No data for April 2012\n";
-	  next;
-	}
-	# Leading zeroes, for now anyway
-	$month = sprintf '%02d', $month;
+      print "$ARGV[1]$file\n";
 
-	print "$months[$month] $years[$year]\t";
-	print $outF "$years[$year]-$month,";
+      my $out = `perl sysopHindex.pl $ARGV[1]$file`;
+      chomp $out;
+      print $outF "$out,";
 
-	print "\n\nperl sysopHindex.pl $ARGV[1]$years[$year]-$month.csv\n\n";
-	`perl sysopHindex.pl $ARGV[1]$years[$year]-$month.csv`;
-	my $out = `perl sysopHindex.pl $ARGV[1]$years[$year]-$month.csv`;
-	chomp $out;
-	print $outF "$out,";
-
-	`perl sysopHindex.pl bot $ARGV[1]$years[$year]-$month.csv`;
-	$out = `perl sysopHindex.pl bot $ARGV[1]$years[$year]-$month.csv`;
-	chomp $out;
-	print $outF "$out\n";
-      }
+      $out = `perl sysopHindex.pl bot $ARGV[1]$file`;
+      chomp $out;
+      print $outF "$out\n";
     }
     close $outF or die $ERRNO;
     return;
