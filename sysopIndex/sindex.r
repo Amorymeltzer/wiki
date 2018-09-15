@@ -1,43 +1,63 @@
-# Save settings for reverting
-opar<-par()
 # Set working directory
 setwd("~/Documents/perl/wiki/sysopIndex")
 
-library("ggplot2")
+library(ggplot2)
+library(reshape2)
+library(RColorBrewer)
+library(zoo)
 
 # Import data
 dm=read.csv("sindex.csv",header=T)
-#head(sindex)
-#summary(sindex)
-#names(sindex)
-
-# Basic line plot with points
-ggplot(data=dm, aes(x=month, y=sindex, group=1)) +
-  geom_line()+
-  geom_point()
-# Change the line type
-ggplot(data=dm, aes(x=month, y=sindex, group=1)) +
-  geom_line(linetype = "dashed")+
-  geom_point()
-# Change the color
-ggplot(data=dm, aes_string(x="month", y=names(dm)[3], group=1)) +
-  geom_line(color="red")+
-  geom_point()
-
-# Two lines
-ggplot(dm, aes(x = month)) + 
-  geom_line(aes_string(y = names(dm)[2]), group=1, colour = "blue") + 
-  geom_line(aes_string(y = names(dm)[3]), group=1, colour = "black")
-
 # Two lines by melting
-library(reshape)
 dm_melt = melt(dm, id = names(dm)[1])
-head(dm_melt)
+# Format dates, will be useful for scaling x-axis
+dm_melt[[1]] <- as.Date(as.yearmon(dm_melt[[1]]))
 
-ggplot(dm_melt, aes(x = as.Date(month), y = value, colour = variable, group = variable)) + geom_line() + scale_x_date() +
-  ylab(label="Number of new members") + 
-  xlab("Week Number") + 
-  scale_colour_manual(values=c("grey", "blue"))
+# Theme modified from Max Woolf
+# https://minimaxir.com/2015/02/ggplot-tutorial/
+modfte_theme <- function() {
+  # Generate colors with RColorBrewer
+  palette <- brewer.pal("Greys", n=9)
+  color.background = '#F8F8F8'
+  color.grid.major = palette[5]
+  color.axis.text = palette[8]
+  color.axis.title = palette[8]
+  color.title = palette[9]
+  
+  # Begin construction of chart
+  theme_bw(base_size=8) +
+    
+    # Set the entire chart region to a light gray color
+    theme(panel.background=element_rect(fill=color.background, color=color.background)) +
+    theme(plot.background=element_rect(fill=color.background, color=color.background)) +
+    theme(panel.border=element_rect(color=color.background)) +
+    
+    # Hide minor and ticks
+    theme(panel.grid.major=element_line(color=color.grid.major,size=0.3)) +
+    theme(panel.grid.minor=element_blank()) +
+    theme(axis.ticks=element_blank()) +
+    
+    # Match legend to background
+    theme(legend.background = element_rect(fill=color.background)) +
+    theme(legend.key = element_rect(fill=color.background)) +
+    theme(legend.text = element_text(size=8,color=color.axis.title)) +
+    theme(legend.title = element_blank()) +
+    theme(legend.margin = margin(0,0,0,-5)) +
+    
+    # Set title and axis labels
+    theme(plot.title=element_text(size=10,color=color.title)) +
+    theme(plot.title=element_text(hjust=0.5,face='bold')) +
+    theme(plot.title=element_text(margin=margin(0,0,5,0,"pt"))) +
+    theme(axis.text.x=element_text(size=8,color=color.axis.text)) +
+    theme(axis.text.y=element_text(size=8,color=color.axis.text)) +
+    theme(axis.title.x=element_text(size=9,color=color.axis.title, vjust=0)) +
+    theme(axis.title.y=element_text(size=9,color=color.axis.title, vjust=0.5)) +
+    #theme(axis.text.x = element_text(margin=margin(0,0,0,0,"pt"))) +
+    #theme(axis.text.y = element_text(margin=margin(5,5,10,5,"pt"))) +
+    
+    # Plot margins
+    theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
+}
 
-
-par(opar)
+plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3]), colour = names(dm_melt[2]), group = names(dm_melt[2]))) + geom_line() + scale_x_date(date_labels = "%b %y")+labs(title="Sysop index", x=names(dm_melt)[1], y="S-index")+modfte_theme()
+plot3
