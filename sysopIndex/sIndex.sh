@@ -65,16 +65,17 @@ fi
 # Directories
 rawD="rawData"
 csvD="csvData"
-# URL basics
-urlBase="https://en.wikipedia.org/w/index.php?title=Special:Export"
-urlStart="&pages=User:JamesR/AdminStats&offset="
-urlEnd="T00:00:02Z&limit=1&action=submit"
+# URL
+#/enWiki/2018-03-01/2018-03-31' -o 2018-03-01.2018-03-31.xtool
+urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
+
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 for date in $dates
 do
-    raw=$rawD/$date
+    raw=$(echo ${$date:0:7}
+    raw=$rawD/$raw
     echo "Downloading $date..."
-    url="$urlBase$urlStart$date$urlEnd"
+    url="$urlBase$date"
     curl -d '' "$url" -o $raw
     md5 -r $raw >> "md5raw.txt"
 

@@ -36,10 +36,20 @@ for my $year (($startYear..$endYear)) {
     # Don't go into the future
     next if ($year == $endYear && $month > $mon);
 
+    # Days in the month
+    my $day = 31;
+    if ($month =~ /[4|6|9|11]/) {
+      $day--;
+    } elsif ($month eq '2') {
+      $day = 28;
+      if ($year % 4 == 0 && ($year % 100 != 0 || $year % 400 == 0)) {
+	$day++;
+      }
+    }
     $month = sprintf '%02d', $month;
     $date = $year.q{-}.$month;
 
-    print "$date-01 "
+    print "$date-01/$date-$day "
   }
 }
 
