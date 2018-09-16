@@ -120,4 +120,9 @@ fi
 
 # Rewrite calcH to take list of files, pass directory name from here
 # https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
-perl calcH.pl all $csvD/
+sinFile='sindex.csv'
+perl calcH.pl all $sinFile $csvD/
+
+# Run Rscript
+Rscript sindex.r $sinFile 'monthly'
+rm Rplots.pdf			# Christ R is stupid

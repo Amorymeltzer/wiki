@@ -8,7 +8,8 @@ library(zoo)
 library(scales)
 
 # Import data
-dm=read.csv("sindex.csv",header=T)
+args=commandArgs(trailingOnly = TRUE)
+dm=read.csv(args[1],header=T)
 # Two lines by melting
 dm_melt = melt(dm, id = names(dm)[1])
 # Format dates, will be useful for scaling x-axis
@@ -63,10 +64,10 @@ modfte_theme <- function() {
 plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3]), colour = names(dm_melt[2]), group = names(dm_melt[2]))) + geom_line() +
   scale_x_date(date_labels = "%b %y",breaks=pretty_breaks(6)) +
   scale_y_continuous(breaks=pretty_breaks(6)) +
-  labs(title="Sysop index",
+  labs(title=paste("Sysop index",args[2], sep=' - '),
        x=names(dm_melt)[1],
        y="S-index",
        caption="User:Amorymeltzer") +
   modfte_theme() + scale_color_brewer(palette = "Set1")
 plot3
-ggsave("S-index.png", plot3, width=4, height=3)
+ggsave("S-index.png", plot3, width=4.92, height=3)

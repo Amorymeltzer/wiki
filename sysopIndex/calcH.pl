@@ -22,8 +22,8 @@ use diagnostics;
 use English qw( -no_match_vars);
 
 # Usage information
-if (@ARGV != 2) {
-  print "Usage: $PROGRAM_NAME <opt> <directory>\n";
+if (@ARGV != 3) {
+  print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
   print "all:\t Calculate H-index month-to-month\n";
   # print "year:\t Calculate H-index for each annual period\n";
   # print "quarter: Calculate H-index for each quarterly period\n";
@@ -31,7 +31,8 @@ if (@ARGV != 2) {
   exit;
 }
 
-opendir my $dir, "$ARGV[1]" or die $ERRNO;
+my $output = $ARGV[1];
+opendir my $dir, "$ARGV[2]" or die $ERRNO;
 my @files = readdir $dir;
 closedir $dir or die $ERRNO;
 splice @files, 0, 2;		# Remove dot directories
@@ -51,12 +52,12 @@ if ($ARGV[0] =~ m/all/i) {
 sub all
   {
     my ($filesRef) = @_;
-    open my $outF, '>', 'sindex.csv' or die $ERRNO;
+    open my $outF, '>', "$output" or die $ERRNO;
     print $outF "Month,S-Index,S-Index+bot\n";
     foreach my $file (@{$filesRef}) {
       print $outF (split /\./, $file)[0].q{,};
 
-      print "$ARGV[1]$file\n";
+      # print "$ARGV[1]$file\n";
 
       my $out = `perl sysopHindex.pl $ARGV[1]$file`;
       chomp $out;
