@@ -36,7 +36,7 @@ for my $year (($startYear..$endYear)) {
 
     # Days in the month
     my $day = 31;
-    if ($month =~ /[4|6|9|11]/) {
+    if ($month =~ /4|6|9|11/) {
       $day--;
     } elsif ($month eq '2') {
       $day = 28;

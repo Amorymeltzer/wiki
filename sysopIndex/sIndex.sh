@@ -70,7 +70,7 @@ urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
 for date in $dates
 do
     mon=$(echo ${date:0:7})
-    raw=$rawD/$mon
+    raw=$rawD/$mon.'html'
     echo "Downloading $date..."
     url="$urlBase$date"
     echo $url
@@ -92,7 +92,7 @@ do
 	exit
     fi
 
-    csv=$csvD/$mon."csv"
+    csv=$csvD/$mon.'csv'
     perl table2csv.pl $raw > $csv
     md5 -r $csv >> "md5csv.txt"
 done
