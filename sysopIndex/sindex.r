@@ -5,6 +5,7 @@ library(ggplot2)
 library(reshape2)
 library(RColorBrewer)
 library(zoo)
+library(scales)
 
 # Import data
 dm=read.csv("sindex.csv",header=T)
@@ -54,10 +55,17 @@ modfte_theme <- function() {
     theme(axis.title.y=element_text(size=9,color=color.axis.title, vjust=0.5)) +
     #theme(axis.text.x = element_text(margin=margin(0,0,0,0,"pt"))) +
     #theme(axis.text.y = element_text(margin=margin(5,5,10,5,"pt"))) +
+    theme(plot.caption = element_text(size=6, color=palette[6])) +
     
     # Plot margins
     theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
 }
-
-plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3]), colour = names(dm_melt[2]), group = names(dm_melt[2]))) + geom_line() + scale_x_date(date_labels = "%b %y")+labs(title="Sysop index", x=names(dm_melt)[1], y="S-index")+modfte_theme()
+plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3]), colour = names(dm_melt[2]), group = names(dm_melt[2]))) + geom_line() +
+  scale_x_date(date_labels = "%b %y",breaks=pretty_breaks(6)) +
+  scale_y_continuous(breaks=pretty_breaks(6)) +
+  labs(title="Sysop index",
+       x=names(dm_melt)[1],
+       y="S-index",
+       caption="User:Amorymeltzer") +
+  modfte_theme()
 plot3
