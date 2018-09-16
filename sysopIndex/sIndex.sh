@@ -72,24 +72,25 @@ urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
 # Bulk download data monthly data from [[User:JamesR/AdminStats]]
 for date in $dates
 do
-    raw=$(echo ${$date:0:7}
-    raw=$rawD/$raw
+    mon=$(echo ${date:0:7})
+    raw=$rawD/$mon
     echo "Downloading $date..."
     url="$urlBase$date"
+    echo $url
     curl -d '' "$url" -o $raw
     md5 -r $raw >> "md5raw.txt"
 
     timestamp=$(grep timestamp "$raw")
+    timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
+    timestamp=$(echo ${timestamp:0:7})
 
-    perl checkData.pl $raw $timestamp
-    # Die angrily if timestamps don't match
-    if [ $? != 0 ]; then
+    if [ "$timestamp" != "$mon" ]; then
 	echo
 	echo "WARNING: TIMESTAMP FOR $date seems erroneous!"
 	exit
     fi
 
-    csv=$csvD/$date."csv"
+    csv=$csvD/$mon."csv"
     perl table2csv.pl $raw > $csv
     md5 -r $csv >> "md5csv.txt"
 done
@@ -115,3 +116,4 @@ fi
 
 # Rewrite calcH to take list of files, pass directory name from here
 # https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
+perl calcH.pl all $csvD/

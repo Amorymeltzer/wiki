@@ -6,9 +6,6 @@
 3. Cleanup, rerun, maybe publish?
 
 
-- sIndex.sh should use that for the url, but splice to use 2018-01 for the file
-- calH.pl should use that file name rather than change the 2018-01-31
-
 #### S-index
 - ACTUAL NEW PLAN
 -- Enable bot not bot in sysopHindex.pl

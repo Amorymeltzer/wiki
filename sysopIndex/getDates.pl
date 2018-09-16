@@ -33,8 +33,8 @@ for my $year (($startYear..$endYear)) {
   for my $month (1..12) {
     # Don't start too early
     next if ($year == $startYear && $month <= $startMonth);
-    # Don't go into the future
-    next if ($year == $endYear && $month > $mon);
+    # Don't count this month
+    next if ($year == $endYear && $month > $mon - 1);
 
     # Days in the month
     my $day = 31;
@@ -51,11 +51,12 @@ for my $year (($startYear..$endYear)) {
 
     print "$date-01/$date-$day "
   }
-}
-
-# Record latest date
-if ($date) {
-  open my $latout, '>', 'latest' or die $ERRNO;
-  print $latout $date;
-  close $latout or die $ERRNO;
+  if ($year eq $endYear) {
+    # Record latest date
+    if ($date) {
+      open my $latout, '>', 'latest' or die $ERRNO;
+      print $latout $date;
+      close $latout or die $ERRNO;
+    }
+  }
 }

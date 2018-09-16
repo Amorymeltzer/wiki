@@ -55,11 +55,7 @@ sub all
     open my $outF, '>', 'sindex.csv' or die $ERRNO;
     print $outF "Month,S-Index,S-Index+bot\n";
     foreach my $file (@{$filesRef}) {
-      # my $date = (split /\./, $file)[0].q{,};
-      # print $outF (split /\./, $file)[0].q{,};
-      my $date = (split /\./, $file)[0];
-      $date = join q{-}, (split /-/, $date)[0,1];
-      print $outF $date.q{,};
+      print $outF (split /\./, $file)[0].q{,};
 
       print "$ARGV[1]$file\n";
 
