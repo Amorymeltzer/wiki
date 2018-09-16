@@ -4,7 +4,7 @@ setwd("~/Documents/perl/wiki/sysopIndex")
 library(ggplot2)
 library(reshape2)
 library(RColorBrewer)
-library(zoo)
+suppressPackageStartupMessages(library(zoo))
 library(scales)
 
 # Import data
