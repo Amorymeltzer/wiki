@@ -67,5 +67,6 @@ plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3])
        x=names(dm_melt)[1],
        y="S-index",
        caption="User:Amorymeltzer") +
-  modfte_theme()
+  modfte_theme() + scale_color_brewer(palette = "Set1")
 plot3
+ggsave("S-index.png", plot3, width=4, height=3)
