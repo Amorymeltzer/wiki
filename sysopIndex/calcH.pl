@@ -60,10 +60,6 @@ sub all
 
       my $out = `perl sysopHindex.pl $ARGV[1]$file`;
       chomp $out;
-      print $outF "$out,";
-
-      $out = `perl sysopHindex.pl bot $ARGV[1]$file`;
-      chomp $out;
       print $outF "$out\n";
     }
     close $outF or die $ERRNO;

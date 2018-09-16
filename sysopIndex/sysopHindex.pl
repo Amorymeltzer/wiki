@@ -13,26 +13,29 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
-my $bot = 0;
+my $total = 0;
 
 if (@ARGV < 1) {
-  print "Usage: $PROGRAM_NAME <bot?> month.csv <month2.csv month3.csv ...>\n";
+  print "Usage: $PROGRAM_NAME <total?> month.csv <month2.csv month3.csv ...>\n";
   exit;
-} elsif ($ARGV[0] eq 'bot') {
-  $bot = 1;
+} elsif ($ARGV[0] eq 'total') {
+  $total = 1;
   shift @ARGV;
 }
 
 my %oldAdmin;
+my %oldAdminBot;
 my %newAdmin;
-my $count = 0;			# global
+my %newAdminBot;
+my $count = 0;
+my $countBot = 0;
 
 # Populate hashes from relevant data source
-parseFile($ARGV[0],\%oldAdmin,$bot);
+parseFile($ARGV[0],\%oldAdmin,\%oldAdminBot);
 
 foreach my $num (1..scalar @ARGV - 1) {
   # print "$num\t$ARGV[$num]\n";
-  parseFile($ARGV[$num],\%newAdmin,$bot);
+  parseFile($ARGV[$num],\%newAdmin,\%newAdminBot);
 
   # Add latest data
   foreach my $key (keys %newAdmin) {
@@ -40,6 +43,13 @@ foreach my $num (1..scalar @ARGV - 1) {
       $oldAdmin{$key} += $newAdmin{$key};
     } else {
       $oldAdmin{$key} = $newAdmin{$key};
+    }
+  }
+  foreach my $key (keys %newAdminBot) {
+    if ($oldAdminBot{$key}) {
+      $oldAdminBot{$key} += $newAdminBot{$key};
+    } else {
+      $oldAdminBot{$key} = $newAdminBot{$key};
     }
   }
 }
@@ -58,23 +68,28 @@ foreach my $key (sort {$oldAdmin{$b} <=> $oldAdmin{$a} || $a cmp $b} (keys %oldA
     next if $oldAdmin{$key} == 0;
     last if $count > $oldAdmin{$key};
     $count++;
-    # print "$oldAdmin{$key}\t$key\t$count\n"; # sorted actions until h-index
+  }
+foreach my $key (sort {$oldAdminBot{$b} <=> $oldAdminBot{$a} || $a cmp $b} (keys %oldAdminBot)) #high->low, a->z
+  {
+    next if $oldAdminBot{$key} == 0;
+    last if $countBot > $oldAdminBot{$key};
+    $countBot++;
   }
 
-#  print "Sysop H-index:\t$count\n";
-print "$count\n";
+print "$count,$countBot\n";
 
 
 sub parseFile
   {
-    my ($file,$hashRef,$bots) = @_;
+    my ($file,$hashRef,$hashRefBot) = @_;
     open my $data, '<', "$file" or die $ERRNO;
     while (<$data>) {
       # Column names not needed, but nice to have in the input files
       next if $NR == 1;
       chomp;
       my @array = split /,/;
-      next if (!$bot && $array[0] =~ m/bot\b/io);
+      ${$hashRefBot}{$array[0]} = $array[-1];
+      next if ($array[0] =~ m/bot\b/io);
       ${$hashRef}{$array[0]} = $array[-1];
     }
     close $data or die $ERRNO;
