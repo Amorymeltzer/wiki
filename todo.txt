@@ -32,7 +32,7 @@
 -- Also graph total actions?  Require a lot of work...
 --- Refactor sysopHindex.pl to output everything, save some time
 -- Redesign so calch processes, then returns array to shim for parsing?  Eh
-
+-- Detect and handle renames somehow
 
 
 

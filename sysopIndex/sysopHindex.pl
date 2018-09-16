@@ -25,8 +25,6 @@ if (@ARGV < 1) {
 
 my %oldAdmin;
 my %oldAdminBot;
-my %newAdmin;
-my %newAdminBot;
 my $count = 0;
 my $countBot = 0;
 
@@ -35,6 +33,7 @@ parseFile($ARGV[0],\%oldAdmin,\%oldAdminBot);
 
 foreach my $num (1..scalar @ARGV - 1) {
   # print "$num\t$ARGV[$num]\n";
+  my (%newAdmin,%newAdminBot);
   parseFile($ARGV[$num],\%newAdmin,\%newAdminBot);
 
   # Add latest data
@@ -53,13 +52,6 @@ foreach my $num (1..scalar @ARGV - 1) {
     }
   }
 }
-
-# Debug, to try to find user renames
-# Can also just reverse dates, anyone who shows got renamed
-#    elsif ($newAdmin{$key} > 50)
-#    {
-#	print "$key\t$newAdmin{$key}\n";
-#    }
 
 
 # Calculate the score
