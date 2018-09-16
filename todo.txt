@@ -20,6 +20,7 @@
 --- Nice month x-axis
 --- Diff colors and legend
 --- Auto export image
+--- R2 fit
 -- Fix workflow
 --- Update getDates.pl
 --- Update shim

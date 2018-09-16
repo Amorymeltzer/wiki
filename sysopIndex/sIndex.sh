@@ -44,16 +44,13 @@ function dienice() {
     exit 1
 }
 
-# url format, midnight of new month
-urlStart='https://en.wikipedia.org/w/index.php?title=Special:Export&pages=User:JamesR/AdminStats&offset='
-urlEnd='T00:59:00Z&limit=1&action=submit'
 # Keep track of latest data grab
 latest="latest"
 
 if [[ -a "$latest" ]]; then
     latest=$(cat $latest)
 else
-    latest='';
+    latest='initialize';
 fi
 
 # All missing data
@@ -77,10 +74,15 @@ do
     echo "Downloading $date..."
     url="$urlBase$date"
     echo $url
-    curl -d '' "$url" -o $raw
+    curl -d '' "$url" -o $raw.tmp
+
+    # Remove variable/easter egg content
+    lines=$(wc -l $raw.tmp |xargs|cut -f 1 -d ' ')
+    ((lines -= 50))
+    head -n $lines $raw.tmp > $raw
+    rm $raw.tmp
     md5 -r $raw >> "md5raw.txt"
 
-    timestamp=$(grep timestamp "$raw")
     timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
     timestamp=$(echo ${timestamp:0:7})
 
@@ -94,9 +96,9 @@ do
     perl table2csv.pl $raw > $csv
     md5 -r $csv >> "md5csv.txt"
 done
-
 rawDups=$(sort "md5raw.txt" | uniq -d)
 csvDups=$(sort "md5csv.txt" | uniq -d)
+echo
 
 if [[ -n $rawDups ]]; then
     echo "Duplicate raw data files found"
@@ -104,13 +106,15 @@ if [[ -n $rawDups ]]; then
     do
 	echo $dup
     done
-    echo $rawDups
     dienice "You should investigate manually"
 fi
 
 if [[ -n $csvDups ]]; then
     echo "Duplicate csv data files found"
-    echo $csvDups
+    for dup in $csvDups
+    do
+	echo $dup
+    done
     dienice "You should investigate manually"
 fi
 

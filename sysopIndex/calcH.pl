@@ -35,12 +35,11 @@ opendir my $dir, "$ARGV[1]" or die $ERRNO;
 my @files = readdir $dir;
 closedir $dir or die $ERRNO;
 splice @files, 0, 2;		# Remove dot directories
-print "@files\n";
 
-my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
-my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
+# my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
+# my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
 
-print "$firstYear,$firstMonth\n$lastYear,$lastMonth\n";
+# print "$firstYear-$firstMonth\n$lastYear-$lastMonth\n";
 
 if ($ARGV[0] =~ m/all/i) {
   print "All\n\n";

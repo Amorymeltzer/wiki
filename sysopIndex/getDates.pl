@@ -10,10 +10,8 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
-# Earliest reliable data is from Semptember 2008, don't use anything older
-# my ($startYear,$startMonth) = (2008,8);
-# Format changed in feb 2010, so for now can just do this.
-my ($startYear,$startMonth) = (2012,3);
+# Log entries start around 12/23/04, so start with '05
+my ($startYear,$startMonth) = (2004,12);
 # 0-indexed
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime;
 # Not anymore!
@@ -22,7 +20,7 @@ $mon++;
 my $endYear = $year+1900;
 
 # Date of last data grab
-if (@ARGV) {
+if (@ARGV && $ARGV[0] ne 'initialize') {
   ($startYear,$startMonth) = split /-/, $ARGV[0];
 }
 
