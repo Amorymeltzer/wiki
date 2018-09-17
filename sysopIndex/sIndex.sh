@@ -54,7 +54,7 @@ else
 fi
 
 # All missing data
-dates=$(perl getDates.pl "$latest") # NEED TO FIX THIS, NOT HANDLING INPUT RIGHT
+dates=$(perl getDates.pl "$latest")
 if [ -z "$dates" ]; then
     dienice "No more dates to process!"
 fi

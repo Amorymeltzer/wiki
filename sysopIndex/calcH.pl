@@ -57,7 +57,7 @@ sub all
     foreach my $file (@{$filesRef}) {
       print $outF (split /\./, $file)[0].q{,};
 
-      print "$ARGV[1]$file\n";
+      print "$ARGV[2]$file\n";
 
       my $out = `perl sysopHindex.pl $ARGV[2]$file`;
       chomp $out;
