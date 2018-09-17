@@ -73,7 +73,7 @@ modfte_theme <- function() {
     # Plot margins
     theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
 }
-plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3]), colour = names(dm_melt[2]), group = names(dm_melt[2]))) + geom_line(aes(linetype=variable)) +
+plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line(aes(linetype=variable)) +
   scale_x_date(date_labels = "%b %y",breaks=pretty_breaks(6)) +
   scale_y_continuous(breaks=pretty_breaks(6)) +
   labs(title=paste("Sysop index",args[2], sep=' - '),
