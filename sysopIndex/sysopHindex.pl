@@ -13,20 +13,15 @@ use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
 
-my $total = 0;
-
 if (@ARGV < 1) {
-  print "Usage: $PROGRAM_NAME <total?> month.csv <month2.csv month3.csv ...>\n";
+  print "Usage: $PROGRAM_NAME month.csv <month2.csv month3.csv ...>\n";
   exit;
-} elsif ($ARGV[0] eq 'total') {
-  $total = 1;
-  shift @ARGV;
 }
 
 my %oldAdmin;
 my %oldAdminBot;
-my $count = 0;
-my $countBot = 0;
+my ($count,$total) = (0,0);
+my ($countBot,$totalBot) = (0,0);
 
 # Populate hashes from relevant data source
 parseFile($ARGV[0],\%oldAdmin,\%oldAdminBot);
@@ -58,17 +53,21 @@ foreach my $num (1..scalar @ARGV - 1) {
 foreach my $key (sort {$oldAdmin{$b} <=> $oldAdmin{$a} || $a cmp $b} (keys %oldAdmin)) #high->low, a->z
   {
     next if $oldAdmin{$key} == 0;
-    last if $count > $oldAdmin{$key};
-    $count++;
+    $total += $oldAdmin{$key};
+    if ($count <= $oldAdmin{$key}) {
+      $count++;
+    }
   }
 foreach my $key (sort {$oldAdminBot{$b} <=> $oldAdminBot{$a} || $a cmp $b} (keys %oldAdminBot)) #high->low, a->z
   {
     next if $oldAdminBot{$key} == 0;
-    last if $countBot > $oldAdminBot{$key};
-    $countBot++;
+    $totalBot += $oldAdminBot{$key};
+    if ($countBot <= $oldAdminBot{$key}) {
+      $countBot++;
+    }
   }
 
-print "$count,$countBot\n";
+print "$count,$total,$countBot,$totalBot\n";
 
 
 sub parseFile

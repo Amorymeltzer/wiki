@@ -33,6 +33,7 @@
 --- Refactor sysopHindex.pl to output everything, save some time
 -- Redesign so calch processes, then returns array to shim for parsing?  Eh
 -- Detect and handle renames somehow
+-- Deal with commas in usernames
 
 
 

@@ -53,13 +53,13 @@ sub all
   {
     my ($filesRef) = @_;
     open my $outF, '>', "$output" or die $ERRNO;
-    print $outF "Month,S-Index,S-Index+bot\n";
+    print $outF "Month,S-Index,Total,S-Index+bot,Total+bot\n";
     foreach my $file (@{$filesRef}) {
       print $outF (split /\./, $file)[0].q{,};
 
-      # print "$ARGV[1]$file\n";
+      print "$ARGV[1]$file\n";
 
-      my $out = `perl sysopHindex.pl $ARGV[1]$file`;
+      my $out = `perl sysopHindex.pl $ARGV[2]$file`;
       chomp $out;
       print $outF "$out\n";
     }
