@@ -82,5 +82,5 @@ plot3 <- ggplot(dm_melt, aes_string(x = names(dm_melt[1]), y = names(dm_melt[3])
 #options(warn = -1)
 #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 #options(warn = 0)
-plot3
-ggsave("S-index.png", plot3, width=4.92, height=3)
+plot3+geom_smooth(se=FALSE, method=loess)
+ggsave(paste("S-index (",args[2],").png", sep=''), plot3, width=4.92, height=3)
