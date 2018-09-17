@@ -24,7 +24,8 @@ use English qw( -no_match_vars);
 # Usage information
 if (@ARGV != 3) {
   print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
-  print "all:\t Calculate H-index month-to-month\n";
+  print "all:\t Calculate S-index month-to-month (equivalent to roll1)\n";
+  print "roll#:\t Calculate rolling S-index (e.g., roll3 for a 3-month count)\n";
   # print "year:\t Calculate H-index for each annual period\n";
   # print "quarter: Calculate H-index for each quarterly period\n";
   # print "finance: Calculate H-index for each fiscal quarter\n";
@@ -44,25 +45,34 @@ splice @files, 0, 2;		# Remove dot directories
 
 if ($ARGV[0] =~ m/all/i) {
   print "All\n\n";
-  all(\@files);
+  main(1, \@files);
+} elsif ($ARGV[0] =~ m/roll\d+/i) {
+  $ARGV[0] =~ s/roll(\d+)/$1/;
+  print "Rolling\n\n";
+  main($ARGV[0], \@files);
 }
 
 
 # Workhorses
-sub all
-  {
-    my ($filesRef) = @_;
-    open my $outF, '>', "$output" or die $ERRNO;
-    print $outF "Month,S-Index,Total,S-Index+bot,Total+bot\n";
-    foreach my $file (@{$filesRef}) {
-      print $outF (split /\./, $file)[0].q{,};
+sub main {
+  my ($pin,$filesRef) = @_;
+  open my $outF, '>', "$output" or die $ERRNO;
+  print $outF "Month,S-Index,Total,S-Index+bot,Total+bot\n";
+  # foreach my $file (@{$filesRef}) {
+  foreach my $fileN (0..scalar @{$filesRef}-1) {
+    next if $fileN < $pin-1;
+    print $outF (split /\./, ${$filesRef}[$fileN])[0].q{,};
 
-      print "$ARGV[2]$file\n";
-
-      my $out = `perl sysopHindex.pl $ARGV[2]$file`;
-      chomp $out;
-      print $outF "$out\n";
+    my @passFile = @{$filesRef}[$fileN-$pin+1..$fileN];
+    foreach my $loc (0..scalar @passFile-1) {
+      $passFile[$loc] = $ARGV[2].$passFile[$loc];
+      print "$passFile[$loc]\n";
     }
-    close $outF or die $ERRNO;
-    return;
+
+    my $out = `perl sysopHindex.pl @passFile`;
+    chomp $out;
+    print $outF "$out\n";
   }
+  close $outF or die $ERRNO;
+  return;
+}
