@@ -50,10 +50,11 @@ modfte_theme <- function() {
     # Match legend to background
     theme(legend.background = element_rect(fill=color.background)) +
     theme(legend.key = element_rect(fill=color.background)) +
-    theme(legend.text = element_text(size=8,color=color.axis.title)) +
+    theme(legend.text = element_text(size=7,color=color.axis.title)) +
     theme(legend.title = element_blank()) +
-    theme(legend.margin = margin(0,0,0,-5)) +
-    
+    theme(legend.position = 'top') +
+    theme(legend.margin = margin(-5,0,-5,0)) +
+
     # Set title and axis labels
     theme(plot.title=element_text(size=10,color=color.title)) +
     theme(plot.title=element_text(hjust=0.5,face='bold')) +
