@@ -14,6 +14,7 @@
 --- R2 fit
 --- Smoothing?  geom_smooth(se=FALSE)
 ---- Think about curve options and compare to rolling
+---- Match linetype
 -- More exotic export options
 --- 3/6/9/12 rolling
 --- Last N number of period (12*N months, etc.)
