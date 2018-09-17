@@ -36,6 +36,7 @@ while (<$input>) {
   # Skip the early ugliness, could probably jump ahead further...
   if (/sort-entry--username/) {
     s/.*sort-entry--username" data-value="(.*)">$/$1/;
+    s/,/-/g;
     print "$_,";
   } elsif (/sort-entry--total/) {
     s/.*sort-entry--total" data-value="(.*)">\d+.*$/$1/;
