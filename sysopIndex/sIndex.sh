@@ -20,25 +20,23 @@
 ## Should only replace latest when suessfully finished downloadin and processing
 ## Pretty print duplicates
 
+# Directories
+rawD="rawData"
+csvD="csvData"
+# This should really be optionable
+sinFile='sindex.csv'
+
+
+# Functions
 function get_help {
     cat <<END_HELP
 Usage: $(basename $0)
-  -r		Recalculate only (i.e. don't try and download new data)
+  -d		Downlaod data only (i.e. don't try and process the data)
+  -p		Process data only (i.e. don't try and download new data)
   -h		This help
 END_HELP
 }
 
-while getopts 'rhH' opt; do
-    case $opt in
-	r) recalc_only='1';;
-	h|H) get_help $0
-	     exit 0;;
-	\?) printf "Invalid option: -"$opt", try $0 -h\n" >&2
-            exit 1;;
-	:) printf "Option -"$opt" requires an argument, try $0 -h\n" >&2
-           exit 1;;
-    esac
-done
 
 # Simple error handling
 function dienice() {
@@ -46,11 +44,7 @@ function dienice() {
     exit 1
 }
 
-# Directories
-rawD="rawData"
-csvD="csvData"
-
-function process_data() {
+function download_data() {
     # Keep track of latest data grab
     latest="latest"
 
@@ -123,15 +117,27 @@ function process_data() {
     fi
 }
 
-if [[ -z $recalc_only ]]; then
-    process_data
-fi
+function process_data() {
+    # Rewrite calcH to take list of files, pass directory name from here
+    # https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
+    perl calcH.pl all $sinFile $csvD/
 
-# Rewrite calcH to take list of files, pass directory name from here
-# https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
-sinFile='sindex.csv'
-perl calcH.pl all $sinFile $csvD/
+    # Run Rscript
+    Rscript sindex.r $sinFile 'monthly'
+    rm Rplots.pdf			# Christ R is stupid
+}
 
-# Run Rscript
-Rscript sindex.r $sinFile 'monthly'
-rm Rplots.pdf			# Christ R is stupid
+
+# Actually run the damn thing
+while getopts ':dDrRhH' opt; do
+    case $opt in
+	d|D) download_data;;
+	r|R) process_data;;
+	h|H) get_help $0
+	     exit 0;;
+	\?) printf "Invalid option: -"$opt", try $0 -h\n" >&2
+            exit 1;;
+	:) printf "Option -"$opt" requires an argument, try $0 -h\n" >&2
+           exit 1;;
+    esac
+done

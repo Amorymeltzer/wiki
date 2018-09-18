@@ -10,7 +10,6 @@
 - ACTUAL NEW PLAN
 -- Update shim
 --- Take input option (all, later exotic options, etc.)
---- Option to only download
 --- Option for sinfile name or not
 -- R for nice graphs
 --- R2 fit
