@@ -68,7 +68,6 @@ function download_data() {
     # Bulk download data monthly data from [[User:JamesR/AdminStats]]
     for date in $dates
     do
-	trap 'echo $latest > latest' EXIT SIGINT
 	mon=$(echo ${date:0:7})
 	raw=$rawD/$mon.'html'
 	echo "Downloading $date..."
@@ -93,7 +92,7 @@ function download_data() {
 	csv=$csvD/$mon.'csv'
 	perl table2csv.pl $raw > $csv
 	md5 -r $csv >> "md5csv.txt"
-	latest=$mon
+	echo -n $mon > latest
     done
     rawDups=$(sort "md5raw.txt" | uniq -d)
     csvDups=$(sort "md5csv.txt" | uniq -d)
