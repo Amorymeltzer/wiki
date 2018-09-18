@@ -49,12 +49,4 @@ for my $year (($startYear..$endYear)) {
 
     print "$date-01/$date-$day "
   }
-  if ($year eq $endYear) {
-    # Record latest date
-    if ($date) {
-      open my $latout, '>', 'latest' or die $ERRNO;
-      print $latout $date;
-      close $latout or die $ERRNO;
-    }
-  }
 }
