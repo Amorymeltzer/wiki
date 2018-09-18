@@ -11,6 +11,9 @@
 -- Update shim
 --- Take input option (all, later exotic options, etc.)
 --- Option for sinfile name or not
+-- Need to fix getdates handling of latest, maybe put in shim
+--- If we die/quit early, don't update it!
+--- Or just update it with where we stopped?
 -- R for nice graphs
 --- R2 fit
 --- Smoothing?  geom_smooth(se=FALSE)

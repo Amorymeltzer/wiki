@@ -55,9 +55,10 @@ function download_data() {
     fi
 
     # All missing data
+    # Continue even if there is none, nothing will happen unless we messed up
     dates=$(perl getDates.pl "$latest")
     if [ -z "$dates" ]; then
-	dienice "No more dates to process!"
+	echo "No more dates to process!"
     fi
 
     # URL
@@ -85,9 +86,7 @@ function download_data() {
 	timestamp=$(echo ${timestamp:0:7})
 
 	if [ "$timestamp" != "$mon" ]; then
-	    echo
-	    echo "WARNING: TIMESTAMP FOR $date seems erroneous!"
-	    exit
+	    dienice "Timestamp for $date seems erroneous"
 	fi
 
 	csv=$csvD/$mon.'csv'
