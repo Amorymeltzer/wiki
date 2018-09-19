@@ -21,8 +21,6 @@
 -- S-index, s-index, S index, s index, or what?
 --- Put in directories
 -- Clean up code
---- CalcH - maybe merge subroutines?
---- SysopH - subroutine repeated calls
 -- Just delete/protect/block?
 --- Leaves out import and rights only
 ---- Minor issue, likely, but could be interesting
