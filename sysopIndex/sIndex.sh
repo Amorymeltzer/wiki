@@ -49,9 +49,7 @@ function download_data() {
 	curl -d '' "$url" -o $raw.tmp
 
 	# Remove variable/easter egg content
-	lines=$(wc -l $raw.tmp |xargs|cut -f 1 -d ' ')
-	((lines -= 50))
-	head -n $lines $raw.tmp > $raw
+	perl cleanRaw.pl $raw.tmp > $raw
 	rm $raw.tmp
 	md5 -r $raw >> "md5raw.txt"
 
