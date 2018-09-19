@@ -2,30 +2,12 @@
 # sIndex.sh by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Run everything
-## Grab midnight (technically end of last month) or 1AM (start of this month)?
-
-
-## run with options (will pass to calcH)
-## getDates to array
-### LOOP foreach in array
-## curl file in bash to raw/
-## md5 file > list
-## checkData confirms timestamp in file
-## table on file, save elsewhere and calculate m5d > list2
-### ENDLOOP
-## check list and list2 for duplicates with sort uniq
-## call calch with options (calls sysophindex)
-### Write calch dev
-### Should grab all files in directory, sort by time, then process
-## Should only replace latest when suessfully finished downloadin and processing
-## Pretty print duplicates
-
 
 function get_help {
     cat <<END_HELP
 Usage: $(basename $0) [-dp] <opt>
 
-  opt		Processing option, either all or rollN (e.g., roll3).  Required with -p.
+  opt		Calculating option, either all or rollN (e.g., roll3).  Required with -p.
   -d		Downlaod data
   -p		Process data
   -h		This help
@@ -39,6 +21,7 @@ function dienice() {
 }
 
 function download_data() {
+    urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
     # Keep track of latest data grab
     latest="latest"
 
@@ -49,17 +32,13 @@ function download_data() {
     fi
 
     # All missing data
-    # Continue even if there is none, nothing will happen unless we messed up
+    # Continue even if there are none, nothing will happen unless we messed up
     dates=$(perl getDates.pl "$latest")
     if [ -z "$dates" ]; then
 	echo "No more dates to process!"
     fi
 
-    # URL
-    #/enWiki/2018-03-01/2018-03-31' -o 2018-03-01.2018-03-31.xtool
-    urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
-
-    # Bulk download data monthly data from [[User:JamesR/AdminStats]]
+    # Bulk download monthly data from https://xtools.wmflabs.org/adminstats
     for date in $dates
     do
 	mon=$(echo ${date:0:7})
@@ -76,9 +55,9 @@ function download_data() {
 	rm $raw.tmp
 	md5 -r $raw >> "md5raw.txt"
 
+	# Verify date as expected, not likely to be a problem
 	timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
 	timestamp=$(echo ${timestamp:0:7})
-
 	if [ "$timestamp" != "$mon" ]; then
 	    dienice "Timestamp for $date seems erroneous"
 	fi
@@ -88,10 +67,11 @@ function download_data() {
 	md5 -r $csv >> "md5csv.txt"
 	echo -n $mon > latest
     done
+
+    # Check data for duplication events
     rawDups=$(sort "md5raw.txt" | uniq -d)
     csvDups=$(sort "md5csv.txt" | uniq -d)
     echo
-
     if [[ -n $rawDups ]]; then
 	echo "Duplicate raw data files found"
 	for dup in $rawDups
@@ -151,8 +131,8 @@ if [[ -n $process ]]; then
     elif [[ $1 =~ ^roll[0-9]+$ ]]; then
 	behav=$1
 	sinFile='sindex-'$1'.csv'
-	tmp=$(echo ${behav:4})
-	rPass='rolling ('$tmp'mos)'
+	rPass=$(echo ${behav:4})
+	rPass='rolling ('$rPass'mos)'
     else
 	get_help $0
 	exit 0

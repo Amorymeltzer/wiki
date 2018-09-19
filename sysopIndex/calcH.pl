@@ -44,11 +44,11 @@ splice @files, 0, 2;		# Remove dot directories
 # print "$firstYear-$firstMonth\n$lastYear-$lastMonth\n";
 
 if ($ARGV[0] =~ m/all/i) {
-  print "All\n\n";
+  print "--All--\n";
   main(1, \@files);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
-  print "Rolling\n\n";
+  print "--Rolling $ARGV[0]--\n";
   main($ARGV[0], \@files);
 }
 
@@ -66,9 +66,9 @@ sub main {
     my @passFile = @{$filesRef}[$fileN-$pin+1..$fileN];
     foreach my $loc (0..scalar @passFile-1) {
       $passFile[$loc] = $ARGV[2].$passFile[$loc];
-      print "$passFile[$loc]\n";
     }
 
+    print "Processing $passFile[0]\n";
     my $out = `perl sysopHindex.pl @passFile`;
     chomp $out;
     print $outF "$out\n";

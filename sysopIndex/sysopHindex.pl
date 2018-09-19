@@ -27,7 +27,6 @@ my ($countBot,$totalBot) = (0,0);
 parseFile($ARGV[0],\%oldAdmin,\%oldAdminBot);
 
 foreach my $num (1..scalar @ARGV - 1) {
-  # print "$num\t$ARGV[$num]\n";
   my (%newAdmin,%newAdminBot);
   parseFile($ARGV[$num],\%newAdmin,\%newAdminBot);
 
