@@ -104,7 +104,7 @@ buildPlot <- function(mf,tot)
   #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
   #options(warn = 0)
 #  p+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F)
-  ggsave(paste("S-index (",args[2],tot,").png", sep=''), p, width=4.92, height=3)
+  ggsave(paste("img/S-index (",args[2],tot,").png", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt,'')
 buildPlot(dmt_melt,' - total')
