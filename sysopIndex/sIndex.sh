@@ -20,23 +20,17 @@
 ## Should only replace latest when suessfully finished downloadin and processing
 ## Pretty print duplicates
 
-# Directories
-rawD="rawData"
-csvD="csvData"
-# This should really be optionable
-sinFile='sindex.csv'
 
-
-# Functions
 function get_help {
     cat <<END_HELP
-Usage: $(basename $0)
-  -d		Downlaod data only (i.e. don't try and process the data)
-  -p		Process data only (i.e. don't try and download new data)
+Usage: $(basename $0) [-dp] <opt>
+
+  opt		Processing option, either all or rollN (e.g., roll3).  Required with -p.
+  -d		Downlaod data
+  -p		Process data
   -h		This help
 END_HELP
 }
-
 
 # Simple error handling
 function dienice() {
@@ -120,19 +114,17 @@ function download_data() {
 function process_data() {
     # Rewrite calcH to take list of files, pass directory name from here
     # https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
-    perl calcH.pl all $sinFile $csvD/
+    perl calcH.pl $behav $sinFile $csvD/
 
     # Run Rscript
-    Rscript sindex.r $sinFile 'monthly'
+    Rscript sindex.r $sinFile "$rPass"
     rm Rplots.pdf			# Christ R is stupid
 }
 
-
-# Actually run the damn thing
-while getopts ':dDrRhH' opt; do
+while getopts ':dDpPhH' opt; do
     case $opt in
-	d|D) download_data;;
-	r|R) process_data;;
+	d|D) download='1';;
+	p|P) process='1';;
 	h|H) get_help $0
 	     exit 0;;
 	\?) printf "Invalid option: -"$opt", try $0 -h\n" >&2
@@ -141,3 +133,29 @@ while getopts ':dDrRhH' opt; do
            exit 1;;
     esac
 done
+
+# Directories
+rawD="rawData"
+csvD="csvData"
+
+if [[ -n $download ]]; then
+    download_data
+fi
+
+if [[ -n $process ]]; then
+    shift $((OPTIND -1))
+    if [[ $1 =~ ^all$ ]]; then
+	behav=$1
+	sinFile='sindex-monthly.csv'
+	rPass='monthly'
+    elif [[ $1 =~ ^roll[0-9]+$ ]]; then
+	behav=$1
+	sinFile='sindex-'$1'.csv'
+	tmp=$(echo ${behav:4})
+	rPass='rolling ('$tmp'mos)'
+    else
+	get_help $0
+	exit 0
+    fi
+    process_data
+fi

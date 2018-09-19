@@ -8,12 +8,6 @@
 
 #### S-index
 - ACTUAL NEW PLAN
--- Update shim
---- Take input option (all, later exotic options, etc.)
---- Option for sinfile name or not
--- Need to fix getdates handling of latest, maybe put in shim
---- If we die/quit early, don't update it!
---- Or just update it with where we stopped?
 -- R for nice graphs
 --- R2 fit
 --- Smoothing?  geom_smooth(se=FALSE)
@@ -26,7 +20,8 @@
 --- Match inputs to calcH with inputs to Rscript
 -- CHECK DATA
 --- Delete old files
-- S-index, s-index, S index, s index, or what?
+-- S-index, s-index, S index, s index, or what?
+--- Put in directories
 -- Clean up code
 --- CalcH - maybe merge subroutines?
 --- SysopH - subroutine repeated calls
