@@ -2,6 +2,7 @@
 
 #### enWiki
 - sysopIndex - H-index-like metric for sysops
+- `crathighlighter` - Update https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js
 
 #### Wikispecies
 - `speciesGenusList`, `makeWikiSpeciesLinks` - Create a list of identical *Genus-species* pairs from WikiSpecies
