@@ -86,7 +86,7 @@ plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[
 #options(warn = -1)
 #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 #options(warn = 0)
-plot3+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F, aes_string(linetype=names(dmt_melt[2])))
+plot3+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(dmt_melt[2])))
 
 
 buildPlot <- function(mf,tot)
@@ -103,7 +103,7 @@ buildPlot <- function(mf,tot)
   #options(warn = -1)
   #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
   #options(warn = 0)
-#  p+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F, aes_string(linetype=names(mf[2])))
+  p<-p+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(mf[2])))
   ggsave(paste("img/S-index (",args[2],tot,").png", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt,'')
