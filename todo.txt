@@ -8,16 +8,14 @@
 
 #### S-index
 - ACTUAL NEW PLAN
--- Reorder
---- S.index, S.index.nobot, Total, Total.nobot
---- Reorder in csv and/or r?
 -- R for nice graphs
+--- Thinner lines?
 --- R2 fit
 --- Smoothing?  geom_smooth(se=FALSE)
 ---- Think about curve options and compare to rolling
 --- Legend should note multiplication factor
+--- Layer lines
 -- More exotic export options
---- Cap rolling period?  >-1, <12?  24?
 -- CHECK DATA
 --- Delete old files
 -- S-index, s-index, S index, s index, or what?

@@ -20,7 +20,7 @@ dm <- dmt[,c(1,2,3)]
 # Adjust totals to be similar on y-axis scale
 factor = round(.9*max(dmt$Total)/max(dmt$S.Index),-1)
 dmt$Total = dmt$Total/factor
-dmt$Total.bot = dmt$Total.bot/factor
+dmt$Total.nobot = dmt$Total.nobot/factor
 # Two lines by melting
 dm_melt = melt(dm, id = names(dm)[1])
 dmt_melt = melt(dmt, id = names(dmt)[1])

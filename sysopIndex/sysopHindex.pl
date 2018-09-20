@@ -29,7 +29,7 @@ foreach my $num (1..scalar @ARGV - 1) {
 # Calculate the score
 my ($count,$total) = calcIndex(\%oldAdmin);
 my ($countBot,$totalBot) = calcIndex(\%oldAdminBot);
-print "$count,$total,$countBot,$totalBot\n";
+print "$countBot,$totalBot,$count,$total\n";
 
 
 # Subroutines

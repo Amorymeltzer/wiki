@@ -57,7 +57,7 @@ if ($ARGV[0] =~ m/all/i) {
 sub main {
   my ($pin,$filesRef) = @_;
   open my $outF, '>', "$output" or die $ERRNO;
-  print $outF "Month,S-Index,Total,S-Index+bot,Total+bot\n";
+  print $outF "Month,S-Index,Total,S-Index+nobot,Total+nobot\n";
   # foreach my $file (@{$filesRef}) {
   foreach my $fileN (0..scalar @{$filesRef}-1) {
     next if $fileN < $pin-1;
