@@ -9,12 +9,7 @@
 #### S-index
 - ACTUAL NEW PLAN
 -- R for nice graphs
---- Thinner lines?
---- R2 fit
---- Smoothing?  geom_smooth(se=FALSE)
----- Think about curve options and compare to rolling
 --- Legend should note multiplication factor
---- Layer lines
 -- More exotic export options
 -- CHECK DATA
 --- Delete old files
