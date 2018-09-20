@@ -25,7 +25,7 @@ dmt$Total.bot = dmt$Total.bot/factor
 dm_melt = melt(dm, id = names(dm)[1])
 dmt_melt = melt(dmt, id = names(dmt)[1])
 # For line aesthetics?  Dash geom_smooth
-#dm_melt$type <- ifelse(grepl("Total",dm_melt$variable), "total", "index")
+#dmt_melt$type <- ifelse(grepl("Total",dmt_melt$variable), "total", "index")
 
 # Theme modified from Max Woolf
 # https://minimaxir.com/2015/02/ggplot-tutorial/
@@ -74,7 +74,7 @@ modfte_theme <- function() {
     # Plot margins
     theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
 }
-plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line(aes(linetype=variable)) +
+plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line(aes_string(linetype=names(dmt_melt[2]))) +
   scale_x_date(date_labels = "%b %y",breaks=pretty_breaks(6)) +
   scale_y_continuous(breaks=pretty_breaks(6)) +
   labs(title=paste("Sysop index",args[2], sep=' - '),
@@ -86,12 +86,12 @@ plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[
 #options(warn = -1)
 #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 #options(warn = 0)
-plot3+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F)
+plot3+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F, aes_string(linetype=names(dmt_melt[2])))
 
 
 buildPlot <- function(mf,tot)
 {
-  p<-ggplot(mf, aes_string(x = names(mf[1]), y = names(mf[3]), colour = names(mf[2]), group = names(mf[2]))) + geom_line(aes(linetype=variable)) +
+  p<-ggplot(mf, aes_string(x = names(mf[1]), y = names(mf[3]), colour = names(mf[2]), group = names(mf[2]))) + geom_line(aes_string(linetype=names(mf[2]))) +
     scale_x_date(date_labels = "%b %y",breaks=pretty_breaks(6)) +
     scale_y_continuous(breaks=pretty_breaks(6)) +
     labs(title=paste("Sysop index",args[2], sep=' - '),
@@ -103,7 +103,7 @@ buildPlot <- function(mf,tot)
   #options(warn = -1)
   #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
   #options(warn = 0)
-#  p+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F)
+#  p+geom_smooth(se=FALSE, method=loess, size=0.75, show.legend=F, aes_string(linetype=names(mf[2])))
   ggsave(paste("img/S-index (",args[2],tot,").png", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt,'')

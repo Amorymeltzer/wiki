@@ -12,7 +12,6 @@
 --- R2 fit
 --- Smoothing?  geom_smooth(se=FALSE)
 ---- Think about curve options and compare to rolling
----- Match linetype
 --- Legend should note multiplication factor
 -- More exotic export options
 --- Cap rolling period?  >-1, <12?  24?
