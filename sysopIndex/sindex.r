@@ -110,13 +110,9 @@ buildPlot <- function(mf,tot)
          y="S-index",
          caption="User:Amorymeltzer") +
     scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed")) +
-    modfte_theme() + scale_colour_manual(values=c('#4DAF4A','#984EA3','grey75','grey75'))
-  #options(warn = -1)
-  #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
-  #options(warn = 0)
+    modfte_theme() + scale_colour_brewer(palette='Set1')
   p<-p+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(mf[2])))
   ggsave(paste("img/S-index (",args[2],tot,").png", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt,'')
 buildPlot(dmt_melt,' - total')
-#ggsave(paste("S-index (",args[2],").png", sep=''), plot3, width=4.92, height=3)
