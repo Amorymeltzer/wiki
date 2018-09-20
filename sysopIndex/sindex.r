@@ -57,12 +57,20 @@ modfte_theme <- function() {
     theme(legend.text = element_text(size=7,color=color.axis.title)) +
     theme(legend.title = element_blank()) +
     theme(legend.position = 'top') +
+    #theme(legend.justification=c(0,1)) +
     theme(legend.margin = margin(-5,0,-5,0)) +
-
+    
+    # Stupid way to get tag in desired place
+    theme(plot.tag.position = 'top') +
+    theme(plot.tag = element_text(vjust=-11,color=color.axis.title,size=5)) +
+    theme(plot.tag = element_text(margin=margin(0,0,0,0,"pt"))) +
+    
     # Set title and axis labels
     theme(plot.title=element_text(size=10,color=color.title)) +
     theme(plot.title=element_text(hjust=0.5,face='bold')) +
+    #theme(plot.title=element_text(face='bold')) +
     theme(plot.title=element_text(margin=margin(0,0,5,0,"pt"))) +
+    #theme(plot.subtitle=element_text(size=6,hjust=0.5,vjust=-5)) +
     theme(axis.text.x=element_text(size=8,color=color.axis.text)) +
     theme(axis.text.y=element_text(size=8,color=color.axis.text)) +
     theme(axis.title.x=element_text(size=9,color=color.axis.title, vjust=0)) +
@@ -80,13 +88,16 @@ plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[
   labs(title=paste("Sysop index",args[2], sep=' - '),
        x=names(dm_melt)[1],
        y="S-index",
+       #tag=paste('totals x',factor, sep=''),
        caption="User:Amorymeltzer") +
-  scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed"))+#, name='asd') +
-  modfte_theme() + scale_colour_manual(values=c('#4DAF4A','#984EA3','grey75','grey75'))#, name='asd')
+  scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed")) +
+  modfte_theme() + scale_colour_brewer(palette='Set1')
 #options(warn = -1)
 #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 #options(warn = 0)
-plot3+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(dmt_melt[2])))
+plot3<-plot3+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(dmt_melt[2])))
+plot3
+#ggsave(paste("img.png", sep=''), plot3, width=4.92, height=3)
 
 
 buildPlot <- function(mf,tot)
