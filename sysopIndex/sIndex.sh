@@ -5,11 +5,12 @@
 
 function get_help {
     cat <<END_HELP
-Usage: $(basename $0) [-dp] <opt>
+Usage: $(basename $0) [-dpgr] <opt>
 
-  opt		Calculating option, either all or rollN (e.g., roll3).  Required with -p.
+  opt		Calculating option, either all or rollN (e.g., roll3).  Required with -p and -g/-r.
   -d		Downlaod data
   -p		Process data
+  -g, -r	Graph data
   -h		This help
 END_HELP
 }
@@ -90,19 +91,20 @@ function download_data() {
 }
 
 function process_data() {
-    # Rewrite calcH to take list of files, pass directory name from here
-    # https://stackoverflow.com/questions/1045792/how-can-i-list-all-of-the-files-in-a-directory-with-perl
     perl calcH.pl $behav $sinFile $csvD/
+}
 
-    # Run Rscript
+function graph_data() {
+    echo "Graphing $rPass data from $sinFile"
     Rscript sindex.r $sinFile "$rPass"
     rm Rplots.pdf			# Christ R is stupid
 }
 
-while getopts ':dDpPhH' opt; do
+while getopts ':dDpPgGrRhH' opt; do
     case $opt in
 	d|D) download='1';;
 	p|P) process='1';;
+	g|G|r|R) graph='1';;
 	h|H) get_help $0
 	     exit 0;;
 	\?) printf "Invalid option: -"$opt", try $0 -h\n" >&2
@@ -120,7 +122,7 @@ if [[ -n $download ]]; then
     download_data
 fi
 
-if [[ -n $process ]]; then
+if [[ -n $process || -n $graph ]]; then
     shift $((OPTIND -1))
     if [[ $1 =~ ^all$ ]]; then
 	behav=$1
@@ -128,12 +130,29 @@ if [[ -n $process ]]; then
 	rPass='monthly'
     elif [[ $1 =~ ^roll[0-9]+$ ]]; then
 	behav=$1
-	sinFile='sindex-'$1'.csv'
 	rPass=$(echo ${behav:4})
-	rPass='rolling ('$rPass'mos)'
+	if [[ $rPass > 0 && $rPass < 13 ]]; then
+	    sinFile='sindex-'$1'.csv'
+	    rPass='rolling ('$rPass'mos)'
+	else
+	    echo "Rolling only allowed up to 12 months"
+	    get_help $0
+	    exit 0
+	fi
     else
 	get_help $0
 	exit 0
     fi
-    process_data
+    if [[ -n $process ]]; then
+	process_data
+    fi
+    if [[ -n $graph ]]; then
+	if [[ -a "$sinFile" ]]; then
+	    graph_data
+	else
+	    echo "$sinFile doesn't exist"
+	    get_help $0
+	    exit 0
+	fi
+    fi
 fi
