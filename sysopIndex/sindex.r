@@ -81,8 +81,8 @@ plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[
        x=names(dm_melt)[1],
        y="S-index",
        caption="User:Amorymeltzer") +
-  scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed")) +
-  modfte_theme() + scale_colour_manual(values=c('#4DAF4A','#984EA3','grey75','grey75'))
+  scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed"))+#, name='asd') +
+  modfte_theme() + scale_colour_manual(values=c('#4DAF4A','#984EA3','grey75','grey75'))#, name='asd')
 #options(warn = -1)
 #plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 #options(warn = 0)
