@@ -31,10 +31,16 @@ if ($ARGV[0] =~ m/all/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
   print "--Rolling $ARGV[0]--\n";
   main($ARGV[0], \@files);
+} elsif ($ARGV[0] =~ m/year/i) {
+  # Find the first January and last december
+  shift @files until $files[0] =~ /^\d{4}-01\.csv/;
+  pop @files until $files[-1] =~ /^\d{4}-12\.csv/;
+  print "@files\n";
+  exit;
 }
 
 
-# Workhorses
+# Subroutines
 sub helpMenu {
   print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
   print "all:\t Calculate S-index month-to-month (equivalent to roll1)\n";
