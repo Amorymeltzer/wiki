@@ -9,8 +9,6 @@
 #### S-index
 ##### Todo
 1. More exotic export options
-2. CHECK DATA
-    1. Delete old files
 3. S-index, s-index, S index, s index, or what?
     1.  Put in directories
 4. Clean up code
@@ -24,6 +22,7 @@
     2. Leaves out import and rights only
         1. Minor issue, likely, but could be interesting
 3. Also include number of sysops, number of active sysops, etc.?
+4. o-index (geometric mean of h-index and most-cited paper)
 
 ##### XTool questions
 - Date in range (defaults to 00:00 UTC start date, 23:59 UTC end date)
