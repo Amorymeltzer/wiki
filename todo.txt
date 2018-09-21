@@ -9,7 +9,7 @@
 #### S-index
 - ACTUAL NEW PLAN
 -- R for nice graphs
---- Legend should note multiplication factor
+-- Justify title and legend left?  Gets complicated...
 -- More exotic export options
 -- CHECK DATA
 --- Delete old files
