@@ -25,17 +25,20 @@ closedir $dir or die $ERRNO;
 
 if ($ARGV[0] =~ m/all|^roll1$/i) {
   print "--All--\n";
-  main(1, \@files);
+  # main(1, \@files);
+  main('roll', \@files, 1);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
   print "--Rolling $ARGV[0]--\n";
-  main($ARGV[0], \@files);
+  # main($ARGV[0], \@files);
+  main('roll', \@files,$ARGV[0]);
 } elsif ($ARGV[0] =~ m/year/i) {
   # Find the first January and last december
   shift @files until $files[0] =~ /^\d{4}-01\.csv/;
   pop @files until $files[-1] =~ /^\d{4}-12\.csv/;
   print "@files\n";
   exit;
+  main('fixed',\@files,12);
 }
 
 
@@ -51,17 +54,17 @@ sub helpMenu {
 }
 
 sub main {
-  my ($pin,$filesRef) = @_;
+  my ($roll,$filesRef,$pin) = @_;
+  foreach my $loc (0..scalar @{$filesRef}-1) {
+    ${$filesRef}[$loc] = $ARGV[2].${$filesRef}[$loc];
+  }
   open my $outF, '>', "$output" or die $ERRNO;
   print $outF "Month,S-Index,Total,S-Index+nobot,Total+nobot\n";
   foreach my $fileN (0..scalar @{$filesRef}-1) {
-    next if $fileN < $pin-1;
-    print $outF (split /\./, ${$filesRef}[$fileN])[0].q{,};
+    next if ($fileN < $pin-1 && $roll eq 'roll');
+    print $outF (split /\.|\//, ${$filesRef}[$fileN])[1].q{,};
 
     my @passFile = @{$filesRef}[$fileN-$pin+1..$fileN];
-    foreach my $loc (0..scalar @passFile-1) {
-      $passFile[$loc] = $ARGV[2].$passFile[$loc];
-    }
 
     print "Processing $passFile[0]\n";
     my $out = `perl sysopHindex.pl @passFile`;
