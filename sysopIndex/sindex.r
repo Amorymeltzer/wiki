@@ -1,3 +1,7 @@
+# sindex.r by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
+# Generate s-index graphs
+
 # Set working directory
 setwd("~/Documents/perl/wiki/sysopIndex")
 
@@ -7,10 +11,10 @@ library(RColorBrewer)
 suppressPackageStartupMessages(library(zoo))
 library(scales)
 
-# Import data
 args=commandArgs(trailingOnly = TRUE)
 #args=c('sindex-monthly.csv','monthly')
 #args=c('sindex-roll3.csv','rolling (3mos)')
+# Import data
 dmt=read.csv(args[1],header=T)
 # Format dates, useful for scaling x-axis
 dmt[[1]] <- as.Date(as.yearmon(dmt[[1]]))
@@ -24,7 +28,8 @@ dmt$Total.nobot = dmt$Total.nobot/factor
 # Two lines by melting
 dm_melt = melt(dm, id = names(dm)[1])
 dmt_melt = melt(dmt, id = names(dmt)[1])
-# Might help creating separate legends?
+
+# Might help for creating separate legends?
 #dmt_melt$type <- ifelse(grepl("Total",dmt_melt$variable), "total", "index")
 
 # fte theme modified from Max Woolf

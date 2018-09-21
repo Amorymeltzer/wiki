@@ -131,7 +131,6 @@ if [[ -n $process || -n $graph ]]; then
     elif [[ $1 =~ ^roll[0-9]+$ ]]; then
 	behav=$1
 	rPass=$(echo ${behav:4})
-	# if [[ $rPass > 0 && $rPass < 13 ]]; then
 	if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
 	    sinFile='sindex-'$1'.csv'
 	    rPass='rolling ('$rPass'mos)'

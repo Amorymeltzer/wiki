@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
 # sysopHindex.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Interesting value for administrator activity
-# Approximate the h-index/Eddington number for admin actions using
-# XTools AdminStats
+# s-index, a potentially interesting value for administrator activity
+# Caluclate an h-index/Eddington number-like statistic for admin actions
+# Data from XTools AdminStats
 
 use strict;
 use warnings;
@@ -63,7 +63,6 @@ sub mergeData {
 
 sub calcIndex {
   my ($hashRef) = @_;
-  #my ($index,$tot) = (0,0);
   my @indTot = (0,0);
   #high->low, a->z
   foreach my $key (sort {${$hashRef}{$b} <=> ${$hashRef}{$a} || $a cmp $b} (keys %{$hashRef})) {

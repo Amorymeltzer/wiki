@@ -13,13 +13,14 @@ my $file = shift;
 open my $data, '<', "$file" or die $1;
 while (<$data>) {
   next if $line == $.;
+  # Skip language links, they're subject to change
   if ($skip == 1) {
-    if (/<\/div>/) {		# Skip language links, subject to change
+    if (/<\/div>/) {
       $skip = 0;
     }
     next if $skip == 1;
   } else {
-    if (/div class="lang-group btn-group dropdown"/) { # language links may change
+    if (/div class="lang-group btn-group dropdown"/) {
       $skip = 1;
     }
   }

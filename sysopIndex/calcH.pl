@@ -1,20 +1,7 @@
 #!/usr/bin/env perl
 # calcH.pl by Amory Meltzer
-# Bulk calculate the sysop H-index for a given period
-## Need to add -r option to allow for rolling
-## Maybe just make the usage below an option as well???
-## Need to figure out first and last year/months from @files
-## Take that, process for rolling
-## For non-rolling, can determine when to start:
-## year: +1 year; quarter/fin/acad: sub to find next start of quarter
-## Or maybe just do ALL and pick later?
-## Nah just completely revamp this:
-## n-month rolling average (1-24, maybe show 1, 3, 6, 12 above the fold)
-## Below show hard limits
-## calendar year, acad year, quarter, financial
-
-## Rolling average just long list of everything, maybe add option to limit to
-## last X number of years/months
+# Licensed under the WTFPL http://www.wtfpl.net/
+# Bulk calculate s-index for a given directory
 
 use strict;
 use warnings;
@@ -53,12 +40,11 @@ if ($ARGV[0] =~ m/all/i) {
 }
 
 
-# Workhorses
+# Workhorse
 sub main {
   my ($pin,$filesRef) = @_;
   open my $outF, '>', "$output" or die $ERRNO;
   print $outF "Month,S-Index,Total,S-Index+nobot,Total+nobot\n";
-  # foreach my $file (@{$filesRef}) {
   foreach my $fileN (0..scalar @{$filesRef}-1) {
     next if $fileN < $pin-1;
     print $outF (split /\./, ${$filesRef}[$fileN])[0].q{,};

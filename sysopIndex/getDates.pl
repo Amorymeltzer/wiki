@@ -2,8 +2,6 @@
 # getDates.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Figure out which dates we need to download
-## Data starts September 2008 (could do August, but meh)
-
 
 use strict;
 use warnings;
@@ -16,7 +14,7 @@ my ($startYear,$startMonth) = (2004,12);
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime;
 # Not anymore!
 $mon++;
-# 1900-indexed
+# 1900-indexed... not anymore!
 my $endYear = $year+1900;
 
 # Date of last data grab

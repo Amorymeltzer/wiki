@@ -1,12 +1,7 @@
 #!/usr/bin/env perl
 # table2csv.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-
 # Process the table from XTools, convert the relevant to csv
-
-## Maybe remove users known to never have been sysops?  Likely to come out in
-## the wash.  Could also set a threshold?
-
 
 use strict;
 use warnings;
