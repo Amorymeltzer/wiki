@@ -15,9 +15,8 @@ if (@ARGV != 3) {
 
 my $output = $ARGV[1];
 opendir my $dir, "$ARGV[2]" or die $ERRNO;
-my @files = readdir $dir;
+my @files = grep {-f "$ARGV[2]/$_" } readdir $dir; # No dots
 closedir $dir or die $ERRNO;
-splice @files, 0, 2;		# Remove dot directories
 
 # my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
 # my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
