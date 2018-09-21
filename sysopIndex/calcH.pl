@@ -10,13 +10,7 @@ use English qw( -no_match_vars);
 
 # Usage information
 if (@ARGV != 3) {
-  print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
-  print "all:\t Calculate S-index month-to-month (equivalent to roll1)\n";
-  print "roll#:\t Calculate rolling S-index (e.g., roll3 for a 3-month count)\n";
-  # print "year:\t Calculate H-index for each annual period\n";
-  # print "quarter: Calculate H-index for each quarterly period\n";
-  # print "finance: Calculate H-index for each fiscal quarter\n";
-  exit;
+  helpMenu();
 }
 
 my $output = $ARGV[1];
@@ -40,7 +34,17 @@ if ($ARGV[0] =~ m/all/i) {
 }
 
 
-# Workhorse
+# Workhorses
+sub helpMenu {
+  print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
+  print "all:\t Calculate S-index month-to-month (equivalent to roll1)\n";
+  print "roll#:\t Calculate rolling S-index (e.g., roll3 for a 3-month count)\n";
+  # print "year:\t Calculate H-index for each annual period\n";
+  # print "quarter: Calculate H-index for each quarterly period\n";
+  # print "finance: Calculate H-index for each fiscal quarter\n";
+  exit 1;
+}
+
 sub main {
   my ($pin,$filesRef) = @_;
   open my $outF, '>', "$output" or die $ERRNO;
