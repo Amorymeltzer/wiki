@@ -23,7 +23,7 @@ closedir $dir or die $ERRNO;
 
 # print "$firstYear-$firstMonth\n$lastYear-$lastMonth\n";
 
-if ($ARGV[0] =~ m/all/i) {
+if ($ARGV[0] =~ m/all|^roll1$/i) {
   print "--All--\n";
   main(1, \@files);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
