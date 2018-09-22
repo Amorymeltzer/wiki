@@ -93,37 +93,34 @@ modfte_theme <- function() {
     # Plot margins
     theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
 }
-plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line(aes_string(linetype=names(dmt_melt[2]))) +
-  scale_x_date(date_labels = dform,breaks=pretty_breaks(6)) +
-  scale_y_continuous(breaks=pretty_breaks(6)) +
-  labs(title=paste("Sysop index",args[2], sep=' - '),
-       x=names(dm_melt)[1],
-       y="S-index",
-       tag=paste('totals x',factor, sep=''),
-       caption="User:Amorymeltzer") +
-  scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed")) +
-  modfte_theme() + scale_colour_brewer(palette='Set1')
+# plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line()+#aes_string(linetype=names(dmt_melt[2]))) +
+#   scale_x_date(date_labels = dform,breaks=pretty_breaks(6)) +
+#   scale_y_continuous(breaks=pretty_breaks(6)) +
+#   labs(title=paste("Sysop index",args[2], sep=' - '),
+#        x=names(dm_melt)[1],
+#        y="S-index",
+#        tag=paste('totals x',factor, sep=''),
+#        caption="User:Amorymeltzer") +
+#   modfte_theme() + scale_colour_brewer(palette='Set1')
 # options(warn = -1)
 # plot3 <- plot3+scale_y_continuous(sec.axis = sec_axis(~.*1500, name = "Total actions", breaks=derive(),labels=comma))
 # options(warn = 0)
-plot3<-plot3+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(dmt_melt[2])))
-plot3
+# plot3<-plot3+geom_smooth(se=FALSE, method=loess, size=0.3, linetype='dashed')
+# plot3
 # ggsave(paste("img.png", sep=''), plot3, width=4.92, height=3)
 
 buildPlot <- function(mf, tot, fact)
 {
-  p<-ggplot(mf, aes_string(x = names(mf[1]), y = names(mf[3]), colour = names(mf[2]), group = names(mf[2]))) + geom_line(aes_string(linetype=names(mf[2]))) +
+  p<-ggplot(mf, aes_string(x = names(mf[1]), y = names(mf[3]), colour = names(mf[2]), group = names(mf[2]))) + geom_line() +
     scale_x_date(date_labels = dform,breaks=pretty_breaks(6)) +
     scale_y_continuous(breaks=pretty_breaks(6)) +
     labs(title=paste("Sysop index",args[2], sep=' - '),
          x=names(mf)[1],
          y="S-index",
          caption="User:Amorymeltzer") +
-    scale_linetype_manual(values=c("solid", "solid", "dotted", "dashed")) +
     modfte_theme() + scale_colour_brewer(palette='Set1')
 
-  p<-p+geom_smooth(se=FALSE, method=loess, size=0.5, aes_string(linetype=names(mf[2])))
-
+  p<-p+geom_smooth(se=FALSE, method=loess, size=0.3, linetype='dashed')
   if (fact != '') {
     p<-p+labs(tag=paste('totals x',factor, sep=''))
   }
