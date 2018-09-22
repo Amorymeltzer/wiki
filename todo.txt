@@ -8,10 +8,15 @@
 
 #### S-index
 ##### Todo
-1. More exotic export options
-    1. Years (calendar and academic)
-    2. Quarters (calendar and financial)
-2. Organize
+1. Consider color/aes options
+    * Basically, the smoothing graph looks too similar on longer periods
+    * Change aesthetics so smoothings are dashed but colored while lines are solid and colored?
+2. More exotic export options
+    1. Academic year
+    2. Quarters
+	    1. Calendar
+	    2. Financial
+3. Organize
     1. S-index, s-index, S index, s index, or what?
     2.  Put in directories
 4. Write page

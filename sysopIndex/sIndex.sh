@@ -139,6 +139,10 @@ if [[ -n $process || -n $graph ]]; then
 	    get_help $0
 	    exit 0
 	fi
+    elif [[ $1 =~ ^year$ ]]; then
+	behav=$1
+	sinFile='sindex-annual.csv'
+	rPass='annual'
     else
 	get_help $0
 	exit 0

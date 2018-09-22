@@ -18,26 +18,23 @@ opendir my $dir, "$ARGV[2]" or die $ERRNO;
 my @files = grep {-f "$ARGV[2]/$_" } readdir $dir; # No dots
 closedir $dir or die $ERRNO;
 
-# my ($firstYear,$firstMonth) = (split /-/, $files[0])[0,1];
-# my ($lastYear,$lastMonth) = (split /-/, $files[-1])[0,1];
-
-# print "$firstYear-$firstMonth\n$lastYear-$lastMonth\n";
+# Prepend directory name for full location as this will be passed on
+foreach my $loc (0..scalar @files-1) {
+  $files[$loc] = $ARGV[2].$files[$loc];
+}
 
 if ($ARGV[0] =~ m/all|^roll1$/i) {
   print "--All--\n";
-  # main(1, \@files);
   main('roll', \@files, 1);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
   print "--Rolling $ARGV[0]--\n";
-  # main($ARGV[0], \@files);
   main('roll', \@files,$ARGV[0]);
 } elsif ($ARGV[0] =~ m/year/i) {
   # Find the first January and last december
-  shift @files until $files[0] =~ /^\d{4}-01\.csv/;
-  pop @files until $files[-1] =~ /^\d{4}-12\.csv/;
-  print "@files\n";
-  exit;
+  shift @files until $files[0] =~ /\d{4}-01\.csv/;
+  pop @files until $files[-1] =~ /\d{4}-12\.csv/;
+  print "--Annual--\n";
   main('fixed',\@files,12);
 }
 
@@ -45,9 +42,9 @@ if ($ARGV[0] =~ m/all|^roll1$/i) {
 # Subroutines
 sub helpMenu {
   print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
-  print "all:\t Calculate S-index month-to-month (equivalent to roll1)\n";
-  print "roll#:\t Calculate rolling S-index (e.g., roll3 for a 3-month count)\n";
-  # print "year:\t Calculate H-index for each annual period\n";
+  print "all:\t Calculate s-index month-to-month (equivalent to roll1)\n";
+  print "roll#:\t Calculate rolling s-index (e.g., roll3 for a 3-month count)\n";
+  print "year:\t Calculate annual s-index\n";
   # print "quarter: Calculate H-index for each quarterly period\n";
   # print "finance: Calculate H-index for each fiscal quarter\n";
   exit 1;
@@ -55,14 +52,24 @@ sub helpMenu {
 
 sub main {
   my ($roll,$filesRef,$pin) = @_;
-  foreach my $loc (0..scalar @{$filesRef}-1) {
-    ${$filesRef}[$loc] = $ARGV[2].${$filesRef}[$loc];
-  }
   open my $outF, '>', "$output" or die $ERRNO;
-  print $outF "Month,S-Index,Total,S-Index+nobot,Total+nobot\n";
+
+  if ($roll eq 'roll') {
+    print $outF 'Month,';
+  } elsif ($roll eq 'fixed') {
+    print $outF 'Year,';
+  }
+  print $outF "S-Index,Total,S-Index+nobot,Total+nobot\n";
+
   foreach my $fileN (0..scalar @{$filesRef}-1) {
-    next if ($fileN < $pin-1 && $roll eq 'roll');
-    print $outF (split /\.|\//, ${$filesRef}[$fileN])[1].q{,};
+    if (($fileN < $pin-1 && $roll eq 'roll') # Skip until enough for rolling
+	|| $roll eq 'fixed' && $fileN % $pin != $pin-1) { # Skip until full year
+      next;
+    }
+
+    my $item = (split /\.|\//, ${$filesRef}[$fileN])[1];
+    $item =~ s/-\d\d// if $roll eq 'fixed'; # No month for annual items
+    print $outF $item.q{,};
 
     my @passFile = @{$filesRef}[$fileN-$pin+1..$fileN];
 
