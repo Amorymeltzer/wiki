@@ -117,6 +117,7 @@ done
 # Directories
 rawD="rawData"
 csvD="csvData"
+sinD="procData"
 
 if [[ -n $download ]]; then
     download_data
@@ -126,13 +127,13 @@ if [[ -n $process || -n $graph ]]; then
     shift $((OPTIND -1))
     if [[ $1 =~ ^all$ ]]; then
 	behav=$1
-	sinFile='sindex-monthly.csv'
+	sinFile=$sinD/'sindex-monthly.csv'
 	rPass='monthly'
     elif [[ $1 =~ ^roll[0-9]+$ ]]; then
 	behav=$1
 	rPass=$(echo ${behav:4})
 	if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
-	    sinFile='sindex-'$1'.csv'
+	    sinFile=$sinD/'sindex-'$1'.csv'
 	    rPass='rolling ('$rPass'mos)'
 	else
 	    echo $rPass
@@ -141,7 +142,7 @@ if [[ -n $process || -n $graph ]]; then
 	fi
     elif [[ $1 =~ ^year$ ]]; then
 	behav=$1
-	sinFile='sindex-annual.csv'
+	sinFile=$sinD/'sindex-annual.csv'
 	rPass='annual'
     else
 	get_help $0

@@ -13,7 +13,6 @@ if (@ARGV != 3) {
   helpMenu();
 }
 
-my $output = $ARGV[1];
 opendir my $dir, "$ARGV[2]" or die $ERRNO;
 my @files = grep {-f "$ARGV[2]/$_" } readdir $dir; # No dots
 closedir $dir or die $ERRNO;
@@ -52,7 +51,7 @@ sub helpMenu {
 
 sub main {
   my ($roll,$filesRef,$pin) = @_;
-  open my $outF, '>', "$output" or die $ERRNO;
+  open my $outF, '>', "$ARGV[1]" or die $ERRNO;
 
   if ($roll eq 'roll') {
     print $outF 'Month,';
