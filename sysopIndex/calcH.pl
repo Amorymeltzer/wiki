@@ -59,7 +59,7 @@ sub main {
   } elsif ($roll eq 'fixed') {
     print $outF 'Year,';
   }
-  print $outF "S-Index,Total,S-Index+nobot,Total+nobot\n";
+  print $outF "s-index,Total,s-index+nobot,Total+nobot\n";
 
   foreach my $fileN (0..scalar @{$filesRef}-1) {
     if (($fileN < $pin-1 && $roll eq 'roll') # Skip until enough for rolling

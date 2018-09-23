@@ -22,7 +22,7 @@ dmt[[1]] <- as.Date(as.yearmon(dmt[[1]]))
 dmt <- dmt[,c(1,2,4,3,5)]
 dm <- dmt[,c(1,2,3)]
 # Adjust totals to be similar on y-axis scale
-factor = round(.9*max(dmt$Total)/max(dmt$S.Index),-1)
+factor = round(.9*max(dmt$Total)/max(dmt$s.index),-1)
 dmt$Total = dmt$Total/factor
 dmt$Total.nobot = dmt$Total.nobot/factor
 # Two lines by melting
@@ -93,12 +93,12 @@ modfte_theme <- function() {
     # Plot margins
     theme(plot.margin = unit(c(0.35, 0.2, 0.3, 0.3), "cm"))
 }
-# plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line()+#aes_string(linetype=names(dmt_melt[2]))) +
+# plot3 <- ggplot(dmt_melt, aes_string(x = names(dmt_melt[1]), y = names(dmt_melt[3]), colour = names(dmt_melt[2]), group = names(dmt_melt[2]))) + geom_line()+
 #   scale_x_date(date_labels = dform,breaks=pretty_breaks(6)) +
 #   scale_y_continuous(breaks=pretty_breaks(6)) +
 #   labs(title=paste("Sysop index",args[2], sep=' - '),
 #        x=names(dm_melt)[1],
-#        y="S-index",
+#        y=expression(italic("s")~-index),
 #        tag=paste('totals x',factor, sep=''),
 #        caption="User:Amorymeltzer") +
 #   modfte_theme() + scale_colour_brewer(palette='Set1')
@@ -116,7 +116,7 @@ buildPlot <- function(mf, tot, fact)
     scale_y_continuous(breaks=pretty_breaks(6)) +
     labs(title=paste("Sysop index",args[2], sep=' - '),
          x=names(mf)[1],
-         y="S-index",
+         y=expression(italic("s")~-index),
          caption="User:Amorymeltzer") +
     modfte_theme() + scale_colour_brewer(palette='Set1')
 

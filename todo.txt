@@ -14,8 +14,7 @@
 	    1. Calendar
 	    2. Financial
 2. Organize
-    1. S-index, s-index, S index, s index, or what?
-    2.  Put in directories
+    1.  Put in directories
 3. Write page
     1. Test png->svg
     2. Easy way to upload graphs to commons?
