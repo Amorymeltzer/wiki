@@ -1,0 +1,2 @@
+### Calculating the *s*-index
+
