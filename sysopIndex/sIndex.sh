@@ -7,7 +7,7 @@ function get_help {
     cat <<END_HELP
 Usage: $(basename $0) [-dpgr] <opt>
 
-  opt		Calculating option, either all or rollN (e.g., roll3).  Required with -p and -g/-r.
+  opt		Calculating option (all, rollN, or year).  Required with -p and -g/-r.
   -d		Downlaod data
   -p		Process data
   -g, -r	Graph data
