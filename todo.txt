@@ -16,10 +16,12 @@
 2. Write page
     1. Test png->svg
     2. Easy way to upload graphs to commons?
+	    1. Category:Admin statistics for English Wikipedia
 3. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
     1. Note future options
 
 ##### Possible additions
+* Change fonts?
 * Option to specify start date?
     * Don't pass to getDates, but to calcH/sysopH
 * Justify title and legend left?  Gets complicated...
@@ -35,5 +37,5 @@
 - How determine who was former sysop?  I think it's accurate but curious
 - Any chance any users who were never sysops in there?
     - Just based off presence of log entries
-- Revdel in delete?  Log revdel in delete?
+- Revdel in delete?  Log revdel in delete?  OS Revdel?
 - Specify range in api?

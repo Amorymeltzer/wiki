@@ -20,16 +20,29 @@ The [https://github.com/Amorymeltzer/wiki scripts] pull each month's data from [
 
 
 == Takeaways ==
+* The monthly ''s''-index charts make sense in the broader picture of [[User:Widefox/editors|sysop activity]], in particular the peak in the late 2000s.
+* The project hit a low point, both in ''s''-index and actions around 2014; the ''s''-index has slowly crept up since then.
+* Since then, bots have become an increasingly important source of admin actions.  Nonbot actions have slowly increased and are at roughly 2006 levels while total actions (including bots) have increased rapidly and will likely reach a record level soon.
+** Most of the recent sysopbot actions are from just two bots ([[User:ProcseeBot]] and [[User:RonBot]]), which is why the ''s''-index is comparatively unchanged.
 
 
 == Caveats and drawbacks ==
-* This relies on data from the AdminStats tool from XTools.  They are better at what they do than I am at what I do, so there's a good chance I'm wrong.
-* AdminStats handles renames automatically, but I have to redownload the data if someone changes their name.  That's not too difficult, and I have a number of checks built-in to ensure the data is otherwise the same, but if a sysop, current or former, gets a rename, this may be out of date until I am aware of it.
-* This calculates the index both including and excluding bots to show their effect, but still, bots.
 * While potentially interesting, the ''h''-index itself is rather flawed, so this ''s''-index really doesn't actually mean anything and it certainly isn't clear what a "good" number would be.
+* This relies on data from the AdminStats tool from XTools.
+** AdminStats includes (re)(un)blocks, (un)deletions (including revdels), (re)(un)protections, user rights changes, and imports.  Anything else (edit filter changes, renames, merges, massmessages) isn't counted as a sysop action.
+** Likewise, AdminStats includes ''only'' logged items, so other sysop activities, such as closing deletion discussions, are not counted.
+** AdminStats handles renames automatically, but I have to redownload the data if someone changes their name.  That's not too difficult, and I have built in a number of checks to ensure the data is otherwise unchanged, but if a sysop, current or former, gets a rename, this may be ever-so-slightly out of date until I am aware of it.
+** They are better at what they do than I am at what I do, so there's a good chance I'm wrong about something.
+* This calculates the index both including and excluding bots to show their effect, but still, bots.
+* Data begin January 2005, as that is the first full month with logs.
+
+[[Category:Wikipedia adminship]]
+[[Category:Wikipedia administrator statistics]]
+[[Category:Matters related to requests for adminship]]
 
 
 graphs in columns
 takeaways
 future options?
 * See todos
+Feedback welcome (takeaways, colors, options, etc.)
