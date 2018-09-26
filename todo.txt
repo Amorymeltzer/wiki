@@ -8,16 +8,14 @@
 
 #### S-index
 ##### Todo
-1. More exotic export options
-    1. Academic year
-    2. Quarters
-	    1. Calendar
-	    2. Financial
-2. Write page
-    1. Test png->svg
-    2. Easy way to upload graphs to commons?
+1. Check sysop bots
+2. Images
+    1. Test png->svg (two different directories?)
+    2. Upload
 	    1. Category:Admin statistics for English Wikipedia
-3. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
+    3. Easy way to upload graphs to commons?
+3. Write page
+4. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
     1. Note future options
 
 ##### Possible additions
@@ -25,11 +23,16 @@
 * Option to specify start date?
     * Don't pass to getDates, but to calcH/sysopH
 * Justify title and legend left?  Gets complicated...
+* More exotic export options
+    * Academic year
+    * Quarters
+	    * Calendar
+	    * Financial
 * S-index for just delete/protect/block totals?
     * Or S-index for each individual action family? (d/b/p-index)
     * Leaves out import and rights only
         * Minor issue, likely, but could be interesting
-* Also include number of sysops, number of active sysops, etc.?
+* Include number of sysops, number of active sysops, etc.?
 * o-index (geometric mean of h-index and most-cited paper)
 
 ##### XTool questions
