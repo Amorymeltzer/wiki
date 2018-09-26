@@ -1,0 +1,21 @@
+7SeriesBOT
+AnomieBOT III
+AntiAbuseBot
+CAT:TEMP deletion bot
+ClueBot
+Cydebot
+DYKUpdateBot
+EgressBot
+EyeEightDestroyerBot
+ListManBot
+MPUploadBot
+Merge bot
+MusikBot
+Orphaned image deletion bot
+Orphaned talkpage deletion bot
+ProcseeBot
+RedirectCleanupBot
+RonBot
+TFA Protector Bot
+TorNodeBot
+Yet Another Redirect Cleanup Bot
