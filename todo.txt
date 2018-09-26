@@ -8,7 +8,6 @@
 
 #### S-index
 ##### Todo
-1. Check sysop bots
 2. Images
     1. Test png->svg (two different directories?)
     2. Upload
@@ -35,10 +34,11 @@
 * Include number of sysops, number of active sysops, etc.?
 * o-index (geometric mean of h-index and most-cited paper)
 
-##### XTool questions
+##### Questions (XTool and otherwise)
 - Date in range (defaults to 00:00 UTC start date, 23:59 UTC end date)
 - How determine who was former sysop?  I think it's accurate but curious
 - Any chance any users who were never sysops in there?
     - Just based off presence of log entries
 - Revdel in delete?  Log revdel in delete?  OS Revdel?
 - Specify range in api?
+- When did stop counting move with protection settings as a protection?

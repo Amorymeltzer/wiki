@@ -10,10 +10,12 @@ library(reshape2)
 library(RColorBrewer)
 suppressPackageStartupMessages(library(zoo))
 library(scales)
+#library(gdtools)
+#library(svglite)
 
 args=commandArgs(trailingOnly = TRUE)
-#args=c('sindex-monthly.csv','monthly')
-#args=c('sindex-roll3.csv','rolling (3mos)')
+#args=c('procData/sindex-monthly.csv','monthly')
+#args=c('procData/sindex-roll3.csv','rolling (3mos)')
 # Import data
 dmt=read.csv(args[1],header=T)
 # Format dates, useful for scaling x-axis
@@ -127,7 +129,8 @@ buildPlot <- function(mf, tot, fact)
     p<-p+labs(tag=paste('totals x',factor, sep=''))
   }
 
-  ggsave(paste("img/S-index-",titlePart,tot,".png", sep=''), p, width=4.92, height=3)
+  ggsave(paste("img/png/S-index-",titlePart,tot,".png", sep=''), p, width=4.92, height=3)
+  # ggsave(paste("img/svg/S-index-",titlePart,tot,".svg", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt, '', '')
 buildPlot(dmt_melt, ' (total)', factor)

@@ -10,14 +10,33 @@ The [https://github.com/Amorymeltzer/wiki scripts] pull each month's data from [
 
 == Graphs ==
 === Monthly ===
+<gallery>
+</gallery>
 
 === Rolling ===
 ==== 3 months ====
+<gallery>
+File:S-index-rolling 3mos.svg
+File:S-index-rolling 3mos (total).svg
+</gallery>
+
 ==== 6 months ====
+<gallery>
+File:S-index-rolling 6mos.svg
+File:S-index-rolling 6mos (total).svg
+</gallery>
+
 ==== 12 months ====
+<gallery>
+File:S-index-rolling 12mos.svg
+File:S-index-rolling 12mos (total).svg
+</gallery>
 
 === Annual ===
-
+<gallery>
+File:S-index-annual.svg
+File:S-index-annual (total).svg
+</gallery>
 
 == Takeaways ==
 * The monthly ''s''-index charts make sense in the broader picture of [[User:Widefox/editors|sysop activity]], in particular the peak in the late 2000s.
