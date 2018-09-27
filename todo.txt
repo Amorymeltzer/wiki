@@ -8,16 +8,17 @@
 
 #### S-index
 ##### Todo
-2. Images
-    1. Test png->svg (two different directories?)
-    2. Upload
+1. Images
+    1. Upload
 	    1. Category:Admin statistics for English Wikipedia
-    3. Easy way to upload graphs to commons?
-3. Write page
-4. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
+2. Write page
+3. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
     1. Note future options
+    2. Expand takeaways
+    3. Feedback welcome (takeaways, colors, options, etc.)
 
 ##### Possible additions
+* Quick way to upload graphs to commons?
 * Change fonts?
 * Option to specify start date?
     * Don't pass to getDates, but to calcH/sysopH
@@ -42,3 +43,4 @@
 - Revdel in delete?  Log revdel in delete?  OS Revdel?
 - Specify range in api?
 - When did stop counting move with protection settings as a protection?
+- Why logs start X-mas 2004?
