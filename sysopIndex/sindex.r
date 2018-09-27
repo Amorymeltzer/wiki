@@ -10,8 +10,6 @@ library(reshape2)
 library(RColorBrewer)
 suppressPackageStartupMessages(library(zoo))
 library(scales)
-#library(gdtools)
-#library(svglite)
 
 args=commandArgs(trailingOnly = TRUE)
 #args=c('procData/sindex-monthly.csv','monthly')
@@ -130,7 +128,7 @@ buildPlot <- function(mf, tot, fact)
   }
 
   ggsave(paste("img/png/S-index-",titlePart,tot,".png", sep=''), p, width=4.92, height=3)
-  # ggsave(paste("img/svg/S-index-",titlePart,tot,".svg", sep=''), p, width=4.92, height=3)
+  ggsave(paste("img/svg/S-index-",titlePart,tot,".svg", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt, '', '')
 buildPlot(dmt_melt, ' (total)', factor)
