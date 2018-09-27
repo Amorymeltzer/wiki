@@ -49,6 +49,7 @@ File:S-index_annual_(total).svg
 ** AdminStats includes ''only'' the above logged items, so other typical sysop activities, such as closing deletion discussions, are not counted.  This is a common issue with sysop-related metrics.
 ** AdminStats handles renames automatically, but I have to redownload the data if someone changes their name.  That's not too difficult, and I have built in a number of checks to ensure the data is otherwise unchanged, so this may be ever-so-slightly out of date until I am aware of a sysop rename.
 ** They are better at what they do than I am at what I do, so there's a good chance I'm wrong about something.
+* The data include some users who are not sysops, in particular WMF staff member accounts, that nonetheless have taken sysop actions.  These occasionally affect the ''s''-index, but it is rare and only ever changes it by a single point, so they are left in.
 * This calculates the index both including and excluding bots to show their effect, but still, bots.
 * Data begin January 2005, as that is the first full month with logs.
 
