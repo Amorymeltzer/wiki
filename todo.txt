@@ -7,31 +7,8 @@
 
 
 #### S-index
-##### Upload
-* A month-by-month calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
-* A month-by-month calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
-
-* An annual calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
-* An annual calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
-
-* A 3-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
-* A 3-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
-
-* A 6-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
-* A 6-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
-
-* A 12-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
-* A 12-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
-
-
-* Category:Admin statistics for English Wikipedia
-
 ##### Todo
-1. Images
-    1. Upload
-	    1. Category:Admin statistics for English Wikipedia
-2. Write page
-3. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
+1. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
     1. Note future options
     2. Expand takeaways
     3. Feedback welcome (takeaways, colors, options, etc.)
