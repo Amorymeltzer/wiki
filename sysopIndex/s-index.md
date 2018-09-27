@@ -6,35 +6,45 @@ The [https://github.com/Amorymeltzer/wiki code] for this project pulls each mont
 
 == Graphs ==
 === Monthly ===
-<gallery>
-File:S-index_monthly.svg
-File:S-index_monthly_(total).svg
-</gallery>
+{{Col-begin}}
+{{Col-break}}
+[[File:S-index_monthly.svg]]
+{{Col-break}}
+[[File:S-index_monthly_(total).svg]]
+{{Col-end}}
 
 === Rolling ===
 ==== 3 months ====
-<gallery>
-File:S-index_rolling-3mos.svg
-File:S-index_rolling-3mos_(total).svg
-</gallery>
+{{Col-begin}}
+{{Col-break}}
+[[File:S-index_rolling-3mos.svg]]
+{{Col-break}}
+[[File:S-index_rolling-3mos_(total).svg]]
+{{Col-end}}
 
 ==== 6 months ====
-<gallery>
-File:S-index_rolling-6mos.svg
-File:S-index_rolling-6mos_(total).svg
-</gallery>
+{{Col-begin}}
+{{Col-break}}
+[[File:S-index_rolling-6mos.svg]]
+{{Col-break}}
+[[File:S-index_rolling-6mos_(total).svg]]
+{{Col-end}}
 
 ==== 12 months ====
-<gallery>
-File:S-index_rolling-12mos.svg
-File:S-index_rolling-12mos_(total).svg
-</gallery>
+{{Col-begin}}
+{{Col-break}}
+[[File:S-index_rolling-12mos.svg]]
+{{Col-break}}
+[[File:S-index_rolling-12mos_(total).svg]]
+{{Col-end}}
 
 === Annual ===
-<gallery>
-File:S-index_annual.svg
-File:S-index_annual_(total).svg
-</gallery>
+{{Col-begin}}
+{{Col-break}}
+[[File:S-index_annual.svg]]
+{{Col-break}}
+[[File:S-index_annual_(total).svg]]
+{{Col-end}}
 
 == Takeaways ==
 * The monthly ''s''-index charts make sense in the broader picture of [[User:Widefox/editors|sysop activity]], in particular the peak in the late 2000s.
