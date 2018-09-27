@@ -36,6 +36,7 @@ if (args[2]=='annual') {
 }
 # Format titles
 titlePart=gsub("[\\(\\)]","",args[2])
+titlePart=gsub(" ","-",titlePart)
 
 # Might help for creating separate legends?
 #dmt_melt$type <- ifelse(grepl("Total",dmt_melt$variable), "total", "index")
@@ -127,8 +128,8 @@ buildPlot <- function(mf, tot, fact)
     p<-p+labs(tag=paste('totals x',factor, sep=''))
   }
 
-  ggsave(paste("img/png/S-index-",titlePart,tot,".png", sep=''), p, width=4.92, height=3)
-  ggsave(paste("img/svg/S-index-",titlePart,tot,".svg", sep=''), p, width=4.92, height=3)
+  ggsave(paste("img/png/S-index_",titlePart,tot,".png", sep=''), p, width=4.92, height=3)
+  ggsave(paste("img/svg/S-index_",titlePart,tot,".svg", sep=''), p, width=4.92, height=3)
 }
 buildPlot(dm_melt, '', '')
-buildPlot(dmt_melt, ' (total)', factor)
+buildPlot(dmt_melt, '_(total)', factor)
