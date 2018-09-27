@@ -7,6 +7,25 @@
 
 
 #### S-index
+##### Upload
+* A month-by-month calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
+* A month-by-month calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
+
+* An annual calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
+* An annual calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
+
+* A 3-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
+* A 3-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
+
+* A 6-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
+* A 6-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
+
+* A 12-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]], including total actions, for enWiki.
+* A 12-month rolling calculation of the [[w:User:Amorymeltzer/s-index|''s''-index]] for enWiki.
+
+
+* Category:Admin statistics for English Wikipedia
+
 ##### Todo
 1. Images
     1. Upload
