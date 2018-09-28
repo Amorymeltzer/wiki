@@ -10,8 +10,9 @@
 1. Quick way to update graphs on commons?
 2. Change fonts?
 3. Justify title and legend left?  Gets complicated...
-4. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
-5. More exotic export options
+4. Figure out a way to identify users who aren't sysops who only get logs from moves/overwriting
+5. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
+6. More exotic export options
     1. Academic year
     2. Quarters
 	    1. Calendar
