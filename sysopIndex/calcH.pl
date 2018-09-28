@@ -22,8 +22,8 @@ foreach my $loc (0..scalar @files-1) {
   $files[$loc] = $ARGV[2].$files[$loc];
 }
 
-if ($ARGV[0] =~ m/all|^roll1$/i) {
-  print "--All--\n";
+if ($ARGV[0] =~ m/month|^roll1$/i) {
+  print "--Monthly--\n";
   main('roll', \@files, 1);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
@@ -41,7 +41,7 @@ if ($ARGV[0] =~ m/all|^roll1$/i) {
 # Subroutines
 sub helpMenu {
   print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
-  print "all:\t Calculate s-index month-to-month (equivalent to roll1)\n";
+  print "month:\t Calculate s-index month-to-month (equivalent to roll1)\n";
   print "roll#:\t Calculate rolling s-index (e.g., roll3 for a 3-month count)\n";
   print "year:\t Calculate annual s-index\n";
   # print "quarter: Calculate H-index for each quarterly period\n";

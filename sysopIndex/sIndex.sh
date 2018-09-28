@@ -5,9 +5,9 @@
 
 function get_help {
     cat <<END_HELP
-Usage: $(basename $0) [-dpgr] <opt>
+Usage: $(basename $0) [-dpgr] <opt1> [opt2] ...
 
-  opt		Calculating option (all, rollN, or year).  Required with -p and -g/-r.
+  opt		Calculating option(s) (month, rollN, or year).  Required with -p and -g/-r.
   -d		Downlaod data
   -p		Process data
   -g, -r	Graph data
@@ -125,39 +125,40 @@ fi
 
 if [[ -n $process || -n $graph ]]; then
     shift $((OPTIND -1))
-    if [[ $1 =~ ^all$ ]]; then
-	behav=$1
-	sinFile=$sinD/'sindex-monthly.csv'
-	rPass='monthly'
-    elif [[ $1 =~ ^roll[0-9]+$ ]]; then
-	behav=$1
-	rPass=$(echo ${behav:4})
-	if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
-	    sinFile=$sinD/'sindex-'$1'.csv'
-	    rPass='rolling ('$rPass'mos)'
+    for behav in "$@"
+    do
+	echo "$behav"
+	if [[ $behav =~ ^month$ ]]; then
+	    sinFile=$sinD/'sindex-monthly.csv'
+	    rPass='monthly'
+	elif [[ $behav =~ ^roll[0-9]+$ ]]; then
+	    rPass=$(echo ${behav:4})
+	    if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
+		sinFile=$sinD/'sindex-'$behav'.csv'
+		rPass='rolling ('$rPass'mos)'
+	    else
+		echo $rPass
+		get_help $0
+		exit 0
+	    fi
+	elif [[ $behav =~ ^year$ ]]; then
+	    sinFile=$sinD/'sindex-annual.csv'
+	    rPass='annual'
 	else
-	    echo $rPass
 	    get_help $0
 	    exit 0
 	fi
-    elif [[ $1 =~ ^year$ ]]; then
-	behav=$1
-	sinFile=$sinD/'sindex-annual.csv'
-	rPass='annual'
-    else
-	get_help $0
-	exit 0
-    fi
-    if [[ -n $process ]]; then
-	process_data
-    fi
-    if [[ -n $graph ]]; then
-	if [[ -a "$sinFile" ]]; then
-	    graph_data
-	else
-	    echo "$sinFile doesn't exist"
-	    get_help $0
-	    exit 0
+	if [[ -n $process ]]; then
+	    process_data
 	fi
-    fi
+	if [[ -n $graph ]]; then
+	    if [[ -a "$sinFile" ]]; then
+		graph_data
+	    else
+		echo "$sinFile doesn't exist"
+		get_help $0
+		exit 0
+	    fi
+	fi
+    done
 fi
