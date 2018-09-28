@@ -7,23 +7,17 @@
 
 
 #### S-index
-##### Todo
-1. Advertize?  WT:ADMIN, RFA, BN, INACTIVEADMIN?
-    1. Note future options
-    2. Expand takeaways
-    3. Feedback welcome (takeaways, colors, options, etc.)
+1. Quick way to update graphs on commons?
+2. Change fonts?
+3. Justify title and legend left?  Gets complicated...
+4. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
+5. More exotic export options
+    1. Academic year
+    2. Quarters
+	    1. Calendar
+	    2. Financial
 
 ##### Possible additions
-* Quick way to upload graphs to commons?
-* Change fonts?
-* Option to specify start date?
-    * Don't pass to getDates, but to calcH/sysopH
-* Justify title and legend left?  Gets complicated...
-* More exotic export options
-    * Academic year
-    * Quarters
-	    * Calendar
-	    * Financial
 * S-index for just delete/protect/block totals?
     * Or S-index for each individual action family? (d/b/p-index)
     * Leaves out import and rights only
