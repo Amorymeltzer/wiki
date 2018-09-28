@@ -41,11 +41,11 @@ if ($ARGV[0] =~ m/month|^roll1$/i) {
 # Subroutines
 sub helpMenu {
   print "Usage: $PROGRAM_NAME <opt> <output> <directory>\n";
-  print "month:\t Calculate s-index month-to-month (equivalent to roll1)\n";
+  print "month:\t Calculate month-to-month s-index (equivalent to roll1)\n";
   print "roll#:\t Calculate rolling s-index (e.g., roll3 for a 3-month count)\n";
   print "year:\t Calculate annual s-index\n";
-  # print "quarter: Calculate H-index for each quarterly period\n";
-  # print "finance: Calculate H-index for each fiscal quarter\n";
+  # print "academic: Calculate s-index for each academic year (Sep-Aug)\n";
+  # print "quarter: Calculate quarterly s-index\n";
   exit 1;
 }
 
