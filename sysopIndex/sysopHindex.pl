@@ -41,7 +41,7 @@ sub buildArray {
     next if $NR == 1;
     chomp;
     my @array = split /,/;
-    # next if ($array[0] =~ m/\(WMF\)/io); # Remove WMF staff members, minor changes
+    # next if ($array[0] =~ m/WMF/io); # Remove WMF staff members, minor changes
     ${$hashRefBot}{$array[0]} = $array[-1];
     next if ($array[0] =~ m/bot\b/io);
     ${$hashRef}{$array[0]} = $array[-1];
