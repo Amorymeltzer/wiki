@@ -13,8 +13,9 @@
 4. Figure out a way to identify users who aren't sysops who only get logs from moves/overwriting
 5. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
 6. More exotic export options
-    1. Academic year (9-8)
+    1. Fix academic year X-axis?
     2. Quarters (1-3, 4-6, 7-9, 10-12)
+        1. Need to tackle X-axis for quarters+fixed...
 
 ##### Possible additions
 * S-index for just delete/protect/block totals?

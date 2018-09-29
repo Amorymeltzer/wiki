@@ -7,7 +7,7 @@ function get_help {
     cat <<END_HELP
 Usage: $(basename $0) [-dpgr] <opt1> [opt2] ...
 
-  opt		Calculating option(s) (month, rollN, or year).  Required with -p and -g/-r.
+  opt		Calculating option(s) (month, rollN, year, or academic).  Required with -p and -g/-r.
   -d		Downlaod data
   -p		Process data
   -g, -r	Graph data
@@ -144,6 +144,9 @@ if [[ -n $process || -n $graph ]]; then
 	elif [[ $behav =~ ^year$ ]]; then
 	    sinFile=$sinD/'sindex-annual.csv'
 	    rPass='annual'
+	elif [[ $behav =~ ^academic$ ]]; then
+	    sinFile=$sinD/'sindex-academic.csv'
+	    rPass='academic year'
 	else
 	    get_help $0
 	    exit 0
