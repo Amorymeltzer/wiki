@@ -10,16 +10,8 @@
 1. Quick way to update graphs on commons?
 2. Change fonts?
 3. Justify title and legend left?  Gets complicated...
-4. Figure out a way to identify users who aren't sysops who only get logs from moves/overwriting
-5. Turn fixed into option like roll, so that year is fixed12, etc.
-    1. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
-6. Switch matching to eq
-
-* Change how/where determine x-axis (fold into if/elsif for main call)
-    * Year if N >12?
-
-
-6. Fix academic year X-axis
+4. Figure out a way to identify nonsysops that get logs from moves/overwriting
+5. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
 
 ##### Possible additions
 * S-index for just delete/protect/block totals?
