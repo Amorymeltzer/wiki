@@ -36,61 +36,62 @@ function download_data() {
     # Continue even if there are none, nothing will happen unless we messed up
     dates=$(perl getDates.pl "$latest")
     if [ -z "$dates" ]; then
-	echo "No more dates to process!"
-    fi
+	echo "No more dates to download!"
+    else
+	# Bulk download monthly data from https://xtools.wmflabs.org/adminstats
+	for date in $dates
+	do
+	    mon=$(echo ${date:0:7})
+	    raw=$rawD/$mon.'html'
+	    echo "Downloading $date..."
+	    url="$urlBase$date"
+	    echo $url
+	    curl -d '' "$url" -o $raw.tmp
 
-    # Bulk download monthly data from https://xtools.wmflabs.org/adminstats
-    for date in $dates
-    do
-	mon=$(echo ${date:0:7})
-	raw=$rawD/$mon.'html'
-	echo "Downloading $date..."
-	url="$urlBase$date"
-	echo $url
-	curl -d '' "$url" -o $raw.tmp
+	    # Remove variable/easter egg content
+	    perl cleanRaw.pl $raw.tmp > $raw
+	    rm $raw.tmp
+	    md5 -r $raw >> "md5raw.txt"
 
-	# Remove variable/easter egg content
-	perl cleanRaw.pl $raw.tmp > $raw
-	rm $raw.tmp
-	md5 -r $raw >> "md5raw.txt"
+	    # Verify date as expected, not likely to be a problem
+	    timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
+	    timestamp=$(echo ${timestamp:0:7})
+	    if [ "$timestamp" != "$mon" ]; then
+		dienice "Timestamp for $date seems erroneous"
+	    fi
 
-	# Verify date as expected, not likely to be a problem
-	timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
-	timestamp=$(echo ${timestamp:0:7})
-	if [ "$timestamp" != "$mon" ]; then
-	    dienice "Timestamp for $date seems erroneous"
+	    csv=$csvD/$mon.'csv'
+	    perl table2csv.pl $raw > $csv
+	    md5 -r $csv >> "md5csv.txt"
+	    echo -n $mon > latest
+	done
+
+	# Check data for duplication events
+	rawDups=$(sort "md5raw.txt" | uniq -d)
+	csvDups=$(sort "md5csv.txt" | uniq -d)
+	echo
+	if [[ -n $rawDups ]]; then
+	    echo "Duplicate raw data files found"
+	    for dup in $rawDups
+	    do
+		echo $dup
+	    done
+	    dienice "You should investigate manually"
 	fi
 
-	csv=$csvD/$mon.'csv'
-	perl table2csv.pl $raw > $csv
-	md5 -r $csv >> "md5csv.txt"
-	echo -n $mon > latest
-    done
-
-    # Check data for duplication events
-    rawDups=$(sort "md5raw.txt" | uniq -d)
-    csvDups=$(sort "md5csv.txt" | uniq -d)
-    echo
-    if [[ -n $rawDups ]]; then
-	echo "Duplicate raw data files found"
-	for dup in $rawDups
-	do
-	    echo $dup
-	done
-	dienice "You should investigate manually"
-    fi
-
-    if [[ -n $csvDups ]]; then
-	echo "Duplicate csv data files found"
-	for dup in $csvDups
-	do
-	    echo $dup
-	done
-	dienice "You should investigate manually"
+	if [[ -n $csvDups ]]; then
+	    echo "Duplicate csv data files found"
+	    for dup in $csvDups
+	    do
+		echo $dup
+	    done
+	    dienice "You should investigate manually"
+	fi
     fi
 }
 
 function process_data() {
+    echo "Building $sinFile"
     perl calcH.pl $behav $sinFile $csvD/
 }
 
@@ -133,7 +134,6 @@ if [[ -n $process || -n $graph ]]; then
     fi
     for behav in $opts
     do
-	echo "$behav"
 	if [[ $behav =~ ^month$ || $behav =~ ^roll1$ ]]; then
 	    sinFile=$sinD/'sindex-monthly.csv'
 	    rPass='monthly'

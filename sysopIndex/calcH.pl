@@ -24,23 +24,19 @@ foreach my $loc (0..scalar @files-1) {
 }
 
 if ($ARGV[0] eq 'month' || $ARGV[0] eq 'roll1') {
-  print "--Monthly--\n";
-  main('roll', \@files, 1);
+  main('roll', \@files, 1,'Monthly');
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
-  print "--Rolling $ARGV[0]--\n";
-  main('roll', \@files,$ARGV[0]);
+  main('roll', \@files,$ARGV[0],"Rolling $ARGV[0]");
 } elsif ($ARGV[0] eq 'year' || $ARGV[0] eq 'fixed12') {
   # Find the first January and last december
   # Turned off until starting date options, since data starts in Jan 05
   # shift @files until $files[0] =~ /\d{4}-01\.csv/;
   # pop @files until $files[-1] =~ /\d{4}-12\.csv/;
-  print "--Annual--\n";
-  main('fixed',\@files,12);
+  main('fixed',\@files,12,'Annual');
 } elsif ($ARGV[0] =~ m/fixed\d+/i) {
   $ARGV[0] =~ s/fixed(\d+)/$1/;
-  print "--Fixed $ARGV[0]--\n";
-  main('fixed', \@files,$ARGV[0]);
+  main('fixed', \@files,$ARGV[0],"Fixed $ARGV[0]");
 }
 
 
@@ -55,13 +51,13 @@ sub helpMenu {
 }
 
 sub main {
-  my ($roll,$filesRef,$pin) = @_;
+  my ($roll,$filesRef,$pin,$label) = @_;
   open my $outF, '>', "$ARGV[1]" or die $ERRNO;
 
   print $outF "Date,s-index,Total,s-index+nobot,Total+nobot\n";
 
   my $fileC = scalar @{$filesRef}-1;
-  my $progress_bar = Term::ProgressBar->new({count=>$fileC, term_width=>80, name=>$ARGV[0]});
+  my $progress_bar = Term::ProgressBar->new({count=>$fileC, term_width=>80, name=>$label});
   foreach my $fileN (0..$fileC) {
     if (($fileN < $pin-1 && $roll eq 'roll') # Skip until enough for rolling
 	|| $roll eq 'fixed' && $fileN % $pin != $pin-1) { # Skip until full year
