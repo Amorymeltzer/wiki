@@ -29,7 +29,6 @@ dmt$Total.nobot = dmt$Total.nobot/factor
 dm_melt = melt(dm, id = names(dm)[1])
 dmt_melt = melt(dmt, id = names(dmt)[1])
 # Determine correct format
-#if (args[2]=='annual' || args[2]=='academic year') {
 if (args[2]=='annual') {
   dform='%Y'
 } else {

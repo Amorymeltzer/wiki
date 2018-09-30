@@ -7,7 +7,7 @@ function get_help {
     cat <<END_HELP
 Usage: $(basename $0) [-dpgr] <opt1> [opt2] ...
 
-  opt		Calculating option(s) (month, rollN, year, or academic).  Required with -p and -g/-r.
+  opt		Calculating option(s) (month, rollN, year, or fixedN).  Required with -p and -g/-r.
   -d		Downlaod data
   -p		Process data
   -g, -r	Graph data
@@ -128,7 +128,7 @@ if [[ -n $process || -n $graph ]]; then
     for behav in "$@"
     do
 	echo "$behav"
-	if [[ $behav =~ ^month$ ]]; then
+	if [[ $behav =~ ^month$ || $behav =~ ^roll1$ ]]; then
 	    sinFile=$sinD/'sindex-monthly.csv'
 	    rPass='monthly'
 	elif [[ $behav =~ ^roll[0-9]+$ ]]; then
@@ -141,12 +141,19 @@ if [[ -n $process || -n $graph ]]; then
 		get_help $0
 		exit 0
 	    fi
-	elif [[ $behav =~ ^year$ ]]; then
+	elif [[ $behav =~ ^year$ || $behav =~ ^fixed12$ ]]; then
 	    sinFile=$sinD/'sindex-annual.csv'
 	    rPass='annual'
-	elif [[ $behav =~ ^academic$ ]]; then
-	    sinFile=$sinD/'sindex-academic.csv'
-	    rPass='academic year'
+	elif [[ $behav =~ ^fixed[0-9]+$ ]]; then
+	    rPass=$(echo ${behav:5})
+	    if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
+		sinFile=$sinD/'sindex-'$behav'.csv'
+		rPass='fixed ('$rPass'mos)'
+	    else
+		echo $rPass
+		get_help $0
+		exit 0
+	    fi
 	else
 	    get_help $0
 	    exit 0
