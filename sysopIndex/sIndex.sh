@@ -133,7 +133,7 @@ if [[ -n $process || -n $graph ]]; then
 	    rPass='monthly'
 	elif [[ $behav =~ ^roll[0-9]+$ ]]; then
 	    rPass=$(echo ${behav:4})
-	    if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
+	    if [[ $rPass -ge 1 && $rPass -le 24 ]]; then
 		sinFile=$sinD/'sindex-'$behav'.csv'
 		rPass='rolling ('$rPass'mos)'
 	    else
@@ -146,7 +146,7 @@ if [[ -n $process || -n $graph ]]; then
 	    rPass='annual'
 	elif [[ $behav =~ ^fixed[0-9]+$ ]]; then
 	    rPass=$(echo ${behav:5})
-	    if [[ $rPass -ge 1 && $rPass -le 12 ]]; then
+	    if [[ $rPass -ge 1 && $rPass -le 24 ]]; then
 		sinFile=$sinD/'sindex-'$behav'.csv'
 		rPass='fixed ('$rPass'mos)'
 	    else
