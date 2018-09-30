@@ -13,6 +13,15 @@
 4. Figure out a way to identify users who aren't sysops who only get logs from moves/overwriting
 5. Turn fixed into option like roll, so that year is fixed12, etc.
     1. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
+
+* Change how/where determine x-axis (fold into if/elsif for main call)
+    * Year if N >12?
+* Capture fixed12
+* Negate need for offcall?
+* Switch matching to eq
+* Capture fixed12 and roll1 in sindex
+
+
 6. Fix academic year X-axis
 
 ##### Possible additions
