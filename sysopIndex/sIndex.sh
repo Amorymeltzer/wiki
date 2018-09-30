@@ -125,7 +125,13 @@ fi
 
 if [[ -n $process || -n $graph ]]; then
     shift $((OPTIND -1))
-    for behav in "$@"
+    # Quick option to rebuild everything
+    if [[ $1 =~ ^all$ ]]; then
+	opts="month roll3 roll6 roll12 year"
+    else
+	opts="$@"
+    fi
+    for behav in $opts
     do
 	echo "$behav"
 	if [[ $behav =~ ^month$ || $behav =~ ^roll1$ ]]; then
