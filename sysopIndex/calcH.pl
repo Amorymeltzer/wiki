@@ -7,6 +7,7 @@ use strict;
 use warnings;
 use diagnostics;
 use English qw( -no_match_vars);
+use Term::ProgressBar;
 
 # Usage information
 if (@ARGV != 3) {
@@ -59,7 +60,9 @@ sub main {
 
   print $outF "Date,s-index,Total,s-index+nobot,Total+nobot\n";
 
-  foreach my $fileN (0..scalar @{$filesRef}-1) {
+  my $fileC = scalar @{$filesRef}-1;
+  my $progress_bar = Term::ProgressBar->new({count=>$fileC, term_width=>80, name=>$ARGV[0]});
+  foreach my $fileN (0..$fileC) {
     if (($fileN < $pin-1 && $roll eq 'roll') # Skip until enough for rolling
 	|| $roll eq 'fixed' && $fileN % $pin != $pin-1) { # Skip until full year
       next;
@@ -71,11 +74,13 @@ sub main {
     $item = (split /\.|\//, $item)[1];
     print $outF $item.q{,};
 
-    print "Processing $passFile[0]\n";
+    $progress_bar->update($fileN);
     my $out = `perl sysopHindex.pl @passFile`;
     chomp $out;
     print $outF "$out\n";
   }
   close $outF or die $ERRNO;
+  $progress_bar->update($fileC);
+  print "\n";
   return;
 }
