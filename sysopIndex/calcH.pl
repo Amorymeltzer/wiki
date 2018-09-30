@@ -51,7 +51,6 @@ sub helpMenu {
   print "roll#:\t\t Calculate rolling s-index (e.g., roll3 for a 3-month count)\n";
   print "year:\t\t Calculate annual s-index\n";
   print "academic:\t Calculate s-index for each academic year (Sep-Aug)\n";
-  # print "quarter: Calculate quarterly s-index\n";
   exit 1;
 }
 
@@ -75,7 +74,6 @@ sub main {
     }
 
     my @passFile = @{$filesRef}[$fileN-$pin+1..$fileN];
-    #print "@passFile\n";
 
     my $item;
     if ($roll eq 'roll') {

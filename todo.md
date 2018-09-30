@@ -11,11 +11,9 @@
 2. Change fonts?
 3. Justify title and legend left?  Gets complicated...
 4. Figure out a way to identify users who aren't sysops who only get logs from moves/overwriting
-5. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
-6. More exotic export options
-    1. Fix academic year X-axis?
-    2. Quarters (1-3, 4-6, 7-9, 10-12)
-        1. Need to tackle X-axis for quarters+fixed...
+5. Turn fixed into option like roll, so that year is fixed12, etc.
+    1. Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
+6. Fix academic year X-axis
 
 ##### Possible additions
 * S-index for just delete/protect/block totals?
