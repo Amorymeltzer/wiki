@@ -134,7 +134,7 @@ if [[ -n $process || -n $graph ]]; then
     fi
     for behav in $opts
     do
-	if [[ $behav =~ ^month$ || $behav =~ ^roll1$ ]]; then
+	if [[ $behav =~ ^month$ || $behav =~ ^roll1$ || $behav =~ ^fixed1$ ]]; then
 	    sinFile=$sinD/'sindex-monthly.csv'
 	    rPass='monthly'
 	elif [[ $behav =~ ^roll[0-9]+$ ]]; then
