@@ -57,12 +57,7 @@ sub main {
   my ($roll,$filesRef,$pin) = @_;
   open my $outF, '>', "$ARGV[1]" or die $ERRNO;
 
-  if ($roll eq 'roll') {
-    print $outF 'Month,';
-  } elsif ($roll eq 'fixed') {
-    print $outF 'Year,';
-  }
-  print $outF "s-index,Total,s-index+nobot,Total+nobot\n";
+  print $outF "Date,s-index,Total,s-index+nobot,Total+nobot\n";
 
   foreach my $fileN (0..scalar @{$filesRef}-1) {
     if (($fileN < $pin-1 && $roll eq 'roll') # Skip until enough for rolling
