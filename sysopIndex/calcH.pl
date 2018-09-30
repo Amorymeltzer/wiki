@@ -69,7 +69,6 @@ sub main {
 
     my $item = $roll eq 'roll' ? $passFile[-1] : $passFile[0];
     $item = (split /\.|\//, $item)[1];
-    $item =~ s/-\d\d// if $roll eq 'fixed'; # No month for annual items
     print $outF $item.q{,};
 
     print "Processing $passFile[0]\n";
