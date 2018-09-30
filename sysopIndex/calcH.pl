@@ -22,14 +22,14 @@ foreach my $loc (0..scalar @files-1) {
   $files[$loc] = $ARGV[2].$files[$loc];
 }
 
-if ($ARGV[0] =~ m/month|^roll1$/i) {
+if ($ARGV[0] eq 'month' || $ARGV[0] eq 'roll1') {
   print "--Monthly--\n";
   main('roll', \@files, 1);
 } elsif ($ARGV[0] =~ m/roll\d+/i) {
   $ARGV[0] =~ s/roll(\d+)/$1/;
   print "--Rolling $ARGV[0]--\n";
   main('roll', \@files,$ARGV[0]);
-} elsif ($ARGV[0] =~ m/year|^fixed12$/i) {
+} elsif ($ARGV[0] eq 'year' || $ARGV[0] eq 'fixed12') {
   # Find the first January and last december
   # Turned off until starting date options, since data starts in Jan 05
   # shift @files until $files[0] =~ /\d{4}-01\.csv/;
