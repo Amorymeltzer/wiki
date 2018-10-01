@@ -97,7 +97,7 @@ modfte_theme <- function() {
 #        x=names(dm_melt)[1],
 #        y=expression(italic("s")~-index),
 #        tag=paste('totals x',factor, sep=''),
-#        caption="User:Amorymeltzer") +
+#        caption=paste('User:Amorymeltzer', format(Sys.Date(), "%b %Y"), sep=', ')) +
 #   modfte_theme() + scale_colour_brewer(palette='Set1') +
 #   geom_smooth(se=FALSE, method=loess, size=0.3, linetype='dashed')
 # plot3
@@ -111,7 +111,7 @@ buildPlot <- function(mf, tot, fact)
     labs(title=paste("Sysop index",args[2], sep=' - '),
          x=names(mf)[1],
          y=expression(italic("s")~-index),
-         caption="User:Amorymeltzer") +
+         caption=paste('User:Amorymeltzer', format(Sys.Date(), "%b %Y"), sep=', ')) +
     modfte_theme() + scale_colour_brewer(palette='Set1')
 
   p<-p+geom_smooth(se=FALSE, method=loess, size=0.3, linetype='dashed')
