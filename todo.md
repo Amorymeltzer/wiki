@@ -5,6 +5,8 @@
 * Cleanup, rerun, maybe publish?
 
 #### S-index
+* Consider putting annual back to year, not mon year
+    * Or fixed at end not start?  Not clear either way
 * Quick way to update graphs on commons?
 * Change fonts?
 * Justify title and legend left?  Gets complicated...
