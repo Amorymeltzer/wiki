@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # cratHighlighterSubpages.pl by Amory Meltzer
+# Licensed under the WTFPL http://www.wtfpl.net/
 # Make it somewhat easier to sync crathighlighter.js
 # ArbCom still manual
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js
