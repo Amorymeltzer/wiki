@@ -9,19 +9,53 @@ use strict;
 use warnings;
 use diagnostics;
 
-my @rights = qw (bureaucrat oversight checkuser interface-admin);
+my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom);
 
 foreach (@rights) {
   my $file = $_.'.json';
   my $hash = `md5 -q $file`;
 
-  my $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=allusers&aulimit=max&augroup=';
-  $url .= $_;
+  my $url;
+  if (/arbcom/) {
+    # Imperfect, relies upon the template being updated, but ArbCom membership
+    # is high-profile enough that it will likely be updated quickly
+    $url = 'https://en.wikipedia.org/w/index.php?title=Template:Arbitration_committee_chart/recent&action=raw&ctype=text';
+  } else {
+    $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=allusers&aulimit=max&augroup=';
+    $url .= $_;
+  }
   my $json = `curl -s "$url"`;
 
-  $json =~ s/]}}$/}/g;
-  $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
-  $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
+  if (/arbcom/) {
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime time ;
+    $year += 1900;
+    $mon++;
+    my $now = $year.q{-}.$mon.q{-}.$mday;
+    my @names;
+    my $newSon = '{';
+    for (split /^/, $json) {
+      if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
+	my ($from,$till,$name) = ($1,$2,$3);
+	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+	$till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+	if ($from le $now && $till ge $now) {
+	  push @names, $name;
+	}
+      }
+    }
+    foreach (sort @names) {
+      $newSon .= "\n\t\"$_\": 1";
+      if ($_ ne (sort @names)[-1]) {
+	$newSon.= q{,};
+      }
+    }
+    $newSon .= "\n}";
+    $json = $newSon;
+  } else {
+    $json =~ s/]}}$/}/g;
+    $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
+    $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/\t"$1": 1$2\n/g;
+  }
 
   open my $out, '>', "$file" or die $1;
   print $out $json;
