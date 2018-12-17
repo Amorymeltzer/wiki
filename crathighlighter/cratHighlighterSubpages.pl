@@ -44,7 +44,7 @@ foreach (@rights) {
       }
     }
     foreach (sort @names) {
-      $newSon .= "\n\t\"$_\": 1";
+      $newSon .= "\n    \"$_\": 1";
       if ($_ ne (sort @names)[-1]) {
 	$newSon.= q{,};
       }
@@ -54,7 +54,7 @@ foreach (@rights) {
   } else {
     $json =~ s/]}}$/}/g;
     $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
-    $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/\t"$1": 1$2\n/g;
+    $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
   }
 
   open my $out, '>', "$file" or die $1;
