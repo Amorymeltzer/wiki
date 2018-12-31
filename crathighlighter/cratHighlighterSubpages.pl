@@ -31,6 +31,10 @@ foreach (@rights) {
     $year += 1900;
     $mon++;
     my $now = $year.q{-}.$mon.q{-}.$mday;
+    last if $now =~ /-12-31/;	# For dumb template reasons, arbs are listed
+                                # as ending terms on December 30th.  While
+                                # unlikely, this means the list won't be
+                                # accurate on the 31st, so just skip it.
     my @names;
     my $newSon = '{';
     for (split /^/, $json) {
