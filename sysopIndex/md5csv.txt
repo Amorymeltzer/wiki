@@ -165,3 +165,4 @@ bc9aae6b22b0bff55b68f26efe7254b2 csvData/2018-06.csv
 9452596117fe979f4e3098bd2ca62884 csvData/2018-09.csv
 ea406a0a8ca25baa30dea5df26792945 csvData/2018-10.csv
 37413d69dbc72ea2857f48ec82f5eedc csvData/2018-11.csv
+39187c0e0e94e81442fadec0d2dbbefd csvData/2018-12.csv
