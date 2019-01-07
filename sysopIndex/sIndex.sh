@@ -22,6 +22,7 @@ function dienice() {
 }
 
 function download_data() {
+    # Should use API after https://phabricator.wikimedia.org/T205652
     urlBase="https://xtools.wmflabs.org/adminstats/enWiki/"
     # Keep track of latest data grab
     latest="latest"
