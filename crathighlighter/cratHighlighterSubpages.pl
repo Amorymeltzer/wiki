@@ -2,14 +2,13 @@
 # cratHighlighterSubpages.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Make it somewhat easier to sync crathighlighter.js
-# ArbCom still manual
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js
 
 use strict;
 use warnings;
 use diagnostics;
 
-my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom);
+my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 
 foreach (@rights) {
   my $file = $_.'.json';
@@ -20,6 +19,8 @@ foreach (@rights) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
     $url = 'https://en.wikipedia.org/w/index.php?title=Template:Arbitration_committee_chart/recent&action=raw&ctype=text';
+  } elsif (/steward/) {
+    $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=globalallusers&agulimit=max&agugroup=steward';
   } else {
     $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=allusers&aulimit=max&augroup=';
     $url .= $_;
@@ -58,7 +59,7 @@ foreach (@rights) {
   } else {
     $json =~ s/]}}$/}/g;
     $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
-    $json =~ s/{"userid":\d+,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
+    $json =~ s/{"(?:user)?id":"?\d+"?,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
   }
 
   open my $out, '>', "$file" or die $1;
