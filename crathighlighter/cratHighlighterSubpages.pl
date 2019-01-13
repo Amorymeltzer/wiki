@@ -8,6 +8,14 @@ use strict;
 use warnings;
 use diagnostics;
 
+# Quick dumb check for internet connection, everything empty otherwise
+# Could probably subroutine a curl check, but meh
+my $ip = `curl -s 'icanhazip.com'`;
+if (!$ip) {
+  print "No internet connection found, quitting\n";
+  exit 0;
+}
+
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 
 foreach (@rights) {
