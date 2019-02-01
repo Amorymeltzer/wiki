@@ -38,7 +38,9 @@ foreach (@rights) {
   if (/arbcom/) {
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime time ;
     $year += 1900;
-    $mon++;
+    # 0-padding
+    $mon = sprintf '%02d', $mon+1;
+    $mday = sprintf '%02d', $mday;
     my $now = $year.q{-}.$mon.q{-}.$mday;
     last if $now =~ /-12-31/;	# For dumb template reasons, arbs are listed
                                 # as ending terms on December 30th.  While
