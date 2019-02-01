@@ -47,7 +47,7 @@ foreach (@rights) {
                                 # unlikely, this means the list won't be
                                 # accurate on the 31st, so just skip it.
     my @names;
-    my $newSon = '{';
+    my $arbSon = '{';
     for (split /^/, $json) {
       if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
 	my ($from,$till,$name) = ($1,$2,$3);
@@ -59,13 +59,13 @@ foreach (@rights) {
       }
     }
     foreach (sort @names) {
-      $newSon .= "\n    \"$_\": 1";
+      $arbSon .= "\n    \"$_\": 1";
       if ($_ ne (sort @names)[-1]) {
-	$newSon.= q{,};
+	$arbSon.= q{,};
       }
     }
-    $newSon .= "\n}";
-    $json = $newSon;
+    $arbSon .= "\n}";
+    $json = $arbSon;
   } else {
     $json =~ s/]}}$/}/g;
     $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
@@ -80,17 +80,17 @@ foreach (@rights) {
   if ($hash ne $newHash) {
     print "$file changed\n";
   } else {			# Check that I'm up-to-date onwiki
-    $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=User:Amorymeltzer/crathighlighter.js/';
+    $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/';
     $url .= $file;
     my $wikiSon = `curl -s "$url"`;
 
     my $tmp = $_.'tmp';
     open my $wout, '>', "$tmp" or die $1;
-    print $wout $json;
+    print $wout $wikiSon;
     close $wout or die $1;
 
     my $wikiHash = `md5 -q $tmp`;
-    if ($hash ne $wikiHash) {
+    if ($hash ne $wikiHash && !/steward/) { # Dumb hack for Alaa
       print "$file needs updating on-wiki\n";
     }
     unlink $tmp;
