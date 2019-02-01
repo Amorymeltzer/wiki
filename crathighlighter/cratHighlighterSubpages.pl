@@ -36,7 +36,7 @@ foreach (@rights) {
   my $json = `curl -s "$url"`;
 
   if (/arbcom/) {
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime time ;
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
     $year += 1900;
     # 0-padding
     $mon = sprintf '%02d', $mon+1;
