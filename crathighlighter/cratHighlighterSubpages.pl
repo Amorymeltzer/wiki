@@ -79,20 +79,27 @@ foreach (@rights) {
   my $newHash = `md5 -q $file`;
   if ($hash ne $newHash) {
     print "$file changed\n";
-  } else {			# Check that I'm up-to-date onwiki
-    $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/';
-    $url .= $file;
-    my $wikiSon = `curl -s "$url"`;
-
-    my $tmp = $_.'tmp';
-    open my $wout, '>', "$tmp" or die $1;
-    print $wout $wikiSon;
-    close $wout or die $1;
-
-    my $wikiHash = `md5 -q $tmp`;
-    if ($hash ne $wikiHash && !/steward/) { # Dumb hack for Alaa
-      print "$file needs updating on-wiki\n";
-    }
-    unlink $tmp;
   }
+
+  # Check that everything is up-to-date onwiki
+  $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/';
+  $url .= $file;
+  my $wikiSon = `curl -s "$url"`;
+
+  my $tmp = $_.'tmp';
+  open my $wout, '>', "$tmp" or die $1;
+  print $wout $wikiSon;
+  close $wout or die $1;
+
+  my $wikiHash = `md5 -q $tmp`;
+  if ($newHash ne $wikiHash && !/steward/) { # Dumb hack for Alaa
+    if ($newHash ne $hash) {
+      print "\tand ";
+    } else {
+      print "$file ";
+    }
+    print "needs updating on-wiki\n";
+  }
+
+  unlink $tmp;
 }
