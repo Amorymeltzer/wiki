@@ -8,6 +8,8 @@ use strict;
 use warnings;
 use diagnostics;
 
+use MediaWiki::API;
+
 # Quick dumb check for internet connection, everything empty otherwise
 # Could probably subroutine a curl check, but meh
 my $ip = `curl -s 'icanhazip.com'`;
@@ -16,26 +18,25 @@ if (!$ip) {
   exit 0;
 }
 
+my $mw = MediaWiki::API->new({
+			      api_url => 'https://en.wikipedia.org/w/api.php'
+			     });
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
-
 foreach (@rights) {
+  my @names;
+
   my $file = $_.'.json';
   my $hash = `md5 -q $file`;
 
   my $url;
+  my $query;
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
     $url = 'https://en.wikipedia.org/w/index.php?title=Template:Arbitration_committee_chart/recent&action=raw&ctype=text';
-  } elsif (/steward/) {
-    $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=globalallusers&agulimit=max&agugroup=steward';
-  } else {
-    $url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=allusers&aulimit=max&augroup=';
-    $url .= $_;
-  }
-  my $json = `curl -s "$url"`;
+    my $page = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
+    my $content = $page->{q{*}};
 
-  if (/arbcom/) {
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
     $year += 1900;
     # 0-padding
@@ -46,9 +47,7 @@ foreach (@rights) {
                                 # as ending terms on December 30th.  While
                                 # unlikely, this means the list won't be
                                 # accurate on the 31st, so just skip it.
-    my @names;
-    my $arbSon = '{';
-    for (split /^/, $json) {
+    for (split /^/, $content) {
       if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
 	my ($from,$till,$name) = ($1,$2,$3);
 	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
@@ -58,19 +57,36 @@ foreach (@rights) {
 	}
       }
     }
-    foreach (sort @names) {
-      $arbSon .= "\n    \"$_\": 1";
-      if ($_ ne (sort @names)[-1]) {
-	$arbSon.= q{,};
-      }
-    }
-    $arbSon .= "\n}";
-    $json = $arbSon;
+  } elsif (/steward/) {
+    $query = {
+	      action => 'query',
+	      format => 'json',
+	      list => 'globalallusers',
+	      agulimit => 'max',
+	      agugroup => 'steward'
+	     };
+    my $ret = $mw->list($query) || die $mw->{error}->{code} . ': ' . $mw->{error}->{details};
+    @names = procC($ret, \@names);
   } else {
-    $json =~ s/]}}$/}/g;
-    $json =~ s/{"batchcomplete.*allusers.*query.*allusers":\[/{\n/g;
-    $json =~ s/{"(?:user)?id":"?\d+"?,"name":"(.*?)"}(,?)/    "$1": 1$2\n/g;
+    $query = {
+	      action => 'query',
+	      format => 'json',
+	      list => 'allusers',
+	      aulimit => 'max',
+	      augroup => $_
+	     };
+    my $ret = $mw->list($query) || die $mw->{error}->{code} . ': ' . $mw->{error}->{details};
+    @names = procC($ret, \@names);
   }
+
+  my $json = '{';
+  foreach (sort @names) {
+    $json .= "\n    \"$_\": 1";
+    if ($_ ne (sort @names)[-1]) {
+      $json.= q{,};
+    }
+  }
+  $json .= "\n}";
 
   open my $out, '>', "$file" or die $1;
   print $out $json;
@@ -102,4 +118,23 @@ foreach (@rights) {
   }
 
   unlink $tmp;
+}
+
+
+###Subroutines
+sub procC {
+  my ($ref, $nameRef) = @_;
+
+  foreach my $pair (@{$ref}) {
+    my $name = $pair->{name};
+    if ($name !~ /\w+/ia) {
+      my $new;
+      for my $c (split //, $name) {
+	$new .= sprintf("\\u%04x", ord($c));
+      }
+      $name = $new;
+    }
+    push @{$nameRef}, $name;
+  }
+  return @{$nameRef};
 }
