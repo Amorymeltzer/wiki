@@ -29,7 +29,6 @@ foreach (@rights) {
   my $hash = `md5 -q $file`;
 
   my $url;
-  my $query;
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
@@ -37,6 +36,7 @@ foreach (@rights) {
     my $page = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
     my $content = $page->{q{*}};
 
+    # Find the diamonds in the rough
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
     $year += 1900;
     # 0-padding
@@ -57,25 +57,26 @@ foreach (@rights) {
 	}
       }
     }
-  } elsif (/steward/) {
-    $query = {
-	      action => 'query',
-	      format => 'json',
-	      list => 'globalallusers',
-	      agulimit => 'max',
-	      agugroup => 'steward'
-	     };
-    my $ret = $mw->list($query) || die $mw->{error}->{code} . ': ' . $mw->{error}->{details};
-    @names = procC($ret, \@names);
   } else {
-    $query = {
-	      action => 'query',
-	      format => 'json',
-	      list => 'allusers',
-	      aulimit => 'max',
-	      augroup => $_
-	     };
-    my $ret = $mw->list($query) || die $mw->{error}->{code} . ': ' . $mw->{error}->{details};
+    my $query;   # Will be a hash reference to the parameters in the API query
+    if (/steward/) {
+      $query = {
+		 action => 'query',
+		 format => 'json',
+		 list => 'globalallusers',
+		 agulimit => 'max',
+		 agugroup => 'steward'
+		}
+    } else {
+      $query = {
+		 action => 'query',
+		 format => 'json',
+		 list => 'allusers',
+		 aulimit => 'max',
+		 augroup => $_
+		}
+    }
+    my $ret = $mw->list($query) || die "$mw->{error}->{code}: $mw->{error}->{details}\n";
     @names = procC($ret, \@names);
   }
 
@@ -101,6 +102,8 @@ foreach (@rights) {
   $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/';
   $url .= $file;
   my $wikiSon = `curl -s "$url"`;
+  # my $wikiSon = $mw->get_page({title => "User:Amorymeltzer/crathighlighter.js/$file"});
+  # $wikiSon = $wikiSon->{q{*}};
 
   my $tmp = $_.'tmp';
   open my $wout, '>', "$tmp" or die $1;
