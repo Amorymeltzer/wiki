@@ -11,10 +11,12 @@ use diagnostics;
 # MAGIC hash with user env variables for $home
 chdir "$ENV{HOME}/Documents/git/twinkle\@azatoth/" or die "$!";
 
-# Ensure Twinkle repo is clean and on master
+# Ensure Twinkle repo is clean
 my $gs = `git status`;
-if ($gs !~ /On branch master/ || $gs !~ /nothing to commit, working tree clean/) {
-  print "Directory not clean or on master\n";
+# if ($gs !~ /On branch master/ || $gs !~ /nothing to commit, working tree clean/) {
+if ($gs !~ /nothing to commit, working tree clean/) {
+  # print "Directory not clean or on master\n";
+  print "Directory not clean\n";
   exit;
 }
 
