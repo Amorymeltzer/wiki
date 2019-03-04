@@ -2,7 +2,6 @@
 # twinkleCheck.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Check which Twinkle modules need updating
-## Should probably check that I'm on master first, and that things are clean
 
 use strict;
 use warnings;
@@ -38,7 +37,14 @@ foreach (@files) {
   my $hash = `md5 -q $twName`;
 
   s/modules\///;		# Tidy for MW name
-  my $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
+
+  my $url;
+  if (@ARGV && $ARGV[0] eq 'test') {
+    $url = 'https://test.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
+  } else {
+    $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
+  }
+
   $url .= $_;
   my $json = `curl -s -w '\n' "$url"`; # Add newline for diffing/md5ing
 
