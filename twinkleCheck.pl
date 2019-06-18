@@ -12,9 +12,7 @@ chdir "$ENV{HOME}/Documents/git/twinkle\@azatoth/" or die "$!";
 
 # Ensure Twinkle repo is clean
 my $gs = `git status`;
-# if ($gs !~ /On branch master/ || $gs !~ /nothing to commit, working tree clean/) {
 if ($gs !~ /nothing to commit, working tree clean/) {
-  # print "Directory not clean or on master\n";
   print "Directory not clean\n";
   exit;
 }
@@ -33,7 +31,6 @@ my @files = qw (Twinkle.js Twinkle.css Twinkle-pagestyles.css morebits.js
 
 foreach (@files) {
   my $twName = lc;		# twinke.js/css/-pagestyles.css are capped
-  # my $hash = `md5 -q $twDir$twName`;
   my $hash = `md5 -q $twName`;
 
   s/modules\///;		# Tidy for MW name
