@@ -17,6 +17,17 @@ if ($gs !~ /nothing to commit, working tree clean/) {
   exit;
 }
 
+my $wiki = 'en';
+my $diff;
+if (@ARGV) {
+  if ($ARGV[0] eq 'test') {
+    $wiki = shift @ARGV;
+  }
+  if ($ARGV[0] eq 'diff') {
+    $diff = 1;
+  }
+}
+
 my @files = qw (Twinkle.js Twinkle.css Twinkle-pagestyles.css morebits.js
 		morebits.css modules/friendlyshared.js modules/friendlytag.js
 		modules/friendlytalkback.js modules/friendlywelcome.js
@@ -30,18 +41,12 @@ my @files = qw (Twinkle.js Twinkle.css Twinkle-pagestyles.css morebits.js
 		modules/twinklewarn.js modules/twinklexfd.js);
 
 foreach (@files) {
-  my $twName = lc;		# twinke.js/css/-pagestyles.css are capped
+  my $twName = lc;		# twinke.js/css/-pagestyles.css are capped on-wiki
   my $hash = `md5 -q $twName`;
 
   s/modules\///;		# Tidy for MW name
 
-  my $url;
-  if (@ARGV && $ARGV[0] eq 'test') {
-    $url = 'https://test.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
-  } else {
-    $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
-  }
-
+  my $url = 'https://'.$wiki.'.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
   $url .= $_;
   my $json = `curl -s -w '\n' "$url"`; # Add newline for diffing/md5ing
 
@@ -53,6 +58,9 @@ foreach (@files) {
   my $newHash = `md5 -q $tmp`;
   if ($hash ne $newHash) {
     print "$_ changed\n";
+    if ($diff) {
+      print `diff $twName $tmp`;
+    }
   }
   unlink $tmp;
 }
