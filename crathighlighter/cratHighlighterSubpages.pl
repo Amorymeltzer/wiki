@@ -9,6 +9,7 @@ use warnings;
 use diagnostics;
 
 use MediaWiki::API;
+use File::Slurper qw(write_text);
 
 # Quick dumb check for internet connection, everything empty otherwise
 # Could probably subroutine a curl check, but meh
@@ -32,7 +33,6 @@ foreach (@rights) {
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
-    $url = 'https://en.wikipedia.org/w/index.php?title=Template:Arbitration_committee_chart/recent&action=raw&ctype=text';
     my $page = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
     my $content = $page->{q{*}};
 
@@ -99,16 +99,11 @@ foreach (@rights) {
   }
 
   # Check that everything is up-to-date onwiki
-  $url = 'https://en.wikipedia.org/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/';
-  $url .= $file;
-  my $wikiSon = `curl -s "$url"`;
-  # my $wikiSon = $mw->get_page({title => "User:Amorymeltzer/crathighlighter.js/$file"});
-  # $wikiSon = $wikiSon->{q{*}};
+  my $wikiSon = $mw->get_page({title => "User:Amorymeltzer/crathighlighter.js/$file"}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
+  $wikiSon = $wikiSon->{q{*}};
 
   my $tmp = $_.'tmp';
-  open my $wout, '>', "$tmp" or die $1;
-  print $wout $wikiSon;
-  close $wout or die $1;
+  write_text($tmp, $wikiSon);
 
   my $wikiHash = `md5 -q $tmp`;
   if ($newHash ne $wikiHash && !/steward/) { # Dumb hack for Alaa
