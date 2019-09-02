@@ -89,8 +89,9 @@ foreach (@rights) {
 	       };
     }
 
+    # Usernames from reference to array of hash references
     my $ret = $mw->list($query) || die "$mw->{error}->{code}: $mw->{error}->{details}\n";
-    @names = procC($ret, \@names);
+    @names = map {$_->{name}} @{$ret};
   }
 
   my $json = '{';
@@ -126,16 +127,4 @@ foreach (@rights) {
   }
 
   unlink $tmp;
-}
-
-
-###Subroutines
-sub procC {
-  my ($ref, $nameRef) = @_;
-
-  foreach my $pair (@{$ref}) {
-    my $name = $pair->{name};
-    push @{$nameRef}, $name;
-  }
-  return @{$nameRef};
 }
