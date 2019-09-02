@@ -69,24 +69,21 @@ foreach (@rights) {
       }
     }
   } else {
-    my $query;   # Will be a hash reference to the parameters in the API query
+    # Everybody!  Everybody!
+    my $query = {
+		 action => 'query',
+		 format => 'json',
+		 utf8 => '1'
+		};
+
     if (/steward/) {
-      $query = {
-		action => 'query',
-		format => 'json',
-		list => 'globalallusers',
-		agulimit => 'max',
-		agugroup => 'steward',
-		utf8 => '1' # Required for Alaa
-	       };
+      ${$query}{list} = 'globalallusers';
+      ${$query}{agulimit} = 'max';
+      ${$query}{agugroup} = $_;
     } else {
-      $query = {
-		action => 'query',
-		format => 'json',
-		list => 'allusers',
-		aulimit => 'max',
-		augroup => $_
-	       };
+      ${$query}{list} = 'allusers';
+      ${$query}{aulimit} = 'max';
+      ${$query}{augroup} = $_;
     }
 
     # Usernames from reference to array of hash references
