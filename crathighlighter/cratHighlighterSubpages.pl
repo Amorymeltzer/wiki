@@ -106,10 +106,11 @@ foreach (@rights) {
     print "$file changed\n";
   }
 
-  # Check that everything is up-to-date onwiki
-  my $wikiSon = $mw->get_page({title => "User:Amorymeltzer/crathighlighter.js/$file"}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
-  $wikiSon = $wikiSon->{q{*}};
+  # Check that everything is up-to-date onwiki, push otherwise
+  my $pTitle = "User:Amorymeltzer/crathighlighter.js/$file";
+  my $getPage = $mw->get_page({title => $pTitle}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
 
+  my $wikiSon = $getPage->{q{*}};
   my $tmp = $_.'tmp';
   write_text($tmp, $wikiSon);
 
@@ -120,7 +121,19 @@ foreach (@rights) {
     } else {
       print "$file ";
     }
-    print "needs updating on-wiki\n";
+    print "needs updating on-wiki.  Pushing now...\n";
+    my $timestamp = $getPage->{basetimestamp};
+    $mw->edit({
+	       action => 'edit',
+	       title => $pTitle,
+	       basetimestamp => $timestamp, # Avoid edit conflicts
+	       text => $json,
+	       summary => 'Update (automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])'
+	      }) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+    my $return = $mw->{response};
+    print "\t$return->{_msg}\n";
+  } else {
+    print "No updates needed for $pTitle\n";
   }
 
   unlink $tmp;
