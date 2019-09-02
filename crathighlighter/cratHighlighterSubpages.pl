@@ -8,6 +8,7 @@ use strict;
 use warnings;
 use diagnostics;
 
+use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use File::Slurper qw(write_text);
 
@@ -19,9 +20,19 @@ if (!$ip) {
   exit 0;
 }
 
+# Config file should be a simple file consisting of username and botpassword
+# username = Jimbo Wales
+# password = stochasticstring
+my %conf;
+my $config_file = "$ENV{HOME}/.crathighlighterrc";
+%conf = ParseConfig($config_file) if -e -f -r $config_file;
+
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php'
 			     });
+$mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
+  or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
+
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 foreach (@rights) {
   my @names;
@@ -89,10 +100,7 @@ foreach (@rights) {
   }
   $json .= "\n}";
 
-  open my $out, '>', "$file" or die $1;
-  print $out $json;
-  close $out or die $1;
-
+  write_text($file, $json);
   my $newHash = `md5 -q $file`;
   if ($hash ne $newHash) {
     print "$file changed\n";
