@@ -72,21 +72,23 @@ foreach (@rights) {
     my $query;   # Will be a hash reference to the parameters in the API query
     if (/steward/) {
       $query = {
-		 action => 'query',
-		 format => 'json',
-		 list => 'globalallusers',
-		 agulimit => 'max',
-		 agugroup => 'steward'
-		}
+		action => 'query',
+		format => 'json',
+		list => 'globalallusers',
+		agulimit => 'max',
+		agugroup => 'steward',
+		utf8 => '1' # Required for Alaa
+	       };
     } else {
       $query = {
-		 action => 'query',
-		 format => 'json',
-		 list => 'allusers',
-		 aulimit => 'max',
-		 augroup => $_
-		}
+		action => 'query',
+		format => 'json',
+		list => 'allusers',
+		aulimit => 'max',
+		augroup => $_
+	       };
     }
+
     my $ret = $mw->list($query) || die "$mw->{error}->{code}: $mw->{error}->{details}\n";
     @names = procC($ret, \@names);
   }
@@ -114,7 +116,7 @@ foreach (@rights) {
   write_text($tmp, $wikiSon);
 
   my $wikiHash = `md5 -q $tmp`;
-  if ($newHash ne $wikiHash && !/steward/) { # Dumb hack for Alaa
+  if ($newHash ne $wikiHash) {
     if ($newHash ne $hash) {
       print "\tand ";
     } else {
@@ -133,13 +135,6 @@ sub procC {
 
   foreach my $pair (@{$ref}) {
     my $name = $pair->{name};
-    if ($name !~ /\w+/ia) {
-      my $new;
-      for my $c (split //, $name) {
-	$new .= sprintf("\\u%04x", ord($c));
-      }
-      $name = $new;
-    }
     push @{$nameRef}, $name;
   }
   return @{$nameRef};
