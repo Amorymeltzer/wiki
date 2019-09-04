@@ -133,7 +133,7 @@ foreach (@rights) {
     my $return = $mw->{response};
     print "\t$return->{_msg}\n";
   } else {
-    print "No updates needed for $pTitle\n";
+    print "No updates needed for $file\n";
   }
 
   unlink $tmp;
