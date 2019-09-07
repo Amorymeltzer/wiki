@@ -8,6 +8,7 @@ use strict;
 use warnings;
 use diagnostics;
 
+use Getopt::Std;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use File::Slurper qw(write_text);
@@ -19,6 +20,11 @@ if (!$ip) {
   print "No internet connection found, quitting\n";
   exit 0;
 }
+
+# Parse commandline options
+my %opts = ();
+getopts('hp', \%opts);
+if ($opts{h}) { usage(); exit; } # Usage
 
 # Config file should be a simple file consisting of username and botpassword
 # username = Jimbo Wales
@@ -121,20 +127,38 @@ foreach (@rights) {
     } else {
       print "$file ";
     }
-    print "needs updating on-wiki.  Pushing now...\n";
-    my $timestamp = $getPage->{basetimestamp};
-    $mw->edit({
-	       action => 'edit',
-	       title => $pTitle,
-	       basetimestamp => $timestamp, # Avoid edit conflicts
-	       text => $json,
-	       summary => 'Update (automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])'
-	      }) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
-    my $return = $mw->{response};
-    print "\t$return->{_msg}\n";
+    print 'needs updating on-wiki.';
+    if ($opts{p}) {
+      print "\n\tPushing now...\n";
+      my $timestamp = $getPage->{basetimestamp};
+      $mw->edit({
+		 action => 'edit',
+		 title => $pTitle,
+		 basetimestamp => $timestamp, # Avoid edit conflicts
+		 text => $json,
+		 summary => 'Update (automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])'
+		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+      my $return = $mw->{response};
+      print "\t$return->{_msg}";
+    }
+    print "\n";
   } else {
     print "No updates needed for $file\n";
   }
 
   unlink $tmp;
 }
+
+
+#### Usage statement ####
+# Use POD or whatever?
+# Escapes not necessary but ensure pretty colors
+# Final line must be unindented?
+sub usage
+  {
+    print <<USAGE;
+Usage: $0 [-hp]
+      -p Push live to wiki
+      -h print this message
+USAGE
+  }
