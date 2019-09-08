@@ -11,6 +11,7 @@ use diagnostics;
 use Getopt::Std;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
+use Git::Repository;
 use File::Slurper qw(write_text);
 use File::Compare;
 
@@ -40,12 +41,14 @@ my $mw = MediaWiki::API->new({
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
   or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
 
+# git diff
+my $repo = Git::Repository->new();
+
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 foreach (@rights) {
   my @names;
 
   my $file = $_.'.json';
-  my $hash = `md5 -q $file`;
 
   my $url;
   if (/arbcom/) {
@@ -108,8 +111,8 @@ foreach (@rights) {
   $json .= "\n}";
 
   write_text($file, $json);
-  my $newHash = `md5 -q $file`;
-  if ($hash ne $newHash) {
+  my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
+  if ($status) {
     print "$file changed\n";
   }
 
@@ -122,7 +125,7 @@ foreach (@rights) {
   write_text($tmp, $wikiSon);
 
   if (compare("$file","$tmp") != 0) {
-    if ($newHash ne $hash) {
+    if ($status) {
       print "\tand ";
     } else {
       print "$file ";
