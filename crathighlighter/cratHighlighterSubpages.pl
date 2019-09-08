@@ -45,6 +45,7 @@ $mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
 # git diff
 my $repo = Git::Repository->new();
 
+my $output = 0;
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 foreach (@rights) {
   my @names;
@@ -114,9 +115,8 @@ foreach (@rights) {
   write_text($file, $json);
   my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
   if ($status) {
-    print "$file changed\n\tand ";
-  } else {
-    print "$file ";
+    $output = 1;
+    print "$file changed\n\t";
   }
 
   # Check that everything is up-to-date onwiki, push otherwise
@@ -128,9 +128,15 @@ foreach (@rights) {
   write_text($tmp, $wikiSon);
 
   if (compare("$file","$tmp") != 0) {
-    print 'needs updating on-wiki.';
+    $output = 1;
+    if ($status) {
+      print 'and';
+    } else {
+      print "$file"
+    }
+    print " needs updating on-wiki.\n";
     if ($opts{p}) {
-      print "\n\tPushing now...\n";
+      print "\tPushing now...\n";
       my $timestamp = $getPage->{basetimestamp};
       $mw->edit({
 		 action => 'edit',
@@ -140,14 +146,17 @@ foreach (@rights) {
 		 summary => 'Update (automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])'
 		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
       my $return = $mw->{response};
-      print "\t$return->{_msg}";
+      print "\t$return->{_msg}\n";
     }
-  } else {
-    print 'already up-to-date';
+  } elsif ($status) {
+    print "but already up-to-date\n";
   }
-    print "\n";
 
   unlink $tmp;
+}
+
+if ($output == 0) {
+  print "No updates needed\n";
 }
 
 
