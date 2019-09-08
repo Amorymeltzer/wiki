@@ -38,6 +38,7 @@ my $config_file = "$ENV{HOME}/.crathighlighterrc";
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php'
 			     });
+$mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
   or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
 
