@@ -12,6 +12,7 @@ use Getopt::Std;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use File::Slurper qw(write_text);
+use File::Compare;
 
 # Quick dumb check for internet connection, everything empty otherwise
 # Could probably subroutine a curl check, but meh
@@ -120,8 +121,7 @@ foreach (@rights) {
   my $tmp = $_.'tmp';
   write_text($tmp, $wikiSon);
 
-  my $wikiHash = `md5 -q $tmp`;
-  if ($newHash ne $wikiHash) {
+  if (compare("$file","$tmp") != 0) {
     if ($newHash ne $hash) {
       print "\tand ";
     } else {
@@ -141,10 +141,10 @@ foreach (@rights) {
       my $return = $mw->{response};
       print "\t$return->{_msg}";
     }
-    print "\n";
   } else {
-    print "No updates needed for $file\n";
+    print "No updates needed for $file";
   }
+    print "\n";
 
   unlink $tmp;
 }
