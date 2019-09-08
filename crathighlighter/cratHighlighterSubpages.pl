@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # cratHighlighterSubpages.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Make it somewhat easier to sync crathighlighter.js
+# Make it easier to sync crathighlighter.js
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js
 
 use strict;
@@ -113,7 +113,9 @@ foreach (@rights) {
   write_text($file, $json);
   my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
   if ($status) {
-    print "$file changed\n";
+    print "$file changed\n\tand ";
+  } else {
+    print "$file ";
   }
 
   # Check that everything is up-to-date onwiki, push otherwise
@@ -125,11 +127,6 @@ foreach (@rights) {
   write_text($tmp, $wikiSon);
 
   if (compare("$file","$tmp") != 0) {
-    if ($status) {
-      print "\tand ";
-    } else {
-      print "$file ";
-    }
     print 'needs updating on-wiki.';
     if ($opts{p}) {
       print "\n\tPushing now...\n";
@@ -145,7 +142,7 @@ foreach (@rights) {
       print "\t$return->{_msg}";
     }
   } else {
-    print "No updates needed for $file";
+    print 'already up-to-date';
   }
     print "\n";
 
