@@ -52,7 +52,6 @@ foreach (@rights) {
 
   my $file = $_.'.json';
 
-  my $url;
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
@@ -66,10 +65,10 @@ foreach (@rights) {
     $mon = sprintf '%02d', $mon+1;
     $mday = sprintf '%02d', $mday;
     my $now = $year.q{-}.$mon.q{-}.$mday;
-    last if $now =~ /-12-31/;	# For dumb template reasons, arbs are listed
-                                # as ending terms on December 30th.  While
-                                # unlikely, this means the list won't be
-                                # accurate on the 31st, so just skip it.
+    last if $now =~ /-12-31/; # For dumb template reasons, arbs are listed
+                              # as ending terms on December 30th.  While
+                              # unlikely, this means the list won't be
+                              # accurate on the 31st, so just skip it.
     for (split /^/, $content) {
       if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
 	my ($from,$till,$name) = ($1,$2,$3);
@@ -171,4 +170,5 @@ Usage: $0 [-hp]
       -p Push live to wiki
       -h print this message
 USAGE
+    return;
   }
