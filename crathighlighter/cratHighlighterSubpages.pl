@@ -137,7 +137,7 @@ foreach (@rights) {
     print " needs updating on-wiki.\n";
     if ($opts{p}) {
       print "\tPushing now...\n";
-      my $timestamp = $getPage->{basetimestamp};
+      my $timestamp = $getPage->{timestamp};
       $mw->edit({
 		 action => 'edit',
 		 title => $pTitle,
