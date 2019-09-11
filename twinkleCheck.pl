@@ -23,7 +23,7 @@ if (@ARGV) {
   if ($ARGV[0] eq 'test') {
     $wiki = shift @ARGV;
   }
-  if ($ARGV[0] eq 'diff') {
+  if (@ARGV && $ARGV[0] eq 'diff') {
     $diff = 1;
   }
 }
