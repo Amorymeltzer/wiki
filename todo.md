@@ -1,4 +1,7 @@
 ### Todo List
+#### Crathighlighter
+* Update ArbCom day-of, not just day after
+
 #### Wikispecies
 * Maybe figure out redirects?
 * Investigate linking and output (pdf?  wikitext?)
