@@ -74,7 +74,7 @@ foreach (@rights) {
 	my ($from,$till,$name) = ($1,$2,$3);
 	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
 	$till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-	if ($from le $now && $till ge $now) {
+	if ($from le $now && $till gt $now) {
 	  push @names, $name;
 	}
       }
