@@ -156,6 +156,8 @@ foreach (@rights) {
 
 if ($output == 0) {
   print "No updates needed\n";
+} else {
+  system 'growlnotify -t "cratHighlighter" -m "Changes or updates made"';
 }
 
 
