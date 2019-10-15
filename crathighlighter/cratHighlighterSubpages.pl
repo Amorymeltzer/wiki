@@ -15,6 +15,16 @@ use Git::Repository;
 use File::Slurper qw(write_text);
 use File::Compare;
 
+
+my $repo = Git::Repository->new();
+if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
+  print "Not on master branch, quitting\n";
+  exit 0;
+} elsif (scalar $repo->run(status => '--porcelain')) {
+  print "Repository is not clean, quitting\n";
+  exit;
+}
+
 # Quick dumb check for internet connection, everything empty otherwise
 # Could probably subroutine a curl check, but meh
 my $ip = `curl -s 'icanhazip.com'`;
@@ -41,9 +51,6 @@ my $mw = MediaWiki::API->new({
 $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
   or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
-
-# git diff
-my $repo = Git::Repository->new();
 
 my $output = 0;
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
