@@ -53,7 +53,7 @@ $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
   or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
 
-my $output = 0;
+my ($localChange,$wikiChange) = (0,0);
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 foreach (@rights) {
   my @names;
@@ -122,7 +122,7 @@ foreach (@rights) {
   write_text($file, $json);
   my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
   if ($status) {
-    $output = 1;
+    $localChange = 1;
     print "$file changed\n\t";
   }
 
@@ -135,7 +135,7 @@ foreach (@rights) {
   write_text($tmp, $wikiSon);
 
   if (compare("$file","$tmp") != 0) {
-    $output = 1;
+    $wikiChange = 1;
     if ($status) {
       print 'and';
     } else {
@@ -162,10 +162,33 @@ foreach (@rights) {
   unlink $tmp;
 }
 
-if ($output == 0) {
+if ($localChange == 0 && $wikiChange == 0) {
   print "No updates needed\n";
 } else {
   system 'growlnotify -t "cratHighlighter" -m "Changes or updates made"';
+  if ($localChange == 1) {
+    $repo->run(add => '*.json');
+    my @cached = $repo->run(diff => '--name-only', '--staged');
+    if (@cached) { # Actually some staged files
+
+      # Build file abbreviation hash
+      my %abbrevs;
+      while (<DATA>) {
+	chomp;
+	my @map = split;
+	$abbrevs{$map[0]} = $map[1];
+      }
+
+      # Build message and commit
+      my $commitMessage = "cratHighlighterSubpages: Update\n";
+      #my @status = $repo->run(status => '--porcelain');
+      foreach (sort @cached) {
+	s/.*\/(\S+)\.json/$1/;
+	$commitMessage .= "\n$abbrevs{$_}";
+      }
+      $repo->run(commit => '-m', "$commitMessage");
+    }
+  }
 }
 
 
@@ -173,12 +196,24 @@ if ($output == 0) {
 # Use POD or whatever?
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
-sub usage
-  {
-    print <<USAGE;
+sub usage {
+  print <<USAGE;
 Usage: $0 [-hp]
       -p Push live to wiki
       -h print this message
 USAGE
-    return;
-  }
+  return;
+}
+
+
+## The lines below do not represent Perl code, and are not examined by the
+## compiler.  Rather, they are used by %deploys to map filenames from the
+## Twinkle git repo to their corresponding location in the MediaWiki Gadget
+## psuedonamespace.
+__DATA__
+arbcom AC
+  bureaucrat B
+  checkuser CU
+  interface-admin IA
+  oversight OS
+  steward SW
