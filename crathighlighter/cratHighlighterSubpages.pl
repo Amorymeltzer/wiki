@@ -16,6 +16,7 @@ use File::Slurper qw(write_text);
 use File::Compare;
 
 
+# Check repo before doing anything risky
 my $repo = Git::Repository->new();
 if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
   print "Not on master branch, quitting\n";
