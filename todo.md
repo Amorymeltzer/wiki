@@ -12,6 +12,7 @@
 * Justify title and legend left?  Gets complicated...
 * Figure out a way to identify nonsysops that get logs from moves/overwriting
 * Option to specify start date?  Don't pass to getDates, but to calcH/sysopH
+* Check out fable for prediction?
 
 ##### Possible additions
 * S-index for just delete/protect/block totals?
