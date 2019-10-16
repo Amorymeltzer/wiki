@@ -13,6 +13,7 @@ use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use Git::Repository;
 use File::Slurper qw(write_text);
+use File::Compare;
 
 
 # Check repo before doing anything risky
@@ -133,29 +134,48 @@ foreach (@rights) {
   my $wiki = $_.'.wiki';
   write_text($wiki, $wikiSon);
 
+  # Check if wiki is different than local
   if ($repo->run(status => $wiki, '--porcelain', {cwd => undef})) {
     $wikiChange = 1;
-    if ($status) {
-      print 'and';
-    } else {
-      print "$file"
+    # Now that the .json files are up-to-date, check if there's actually a difference
+    if (compare("$file","$wiki") != 0) {
+      write_text($wiki, $json); # Not any more!
+
+      if ($status) {
+	print 'and';
+      } else {
+	print "$file"
+      }
+      print " needs updating on-wiki.\n";
+
+      if ($opts{p}) {
+	$repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
+	$repo->run(add => '*.wiki');
+	my ($plusRef, $minusRef) = plusMinus($repo, $wiki);
+	my $changes = buildSummary($plusRef,$minusRef);
+
+	my $summary = 'Update ';
+	if (length $changes) {
+	  $summary .= '('.$changes.') ';
+	}
+	$summary .='(automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])';
+	my $timestamp = $getPage->{timestamp};
+
+	print "\tPushing now...\n";
+	$mw->edit({
+		   action => 'edit',
+		   title => $pTitle,
+		   basetimestamp => $timestamp, # Avoid edit conflicts
+		   text => $json,
+		   summary => $summary
+		  }) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+	my $return = $mw->{response};
+	print "\t$return->{_msg}\n";
+	$repo->run(reset => 'HEAD', q{--}); # Back to clean staging area
+      }
+    } elsif ($status) {
+      print "but already up-to-date\n";
     }
-    print " needs updating on-wiki.\n";
-    if ($opts{p}) {
-      print "\tPushing now...\n";
-      my $timestamp = $getPage->{timestamp};
-      $mw->edit({
-		 action => 'edit',
-		 title => $pTitle,
-		 basetimestamp => $timestamp, # Avoid edit conflicts
-		 text => $json,
-		 summary => 'Update (automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])'
-		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
-      my $return = $mw->{response};
-      print "\t$return->{_msg}\n";
-    }
-  } elsif ($status) {
-    print "but already up-to-date\n";
   }
 }
 
@@ -165,34 +185,45 @@ if ($localChange == 0 && $wikiChange == 0) {
   system 'growlnotify -t "cratHighlighter" -m "Changes or updates made"';
 
   # Autocommit changes
-  if ($opts{c} && $localChange == 1) {
-    $repo->run(reset => 'HEAD', q{--});
-    $repo->run(add => '*.json');
-    my @cached = $repo->run(diff => '--name-only', '--staged');
-    if (@cached) {
+  if ($opts{c}) {
+    my $commitMessage = "cratHighlighterSubpages: Update\n";
+    $repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
+    $repo->run(add => '*.wiki'); # Always
 
-      # Build file abbreviation hash
-      my %abbrevs;
-      while (<DATA>) {
-	chomp;
-	my @map = split;
-	$abbrevs{$map[0]} = $map[1];
-      }
+    # Autocommit json changes
+    if ($localChange == 1) {
+      $repo->run(add => '*.json');
+      my @cached = $repo->run(diff => '--name-only', '--staged');
+      if (@cached) {
 
-      # Build message and commit
-      my $commitMessage = "cratHighlighterSubpages: Update\n";
-      foreach (sort @cached) {
-	s/.*\/(\S+\.json).*/$1/;
-	$commitMessage .= "\n$abbrevs{$_}";
+	# Build file abbreviation hash
+	my %abbrevs;
+	while (<DATA>) {
+	  chomp;
+	  my @map = split;
+	  $abbrevs{$map[0]} = $map[1];
+	}
 
-	my ($plusRef, $minusRef) = plusMinus('--staged', $repo,$_);
-	my $changes = buildSummary($plusRef,$minusRef);
-	if (length $changes) {
-	  $commitMessage .= ' ('.$changes.')';
+	# Build message and commit
+	foreach (sort @cached) {
+	  s/.*\/(\S+\.json).*/$1/;
+	  $commitMessage .= "\n$abbrevs{$_}";
+
+	  my ($plusRef, $minusRef) = plusMinus($repo, $_);
+	  my $changes = buildSummary($plusRef,$minusRef);
+	  if (length $changes) {
+	    $commitMessage .= ' ('.$changes.')';
+	  }
 	}
       }
-      $repo->run(commit => '-m', "$commitMessage");
+    } elsif ($wikiChange == 1) {
+      # Someone else changed json files on-wiki
+      my @cached = $repo->run(diff => '--name-only', '--staged');
+      if (@cached) {
+	$commitMessage .= "\nUpdated local backups of on-wiki files";
+      }
     }
+    $repo->run(commit => '-m', "$commitMessage");
   }
 }
 
@@ -200,10 +231,10 @@ if ($localChange == 0 && $wikiChange == 0) {
 #### SUBROUTINES
 # Process diff for usernames of added/removed.  Flag for cached or not
 sub plusMinus {
-  my ($staged, $r,$f) = @_;
+  my ($r,$f) = @_;
   my (@p,@m);
 
-  my $cmd = $r->command(diff => $staged, q{--}, "$f", {cwd => undef});
+  my $cmd = $r->command(diff => '--staged', q{--}, "$f", {cwd => undef});
   my $s = $cmd->stdout;
   if (!eof $s) { # Some output even exists
     while (<$s>) {
