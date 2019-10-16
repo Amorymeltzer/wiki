@@ -1,0 +1,10 @@
+{
+    "AGK": 1,
+    "GorillaWarfare": 1,
+    "Joe Roe": 1,
+    "KrakatoaKatie": 1,
+    "Mkdw": 1,
+    "Opabinia regalis": 1,
+    "Premeditated Chaos": 1,
+    "Worm That Turned": 1
+}

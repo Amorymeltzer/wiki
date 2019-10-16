@@ -13,7 +13,6 @@ use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use Git::Repository;
 use File::Slurper qw(write_text);
-use File::Compare;
 
 
 # Check repo before doing anything risky
@@ -131,10 +130,10 @@ foreach (@rights) {
   my $getPage = $mw->get_page({title => $pTitle}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
 
   my $wikiSon = $getPage->{q{*}};
-  my $tmp = $_.'tmp';
-  write_text($tmp, $wikiSon);
+  my $wiki = $_.'.wiki';
+  write_text($wiki, $wikiSon);
 
-  if (compare("$file","$tmp") != 0) {
+  if ($repo->run(status => $wiki, '--porcelain', {cwd => undef})) {
     $wikiChange = 1;
     if ($status) {
       print 'and';
@@ -158,8 +157,6 @@ foreach (@rights) {
   } elsif ($status) {
     print "but already up-to-date\n";
   }
-
-  unlink $tmp;
 }
 
 if ($localChange == 0 && $wikiChange == 0) {
