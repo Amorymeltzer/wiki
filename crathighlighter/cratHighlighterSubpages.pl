@@ -184,14 +184,82 @@ if ($localChange == 0 && $wikiChange == 0) {
       # Build message and commit
       my $commitMessage = "cratHighlighterSubpages: Update\n";
       foreach (sort @cached) {
-	s/.*\/(\S+)\.json/$1/;
+	s/.*\/(\S+\.json).*/$1/;
 	$commitMessage .= "\n$abbrevs{$_}";
+
+	my ($plusRef, $minusRef) = plusMinus('--staged', $repo,$_);
+	my $changes = buildSummary($plusRef,$minusRef);
+	if (length $changes) {
+	  $commitMessage .= ' ('.$changes.')';
+	}
       }
       $repo->run(commit => '-m', "$commitMessage");
     }
   }
 }
 
+
+#### SUBROUTINES
+# Process diff for usernames of added/removed.  Flag for cached or not
+sub plusMinus {
+  my ($staged, $r,$f) = @_;
+  my (@p,@m);
+
+  my $cmd = $r->command(diff => $staged, q{--}, "$f", {cwd => undef});
+  my $s = $cmd->stdout;
+  if (!eof $s) { # Some output even exists
+    while (<$s>) {
+      if (/^[+-].+": 1,/) { # We know what the important lines look like, so abuse that
+	chomp;
+	my $name = s/([+-])\s+"(.*)": 1,.*/$1$2/r;
+	my @map = split //, $name, 2;
+	if ($map[0] eq '+') {
+	  push @p, $map[1];
+	} elsif ($map[0] eq '-') {
+	  push @m, $map[1];
+	}
+      }
+    }
+    $cmd->close;
+    return (\@p, \@m);
+  }
+}
+
+# Create a commit/edit summary from the plus/minus in a diff.
+# Uses oxfordComma below for proper grammar
+# This could be part of plusMinus, but I like having it separate, even if it
+# means dealing with a few more references
+sub buildSummary {
+  my ($pRef,$mRef) = @_;
+  my $change;
+
+  if ($pRef && ${$pRef}[0]) {
+    $change .= 'Added '.oxfordComma(@{$pRef});
+  }
+  if ($mRef && ${$mRef}[0]) {
+    if (length $change) {
+      $change .= '; ';
+    }
+    $change .= 'Removed '.oxfordComma(@{$mRef});
+  }
+
+  return $change;
+}
+
+# Oxford comma
+sub oxfordComma {
+  my @list = @_;
+  my $end = pop @list;
+  if (@list) { # More than one
+    my $ox = q{};
+    if (scalar @list > 1) { # More than two, need an oxford comma
+      $ox = q{,};
+    }
+    return join(', ', @list) . "$ox and $end";
+  } else { # Just one entry
+    return $end;
+  }
+}
 
 #### Usage statement ####
 # Use POD or whatever?
@@ -213,9 +281,9 @@ USAGE
 ## Twinkle git repo to their corresponding location in the MediaWiki Gadget
 ## psuedonamespace.
 __DATA__
-arbcom AC
-  bureaucrat B
-  checkuser CU
-  interface-admin IA
-  oversight OS
-  steward SW
+arbcom.json AC
+  bureaucrat.json B
+  checkuser.json CU
+  interface-admin.json IA
+  oversight.json OS
+  steward.json SW
