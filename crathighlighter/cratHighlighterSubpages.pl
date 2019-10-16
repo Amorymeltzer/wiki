@@ -169,6 +169,7 @@ if ($localChange == 0 && $wikiChange == 0) {
 
   # Autocommit changes
   if ($opts{c} && $localChange == 1) {
+    $repo->run(reset => 'HEAD', q{--});
     $repo->run(add => '*.json');
     my @cached = $repo->run(diff => '--name-only', '--staged');
     if (@cached) {
