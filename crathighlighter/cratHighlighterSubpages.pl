@@ -36,7 +36,7 @@ if (!$ip) {
 
 # Parse commandline options
 my %opts = ();
-getopts('hp', \%opts);
+getopts('hpc', \%opts);
 if ($opts{h}) { usage(); exit; } # Usage
 
 # Config file should be a simple file consisting of username and botpassword
@@ -166,10 +166,12 @@ if ($localChange == 0 && $wikiChange == 0) {
   print "No updates needed\n";
 } else {
   system 'growlnotify -t "cratHighlighter" -m "Changes or updates made"';
-  if ($localChange == 1) {
+
+  # Autocommit changes
+  if ($opts{c} && $localChange == 1) {
     $repo->run(add => '*.json');
     my @cached = $repo->run(diff => '--name-only', '--staged');
-    if (@cached) { # Actually some staged files
+    if (@cached) {
 
       # Build file abbreviation hash
       my %abbrevs;
@@ -181,7 +183,6 @@ if ($localChange == 0 && $wikiChange == 0) {
 
       # Build message and commit
       my $commitMessage = "cratHighlighterSubpages: Update\n";
-      #my @status = $repo->run(status => '--porcelain');
       foreach (sort @cached) {
 	s/.*\/(\S+)\.json/$1/;
 	$commitMessage .= "\n$abbrevs{$_}";
@@ -198,8 +199,9 @@ if ($localChange == 0 && $wikiChange == 0) {
 # Final line must be unindented?
 sub usage {
   print <<USAGE;
-Usage: $0 [-hp]
+Usage: $0 [-hpc]
       -p Push live to wiki
+      -c Automatically commit changes in git
       -h print this message
 USAGE
   return;
