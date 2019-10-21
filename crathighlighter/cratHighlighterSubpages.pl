@@ -216,14 +216,17 @@ if ($localChange == 0 && $wikiChange == 0) {
 	  }
 	}
       }
-    } elsif ($wikiChange == 1) {
+    }
+
+    my @cached = $repo->run(diff => '--name-only', '--staged');
+    if (@cached) {
       # Someone else changed json files on-wiki
-      my @cached = $repo->run(diff => '--name-only', '--staged');
-      if (@cached) {
+      if ($wikiChange == 1) {
 	$commitMessage .= "\nUpdated local backups of on-wiki files";
       }
+      # Commit
+      $repo->run(commit => '-m', "$commitMessage");
     }
-    $repo->run(commit => '-m', "$commitMessage");
   }
 }
 
