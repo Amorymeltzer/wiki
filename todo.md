@@ -21,3 +21,6 @@
         * Minor issue, likely, but could be interesting
 * Include number of sysops, number of active sysops, etc.?
 * o-index (geometric mean of h-index and most-cited paper)
+
+#### cratHighlighter
+* Combine loops
