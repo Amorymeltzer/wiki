@@ -188,6 +188,7 @@ if ($localChange == 0 && $wikiChange == 0) {
     my $commitMessage = "cratHighlighterSubpages: Update\n";
     $repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
     $repo->run(add => '*.wiki'); # Always
+    my @cached = $repo->run(diff => '--name-only', '--staged');
 
     # Autocommit json changes
     if ($localChange == 1) {
@@ -217,15 +218,12 @@ if ($localChange == 0 && $wikiChange == 0) {
       }
     }
 
-    my @cached = $repo->run(diff => '--name-only', '--staged');
     if (@cached) {
-      # Someone else changed json files on-wiki
-      if ($wikiChange == 1) {
-	$commitMessage .= "\nUpdated local backups of on-wiki files";
-      }
-      # Commit
-      $repo->run(commit => '-m', "$commitMessage");
+      $commitMessage .= "\nUpdated local backups of on-wiki files";
     }
+
+    # Commit
+    $repo->run(commit => '-m', "$commitMessage");
   }
 }
 
