@@ -181,7 +181,7 @@ foreach (@rights) {
 if ($localChange == 0 && $wikiChange == 0) {
   print "No updates needed\n";
 } else {
-  system 'terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 
   # Autocommit changes
   if ($opts{c}) {
