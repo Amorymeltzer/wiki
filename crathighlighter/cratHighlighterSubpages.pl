@@ -182,7 +182,7 @@ foreach (@rights) {
 if ($localChange == 0 && $wikiChange == 0) {
   print "No updates needed\n";
 } else {
-  system 'growlnotify -t "cratHighlighter" -m "Changes or updates made"';
+  system 'terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 
   # Autocommit changes
   if ($opts{c}) {
