@@ -59,6 +59,7 @@ foreach (@rights) {
   my @names;
 
   my $file = $_.'.json';
+  my $wiki = $_.'.wiki';
 
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
@@ -120,62 +121,60 @@ foreach (@rights) {
   $json .= "\n}";
 
   write_text($file, $json);
+  # Check if local records have changed
   my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
   if ($status) {
     $localChange = 1;
     print "$file changed\n\t";
   }
 
-  # Check that everything is up-to-date onwiki, push otherwise
+  # Pull on-wiki json
   my $pTitle = "User:Amorymeltzer/crathighlighter.js/$file";
   my $getPage = $mw->get_page({title => $pTitle}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
 
   my $wikiSon = $getPage->{q{*}};
-  my $wiki = $_.'.wiki';
   write_text($wiki, $wikiSon);
 
-  # Check if wiki is different than local
-  if ($repo->run(status => $wiki, '--porcelain', {cwd => undef})) {
+  # Check if everything is up-to-date onwiki, optional push otherwise
+  if (compare("$file","$wiki") != 0) {
     $wikiChange = 1;
-    # Now that the .json files are up-to-date, check if there's actually a difference
-    if (compare("$file","$wiki") != 0) {
-      write_text($wiki, $json); # Not any more!
 
-      if ($status) {
-	print 'and';
-      } else {
-	print "$file"
-      }
-      print " needs updating on-wiki.\n";
-
-      if ($opts{p}) {
-	$repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
-	$repo->run(add => '*.wiki');
-	my ($plusRef, $minusRef) = plusMinus($repo, $wiki);
-	my $changes = buildSummary($plusRef,$minusRef);
-
-	my $summary = 'Update ';
-	if (length $changes) {
-	  $summary .= '('.$changes.') ';
-	}
-	$summary .='(automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])';
-	my $timestamp = $getPage->{timestamp};
-
-	print "\tPushing now...\n";
-	$mw->edit({
-		   action => 'edit',
-		   title => $pTitle,
-		   basetimestamp => $timestamp, # Avoid edit conflicts
-		   text => $json,
-		   summary => $summary
-		  }) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
-	my $return = $mw->{response};
-	print "\t$return->{_msg}\n";
-	$repo->run(reset => 'HEAD', q{--}); # Back to clean staging area
-      }
-    } elsif ($status) {
-      print "but already up-to-date\n";
+    # Get .json synched then go for it
+    write_text($wiki, $json);
+    if ($status) {
+      print 'and';
+    } else {
+      print "$file"
     }
+    print " needs updating on-wiki.\n";
+
+    if ($opts{p}) {
+      $repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
+      $repo->run(add => '*.wiki');
+      my ($plusRef, $minusRef) = plusMinus($repo, $wiki);
+      my $changes = buildSummary($plusRef,$minusRef);
+
+      my $summary = 'Update ';
+      if (length $changes) {
+	$summary .= '('.$changes.') ';
+      }
+      $summary .='(automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])';
+      my $timestamp = $getPage->{timestamp};
+
+      print "\tPushing now...\n";
+      $mw->edit({
+		 action => 'edit',
+		 title => $pTitle,
+		 basetimestamp => $timestamp, # Avoid edit conflicts
+		 text => $json,
+		 summary => $summary
+		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+      my $return = $mw->{response};
+      print "\t$return->{_msg}\n";
+      $repo->run(reset => 'HEAD', q{--}); # Back to clean staging area
+    }
+  } elsif ($status) {
+    print "but already up-to-date\n";
   }
 }
 

@@ -4,7 +4,6 @@
     "Beeblebrox": 1,
     "DGG": 1,
     "Daniel Case": 1,
-    "DeltaQuad": 1,
     "Doug Weller": 1,
     "Drmies": 1,
     "Dweller": 1,
