@@ -2,7 +2,6 @@
     "AGK": 1,
     "Amorymeltzer": 1,
     "Beeblebrox": 1,
-    "DGG": 1,
     "Daniel Case": 1,
     "Doug Weller": 1,
     "Drmies": 1,
