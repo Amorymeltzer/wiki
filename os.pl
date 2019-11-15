@@ -11,38 +11,59 @@ if (@ARGV != 1) {
   exit;
 }
 
+use URI::Escape;
+
+my %namespaces;
+while (<DATA>) {
+  chomp;
+  my @map = split;
+  $namespaces{$map[0]} = $map[1].q{:};
+}
+# Mainspace needs to be handled differently
+$namespaces{0} =~ s/Main//;
+
 my $input = $ARGV[0];
 my $output = $input.'.out';
 open my $in, '<', "$input" or die $1;
 open my $out, '>', "$output" or die $1;
-while (<$in>) {
-  chomp;
-  s/^\|(\d+)\|\|(.*?)\|\|(0)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/$4|$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(1)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Talk:$4|Talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(2)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/User:$4|User:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(3)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/User talk:$4|User talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(4)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Wikipedia:$4|Wikipedia:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(5)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Wikipedia talk:$4|Wikipedia talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(6)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/File:$4|File:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(7)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/File talk:$4|File talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(8)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/MediaWiki:$4|MediaWiki:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(9)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/MediaWiki talk:$4|MediaWiki talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(10)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Template:$4|Template:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(11)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Template talk:$4|Template talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(12)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Help:$4|Help:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(13)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Help talk:$4|Help talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(14)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Category:$4|Category:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(15)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Category talk:$4|Category talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(100)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Portal:$4|Portal:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(101)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Portal talk:$4|Portal talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(108)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Book:$4|Book:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(109)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Book talk:$4|Book talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(118)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Draft:$4|Draft:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(119)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Draft talk:$4|Draft talk:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(828)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Module:$4|Module:$4]]||/ix;
-  s/^\|(\d+)\|\|(.*?)\|\|(829)\|\|(.*?)\|\|/|$1||$2||$3||[[Special:Undelete\/Module talk:$4|Module talk:$4]]||/ix;
+while (my $line = <$in>) {
+  if ($line =~ /^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|(.*?)\|\|/) {
+    my $namespace = $namespaces{$3} // 'error';
+    my $escaped = uri_escape($4);
+    $line =~ s/^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|.*?\|\|/|$1||$2||$3||[[Special:Undelete\/$namespace$escaped|$namespace$escaped]]||/ix;
+  }
 
-  print $out "$_\n";
+  print $out "$line";
 }
 close $in or die $1;
 close $out or die $1;
+
+
+## The lines below do not represent Perl code, and are not examined by the
+## compiler.  Rather, they are used to look up the canonical name for a given
+## namespace number.  Colons and mainspace are handled later.
+__DATA__
+0 Main
+  1 Talk
+  2 User
+  3 User talk
+  4 Wikipedia
+  5 Wikipedia talk
+  6 File
+  7 File talk
+  8 MediaWiki
+  9 MediaWiki talk
+  10 Template
+  11 Template talk
+  12 Help
+  13 Help talk
+  14 Category
+  15 Category talk
+  100 Portal
+  101 Portal talk
+  108 Book
+  109 Book talk
+  118 Draft
+  119 Draft talk
+  828 Module
+  829 Module talk
