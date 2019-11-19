@@ -15,6 +15,10 @@ use Git::Repository;
 use File::Slurper qw(write_text);
 use File::Compare;
 
+# Parse commandline options
+my %opts = ();
+getopts('hpc', \%opts);
+if ($opts{h}) { usage(); exit; } # Usage
 
 # Check repo before doing anything risky
 my $repo = Git::Repository->new();
@@ -33,11 +37,6 @@ if (!$ip) {
   print "No internet connection found, quitting\n";
   exit 0;
 }
-
-# Parse commandline options
-my %opts = ();
-getopts('hpc', \%opts);
-if ($opts{h}) { usage(); exit; } # Usage
 
 # Config file should be a simple file consisting of username and botpassword
 # username = Jimbo Wales
@@ -241,9 +240,9 @@ sub plusMinus {
 	chomp;
 	my $name = s/([+-])\s+"(.*)": 1,.*/$1$2/r;
 	my @map = split //, $name, 2;
-	if ($map[0] eq '+') {
+	if ($map[0] eq q{+}) {
 	  push @p, $map[1];
-	} elsif ($map[0] eq '-') {
+	} elsif ($map[0] eq q{-}) {
 	  push @m, $map[1];
 	}
       }
@@ -294,7 +293,7 @@ sub oxfordComma {
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
 sub usage {
-  print <<USAGE;
+  print <<"USAGE";
 Usage: $0 [-hpc]
       -p Push live to wiki
       -c Automatically commit changes in git
@@ -305,7 +304,7 @@ USAGE
 
 
 ## The lines below do not represent Perl code, and are not examined by the
-## compiler.  Rather, they are used by %deploys to map filenames from the
+## compiler.  Rather, they are used by %abbrevs to map filenames from the
 ## Twinkle git repo to their corresponding location in the MediaWiki Gadget
 ## psuedonamespace.
 __DATA__
