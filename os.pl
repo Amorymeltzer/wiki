@@ -16,7 +16,7 @@ use URI::Escape;
 my %namespaces;
 while (<DATA>) {
   chomp;
-  my @map = split / /, $_, 2;
+  my @map = split q{ }, $_, 2;
   $namespaces{$map[0]} = $map[1].q{:};
 }
 # Mainspace needs to be handled differently
