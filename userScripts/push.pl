@@ -13,7 +13,7 @@ use utf8;
 
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
-use File::Slurper qw(read_text write_text);
+use File::Slurper qw(read_text);
 use Term::ANSIColor;
 
 # Simpler to just use my twinklerc and check it's the right me
@@ -52,3 +52,85 @@ my $mw = MediaWiki::API->new({
 			     });
 $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+
+# Push
+my $me = 'User:Amorymeltzer/';
+while (<DATA>) {
+  chomp;
+  print "\tPushing $_...\n";
+  my $file = $me.$_;
+  # Get old page content
+  my $wikiPage = $mw->get_page({title => $file});
+  if (defined $wikiPage->{missing}) {
+    print colored ['red'], "$file does not exist\n";
+    exit 1;
+  } else {
+    my $timestamp = $wikiPage->{timestamp};
+    my $text = read_text($_);
+    my $wikiText = $wikiPage->{q{*}}."\n"; # MediaWiki doesn't have trailing newlines
+    if ($text eq $wikiText) {
+      print colored ['green'], " No changes needed, skipping\n";
+      return 1;
+    } else {
+      $mw->edit({
+		 action => 'edit',
+		 title => $file,
+		 basetimestamp => $timestamp, # Avoid edit conflicts
+		 text => $text,
+		 summary => 'Updating to the latest version'
+		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+      my $return = $mw->{response};
+
+      if ($return->{_msg} eq 'OK') {
+	print colored ['green'], "\t$_ successfully pushed to $file\n";
+      } else {
+	print colored ['red'], "Error pushing $_: $mw->{error}->{code}: $mw->{error}->{details}\n";
+      }
+    }
+  }
+}
+
+
+## The lines below do not represent Perl code, and are not examined by the
+## compiler.  Rather, they are the names of files in this directory that I am
+## pushing to.
+__DATA__
+modern.js
+  ARAspaceless.js
+  nulledit.js
+  AdvisorDashless.js
+  oldafd.js
+  CSDHreasons.js
+  osal.js
+  CatListMainTalkLinks.js
+  pagemods.js
+  DiffOnly.js
+  pedit.js
+  ReverseMarked.js
+  pinfo.js
+  Search_sort.js
+  WRStitle.js
+  qrfpp.js
+  ajaxsendcomment.js
+  raw.js
+  articleinfo-gadget.js
+  responseHelper.js
+  crathighlighter.js
+  seventabs.js
+  csdcheck.js
+  suppressionFinder.js
+  dashes.js
+  deletionFinder.js
+  test.js
+  diff-permalink.js
+  twinkleoptions.js
+  easyblock-modern.js
+  unhide.js
+  googleTitle.js
+  userRightsManager.js
+  hideSectionDesktop.js
+  userinfo.js
+  huggle.yaml.js
+  wlhActionLinks.js
+  logSwap.js
+  wordcount.js
