@@ -21,6 +21,7 @@ my %conf;
 my $config_file = "$ENV{HOME}/.twinklerc";
 %conf = ParseConfig($config_file) if -e -f -r $config_file;
 
+# Checks
 if (!exists $conf{username} || !exists $conf{password}) {
   print colored ['red'], "Username or password not found, quitting\n";
   exit 1;
@@ -37,3 +38,17 @@ if ($conf{username} !~ '^Amorymeltzer') {
   print colored ['red'], "Not Amorymeltzer, quitting\n";
   exit 1;
 }
+# Ensure we've got a clean branch
+my $repo = Git::Repository->new();
+my @status = $repo->run(status => '--porcelain');
+if (scalar @status) {
+  print colored ['red'], "Repository is not clean, aborting\n";
+  exit;
+}
+
+# Open API and log in before anything else
+my $mw = MediaWiki::API->new({
+			      api_url => "https://en.wikipedia.org/w/api.php"
+			     });
+$mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
+$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
