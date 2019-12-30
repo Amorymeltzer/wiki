@@ -73,10 +73,12 @@ foreach (@rights) {
     $mon = sprintf '%02d', $mon+1;
     $mday = sprintf '%02d', $mday;
     my $now = $year.q{-}.$mon.q{-}.$mday;
-    last if $now =~ /-12-31/; # For dumb template reasons, arbs are listed
-                              # as ending terms on December 30th.  While
-                              # unlikely, this means the list won't be
-                              # accurate on the 31st, so just skip it.
+    # For dumb template reasons, arbs are listed as ending terms on December
+    # 30th.  While unlikely, this means the list won't be accurate on the
+    # 31st, so just skip it.  Likewise, since we check that the date is
+    # greater than the current date to ensure that we catch retiring arbs, the
+    # 30th is no good as well.
+    last if $now =~ /-12-3[0|1]/;
     for (split /^/, $content) {
       if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
 	my ($from,$till,$name) = ($1,$2,$3);
