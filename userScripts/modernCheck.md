@@ -5,7 +5,7 @@
 - get url to &action= (regex)
 - get bit between ?title= and &oldid= (regex)
 - get bit between &oldid= and &action= (regex)
-- Then query url&title and get latest revid, content, timestamp (perl fo sho)
+- Then query url&title and get latest revid, content, timestamp? (perl fo sho)
 - If oldid != latest revid, also query oldid (else next) (perl, obvi)
 - Compare diff of two (ideally would want icdiff, so bash would be nice, but maybe system?)
 - prompt for confirm Y (replace) or N (next)
