@@ -46,9 +46,28 @@ my $mw = MediaWiki::API->new({
 $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
+# Make sure only valid files are entered
+my %defaultFiles;
+my @files;
+while (<DATA>) {
+  s/\s+//g;
+  $defaultFiles{$_} = 1;
+}
+if (@ARGV != 0) {
+  if ($ARGV[0] eq 'all' || $ARGV[0] eq 'All') {
+    @files = keys %defaultFiles;
+  } else {
+    foreach (@ARGV) {
+      push @files, $_ if $defaultFiles{$_};
+    }
+  }
+} else {
+  print "No files provided!\n";
+  exit 1;
+}
 # Push
 my $me = 'User:Amorymeltzer/';
-while (<DATA>) {
+foreach (@files) {
   s/\s+//g;
   my $file = $me.$_;
   # Get old page content

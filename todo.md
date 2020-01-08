@@ -27,5 +27,3 @@
 
 #### userScripts
 * Prompt for edit summary
-* Slurp .js file names from directory, don't store in DATA
-* Better yet, take from ARGV unless --all
