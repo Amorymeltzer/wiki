@@ -115,7 +115,6 @@ modern.js
   deletionFinder.js
   test.js
   diff-permalink.js
-  twinkleoptions.js
   easyblock-modern.js
   unhide.js
   googleTitle.js
