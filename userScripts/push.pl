@@ -88,6 +88,7 @@ while (<DATA>) {
 ## pushing to.
 __DATA__
 modern.js
+  modern.css
   ARAspaceless.js
   nulledit.js
   AdvisorDashless.js
@@ -116,6 +117,7 @@ modern.js
   test.js
   diff-permalink.js
   easyblock-modern.js
+  easyblock-modern.css
   unhide.js
   googleTitle.js
   userRightsManager.js

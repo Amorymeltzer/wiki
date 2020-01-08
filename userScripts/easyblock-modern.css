@@ -1,0 +1,56 @@
+/*
+Taken from [[User:Animum/easyblock.css]] to modify for modern skin ([[Special:PermaLink/686984610]])
+p-cactions overflow, not p-cactions ul
+use visibility instead of display
+*/
+
+#p-cactions {
+        overflow: visible !important;
+}
+
+#p-cactions li {
+        position: relative;
+        float: left;
+}
+
+
+.blockmenu ul li {
+        display: block;
+        width: 100% !important;
+        min-width: 10em !important;
+        border: 0px;
+        margin: 0px;
+        padding: .1em;
+        border: 1px solid #aaaaaa !important;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: #F8FCFF !important;
+        white-space: nowrap !important;
+}
+
+.blockmenu ul {
+        visibility: hidden;
+        width: 10.5em;
+        z-index: 2;
+        position: absolute;
+        top: 1em;
+        left: 1em;
+        margin: 0px;
+        background-color: grey;
+}
+
+.blockmenu:hover ul { 
+        visibility: unset;
+}
+
+.blockmenu * {
+        -moz-border-radius: 0px !important;
+}
+
+.blockmenu ul a {
+        background-color: transparent !important;
+}
+
+.ns-0 * .blockmenu ul li {
+    background: white !important;
+}
