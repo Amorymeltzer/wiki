@@ -50,7 +50,6 @@ $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 my $me = 'User:Amorymeltzer/';
 while (<DATA>) {
   s/\s+//g;
-  print "\tPushing $_...\n";
   my $file = $me.$_;
   # Get old page content
   my $wikiPage = $mw->get_page({title => $file});
@@ -58,11 +57,12 @@ while (<DATA>) {
     print colored ['red'], "$file does not exist\n";
     exit 1;
   } else {
+    print "Pushing $_...\n";
     my $timestamp = $wikiPage->{timestamp};
     my $text = read_text($_);
     my $wikiText = $wikiPage->{q{*}};
     if ($text eq $wikiText) {
-      print colored ['green'], " No changes needed, skipping\n";
+      print colored ['green'], "\tNo changes needed, skipping\n";
     } else {
       $mw->edit({
 		 action => 'edit',
@@ -70,13 +70,13 @@ while (<DATA>) {
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $text,
 		 summary => 'Updating to the latest version'
-		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+		}) || die "\tError editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
       my $return = $mw->{response};
 
       if ($return->{_msg} eq 'OK') {
 	print colored ['green'], "\t$_ successfully pushed to $file\n";
       } else {
-	print colored ['red'], "Error pushing $_: $mw->{error}->{code}: $mw->{error}->{details}\n";
+	print colored ['red'], "\tError pushing $_: $mw->{error}->{code}: $mw->{error}->{details}\n";
       }
     }
   }
