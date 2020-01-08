@@ -38,13 +38,6 @@ if ($conf{username} !~ '^Amorymeltzer') {
   print colored ['red'], "Not Amorymeltzer, quitting\n";
   exit 1;
 }
-# Ensure we've got a clean branch
-my $repo = Git::Repository->new();
-my @status = $repo->run(status => '--porcelain');
-if (scalar @status) {
-  print colored ['red'], "Repository is not clean, aborting\n";
-  exit;
-}
 
 # Open API and log in before anything else
 my $mw = MediaWiki::API->new({
