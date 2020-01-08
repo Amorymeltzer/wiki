@@ -60,10 +60,9 @@ while (<DATA>) {
   } else {
     my $timestamp = $wikiPage->{timestamp};
     my $text = read_text($_);
-    my $wikiText = $wikiPage->{q{*}}."\n"; # MediaWiki doesn't have trailing newlines
+    my $wikiText = $wikiPage->{q{*}};
     if ($text eq $wikiText) {
       print colored ['green'], " No changes needed, skipping\n";
-      return 1;
     } else {
       $mw->edit({
 		 action => 'edit',
