@@ -49,7 +49,7 @@ $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 # Push
 my $me = 'User:Amorymeltzer/';
 while (<DATA>) {
-  chomp;
+  s/\s+//g;
   print "\tPushing $_...\n";
   my $file = $me.$_;
   # Get old page content
