@@ -41,8 +41,15 @@ if ($conf{username} !~ '^Amorymeltzer') {
   exit 1;
 }
 
+# Build update
+my $modern = 'modern.js';
+open my $mod, '<', $modern or die "$ERRNO\n";
+while (<$mod>) {
+  chomp;
+}
+close $mod or die "$ERRNO\n";
 
-# Open API and log in before anything else
+# Open API and log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php'
 			     });

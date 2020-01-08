@@ -10,6 +10,12 @@
 - Compare diff of two (ideally would want icdiff, so bash would be nice, but maybe system?)
 - prompt for confirm Y (replace) or N (next)
 
+- Use bash shim:
+- Grep the url to action, hand off title and oldid to perl
+- Perl get content, old content, send to bash
+- https://stackoverflow.com/q/1494178/2521092
+- icdiff content, confirm
+- perl one liner to replace each
 
 
 
