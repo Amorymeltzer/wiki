@@ -12,7 +12,8 @@
 
 - Use bash shim:
 - Grep the url to action, hand off title and oldid to perl
-- Perl get content, old content, send to bash
+- Perl get content, old content, print files
+- Send titles and oldids to bash
 - https://stackoverflow.com/q/1494178/2521092
 - icdiff content, confirm
 - perl one liner to replace each

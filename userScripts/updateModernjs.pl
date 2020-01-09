@@ -18,36 +18,31 @@ use MediaWiki::API;
 use File::Slurper qw(read_text);
 use Term::ANSIColor;
 
-# Simpler to just use my twinklerc and check it's the right me
+# Make sure we have stuff to process
+if (!@ARGV || @ARGV == 0) {
+  print colored ['red'], "No mw.loader.load lines to process, quitting\n";
+}
+
+# Simpler to just use my twinklerc and check a few things
 my %conf;
 my $config_file = "$ENV{HOME}/.twinklerc";
 %conf = ParseConfig($config_file) if -e -f -r $config_file;
-
-# Checks
+# Config checks
 if (!exists $conf{username} || !exists $conf{password}) {
   print colored ['red'], "Username or password not found, quitting\n";
   exit 1;
 }
-# Ensure we've only got one item for each config key
 foreach my $key (sort keys %conf) {
   if (ref($conf{$key}) eq 'ARRAY') {
     print colored ['red'], "Duplicate config found for $key, quitting\n";
     exit 1;
   }
 }
-# Make sure it's me
 if ($conf{username} !~ '^Amorymeltzer') {
   print colored ['red'], "Not Amorymeltzer, quitting\n";
   exit 1;
 }
 
-# Build update
-my $modern = 'modern.js';
-open my $mod, '<', $modern or die "$ERRNO\n";
-while (<$mod>) {
-  chomp;
-}
-close $mod or die "$ERRNO\n";
 
 # Open API and log in
 my $mw = MediaWiki::API->new({
@@ -55,3 +50,35 @@ my $mw = MediaWiki::API->new({
 			     });
 $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+
+# Start processing
+# Generic basis for each API query to get old revisions
+my %query = (
+	     action => 'query',
+	     prop => 'revisions|info', # info for lastrevid
+	     rvlimit => 1,
+	     rvprop => 'content'
+	    );
+foreach my $url (@ARGV) {
+  my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
+  my $oldid = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+  my $wikiPage = $mw->get_page({title => $title});
+  my $curRevID = $wikiPage->{revid};
+
+  next if $oldid == $curRevID;
+  # At least some difference, so let's figure that out
+  $query{titles} = $title;
+  $query{rvstartid} = $oldid;
+
+  # Do getpage to get latest, then if different from oldid, pull content
+  # from oldid query
+
+  my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+
+  my ($pageid,$revisions) = each (%{$wikiOldid->{query}->{pages}});
+  my @revision = $revisions->{revisions};
+  use Data::Dumper;
+  # print Dumper(@revision);
+  print Dumper($pageid);
+  exit;
+}
