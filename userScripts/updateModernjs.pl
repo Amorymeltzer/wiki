@@ -2,7 +2,7 @@
 # updateModernjs.pl by Amory Meltzer
 # For security reasons, I only import specific revisions of user scripts into
 # my modern.js, but if those scripts are subsequently updated it can be a pain
-# to 1. know about it (beyond Special:WLH) and 2. update them.  This scripts
+# to 1. know about it (beyond Special:WLH) and 2. update them.  This script
 # checks each import, presents a diff for me to visually inspect, and prompts
 # for confirmation for each item.
 
@@ -13,13 +13,20 @@ use diagnostics;
 use English qw(-no_match_vars);
 use utf8;
 
+use IPC::Open3 qw(open3);
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use File::Slurper qw(write_text);
 use Term::ANSIColor;
 
 # Make sure we have stuff to process
-if (!@ARGV || @ARGV == 0) {
+# Use IPC::Open3 just because!
+my ($writer, $reader, $err);
+# Find all insteaces of mw.loader.load that target a specific revision
+open3($writer, $reader, $err, 'grep -io "mw\.loader\.load.*&oldid=.*&action=" modern.js');
+my @loaders = <$reader>;
+
+if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process, quitting\n";
   exit 1;
 }
@@ -45,6 +52,7 @@ if ($conf{username} !~ '^Amorymeltzer') {
 }
 
 
+## Everything checks out
 # Open API and log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php'
@@ -61,35 +69,45 @@ my %query = (
 	     rvprop => 'content'
 	    );
 # Items that need updating
-my @replacings;
+my %replacings;
 my $count = 0;
-foreach my $url (@ARGV) {
+foreach my $url (@loaders) {
+  chomp $url;
   my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
   my $oldID = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
-  my $wikiPage = $mw->get_page({title => $title});
-  my $newID = $wikiPage->{revid};
-  next if $oldID == $newID || !$newID || !$oldID;
 
-  # At least some difference exists, so we need to check it out
-  my $newContent = $wikiPage->{q{*}};
-  $query{titles} = $title;
-  $query{rvstartid} = $oldID;
-  my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+  # print "title: $title\toldid: $oldID\n";
+  # my $wikiPage = $mw->get_page({title => $title});
+  # my $newID = $wikiPage->{revid};
+  # next if $oldID == $newID || !$newID || !$oldID;
 
-  my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
-  my %revisions = %{$response->{revisions}[0]};
-  my $oldContent = $revisions{q{*}};
+  # # At least some difference exists, so we need to check it out
+  # my $newContent = $wikiPage->{q{*}};
+  # $query{titles} = $title;
+  # $query{rvstartid} = $oldID;
+  # my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+
+  # my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
+  # my %revisions = %{$response->{revisions}[0]};
+  # my $oldContent = $revisions{q{*}};
+
+  my $newID = $oldID / 2;
+  my $oldContent = 'asdasdlkjaskd ddd' . $oldID;
+  my $newContent = 'kajsdajksdhas dah' . $newID;
+
+  $oldContent = substr $oldContent, 0, 5;
+  $newContent = substr $newContent, 0, 5;
+  %{$replacings{$title}} = (
+			old => [$oldID, $oldContent],
+			new => [$newID, $newContent]
+		       );
 
   write_text($oldID, $oldContent);
   write_text($newID, $newContent);
   $count++;
-  push @replacings, "$oldID:$newID";
-  #$replacings .= "$oldID:$newID,";
 
   last if $count > 3;
 }
 
-# return to bash
-print "@replacings";
-#$replacings =~ s/,$//;		# Remove trailing comma
-#print $replacings;
+use Data::Dumper;
+print Dumper(%replacings);

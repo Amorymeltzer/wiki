@@ -2,7 +2,7 @@
 # modernUpdate.sh by Amory Meltzer
 # For security reasons, I only import specific revisions of user scripts into
 # my modern.js, but if those scripts are subsequently updated it can be a pain
-# to 1. know about it (beyond Special:WLH) and 2. update them.  This scripts
+# to 1. know about it (beyond Special:WLH) and 2. update them.  This script
 # checks each import, presents a diff for me to visually inspect, and prompts
 # for confirmation for each item.
 

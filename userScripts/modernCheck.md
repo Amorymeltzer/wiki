@@ -19,6 +19,16 @@
 - perl one liner to replace each
 
 
+- NAH use perl:
+- Snag urls (perl via IPC::Open3)
+- Get page, compare latest rev id
+- If same, skip.  If different, query oldid for content
+- Put everything in hash of hashs of arrays
+- icdiff content to confirm (bash one liner (IPC::Open3?) to generate content a la flashcards.pl)
+- confirm Y or N
+- one liner (bash/perl) to replace ID
+
+
 
 
 ## Example content
