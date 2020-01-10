@@ -26,4 +26,8 @@
 * Combine loops
 
 #### userScripts
-* Prompt for edit summary
+* Prompt for edit summary in push.pl
+* updatemodern: Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
+* Update evad37/enterprisey subpages/gadgets (reply link gadget, rater? subpage)
+* Use hash/latest for edit summary in push.pl like sync.pl
+
