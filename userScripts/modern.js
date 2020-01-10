@@ -51,7 +51,7 @@ importScript('User:Amorymeltzer/pinfo.js'); //[[User:Smith609/toolbox.js]], [[Us
 importScript('User:Amorymeltzer/pagemods.js'); //[[User:Amorymeltzer/pagemods.js]
 /* Should probably make these next two more specific */
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/more-listing-items.js&oldid=882933273&action=raw&ctype=text/javascript'); //[[User:Enterprisey/more-listing-items.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=901004036&action=raw&ctype=text/javascript'); //[[User:Suffusion_of_Yellow/filter-highlighter.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=930753959&action=raw&ctype=text/javascript'); //[[User:Suffusion_of_Yellow/filter-highlighter.js]]
 
 //Quick access for quick access
 $(function () {
@@ -80,7 +80,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			$(paraGone).replaceWith(paraGone.childNodes);
 		}
 
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=836240320&action=raw&ctype=text/javascript'); //[[User:Markhurd/hidetopcontrib.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); //[[User:Markhurd/hidetopcontrib.js]]
 	window.userHideAllSubsequent=true;
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=882368814&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRollback.js]]
 	
@@ -123,7 +123,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
 		importScript('User:Amorymeltzer/ReverseMarked.js'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Log' || mw.config.get('wgCanonicalSpecialPageName') === 'Userrights') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=871454294&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
 	if (mw.config.get('wgCanonicalSpecialPageName') === 'Log') {
 		/*Log*/
 		importScript ('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
@@ -219,7 +219,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=911461749&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=923053181&action=raw&ctype=text/javascript');
     }
 
     /*Articles*/
@@ -275,7 +275,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    
 	    /*Only for [[WP:AFC/R]]*/
 	    if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
-		 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=847637971&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+		 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 		 }
 	} else if (mw.config.get('wgNamespaceNumber') === 14) {
 	    /*Categories*/
