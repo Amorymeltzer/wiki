@@ -16,6 +16,7 @@ use utf8;
 use Term::ANSIColor;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
+use File::Slurper qw(write_text);
 
 # Make sure we have stuff to process
 # Find all insteaces of mw.loader.load that target a specific revision
@@ -25,7 +26,6 @@ if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process, quitting\n";
   exit 1;
 }
-print "@loaders";
 
 # Simpler to just use my twinklerc and check a few things
 my %conf;
@@ -50,11 +50,11 @@ if ($conf{username} !~ '^Amorymeltzer') {
 
 ## Everything checks out
 # Open API and log in
-# my $mw = MediaWiki::API->new({
-# 			      api_url => 'https://en.wikipedia.org/w/api.php'
-# 			     });
-# $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
-# $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+my $mw = MediaWiki::API->new({
+			      api_url => 'https://en.wikipedia.org/w/api.php'
+			     });
+$mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
+$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
 # Start processing
 # Generic basis for each API query to get old revisions
@@ -66,54 +66,48 @@ my %query = (
 	    );
 # Items that need updating
 my %replacings;
-my $count = 0;
 foreach my $url (@loaders) {
   chomp $url;
   my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
   my $oldID = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
 
-  # print "title: $title\toldid: $oldID\n";
-  # my $wikiPage = $mw->get_page({title => $title});
-  # my $newID = $wikiPage->{revid};
-  # next if $oldID == $newID || !$newID || !$oldID;
+  my $wikiPage = $mw->get_page({title => $title});
+  my $newID = $wikiPage->{revid};
+  # print "title: $title\toldid: $oldID\tnewid: $newID";
+  next if !$oldID || !$newID || $oldID == $newID;
 
-  # # At least some difference exists, so we need to check it out
-  # my $newContent = $wikiPage->{q{*}};
-  # $query{titles} = $title;
-  # $query{rvstartid} = $oldID;
-  # my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+  # At least some difference exists, so we need to check it out
+  my $newContent = $wikiPage->{q{*}};
+  $query{titles} = $title;
+  $query{rvstartid} = $oldID;
+  my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
 
-  # my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
-  # my %revisions = %{$response->{revisions}[0]};
-  # my $oldContent = $revisions{q{*}};
+  # This always feels like it should be easier to understand visually than
+  # json/xml, but it never is.
+  my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
+  my %revisions = %{$response->{revisions}[0]};
+  my $oldContent = $revisions{q{*}};
 
-  my $newID = int $oldID / 2;
-  my $oldContent = 'asdasdlkjaskd ddd' . $oldID;
-  my $newContent = 'kajsdajksdhas dah' . $newID;
+  # Store for later in hash of arrays
+  @{$replacings{$title}} = ($oldID, $newID);
 
-  %{$replacings{$title}} = (
-			old => [$oldID, $oldContent],
-			new => [$newID, $newContent]
-		       );
-
-  $count++;
-
-  last if $count > 3;
+  # Getting bash to work from inside perl - whether by backticks, system, or
+  # IPC::Open3 - is one thing, but getting icdiff to work on strings of
+  # indeterminate length that each contain several special characters aka code
+  # is entirely different.  Writing to files is slower but easier.
+  write_text($oldID, $oldContent);
+  write_text($newID, $newContent);
 }
 
+# Confirm diffs, replace in place
 foreach my $title (keys %replacings) {
-  # print "old: $replacings{$title}{old}";
-  # print "old: @{$replacings{$title}{old}}\tnew: @{$replacings{$title}{new}}\n";
-  print "$title: $replacings{$title}{old}[0] to $replacings{$title}{new}[0]\n";
-  my $old = $replacings{$title}{old}[0];
-  my $new = $replacings{$title}{new}[0];
-  my $ol = $replacings{$title}{old}[1];
-  my $ne = $replacings{$title}{new}[1];
+  my ($old, $new) = @{$replacings{$title}};
+  print colored ['green'], "$title: updating $old to $new\n";
 
-  my $diff = `bash -c "icdiff <(echo $ol) <(echo $ne)"`;
-  print "$diff\n";
+  my @args = ('bash', '-c', "icdiff $old $new");
+  system @args;
 
-  print "Update $title to revision $new (Y or N)\n";
+  print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
   my $confirm = <STDIN>;
   chomp $confirm;
   if (lc $confirm eq 'n') {
@@ -123,4 +117,10 @@ foreach my $title (keys %replacings) {
   } elsif (lc $confirm eq 'q') {
     last;
   }
+}
+
+# Clean up
+foreach my $title (keys %replacings) {
+  unlink $replacings{$title}[0];
+  unlink $replacings{$title}[1];
 }
