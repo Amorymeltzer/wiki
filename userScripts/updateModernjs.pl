@@ -13,23 +13,19 @@ use diagnostics;
 use English qw(-no_match_vars);
 use utf8;
 
-use IPC::Open3 qw(open3);
+use Term::ANSIColor;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
-use File::Slurper qw(write_text);
-use Term::ANSIColor;
 
 # Make sure we have stuff to process
-# Use IPC::Open3 just because!
-my ($writer, $reader, $err);
 # Find all insteaces of mw.loader.load that target a specific revision
-open3($writer, $reader, $err, 'grep -io "mw\.loader\.load.*&oldid=.*&action=" modern.js');
-my @loaders = <$reader>;
+my @loaders = `grep -io "mw\.loader\.load.*&oldid=.*&action=" modern.js`;
 
 if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process, quitting\n";
   exit 1;
 }
+print "@loaders";
 
 # Simpler to just use my twinklerc and check a few things
 my %conf;
@@ -100,15 +96,10 @@ foreach my $url (@loaders) {
 			new => [$newID, $newContent]
 		       );
 
-  # write_text($oldID, $oldContent);
-  # write_text($newID, $newContent);
   $count++;
 
   last if $count > 3;
 }
-
-# use Data::Dumper;
-# print Dumper(%replacings);
 
 foreach my $title (keys %replacings) {
   # print "old: $replacings{$title}{old}";
@@ -118,12 +109,9 @@ foreach my $title (keys %replacings) {
   my $new = $replacings{$title}{new}[0];
   my $ol = $replacings{$title}{old}[1];
   my $ne = $replacings{$title}{new}[1];
-  open3($writer, $reader, $err, "bash -c 'icdiff <(echo $ol) <(echo $ne)'");
-  my @res = <$reader>;
-  print "@res\n";
-  # my @args = ('bash', '-c', "icdiff <(echo $ol) <(echo $ne)");
-  # my $out = system @args;
-  #print "$out\n";
+
+  my $diff = `bash -c "icdiff <(echo $ol) <(echo $ne)"`;
+  print "$diff\n";
 
   print "Update $title to revision $new (Y or N)\n";
   my $confirm = <STDIN>;
