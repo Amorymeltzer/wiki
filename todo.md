@@ -26,8 +26,12 @@
 * Combine loops
 
 #### userScripts
-* Prompt for edit summary in push.pl
-* updatemodern: Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
-* Update evad37/enterprisey subpages/gadgets (reply link gadget, rater? subpage)
-* Use hash/latest for edit summary in push.pl like sync.pl
-
+##### push.pl
+* Prompt for edit summary
+* Use hash/latest for edit summary like sync.pl
+##### updateModernjs.pl
+* Genericize, or at least also check pedit.js
+* Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
+* modern: Update Evad37 gadgets/subpages (xfdcloser gadget, rater subpage (annoying but I guess I trust evad37))
+* mw.loader.load("ext.gadget.XFDcloser");
+* modern: Better import for hotcat, xtools, and afchelper gadgets
