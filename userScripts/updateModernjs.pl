@@ -54,11 +54,11 @@ if ($conf{username} !~ '^Amorymeltzer') {
 
 ## Everything checks out
 # Open API and log in
-my $mw = MediaWiki::API->new({
-			      api_url => 'https://en.wikipedia.org/w/api.php'
-			     });
-$mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
-$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+# my $mw = MediaWiki::API->new({
+# 			      api_url => 'https://en.wikipedia.org/w/api.php'
+# 			     });
+# $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
+# $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
 # Start processing
 # Generic basis for each API query to get old revisions
@@ -91,23 +91,48 @@ foreach my $url (@loaders) {
   # my %revisions = %{$response->{revisions}[0]};
   # my $oldContent = $revisions{q{*}};
 
-  my $newID = $oldID / 2;
+  my $newID = int $oldID / 2;
   my $oldContent = 'asdasdlkjaskd ddd' . $oldID;
   my $newContent = 'kajsdajksdhas dah' . $newID;
 
-  $oldContent = substr $oldContent, 0, 5;
-  $newContent = substr $newContent, 0, 5;
   %{$replacings{$title}} = (
 			old => [$oldID, $oldContent],
 			new => [$newID, $newContent]
 		       );
 
-  write_text($oldID, $oldContent);
-  write_text($newID, $newContent);
+  # write_text($oldID, $oldContent);
+  # write_text($newID, $newContent);
   $count++;
 
   last if $count > 3;
 }
 
-use Data::Dumper;
-print Dumper(%replacings);
+# use Data::Dumper;
+# print Dumper(%replacings);
+
+foreach my $title (keys %replacings) {
+  # print "old: $replacings{$title}{old}";
+  # print "old: @{$replacings{$title}{old}}\tnew: @{$replacings{$title}{new}}\n";
+  print "$title: $replacings{$title}{old}[0] to $replacings{$title}{new}[0]\n";
+  my $old = $replacings{$title}{old}[0];
+  my $new = $replacings{$title}{new}[0];
+  my $ol = $replacings{$title}{old}[1];
+  my $ne = $replacings{$title}{new}[1];
+  open3($writer, $reader, $err, "bash -c 'icdiff <(echo $ol) <(echo $ne)'");
+  my @res = <$reader>;
+  print "@res\n";
+  # my @args = ('bash', '-c', "icdiff <(echo $ol) <(echo $ne)");
+  # my $out = system @args;
+  #print "$out\n";
+
+  print "Update $title to revision $new (Y or N)\n";
+  my $confirm = <STDIN>;
+  chomp $confirm;
+  if (lc $confirm eq 'n') {
+    print "Skipping $title\n";
+  } elsif (lc $confirm eq 'y') {
+    `perl -i -p -e "s/$old/$new/g" modern.js`;
+  } elsif (lc $confirm eq 'q') {
+    last;
+  }
+}

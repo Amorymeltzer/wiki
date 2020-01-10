@@ -25,6 +25,8 @@
 - If same, skip.  If different, query oldid for content
 - Put everything in hash of hashs of arrays
 - icdiff content to confirm (bash one liner (IPC::Open3?) to generate content a la flashcards.pl)
+- icdiff <(echo "asdasd") <(echo "ddasdasd")
+  #`bash icdiff <(echo "$replacings{$title}{old}[1]") <(echo "$replacings{$title}{new}[1]")`;
 - confirm Y or N
 - one liner (bash/perl) to replace ID
 
