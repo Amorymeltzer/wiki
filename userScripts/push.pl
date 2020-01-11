@@ -84,7 +84,7 @@ foreach my $file (@files) {
   } else {
     print "Pushing $file...\n";
     my $text = read_text($file);
-    my $wikiText = $wikiPage->{q{*}};
+    my $wikiText = $wikiPage->{q{*}}."\n"; # MediaWiki doesn't have trailing newlines
     if ($text eq $wikiText) {
       print colored ['green'], "\tNo changes needed, skipping\n";
     } else {
