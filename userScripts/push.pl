@@ -213,7 +213,6 @@ modern.js
   userRightsManager.js
   hideSectionDesktop.js
   userinfo.js
-  huggle.yaml.js
   wlhActionLinks.js
   logSwap.js
   wordcount.js
