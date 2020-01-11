@@ -26,9 +26,6 @@
 * Combine loops
 
 #### userScripts
-##### push.pl
-* Prompt for edit summary
-* Use hash/latest for edit summary like sync.pl
 ##### updateModernjs.pl
 * Genericize, or at least also check pedit.js
 * Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
