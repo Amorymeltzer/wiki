@@ -288,7 +288,6 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    //[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 	    //Originally installed here to keep off certain pages but now installed via gadget
 	    //mw.loader.load('ext.gadget.XFDcloser');
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/XFDcloser/v3.js&oldid=922395970&action=raw&ctype=text/javascript');
 	    /*Only for [[WP:AFC/R]]*/
 	    if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
