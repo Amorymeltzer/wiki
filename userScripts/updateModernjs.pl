@@ -18,9 +18,16 @@ use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use File::Slurper qw(write_text);
 
+# Default to modern.js but also accept any other .js file in this directory,
+# as of this writing only pedit.js has any such imports in them
+my $js = 'modern.js';
+if (@ARGV == 1) {
+  $js = $ARGV[0] if -e $ARGV[0];
+}
+
 # Make sure we have stuff to process
 # Find all insteaces of mw.loader.load that target a specific revision
-my @loaders = `grep -io "mw\.loader\.load.*&oldid=.*&action=" modern.js`;
+my @loaders = `grep -io "mw\.loader\.load.*&oldid=.*&action=" $js`;
 
 if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process, quitting\n";
@@ -113,7 +120,7 @@ foreach my $title (keys %replacings) {
   if (lc $confirm eq 'n') {
     print "Skipping $title\n";
   } elsif (lc $confirm eq 'y') {
-    `perl -i -p -e "s/$old/$new/g" modern.js`;
+    `perl -i -p -e "s/$old/$new/g" $js`;
   } elsif (lc $confirm eq 'q') {
     last;
   }
