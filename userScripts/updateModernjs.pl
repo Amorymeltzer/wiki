@@ -27,7 +27,7 @@ if (@ARGV == 1) {
 
 # Make sure we have stuff to process
 # Find all insteaces of mw.loader.load that target a specific revision
-my @loaders = `grep -io "mw\.loader\.load.*&oldid=.*&action=" $js`;
+my @loaders = `grep -io "mw\.loader\.load.*en\.wikipedia\.org.*&oldid=.*&action=" $js`;
 
 if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process in $js, quitting\n";
