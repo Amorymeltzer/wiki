@@ -26,5 +26,6 @@
 * Combine loops
 
 #### userScripts
+* Something to process updates to others' that I've modified (maybe parse the first line)
 ##### updateModernjs.pl
 * Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
