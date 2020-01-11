@@ -7,49 +7,49 @@ $(function () {
 	var gName;
 	var gWhich;
 	if (mw.util.getParamValue("geight") == "yes") {
-            gSumm = "[[WP:CSD#G8|G8]]: Dependent on a nonexistant page";
-            gName = "G8";
-            gWhich = "geight";
+	    gSumm = "[[WP:CSD#G8|G8]]: Dependent on a nonexistant page";
+	    gName = "G8";
+	    gWhich = "geight";
 	} else if (mw.util.getParamValue("gthirteen") == "yes") {
-            gSumm = "[[WP:CSD#G13|G13]]: Abandoned [[WP:AFC|Article for creation]] — to retrieve it, see [[WP:REFUND/G13]]";
-            gName = "G13";
-            gWhich = "gthirteen";
+	    gSumm = "[[WP:CSD#G13|G13]]: Abandoned [[WP:AFC|Article for creation]] — to retrieve it, see [[WP:REFUND/G13]]";
+	    gName = "G13";
+	    gWhich = "gthirteen";
 	}
 
 	if (mw.config.get("wgAction") == "delete") {
-            document.getElementById('wpReason').value = gSumm;
-            document.getElementById('deleteconfirm').submit();
+	    document.getElementById('wpReason').value = gSumm;
+	    document.getElementById('deleteconfirm').submit();
 	} else if (mw.config.get("wgAction") == "view") {
-            mw.util.addPortletLink("p-cactions", "//en.wikipedia.org/wiki/" + mw.config.get("wgPageName") + "?action=delete&"+gWhich+"=yes", gName, gName, "Delete under CSD "+gName);
+	    mw.util.addPortletLink("p-cactions", "//en.wikipedia.org/wiki/" + mw.config.get("wgPageName") + "?action=delete&"+gWhich+"=yes", gName, gName, "Delete under CSD "+gName);
 	}
 
     } else if (mw.util.getParamValue("magicword") == "yes" && mw.config.get("wgAction") == "edit") {
-        var txt=document.editform.wpTextbox1;
-        txt.value=txt.value.replace(/{{basepagename[:\|]/gi, '{{BASEPAGENAME:');
-        txt.value=txt.value.replace(/{{defaultsort[:\|]/gi, '{{DEFAULTSORT:');
-        txt.value=txt.value.replace(/{{display ?title[:\|]/gi, '{{DISPLAYTITLE:');
-        txt.value=txt.value.replace(/{{fullpagename[:\|]/gi, '{{FULLPAGENAME:');
-        txt.value=txt.value.replace(/{{namespace[:\|]/gi, '{{NAMESPACE:');
-        txt.value=txt.value.replace(/{{numberofarticles[:\|]/gi, '{{NUMBEROFARTICLES:');
-        txt.value=txt.value.replace(/{{padleft[:\|]/gi, '{{PADLEFT:');
-        txt.value=txt.value.replace(/{{pagename[:\|]/gi, '{{PAGENAME:');
-        txt.value=txt.value.replace(/{{protectionlevel[:\|]/gi, '{{PROTECTIONLEVEL:');
-        txt.value=txt.value.replace(/{{pagesize[:\|]/gi, '{{PAGESIZE:');
-        txt.value=txt.value.replace(/{{shortdesc[:\|]/gi, '{{SHORTDESC:');
-        txt.value=txt.value.replace(/{{subpagename[:\|]/gi, '{{SUBPAGENAME:');
+	var txt=document.editform.wpTextbox1;
+	txt.value=txt.value.replace(/{{basepagename[:\|]/gi, '{{BASEPAGENAME:');
+	txt.value=txt.value.replace(/{{defaultsort[:\|]/gi, '{{DEFAULTSORT:');
+	txt.value=txt.value.replace(/{{display ?title[:\|]/gi, '{{DISPLAYTITLE:');
+	txt.value=txt.value.replace(/{{fullpagename[:\|]/gi, '{{FULLPAGENAME:');
+	txt.value=txt.value.replace(/{{namespace[:\|]/gi, '{{NAMESPACE:');
+	txt.value=txt.value.replace(/{{numberofarticles[:\|]/gi, '{{NUMBEROFARTICLES:');
+	txt.value=txt.value.replace(/{{padleft[:\|]/gi, '{{PADLEFT:');
+	txt.value=txt.value.replace(/{{pagename[:\|]/gi, '{{PAGENAME:');
+	txt.value=txt.value.replace(/{{protectionlevel[:\|]/gi, '{{PROTECTIONLEVEL:');
+	txt.value=txt.value.replace(/{{pagesize[:\|]/gi, '{{PAGESIZE:');
+	txt.value=txt.value.replace(/{{shortdesc[:\|]/gi, '{{SHORTDESC:');
+	txt.value=txt.value.replace(/{{subpagename[:\|]/gi, '{{SUBPAGENAME:');
 
-        document.editform.wpSummary.value = 'Use magic word in place of template';
-        document.getElementById('wpMinoredit').checked=true;
-        document.getElementById('wpWatchthis').checked=false;
+	document.editform.wpSummary.value = 'Use magic word in place of template';
+	document.getElementById('wpMinoredit').checked=true;
+	document.getElementById('wpWatchthis').checked=false;
 
-        document.getElementById('wpDiff').click();
+	document.getElementById('wpDiff').click();
     } else if (mw.util.getParamValue("copyrev") == "yes" && mw.config.get("wgAction") == "edit") {
-        var ctxt=document.editform.wpTextbox1;
-        ctxt.value=ctxt.value.replace(/\{\{(copy(vio|right)-)?(revdel|histpurge)(-copyvio)?(\n?\|.*)*\n?}}\n?/i, '');
+	var ctxt=document.editform.wpTextbox1;
+	ctxt.value=ctxt.value.replace(/\{\{(copy(vio|right)-)?(revdel|histpurge)(-copyvio)?(\n?\|.*)*\n?}}\n?/i, '');
 
-        document.editform.wpSummary.value = 'Revision delete done, removing copyvio template';
-        document.getElementById('wpMinoredit').checked=false;
-        document.getElementById('wpWatchthis').checked=true;
+	document.editform.wpSummary.value = 'Revision delete done, removing copyvio template';
+	document.getElementById('wpMinoredit').checked=false;
+	document.getElementById('wpWatchthis').checked=true;
     }
 });
 
@@ -61,15 +61,15 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
     var pages = $(".wikitable a");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
-	
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
+
 	// Work with the link within each list element from now on
 	page = $(page);
-	
+
 	// Clone the link
 	var pageClone = page.clone(true);
-	
+
 	//Fix for redirects
 	if (pageClone.attr('class') === 'external text') {
 	    pageClone.attr('href', pageClone.attr('href').replace(/.*=(.*_?)([Tt]alk)(.*)&redirect=no/gi, '/wiki/$1$2$3'));
@@ -82,7 +82,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 
 	// Set main page link text
 	pageClone.text("main");
-	
+
 	// Do a dumb replace of the original URL and tooltip
 	pageClone.attr('title', pageClone.attr('title').replace("Talk:", ""));
 	pageClone.attr('title', pageClone.attr('title').replace("Wikipedia talk:", "Wikipedia:"));
@@ -114,7 +114,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	// Remove database report link
 	pageClone.attr('href', pageClone.attr('href').replace(" (page does not exist)", ""));
 	pageClone.attr('title', pageClone.attr('title').replace(" (page does not exist)", ""));
-	
+
 	// Link is done, just need to check if the target exists so we can turn it red if not.
 	// Grab link tooltip (as it now conveniently contains the page title alone, which we need for the Ajax query)
 	var cloneTitle = pageClone.attr('title');
@@ -123,7 +123,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	// Perform Ajax query (using jQuery's awesomely-simple Ajax function) to get target's "title" data from MediaWiki API
 	$.ajax({
 	    url:mw.util.wikiScript('api') + "?action=query&titles=" + cloneTitle + "&format=xml",
-	    dataType: "xml", 
+	    dataType: "xml",
 	    type: "GET",
 	    success:parseIt
 	});
@@ -145,8 +145,8 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	delLink.attr('href', '#');
 
 	$( delLink ).on('click', function() {
-            geight( talkTitle );
-            return false;
+	    geight( talkTitle );
+	    return false;
 	});
 
 	function geight( page_title ) {
@@ -163,7 +163,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	}                                                                   // ...so if "missing" is NOT undefined, the target IS missing. Turn the link red.
 
 	if (pageClone.attr('class') === 'external text') {
-	    page.attr('href', page.attr('href') + '&geight=yes');	    
+	    page.attr('href', page.attr('href') + '&geight=yes');
 	} else {
 	    page.attr('href', page.attr('href') + '?geight=yes');
 	}
@@ -174,16 +174,16 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	histLink.insertAfter(page).before(" (").after(" ");
 
     });
-    
+
 } else if (mw.config.get('wgCanonicalSpecialPageName') === 'BrokenRedirects') {
-//Make cleaning [[Special:BrokenRedirects]] easier
+    //Make cleaning [[Special:BrokenRedirects]] easier
 
     // Grab page list elements
     var pages = $(".special li");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 
 	var mLink = $(page).find('a')[0];
 	var delLink = $(mLink).clone(true);
@@ -199,8 +199,8 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 
 
 	$( delLink ).on('click', function() {
-            geight( mLink.text );
-            return false;
+	    geight( mLink.text );
+	    return false;
 	});
 
 	function geight( page_title ) {
@@ -222,14 +222,14 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	delLink.insertAfter(page).before(" | ").after("");
     });
 } else if (mw.config.get('wgPageName') === 'User:AnomieBOT_III/Broken_redirects') {
-//Make cleaning [[User:AnomieBOT III/Broken redirects]] easier
+    //Make cleaning [[User:AnomieBOT III/Broken redirects]] easier
 
     // Grab page list elements
     var pages = $(".plainlinks a");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 
 	page = $(page);
 
@@ -246,8 +246,8 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 
 
 	$( delLink ).on('click', function() {
-            geight( page.text() );
-            return false;
+	    geight( page.text() );
+	    return false;
 	});
 
 	function geight( page_title ) {
@@ -265,44 +265,44 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	histLink.insertAfter(page).before(" (").after(" ");
     });
 } else if (mw.config.get('wgPageName') === 'Category:Pages_which_use_a_template_in_place_of_a_magic_word') {
-//Make fixing [[:Category:Pages which use a template in place of a magic word]] easier
+    //Make fixing [[:Category:Pages which use a template in place of a magic word]] easier
 
     // Grab page list elements
     var pages = $("#mw-pages li");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 	// Work with the link within each list element from now on
 	page = $(page).find('a')[0];
 	page.href += '?action=edit&magicword=yes';
     });
 } else if (mw.config.get('wgPageName') === 'Category:Candidates_for_speedy_deletion_as_abandoned_drafts_or_AfC_submissions') {
-//Make cleaning [[:Category:Candidates_for_speedy_deletion_as_abandoned_drafts_or_AfC_submissions]] easier
+    //Make cleaning [[:Category:Candidates_for_speedy_deletion_as_abandoned_drafts_or_AfC_submissions]] easier
 
     // Grab page list elements
     var pages = $("#mw-pages li");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 	// Work with the link within each list element from now on
 	page = $(page).find('a')[0];
 	page.href += '?gthirteen=yes';
     });
 } else if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Stale_drafts') {
-//Make tidying [[:Wikipedia:Database_reports/Stale_drafts]] easier
+    //Make tidying [[:Wikipedia:Database_reports/Stale_drafts]] easier
 
     // Grab page list elements
     var pages = $(".wikitable tr");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 
 	page = $(page.firstElementChild.firstElementChild);
 	if (typeof page === 'undefined') {
-            return true;
+	    return true;
 	}
 
 	var delLink = page.clone(true);
@@ -318,8 +318,8 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 
 
 	$( delLink ).on('click', function() {
-            gthirteen( page.text() );
-            return false;
+	    gthirteen( page.text() );
+	    return false;
 	});
 
 	function gthirteen( page_title ) {
@@ -337,14 +337,14 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	histLink.insertAfter(page).before(" (").after(" ");
     });
 } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Undelete') {
-//Make processing page creation logs easier
+    //Make processing page creation logs easier
 
     // Grab page list elements
     var pages = $(".mw-usertoollinks");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 
 	page = page.getElementsByTagName('a');
 	page = $(page);
@@ -356,16 +356,16 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 	histLink.attr('href', "/w/index.php?title=Special:Log&user=" + user);
 
 	histLink.insertBefore(page[2]).before("").after(" | ");
-    });    
+    });
 } else if (mw.config.get('wgPageName') === 'Category:Requested_RD1_redactions') {
-//Make processing [[:Category:Requested_RD1_redactions]] easier
+    //Make processing [[:Category:Requested_RD1_redactions]] easier
 
     // Grab page list elements
     var pages = $("#mw-pages li");
     // Create page var
     var page;
-    
-    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element 
+
+    $.each(pages, function(k, page) {  // Iterate through list elements; each step below runs on each list element
 	// Work with the link within each list element from now on
 	page = $(page).find('a')[0];
 	page.href += '?copyrev=yes&action=edit&section=0';

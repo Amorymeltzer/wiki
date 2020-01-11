@@ -1,20 +1,20 @@
 /*
-CSDCheck, restored from its former glory at [[User:Ale jrb/Scripts/csdcheck.js]] [[Special:PermaLink/295431646]]
-Expanded to work for block, (un)protect, and RevDel menus in addition to delete
+  CSDCheck, restored from its former glory at [[User:Ale jrb/Scripts/csdcheck.js]] [[Special:PermaLink/295431646]]
+  Expanded to work for block, (un)protect, and RevDel menus in addition to delete
 
-For deletion and blocking, THIS ONLY WORKS if you switch the new ooui menus for the old (better) ones.  Put this in your css:
-.action-delete .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle {
+  For deletion and blocking, THIS ONLY WORKS if you switch the new ooui menus for the old (better) ones.  Put this in your css:
+  .action-delete .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle {
   display: none;
-}
-.action-delete .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down {
+  }
+  .action-delete .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down {
   display: inline !important;
-}
+  }
 
-Alternatively, put this in your js:
-if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
+  Alternatively, put this in your js:
+  if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
   mw.util.addCSS(".oo-ui-dropdownWidget-handle {display: none;}");
   mw.util.addCSS(".oo-ui-indicator-down {display: inline !important;}");
-}
+  }
 */
 
 $(function () {

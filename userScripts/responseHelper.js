@@ -33,11 +33,11 @@
 			code : "f",
 			summary : "No vandalism since final warning"
 		    },
-                    "No edits since warn" : {
+		    "No edits since warn" : {
 			code : "nesw",
 			summary : "No edits since being warned"
 		    },
-                    "Stale report" : {
+		    "Stale report" : {
 			code : "e|X",
 			summary : "Stale report. ",
 			prompt : "How long since the user last edited?"
@@ -47,37 +47,37 @@
 			summary : "Report was good but is now stale. ",
 			prompt : "How long since the user last edited?"
 		    },
-                    "Stale warning" : {
+		    "Stale warning" : {
 			code : "ow|X",
 			summary : "Stale warning. ",
 			prompt : "The last warning issued how long ago?"
 		    },
-                    "Insufficient warnings" : {
+		    "Insufficient warnings" : {
 			code : "ns",
 			summary : "User insufficiently warned"
 		    },
-                    "4im inappropriate" : {
+		    "4im inappropriate" : {
 			code : "4im",
 			summary : "User inappropriately warned with 4im"
 		    },
-                    "Not vandalism" : {
+		    "Not vandalism" : {
 			code : "nv",
 			summary : "Edits are not vandalism"
 		    },
-                    "Declined" : {
+		    "Declined" : {
 			code : "dc",
 			summary : "Declined. ",
 			prompt : "Reason?"
 		    },
-                    "Not punitive" : {
+		    "Not punitive" : {
 			code : "np",
 			summary : "Blocks are preventive, not punitive"
 		    },
-                    "Warned user" : {
+		    "Warned user" : {
 			code : "w",
 			summary : "Warned user"
 		    },
-                    "Checking" : {
+		    "Checking" : {
 			code : "chk",
 			summary : "Checking"
 		    },
@@ -103,11 +103,11 @@
 			code : "s",
 			summary : "Appears to be a shared IP"
 		    },
-                    "Content dispute" : {
+		    "Content dispute" : {
 			code : "c",
 			summary : "Content dispute"
 		    },
-                    "WP:ANEW" : {
+		    "WP:ANEW" : {
 			code : "3rr",
 			summary : "Consider reporting to [[WP:ANEW]]"
 		    },
@@ -135,7 +135,7 @@
 			code : "d",
 			summary : "Page deleted"
 		    },
-            "False positive—bot only" : {
+		    "False positive—bot only" : {
 			code : "fp",
 			summary : "False positive"
 		    }
@@ -452,7 +452,7 @@
 			code : "nrb",
 			summary : "Not done: not what rollback is for"
 		    },
-                    "Already done" : {
+		    "Already done" : {
 			code : "ad|X",
 			summary : "Already done "
 		    },
@@ -507,7 +507,7 @@
 			code : "why",
 			summary : "Question: why do you think you are not confirmed?"
 		    },
-                    "Already done" : {
+		    "Already done" : {
 			code : "ad",
 			summary : "Already done",
 			id : "adc"
@@ -540,7 +540,7 @@
 			code : "npm",
 			summary : "Not done: not what page mover is for"
 		    },
-                    "Already done" : {
+		    "Already done" : {
 			code : "ad",
 			summary : "Already done",
 			id : "adc"
@@ -665,7 +665,7 @@
 			summary : "Already done by ",
 			prompt : "Admin's name?"
 		    },
-                    "Checking" : {
+		    "Checking" : {
 			code : "ch",
 			summary : "Checking"
 		    },
@@ -794,15 +794,15 @@
 	var txt = "";
 	if (templateName == "RFPP") {
 	    if ( response.replied== "true") {
-	        txt = $textarea.val();
-	        txt = txt.match(/\=\=.*\n.*\* ?\{\{pagelinks.*\n+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
-	        txt = '; Reply to ' + txt[2];
+		txt = $textarea.val();
+		txt = txt.match(/\=\=.*\n.*\* ?\{\{pagelinks.*\n+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
+		txt = '; Reply to ' + txt[2];
 	    }
 	} else if (templateName == "AIV") {
-		if (response.code != 'fp') {
-	    	txtA = prompt("Who reported?");
-	    	if (txtA && txtA !== null) txt = "; Reply to " + txtA;
-		}
+	    if (response.code != 'fp') {
+		txtA = prompt("Who reported?");
+		if (txtA && txtA !== null) txt = "; Reply to " + txtA;
+	    }
 	}
 
 	if (inline) {

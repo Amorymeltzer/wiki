@@ -5,20 +5,20 @@
 
 if (mw.config.get('wgCanonicalSpecialPageName') === "Whatlinkshere") {
     var items = $("#mw-whatlinkshere-list li");
-	$.each(items, function(k, item) {
-	    var itemz = $(item).find('a')[0];
+    $.each(items, function(k, item) {
+	var itemz = $(item).find('a')[0];
 
-	    var histLink = $(itemz).clone(true);
-	    histLink.text("hist");
-	    histLink.attr('href', "/w/index.php?title=" + encodeURI(itemz.title) + "&action=history");
+	var histLink = $(itemz).clone(true);
+	histLink.text("hist");
+	histLink.attr('href', "/w/index.php?title=" + encodeURI(itemz.title) + "&action=history");
 
-	    if ($.inArray('sysop', mw.config.get('wgUserGroups')) !== -1) {
-		var delLink = $(itemz).clone(true);
-		delLink.text("del");
-		delLink.attr('href', "/w/index.php?title=" + encodeURI(itemz.title) + "&action=delete");
+	if ($.inArray('sysop', mw.config.get('wgUserGroups')) !== -1) {
+	    var delLink = $(itemz).clone(true);
+	    delLink.text("del");
+	    delLink.attr('href', "/w/index.php?title=" + encodeURI(itemz.title) + "&action=delete");
 
-		delLink.insertAfter($(item).find('a')[2]).before(" | ");
-	    }
-	    histLink.insertAfter($(item).find('a')[2]).before(" | ");
-	});
+	    delLink.insertAfter($(item).find('a')[2]).before(" | ");
+	}
+	histLink.insertAfter($(item).find('a')[2]).before(" | ");
+    });
 }

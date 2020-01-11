@@ -75,34 +75,34 @@ $(function () {
 if (mw.config.get('wgCanonicalNamespace') === 'Special') {
     /*Contributions*/
     if (mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
-		if ($('.mw-contributions-list').length) { //Save some space
-			var paraGone = $('.mw-contributions-list')[0].previousSibling; //Remove <p> tag revision date nav
-			$(paraGone).replaceWith(paraGone.childNodes);
-		}
+	if ($('.mw-contributions-list').length) { //Save some space
+	    var paraGone = $('.mw-contributions-list')[0].previousSibling; //Remove <p> tag revision date nav
+	    $(paraGone).replaceWith(paraGone.childNodes);
+	}
 
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); //[[User:Markhurd/hidetopcontrib.js]]
 	window.userHideAllSubsequent=true;
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=882368814&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRollback.js]]
-	
+
 	//Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 	//Script is immensely helpful, but the individual links and OS bolding are as well
 	$('.mw-contributions-list').before("<span id=toggle_massrevdel class='toggle_massrevdel' style='font-size:85%;'>" +
-		   "<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
-		   "</span>");
+					   "<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
+					   "</span>");
 	$(document).on('click', '.mass_revdel_on', function() {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=872006347&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
-		$('#toggle_massrevdel').remove();
-		//Tighten/shorten massRevdel stuff
-		mw.loader.using(['mediawiki.util'], function() {
-    		mw.util.addCSS("#revdelCP {margin-left: 0.4em;}");
-    	});
-		$(document).on('click', '#revdelCP', function() {
-    		$('#revdelLabel').text('RevDel >'); //Would prefer this to begin with but so be it
-			$('#revdelSelectAll').val('All');
-			$('#revdelSelectNone').val('None');
-			$('#revdelSubmit').val('RevDel');
-			$('#oversightSubmit').val('Oversight');
-		});
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=872006347&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
+	    $('#toggle_massrevdel').remove();
+	    //Tighten/shorten massRevdel stuff
+	    mw.loader.using(['mediawiki.util'], function() {
+		mw.util.addCSS("#revdelCP {margin-left: 0.4em;}");
+	    });
+	    $(document).on('click', '#revdelCP', function() {
+		$('#revdelLabel').text('RevDel >'); //Would prefer this to begin with but so be it
+		$('#revdelSelectAll').val('All');
+		$('#revdelSelectNone').val('None');
+		$('#revdelSubmit').val('RevDel');
+		$('#oversightSubmit').val('Oversight');
+	    });
 	});
 
 	//Shorten revdel; change rollback to r; current to top
@@ -120,46 +120,46 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	});
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist') {
 	/*Watchlist*/
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
-		importScript('User:Amorymeltzer/ReverseMarked.js'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
+	importScript('User:Amorymeltzer/ReverseMarked.js'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Log' || mw.config.get('wgCanonicalSpecialPageName') === 'Userrights') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
 	if (mw.config.get('wgCanonicalSpecialPageName') === 'Log') {
-		/*Log*/
-		importScript ('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
+	    /*Log*/
+	    importScript ('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
 	}
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Whatlinkshere') {
 	/*What links here*/
 	//Add history and delete links
 	importScript('User:Amorymeltzer/wlhActionLinks.js'); //[[meta:User:He7d3r/Tools/AddActionLinks.js]], [[User:Amorymeltzer/wlhActionLinks.js]]
 	//Quick count of transclusions and links
-    mw.loader.load('//www.wikidata.org/w/index.php?title=MediaWiki:Linkscount.js&action=raw&ctype=text/javascript'); //[[wikidata:MediaWiki:Linkscount.js]]
+	mw.loader.load('//www.wikidata.org/w/index.php?title=MediaWiki:Linkscount.js&action=raw&ctype=text/javascript'); //[[wikidata:MediaWiki:Linkscount.js]]
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
 	/*Block*/
 	//Automatically watch user talk pages when blocking
 	document.getElementsByName('wpWatch')[0].checked = "true";
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Search') {
 	/*Search*/
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
-		importScript('User:Amorymeltzer/Search_sort.js'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
+	importScript('User:Amorymeltzer/Search_sort.js'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
 	/*AbuseLog*/
-		importScript('User:Amorymeltzer/osal.js'); //[[User:Amorymeltzer/osal.js]]
+	importScript('User:Amorymeltzer/osal.js'); //[[User:Amorymeltzer/osal.js]]
 	/*Masses*/
     } else if (mw.config.get('wgPageName') === 'Special:Massedit') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=851213665&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=851213665&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
     } else if (mw.config.get('wgPageName') === 'Special:Massdelete') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=883804308&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=883804308&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
     } else if (mw.config.get('wgPageName') === 'Special:Massrestore') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=851214383&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massrestore.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=851214383&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massrestore.js]]
     } else if (mw.config.get('wgPageName') === 'Special:Massblock') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=851213957&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massblock.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=851213957&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massblock.js]]
     } else if (mw.config.get('wgPageName') === 'Special:MassUnblock') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=851214076&action=raw&ctype=text/javascript'); //[[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=851214076&action=raw&ctype=text/javascript'); //[[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
     } else if (mw.config.get('wgPageName') === 'Special:Massprotect') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=851214226&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=851214226&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
     } else if (mw.config.get('wgPageName') === 'Special:Massmove') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=912351042&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=912351042&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
     }
 
 } else {
@@ -183,25 +183,25 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
     var overwriteDeclineReasons = true;
     importScript('User:Amorymeltzer/CSDHreasons.js'); //[[User:Amorymeltzer/CSDHreasons.js]] Custom decline reasons, inspired by [[User:SoWhy/csdreasons.js]]
 
-	importScript('User:Amorymeltzer/hideSectionDesktop.js'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
+    importScript('User:Amorymeltzer/hideSectionDesktop.js'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
     mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=778745654&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
     importScript('User:Amorymeltzer/pagemods.js'); //Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 
-	mw.loader.using(['mediawiki.util'], function() {
-    	if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
-    		importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
-    	}
-	});
-    
+    mw.loader.using(['mediawiki.util'], function() {
+	if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
+	    importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
+	}
+    });
+
     //Shorten revdel
     //Should probably combine this with the identical one for Special:Contributions
     $(function () {
-    	if (mw.config.get('wgRevisionId')) {
-	    	$('[class^="mw-revdelundel-link"] a').each(function(index, link) {
-			link.innerHTML = "RevDel";
-	    	});
-    	}
-	});
+	if (mw.config.get('wgRevisionId')) {
+	    $('[class^="mw-revdelundel-link"] a').each(function(index, link) {
+		link.innerHTML = "RevDel";
+	    });
+	}
+    });
 
     /*
       Most things aren't needed on articles, so define articles first
@@ -209,31 +209,31 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
     */
     /*Articles and Drafts*/
     if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 118)) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=672790910&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=672790910&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
     }
 
     /*Articles and Talk*/
     //Only on articles and talk
     if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 1)) {
-		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
-		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
-		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=923053181&action=raw&ctype=text/javascript');
+	/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
+	 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
+	 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=923053181&action=raw&ctype=text/javascript');
 
-	    //[[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
-	    // Loading here rather than via rater.js to get specific version
-	    mw.loader.using([
-		    "mediawiki.util", "mediawiki.api", "mediawiki.Title",
-		    "oojs-ui-core", "oojs-ui-widgets", "oojs-ui-windows",
-		    "oojs-ui.styles.icons-content", "oojs-ui.styles.icons-interactions",
-		    "oojs-ui.styles.icons-moderation", "oojs-ui.styles.icons-editing-core",
-		    "mediawiki.widgets", "mediawiki.widgets.NamespacesMultiselectWidget",
-	    ], function() {
-		    // Do not operate on non-existent pages or their talk pages
-		    if (!$("li.new[id|=ca-nstab]").length) {
-			    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=932599456&action=raw&ctype=text/javascript');
-		    }
-	    });
+	//[[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
+	// Loading here rather than via rater.js to get specific version
+	mw.loader.using([
+	    "mediawiki.util", "mediawiki.api", "mediawiki.Title",
+	    "oojs-ui-core", "oojs-ui-widgets", "oojs-ui-windows",
+	    "oojs-ui.styles.icons-content", "oojs-ui.styles.icons-interactions",
+	    "oojs-ui.styles.icons-moderation", "oojs-ui.styles.icons-editing-core",
+	    "mediawiki.widgets", "mediawiki.widgets.NamespacesMultiselectWidget",
+	], function() {
+	    // Do not operate on non-existent pages or their talk pages
+	    if (!$("li.new[id|=ca-nstab]").length) {
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=932599456&action=raw&ctype=text/javascript');
+	    }
+	});
     }
 
     /*Articles*/
@@ -246,14 +246,14 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 	importScript('User:Amorymeltzer/pedit.js'); //[[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 	/*Backlinks for pedit:
-	[[User:Caorongjin/wordcount]], [[User:Caorongjin/wordcount.js]], [[User:Dr_pda/prosesize.js]]
-	[[User:Lourdes/Backlinks.js]], [[m:User:Zhaofeng_Li/Reflinks.js]]], [[User:Lourdes/Backlinks.js]]
-	[[User:Edward/Find link]], [[User:Evad37/duplinks-alt]], [[User:Ucucha/duplinks.js]]
-	[[User:Qwertyytrewqqwerty/DisamAssist.js]], [[MediaWiki:Gadget-citations.js]], [[Wikipedia:AutoEd/complete.js]]
-	[[User:GregU/dashes.js]], [[User:Salix_alba/Citoid.js]], [[User:Ohconfucius/script/formatgeneral.js]]
-	[[User:Ohconfucius/script/Common Terms.js]], [[User:Dr_pda/editrefs.js]], [[User:TheJJJunk/ARA.js]]
-	[[User:Meteor sandwich yum/Tidy citations.js]], [[User:Cameltrader/Advisor.js]], [[User:PC-XT/Advisor.js]]
-	[[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]], [[User:Edward/Find_link]]
+	  [[User:Caorongjin/wordcount]], [[User:Caorongjin/wordcount.js]], [[User:Dr_pda/prosesize.js]]
+	  [[User:Lourdes/Backlinks.js]], [[m:User:Zhaofeng_Li/Reflinks.js]]], [[User:Lourdes/Backlinks.js]]
+	  [[User:Edward/Find link]], [[User:Evad37/duplinks-alt]], [[User:Ucucha/duplinks.js]]
+	  [[User:Qwertyytrewqqwerty/DisamAssist.js]], [[MediaWiki:Gadget-citations.js]], [[Wikipedia:AutoEd/complete.js]]
+	  [[User:GregU/dashes.js]], [[User:Salix_alba/Citoid.js]], [[User:Ohconfucius/script/formatgeneral.js]]
+	  [[User:Ohconfucius/script/Common Terms.js]], [[User:Dr_pda/editrefs.js]], [[User:TheJJJunk/ARA.js]]
+	  [[User:Meteor sandwich yum/Tidy citations.js]], [[User:Cameltrader/Advisor.js]], [[User:PC-XT/Advisor.js]]
+	  [[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]], [[User:Edward/Find_link]]
 	*/
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/smaller_templates.js&oldid=596443737&action=raw&ctype=text/javascript'); //[[User:Gary/smaller templates.js]]
 	importScript('User:Amorymeltzer/WRStitle.js'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
@@ -272,8 +272,8 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	//Manually installed rather than via gadget to keep off User pages
 	//[[User:Enterprisey/afch-master.js]], [[User:Enterprisey/afch-master.js/core.js]
 	if ($.inArray(mw.config.get('wgCanonicalNamespace'), ['Project', 'Project_talk', 'Draft'])>=0) {
-		mw.loader.load('ext.gadget.afchelper'); //[[MediaWiki:Gadget-afchelper.js]]
-    }
+	    mw.loader.load('ext.gadget.afchelper'); //[[MediaWiki:Gadget-afchelper.js]]
+	}
 
 	if (mw.config.get('wgNamespaceNumber') === 4) {
 	    /*Wikipedia project space, not talk*/
@@ -288,11 +288,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    //[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 	    //Originally installed here to keep off certain pages but now installed via gadget
 	    //mw.loader.load('ext.gadget.XFDcloser');
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/XFDcloser/v3.js&oldid=922395970&action=raw&ctype=text/javascript'); 
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/XFDcloser/v3.js&oldid=922395970&action=raw&ctype=text/javascript');
 	    /*Only for [[WP:AFC/R]]*/
 	    if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
-		 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
-		 }
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+	    }
 	} else if (mw.config.get('wgNamespaceNumber') === 14) {
 	    /*Categories*/
 	    importScript('User:Amorymeltzer/CatListMainTalkLinks.js'); //[[User:Equazcion/CatListMainTalkLinks.js]] Display main/talk/hist links for pages in categories [[User:Amorymeltzer/CatListMainTalkLinks.js]]
@@ -301,7 +301,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    //TinEye link, from [[meta:User:Krinkle/Scripts/TinEye]], [[File:Krinkle_TinEye.js]], [[commons:MediaWiki:Gadget-Tineye.js]], [[commons:MediaWiki:Gadget-Tineye]]
 	    var imgs = $('#file img');
 	    if (imgs.length) {
-	    	mw.util.addPortletLink('p-cactions', 'http://tineye.com/search?url=' + encodeURIComponent(imgs[0].src), 'TinEye', 'ca-tineye');
+		mw.util.addPortletLink('p-cactions', 'http://tineye.com/search?url=' + encodeURIComponent(imgs[0].src), 'TinEye', 'ca-tineye');
 	    }
 	    mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Krinkle/Scripts/TinEye.js&action=raw&ctype=text/javascript');
 	}//END else if LOOP but remain in not articles
@@ -314,11 +314,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=920346239&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 	    /*All talks*/
 	    if (mw.config.get('wgNamespaceNumber') !== '4') {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
-	    	/*User talks*/
-			if (mw.config.get('wgNamespaceNumber') === '3') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
-			}
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
+		/*User talks*/
+		if (mw.config.get('wgNamespaceNumber') === '3') {
+		    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
+		}
 	    }
 	}
     }//END not articles
@@ -336,7 +336,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 */
 /*MIXED*/
 if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions'
-	|| mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist' || mw.config.get('wgCanonicalSpecialPageName') === 'Recentchanges') {
+    || mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist' || mw.config.get('wgCanonicalSpecialPageName') === 'Recentchanges') {
 
     /*Hist/watch/rece/contribs*/
     //Shows inline diffs everywhere (hist, watch, recent, contribs)
@@ -368,67 +368,67 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 /*mw.config.exists('wgRelevantUserName')*/
 if (mw.config.exists('wgRelevantUserName')) {
     importScript('User:Amorymeltzer/userinfo.js'); //[[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
-	//[[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
-	//Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
-	importScript('User:Amorymeltzer/easyblock-modern.js'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
-	ebPrefs = {
-    	//returnTo:"Wikipedia:Administrator_intervention_against_vandalism&action=purge"
-	    loadPageOnSubmit:false
-	};
+    //[[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
+    //Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
+    importScript('User:Amorymeltzer/easyblock-modern.js'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
+    ebPrefs = {
+	//returnTo:"Wikipedia:Administrator_intervention_against_vandalism&action=purge"
+	loadPageOnSubmit:false
+    };
 }
 /*mw.config.get('wgRelevantPageIsProbablyEditable')*/
 //Excessive perhaps, but want this after userinfo
 if (mw.config.get('wgRelevantPageIsProbablyEditable')) {
-	importScript('User:Amorymeltzer/deletionFinder.js'); //[[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
-	importScript('User:Amorymeltzer/suppressionFinder.js'); //[[User:Amorymeltzer/suppressionFinder.js]] As above
+    importScript('User:Amorymeltzer/deletionFinder.js'); //[[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
+    importScript('User:Amorymeltzer/suppressionFinder.js'); //[[User:Amorymeltzer/suppressionFinder.js]] As above
 }
 
 /*js/css/json pages, likely MediaWiki or userspace*/
 if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) !== -1) && ($.inArray(mw.config.get('wgAction'), ['view', 'edit', 'submit'])>=0)) {
-	importScript('User:Amorymeltzer/raw.js'); //[[User:Kangaroopower/rawtab.js]], [[User:Amorymeltzer/raw.js]]
-	
-	//Show diffs in monospace.  Maybe include Scribunto?
-	if (mw.config.get('wgDiffNewId')) {
-		$('td.diff-addedline, td.diff-deletedline, td.diff-context').css('font-family',"Consolas, 'Courier New', monospace");
-	}
+    importScript('User:Amorymeltzer/raw.js'); //[[User:Kangaroopower/rawtab.js]], [[User:Amorymeltzer/raw.js]]
 
-	//Activate wikilinks, from [[Wikipedia:WikiProject User scripts/Scripts/Autolink]]
-	//Requires commas between consecutive items
-	//Awkward fix to avoid the edit box
-	if (mw.config.get('wgAction') == 'view') {
-	    targetdiv = document.getElementById('mw-content-text');
-	} else if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
-	    targetdiv = document.getElementById('wikiPreview');
-	}
-	content = targetdiv.innerHTML;
-	content = content.replace(/([^\[])\[{2}([^\[\]\|<\>\n]*)([^\[\]<\>\n]*?)?\]{2}([^\]])/g, '$1<a class="autolink" href="/wiki/$2">[[$2$3]]</a>$4'); // Make wikilink code into links
-	targetdiv.innerHTML = content; // Write it back
+    //Show diffs in monospace.  Maybe include Scribunto?
+    if (mw.config.get('wgDiffNewId')) {
+	$('td.diff-addedline, td.diff-deletedline, td.diff-context').css('font-family',"Consolas, 'Courier New', monospace");
+    }
 
-	//Add personal js/css nav
-	var ss = window.document.getElementsByClassName('subpages')[0];
+    //Activate wikilinks, from [[Wikipedia:WikiProject User scripts/Scripts/Autolink]]
+    //Requires commas between consecutive items
+    //Awkward fix to avoid the edit box
+    if (mw.config.get('wgAction') == 'view') {
+	targetdiv = document.getElementById('mw-content-text');
+    } else if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
+	targetdiv = document.getElementById('wikiPreview');
+    }
+    content = targetdiv.innerHTML;
+    content = content.replace(/([^\[])\[{2}([^\[\]\|<\>\n]*)([^\[\]<\>\n]*?)?\]{2}([^\]])/g, '$1<a class="autolink" href="/wiki/$2">[[$2$3]]</a>$4'); // Make wikilink code into links
+    targetdiv.innerHTML = content; // Write it back
+
+    //Add personal js/css nav
+    var ss = window.document.getElementsByClassName('subpages')[0];
     if (ss && mw.config.get('wgArticleId')) { //In case the page was deleted
-		var modLink = " | <a href=\"/wiki/User:Amorymeltzer/modern.js\" title=\"User:Amorymeltzer/modern.js\">modern.js</a> | <a href=\"/wiki/User:Amorymeltzer/modern.css\" title="
-			+ "\"User:Amorymeltzer/modern.css\">modern.css</a> | <a href=\"/wiki/Special:PrefixIndex/User:Amorymeltzer/\" title=\"wiki/Special:PrefixIndex/User:Amorymeltzer/\">subpages</a>";
-		ss.innerHTML = ss.innerHTML + modLink;
-	}
+	var modLink = " | <a href=\"/wiki/User:Amorymeltzer/modern.js\" title=\"User:Amorymeltzer/modern.js\">modern.js</a> | <a href=\"/wiki/User:Amorymeltzer/modern.css\" title="
+	    + "\"User:Amorymeltzer/modern.css\">modern.css</a> | <a href=\"/wiki/Special:PrefixIndex/User:Amorymeltzer/\" title=\"wiki/Special:PrefixIndex/User:Amorymeltzer/\">subpages</a>";
+	ss.innerHTML = ss.innerHTML + modLink;
+    }
 } else { //Not js/css/json
-	if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Anomie/previewtemplatelastmod.js&oldid=683547736&action=raw&ctype=text/javascript'); //[[User:Anomie/previewtemplatelastmod]], [[User:Anomie/previewtemplatelastmod.js]] Display info about transcluded templates
-		if (mw.config.get('wgNamespaceNumber') !== 0) {
-			//Turn enhanced toolbar off if not in mainspace
-			//Defined here to easily allow the code editor on the above pages
-			mw.loader.using(['mediawiki.util'], function() {
-				mw.util.addCSS("#wikiEditor-ui-toolbar {display:none;}");
-			});
-		}
+    if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Anomie/previewtemplatelastmod.js&oldid=683547736&action=raw&ctype=text/javascript'); //[[User:Anomie/previewtemplatelastmod]], [[User:Anomie/previewtemplatelastmod.js]] Display info about transcluded templates
+	if (mw.config.get('wgNamespaceNumber') !== 0) {
+	    //Turn enhanced toolbar off if not in mainspace
+	    //Defined here to easily allow the code editor on the above pages
+	    mw.loader.using(['mediawiki.util'], function() {
+		mw.util.addCSS("#wikiEditor-ui-toolbar {display:none;}");
+	    });
 	}
+    }
 }
 
 /*Delete, (Un)Protect, RevisionDelete, Block, or AbuseLog*/
 //Resurrected version of [[User:Ale jrb/Scripts/csdcheck.js]], requires some CSS (Exampless in [[User:Amorymeltzer/csdcheck.js]] or [[User:Amorymeltzer/modern.css]])
 if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'protect' || mw.config.get('wgAction') === 'unprotect' ||
-	mw.config.get('wgCanonicalSpecialPageName') === 'Revisiondelete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block' ||
-	mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
+    mw.config.get('wgCanonicalSpecialPageName') === 'Revisiondelete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block' ||
+    mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
     importScript('User:Amorymeltzer/csdcheck.js'); //[[User:Ale jrb/Scripts]], [[User:Amorymeltzer/csdcheck.js]]
 }
 
@@ -504,9 +504,9 @@ if (mw.config.get('wgAction') === 'history') {
     //Don't watch super active projectspace pages
     //AIV, RFPP, UAA, ANI, Sandbox
     $(function () {
-		if (mw.config.get('wgNamespaceNumber') === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(mw.config.get('wgTitle')) !== -1) {
-	    	document.getElementById('wpWatchthis').checked = false;
-		}
+	if (mw.config.get('wgNamespaceNumber') === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(mw.config.get('wgTitle')) !== -1) {
+	    document.getElementById('wpWatchthis').checked = false;
+	}
     });
 } else if (mw.config.get('wgAction') === 'purge' || mw.config.get('wgAction') === 'watch' || mw.config.get('wgAction') === 'unwatch') {
     /*Purge, (un)Watch*/
@@ -523,16 +523,16 @@ if (mw.config.get('wgAction') === 'history') {
 //Also move a bunch of crap around and the like
 //Doesn't always work
 function loadFunct(){
-	//Move portlets around, from [[User:MZMcBride/tabaway.js]] and Splarka
-	function movePortletLi(liid,portletid,clone) {
-		var li = document.getElementById(liid);
-		var portlet = document.getElementById(portletid);
-		if(!li || !portlet) return;
-		var ul = portlet.getElementsByTagName('ul')[0];
-		var newli = li.cloneNode(true);
-		ul.appendChild(newli);
-		if(!clone) li.parentNode.removeChild(li);
-	}
+    //Move portlets around, from [[User:MZMcBride/tabaway.js]] and Splarka
+    function movePortletLi(liid,portletid,clone) {
+	var li = document.getElementById(liid);
+	var portlet = document.getElementById(portletid);
+	if(!li || !portlet) return;
+	var ul = portlet.getElementsByTagName('ul')[0];
+	var newli = li.cloneNode(true);
+	ul.appendChild(newli);
+	if(!clone) li.parentNode.removeChild(li);
+    }
 
     $('li#pt-userpage a').text('Amory');
     // $('li#pt-preferences a').text('prefs');
