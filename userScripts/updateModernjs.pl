@@ -30,7 +30,7 @@ if (@ARGV == 1) {
 my @loaders = `grep -io "mw\.loader\.load.*en\.wikipedia\.org.*&oldid=.*&action=" $js`;
 
 if (!@loaders) {
-  print colored ['red'], "No mw.loader.load lines to process in $js, quitting\n";
+  print colored ['red'], "No mw.loader.load lines to process in $js\n";
   exit 1;
 }
 
@@ -80,8 +80,13 @@ foreach my $url (@loaders) {
 
   my $wikiPage = $mw->get_page({title => $title});
   my $newID = $wikiPage->{revid};
-  # print "title: $title\toldid: $oldID\tnewid: $newID";
-  next if !$oldID || !$newID || $oldID == $newID;
+  if (!$oldID || !$newID) {
+    print colored ['red'], "Error processing revision IDs in $js\n";
+    exit 1;
+  } elsif ($oldID == $newID) {
+    print colored ['red'], "Everything up-to-date in $js\n";
+    exit;
+  }
 
   # At least some difference exists, so we need to check it out
   my $newContent = $wikiPage->{q{*}};
