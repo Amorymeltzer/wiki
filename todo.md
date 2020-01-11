@@ -28,4 +28,3 @@
 #### userScripts
 ##### updateModernjs.pl
 * Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
-* modern: Update rater subpage (annoying but I guess I trust evad37)

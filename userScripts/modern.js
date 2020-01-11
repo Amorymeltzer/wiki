@@ -215,11 +215,25 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
     /*Articles and Talk*/
     //Only on articles and talk
     if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 1)) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater.js&oldid=922407925&action=raw&ctype=text/javascript'); //[[User:Evad37/rater.js]], [[User:Kephir/gadgets/rater.js]]
 		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=923053181&action=raw&ctype=text/javascript');
+
+	    //[[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
+	    // Loading here rather than via rater.js to get specific version
+	    mw.loader.using([
+		    "mediawiki.util", "mediawiki.api", "mediawiki.Title",
+		    "oojs-ui-core", "oojs-ui-widgets", "oojs-ui-windows",
+		    "oojs-ui.styles.icons-content", "oojs-ui.styles.icons-interactions",
+		    "oojs-ui.styles.icons-moderation", "oojs-ui.styles.icons-editing-core",
+		    "mediawiki.widgets", "mediawiki.widgets.NamespacesMultiselectWidget",
+	    ], function() {
+		    // Do not operate on non-existent pages or their talk pages
+		    if (!$("li.new[id|=ca-nstab]").length) {
+			    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=932599456&action=raw&ctype=text/javascript');
+		    }
+	    });
     }
 
     /*Articles*/
