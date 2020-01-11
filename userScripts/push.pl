@@ -73,26 +73,26 @@ if (@ARGV != 0) {
 }
 # Push
 my $me = 'User:Amorymeltzer/';
-foreach (@files) {
-  s/\s+//g;
-  my $file = $me.$_;
+foreach my $file (@files) {
+  $file =~ s/\s+//g;
+  my $page = $me.$file;
   # Get old page content
-  my $wikiPage = $mw->get_page({title => $file});
+  my $wikiPage = $mw->get_page({title => $page});
   if (defined $wikiPage->{missing}) {
-    print colored ['red'], "$file does not exist\n";
+    print colored ['red'], "$page does not exist\n";
     exit 1;
   } else {
-    print "Pushing $_...\n";
-    my $text = read_text($_);
+    print "Pushing $file...\n";
+    my $text = read_text($file);
     my $wikiText = $wikiPage->{q{*}};
     if ($text eq $wikiText) {
       print colored ['green'], "\tNo changes needed, skipping\n";
     } else {
       my $timestamp = $wikiPage->{timestamp};
-      my $summary = buildEditSummary($file, $_, $wikiPage->{comment});
+      my $summary = buildEditSummary($page, $file, $wikiPage->{comment});
       $mw->edit({
 		 action => 'edit',
-		 title => $file,
+		 title => $page,
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $text,
 		 summary => $summary
@@ -100,9 +100,9 @@ foreach (@files) {
       my $return = $mw->{response};
 
       if ($return->{_msg} eq 'OK') {
-	print colored ['green'], "\t$_ successfully pushed to $file\n";
+	print colored ['green'], "\t$file successfully pushed to $page\n";
       } else {
-	print colored ['red'], "\tError pushing $_: $mw->{error}->{code}: $mw->{error}->{details}\n";
+	print colored ['red'], "\tError pushing $file: $mw->{error}->{code}: $mw->{error}->{details}\n";
       }
     }
   }
