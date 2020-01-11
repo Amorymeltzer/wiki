@@ -30,7 +30,7 @@ if (@ARGV == 1) {
 my @loaders = `grep -io "mw\.loader\.load.*&oldid=.*&action=" $js`;
 
 if (!@loaders) {
-  print colored ['red'], "No mw.loader.load lines to process, quitting\n";
+  print colored ['red'], "No mw.loader.load lines to process in $js, quitting\n";
   exit 1;
 }
 
