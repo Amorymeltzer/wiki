@@ -12,8 +12,9 @@ use English qw(-no_match_vars);
 use utf8;
 
 use Config::General qw(ParseConfig);
-use MediaWiki::API;
+use FindBin;
 use Git::Repository;
+use MediaWiki::API;
 use File::Slurper qw(read_text);
 use Term::ANSIColor;
 
@@ -41,11 +42,12 @@ if ($conf{username} !~ '^Amorymeltzer') {
 }
 
 # Open git handler
+my $cwd = $FindBin::Bin; # Directory of this script
 my $repo = Git::Repository->new();
 
 # Open API and log in before anything else
 my $mw = MediaWiki::API->new({
-			      api_url => "https://en.wikipedia.org/w/api.php"
+			      api_url => 'https://en.wikipedia.org/w/api.php'
 			     });
 $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
@@ -119,7 +121,7 @@ sub buildEditSummary {
     my $valid = $repo->command('merge-base' => '--is-ancestor', "$1", 'HEAD');
     my $validC = $valid->stderr();
     if (eof $validC) {
-      my $newLog = $repo->run(log => '--oneline', '--no-merges', '--no-color', "$1..HEAD", $file);
+      my $newLog = $repo->run(log => '--oneline', '--no-merges', '--no-color', "$1..HEAD", "$cwd/$file");
       open my $nl, '<', \$newLog or die colored ['red'], "$ERRNO\n";
       while (<$nl>) {
 	chomp;
@@ -136,7 +138,7 @@ sub buildEditSummary {
 
   # Prompt for manual entry
   if (!$editSummary) {
-    my @log = $repo->run(log => '-5', '--pretty=format:%s (%h)', '--no-merges', '--no-color', $file);
+    my @log = $repo->run(log => '-5', '--pretty=format:%s (%h)', '--no-merges', '--no-color', "$cwd/$file");
     print colored ['red'], "Unable to autogenerate edit summary for $page\n\n";
     print "The most recent ON-WIKI edit summary is:\n";
     print colored ['blue'], "\t$oldCommitish\n";
