@@ -32,6 +32,4 @@
 ##### updateModernjs.pl
 * Genericize, or at least also check pedit.js
 * Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
-* modern: Update Evad37 gadgets/subpages (xfdcloser gadget, rater subpage (annoying but I guess I trust evad37))
-* mw.loader.load("ext.gadget.XFDcloser");
-* modern: Better import for hotcat, xtools, and afchelper gadgets
+* modern: Update rater subpage (annoying but I guess I trust evad37)

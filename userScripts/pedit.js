@@ -29,7 +29,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 
 	mw.util.addPortletLink("p-edit", 'https://dispenser.info.tm/~dispenser/cgi-bin/webchecklinks.py?page=' + mw.config.get("wgPageName"), 'Checklinks', 't-checklinks', "Checklinks");
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Qwertyytrewqqwerty/DisamAssist.js&oldid=829726913&action=raw&ctype=text/javascript'); //[[User:Qwertyytrewqqwerty/DisamAssist.js]], [[User:Qwertyytrewqqwerty/DisamAssist]]
-	importScript('MediaWiki:Gadget-citations.js'); //[[MediaWiki:Gadget-citations.js]]
+	mw.loader.load('ext.gadget.citations'); //[[MediaWiki:Gadget-citations.js]]
 	mw.util.addPortletLink("p-edit", '//tools.wmflabs.org/iabot/index.php?page=runbotsingle&pagesearch=' + mw.config.get("wgPageName"), 'IABot', 't-iabot', "Load the IA bot interface");
 
 	/*
@@ -52,7 +52,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
             //These aren't in the sidebar, but are relevant to mainspace editing, so loaded here rather than in modern.js for convenience
             importScript('User:Amorymeltzer/ARAspaceless.js'); //[[User:TheJJJunk/ARA.js]]
             importScript('User:Amorymeltzer/AdvisorDashless.js'); //[[User:Cameltrader/Advisor.js]] and [[User:PC-XT/Advisor.js]] Doesn't work with beta syntax highlighters
-            importScript('MediaWiki:Gadget-ProveIt.js'); //[[MediaWiki:Gadget-ProveIt.js]] [[WP:ProveIt]]
+            mw.loader.load('ext.gadget.ProveIt'); //[[MediaWiki:Gadget-ProveIt.js]] [[WP:ProveIt]] [[commons:MediaWiki:Gadget-ProveIt.js]]
             mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=192882659&action=raw&ctype=text/javascript'); //[[m:User:TMg/autoFormatter]]
 	}
     });

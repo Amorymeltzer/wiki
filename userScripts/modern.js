@@ -228,7 +228,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	//Installed here to be only in mainspace
 	window.hotcat_no_autocommit = true;
 	window.hotcat_del_needs_diff = true;
-	importScript('MediaWiki:Gadget-HotCat.js');
+	mw.loader.load('ext.gadget.HotCat');
 
 	importScript('User:Amorymeltzer/pedit.js'); //[[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 	/*Backlinks for pedit:
@@ -245,7 +245,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	importScript('User:Amorymeltzer/WRStitle.js'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=857651049&action=raw&ctype=text/javascript'); //[[User:Gary/subjects age from year.js]]
 	//importScript('User:Amorymeltzer/regex.js'); //[[User:Amorymeltzer/regex.js]] Maybe useful if start processing redirects with content again?  Need to make use of TemplateScript main I guess
-	importScript('MediaWiki:Gadget-XTools-ArticleInfo.js'); //[[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
+	mw.loader.load('ext.gadget.XTools-ArticleInfo'); //[[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
     } else {//END ARTICLES
 	/*
 	  Most scripts aren't needed in mainspace, so load them individually
@@ -258,7 +258,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	//Manually installed rather than via gadget to keep off User pages
 	//[[User:Enterprisey/afch-master.js]], [[User:Enterprisey/afch-master.js/core.js]
 	if ($.inArray(mw.config.get('wgCanonicalNamespace'), ['Project', 'Project_talk', 'Draft'])>=0) {
-		importScript('MediaWiki:Gadget-afchelper.js'); //[[MediaWiki:Gadget-afchelper.js]]
+		mw.loader.load('ext.gadget.afchelper'); //[[MediaWiki:Gadget-afchelper.js]]
     }
 
 	if (mw.config.get('wgNamespaceNumber') === 4) {
@@ -271,8 +271,10 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 	    //importScript('User:Timotheus Canens/spihelper.js'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=921967289&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/XFDcloser/v3.js&oldid=922395970&action=raw&ctype=text/javascript'); //[[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
-	    
+	    //[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
+	    //Originally installed here to keep off certain pages but now installed via gadget
+	    //mw.loader.load('ext.gadget.XFDcloser');
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/XFDcloser/v3.js&oldid=922395970&action=raw&ctype=text/javascript'); 
 	    /*Only for [[WP:AFC/R]]*/
 	    if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
 		 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
@@ -330,7 +332,7 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
     //inlineDiffBigUI = "true"; //Text is hardcoded, breaks above options
     mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=885070833&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
     mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
-    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=92222910989&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
+    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
 
     if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
 	/*History OR Contribs*/
