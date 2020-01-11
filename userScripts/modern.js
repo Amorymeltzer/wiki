@@ -310,7 +310,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=919671712&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Technical_13/Scripts/OneClickArchiver.js&oldid=864149342&action=raw&ctype=text/javascript'); //[[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 	    window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=920346239&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=930407343&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 	    /*All talks*/
 	    if (mw.config.get('wgNamespaceNumber') !== '4') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
@@ -343,7 +343,7 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
     showText = "show&nbsp;diff";
     hideText = "hide&nbsp;diff";
     //inlineDiffBigUI = "true"; //Text is hardcoded, breaks above options
-    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=885070833&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
+    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=926702438&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
     mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
     mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
 
