@@ -72,7 +72,6 @@ if(mw.config.exists('wgRelevantUserName')) {
 		var user, invalid, missing, groups, groupPages={}, editcount, registration, blocked, partial, gender, lastEdited;
 		try {
 		    user = query.users[0];
-		    console.log(user);
 		    invalid = typeof user.invalid != "undefined";
 		    missing = typeof user.missing != "undefined";
 		    groups = (typeof user.groups == "object") ? user.groups : [];
