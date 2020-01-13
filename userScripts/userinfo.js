@@ -69,9 +69,10 @@ if(mw.config.exists('wgRelevantUserName')) {
 		// When response arrives extract the information we need.
 		if(!query.query) { return; } // Suggested by Gary King to avoid JS errors --PS 2010-08-25
 		query = query.query;
-		var user, invalid, missing, groups, groupPages={}, editcount, registration, blocked, gender, lastEdited;
+		var user, invalid, missing, groups, groupPages={}, editcount, registration, blocked, partial, gender, lastEdited;
 		try {
 		    user = query.users[0];
+		    console.log(user);
 		    invalid = typeof user.invalid != "undefined";
 		    missing = typeof user.missing != "undefined";
 		    groups = (typeof user.groups == "object") ? user.groups : [];
@@ -79,6 +80,7 @@ if(mw.config.exists('wgRelevantUserName')) {
 		    registration = (typeof user.registration == "string") ?
 			new Date(user.registration) : null;
 		    blocked = typeof user.blockedby != "undefined";
+		    partial = typeof user.blockpartial != "undefined";
 		    gender = (typeof user.gender == "string") ? user.gender : null;
 		    lastEdited = (typeof query.usercontribs[0] == "object") &&
 			(typeof query.usercontribs[0].timestamp == "string") ?
@@ -102,7 +104,7 @@ if(mw.config.exists('wgRelevantUserName')) {
 		    statusText += "<a href=\"" + mw.config.get("wgScript") +
 			"?title=Special:Log&amp;page=" +
 			encodeURIComponent(mw.config.get("wgFormattedNamespaces")[2] + ":" + user.name) +
-			"&amp;type=block\">blocked</a> ";
+			"&amp;type=block\">" + (partial ? 'partially ' : '') + "blocked</a> ";
 		}
 		if (missing) {
 		    statusText += "username not registered";
