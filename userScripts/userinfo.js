@@ -64,7 +64,7 @@ function UserinfoJsFormatDateRel(old) {
 }
 
 // If on a user or user talk page
-if(mw.config.exists('wgRelevantUserName') && !window.userinfoHideSelf) {
+if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.config.get('wgRelevantUserName') === mw.config.get('wgUserName'))) {
     // add a hook to...
     mw.loader.using( ['mediawiki.util'], function() { $(function(){
 	// Request the user's information from the API.
