@@ -1,13 +1,20 @@
-//Stolen from https://en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=803890891 to tweak some options
-//Display on all user (sub)pages and contribs, logs, etc.
-//Edit counter link for current project
-//Show a symbol if no gender pronoun selected
-//Don't show the "From Wikipedia" if showing userinfo
+// Stolen from https://en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=803890891 to tweak some options
+// See also [[User:Equazcion/sysopdetector.js]] and [[User:Anomie/useridentifier.js]]
+// based on [[User:Fran Rogers/dimorphism.js]] and [[User:Splarka/sysopdectector.js]]
 
-//See also [[User:Equazcion/sysopdetector.js]] and [[User:Anomie/useridentifier.js]]
+// Display on all user (sub)pages and contribs, logs, etc.
+// Edit counter link for current project
+// Show a symbol if no gender pronoun selected
+// Don't show the "From Wikipedia" if showing userinfo
+// Add option to disable for self
 
-// based on [[User:Fran Rogers/dimorphism.js]]
-// and on [[User:Splarka/sysopdectector.js]]
+
+
+// userinfoHideSelf defaults to off
+if (window.userinfoHideSelf === undefined || typeof window.userinfoHideSelf !== 'boolean') {
+	window.userinfoHideSelf = false;
+}
+
 
 function UserinfoJsFormatQty(qty, singular, plural) {
     return String(qty).replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, "$&,") + "\u00a0" + (qty == 1 ? singular : plural);
@@ -57,7 +64,7 @@ function UserinfoJsFormatDateRel(old) {
 }
 
 // If on a user or user talk page
-if(mw.config.exists('wgRelevantUserName')) {
+if(mw.config.exists('wgRelevantUserName') && !window.userinfoHideSelf) {
     // add a hook to...
     mw.loader.using( ['mediawiki.util'], function() { $(function(){
 	// Request the user's information from the API.
