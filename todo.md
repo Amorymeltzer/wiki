@@ -1,7 +1,8 @@
 ### Todo List
 #### Wikispecies
-* Maybe figure out redirects?
-* Investigate linking and output (pdf?  wikitext?)
+* Figure out redirects (esp. those to "sect.")
+* Investigate linking and output (pdf?  wikitext?  pdfroff and wkhtmltopdf should work but options awkward)
+* More automated/better instructions
 * Cleanup, rerun, maybe publish?
 
 #### S-index
