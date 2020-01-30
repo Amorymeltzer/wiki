@@ -1,6 +1,5 @@
 {
     "-revi": 1,
-    "Ajraddatz": 1,
     "Base": 1,
     "Bsadowski1": 1,
     "Defender": 1,
