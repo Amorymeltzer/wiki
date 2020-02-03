@@ -1,11 +1,19 @@
 // Taken from https://en.wikipedia.org/w/index.php?title=User:Bellezzasolo/Scripts/adminhighlighter.js&oldid=829278273
-// Inspired from https://en.wikipedia.org/w/index.php?title=User:Amalthea/userhighlighter.js&oldid=437693511
-// Apply to sysops, IA, CU, OS, 'crats', AC members
-// JSON data (~36KB) is cached locally for an hour
+// Inspired from
+// https://en.wikipedia.org/w/index.php?title=User:Amalthea/userhighlighter.js&oldid=437693511
+//
+// Features added:
+// - Apply to sysops, IA, CU, OS, 'crats', AC members
+// - JSON data (~36KB) is cached locally for an hour
+// - Allow custom order (set window.highlight_order)
+//
+// If you want to set a custom order, add something like
+// window.highlight_order = ['acdata', 'crdata', 'osdata', 'cudata', 'iadata', 'sydata', 'swdata'];
+// to your common.js file where you load this script
 //
 // If you want different colors, add something like
 // .userhighlighter_bureaucrat {background-color: red !important}
-// to your modern.css file.
+// to your common.css file.
 //
 // Not at all friendly to other styles, erases 'em all completely
 //
@@ -17,6 +25,16 @@
 var main = function(data) {
 	ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
 	ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
+	highlight_order = window.highlight_order || ['acdata', 'crdata', 'osdata', 'cudata', 'iadata', 'sydata', 'swdata'];
+	classLookup = {
+		acdata: 'userhighlighter_arbcom',
+		crdata: 'userhighlighter_bureaucrat',
+		osdata: 'userhighlighter_oversight',
+		cudata: 'userhighlighter_checkuser',
+		iadata: 'userhighlighter_interface-admin',
+		sydata: 'userhighlighter_sysop',
+		swdata: 'userhighlighter_steward'
+	};
 	mw.loader.using(['mediawiki.util','mediawiki.Uri', 'mediawiki.Title'], function() {
 		mw.util.addCSS(".userhighlighter_arbcom {background-color: #888888}");
 		mw.util.addCSS(".userhighlighter_bureaucrat {background-color: #5588FF}");
@@ -40,27 +58,12 @@ var main = function(data) {
 					if ($.inArray(mwtitle.getNamespaceId(), ADMINHIGHLIGHT_NAMESPACES)>=0) {
 						var user = mwtitle.getMain().replace(/_/g," ");
 						if (mwtitle.getNamespaceId() === -1) user = user.replace('Contributions/','');
-						if(data.acdata[user] == 1) {
-							link.attr("class", "userhighlighter_arbcom");
-						}
-						else if(data.crdata[user] == 1) {
-							link.attr("class", "userhighlighter_bureaucrat");
-						}
-						else if(data.osdata[user] == 1) {
-							link.attr("class", "userhighlighter_oversight");
-						}
-						else if(data.cudata[user] == 1) {
-							link.attr("class", "userhighlighter_checkuser");
-						}
-						else if(data.iadata[user] == 1) {
-							link.attr("class", "userhighlighter_interface-admin");
-						}
-						else if (data.sydata[user] == 1) {
-							link.attr("class", "userhighlighter_sysop");
-						}
-						else if (data.swdata[user] == 1) {
-							link.attr("class", "userhighlighter_steward");
-						}
+						$.each(highlight_order, function(_ix, ug) {
+							if(data[ug][user] === 1) {
+								link.attr("class", classLookup[ug]);
+								return false;
+							}
+						});
 					}
 				}
 			} catch (e) {
