@@ -13,7 +13,7 @@ if (mw.config.get('wgRelevantPageIsProbablyEditable') || mw.config.exists('wgRel
 
 	//wgRelevantPageName doesn't discriminate via namespace, so check editability rather than doing relPage.match(/^Special:/) or something
 	//Basically means no special pages unless there's an associated page (e.g. on WhatLinksHere or RecentChangesLinked)
-	var relPage = mw.config.get("wgRelevantPageName");
+	var relPage = mw.util.wikiUrlencode(mw.config.get("wgRelevantPageName"));// Fix for characters like +
 	if (mw.config.get("wgRelevantPageIsProbablyEditable")) {
 	    mw.util.addPortletLink("p-info", "//en.wikipedia.org/w/index.php?title=Special:Log&page=" + relPage, "Page logs", "pt-logs", "Logs of this page");
 	    mw.util.addPortletLink("p-info", "//en.wikipedia.org/wiki/Special:PrefixIndex/" + relPage + "/", 'Subpages', 'pt-subpages', "All subpages of this page");
