@@ -8,7 +8,7 @@
 // - Allow custom order (set window.highlight_order)
 //
 // If you want to set a custom order, add something like
-// window.highlight_order = ['acdata', 'crdata', 'osdata', 'cudata', 'iadata', 'sydata', 'swdata'];
+// window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'intadmin', 'sysop', 'steward'];
 // to your common.js file where you load this script
 //
 // If you want different colors, add something like
@@ -23,17 +23,17 @@
 //<nowiki>
 
 var main = function(data) {
-	ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
-	ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
-	highlight_order = window.highlight_order || ['acdata', 'crdata', 'osdata', 'cudata', 'iadata', 'sydata', 'swdata'];
-	classLookup = {
-		acdata: 'userhighlighter_arbcom',
-		crdata: 'userhighlighter_bureaucrat',
-		osdata: 'userhighlighter_oversight',
-		cudata: 'userhighlighter_checkuser',
-		iadata: 'userhighlighter_interface-admin',
-		sydata: 'userhighlighter_sysop',
-		swdata: 'userhighlighter_steward'
+	var ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
+	var ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
+	var highlight_order = window.highlight_order || ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'intadmin', 'sysop', 'steward'];
+	var classLookup = {
+		arbcom: 'userhighlighter_arbcom',
+		bureaucrat: 'userhighlighter_bureaucrat',
+		oversight: 'userhighlighter_oversight',
+		checkuser: 'userhighlighter_checkuser',
+		intadmin: 'userhighlighter_interface-admin',
+		sysop: 'userhighlighter_sysop',
+		steward: 'userhighlighter_steward'
 	};
 	mw.loader.using(['mediawiki.util','mediawiki.Uri', 'mediawiki.Title'], function() {
 		mw.util.addCSS(".userhighlighter_arbcom {background-color: #888888}");
@@ -85,25 +85,25 @@ if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighl
 	crathighlighterdata = {};
 	$.when(
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/arbcom.json', function(data){
-			crathighlighterdata.acdata = data;
+			crathighlighterdata.arbcom = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/bureaucrat.json', function(data){
-			crathighlighterdata.crdata = data;
+			crathighlighterdata.bureaucrat = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/oversight.json', function(data){
-			crathighlighterdata.osdata = data;
+			crathighlighterdata.oversight = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/checkuser.json', function(data){
-			crathighlighterdata.cudata = data;
+			crathighlighterdata.checkuser = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/interface-admin.json', function(data){
-			crathighlighterdata.iadata = data;
+			crathighlighterdata.intadmin = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amalthea_(bot)/userhighlighter.js/sysop.js', function(data){
-			crathighlighterdata.sydata = data;
+			crathighlighterdata.sysop = data;
 		}),
 		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/steward.json', function(data){
-			crathighlighterdata.swdata = data;
+			crathighlighterdata.steward = data;
 		})
 	).then(function() {
 		crathighlighterdata.date = Date.now();
