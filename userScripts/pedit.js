@@ -13,7 +13,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	pTb.parentNode.insertBefore(pEdit, pTb.nextSibling);
 
 
-	importScript('User:Amorymeltzer/wordcount.js'); //[[User:Caorongjin/wordcount]] from [[User:Caorongjin/wordcount.js]] and [[User:Dr_pda/prosesize.js]]
+	mw.loader.load('ext.gadget.Prosesize'); //[[Wikipedia:Prosesize]] at [[MediaWiki:Gadget-Prosesize.js]], rewritten from  [[User:Dr_pda/prosesize.js]]
 	mw.util.addPortletLink("p-edit", '//toolserver.org/~dispenser/view/Peer_reviewer#page:' + mw.config.get("wgPageName"), 'Peer review', 't-peer', "Peer review");
 	mw.util.addPortletLink("p-edit", "https://tools.wmflabs.org/refill/ng/result.php?page=" + encodeURIComponent(mw.config.get('wgPageName')) + "&defaults=y&wiki=en", "reFill 2", "t-reflinks" ); //[[User:Zhaofeng Li/reFill]], [[m:User:Zhaofeng_Li/Reflinks.js]], [[toollabs:refill]]
 	mw.loader.load("https://meta.wikimedia.org/w/index.php?title=User:Zhaofeng_Li/Reflinks.js&oldid=18773634&action=raw&ctype=text/javascript");
