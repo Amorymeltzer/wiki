@@ -80,13 +80,7 @@ foreach my $url (@loaders) {
 
   my $wikiPage = $mw->get_page({title => $title});
   my $newID = $wikiPage->{revid};
-  if (!$oldID || !$newID) {
-    print colored ['red'], "Error processing revision IDs in $js\n";
-    exit 1;
-  } elsif ($oldID == $newID) {
-    print colored ['red'], "Everything up-to-date in $js\n";
-    exit;
-  }
+  next if !$oldID || !$newID || $oldID == $newID;
 
   # At least some difference exists, so we need to check it out
   my $newContent = $wikiPage->{q{*}};
