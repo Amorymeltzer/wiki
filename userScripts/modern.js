@@ -122,6 +122,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	/*Watchlist*/
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
 	importScript('User:Amorymeltzer/ReverseMarked.js'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/Thanky.js&oldid=928009085&action=raw&ctype=text/javascript'); //[[User:Evad37/Thanky.js]], [[User:Evad37/Thanky]]
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Log' || mw.config.get('wgCanonicalSpecialPageName') === 'Userrights') {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
 	if (mw.config.get('wgCanonicalSpecialPageName') === 'Log') {
