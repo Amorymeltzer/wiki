@@ -137,7 +137,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
 	/*Block*/
 	//Automatically watch user talk pages when blocking
-	document.getElementsByName('wpWatch')[0].checked = "true";
+	$('input[name=wpWatch]').prop('checked', true);
     } else if (mw.config.get('wgCanonicalSpecialPageName') === 'Search') {
 	/*Search*/
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
@@ -504,7 +504,7 @@ if (mw.config.get('wgAction') === 'history') {
     //AIV, RFPP, UAA, ANI, Sandbox
     $(function () {
 	if (mw.config.get('wgNamespaceNumber') === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(mw.config.get('wgTitle')) !== -1) {
-	    document.getElementById('wpWatchthis').checked = false;
+	    $('#wpWatch').prop('checked', false);
 	}
     });
 } else if (mw.config.get('wgAction') === 'purge' || mw.config.get('wgAction') === 'watch' || mw.config.get('wgAction') === 'unwatch') {
@@ -580,11 +580,11 @@ function loadFunct(){
     movePortletLi('t-addmetric', 'p-edit');
     movePortletLi('ca-AutoEd', 'p-edit');
 
-    var rece = document.getElementById('n-recentchanges');
-    rece.innerHTML = rece.innerHTML + ' <span style="font-size: x-small"><a href="/w/index.php?title=Special:RecentChanges&hideliu=1">(a)</a></span>';
+    var rece = $('#n-recentchanges');
+    rece.html(rece.html() + ' <span style="font-size: x-small"><a href="/w/index.php?title=Special:RecentChanges&hideliu=1">(a)</a></span>');
 
-    var rando = document.getElementById('n-randompage');
-    rando.innerHTML = rando.innerHTML + ' <span style="font-size: x-small"><a href="/w/index.php?title=Special:Random&action=edit">(e)</a></span>';
+    var rando = $('#n-randompage');
+    rando.html(rando.html() + ' <span style="font-size: x-small"><a href="/w/index.php?title=Special:Random&action=edit">(e)</a></span>');
 }
 
 window.onload = loadFunct();
