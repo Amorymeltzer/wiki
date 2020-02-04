@@ -90,7 +90,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 					   "<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 					   "</span>");
 	$(document).on('click', '.mass_revdel_on', function() {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=872006347&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=937039252&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
 	    $('#toggle_massrevdel').remove();
 	    //Tighten/shorten massRevdel stuff
 	    mw.loader.using(['mediawiki.util'], function() {
@@ -218,7 +218,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 	 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 	 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=923053181&action=raw&ctype=text/javascript');
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=938903836&action=raw&ctype=text/javascript');
 
 	//[[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
 	// Loading here rather than via rater.js to get specific version
@@ -231,7 +231,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	], function() {
 	    // Do not operate on non-existent pages or their talk pages
 	    if (!$("li.new[id|=ca-nstab]").length) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=932599456&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=938423500&action=raw&ctype=text/javascript');
 	    }
 	});
     }
@@ -307,7 +307,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 	/*WP and all talks*/
 	if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=919671712&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=937364333&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Technical_13/Scripts/OneClickArchiver.js&oldid=864149342&action=raw&ctype=text/javascript'); //[[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 	    window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=930407343&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
