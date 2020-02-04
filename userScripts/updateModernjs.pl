@@ -105,28 +105,32 @@ foreach my $url (@loaders) {
   write_text($newID, $newContent);
 }
 
-# Confirm diffs, replace in place
-foreach my $title (keys %replacings) {
-  my ($old, $new) = @{$replacings{$title}};
-  print colored ['green'], "$title: updating $old to $new\n";
+if (keys %replacings) {
+  # Confirm diffs, replace in place
+  foreach my $title (keys %replacings) {
+    my ($old, $new) = @{$replacings{$title}};
+    print colored ['green'], "$title: updating $old to $new\n";
 
-  my @args = ('bash', '-c', "icdiff $old $new");
-  system @args;
+    my @args = ('bash', '-c', "icdiff $old $new");
+    system @args;
 
-  print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
-  my $confirm = <STDIN>;
-  chomp $confirm;
-  if (lc $confirm eq 'n') {
-    print "Skipping $title\n";
-  } elsif (lc $confirm eq 'y') {
-    `perl -i -p -e "s/$old/$new/g" $js`;
-  } elsif (lc $confirm eq 'q') {
-    last;
+    print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
+    my $confirm = <STDIN>;
+    chomp $confirm;
+    if (lc $confirm eq 'n') {
+      print "Skipping $title\n";
+    } elsif (lc $confirm eq 'y') {
+      `perl -i -p -e "s/$old/$new/g" $js`;
+    } elsif (lc $confirm eq 'q') {
+      last;
+    }
   }
-}
 
-# Clean up
-foreach my $title (keys %replacings) {
-  unlink $replacings{$title}[0];
-  unlink $replacings{$title}[1];
+  # Clean up
+  foreach my $title (keys %replacings) {
+    unlink $replacings{$title}[0];
+    unlink $replacings{$title}[1];
+  }
+} else {
+  print colored ['blue'], "No files need updating!\n";
 }
