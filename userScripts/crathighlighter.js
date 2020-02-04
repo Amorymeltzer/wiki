@@ -6,6 +6,7 @@
 // - Apply to sysops, IA, CU, OS, 'crats', AC members
 // - JSON data (~36KB) is cached locally for an hour
 // - Allow custom order (set window.highlight_order)
+// - Allow custom caching length (set window.cache_hours)
 //
 // If you want to set a custom order, add something like
 // window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'intadmin', 'sysop', 'steward'];
@@ -76,41 +77,45 @@ var main = function(data) {
 };
 
 
-try {
-	var crathighlighterdata = JSON.parse(localStorage.getItem('crathighlighterjson'));
-} catch(e) {
-	console.error('crathighlighter: failed to parse cached json object', e.message);
-}
-if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > 3600000) { // 1 hour in milliseconds
-	crathighlighterdata = {};
-	$.when(
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/arbcom.json', function(data){
-			crathighlighterdata.arbcom = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/bureaucrat.json', function(data){
-			crathighlighterdata.bureaucrat = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/oversight.json', function(data){
-			crathighlighterdata.oversight = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/checkuser.json', function(data){
-			crathighlighterdata.checkuser = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/interface-admin.json', function(data){
-			crathighlighterdata.intadmin = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amalthea_(bot)/userhighlighter.js/sysop.js', function(data){
-			crathighlighterdata.sysop = data;
-		}),
-		$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/steward.json', function(data){
-			crathighlighterdata.steward = data;
-		})
-	).then(function() {
-		crathighlighterdata.date = Date.now();
-		localStorage.setItem('crathighlighterjson', JSON.stringify(crathighlighterdata));
+(function($) {
+	try {
+		var crathighlighterdata = JSON.parse(localStorage.getItem('crathighlighterjson'));
+	} catch(e) {
+		console.error('crathighlighter: failed to parse cached json object', e.message);
+	}
+	var cache_hours = window.cache_hours || 1;
+	cache_hours *= 60*60*10000; // milliseconds
+	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > cache_hours) {
+		crathighlighterdata = {};
+		$.when(
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/arbcom.json', function(data){
+				crathighlighterdata.arbcom = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/bureaucrat.json', function(data){
+				crathighlighterdata.bureaucrat = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/oversight.json', function(data){
+				crathighlighterdata.oversight = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/checkuser.json', function(data){
+				crathighlighterdata.checkuser = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/interface-admin.json', function(data){
+				crathighlighterdata.intadmin = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amalthea_(bot)/userhighlighter.js/sysop.js', function(data){
+				crathighlighterdata.sysop = data;
+			}),
+			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/steward.json', function(data){
+				crathighlighterdata.steward = data;
+			})
+		).then(function() {
+			crathighlighterdata.date = Date.now();
+			localStorage.setItem('crathighlighterjson', JSON.stringify(crathighlighterdata));
+			main(crathighlighterdata);
+		});
+	} else {
 		main(crathighlighterdata);
-	});
-} else {
-	main(crathighlighterdata);
-}
+	}
+})(jQuery);
 //</nowiki>
