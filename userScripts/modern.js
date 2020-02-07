@@ -303,7 +303,6 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    if (imgs.length) {
 		mw.util.addPortletLink('p-cactions', 'http://tineye.com/search?url=' + encodeURIComponent(imgs[0].src), 'TinEye', 'ca-tineye');
 	    }
-	    mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Krinkle/Scripts/TinEye.js&action=raw&ctype=text/javascript');
 	}//END else if LOOP but remain in not articles
 
 	/*WP and all talks*/
