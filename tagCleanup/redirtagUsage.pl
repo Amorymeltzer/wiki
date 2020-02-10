@@ -31,17 +31,16 @@ foreach (split /\n/, $twRaw) {
   }
 }
 
-# Get current mainspace transclusion count
+# Get current transclusion count
 my %data;
 foreach (sort @tagList) {
   my $template = $_;
   my $templateEsc = uri_escape ($template);
-  my $url = "https://tools.wmflabs.org/linkscount/?namespace=10&p=$templateEsc&fromNamespace=0&dbname=enwiki";
+  my $url = "https://tools.wmflabs.org/linkscount/?namespace=10&p=$templateEsc&dbname=enwiki";
   my $json = `curl -s "$url"`;
   my $count = $json =~ s/.*"templatelinks":(\d+),.*/$1/r;
   my $true = $twList{$template} ? 'yes' : 'no';
   $data{$template} = [$count, $true];
-  print "$template\t@{$data{$template}}\n";
 }
 
 # CSV
