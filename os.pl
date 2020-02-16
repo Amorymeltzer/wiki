@@ -30,7 +30,7 @@ while (my $line = <$in>) {
   if ($line =~ /^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|(.*?)\|\|/) {
     my $namespace = $namespaces{$3} // 'error';
     my $escaped = uri_escape($4);
-    $line =~ s/^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|.*?\|\|/|$1||$2||$3||[[Special:Undelete\/$namespace$escaped|$namespace$escaped]]||/ix;
+    $line =~ s/^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|.*?\|\|/|$1||[[User:$2|$2]]||$3||[[Special:Undelete\/$namespace$escaped|$namespace$escaped]]||/ix;
   }
 
   print $out "$line";
