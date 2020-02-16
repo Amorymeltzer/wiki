@@ -2,7 +2,7 @@
 # speciesGenusList.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Parse a list of species for those with identical genus and species names
-# Data from Wikispecis: http://dumps.wikimedia.org/backup-index.html
+# Data from Wikispecies: http://dumps.wikimedia.org/backup-index.html
 # Use all title from mainspace
 # Consider > to genus_species_date after uniq due to some weird dupes I didn't fix
 
