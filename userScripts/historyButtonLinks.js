@@ -1,11 +1,14 @@
-// Make the buttons on history pages links that you can click, such as for
-// opening in a new tab.  Simply removes the click event, which apparently
-// makes them nice links again. See also [[User:Mattflaschen/Compare link.js]].
+// Make the buttons on history pages act as links that you can click and open
+// in a new tab.  Simply removes the click event, which apparently makes them
+// nice links again. See also [[User:Mattflaschen/Compare link.js]].
 
-// Need to wait for the eventListenevers to be added so we can remove them...
-$(window).on('load', function() {
-	if (mw.config.get('wgAction') === 'history') {
-		$('input.historysubmit').off('click'); // Compare link
-		$('button.historysubmit').off('click'); // Sysop links
-	}
-});
+if (mw.config.get('wgAction') === 'history') {
+	// Compare link
+	$('input.historysubmit').on('click', function(e) {
+		e.stopImmediatePropagation();
+	});
+	// Sysop links
+	$('button.historysubmit').on('click', function(e) {
+		e.stopImmediatePropagation();
+	});
+}

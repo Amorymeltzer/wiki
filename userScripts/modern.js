@@ -439,12 +439,15 @@ if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'pro
 /*ACTIONS*/
 if (mw.config.get('wgAction') === 'history') {
     /*History*/
-    // Make compare and revdel buttons links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
-    // Need to wait for the eventListeners to be added so we can remove them...
-    $(window).on('load', function() {
-	$('input.historysubmit').off('click'); // Compare link
-	$('button.historysubmit').off('click'); // Sysop links
-    });
+    // Make compare and revdel buttons act as links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
+	// Compare link
+	$('input.historysubmit').on('click', function(e) {
+		e.stopImmediatePropagation();
+	});
+	// Sysop links
+	$('button.historysubmit').on('click', function(e) {
+		e.stopImmediatePropagation();
+	});
 
     window.histCombNoCollapse = true; //Don't collapse edits on load
     window.histCombMyBg = '#F0FFF0'; //background on your edits (light green)
