@@ -440,7 +440,8 @@ if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'pro
 if (mw.config.get('wgAction') === 'history') {
     /*History*/
     // Make compare and revdel buttons links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
-    $(function () {
+    // Need to wait for the eventListeners to be added so we can remove them...
+    $(window).on('load', function() {
 	$('input.historysubmit').off('click'); // Compare link
 	$('button.historysubmit').off('click'); // Sysop links
     });
