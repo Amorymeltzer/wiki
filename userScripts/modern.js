@@ -439,8 +439,9 @@ if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'pro
 /*ACTIONS*/
 if (mw.config.get('wgAction') === 'history') {
     /*History*/
-    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/url-select-revdel.js&oldid=883867406&action=raw&ctype=text/javascript'); //[[User:Enterprisey/cv-revdel]], [[User:Enterprisey/cv-revdel.js]]
-    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mattflaschen/Compare_link.js&oldid=658679284&action=raw&ctype=text/javascript'); //[[User:Mattflaschen/Compare link.js]]
+    // Make compare and revdel buttons links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
+    $('input.historysubmit').off('click'); // Compare link
+    $('button.historysubmit').off('click'); // Sysop links
 
     window.histCombNoCollapse = true; //Don't collapse edits on load
     window.histCombMyBg = '#F0FFF0'; //background on your edits (light green)
