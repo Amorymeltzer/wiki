@@ -216,3 +216,4 @@ modern.js
   wlhActionLinks.js
   logSwap.js
   wordcount.js
+  historyButtonLinks.js
