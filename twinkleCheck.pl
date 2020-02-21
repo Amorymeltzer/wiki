@@ -7,6 +7,8 @@ use strict;
 use warnings;
 use diagnostics;
 
+use Getopt::Std;
+
 # MAGIC hash with user env variables for $home
 chdir "$ENV{HOME}/Documents/git/twinkle\@azatoth/" or die "$!";
 
@@ -17,8 +19,10 @@ if ($gs !~ /nothing to commit, working tree clean/) {
   exit;
 }
 
-my $wiki = 'en';
-my $diff;
+my %opts = ();
+getopts('s:d', \%opts);
+my $wiki = $opts{s} || 'en.wikipedia';
+my $diff = $opts{d} || 0;
 if (@ARGV) {
   if ($ARGV[0] eq 'test') {
     $wiki = shift @ARGV;
@@ -46,7 +50,7 @@ foreach (@files) {
 
   s/modules\///;		# Tidy for MW name
 
-  my $url = 'https://'.$wiki.'.wikipedia.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
+  my $url = 'https://'.$wiki.'.org/w/index.php?action=raw&ctype=text/javascript&title=MediaWiki:Gadget-';
   $url .= $_;
   my $json = `curl -s -w '\n' "$url"`; # Add newline for diffing/md5ing
 
