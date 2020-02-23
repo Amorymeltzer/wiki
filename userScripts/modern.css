@@ -199,7 +199,7 @@ a[accesskey]:after {
 /* Some page-specific stuff */
 /* Restore non-OOUI dropdown appearance by hiding the new menus and showing the old ones
  * Currently: delete, block, move, editfilter, contributions
- * Relevant for [[User:Amorymeltzer/csdcheck.js]] */
+ * Relevant for [[User:Amorymeltzer/csdcheck.js]]*/
 .action-delete .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle, .mw-special-Movepage .oo-ui-dropdownWidget-handle, .mw-special-AbuseLog .oo-ui-dropdownWidget-handle, .mw-special-Contributions .oo-ui-dropdownWidget-handle {
   display: none;
 }
@@ -222,10 +222,13 @@ body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group 
 	background-color: #FFFF88;
 }
 /* Extend and tighten results on Search and Logs */
-.mw-special-Search .mw-search-results li, .mw-special-Log .mw-search-results li { 
-	padding: 0; 
+.mw-special-Search .mw-search-results li, .mw-special-Log .mw-search-results li {
+	padding: 0;
 	width: 81em;
 }
+
+/* Adjust topicons for Modern, looks better in Vector too */
+.mw-indicators { margin: 3px; }
 
 
 /* Hide or tweak some unwanted portions of various user scripts */
