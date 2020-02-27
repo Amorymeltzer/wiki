@@ -511,7 +511,7 @@ if (mw.config.get('wgAction') === 'history') {
     //AIV, RFPP, UAA, ANI, Sandbox
     $(function () {
 	if (mw.config.get('wgNamespaceNumber') === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(mw.config.get('wgTitle')) !== -1) {
-	    $('#wpWatch').prop('checked', false);
+	    $('#wpWatchthis').prop('checked', false);
 	}
     });
 } else if (mw.config.get('wgAction') === 'purge' || mw.config.get('wgAction') === 'watch' || mw.config.get('wgAction') === 'unwatch') {
