@@ -80,7 +80,6 @@ foreach my $file (@files) {
   my $wikiPage = $mw->get_page({title => $page});
   if (defined $wikiPage->{missing}) {
     print colored ['red'], "$page does not exist\n";
-    exit 1;
   } else {
     print "Pushing $file...\n";
     my $text = read_text($file);
@@ -215,5 +214,4 @@ modern.js
   userinfo.js
   wlhActionLinks.js
   logSwap.js
-  wordcount.js
   historyButtonLinks.js
