@@ -6,7 +6,7 @@ if (mw.config.get("wgCanonicalSpecialPageName") == "AbuseLog" && (mw.util.getPar
     $("ul.plainlinks").after("</form>");
 
     //load canned summaries
-    $.get("/w/index.php?title=MediaWiki:Revdelete-reason-dropdown&action=raw",function(data)
+    $.get("/w/index.php?title=MediaWiki:Revdelete-reason-dropdown-suppress&action=raw",function(data)
 	  {
 	      reasons = data.replace(/\*\* ([^\*]+)/g, '<option value="$1">$1</option>');
 	      reasons = reasons.replace(/\* ([^<]+)([^\*]+)/g, '<optgroup label="$1">$2</optgroup>');
