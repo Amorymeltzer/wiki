@@ -10,6 +10,7 @@
     "Maxim": 1,
     "Nihonjoe": 1,
     "Primefac": 1,
+    "SilkTork": 1,
     "UninvitedCompany": 1,
     "Useight": 1,
     "Warofdreams": 1,
