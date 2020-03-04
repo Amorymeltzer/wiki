@@ -88,10 +88,6 @@ div.pBody {
 .mw-echo-ui-notificationItemWidget-content {
 	padding-left: 0.5em;
 }
-/* Fix for badges in modern being too high up, see [[phab:T187947]] */
-a.mw-echo-notifications-badge {
-	top: 0 !important;
-}
 
 /* Hide notices/warnings/options that I don't need or want
 Some of these are likely quite outdated*/
