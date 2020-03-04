@@ -102,7 +102,7 @@ div#mw-hidden-catlinks { font-size: 88%; }
 /* .postedit { display: none; } */
 
 /* Less space between sidebar items */
-#p-tb li, .generated-sidebar li {
+#p-tb li, #p-info li, #p-edit li, .generated-sidebar li {
     margin: 0 0 0 0;
 }
 
