@@ -10,6 +10,7 @@
 /*Everywhere*/
 
 //Config for [[Wikipedia:Tools/Navigation popups]], [[MediaWiki:Gadget-popups.js]], [[MediaWiki:Gadget-navpop.css]]
+window.popupMaxWidth = 500; //Default is 350
 window.popupAdminLinks = true;
 window.popupPreviewFirstParOnly = false; //Default is true
 window.popupMaxPreviewSentences = 6; //Default is 5
