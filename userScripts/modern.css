@@ -281,12 +281,14 @@ span.PreviewTemplateLastMod_timestamp {
 .ns-talk dl dl dl,
 .ns-talk dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl,
-.ns-talk dl dl dl dl dl dl dl dl dl
+.ns-talk dl dl dl dl dl dl dl dl dl,
+.ns-talk dl dl dl dl dl dl dl dl dl dl dl
 { background:#f5faff }
 
 .ns-talk dl dl,
 .ns-talk dl dl dl dl,
 .ns-talk dl dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl dl,
-.ns-talk dl dl dl dl dl dl dl dl dl dl
+.ns-talk dl dl dl dl dl dl dl dl dl dl,
+.ns-talk dl dl dl dl dl dl dl dl dl dl dl dl
 { background:white }
