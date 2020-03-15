@@ -45,7 +45,7 @@ importScript('User:Amorymeltzer/unhide.js'); //[[User:Amorymeltzer/unhide.js]]
 importScript('User:Amorymeltzer/seventabs.js'); //[[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
 //window.ADMINHIGHLIGHT_EXTLINKS = true;
 importScript('User:Amorymeltzer/crathighlighter.js'); //[[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Lenore/autolink.js&oldid=653625612&action=raw&ctype=text/javascript'); //[[User:Lenore/autolink.js]], [[User:Lenore/autolink]] Try to display templates, etc in comments everywhere
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Lenore/autolink.js&oldid=945652161&action=raw&ctype=text/javascript'); //[[User:Lenore/autolink.js]], [[User:Lenore/autolink]] Try to display templates, etc in comments everywhere
 //importScript('User:Amorymeltzer/nulledit.js'); //[[User:MZMcBride/nulledit.js]], [[User:Splarka/nulledit.js]], [[User:Amorymeltzer/nulledit.js]]
 importScript('User:Amorymeltzer/pinfo.js'); //[[User:Smith609/toolbox.js]], [[User:קיפודנחש/viewstats.js]], [[User:Amorymeltzer/pinfo.js]]
 //importScript('User:Amorymeltzer/ajaxsendcomment.js'); //[[User:Splarka/ajaxsendcomment.js]] Remove when reclick? [[User:Amorymeltzer/ajaxsendcomment.js]]
