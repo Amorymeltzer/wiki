@@ -34,6 +34,7 @@
     "ST47": 1,
     "Salvio giuliano": 1,
     "SoWhy": 1,
+    "Someguy1221": 1,
     "Stwalkerster": 1,
     "The Blade of the Northern Lights": 1,
     "Thryduulf": 1,
