@@ -51,6 +51,7 @@ var main = function(data) {
 				if (!url || url === '/wiki/' || url.charAt(0) === '#') return; // Skip <a> elements that aren't actually links; skip anchors
 				if (url.lastIndexOf("http://", 0) !== 0 && url.lastIndexOf("https://", 0) !== 0 && url.lastIndexOf("/", 0) !== 0) return; //require http(s) links, avoid "javascript:..." etc. which mw.Uri does not support
 				if (link[0].parentElement.className && link[0].parentElement.classList[0] == 'autocomment') return; // Skip span.autocomment links aka automatic section links in edit summaries
+				if (link[0].tagName === 'IMG') return; // Don't highlight image links
 				if (link[0].className && link[0].classList[0] == 'external') return; // Avoid errors on hard-to-parse external links
 				var uri = new mw.Uri(url);
 				if (!ADMINHIGHLIGHT_EXTLINKS && !$.isEmptyObject(uri.query)) return; // Skip links with query strings if highlighting external links is disabled
