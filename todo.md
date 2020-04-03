@@ -25,6 +25,10 @@
 
 #### cratHighlighter
 * Combine loops
+* Use JSON for more stuff?
+* Can use objects (after JSON->decode) to compare which direction?
+    * Could in theory mean not needing the .wiki files...
+* dieNice like sync.pl
 
 #### userScripts
 * Something to process updates to others' that I've modified (maybe parse the first line)
