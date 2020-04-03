@@ -14,6 +14,7 @@ use MediaWiki::API;
 use Git::Repository;
 use File::Slurper qw(write_text);
 use File::Compare;
+use JSON;
 
 # Parse commandline options
 my %opts = ();
@@ -112,14 +113,11 @@ foreach (@rights) {
     @names = map {$_->{name}} @{$ret};
   }
 
-  my $json = '{';
-  foreach (sort @names) {
-    $json .= "\n    \"$_\": 1";
-    if ($_ ne (sort @names)[-1]) {
-      $json.= q{,};
-    }
-  }
-  $json .= "\n}";
+  # Generate JSON, sorted
+  my $json = JSON::PP->new->canonical(1);
+  $json = $json->indent(1)->space_after(1); # Make prettyish
+  my %names = map {$_ => 1} @names;
+  $json = $json->encode(\%names);
 
   write_text($file, $json);
   # Check if local records have changed
