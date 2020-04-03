@@ -31,14 +31,6 @@ if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
   exit;
 }
 
-# Quick dumb check for internet connection, everything empty otherwise
-# Could probably subroutine a curl check, but meh
-my $ip = `curl -s 'icanhazip.com'`;
-if (!$ip) {
-  print "No internet connection found, quitting\n";
-  exit 0;
-}
-
 # Config file should be a simple file consisting of username and botpassword
 # username = Jimbo Wales
 # password = stochasticstring
