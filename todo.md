@@ -23,10 +23,6 @@
 * Include number of sysops, number of active sysops, etc.?
 * o-index (geometric mean of h-index and most-cited paper)
 
-#### cratHighlighter
-* Combine loops
-* Use JSON for more stuff?
-
 #### userScripts
 * Something to process updates to others' that I've modified (maybe parse the first line)
 ##### updateModernjs.pl
