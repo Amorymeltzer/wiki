@@ -15,6 +15,7 @@ use Git::Repository;
 use File::Slurper qw(write_text);
 use File::Compare;
 use JSON;
+use Term::ANSIColor;
 
 # Parse commandline options
 my %opts = ();
@@ -39,11 +40,11 @@ my $config_file = "$ENV{HOME}/.crathighlighterrc";
 %conf = ParseConfig($config_file) if -e -f -r $config_file;
 
 my $mw = MediaWiki::API->new({
-			      api_url => 'https://en.wikipedia.org/w/api.php'
+			      api_url => 'https://en.wikipedia.org/w/api.php',
+			      on_error => \&dieNice
 			     });
 $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
-$mw->login({lgname => $conf{username}, lgpassword => $conf{password}})
-  or die "Error logging in: $mw->{error}->{code}: $mw->{error}->{details}\n";
+$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
 my ($localChange,$wikiChange) = (0,0);
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
@@ -101,7 +102,7 @@ foreach (@rights) {
     }
 
     # Usernames from reference to array of hash references
-    my $ret = $mw->list($query) || die "$mw->{error}->{code}: $mw->{error}->{details}\n";
+    my $ret = $mw->list($query);
     @names = map {$_->{name}} @{$ret};
   }
 
@@ -121,7 +122,7 @@ foreach (@rights) {
 
   # Pull on-wiki json
   my $pTitle = "User:Amorymeltzer/crathighlighter.js/$file";
-  my $getPage = $mw->get_page({title => $pTitle}) or die "$mw->{error}->{code}: $mw->{error}->{details}\n";
+  my $getPage = $mw->get_page({title => $pTitle});
 
   my $wikiSon = $getPage->{q{*}};
   write_text($wiki, $wikiSon);
@@ -159,7 +160,7 @@ foreach (@rights) {
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $json,
 		 summary => $summary
-		}) || die "Error editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+		});
       my $return = $mw->{response};
       print "\t$return->{_msg}\n";
       $repo->run(reset => 'HEAD', q{--}); # Back to clean staging area
@@ -219,6 +220,23 @@ if ($localChange == 0 && $wikiChange == 0) {
 
 
 #### SUBROUTINES
+# Nicer handling of errors
+# Can be expanded using:
+## https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
+## https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
+sub dieNice {
+  my $code = $mw->{error}->{code};
+  my $details = $mw->{error}->{details};
+  print color 'red';
+  if ($code == 4) {
+    print "Error logging in\n";
+  } elsif ($code == 5) {
+    print "Error editing the page\n";
+  }
+  print "$code: $details\n";
+  die "Quitting\n";
+}
+
 # Process diff for usernames of added/removed.  Flag for cached or not
 sub plusMinus {
   my ($r,$f) = @_;
