@@ -99,22 +99,23 @@ foreach (@rights) {
       }
     }
   } else {
+    # Defaults
+    my $list = 'allusers';
+    my $prefix = 'au';
+    if (/steward/) {
+      $list = 'global'.$list;
+      $prefix = 'agu';
+    }
+
     # Everybody!  Everybody!
     my $query = {
 		 action => 'query',
+		 list => $list,
+		 $prefix.'group' => $_,
+		 $prefix.'limit' => 'max',
 		 format => 'json',
 		 utf8 => '1'
 		};
-
-    if (/steward/) {
-      ${$query}{list} = 'globalallusers';
-      ${$query}{agulimit} = 'max';
-      ${$query}{agugroup} = $_;
-    } else {
-      ${$query}{list} = 'allusers';
-      ${$query}{aulimit} = 'max';
-      ${$query}{augroup} = $_;
-    }
 
     # Usernames from reference to array of hash references
     my $ret = $mw->list($query);
