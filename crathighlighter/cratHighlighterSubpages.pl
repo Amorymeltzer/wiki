@@ -150,7 +150,7 @@ foreach (@rights) {
       if (length $changes) {
 	$summary .= '('.$changes.') ';
       }
-      $summary .='(automatically via [[User:Amorymeltzer/scripts#crathighlighter.js|script]])';
+      $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $getPage->{timestamp};
 
       print "\tPushing now...\n";
