@@ -48,3 +48,18 @@ print join(' and ', qw(one two));
 print "\n";
 print join(' and ', qw(two));
 print "\n";
+
+
+use File::Slurper qw (read_text);
+my $file = 'oversight.json';
+my $fileText = read_text($file);
+my $jsonTemplate = JSON::PP->new->canonical(1);
+$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+my $text = $jsonTemplate->decode($fileText);
+use Data::Dumper;
+print Dumper($text);
+
+my $d = 0;
+if (!$d) {
+  print "hi\n";
+}

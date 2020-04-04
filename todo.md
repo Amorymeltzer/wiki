@@ -31,10 +31,10 @@
 	* Basically, read file to json->decode to hash
 	* Same for query and on-wiki
 	* Iterate over one, delete if found in other;  Then iterate over other:
-	* file not query = remove from file
 	* query not file = add to file
-	* wiki not query = remove from wiki
+	* file not query = remove from file
 	* query not wiki = add to wiki
+	* wiki not query = remove from wiki
 
 #### userScripts
 * Something to process updates to others' that I've modified (maybe parse the first line)

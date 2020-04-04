@@ -12,7 +12,7 @@ use Getopt::Std;
 use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use Git::Repository;
-use File::Slurper qw(write_text);
+use File::Slurper qw(read_text write_text);
 use File::Compare;
 use JSON;
 use Term::ANSIColor;
@@ -46,10 +46,24 @@ my $mw = MediaWiki::API->new({
 $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
+# Template for generating JSON, sorted
+my $jsonTemplate = JSON::PP->new->canonical(1);
+$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+
 my ($localChange,$wikiChange) = (0,0);
+my $commitMessage = "cratHighlighterSubpages: Update\n"; # Only used if -c
+# Build file abbreviation hash
+# Only really used for -c
+my %abbrevs;
+while (<DATA>) {
+  chomp;
+  my @map = split;
+  $abbrevs{$map[0]} = $map[1];
+}
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
+
 foreach (@rights) {
-  my @names;
+  my %queryHash;
 
   my $file = $_.'.json';
   my $wiki = $_.'.wiki';
@@ -79,7 +93,7 @@ foreach (@rights) {
 	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
 	$till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
 	if ($from le $now && $till gt $now) {
-	  push @names, $name;
+	  $queryHash{$name} = 1;
 	}
       }
     }
@@ -103,37 +117,46 @@ foreach (@rights) {
 
     # Usernames from reference to array of hash references
     my $ret = $mw->list($query);
-    @names = map {$_->{name}} @{$ret};
+    %queryHash = map {$_->{name} => 1} @{$ret};
   }
 
-  # Generate JSON, sorted
-  my $json = JSON::PP->new->canonical(1);
-  $json = $json->indent(1)->space_after(1); # Make prettyish
-  my %names = map {$_ => 1} @names;
-  $json = $json->encode(\%names);
+  # Build JSON, needed regardless
+  my $queryJSON = $jsonTemplate->encode(\%queryHash);
 
-  write_text($file, $json);
   # Check if local records have changed
-  my $status = $repo->run(status => $file, '--porcelain', {cwd => undef});
-  if ($status) {
+  my $fileJSON = read_text($file);
+  my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
+
+  if ($fileState) {
     $localChange = 1;
     print "$file changed\n\t";
+    # Write changes
+    write_text($file, $queryJSON);
+
+    # Stage, build edit summary
+    if ($opts{c}) {
+      $repo->run(add => "*$file");
+      $commitMessage .= "\n$abbrevs{$file}";
+      my $changes = buildSummary($fileAdded,$fileRemoved);
+      if (length $changes) {
+	$commitMessage .= ' ('.$changes.')';
+      }
+    }
   }
 
-  # Pull on-wiki json
+  # Check if on-wiki records have changed
   my $pTitle = "User:Amorymeltzer/crathighlighter.js/$file";
   my $getPage = $mw->get_page({title => $pTitle});
+  my $wikiJSON = $getPage->{q{*}};
 
-  my $wikiSon = $getPage->{q{*}};
-  write_text($wiki, $wikiSon);
+  my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
 
   # Check if everything is up-to-date onwiki, optional push otherwise
-  if (compare("$file","$wiki") != 0) {
+  if ($wikiState) {
     $wikiChange = 1;
 
     # Get .json synched then go for it
-    write_text($wiki, $json);
-    if ($status) {
+    if ($fileState) {
       print 'and';
     } else {
       print "$file"
@@ -141,10 +164,7 @@ foreach (@rights) {
     print " needs updating on-wiki.\n";
 
     if ($opts{p}) {
-      $repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
-      $repo->run(add => '*.wiki');
-      my ($plusRef, $minusRef) = plusMinus($repo, $wiki);
-      my $changes = buildSummary($plusRef,$minusRef);
+      my $changes = buildSummary($wikiAdded,$wikiRemoved);
 
       my $summary = 'Update ';
       if (length $changes) {
@@ -158,64 +178,27 @@ foreach (@rights) {
 		 action => 'edit',
 		 title => $pTitle,
 		 basetimestamp => $timestamp, # Avoid edit conflicts
-		 text => $json,
+		 text => $queryJSON,
 		 summary => $summary
 		});
       my $return = $mw->{response};
       print "\t$return->{_msg}\n";
-      $repo->run(reset => 'HEAD', q{--}); # Back to clean staging area
     }
-  } elsif ($status) {
+  } elsif ($fileState) {
     print "but already up-to-date\n";
   }
 }
 
-if ($localChange == 0 && $wikiChange == 0) {
+if (!$localChange && !$wikiChange) {
   print "No updates needed\n";
-} else {
-  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+  exit 0;
+}
 
-  # Autocommit changes
-  if ($opts{c}) {
-    my $commitMessage = "cratHighlighterSubpages: Update\n";
-    $repo->run(reset => 'HEAD', q{--}); # Clear staging area just in case
+system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 
-    # Autocommit json changes
-    if ($localChange == 1) {
-      $repo->run(add => '*.json');
-      my @cached = $repo->run(diff => '--name-only', '--staged');
-      if (@cached) {
-
-	# Build file abbreviation hash
-	my %abbrevs;
-	while (<DATA>) {
-	  chomp;
-	  my @map = split;
-	  $abbrevs{$map[0]} = $map[1];
-	}
-
-	# Build message and commit
-	foreach (sort @cached) {
-	  s/.*\/(\S+\.json).*/$1/;
-	  $commitMessage .= "\n$abbrevs{$_}";
-
-	  my ($plusRef, $minusRef) = plusMinus($repo, $_);
-	  my $changes = buildSummary($plusRef,$minusRef);
-	  if (length $changes) {
-	    $commitMessage .= ' ('.$changes.')';
-	  }
-	}
-      }
-    }
-
-    $repo->run(add => '*.wiki'); # Always
-    if ($repo->run(diff => '--name-only', '--staged')) {
-      $commitMessage .= "\nUpdated local backups of on-wiki file(s)";
-    }
-
-    # Commit
-    $repo->run(commit => '-m', "$commitMessage");
-  }
+# Autocommit changes
+if ($opts{c}) {
+  $repo->run(commit => '-m', "$commitMessage");
 }
 
 
@@ -237,35 +220,42 @@ sub dieNice {
   die "Quitting\n";
 }
 
-# Process diff for usernames of added/removed.  Flag for cached or not
-sub plusMinus {
-  my ($r,$f) = @_;
-  my (@p,@m);
+# Compare query hash with a JSON object hash, return negated equality and
+# arrays of added added and removed names from the JSON object
+sub cmpJSON {
+  my ($qRef, $oRef) = @_;
 
-  my $cmd = $r->command(diff => '--staged', q{--}, "$f", {cwd => undef});
-  my $s = $cmd->stdout;
-  if (!eof $s) { # Some output even exists
-    while (<$s>) {
-      if (/^[+-].+": 1,/) { # We know what the important lines look like, so abuse that
-	chomp;
-	my $name = s/([+-])\s+"(.*)": 1,.*/$1$2/r;
-	my @map = split //, $name, 2;
-	if ($map[0] eq q{+}) {
-	  push @p, $map[1];
-	} elsif ($map[0] eq q{-}) {
-	  push @m, $map[1];
-	}
+  my @qNames = sort keys %{$qRef};
+  my @oNames = sort keys %{$oRef};
+
+  my (@added, @removed);
+
+  # Only if stringified arrays aren't equivalent
+  my $state = "@qNames" ne "@oNames";
+  if ($state) {
+    # Check all names from the query first, will determine if anyone new
+    # needs adding
+    foreach (@qNames) {
+      # Match in the other file
+      if (!${$oRef}{$_}) {
+	push @added, $_;
+      } else {
+	delete ${$oRef}{$_}; # Don't check again
+	my @tmp = sort keys %{$oRef};
+	print "@tmp\n";
       }
     }
-    $cmd->close;
-    return (\@p, \@m);
-  }
-}
 
-# Create a commit/edit summary from the plus/minus in a diff.
-# Uses oxfordComma below for proper grammar
-# This could be part of plusMinus, but I like having it separate, even if it
-# means dealing with a few more references
+    # Whatever is left should be anyone that needs removing; @oNames is
+    # unreliable after above
+    @removed = sort keys %{$oRef};
+  }
+
+  return ($state, \@added, \@removed);
+};
+
+# Create a commit/edit summary from the array references of added/removed
+# usernames.  Uses oxfordComma below for proper grammar
 sub buildSummary {
   my ($pRef,$mRef) = @_;
   my $change;
