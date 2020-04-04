@@ -243,8 +243,6 @@ sub cmpJSON {
 	push @added, $_;
       } else {
 	delete ${$oRef}{$_}; # Don't check again
-	my @tmp = sort keys %{$oRef};
-	print "@tmp\n";
       }
     }
 
