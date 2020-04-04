@@ -26,15 +26,6 @@
 #### cratHighlighter
 * Combine loops
 * Use JSON for more stuff?
-* Can use objects (after JSON->decode) to compare which direction?
-    * Could in theory mean not needing the .wiki files...
-	* Basically, read file to json->decode to hash
-	* Same for query and on-wiki
-	* Iterate over one, delete if found in other;  Then iterate over other:
-	* query not file = add to file
-	* file not query = remove from file
-	* query not wiki = add to wiki
-	* wiki not query = remove from wiki
 
 #### userScripts
 * Something to process updates to others' that I've modified (maybe parse the first line)

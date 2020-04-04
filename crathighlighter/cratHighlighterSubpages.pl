@@ -50,18 +50,19 @@ $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 my $jsonTemplate = JSON::PP->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 
-my ($localChange,$wikiChange) = (0,0);
-my $commitMessage = "cratHighlighterSubpages: Update\n"; # Only used if -c
-# Build file abbreviation hash
-# Only really used for -c
-my %abbrevs;
-while (<DATA>) {
-  chomp;
-  my @map = split;
-  $abbrevs{$map[0]} = $map[1];
+my ($commitMessage,%abbrevs); # Only used if -c but want global/not defined in if
+if ($opts{c}) {
+  $commitMessage = "cratHighlighterSubpages: Update\n";
+  # Build file abbreviation hash
+  while (<DATA>) {
+    chomp;
+    my @map = split;
+    $abbrevs{$map[0]} = $map[1];
+  }
 }
-my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 
+my ($localChange,$wikiChange) = (0,0);
+my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
 foreach (@rights) {
   my %queryHash;
 
