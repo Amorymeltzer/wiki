@@ -9,7 +9,7 @@
 // - Allow custom caching length (set window.cache_hours)
 //
 // If you want to set a custom order, add something like
-// window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'intadmin', 'sysop', 'steward'];
+// window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'interface-admin', 'sysop', 'steward'];
 // to your common.js file where you load this script
 //
 // If you want different colors, add something like
@@ -23,16 +23,16 @@
 // L235: https://en.wikipedia.org/w/index.php?title=User:L235/customhighlighter.js&oldid=912068642
 //<nowiki>
 
+var highlight_order = window.highlight_order || ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'interface-admin', 'sysop', 'steward'];
 var main = function(data) {
 	var ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
 	var ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
-	var highlight_order = window.highlight_order || ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'intadmin', 'sysop', 'steward'];
 	var classLookup = {
 		arbcom: 'userhighlighter_arbcom',
 		bureaucrat: 'userhighlighter_bureaucrat',
 		oversight: 'userhighlighter_oversight',
 		checkuser: 'userhighlighter_checkuser',
-		intadmin: 'userhighlighter_interface-admin',
+		'interface-admin': 'userhighlighter_interface-admin',
 		sysop: 'userhighlighter_sysop',
 		steward: 'userhighlighter_steward'
 	};
@@ -88,29 +88,22 @@ var main = function(data) {
 	cache_hours *= 60*60*10000; // milliseconds
 	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > cache_hours) {
 		crathighlighterdata = {};
-		$.when(
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/arbcom.json', function(data){
-				crathighlighterdata.arbcom = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/bureaucrat.json', function(data){
-				crathighlighterdata.bureaucrat = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/oversight.json', function(data){
-				crathighlighterdata.oversight = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/checkuser.json', function(data){
-				crathighlighterdata.checkuser = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/interface-admin.json', function(data){
-				crathighlighterdata.intadmin = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amalthea_(bot)/userhighlighter.js/sysop.js', function(data){
-				crathighlighterdata.sysop = data;
-			}),
-			$.getJSON('/w/index.php?action=raw&ctype=application/json&title=User:Amorymeltzer/crathighlighter.js/steward.json', function(data){
-				crathighlighterdata.steward = data;
-			})
-		).then(function() {
+		var promises = [];
+		$.each(highlight_order, function(idx, perm) {
+			var url = '/w/index.php?action=raw&ctype=application/json&title=';
+			if (perm === 'sysop') {
+				url += 'User:Amalthea_(bot)/userhighlighter.js/sysop.js';
+			} else {
+				url += 'User:Amorymeltzer/crathighlighter.js/' + perm + '.json';
+			}
+
+			var deferred = $.getJSON(url, function(data) {
+				crathighlighterdata[perm] = data;
+			});
+			promises.push(deferred);
+		});
+
+		$.when.apply(null, promises).then(function() {
 			crathighlighterdata.date = Date.now();
 			localStorage.setItem('crathighlighterjson', JSON.stringify(crathighlighterdata));
 			main(crathighlighterdata);
