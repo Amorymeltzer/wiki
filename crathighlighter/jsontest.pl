@@ -42,3 +42,9 @@ print "\n";
 $d = encode_json \%hash;
 print $d;
 print "\n";
+
+
+print join(' and ', qw(one two));
+print "\n";
+print join(' and ', qw(two));
+print "\n";

@@ -286,15 +286,12 @@ sub buildSummary {
 # Oxford comma
 sub oxfordComma {
   my @list = @_;
-  my $end = pop @list;
-  if (@list) { # More than one
-    my $ox = q{};
-    if (scalar @list > 1) { # More than two, need an oxford comma
-      $ox = q{,};
+  if (@list) {
+    if (scalar @list < 3) {
+      return join ' and ', @list;
     }
-    return join(', ', @list) . "$ox and $end";
-  } else { # Just one entry
-    return $end;
+    my $end = pop @list;
+    return join(', ', @list) . ", and $end";
   }
 }
 
