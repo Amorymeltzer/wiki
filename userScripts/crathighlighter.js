@@ -27,15 +27,11 @@ var highlight_order = window.highlight_order || ['arbcom', 'bureaucrat', 'oversi
 var main = function(data) {
 	var ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
 	var ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
-	var classLookup = {
-		arbcom: 'userhighlighter_arbcom',
-		bureaucrat: 'userhighlighter_bureaucrat',
-		oversight: 'userhighlighter_oversight',
-		checkuser: 'userhighlighter_checkuser',
-		'interface-admin': 'userhighlighter_interface-admin',
-		sysop: 'userhighlighter_sysop',
-		steward: 'userhighlighter_steward'
-	};
+	var classLookup = {};
+	for (var perm of highlight_order) {
+		classLookup[perm] = 'userhighlighter_' + perm;
+	}
+
 	mw.loader.using(['mediawiki.util','mediawiki.Uri', 'mediawiki.Title'], function() {
 		mw.util.addCSS(".userhighlighter_arbcom {background-color: #888888}");
 		mw.util.addCSS(".userhighlighter_bureaucrat {background-color: #5588FF}");
