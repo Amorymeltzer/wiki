@@ -38,17 +38,17 @@
 						summary : "No edits since being warned"
 					},
 					"Stale report" : {
-						code : "e|X",
+						code : "e|$1",
 						summary : "Stale report. ",
 						prompt : "How long since the user last edited?"
 					},
 					"Stale (was good)" : {
-						code : "sn|X",
+						code : "sn|$1",
 						summary : "Report was good but is now stale. ",
 						prompt : "How long since the user last edited?"
 					},
 					"Stale warning" : {
-						code : "ow|X",
+						code : "ow|$1",
 						summary : "Stale warning. ",
 						prompt : "The last warning issued how long ago?"
 					},
@@ -146,6 +146,10 @@
 				defaultPrompt = "Reason?";
 				inline = true;
 				responses = {
+					"Checking" : {
+						code : "chk",
+						summary : "Checking"
+					},
 					"Note" : {
 						code : "n",
 						summary : "Note. ",
@@ -216,6 +220,125 @@
 					"False positive—bot only" : {
 						code: "fp",
 						summary: "False positive by bot. Username is not a blatant violation of the username policy"
+					}
+				};
+			} else if (/Wikipedia:Requests_for_undeletion/.test(mw.config.get('wgPageName'))) {
+				indentation = "*";
+				templateName = "subst:UND";
+				responses = {
+					"Done" : {
+						code : "d",
+						summary : "Done. ",
+						prompt : "Additional comment?"
+					},
+					"Done (PROD)" : {
+						code : "prod",
+						summary : "Done: Contested [[WP:PROD|proposed deletion]], the article has been restored upon request."
+					},
+					"Done (G13)" : {
+						code : "g13",
+						summary : "Done: [[WP:DRAFTS|Draft]] or [[WP:AfC|AfC]] submission deleted under [[WP:G13|CSD G13]]."
+					},
+					"Done (G13 draft)" : {
+						code : "g13-draft",
+						summary : "Done: [[WP:DRAFTS|Draft]] deleted under [[WP:G13|CSD G13]]. Please continue to improve and submit for review."
+					},
+					"Done (AfC)" : {
+						code : "afc",
+						summary : "Done: [[WP:AfC|AfC]] submission deleted under [[WP:G13|CSD G13]]. Please edit to address any issues and re-submit."
+					},
+					"Done (AfC no review)" : {
+						code : "afc-ns",
+						summary : "Done: [[WP:AfC|AfC]] submission deleted under [[WP:G13|CSD G13]]. Please remember to submit the draft for review."
+					},
+					"Userfied" : {
+						code : "u|$1",
+						summary : "Userfied at [[$1]]",
+						prompt : "Full title of userspace page?",
+						valueRequired : true
+					},
+					"Userfied (notability)" : {
+						code : "userA7|$1|$2",
+						summary : "Userfied at [[$1]]",
+						prompt : "Full title of userspace page?",
+						prompt2 : "Username of admin who deleted the original page?",
+						valueRequired : true
+					},
+					"Not done" : {
+						code : "nd",
+						summary : "Not Done. ",
+						prompt : "Reason?"
+					},
+					"Not done (permanent)" : {
+						code : "nd2",
+						summary : "Not done and will not be done.",
+						prompt : "Additional comment?"
+					},
+					"Not done (company)" : {
+						code : "ndc",
+						summary : "Not done: does not meet [[WP:CORP|notability guideline on companies]]"
+					},
+					"Not done (person)" : {
+						code : "ndp",
+						summary : "Not done: does not meet [[WP:BIO|notability guideline on people]]"
+					},
+					"Not done (music)" : {
+						code : "ndb",
+						summary : "Not done: does not meet [[WP:NMUSIC|notability guideline on music]]"
+					},
+					"Not done (G11)" : {
+						code : "g11",
+						summary : "Not done: [[WP:G11|blatant advertising]]"
+					},
+					"Not done (A7)" : {
+						code : "c|a7",
+						summary : "Not done: page was deleted as giving [[WP:A7|no indication of importance]]"
+					},
+					"Not done (copyvio)" : {
+						code : "copy|$1",
+						summary : "Not done: page is a [[WP:COPYVIO|copyright violation]] ",
+						prompt : "Source URL?"
+					},
+					"Not done (unsuitable)" : {
+						code : "in",
+						summary : "Not done: inappropriate topic for Wikipedia"
+					},
+					"Not done (live)" : {
+						code : "nyd",
+						summary : "Not done: page has not yet been deleted"
+					},
+					"Not done (live, PROD)" : {
+						code : "nydp",
+						summary : "Not done: page has not yet been deleted; See [[WP:PROD]] for responding to proposed deletion."
+					},
+					"Not done (live, BLP)" : {
+						code : "nydb",
+						summary : "Not done: page has not yet been deleted; See [[WP:BLPPROD]] for responding to proposed deletion."
+					},
+					"Not done (nonexistent)" : {
+						code : "dne",
+						summary : "Not done: a deleted page with this title does not appear to exist"
+					},
+					"Not done (AfD)" : {
+						code : "afd|$1|$2",
+						summary : "Not done: page was deleted following a [[$1|deletion discussion]]",
+						prompt : "Full title of deletion discussion page?",
+						prompt2 : "Username of admin who closed the discussion?",
+						valueRequired : true,
+						value2Required : true
+					},
+					"Blocked" : {
+						code : "blocked",
+						summary : "Not done: user blocked ",
+						prompt : "Additional comment?"
+					},
+					"Malformed report" : {
+						code : "malformed",
+						summary : "Not done: Please repair your request"
+					},
+					"Declined (need info)" : {
+						code : "2nd",
+						summary : "Declined pending further information"
 					}
 				};
 			} else if (/Wikipedia:Sockpuppet_investigations/.test(mw.config.get('wgPageName'))) {
@@ -364,7 +487,7 @@
 						prompt : "Additional comment?"
 					},
 					"CU no comment X" : {
-						code : "nc|X",
+						code : "nc|$1",
 						summary : "No comment regarding ",
 						prompt: "No comment regarding...?"
 					},
@@ -440,7 +563,7 @@
 						prompt : "Reason?"
 					},
 					"Not done (edit count)" : {
-						code : "exp|X",
+						code : "exp|$1",
 						summary : "Not done: mainspace edit count too low ",
 						prompt : "Number of mainspace edits?"
 					},
@@ -453,7 +576,7 @@
 						summary : "Not done: not what rollback is for"
 					},
 					"Already done" : {
-						code : "ad|X",
+						code : "ad|$1",
 						summary : "Already done "
 					},
 					"Revoked" : {
@@ -532,7 +655,7 @@
 						prompt : "Reason?"
 					},
 					"Not done (edit count)" : {
-						code : "exp|X",
+						code : "exp|$1",
 						summary : "Not done: edit count too low ",
 						prompt : "Number of total edits?"
 					},
@@ -552,35 +675,37 @@
 				};
 				break;
 				case 'Wikipedia:Requests_for_page_protection':
+				case 'Wikipedia:Requests_for_page_protection/Increase':
+				case 'Wikipedia:Requests_for_page_protection/Decrease':
 				templateName = "RFPP";
 				defaultPrompt = "Duration?";
 				responses = {
 					"Semi-protected" : {
-						code : "s|X",
+						code : "s|$1",
 						summary : "Semi-protected "
 					},
 					"Pending protected" : {
-						code : "pd|X",
+						code : "pd|$1",
 						summary : "Pending-changes protected "
 					},
 					"EC protected" : {
-						code : "ec|X",
+						code : "ec|$1",
 						summary : "Extended confirmed protected "
 					},
 					"Fully protected" : {
-						code : "p|X",
+						code : "p|$1",
 						summary : "Fully protected "
 					},
 					"Move protected" : {
-						code : "m|X",
+						code : "m|$1",
 						summary : "Move protected "
 					},
 					"Creation protected" : {
-						code : "t|X",
+						code : "t|$1",
 						summary : "Creation protected "
 					},
 					"Template protected" : {
-						code : "tp|X",
+						code : "tp|$1",
 						summary : "Template protected "
 					},
 					"Done" : {
@@ -588,7 +713,7 @@
 						summary : "Done"
 					},
 					"Already prot'd" : {
-						code : "ap|X",
+						code : "ap|$1",
 						summary : "Already protected by ",
 						prompt : "Admin's name?"
 					},
@@ -656,12 +781,12 @@
 						replied : "true"
 					},
 					"Already unprot'd" : {
-						code : "au|X",
+						code : "au|$1",
 						summary : "Already unprotected by ",
 						prompt : "Admin's name?"
 					},
 					"Already done" : {
-						code : "ad|X",
+						code : "ad|$1",
 						summary : "Already done by ",
 						prompt : "Admin's name?"
 					},
@@ -702,15 +827,15 @@
 				defaultPrompt = "Duration?";
 				responses = {
 					"Blocked" : {
-						code : "b|X",
+						code : "b|$1",
 						summary : "Blocked "
 					},
 					"Nom. blocked" : {
-						code : "nb|X",
+						code : "nb|$1",
 						summary : "Nominator blocked "
 					},
 					"Both blocked" : {
-						code : "bb|X",
+						code : "bb|$1",
 						summary : "Both blocked "
 					},
 					"Already blocked" : {
@@ -774,12 +899,18 @@
 
 	function respondFn(e) {
 		var response = e.data.response;
-		var code = response.code, comment = "", value = "";
+		var code = response.code, comment = "", value = "", value2 = "";
 
-		if (code.indexOf("|X") !== -1) {
-			value = prompt((response.prompt ? response.prompt : defaultPrompt) + " (optional, hit OK to omit)");
+		if (code.indexOf("|$1") !== -1) {
+			value = prompt((response.prompt ? response.prompt : defaultPrompt) +
+				       (response.valueRequired ? '' : " (optional, hit OK to omit)"));
 			if (value === null) return false;
-			code = code.slice(0,(value.length ? -1 : -2)) + value;
+			code = code.replace('$1', value);
+			if (code.indexOf("$2") !== -1) {
+				value2 = prompt(response.prompt2 + (response.value2Required ? '' : " (optional, hit OK to omit)"));
+				if (value2 === null) return false;
+				code = code.replace('$2', value2);
+			}
 		} else if (response.prompt) {
 			value = prompt(response.prompt + " (optional, hit OK to omit)");
 			if (value === null) return false;
@@ -788,12 +919,12 @@
 
 		var $textarea = $("#wpTextbox1");
 		var currentText = $textarea.val();
-		var responseStr = indentation + "{{" + (templateName ? templateName + "|" : "") + code + "}}" + comment + " ~~~~";
+		var responseStr = indentation + "{{" + (templateName ? templateName + "|" : "") + code.replace(/\|$/, '') + "}}" + comment + " ~~~~";
 
 		//Try to capture username on RFPP, offer popup on AIV
 		var txt = "";
 		if (templateName == "RFPP") {
-			if ( response.replied== "true") {
+			if (response.replied== "true") {
 				txt = $textarea.val();
 				txt = txt.match(/\=\=.*\n.*\* ?\{\{pagelinks.*\n+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
 				txt = '; Reply to ' + txt[2];
@@ -806,7 +937,7 @@
 		}
 
 		if (inline) {
-			var caretPos = $textarea[0].selectionStart;
+			var caretPos = $textarea.textSelection('getCaretPosition');
 			$textarea.val(currentText.substring(0, caretPos) + responseStr + currentText.substring(caretPos));
 		} else if (spi) {
 			$textarea.val(
@@ -824,7 +955,16 @@
 			);
 		}
 
-		$("#wpSummary").val($("#wpSummary").val() + (response.summary + value).trim() + " (via [[User:MusikAnimal/responseHelper|responseHelper]])" + txt);
+		if (response.summary.indexOf('$1') !== -1) {
+			response.summary = response.summary.replace('$1', value.trim());
+
+			if (response.summary.indexOf('$2') !== -1) {
+				response.summary = response.summary.replace('$2', value2.trim());
+			}
+		} else {
+			response.summary = response.summary + value.trim();
+		}
+		$("#wpSummary").val($("#wpSummary").val() + response.summary + " (using [[User:MusikAnimal/responseHelper|responseHelper]])" + txt);
 	}
 }());
 // </nowiki></pre>
