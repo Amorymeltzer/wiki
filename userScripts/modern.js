@@ -255,7 +255,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	  [[User:GregU/dashes.js]], [[User:Salix_alba/Citoid.js]], [[User:Ohconfucius/script/formatgeneral.js]]
 	  [[User:Ohconfucius/script/Common Terms.js]], [[User:Dr_pda/editrefs.js]], [[User:TheJJJunk/ARA.js]]
 	  [[User:Meteor sandwich yum/Tidy citations.js]], [[User:Cameltrader/Advisor.js]], [[User:PC-XT/Advisor.js]]
-	  [[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]], [[User:Edward/Find_link]]
+	  [[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]]
 	*/
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/smaller_templates.js&oldid=596443737&action=raw&ctype=text/javascript'); //[[User:Gary/smaller templates.js]]
 	importScript('User:Amorymeltzer/WRStitle.js'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
