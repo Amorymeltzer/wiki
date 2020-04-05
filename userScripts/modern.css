@@ -40,16 +40,16 @@ div.pBody {
 }*/
 
 #p-cactions li {
-        border-top: 2px solid lightgrey;
-        border-left: 2px solid lightgrey;
-        border-right: 2px solid lightgrey;
-        border-bottom: 0 solid lightgrey;
-        position: relative;
-        float: left;
-        margin-right: -3px;
-        border-top-left-radius: .48em;
-        border-top-right-radius: .48em;
-        font-size: 94%;
+    border-top: 2px solid lightgrey;
+    border-left: 2px solid lightgrey;
+    border-right: 2px solid lightgrey;
+    border-bottom: 0 solid lightgrey;
+    position: relative;
+    float: left;
+    margin-right: -3px;
+    border-top-left-radius: .48em;
+    border-top-right-radius: .48em;
+    font-size: 94%;
 }
 
 /* Preen the quickbar, not using at the moment */
@@ -86,7 +86,7 @@ div.pBody {
     margin-top: 0;
 }
 .mw-echo-ui-notificationItemWidget-content {
-	padding-left: 0.5em;
+    padding-left: 0.5em;
 }
 
 /* Hide notices/warnings/options that I don't need or want
@@ -108,13 +108,13 @@ div#mw-hidden-catlinks { font-size: 88%; }
 
 /* Bold headline */
 .mw-headline {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 /* Bold and small edit section links */
 .mw-editsection {
-  font-weight: bold;
-  font-size: small;
+    font-weight: bold;
+    font-size: small;
 }
 
 /* Link color changing if I want
@@ -150,8 +150,8 @@ input[type="submit"]:hover, input[type="submit"]:focus {
 
 /* Green save button with black text */
 input#wpSave {
-	background-color: #9f9 !important;
-	color: #000 !important;
+    background-color: #9f9 !important;
+    color: #000 !important;
 }
 input#wpSave:hover, input#wpSave:focus {
     /*background-color: #fff !important;*/
@@ -162,7 +162,7 @@ input#wpSave:hover, input#wpSave:focus {
 
 /* Orange watchlist messages */
 ul#watchlist-message {
-background-color: orange;
+    background-color: orange;
 }
 
 /*Editing*/
