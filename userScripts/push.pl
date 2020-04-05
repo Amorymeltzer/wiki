@@ -208,7 +208,6 @@ modern.js
   easyblock-modern.js
   easyblock-modern.css
   unhide.js
-  googleTitle.js
   userRightsManager.js
   hideSectionDesktop.js
   userinfo.js
