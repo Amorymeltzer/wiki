@@ -38,8 +38,8 @@ var main = function(data) {
 	};
 
 	mw.loader.using(['mediawiki.util','mediawiki.Uri', 'mediawiki.Title'], function() {
-		for (var perm of highlight_order) {
-			mw.util.addCSS(".userhighlighter_" + perm + " {background-color: #" + classDefs[perm] + "}");
+		for (var perm in highlight_order) {
+			mw.util.addCSS(".userhighlighter_" + highlight_order[perm] + " {background-color: #" + classDefs[highlight_order[perm]] + "}");
 		}
 
 		$('#mw-content-text a').each(function(index,linkraw){
