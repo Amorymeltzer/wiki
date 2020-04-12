@@ -233,7 +233,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	], function() {
 	    // Do not operate on non-existent pages or their talk pages
 	    if (!$("li.new[id|=ca-nstab]").length) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=948432167&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=949710785&action=raw&ctype=text/javascript');
 	    }
 	});
     }
@@ -311,7 +311,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=939180044&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=945401392&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 	    window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=944264024&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=950272315&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 	    /*All talks*/
 	    if (mw.config.get('wgNamespaceNumber') !== '4') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
