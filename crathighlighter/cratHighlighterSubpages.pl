@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 # cratHighlighterSubpages.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Make it easier to sync crathighlighter.js
-# https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js
+# Make it easier to sync subpages of crathighlighter.js
+# https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 
 use strict;
 use warnings;
@@ -301,9 +301,7 @@ USAGE
 
 
 ## The lines below do not represent Perl code, and are not examined by the
-## compiler.  Rather, they are used by %abbrevs to map filenames from the
-## Twinkle git repo to their corresponding location in the MediaWiki Gadget
-## psuedonamespace.
+## compiler.  Rather, they are used by %abbrevs to build nice commit messages.
 __DATA__
 arbcom.json AC
   bureaucrat.json B
