@@ -24,13 +24,13 @@ if ($opts{h}) { usage(); exit; } # Usage
 
 # Check repo before doing anything risky
 my $repo = Git::Repository->new();
-if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
-  print "Not on master branch, quitting\n";
-  exit 0;
-} elsif (scalar $repo->run(status => '--porcelain')) {
-  print "Repository is not clean, quitting\n";
-  exit;
-}
+# if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
+#   print "Not on master branch, quitting\n";
+#   exit 0;
+# } elsif (scalar $repo->run(status => '--porcelain')) {
+#   print "Repository is not clean, quitting\n";
+#   exit;
+# }
 
 # Config file should be a simple file consisting of username and botpassword
 # username = Jimbo Wales
