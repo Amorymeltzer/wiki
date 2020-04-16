@@ -89,10 +89,12 @@ my @pages = @{${${$ret}{query}}{pages}};
 # revisions -> array containing one item, which is a hash, which has keys:
 # content -> content
 my %first = %{$pages[0]};
+my $title = $first{title};
+print "\n$title\n";
 my @firstRevisions = @{$first{revisions}};
-# print Dumper(@firstRevisions);
 my %revs = %{$firstRevisions[0]};
-print $revs{content};
+# print $revs{content};
+print ${$firstRevisions[0]}{content};
 # print Dumper(%revs);
 
 # my $hashref = $jsonTemplate->encode($ret);

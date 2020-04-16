@@ -61,8 +61,42 @@ if ($opts{c}) {
   }
 }
 
-my ($localChange,$wikiChange) = (0,0);
+# Bulk-grab content of each page
+# It's easier to do multiple queries below but this is more polite
 my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
+my @titles = map { 'User:Amorymeltzer/crathighlighter.js/'.$_.'.json' } @rights;
+my $alltitles = join q{|}, @titles;
+my $contentQuery = {
+	     action => 'query',
+	     prop => 'revisions',
+	     rvprop => 'content',
+	     titles => $alltitles,
+	     format => 'json',
+	     formatversion => 2 # Easier to iterate over
+	    };
+# JSON, technically a reference to a hash
+my $queryReturn = $mw->api($contentQuery);
+# Stores page title, content and last edited time in an array for each right
+my %contentStore;
+# This monstrosity results in an array where each item is an array of hashes:
+## title -> set use to set the content, maybe use as key in data hash
+## revisions -> array containing one item, which is a hash, which has keys:
+### content -> content
+### timestamp -> last edited
+# Just awful.
+my @pages = @{${${$queryReturn}{query}}{pages}};
+foreach my $i (0..scalar @pages - 1) {
+  my %page = %{$pages[$i]};
+  my $title = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+  my @revisions = @{$page{revisions}};
+  my $content = ${$revisions[0]}{content};
+  my $timestamp = ${$revisions[0]}{timestamp};
+  $contentStore{$title} = [$page{title},$content,$timestamp];
+}
+
+
+# Main loop for each right
+my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
   my %queryHash;
 
@@ -147,10 +181,7 @@ foreach (@rights) {
   }
 
   # Check if on-wiki records have changed
-  my $pTitle = "User:Amorymeltzer/crathighlighter.js/$file";
-  my $getPage = $mw->get_page({title => $pTitle});
-  my $wikiJSON = $getPage->{q{*}};
-
+  my $wikiJSON = $contentStore{$_}[1];
   my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
 
   # Check if everything is up-to-date onwiki, optional push otherwise
@@ -173,12 +204,12 @@ foreach (@rights) {
 	$summary .= '('.$changes.') ';
       }
       $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
-      my $timestamp = $getPage->{timestamp};
+      my $timestamp = $contentStore{$_}[2];
 
       print "\tPushing now...\n";
       $mw->edit({
 		 action => 'edit',
-		 title => $pTitle,
+		 title => $contentStore{$_}[0],
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $queryJSON,
 		 summary => $summary
