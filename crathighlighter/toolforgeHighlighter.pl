@@ -35,11 +35,11 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 
 # Check repo before doing anything risky
 my $repo = Git::Repository->new();
-if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
-  LOGEXIT('Not on master branch, quitting');
-} elsif (scalar $repo->run(status => '--porcelain')) {
-  LOGEXIT('Repository is not clean, quitting');
-}
+# if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
+#   LOGEXIT('Not on master branch, quitting');
+# } elsif (scalar $repo->run(status => '--porcelain')) {
+#   LOGEXIT('Repository is not clean, quitting');
+# }
 
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
