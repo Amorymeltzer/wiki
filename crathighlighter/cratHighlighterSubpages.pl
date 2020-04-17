@@ -59,21 +59,70 @@ if ($opts{c}) {
   }
 }
 
-# Bulk-grab content of each page
-# It's easier to do multiple queries below but this is more polite
-my @rights = qw (bureaucrat oversight checkuser interface-admin arbcom steward);
+
+## Bulk queries: It's easier to do multiple queries but this is more polite
+# @rights doesn't include arbcom or steward at the moment since it's first
+# being used to build the query for determining who has what usergroups.
+# Steward belongs to a different, global list (agu rather than au) and arbcom
+# isn't real.  They'll be added in due course, although the arbcom list still
+# needs getting.
+my @rights = qw (bureaucrat oversight checkuser interface-admin);
+# Will store hash of editors for each group.  Basically JSON
+my %groupsStore;
+
+### List of each group; actually a list of users in any of the groups with
+### all of their respective groups
+my $localPerms = join q{|}, @rights;
+my $groupsQuery = {
+		   action => 'query',
+		   list => 'allusers|globalallusers',
+		   augroup => $localPerms,
+		   auprop => 'groups', # If provide to agu, can do same below FIXME TODO
+		   aulimit => 'max',
+		   agugroup => 'steward',
+		   agulimit => 'max',
+		   format => 'json',
+		   formatversion => 2, # Easier to iterate over
+		   utf8 => '1' # Alaa friendly
+		  };
+# JSON, technically a reference to a hash
+# $mw->list doesn't work with multiple lists???  Lame
+my $groupsReturn = $mw->api($groupsQuery);
+# Hash containing each list as a key, with the results as an array of hashes,
+# each hash containing the useris, user name, and (if requested) user groups
+my %groupsQuery = %{${$groupsReturn}{query}};
+
+# Local groups need a loop for processing who goes where
+my @localHashes = @{$groupsQuery{allusers}};
+foreach my $i (0..scalar @localHashes - 1) {
+  my %userHash = %{$localHashes[$i]};
+  # Limit to the groups in question (I always forget how neat grep is)
+  my @usersGroups = grep {/$localPerms/} @{$userHash{groups}};
+  # Add to hash of hash
+  foreach my $grp (@usersGroups) {
+    $groupsStore{$grp}{$userHash{name}} = 1;
+  }
+}
+
+# Stewards are "simple" thanks to map and simple (one-group) structure
+%{$groupsStore{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+
+# Add stewards and arbcom
+push @rights, qw (steward arbcom);
+
+### Content of each page
 my @titles = map { 'User:Amorymeltzer/crathighlighter.js/'.$_.'.json' } @rights;
-my $alltitles = join q{|}, @titles;
+my $allTitles = join q{|}, @titles;
 my $contentQuery = {
 	     action => 'query',
 	     prop => 'revisions',
 	     rvprop => 'content',
-	     titles => $alltitles,
+	     titles => $allTitles,
 	     format => 'json',
 	     formatversion => 2 # Easier to iterate over
 	    };
 # JSON, technically a reference to a hash
-my $queryReturn = $mw->api($contentQuery);
+my $contentReturn = $mw->api($contentQuery);
 # Stores page title, content and last edited time in an array for each right
 my %contentStore;
 # This monstrosity results in an array where each item is an array of hashes:
@@ -82,7 +131,7 @@ my %contentStore;
 ### content -> content
 ### timestamp -> last edited
 # Just awful.
-my @pages = @{${${$queryReturn}{query}}{pages}};
+my @pages = @{${${$contentReturn}{query}}{pages}};
 foreach my $i (0..scalar @pages - 1) {
   my %page = %{$pages[$i]};
   my $title = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
@@ -93,7 +142,7 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
-# Main loop for each right
+#### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
   my %queryHash;
@@ -101,6 +150,8 @@ foreach (@rights) {
   my $file = $_.'.json';
   my $wiki = $_.'.wiki';
 
+  # ArbCom isn't a real group so its membership couldn't be queried above.
+  # This doesn't strictly need to be in the loop here, but no reason not to.
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
@@ -131,27 +182,7 @@ foreach (@rights) {
       }
     }
   } else {
-    # Defaults
-    my $list = 'allusers';
-    my $prefix = 'au';
-    if (/steward/) {
-      $list = 'global'.$list;
-      $prefix = 'agu';
-    }
-
-    # Everybody!  Everybody!
-    my $query = {
-		 action => 'query',
-		 list => $list,
-		 $prefix.'group' => $_,
-		 $prefix.'limit' => 'max',
-		 format => 'json',
-		 utf8 => '1'
-		};
-
-    # Usernames from reference to array of hash references
-    my $ret = $mw->list($query);
-    %queryHash = map {$_->{name} => 1} @{$ret};
+    %queryHash = %{$groupsStore{$_}};
   }
 
   # Build JSON, needed regardless
