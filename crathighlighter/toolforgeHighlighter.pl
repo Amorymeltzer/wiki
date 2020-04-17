@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-# cratHighlighterSubpages.pl by Amory Meltzer
+# toolforgeHighlighter.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Make it easier to sync subpages of crathighlighter.js
+# Sync subpages of crathighlighter.js via toolforge
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 
 use strict;
@@ -25,7 +25,7 @@ usage() if $opts{h};
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
-			   file     => '>>log.log',
+			   file     => '>>tflog.log',
 			   utf8     => 1,
 			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
 			 { level    => $TRACE,
@@ -55,7 +55,7 @@ my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php',
 			      on_error => \&dieNice
 			     });
-$mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
+$mw->{ua}->agent('tf-cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
 
 # Template for generating JSON, sorted
