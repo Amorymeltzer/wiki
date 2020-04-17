@@ -13,9 +13,7 @@ use Config::General qw(ParseConfig);
 use MediaWiki::API;
 use Git::Repository;
 use File::Slurper qw(read_text write_text);
-use File::Compare;
 use JSON;
-use Term::ANSIColor;
 
 # Parse commandline options
 my %opts = ();
@@ -243,7 +241,6 @@ if ($opts{c}) {
 sub dieNice {
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
-  print color 'red';
   if ($code == 4) {
     print "Error logging in\n";
   } elsif ($code == 5) {
