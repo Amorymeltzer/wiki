@@ -29,7 +29,7 @@ Log::Log4perl->easy_init({ level    => $INFO,
 
 # Parse commandline options
 my %opts = ();
-getopts('hpc', \%opts);
+getopts('hpcN', \%opts);
 if ($opts{h}) { usage(); exit; } # Usage
 
 # Check repo before doing anything risky
@@ -269,7 +269,9 @@ if (!$localChange && !$wikiChange) {
   exit;
 }
 
-system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+if ($opts{N}) {
+  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+}
 
 # Autocommit changes
 if ($opts{c}) {
@@ -367,7 +369,8 @@ sub usage {
 Usage: $0 [-hpc]
       -p Push live to wiki
       -c Automatically commit changes in git
-      -h print this message
+      -N Don't attempt to use the system notifier
+      -h Print this message
 USAGE
   return;
 }
