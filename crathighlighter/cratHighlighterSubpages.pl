@@ -15,6 +15,18 @@ use Git::Repository;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
+use Log::Log4perl qw(:easy);
+# The full options are straightforward, but overly verbose when easy mode
+# (with stealth loggers) is succinct and sufficient
+Log::Log4perl->easy_init({ level    => $INFO,
+			   file     => '>>log.log',
+			   utf8     => 1,
+			   layout   => '%d (%p): %m%n' },
+			 { level    => $TRACE,
+			   file     => 'STDOUT',
+			   layout   => '%m%n' }
+                        );
+
 # Parse commandline options
 my %opts = ();
 getopts('hpc', \%opts);
@@ -23,11 +35,9 @@ if ($opts{h}) { usage(); exit; } # Usage
 # Check repo before doing anything risky
 my $repo = Git::Repository->new();
 if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
-  print "Not on master branch, quitting\n";
-  exit 0;
+  LOGEXIT('Not on master branch, quitting');
 } elsif (scalar $repo->run(status => '--porcelain')) {
-  print "Repository is not clean, quitting\n";
-  exit;
+  LOGEXIT('Repository is not clean, quitting');
 }
 
 # Config file should be a simple file consisting of username and botpassword
@@ -114,13 +124,13 @@ push @rights, qw (steward arbcom);
 my @titles = map { 'User:Amorymeltzer/crathighlighter.js/'.$_.'.json' } @rights;
 my $allTitles = join q{|}, @titles;
 my $contentQuery = {
-	     action => 'query',
-	     prop => 'revisions',
-	     rvprop => 'content',
-	     titles => $allTitles,
-	     format => 'json',
-	     formatversion => 2 # Easier to iterate over
-	    };
+		    action => 'query',
+		    prop => 'revisions',
+		    rvprop => 'content',
+		    titles => $allTitles,
+		    format => 'json',
+		    formatversion => 2 # Easier to iterate over
+		   };
 # JSON, technically a reference to a hash
 my $contentReturn = $mw->api($contentQuery);
 # Stores page title, content and last edited time in an array for each right
@@ -194,7 +204,7 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    print "$file changed\n\t";
+    TRACE("$file changed");
     # Write changes
     write_text($file, $queryJSON);
 
@@ -216,14 +226,16 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
+    my $note = "\t";
 
     # Get .json synched then go for it
     if ($fileState) {
-      print 'and';
+      $note .= 'and';
     } else {
-      print "$file"
+      $note .= "$file"
     }
-    print " needs updating on-wiki.\n";
+    $note .= ' needs updating on-wiki.';
+    TRACE($note);
 
     if ($opts{p}) {
       my $changes = buildSummary($wikiAdded,$wikiRemoved);
@@ -235,7 +247,7 @@ foreach (@rights) {
       $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
-      print "\tPushing now...\n";
+      TRACE("\tPushing now...");
       $mw->edit({
 		 action => 'edit',
 		 title => $contentStore{$_}[0],
@@ -244,16 +256,17 @@ foreach (@rights) {
 		 summary => $summary
 		});
       my $return = $mw->{response};
-      print "\t$return->{_msg}\n";
+      TRACE("\t$return->{_msg}");
     }
   } elsif ($fileState) {
-    print "but already up-to-date\n";
+    TRACE('but already up-to-date');
   }
 }
 
 if (!$localChange && !$wikiChange) {
-  print "No updates needed\n";
-  exit 0;
+  # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
+  INFO('No updates needed');
+  exit;
 }
 
 system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
@@ -272,13 +285,14 @@ if ($opts{c}) {
 sub dieNice {
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
+  my $message = 'MediaWiki error';
   if ($code == 4) {
-    print "Error logging in\n";
+    $message .= ' logging in';
   } elsif ($code == 5) {
-    print "Error editing the page\n";
+    $message .= ' editing the page';
   }
-  print "$code: $details\n";
-  die "Quitting\n";
+  $message .= ":\n$code: $details";
+  LOGDIE($message);
 }
 
 # Compare query hash with a JSON object hash, return negated equality and
@@ -311,7 +325,7 @@ sub cmpJSON {
   }
 
   return ($state, \@added, \@removed);
-};
+}
 
 # Create a commit/edit summary from the array references of added/removed
 # usernames.  Uses oxfordComma below for proper grammar
