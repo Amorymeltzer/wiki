@@ -6,43 +6,46 @@ use strict;
 use warnings;
 use diagnostics;
 
-use Log::Log4perl;
+use Log::Log4perl qw(:easy);
+# use Log::Log4perl qw(:easy :no_extra_logdie_message);
 
-my %conf = (
-	    'log4perl.category.cratHighlighter' => 'TRACE, Logfile',
-	    'log4perl.appender.Logfile' => 'Log::Log4perl::Appender::File',
-	    'log4perl.appender.Logfile.filename' => 'crat.log',
-	    'log4perl.appender.Logfile.layout' => 'Log::Log4perl::Layout::PatternLayout',
-	    'log4perl.appender.Logfile.layout.ConversionPattern' => '%d (%p): %m%n'
-	   );
+Log::Log4perl->easy_init( { level    => $INFO,
+                            file     => '>>crathighlighter.log',
+			    utf8     => 1,
+                            layout   => '%p %F{1}-%L-%M: %m%n' },
+                          { level    => $DEBUG,
+                            file     => 'STDOUT',
+                            layout   => '%p %m%n' },
+                        );
 
-Log::Log4perl::init(\%conf);
-
-my $logger = Log::Log4perl->get_logger('cratHighlighter');
-$logger->error('Blah');
-$logger->warn('Blah');
-$logger->info('Blah');
+ERROR('errrr');
+WARN('wrn');
+FATAL('fatall');
+LOGWARN('logwarn');
+LOGEXIT('logrxiot');
+LOGDIE('logdie');
+print "asdasd\n";
 exit;
 
+# Set logging config
+my $layoutClass = 'Log::Log4perl::Layout::PatternLayout';
+my %logConf = (
+	       'log4perl.category.cratHighlighter' => 'TRACE, Logfile, Screen',
 
+	       'log4perl.appender.Logfile' => 'Log::Log4perl::Appender::File',
+	       'log4perl.appender.Logfile.filename' => 'crathighlighter.log',
+	       'log4perl.appender.Logfile.layout' => $layoutClass,
+	       'log4perl.appender.Logfile.layout.ConversionPattern' => '%d (%p): %m%n',
 
+	       'log4perl.appender.Screen' => 'Log::Log4perl::Appender::Screen',
+	       'log4perl.appender.Screen.layout' => $layoutClass,
+	       'log4perl.appender.Screen.layout.ConversionPattern' => '%p: %m%n'
+	      );
 
-use Log::Dispatch;
-use Log::Dispatch::File;
-use Log::Dispatch::Screen;
+Log::Log4perl::init(\%logConf);
 
-my $log = Log::Dispatch->new();
-$log->add(Log::Dispatch::File->new(
-				   min_level => 'info',
-				   filename  => 'crathighlighter.log',
-				   # mode      => '>>',
-				   mode      => '>',
-				   newline   => 1
-				  ));
-$log->add(Log::Dispatch::Screen->new(min_level => 'warning'));
-
-
-$log->emerg('emerg');
-$log->warn('warn');
-$log->info('info');
-$log->log_and_die(level=>'warn', message=>'die');
+my $logger = Log::Log4perl->get_logger('cratHighlighter');
+$logger->error('error');
+$logger->warn('warn');
+$logger->fatal('fatal');
+$logger->info('info');
