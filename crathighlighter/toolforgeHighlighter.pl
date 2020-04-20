@@ -4,6 +4,14 @@
 # Sync subpages of crathighlighter.js via toolforge
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 
+## TODO
+## Shutoff page
+## No git needed???
+## User, etc.
+## New user/botpass
+## Maybe log everything, including current trace messages???
+### Look into %m{indent} or something
+
 use strict;
 use warnings;
 use diagnostics;
