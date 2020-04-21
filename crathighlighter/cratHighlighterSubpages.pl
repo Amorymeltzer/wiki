@@ -9,15 +9,21 @@ use warnings;
 use diagnostics;
 
 use Getopt::Std;
-use Config::General qw(ParseConfig);
-use MediaWiki::API;
+use English qw(-no_match_vars);
+
+use Log::Log4perl qw(:easy);
 use Git::Repository;
+use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
-use Log::Log4perl qw(:easy);
+# Parse commandline options
+my %opts = ();
+getopts('hpcN', \%opts);
+if ($opts{h}) { usage(); exit; } # Usage
+
 # The full options are straightforward, but overly verbose when easy mode
-# (with stealth loggers) is succinct and sufficient
+# (and stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level    => $INFO,
 			   file     => '>>log.log',
 			   utf8     => 1,
@@ -27,11 +33,6 @@ Log::Log4perl->easy_init({ level    => $INFO,
 			   layout   => '%m%n' }
                         );
 
-# Parse commandline options
-my %opts = ();
-getopts('hpcN', \%opts);
-if ($opts{h}) { usage(); exit; } # Usage
-
 # Check repo before doing anything risky
 my $repo = Git::Repository->new();
 if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
@@ -40,19 +41,25 @@ if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
   LOGEXIT('Repository is not clean, quitting');
 }
 
-# Config file should be a simple file consisting of username and botpassword
-# username = Jimbo Wales
-# password = stochasticstring
-my %conf;
-my $config_file = "$ENV{HOME}/.crathighlighterrc";
-%conf = ParseConfig($config_file) if -e -f -r $config_file;
+# Config consists of just a single line with username and botpassword
+# Jimbo Wales:stochasticstring
+# Config::General is easy but this is so simple
+my ($username, $password);
+my $config_file = '.crathighlighterrc';
+open my $config, '<', "$config_file" or LOGDIE($ERRNO);
+while (<$config>) {
+  chomp;
+  ($username, $password) = split /:/;
+}
+close $config or LOGDIE($ERRNO);
 
+# Initialize API object, log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php',
 			      on_error => \&dieNice
 			     });
 $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
-$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+$mw->login({lgname => $username, lgpassword => $password});
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON::PP->new->canonical(1);
@@ -366,7 +373,7 @@ sub oxfordComma {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $0 [-hpc]
+Usage: $PROGRAM_NAME [-hpc]
       -p Push live to wiki
       -c Automatically commit changes in git
       -N Don't attempt to use the system notifier
