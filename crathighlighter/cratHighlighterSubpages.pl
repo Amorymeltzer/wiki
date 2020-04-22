@@ -208,7 +208,7 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    TRACE("$file changed");
+    INFO("$file changed");
     # Write changes
     write_text($file, $queryJSON);
 
@@ -250,7 +250,7 @@ foreach (@rights) {
       $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
-      TRACE($note.' Pushing now...');
+      INFO($note.' Pushing now...');
       $mw->edit({
 		 action => 'edit',
 		 title => $contentStore{$_}[0],
@@ -259,13 +259,13 @@ foreach (@rights) {
 		 summary => $summary
 		});
       my $return = $mw->{response};
-      TRACE("\t$return->{_msg}");
+      INFO("\t$return->{_msg}");
     } else {
-      TRACE($note);
-      TRACE("\tSkipping push");
+      INFO($note);
+      INFO("\tSkipping push");
     }
   } elsif ($fileState) {
-    TRACE('but already up-to-date');
+    INFO('but already up-to-date');
   }
 }
 
