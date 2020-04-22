@@ -20,7 +20,7 @@ use JSON;
 # Parse commandline options
 my %opts = ();
 getopts('hpcN', \%opts);
-if ($opts{h}) { usage(); exit; } # Usage
+usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
@@ -44,13 +44,10 @@ if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
-my ($username, $password);
 my $config_file = '.crathighlighterrc';
 open my $config, '<', "$config_file" or LOGDIE($ERRNO);
-while (<$config>) {
-  chomp;
-  ($username, $password) = split /:/;
-}
+chomp(my $line = <$config>);
+my ($username, $password) = split /:/, $line;
 close $config or LOGDIE($ERRNO);
 
 # Initialize API object, log in
@@ -100,7 +97,7 @@ my $groupsQuery = {
 		   agulimit => 'max',
 		   format => 'json',
 		   formatversion => 2, # Easier to iterate over
-		   utf8 => '1' # Alaa friendly
+		   utf8 => '1'         # Alaa friendly
 		  };
 # JSON, technically a reference to a hash
 # $mw->list doesn't work with multiple lists???  Lame
@@ -324,7 +321,8 @@ sub cmpJSON {
       if (!${$oRef}{$_}) {
 	push @added, $_;
       } else {
-	delete ${$oRef}{$_}; # Don't check again
+	# Don't check again
+	delete ${$oRef}{$_};
       }
     }
 
@@ -379,7 +377,7 @@ Usage: $PROGRAM_NAME [-hpc]
       -N Don't attempt to use the system notifier
       -h Print this message
 USAGE
-  return;
+  exit;
 }
 
 
