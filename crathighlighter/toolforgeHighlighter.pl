@@ -76,6 +76,11 @@ my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
   LOGDIE('DISABLED on-wiki');
 }
+# Automatic shutoff: user has talkpage messages
+my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
+if (exists $userNotes{query}{userinfo}{messages}) {
+  LOGIDE("$bot has talkpage message(s))");
+}
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON::PP->new->canonical(1);
