@@ -253,6 +253,7 @@ foreach (@rights) {
       INFO($note.' Pushing now...');
       $mw->edit({
 		 action => 'edit',
+		 assert => 'user',
 		 title => $contentStore{$_}[0],
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $queryJSON,

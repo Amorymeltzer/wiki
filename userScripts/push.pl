@@ -91,6 +91,7 @@ foreach my $file (@files) {
       my $summary = buildEditSummary($page, $file, $wikiPage->{comment});
       $mw->edit({
 		 action => 'edit',
+		 assert => 'user',
 		 title => $page,
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $text,
