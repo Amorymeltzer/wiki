@@ -30,7 +30,7 @@ Log::Log4perl->easy_init({ level    => $INFO,
 			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m%n' },
 			 { level    => $TRACE,
 			   file     => 'STDOUT',
-			   layout   => '%m%n' }
+			   layout   => '%m{indent}%n' }
                         );
 
 # Check repo before doing anything risky
@@ -230,16 +230,15 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    my $note = "\t";
+    my $note;
 
     # Get .json synched then go for it
     if ($fileState) {
-      $note .= 'and';
+      $note = 'and';
     } else {
-      $note .= "$file"
+      $note = "$file"
     }
     $note .= ' needs updating on-wiki.';
-    TRACE($note);
 
     if ($opts{p}) {
       my $changes = buildSummary($wikiAdded,$wikiRemoved);
@@ -251,7 +250,7 @@ foreach (@rights) {
       $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
-      TRACE("\tPushing now...");
+      TRACE($note.' Pushing now...');
       $mw->edit({
 		 action => 'edit',
 		 title => $contentStore{$_}[0],
@@ -261,6 +260,9 @@ foreach (@rights) {
 		});
       my $return = $mw->{response};
       TRACE("\t$return->{_msg}");
+    } else {
+      TRACE($note);
+      TRACE("\tSkipping push");
     }
   } elsif ($fileState) {
     TRACE('but already up-to-date');
