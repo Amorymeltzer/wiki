@@ -2,15 +2,17 @@
 # toolforgeHighlighter.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Sync subpages of crathighlighter.js via toolforge
-# https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
+# https://en.wikipedia.org/wiki/User:AmoryBot/crathighlighter
 
 ## TODO
-## Shutoff page
 ## No git needed???
-## User, etc.
-## New user/botpass
+### Or still use, then pull before and push after
+## New user
 ## Maybe log everything, including current trace messages???
 ### Look into %m{indent} or something
+## Need function for dying
+# https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email
+## Notify on fatal or update
 
 use strict;
 use warnings;
@@ -49,6 +51,8 @@ my $repo = Git::Repository->new();
 #   LOGEXIT('Repository is not clean, quitting');
 # }
 
+my $bot = 'User:AmoryBot';
+
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
@@ -65,6 +69,13 @@ my $mw = MediaWiki::API->new({
 			     });
 $mw->{ua}->agent('tf-cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
+
+# Manual shutoff; confirm bot should actually run
+my $page = $mw->get_page({title => $bot.'/tb'});
+my $checkContent = $page->{q{*}};
+if (!$checkContent || $checkContent ne '42') {
+  LOGDIE('DISABLED on-wiki');
+}
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON::PP->new->canonical(1);
@@ -122,7 +133,7 @@ foreach my $i (0..scalar @localHashes - 1) {
 push @rights, qw (steward arbcom);
 
 ### Content of each page
-my @titles = map { 'User:Amorymeltzer/crathighlighter.js/'.$_.'.json' } @rights;
+my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
 my $allTitles = join q{|}, @titles;
 my $contentQuery = {
 		    action => 'query',
@@ -243,7 +254,7 @@ foreach (@rights) {
 
     if ($opts{p}) {
       my $editSummary = 'Update'.buildSummary($wikiAdded,$wikiRemoved);
-      $editSummary .=' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
+      $editSummary .=" (automatically via [[$bot/crathighlighter|script]])";
       my $timestamp = $contentStore{$_}[2];
 
       $note .= " Pushing now...\n";
