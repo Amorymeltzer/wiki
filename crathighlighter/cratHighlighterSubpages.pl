@@ -62,17 +62,6 @@ $mw->login({lgname => $username, lgpassword => $password});
 my $jsonTemplate = JSON::PP->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 
-my ($commitMessage,%abbrevs); # Only used if -c but want global/not defined in if
-if ($opts{c}) {
-  $commitMessage = "cratHighlighterSubpages: Update\n";
-  # Build file abbreviation hash
-  while (<DATA>) {
-    chomp;
-    my @map = split;
-    $abbrevs{$map[0]} = $map[1];
-  }
-}
-
 
 ## Bulk queries: It's easier to do multiple queries but this is more polite
 # @rights doesn't include arbcom or steward at the moment since it's first
@@ -156,6 +145,18 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
+# Only used if -c but want global/not defined in if
+my ($commitMessage,%abbrevs);
+if ($opts{c}) {
+  $commitMessage = "cratHighlighterSubpages: Update\n";
+  # Build file abbreviation hash
+  while (<DATA>) {
+    chomp;
+    my @map = split;
+    $abbrevs{$map[0]} = $map[1];
+  }
+}
+
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
@@ -230,24 +231,16 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    my $note;
-
-    # Get .json synched then go for it
-    if ($fileState) {
-      $note = 'and';
-    } else {
-      $note = "$file"
-    }
-    $note .= ' needs updating on-wiki.';
+    my $note = ($fileState ? 'and' : "$file").' needs updating on-wiki.';
 
     if ($opts{p}) {
       my $changes = buildSummary($wikiAdded,$wikiRemoved);
 
-      my $summary = 'Update ';
+      my $editSummary = 'Update ';
       if (length $changes) {
-	$summary .= '('.$changes.') ';
+	$editSummary .= '('.$changes.') ';
       }
-      $summary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
+      $editSummary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
       INFO($note.' Pushing now...');
@@ -257,10 +250,9 @@ foreach (@rights) {
 		 title => $contentStore{$_}[0],
 		 basetimestamp => $timestamp, # Avoid edit conflicts
 		 text => $queryJSON,
-		 summary => $summary
+		 summary => $editSummary
 		});
-      my $return = $mw->{response};
-      INFO("\t$return->{_msg}");
+      INFO("\t$mw->{response}->{_msg}");
     } else {
       INFO($note);
       INFO("\tSkipping push");
