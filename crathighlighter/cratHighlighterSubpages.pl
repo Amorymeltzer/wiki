@@ -275,13 +275,13 @@ if (!$localChange && !$wikiChange) {
   exit;
 }
 
-if ($opts{N}) {
-  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
-}
-
 # Autocommit changes
 if ($opts{c}) {
   $repo->run(commit => '-m', "$commitMessage");
+}
+
+if (!$opts{N}) {
+  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 }
 
 
