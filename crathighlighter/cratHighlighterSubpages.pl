@@ -217,10 +217,7 @@ foreach (@rights) {
     if ($opts{c}) {
       $repo->run(add => "*$file");
       $commitMessage .= "\n$abbrevs{$file}";
-      my $changes = buildSummary($fileAdded,$fileRemoved);
-      if (length $changes) {
-	$commitMessage .= ' ('.$changes.')';
-      }
+      $commitMessage .= buildSummary($fileAdded,$fileRemoved);
     }
   }
 
@@ -234,13 +231,8 @@ foreach (@rights) {
     my $note = ($fileState ? 'and' : "$file").' needs updating on-wiki.';
 
     if ($opts{p}) {
-      my $changes = buildSummary($wikiAdded,$wikiRemoved);
-
-      my $editSummary = 'Update ';
-      if (length $changes) {
-	$editSummary .= '('.$changes.') ';
-      }
-      $editSummary .='(automatically via [[User:Amorymeltzer/crathighlighter|script]])';
+      my $editSummary = 'Update'.buildSummary($wikiAdded,$wikiRemoved);
+      $editSummary .=' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
       INFO($note.' Pushing now...');
@@ -299,10 +291,10 @@ sub dieNice {
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
 sub cmpJSON {
-  my ($qRef, $oRef) = @_;
+  my ($queryRef, $objectRef) = @_;
 
-  my @qNames = sort keys %{$qRef};
-  my @oNames = sort keys %{$oRef};
+  my @qNames = sort keys %{$queryRef};
+  my @oNames = sort keys %{$objectRef};
 
   my (@added, @removed);
 
@@ -313,17 +305,17 @@ sub cmpJSON {
     # needs adding
     foreach (@qNames) {
       # Match in the other file
-      if (!${$oRef}{$_}) {
+      if (!${$objectRef}{$_}) {
 	push @added, $_;
       } else {
 	# Don't check again
-	delete ${$oRef}{$_};
+	delete ${$objectRef}{$_};
       }
     }
 
     # Whatever is left should be anyone that needs removing; @oNames is
     # unreliable after above
-    @removed = sort keys %{$oRef};
+    @removed = sort keys %{$objectRef};
   }
 
   return ($state, \@added, \@removed);
@@ -332,18 +324,17 @@ sub cmpJSON {
 # Create a commit/edit summary from the array references of added/removed
 # usernames.  Uses oxfordComma below for proper grammar
 sub buildSummary {
-  my ($pRef,$mRef) = @_;
-  my $change;
+  my ($addedRef,$removedRef) = @_;
+  my $change = q{};
 
-  if ($pRef && ${$pRef}[0]) {
-    $change .= 'Added '.oxfordComma(@{$pRef});
+  if (scalar @{$addedRef}) {
+    $change .= 'Added '.oxfordComma(@{$addedRef});
   }
-  if ($mRef && ${$mRef}[0]) {
-    if (length $change) {
-      $change .= '; ';
-    }
-    $change .= 'Removed '.oxfordComma(@{$mRef});
+  if (scalar @{$removedRef}) {
+    $change .= '; ' if length $change;
+    $change .= 'Removed '.oxfordComma(@{$removedRef});
   }
+  $change = ' ('.$change.')' if $change; # Preferred format for both -p and -c
 
   return $change;
 }
@@ -351,13 +342,11 @@ sub buildSummary {
 # Oxford comma
 sub oxfordComma {
   my @list = @_;
-  if (@list) {
-    if (scalar @list < 3) {
-      return join ' and ', @list;
-    }
-    my $end = pop @list;
-    return join(', ', @list) . ", and $end";
+  if (scalar @list < 3) {
+    return join ' and ', @list;
   }
+  my $end = pop @list;
+  return join(', ', @list) . ", and $end";
 }
 
 #### Usage statement ####
