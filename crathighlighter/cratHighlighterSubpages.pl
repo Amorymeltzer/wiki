@@ -27,7 +27,7 @@ usage() if $opts{h};
 Log::Log4perl->easy_init({ level    => $INFO,
 			   file     => '>>log.log',
 			   utf8     => 1,
-			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m%n' },
+			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
 			 { level    => $TRACE,
 			   file     => 'STDOUT',
 			   layout   => '%m{indent}%n' }
