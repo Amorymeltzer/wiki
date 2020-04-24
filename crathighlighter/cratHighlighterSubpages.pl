@@ -145,16 +145,12 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
-# Only used if -c but want global/not defined in if
-my ($commitMessage,%abbrevs);
+# Build abbreviation hash: slurp to string, split, assign (simper than loop).
+# Also stores commit message.  Only used if -c but want global
+my %abbrevs;
 if ($opts{c}) {
-  $commitMessage = "cratHighlighterSubpages: Update\n";
-  # Build file abbreviation hash
-  while (<DATA>) {
-    chomp;
-    my @map = split;
-    $abbrevs{$map[0]} = $map[1];
-  }
+  %abbrevs = split /\s+/, do { local $RS=undef; <DATA> };
+  $abbrevs{message} = "cratHighlighterSubpages: Update\n";
 }
 
 #### Main loop for each right
@@ -216,8 +212,9 @@ foreach (@rights) {
     # Stage, build edit summary
     if ($opts{c}) {
       $repo->run(add => "*$file");
-      $commitMessage .= "\n$abbrevs{$file}";
+      my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
+      $abbrevs{message} .= $commitMessage;
     }
   }
 
@@ -262,7 +259,7 @@ if (!$localChange && !$wikiChange) {
 
 # Autocommit changes
 if ($opts{c}) {
-  $repo->run(commit => '-m', "$commitMessage");
+  $repo->run(commit => '-m', "$abbrevs{message}");
 }
 
 if (!$opts{N}) {
@@ -368,9 +365,9 @@ USAGE
 ## The lines below do not represent Perl code, and are not examined by the
 ## compiler.  Rather, they are used by %abbrevs to build nice commit messages.
 __DATA__
-arbcom.json AC
-  bureaucrat.json B
-  checkuser.json CU
-  interface-admin.json IA
-  oversight.json OS
-  steward.json SW
+arbcom AC
+  bureaucrat B
+  checkuser CU
+  interface-admin IA
+  oversight OS
+  steward SW
