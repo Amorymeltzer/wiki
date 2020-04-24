@@ -24,7 +24,7 @@ usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
-Log::Log4perl->easy_init({ level    => $INFO,
+Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 			   file     => '>>log.log',
 			   utf8     => 1,
 			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
