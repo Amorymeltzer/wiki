@@ -156,7 +156,7 @@ if ($opts{c}) {
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
-  my %queryHash;
+  my (%queryHash, $note);
 
   my $file = $_.'.json';
   my $wiki = $_.'.wiki';
@@ -205,7 +205,7 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    INFO("$file changed");
+    $note = "$file changed\n";
     # Write changes
     write_text($file, $queryJSON);
 
@@ -216,7 +216,7 @@ foreach (@rights) {
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
       $abbrevs{message} .= $commitMessage;
     } else {
-      INFO("\tSkipping commit");
+      $note .= "\tSkipping commit\n";
     }
   }
 
@@ -227,14 +227,14 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    my $note = ($fileState ? 'and' : "$file").' needs updating on-wiki.';
+    $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki.';
 
     if ($opts{p}) {
       my $editSummary = 'Update'.buildSummary($wikiAdded,$wikiRemoved);
       $editSummary .=' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
-      INFO($note.' Pushing now...');
+      $note .= " Pushing now...\n";
       $mw->edit({
 		 action => 'edit',
 		 assert => 'user',
@@ -243,14 +243,16 @@ foreach (@rights) {
 		 text => $queryJSON,
 		 summary => $editSummary
 		});
-      INFO("\t$mw->{response}->{_msg}");
+      $note .= "$mw->{response}->{_msg}";
     } else {
-      INFO($note);
-      INFO("\tSkipping push");
+      $note .= "\tSkipping push\n";
     }
   } elsif ($fileState) {
-    INFO('but already up-to-date');
+    $note .= "\tbut wiki already up-to-date";
   }
+
+  # Log final message
+  INFO($note) if $note;
 }
 
 if (!$localChange && !$wikiChange) {
