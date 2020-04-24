@@ -211,7 +211,11 @@ foreach (@rights) {
 
     # Stage, build edit summary
     if ($opts{c}) {
-      $repo->run(add => "*$file");
+      my $add = $repo->command(add => "*$file");
+      my @addError = $add->stderr->getlines();
+      $add->close;
+      LOGDIE(@addError) if scalar @addError;
+
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
       $abbrevs{message} .= $commitMessage;
@@ -263,7 +267,10 @@ if (!$localChange && !$wikiChange) {
 
 # Autocommit changes
 if ($opts{c}) {
-  $repo->run(commit => '-m', "$abbrevs{message}");
+  my $add = $repo->command(commit => '-m', "$abbrevs{message}");
+  my @addError = $add->stderr->getlines();
+  $add->close;
+  LOGDIE(@addError) if scalar @addError;
 }
 
 if (!$opts{N}) {
