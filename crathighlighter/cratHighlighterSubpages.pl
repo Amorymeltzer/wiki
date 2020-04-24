@@ -215,6 +215,8 @@ foreach (@rights) {
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
       $abbrevs{message} .= $commitMessage;
+    } else {
+      INFO("\tSkipping commit");
     }
   }
 

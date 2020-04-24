@@ -34,5 +34,6 @@
 * Fix spacing for Monobook
 
 #### cratHighlighter
-* Log if wiki/file changes but not made since not -p/-c
+* Differential logging for cron or commandline?
+    * Requires not using easy
 * TF
