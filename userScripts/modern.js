@@ -191,6 +191,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
     mw.loader.using(['mediawiki.util'], function() {
 	if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=953097639&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 	    importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 	}
     });
