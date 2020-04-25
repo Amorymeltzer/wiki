@@ -191,7 +191,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
     mw.loader.using(['mediawiki.util'], function() {
 	if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=953097639&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=953112275&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 	    importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 	}
     });
@@ -312,7 +312,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=939180044&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=945401392&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 	    window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=950272315&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=953024165&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 	    /*All talks*/
 	    if (mw.config.get('wgNamespaceNumber') !== '4') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
