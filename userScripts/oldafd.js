@@ -1,4 +1,4 @@
-/* AFD age detector, version [0.0.3]
+/* AFD age detector, version [0.0.4]
    Originally from: http://en.wikipedia.org/wiki/User:Splarka/oldafd.js
    https://en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=318627702
 
@@ -6,11 +6,15 @@
    - Updated code
    - Display gray text until three hours before close
    - Use contentSub instead of body for pink notice
+
+   Updated 2020-04
+   - Removed unnecessary modification of Date prototype
+   - Used mw.loader.load instead of deprecated importScriptURI
 */
 
 if(mw.config.get("wgCurRevisionId") != 0 && mw.config.get("wgNamespaceNumber") == 4 && (mw.config.get("wgPageName").indexOf('_for_deletion/') != -1 || mw.config.get("wgPageName").indexOf('_for_discussion/') != -1)) $(function () {
 	var url = mw.config.get("wgScriptPath") + '/api.php?maxage=3600&smaxage=3600&action=query&indexpageids&prop=revisions&rvdir=newer&rvlimit=1&rvprop=timestamp|comment|user&format=json&callback=ageCheckAFDCB&pageids=' + mw.config.get("wgArticleId");
-	importScriptURI(url);
+	mw.loader.load(url);
 });
 
 function ageCheckAFDCB(obj) {
@@ -27,8 +31,7 @@ function ageCheckAFDCB(obj) {
 	if(!rev || !rev['timestamp'] || !rev['user']) return;
 
 	var now = new Date();
-	var tsd = new Date();
-	tsd.setISO8601(rev['timestamp']);
+	var tsd = new Date(rev['timestamp']);
 	var timesince = Math.floor((now - tsd)/1000);
 	if(timesince == '') timesince = -1;
 	var revinfo = 'Page created: ' + duration(timesince) + ' ago by ' + rev['user'];
@@ -59,26 +62,3 @@ function duration(input,depth) {
 	}
 	return out;
 }
-
-//ISO 8601 date module by Paul Sowden, licensed under AFL.
-Date.prototype.setISO8601 = function(string) {
-	if(!string) return;
-	var regexp = '([0-9]{4})(-([0-9]{2})(-([0-9]{2})(T([0-9]{2}):([0-9]{2})(:([0-9]{2})(\.([0-9]+))?)?(Z|(([-+])([0-9]{2}):([0-9]{2})))?)?)?)?';
-	var d = string.match(new RegExp(regexp));
-	if(d.length < 1) return;
-	var offset = 0;
-	var date = new Date(d[1], 0, 1);
-	if(d[3]) date.setMonth(d[3] - 1);
-	if(d[5]) date.setDate(d[5]);
-	if(d[7]) date.setHours(d[7]);
-	if(d[8]) date.setMinutes(d[8]);
-	if(d[10]) date.setSeconds(d[10]);
-	if(d[12]) date.setMilliseconds(Number('0.' + d[12]) * 1000);
-	if(d[14]) {
-		offset = (Number(d[16]) * 60) + Number(d[17]);
-		offset *= ((d[15] == '-') ? 1 : -1);
-	}
-	offset -= date.getTimezoneOffset();
-	var time = (Number(date) + (offset * 60 * 1000));
-	this.setTime(Number(time));
-};
