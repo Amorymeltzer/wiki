@@ -14,7 +14,7 @@
 
 
 
-mw.loader.using( ['mediawiki.util', 'mediawiki.api', 'mediawiki.notify', 'mediawiki.Title', 'oojs-ui-core', 'oojs-ui-widgets', 'oojs-ui-windows'], function () {
+mw.loader.using( ['mediawiki.util', 'mediawiki.api', 'mediawiki.Title', 'oojs-ui-core', 'oojs-ui-widgets', 'oojs-ui-windows'], function () {
     //Extend oojs-ui with some useful shortcuts
     OO.ui.Element.prototype.show = function(){ this.toggle(true); };
     OO.ui.Element.prototype.hide = function(){ this.toggle(false); };
