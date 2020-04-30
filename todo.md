@@ -28,6 +28,7 @@
 * Something to process updates to others' that I've modified (maybe parse the first line)
 ##### updateModernjs.pl
 * Get server, allow for updating foreign pages (will need to restructure to grab servers first, then iterate log in/(log out?))
+* Show user and edit summary if single/multiple
 ##### seventabs
 * Fixes for Vector, see https://en.wikipedia.org/wiki/User:Js/6tabs-vector.js
 * Timeless?

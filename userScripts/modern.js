@@ -310,7 +310,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	/*WP and all talks*/
 	if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=939180044&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=945401392&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 	    window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=953827913&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 	    /*All talks*/
@@ -502,7 +502,7 @@ if (mw.config.get('wgAction') === 'history') {
     //var ajaxDiffButton = 'Δ'; //"changes" button text
 
     mw.loader.load('//he.wikipedia.org/w/load.php?modules=ext.gadget.autocomplete'); // [[User:ערן/autocomplete.js]], [[he:MediaWiki:Gadget-autocomplete.js]] Doesn't work with tab or beta syntax highlighter
-    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mabdul/saveandedit.js&oldid=666699128&action=raw&ctype=text/javascript'); //[[User:Mabdul/saveandedit.js]]
+    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mabdul/saveandedit.js&oldid=953991602&action=raw&ctype=text/javascript'); //[[User:Mabdul/saveandedit.js]]
     mw.loader.load('//tools-static.wmflabs.org/meta/scripts/pathoschild.templatescript.js'); //[[meta:TemplateScript]] Successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
 
     //More succinct text when editing
