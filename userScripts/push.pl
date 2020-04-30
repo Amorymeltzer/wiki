@@ -119,8 +119,8 @@ sub buildEditSummary {
   if ($oldCommitish =~ /Repo at (\w*?): /) {
     # Ensure it's a valid commit and no errors are reported back
     my $valid = $repo->command('merge-base' => '--is-ancestor', "$1", 'HEAD');
-    my $validC = $valid->stderr();
-    if (eof $validC) {
+    my @validE = $valid->stderr()->getlines();
+    if (!scalar @validE) {
       my $newLog = $repo->run(log => '--oneline', '--no-merges', '--no-color', "$1..HEAD", "$cwd/$file");
       open my $nl, '<', \$newLog or die colored ['red'], "$ERRNO\n";
       while (<$nl>) {
