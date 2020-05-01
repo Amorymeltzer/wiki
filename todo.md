@@ -35,6 +35,4 @@
 * Fix spacing for Monobook
 
 #### cratHighlighter
-* Differential logging for cron or commandline?
-    * Requires not using easy
 * TF
