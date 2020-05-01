@@ -57,10 +57,10 @@ my $bot = 'User:AmoryBot';
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
 my $config_file = '.crathighlighterrc';
-open my $config, '<', "$config_file" or LOGDIE($ERRNO);
+open my $config, '<', "$config_file" or emailFatal($ERRNO);
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
-close $config or LOGDIE($ERRNO);
+close $config or emailFatal($ERRNO);
 
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
@@ -74,12 +74,12 @@ $mw->login({lgname => $username, lgpassword => $password});
 my $page = $mw->get_page({title => $bot.'/tb'});
 my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
-  LOGDIE('DISABLED on-wiki');
+  emailFatal('DISABLED on-wiki');
 }
 # Automatic shutoff: user has talkpage messages
 my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
 if (exists $userNotes{query}{userinfo}{messages}) {
-  LOGIDE("$bot has talkpage message(s))");
+  emailFatal("$bot has talkpage message(s))");
 }
 
 # Template for generating JSON, sorted
@@ -238,7 +238,7 @@ foreach (@rights) {
       my $add = $repo->command(add => "*$file");
       my @addError = $add->stderr->getlines();
       $add->close;
-      LOGDIE(@addError) if scalar @addError;
+      emailFatal(@addError) if scalar @addError;
 
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
@@ -294,7 +294,7 @@ if ($opts{c}) {
   my $add = $repo->command(commit => '-m', "$abbrevs{message}");
   my @addError = $add->stderr->getlines();
   $add->close;
-  LOGDIE(@addError) if scalar @addError;
+  emailFatal(@addError) if scalar @addError;
 }
 
 if (!$opts{N}) {
@@ -303,8 +303,16 @@ if (!$opts{N}) {
 
 
 #### SUBROUTINES
-# Nicer handling of errors
-# Can be expanded using:
+## Nicer handling of errors
+# Notify on fatal errors
+sub emailFatal {
+  my $message = shift;
+
+  # DO SOMETHING
+  LOGDIE($message);
+}
+
+# Some specific mediawiki errors, can be expanded using:
 ## https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 ## https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
@@ -317,8 +325,9 @@ sub dieNice {
     $message .= ' editing the page';
   }
   $message .= ":\n$code: $details";
-  LOGDIE($message);
+  emailFatal($message);
 }
+
 
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
