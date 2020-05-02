@@ -5,13 +5,9 @@
 # https://en.wikipedia.org/wiki/User:AmoryBot/crathighlighter
 
 ## TODO
-## No git needed???
-### Or still use, then pull before and push after
-## New user
-## Maybe log everything, including current trace messages???
-### Look into %m{indent} or something
-## Need function for dying
-# https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email
+# New user
+# Need function for dying
+## https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email
 ## Notify on fatal or update
 
 use strict;
@@ -43,12 +39,22 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 			   layout   => '%m{indent}%n' }
                         );
 
-# Check repo before doing anything risky
+# Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
-# if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
-#   LOGEXIT('Not on master branch, quitting');
-# } elsif (scalar $repo->run(status => '--porcelain')) {
-#   LOGEXIT('Repository is not clean, quitting');
+# if (gitName() ne 'master') {
+#   emailFatal('Not on master branch');
+# } elsif (gitStatus()) {
+#   emailFatal('Repository is not clean');
+# } else {
+#   # Pull, check for errors
+#   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
+#   my @pullE = $pull->stderr->getlines();
+#   $pull->close();
+#   if (scalar @pullE) {
+#     emailFatal(@pullE);
+#   } elsif (gitName() ne 'master' || gitStatus()) {
+#     emailFatal('Repository dirty after pull');
+#   }
 # }
 
 my $bot = 'User:AmoryBot';
@@ -292,9 +298,16 @@ if (!$localChange && !$wikiChange) {
 # Autocommit changes
 if ($opts{c}) {
   my $add = $repo->command(commit => '-m', "$abbrevs{message}");
-  my @addError = $add->stderr->getlines();
+  my @addE = $add->stderr->getlines();
   $add->close;
-  emailFatal(@addError) if scalar @addError;
+  if (scalar @addE) {
+    emailFatal(@addE);
+  } else {
+    my $push = $repo->command(push => '--quiet', 'origin', 'master');
+    my @pushE = $push->stderr->getlines();
+    $push->close;
+    emailFatal(@pushE) if scalar @pushE;
+  }
 }
 
 if (!$opts{N}) {
@@ -307,6 +320,7 @@ if (!$opts{N}) {
 # Notify on fatal errors
 sub emailFatal {
   my $message = shift;
+  chomp $message;
 
   # DO SOMETHING
   LOGDIE($message);
@@ -329,6 +343,13 @@ sub dieNice {
 }
 
 
+# Git checking
+sub gitName {
+  return $repo->run('rev-parse' => '--abbrev-ref', 'HEAD');
+};
+sub gitStatus {
+  return scalar $repo->run(status => '--porcelain');
+};
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
 sub cmpJSON {
