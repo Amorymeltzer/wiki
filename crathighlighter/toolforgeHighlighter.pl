@@ -6,8 +6,6 @@
 
 ## TODO
 # New user
-# Need email function
-## https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email
 
 use strict;
 use warnings;
@@ -21,6 +19,12 @@ use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
+
+use Email::Sender::Simple qw(sendmail);
+use Email::Sender::Transport::SMTP;
+use Email::Simple;
+use Email::Simple::Creator;
+
 
 # Parse commandline options
 my %opts = ();
@@ -336,7 +340,19 @@ sub emailNote {
   my ($message,$fatal) = @_;
   chomp $message;
 
-  # EMAIL $message
+  my $transport = Email::Sender::Transport::SMTP->new({
+						       host => 'mail.tools.wmflabs.org'
+						      });
+
+  my $email = Email::Simple->create(
+				    header => [
+					       To      => '<amorymeltzer@tools.wmflabs.org>',
+					       From    => '<amorymeltzer@tools.wmflabs.org>',
+					       Subject => $fatal ? 'crathighlighter error' : 'crathighlighter updated',
+					      ],
+				    body => $message,
+				   );
+  sendmail($email, {transport => $transport});
 
   if ($fatal) {
     LOGDIE($message);
