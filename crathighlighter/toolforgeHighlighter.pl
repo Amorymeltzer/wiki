@@ -6,9 +6,8 @@
 
 ## TODO
 # New user
-# Need function for dying
+# Need email function
 ## https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email
-## Notify on fatal or update
 
 use strict;
 use warnings;
@@ -42,18 +41,18 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
 # if (gitName() ne 'master') {
-#   emailFatal('Not on master branch');
+#   emailNote('Not on master branch', 'fatal');
 # } elsif (gitStatus()) {
-#   emailFatal('Repository is not clean');
+#   emailNote('Repository is not clean', 'fatal');
 # } else {
 #   # Pull, check for errors
 #   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
 #   my @pullE = $pull->stderr->getlines();
 #   $pull->close();
 #   if (scalar @pullE) {
-#     emailFatal(@pullE);
+#     emailNote(@pullE, 'fatal');
 #   } elsif (gitName() ne 'master' || gitStatus()) {
-#     emailFatal('Repository dirty after pull');
+#     emailNote('Repository dirty after pull', 'fatal');
 #   }
 # }
 
@@ -63,10 +62,10 @@ my $bot = 'User:AmoryBot';
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
 my $config_file = '.crathighlighterrc';
-open my $config, '<', "$config_file" or emailFatal($ERRNO);
+open my $config, '<', "$config_file" or emailNote($ERRNO, 'fatal');
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
-close $config or emailFatal($ERRNO);
+close $config or emailNote($ERRNO, 'fatal');
 
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
@@ -80,12 +79,12 @@ $mw->login({lgname => $username, lgpassword => $password});
 my $page = $mw->get_page({title => $bot.'/tb'});
 my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
-  emailFatal('DISABLED on-wiki');
+  emailNote('DISABLED on-wiki', 'fatal');
 }
 # Automatic shutoff: user has talkpage messages
 my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
 if (exists $userNotes{query}{userinfo}{messages}) {
-  emailFatal("$bot has talkpage message(s))");
+  emailNote("$bot has talkpage message(s))", 'fatal');
 }
 
 # Template for generating JSON, sorted
@@ -244,7 +243,7 @@ foreach (@rights) {
       my $add = $repo->command(add => "*$file");
       my @addError = $add->stderr->getlines();
       $add->close;
-      emailFatal(@addError) if scalar @addError;
+      emailNote(@addError, 'fatal') if scalar @addError;
 
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
@@ -295,20 +294,35 @@ if (!$localChange && !$wikiChange) {
   exit;
 }
 
+my $niceEmail;
 # Autocommit changes
-if ($opts{c}) {
+if ($localChange && $opts{c}) {
   my $add = $repo->command(commit => '-m', "$abbrevs{message}");
   my @addE = $add->stderr->getlines();
   $add->close;
   if (scalar @addE) {
-    emailFatal(@addE);
+    emailNote(@addE, 'fatal');
   } else {
     my $push = $repo->command(push => '--quiet', 'origin', 'master');
     my @pushE = $push->stderr->getlines();
     $push->close;
-    emailFatal(@pushE) if scalar @pushE;
+    if (scalar @pushE) {
+      emailNote(@pushE, 'fatal');
+    } else {
+      $niceEmail = 'Changes committed and pushed';
+    }
   }
 }
+
+# Notify on pushed changes
+if ($wikiChange && $opts{p}) {
+  if ($niceEmail) {
+    $niceEmail .= '; ';
+  }
+  $niceEmail .= 'On-wiki pages updated';
+}
+
+email($niceEmail) if $niceEmail;
 
 if (!$opts{N}) {
   system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
@@ -317,13 +331,16 @@ if (!$opts{N}) {
 
 #### SUBROUTINES
 ## Nicer handling of errors
-# Notify on fatal errors
-sub emailFatal {
-  my $message = shift;
+# Send an email and die on fatal errors
+sub emailNote {
+  my ($message,$fatal) = @_;
   chomp $message;
 
-  # DO SOMETHING
-  LOGDIE($message);
+  # EMAIL $message
+
+  if ($fatal) {
+    LOGDIE($message);
+  }
 }
 
 # Some specific mediawiki errors, can be expanded using:
@@ -339,17 +356,17 @@ sub dieNice {
     $message .= ' editing the page';
   }
   $message .= ":\n$code: $details";
-  emailFatal($message);
+  emailNote($message, 'fatal');
 }
 
 
 # Git checking
 sub gitName {
   return $repo->run('rev-parse' => '--abbrev-ref', 'HEAD');
-};
+}
 sub gitStatus {
   return scalar $repo->run(status => '--porcelain');
-};
+}
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
 sub cmpJSON {
