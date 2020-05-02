@@ -91,7 +91,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 					   "<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 					   "</span>");
 	$(document).on('click', '.mass_revdel_on', function() {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=937039252&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=954136889&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
 	    $('#toggle_massrevdel').remove();
 	    //Tighten/shorten massRevdel stuff
 	    mw.loader.using(['mediawiki.util'], function() {
@@ -191,7 +191,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
     mw.loader.using(['mediawiki.util'], function() {
 	if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=953112275&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954069410&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 	    importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 	}
     });
