@@ -74,8 +74,8 @@ $(function () {
 */
 /*Special*/
 if (mw.config.get('wgCanonicalNamespace') === 'Special') {
-	/*Contributions*/
-	if (mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
+	switch (mw.config.get('wgCanonicalSpecialPageName')) {
+	case 'Contributions':
 		if ($('.mw-contributions-list').length) { //Save some space
 			var paraGone = $('.mw-contributions-list')[0].previousSibling; //Remove <p> tag revision date nav
 			$(paraGone).replaceWith(paraGone.childNodes);
@@ -119,51 +119,61 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 				link.innerHTML = "RevDel";
 			});
 		});
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist') {
-		/*Watchlist*/
+		break;
+	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
 		importScript('User:Amorymeltzer/ReverseMarked.js'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/Thanky.js&oldid=928009085&action=raw&ctype=text/javascript'); //[[User:Evad37/Thanky.js]], [[User:Evad37/Thanky]]
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Log' || mw.config.get('wgCanonicalSpecialPageName') === 'Userrights') {
+		break;
+	case 'Log':
+		importScript('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
+		/* falls through */
+	case 'Userrights':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
-		if (mw.config.get('wgCanonicalSpecialPageName') === 'Log') {
-			/*Log*/
-			importScript ('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
-		}
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Whatlinkshere') {
-		/*What links here*/
+		break;
+	case 'Whatlinkshere':
 		//Add history and delete links
 		importScript('User:Amorymeltzer/wlhActionLinks.js'); //[[meta:User:He7d3r/Tools/AddActionLinks.js]], [[User:Amorymeltzer/wlhActionLinks.js]]
 		//Quick count of transclusions and links
 		mw.loader.load('//www.wikidata.org/w/index.php?title=MediaWiki:Linkscount.js&action=raw&ctype=text/javascript'); //[[wikidata:MediaWiki:Linkscount.js]]
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
-		/*Block*/
+		break;
+	case 'Block':
 		//Automatically watch user talk pages when blocking
 		$('input[name=wpWatch]').prop('checked', true);
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Search') {
-		/*Search*/
+		break;
+	case 'Search':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
 		importScript('User:Amorymeltzer/Search_sort.js'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
-	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
-		/*AbuseLog*/
+		break;
+	case 'AbuseLog':
 		importScript('User:Amorymeltzer/osal.js'); //[[User:Amorymeltzer/osal.js]]
-		/*Masses*/
-	} else if (mw.config.get('wgPageName') === 'Special:Massedit') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=851213665&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:Massdelete') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=883804308&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:Massrestore') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=851214383&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massrestore.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:Massblock') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=851213957&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massblock.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:MassUnblock') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=851214076&action=raw&ctype=text/javascript'); //[[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:Massprotect') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=851214226&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
-	} else if (mw.config.get('wgPageName') === 'Special:Massmove') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=912351042&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
+		break;
+	case null:
+		/*Masses [[UserAmorymeltzer/mass]]*/
+		switch (mw.config.get('wgPageName')) {
+		case 'Special:Massedit':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=851213665&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
+			break;
+		case 'Special:Massdelete':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=883804308&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
+			break;
+		case 'Special:Massrestore':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=851214383&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massrestore.js]]
+			break;
+		case 'Special:Massblock':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=851213957&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massblock.js]]
+			break;
+		case 'Special:MassUnblock':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=851214076&action=raw&ctype=text/javascript'); //[[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
+			break;
+		case 'Special:Massprotect':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=851214226&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
+			break;
+		case 'Special:Massmove':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=912351042&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
+			break;
+		}
 	}
-
 } else {
 	/*
 	  Load everything that shouldn't be on a special page
