@@ -4,9 +4,6 @@
 # Sync subpages of crathighlighter.js via toolforge
 # https://en.wikipedia.org/wiki/User:AmoryBot/crathighlighter
 
-## TODO
-# New user
-
 use strict;
 use warnings;
 use diagnostics;
@@ -25,7 +22,7 @@ use Net::SMTP;
 
 # Parse commandline options
 my %opts = ();
-getopts('hpcN', \%opts);
+getopts('hpc', \%opts);
 usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
@@ -325,10 +322,6 @@ if ($wikiChange && $opts{p}) {
 
 email($niceEmail) if $niceEmail;
 
-if (!$opts{N}) {
-  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
-}
-
 
 #### SUBROUTINES
 ## Nicer handling of errors
@@ -447,7 +440,6 @@ sub usage {
 Usage: $PROGRAM_NAME [-hpc]
       -p Push live to wiki
       -c Automatically commit changes in git
-      -N Don't attempt to use the system notifier
       -h Print this message
 USAGE
   exit;
