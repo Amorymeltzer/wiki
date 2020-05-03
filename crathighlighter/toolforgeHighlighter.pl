@@ -54,8 +54,6 @@ if (gitName() ne 'master') {
   }
 }
 
-my $bot = 'User:AmoryBot';
-
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
@@ -65,6 +63,14 @@ chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
 close $config or emailNote($ERRNO, 'fatal');
 
+# Only accept the right user
+my $bot = 'AmoryBot';
+if ($username =~ /^$bot@/) {
+  $bot = 'User:'.$bot;
+} else {
+  emailNote('Wrong user provided', 'fatal');
+}
+
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php',
@@ -72,6 +78,7 @@ my $mw = MediaWiki::API->new({
 			     });
 $mw->{ua}->agent('tf-cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
+
 
 # Manual shutoff; confirm bot should actually run
 my $page = $mw->get_page({title => $bot.'/disable'});
