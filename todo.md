@@ -33,6 +33,3 @@
 * Fixes for Vector, see https://en.wikipedia.org/wiki/User:Js/6tabs-vector.js
 * Timeless?
 * Fix spacing for Monobook
-
-#### cratHighlighter
-* TF

@@ -38,21 +38,21 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
-# if (gitName() ne 'master') {
-#   emailNote('Not on master branch', 'fatal');
-# } elsif (gitStatus()) {
-#   emailNote('Repository is not clean', 'fatal');
-# } else {
-#   # Pull, check for errors
-#   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
-#   my @pullE = $pull->stderr->getlines();
-#   $pull->close();
-#   if (scalar @pullE) {
-#     emailNote(@pullE, 'fatal');
-#   } elsif (gitName() ne 'master' || gitStatus()) {
-#     emailNote('Repository dirty after pull', 'fatal');
-#   }
-# }
+if (gitName() ne 'master') {
+  emailNote('Not on master branch', 'fatal');
+} elsif (gitStatus()) {
+  emailNote('Repository is not clean', 'fatal');
+} else {
+  # Pull, check for errors
+  my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
+  my @pullE = $pull->stderr->getlines();
+  $pull->close();
+  if (scalar @pullE) {
+    emailNote(@pullE, 'fatal');
+  } elsif (gitName() ne 'master' || gitStatus()) {
+    emailNote('Repository dirty after pull', 'fatal');
+  }
+}
 
 my $bot = 'User:AmoryBot';
 
