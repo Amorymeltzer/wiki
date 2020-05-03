@@ -9,6 +9,7 @@ use warnings;
 use diagnostics;
 
 use Getopt::Std;
+use FindBin;
 use English qw(-no_match_vars);
 
 use Log::Log4perl qw(:easy);
@@ -24,6 +25,9 @@ use Net::SMTP;
 my %opts = ();
 getopts('hpc', \%opts);
 usage() if $opts{h};
+
+my $scriptDir = $FindBin::Bin; # Directory of this script
+chdir "$scriptDir" or emailNote('Failed to change directory', 'fatal');
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
