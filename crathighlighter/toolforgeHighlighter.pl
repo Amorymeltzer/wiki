@@ -20,10 +20,7 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
-use Email::Sender::Simple qw(sendmail);
-use Email::Sender::Transport::SMTP;
-use Email::Simple;
-use Email::Simple::Creator;
+use Net::SMTP;
 
 
 # Parse commandline options
@@ -340,19 +337,16 @@ sub emailNote {
   my ($message,$fatal) = @_;
   chomp $message;
 
-  my $transport = Email::Sender::Transport::SMTP->new({
-						       host => 'mail.tools.wmflabs.org'
-						      });
+  my $smtp = Net::SMTP->new('mail.tools.wmflabs.org');
+  $smtp->mail('amorymeltzer@tools.wmflabs.org');
+  $smtp->to('amorymeltzer@tools.wmflabs.org');
 
-  my $email = Email::Simple->create(
-				    header => [
-					       To      => '<amorymeltzer@tools.wmflabs.org>',
-					       From    => '<amorymeltzer@tools.wmflabs.org>',
-					       Subject => $fatal ? 'crathighlighter error' : 'crathighlighter updated',
-					      ],
-				    body => $message,
-				   );
-  sendmail($email, {transport => $transport});
+  $smtp->data;
+  $smtp->datasend($fatal ? 'crathighlighter error' : 'crathighlighter updated');
+  $smtp->datasend ("\n".$message);
+
+  $smtp->dataend;
+  $smtp->quit;
 
   if ($fatal) {
     LOGDIE($message);
