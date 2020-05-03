@@ -74,7 +74,7 @@ $mw->{ua}->agent('tf-cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
 
 # Manual shutoff; confirm bot should actually run
-my $page = $mw->get_page({title => $bot.'/tb'});
+my $page = $mw->get_page({title => $bot.'/disable'});
 my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
   emailNote('DISABLED on-wiki', 'fatal');
