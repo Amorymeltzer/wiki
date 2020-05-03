@@ -59,7 +59,7 @@ my $bot = 'User:AmoryBot';
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
-my $config_file = '.crathighlighterrc';
+my $config_file = '.tfcrathighlighterrc';
 open my $config, '<', "$config_file" or emailNote($ERRNO, 'fatal');
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
