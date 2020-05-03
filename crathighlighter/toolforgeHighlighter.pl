@@ -93,7 +93,7 @@ if (exists $userNotes{query}{userinfo}{messages}) {
 }
 
 # Template for generating JSON, sorted
-my $jsonTemplate = JSON::PP->new->canonical(1);
+my $jsonTemplate = JSON->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 
 
