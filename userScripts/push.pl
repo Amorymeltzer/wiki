@@ -85,7 +85,7 @@ foreach my $file (@files) {
     my $text = read_text($file);
     my $wikiText = $wikiPage->{q{*}}."\n"; # MediaWiki doesn't have trailing newlines
     if ($text eq $wikiText) {
-      print colored ['green'], "\tNo changes needed, skipping\n";
+      print colored ['blue'], "\tNo changes needed, skipping\n";
     } else {
       my $timestamp = $wikiPage->{timestamp};
       my $summary = buildEditSummary($page, $file, $wikiPage->{comment});
