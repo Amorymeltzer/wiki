@@ -295,6 +295,10 @@ foreach (@rights) {
   INFO($note) if $note;
 }
 
+# testing
+print "Done!\n";
+TRACE('Trace done');
+INFO('Info done');
 if (!$localChange && !$wikiChange) {
   # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
   INFO('No updates needed');
@@ -330,10 +334,6 @@ if ($wikiChange && $opts{p}) {
 }
 
 emailNote($niceEmail, 'safe') if $niceEmail;
-# testing
-print "Done!\n";
-TRACE('Trace done');
-INFO('Info done');
 
 
 #### SUBROUTINES
