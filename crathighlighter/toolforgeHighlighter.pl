@@ -330,6 +330,10 @@ if ($wikiChange && $opts{p}) {
 }
 
 emailNote($niceEmail, 'safe') if $niceEmail;
+# testing
+print "Done!\n";
+TRACE('Trace done');
+INFO('Info done');
 
 
 #### SUBROUTINES
