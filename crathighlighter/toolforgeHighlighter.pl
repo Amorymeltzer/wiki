@@ -28,14 +28,11 @@ getopts('pc', \%opts);
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
-Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
-			   file     => ">>$ENV{HOME}/logs/tflog.log",
-			   utf8     => 1,
-			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
-			 { level    => $TRACE,
-			   file     => 'STDOUT',
-			   layout   => '%m{indent}%n' }
-                        );
+Log::Log4perl->easy_init({ level  =>  $INFO,
+			   file   =>  ">>$ENV{HOME}/logs/tflog.log",
+			   utf8   =>  1,
+			   layout =>  '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+			 });
 
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
