@@ -20,13 +20,12 @@ use File::Slurper qw(read_text write_text);
 use JSON;
 
 
-# Parse commandline options
-my %opts = ();
-getopts('hpc', \%opts);
-usage() if $opts{h};
-
 my $scriptDir = $FindBin::Bin; # Directory of this script
 chdir "$scriptDir" or emailNote('Failed to change directory', 'fatal');
+
+# Parse commandline options
+my %opts = ();
+getopts('pc', \%opts);
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
@@ -439,20 +438,6 @@ sub oxfordComma {
   }
   my $end = pop @list;
   return join(', ', @list) . ", and $end";
-}
-
-#### Usage statement ####
-# Use POD or whatever?
-# Escapes not necessary but ensure pretty colors
-# Final line must be unindented?
-sub usage {
-  print <<"USAGE";
-Usage: $PROGRAM_NAME [-hpc]
-      -p Push live to wiki
-      -c Automatically commit changes in git
-      -h Print this message
-USAGE
-  exit;
 }
 
 
