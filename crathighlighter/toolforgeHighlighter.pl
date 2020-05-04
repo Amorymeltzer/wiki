@@ -21,7 +21,7 @@ use JSON;
 
 
 my $scriptDir = $FindBin::Bin; # Directory of this script
-chdir "$scriptDir" or emailNote('Failed to change directory', 'fatal');
+chdir "$scriptDir" or emailNote('Failed to change directory');
 
 # Parse commandline options
 my %opts = ();
@@ -41,18 +41,18 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
 if (gitName() ne 'master') {
-  emailNote('Not on master branch', 'fatal');
+  emailNote('Not on master branch');
 } elsif (gitStatus()) {
-  emailNote('Repository is not clean', 'fatal');
+  emailNote('Repository is not clean');
 } else {
   # Pull, check for errors
   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
   my @pullE = $pull->stderr->getlines();
   $pull->close();
   if (scalar @pullE) {
-    emailNote(@pullE, 'fatal');
+    emailNote(@pullE);
   } elsif (gitName() ne 'master' || gitStatus()) {
-    emailNote('Repository dirty after pull', 'fatal');
+    emailNote('Repository dirty after pull');
   }
 }
 
@@ -60,17 +60,17 @@ if (gitName() ne 'master') {
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
 my $config_file = '.tfcrathighlighterrc';
-open my $config, '<', "$config_file" or emailNote($ERRNO, 'fatal');
+open my $config, '<', "$config_file" or emailNote($ERRNO);
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
-close $config or emailNote($ERRNO, 'fatal');
+close $config or emailNote($ERRNO);
 
 # Only accept the right user
 my $bot = 'AmoryBot';
 if ($username =~ /^$bot@/) {
   $bot = 'User:'.$bot;
 } else {
-  emailNote('Wrong user provided', 'fatal');
+  emailNote('Wrong user provided');
 }
 
 # Initialize API object, log in
@@ -86,12 +86,12 @@ $mw->login({lgname => $username, lgpassword => $password});
 my $page = $mw->get_page({title => $bot.'/disable'});
 my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
-  emailNote('DISABLED on-wiki', 'fatal');
+  emailNote('DISABLED on-wiki');
 }
 # Automatic shutoff: user has talkpage messages
 my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
 if (exists $userNotes{query}{userinfo}{messages}) {
-  emailNote("$bot has talkpage message(s))", 'fatal');
+  emailNote("$bot has talkpage message(s))");
 }
 
 # Template for generating JSON, sorted
@@ -250,7 +250,7 @@ foreach (@rights) {
       my $add = $repo->command(add => "*$file");
       my @addError = $add->stderr->getlines();
       $add->close;
-      emailNote(@addError, 'fatal') if scalar @addError;
+      emailNote(@addError) if scalar @addError;
 
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
@@ -308,13 +308,13 @@ if ($localChange && $opts{c}) {
   my @addE = $add->stderr->getlines();
   $add->close;
   if (scalar @addE) {
-    emailNote(@addE, 'fatal');
+    emailNote(@addE);
   } else {
     my $push = $repo->command(push => '--quiet', 'origin', 'master');
     my @pushE = $push->stderr->getlines();
     $push->close;
     if (scalar @pushE) {
-      emailNote(@pushE, 'fatal');
+      emailNote(@pushE);
     } else {
       $niceEmail = 'Changes committed and pushed';
     }
@@ -329,14 +329,14 @@ if ($wikiChange && $opts{p}) {
   $niceEmail .= 'On-wiki pages updated';
 }
 
-emailNotes($niceEmail) if $niceEmail;
+emailNote($niceEmail, 'safe') if $niceEmail;
 
 
 #### SUBROUTINES
 ## Nicer handling of errors
 # Send an email and die on fatal errors
 sub emailNote {
-  my ($message,$fatal) = @_;
+  my ($message,$safe) = @_;
   chomp $message;
 
   my $smtp = Net::SMTP->new('mail.tools.wmflabs.org');
@@ -344,13 +344,13 @@ sub emailNote {
   $smtp->to('amorymeltzer@tools.wmflabs.org');
 
   $smtp->data;
-  $smtp->datasend($fatal ? 'crathighlighter error' : 'crathighlighter updated');
+  $smtp->datasend($safe ? 'Toolforge updated' : 'Toolforge error');
   $smtp->datasend ("\n".$message);
 
   $smtp->dataend;
   $smtp->quit;
 
-  if ($fatal) {
+  if (!$safe) {
     LOGDIE($message);
   }
 }
@@ -368,7 +368,7 @@ sub dieNice {
     $message .= ' editing the page';
   }
   $message .= ":\n$code: $details";
-  emailNote($message, 'fatal');
+  emailNote($message);
 }
 
 
