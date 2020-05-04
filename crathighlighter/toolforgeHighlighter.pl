@@ -331,7 +331,7 @@ if ($wikiChange && $opts{p}) {
   $niceEmail .= 'On-wiki pages updated';
 }
 
-email($niceEmail) if $niceEmail;
+emailNotes($niceEmail) if $niceEmail;
 
 
 #### SUBROUTINES
