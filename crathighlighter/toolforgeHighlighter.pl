@@ -11,7 +11,6 @@ use diagnostics;
 use Getopt::Std;
 use FindBin;
 use English qw(-no_match_vars);
-use Net::SMTP;
 
 use Log::Log4perl qw(:easy);
 use Git::Repository;
@@ -20,8 +19,8 @@ use File::Slurper qw(read_text write_text);
 use JSON;
 
 
-my $scriptDir = $FindBin::Bin; # Directory of this script
-chdir "$scriptDir" or emailNote('Failed to change directory');
+my $scriptDir = $FindBin::Bin;	# Directory of this script
+chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
 my %opts = ();
@@ -41,18 +40,18 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
 if (gitName() ne 'master') {
-  emailNote('Not on master branch');
+  LOGDIE('Not on master branch');
 } elsif (gitStatus()) {
-  emailNote('Repository is not clean');
+  LOGDIE('Repository is not clean');
 } else {
   # Pull, check for errors
   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
   my @pullE = $pull->stderr->getlines();
   $pull->close();
   if (scalar @pullE) {
-    emailNote(@pullE);
+    LOGDIE(@pullE);
   } elsif (gitName() ne 'master' || gitStatus()) {
-    emailNote('Repository dirty after pull');
+    LOGDIE('Repository dirty after pull');
   }
 }
 
@@ -60,17 +59,17 @@ if (gitName() ne 'master') {
 # Jimbo Wales:stochasticstring
 # Config::General is easy but this is so simple
 my $config_file = '.tfcrathighlighterrc';
-open my $config, '<', "$config_file" or emailNote($ERRNO);
+open my $config, '<', "$config_file" or LOGDIE($ERRNO);
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
-close $config or emailNote($ERRNO);
+close $config or LOGDIE($ERRNO);
 
 # Only accept the right user
 my $bot = 'AmoryBot';
 if ($username =~ /^$bot@/) {
   $bot = 'User:'.$bot;
 } else {
-  emailNote('Wrong user provided');
+  LOGDIE('Wrong user provided');
 }
 
 # Initialize API object, log in
@@ -86,12 +85,12 @@ $mw->login({lgname => $username, lgpassword => $password});
 my $page = $mw->get_page({title => $bot.'/disable'});
 my $checkContent = $page->{q{*}};
 if (!$checkContent || $checkContent ne '42') {
-  emailNote('DISABLED on-wiki');
+  LOGDIE('DISABLED on-wiki');
 }
 # Automatic shutoff: user has talkpage messages
 my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
 if (exists $userNotes{query}{userinfo}{messages}) {
-  emailNote("$bot has talkpage message(s))");
+  LOGDIE("$bot has talkpage message(s))");
 }
 
 # Template for generating JSON, sorted
@@ -250,7 +249,7 @@ foreach (@rights) {
       my $add = $repo->command(add => "*$file");
       my @addError = $add->stderr->getlines();
       $add->close;
-      emailNote(@addError) if scalar @addError;
+      LOGDIE(@addError) if scalar @addError;
 
       my $commitMessage = "\n$abbrevs{$_}";
       $commitMessage .= buildSummary($fileAdded,$fileRemoved);
@@ -295,66 +294,58 @@ foreach (@rights) {
   INFO($note) if $note;
 }
 
+
+# Log or report final status
 if (!$localChange && !$wikiChange) {
   # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
   INFO('No updates needed');
-  exit;
-}
+} else {
+  my $updateNote = "Toolforge updates\n";
 
-my $niceEmail;
-# Autocommit changes
-if ($localChange && $opts{c}) {
-  my $add = $repo->command(commit => '-m', "$abbrevs{message}");
-  my @addE = $add->stderr->getlines();
-  $add->close;
-  if (scalar @addE) {
-    emailNote(@addE);
-  } else {
-    my $push = $repo->command(push => '--quiet', 'origin', 'master');
-    my @pushE = $push->stderr->getlines();
-    $push->close;
-    if (scalar @pushE) {
-      emailNote(@pushE);
+  # Autocommit changes
+  if ($localChange) {
+    $updateNote .= 'Files: Changes ';
+    if ($localChange && $opts{c}) {
+      my $add = $repo->command(commit => '-m', "$abbrevs{message}");
+      my @addE = $add->stderr->getlines();
+      $add->close;
+      if (scalar @addE) {
+	LOGDIE(@addE);
+      } else {
+	$updateNote .= 'committed';
+	my $push = $repo->command(push => '--quiet', 'origin', 'master');
+	my @pushE = $push->stderr->getlines();
+	$push->close;
+	if (scalar @pushE) {
+	  LOGDIE(@pushE);
+	} else {
+	  $updateNote .= ' and pushed';
+	}
+      }
     } else {
-      $niceEmail = 'Changes committed and pushed';
+      $updateNote .= "not committed or pushed\n";
     }
   }
-}
 
-# Notify on pushed changes
-if ($wikiChange && $opts{p}) {
-  if ($niceEmail) {
-    $niceEmail .= '; ';
+  # Notify on pushed changes
+  if ($wikiChange) {
+    $updateNote .= 'Pages: Changes ';
+    if ($opts{p}) {
+      $updateNote .= 'updated';
+    } else {
+      $updateNote .= 'not updated';
+    }
   }
-  $niceEmail .= 'On-wiki pages updated';
-}
 
-emailNote($niceEmail, 'safe') if $niceEmail;
+  # Each item should already be logged above in the main loop, this is just to
+  # trigger an email on changes.  Probably not needed long run, except to
+  # update the newsletter, but at least initially it's a good idea.
+  print $updateNote;
+}
 
 
 #### SUBROUTINES
 ## Nicer handling of errors
-# Send an email and die on fatal errors
-sub emailNote {
-  my ($message,$safe) = @_;
-  chomp $message;
-
-  my $smtp = Net::SMTP->new('mail.tools.wmflabs.org');
-  $smtp->mail('amorymeltzer@tools.wmflabs.org');
-  $smtp->to('amorymeltzer@tools.wmflabs.org');
-
-  $smtp->data;
-  $smtp->datasend($safe ? 'Toolforge updated' : 'Toolforge error');
-  $smtp->datasend ("\n".$message);
-
-  $smtp->dataend;
-  $smtp->quit;
-
-  if (!$safe) {
-    LOGDIE($message);
-  }
-}
-
 # Some specific mediawiki errors, can be expanded using:
 ## https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 ## https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
@@ -368,7 +359,7 @@ sub dieNice {
     $message .= ' editing the page';
   }
   $message .= ":\n$code: $details";
-  emailNote($message);
+  LOGDIE($message);
 }
 
 
