@@ -295,10 +295,6 @@ foreach (@rights) {
   INFO($note) if $note;
 }
 
-# testing
-print "Done!\n";
-TRACE('Trace done');
-INFO('Info done');
 if (!$localChange && !$wikiChange) {
   # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
   INFO('No updates needed');
