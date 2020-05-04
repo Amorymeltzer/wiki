@@ -11,14 +11,13 @@ use diagnostics;
 use Getopt::Std;
 use FindBin;
 use English qw(-no_match_vars);
+use Net::SMTP;
 
 use Log::Log4perl qw(:easy);
 use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
-
-use Net::SMTP;
 
 
 # Parse commandline options
@@ -32,7 +31,7 @@ chdir "$scriptDir" or emailNote('Failed to change directory', 'fatal');
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
-			   file     => '>>tflog.log',
+			   file     => '>>$ENV{HOME}/logs/tflog.log',
 			   utf8     => 1,
 			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
 			 { level    => $TRACE,
