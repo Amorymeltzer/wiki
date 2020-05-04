@@ -202,8 +202,8 @@ foreach (@rights) {
   if (/arbcom/) {
     # Imperfect, relies upon the template being updated, but ArbCom membership
     # is high-profile enough that it will likely be updated quickly
-    my $page = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
-    my $content = $page->{q{*}};
+    my $acTemplate = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
+    my $content = $acTemplate->{q{*}};
 
     # Find the diamonds in the rough
     my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
