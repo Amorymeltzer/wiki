@@ -1,0 +1,248 @@
+enwiki	MediaWiki:RefToolbarLoader.js
+enwiki	MediaWiki:Sandbox.js
+enwiki	MediaWiki:Gadget-friendlywelcome.js
+enwiki	MediaWiki:Gadget-twinklewarn.js
+enwiki	MediaWiki:Redirect skin.js
+enwiki	MediaWiki:Gadget-twinkleconfig.js
+enwiki	MediaWiki:Gadget-geonotice-list.js
+enwiki	MediaWiki:Gadget-twinkleprotect.js
+enwiki	MediaWiki:Gadget-morebits.js
+enwiki	MediaWiki:Gadget-popups.js
+enwiki	MediaWiki:Gadget-twinklexfd.js
+enwiki	MediaWiki:Gadget-markblocked.js
+enwiki	MediaWiki:Gadget-friendlytag.js
+enwiki	MediaWiki:Gadget-Shortdesc-helper.js
+enwiki	MediaWiki:Common.js
+enwiki	MediaWiki:Gadget-DRN-wizard.js
+enwiki	MediaWiki:DRN-wizard.js
+enwiki	MediaWiki:Gadget-find-archived-section.js
+enwiki	MediaWiki:Gadget-twinklespeedy.js
+enwiki	MediaWiki:Gadget-removeAccessKeys.js
+enwiki	MediaWiki:Gadget-friendlytalkback.js
+enwiki	MediaWiki:Gadget-twinkleprod.js
+enwiki	MediaWiki:Gadget-twinklefluff.js
+enwiki	MediaWiki:Gadget-twinkleblock.js
+enwiki	MediaWiki:Gadget-twinklebatchundelete.js
+enwiki	MediaWiki:Gadget-twinklebatchprotect.js
+enwiki	MediaWiki:Gadget-twinklebatchdelete.js
+enwiki	MediaWiki:Gadget-twinklearv.js
+enwiki	MediaWiki:Gadget-Twinkle.js
+enwiki	MediaWiki:Group-sysop.js
+enwiki	MediaWiki:Gadget-purgetab.js
+enwiki	MediaWiki:Gadget-afchelper.js/core.js
+enwiki	MediaWiki:Gadget-afchelper-beta.js/core.js
+enwiki	MediaWiki:Gadget-script-installer-core.js
+enwiki	MediaWiki:Minerva.js
+enwiki	MediaWiki:Mobile.js
+enwiki	MediaWiki:GeoHack.js
+enwiki	MediaWiki:Gadget-mobilemaps.js
+enwiki	MediaWiki:Gadget-twinkleunlink.js
+enwiki	MediaWiki:Gadget-twinkledeprod.js
+enwiki	MediaWiki:Wdsearch.js
+enwiki	MediaWiki:Gadget-XFDcloser-core.js
+enwiki	MediaWiki:Gadget-defaultsummaries.js
+enwiki	MediaWiki:Gadget-SidebarTranslate.js
+enwiki	MediaWiki:Gadget-twinkleimage.js
+enwiki	MediaWiki:Gadget-friendlyshared.js
+enwiki	MediaWiki:Gadget-twinklediff.js
+enwiki	MediaWiki:Gadget-select2.min.js
+enwiki	MediaWiki:Gadget-libExtraUtil.js
+enwiki	MediaWiki:Gadget-libExtraUtil.js/testcases.js
+enwiki	MediaWiki:Gadget-contribsrange.js
+enwiki	MediaWiki:Gadget-libSettings.js
+enwiki	MediaWiki:Gadget-MoreMenu.enwiki.js
+enwiki	MediaWiki:Gadget-dropdown-menus.js
+enwiki	MediaWiki:Gadget-Prosesize.js
+enwiki	MediaWiki:Gadget-XFDcloser.js
+enwiki	MediaWiki:Gadget-HotCat.js
+enwiki	MediaWiki:Live EriCSSon.js
+enwiki	MediaWiki:Gadget-teahouse/content.js
+enwiki	MediaWiki:Gadget-commentr.js
+enwiki	MediaWiki:Gadget-addMe.js
+enwiki	MediaWiki:Gadget-ProveIt-classic.js
+enwiki	MediaWiki:Gadget-ProveIt.js
+enwiki	MediaWiki:Gadget-RTRC.js
+enwiki	MediaWiki:Gadget-mobile-sidebar.js
+enwiki	MediaWiki:Gadget-XTools-ArticleInfo.js
+enwiki	MediaWiki:RefToolbarMessages-en.js
+enwiki	MediaWiki:RefToolbarConfig.js
+enwiki	MediaWiki:Gadget-metadata.js
+enwiki	MediaWiki:Gadget-ReferenceTooltips.js
+enwiki	MediaWiki:Gadget-formWizard-core.js
+enwiki	MediaWiki:Gadget-afchelper.js/submissions.js
+enwiki	MediaWiki:Gadget-afchelper-beta.js/submissions.js
+enwiki	MediaWiki:Gadget-DRW.js
+enwiki	MediaWiki:FileUploadWizard.js
+enwiki	MediaWiki:Gadget-imagelinks.js
+enwiki	MediaWiki:Gadget-citations.js
+enwiki	MediaWiki:Gadget-switcher.js
+enwiki	MediaWiki:Gadget-CollapsibleNav.js
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Socialism/Join
+enwiki	MediaWiki:Guidedtour-tour-wikiedtalkpagefellows.js
+enwiki	MediaWiki:Guidedtour-tour-wikiedbeboldfellows.js
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Molecular Biology/Join
+enwiki	MediaWiki:Gadget-HotCat.js/local defaults
+enwiki	MediaWiki:Guidedtour-tour-wikiedbebold2.js
+enwiki	MediaWiki:Guidedtour-tour-wikiedbebold.js
+enwiki	MediaWiki:Guidedtour-tour-outreachbebold.js
+enwiki	MediaWiki:Gadget-refToolbar.js
+enwiki	MediaWiki:ImageAnnotatorConfig.js
+enwiki	MediaWiki:Gadget-charinsert-core.js
+enwiki	MediaWiki:Gadget-bluealertdismiss.js
+enwiki	MediaWiki:Gadget-toolbaralert2.js
+enwiki	MediaWiki:Gadget-toolbaralert3.js
+enwiki	MediaWiki:Gadget-bluealertfade.js
+enwiki	MediaWiki:Gadget-bottomalert.js
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Zanzibar City/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Women writers/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Women scientists/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Women in Technology/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Women in Red/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Wikipack Africa/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Occupational Safety and Health/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Medicine/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Hampshire/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Ghana/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Evolutionary biology/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject English Language/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Diversity/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Cognitive science/Join
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Cannabis/Join
+enwiki	MediaWiki:Gadget-formWizard/GLAM/Join
+enwiki	MediaWiki:Gadget-formWizard/Co-op/Test
+enwiki	MediaWiki:Gadget-formWizard/Co-op/Mentor
+enwiki	MediaWiki:Gadget-formWizard/Co-op/Learner
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Women's Health/Join
+enwiki	MediaWiki:Gadget-script-installer.js
+enwiki	MediaWiki:Guidedtour-tour-wikiedcitingsources.js
+enwiki	MediaWiki:Gadget-BugStatusUpdate.js
+enwiki	MediaWiki:Guidedtour-tour-twa7.js
+enwiki	MediaWiki:Guidedtour-tour-twa6.js
+enwiki	MediaWiki:Guidedtour-tour-twa2.js
+enwiki	MediaWiki:Guidedtour-tour-twa1.js
+enwiki	MediaWiki:PageTriageExternalTagsOptions.js
+enwiki	MediaWiki:PageTriageExternalDeletionTagsOptions.js
+enwiki	MediaWiki:Guidedtour-tour-WikiEduHelp.js
+enwiki	MediaWiki:Guidedtour-tour-WikiEduHelpScholars.js
+enwiki	MediaWiki:Gadget-CommentsInLocalTime.js
+enwiki	MediaWiki:Gadget-extra-toolbar-buttons-core.js
+enwiki	MediaWiki:Gadget-legacyToolbar.js
+enwiki	MediaWiki:RefToolbarLegacy.js
+enwiki	MediaWiki:Gadget-Page descriptions.js
+enwiki	MediaWiki:Gadget-geonotice-core.js
+enwiki	MediaWiki:Gadget-ImageAnnotator.js
+enwiki	MediaWiki:Gadget-teahouse.js
+enwiki	MediaWiki:Gadget-extra-toolbar-buttons.js
+enwiki	MediaWiki:Gadget-charinsert.js
+enwiki	MediaWiki:Gadget-afchelper.js
+enwiki	MediaWiki:Gadget-watchlist-notice-core.js
+enwiki	MediaWiki:Gadget-topalert.js
+enwiki	MediaWiki:Guidedtour-tour-wikiedtalkpage2.js
+enwiki	MediaWiki:Guidedtour-tour-wikiedtalkpage.js
+enwiki	MediaWiki:RefToolbar.js
+enwiki	MediaWiki:Gadget-formWizard/WikiProject Parenting/Join
+enwiki	MediaWiki:Minervaneue.js
+enwiki	MediaWiki:Guidedtour-tour-twa5.js
+enwiki	MediaWiki:Guidedtour-tour-twa4.js
+enwiki	MediaWiki:Guidedtour-tour-twa3.js
+enwiki	MediaWiki:Modern.js
+enwiki	MediaWiki:WikiProject User scripts/Scripts/Multi-NS search.js
+enwiki	MediaWiki:Gadget-responsiveContentTimeless.js
+enwiki	MediaWiki:Gadget-search-new-tab.js
+enwiki	MediaWiki:WikiLove.js
+enwiki	MediaWiki:Gadget-ContributorsHack.js
+enwiki	MediaWiki:Gadget-ShowJavascriptErrors.js
+enwiki	MediaWiki:Gadget-RegexMenuFramework.js
+enwiki	MediaWiki:Guidedtour-tour-returnWizard.js
+enwiki	MediaWiki:Gadget-MenuTabsToggle.js
+enwiki	MediaWiki:RefToolbarLocal.js
+enwiki	MediaWiki:Gadget-PrintOptions.js
+enwiki	MediaWiki:Gadget-LongEditSummaries.js
+enwiki	MediaWiki:Gadget-exlinks.js
+enwiki	MediaWiki:RefToolbarNoDialogs.js
+enwiki	MediaWiki:Gadget-MobileCategories.js
+enwiki	MediaWiki:Gadget-afchelper-beta.js
+enwiki	MediaWiki:Gadget-StickyTableHeaders.js
+enwiki	MediaWiki:Gadget-wikEdDiff.js
+enwiki	MediaWiki:Gadget-wikEd.js
+enwiki	MediaWiki:Gadget-responsiveContent.js
+enwiki	MediaWiki:RefToolbarMessages-el.js
+enwiki	MediaWiki:Wdsearch-autodesc.js
+enwiki	MediaWiki:Gadget-libLua.js
+enwiki	MediaWiki:Gadget-libSensitiveIPs.js
+enwiki	MediaWiki:Guidedtour-tour-WikiEduHelpDraft.js
+enwiki	MediaWiki:Gadget-watchlist-notice.js
+enwiki	MediaWiki:Guidedtour-tour-outreachtalkpage.js
+enwiki	MediaWiki:PrettyLinkWidget.js
+enwiki	MediaWiki:LAPI.js
+enwiki	MediaWiki:Editpage.js
+enwiki	MediaWiki:Monobook.js
+enwiki	MediaWiki:Guidedtour-tour-StudentTrainingCompleteSandbox.js
+enwiki	MediaWiki:Guidedtour-tour-CourseWizard.js
+enwiki	MediaWiki:Guidedtour-tour-StudentTrainingComplete.js
+enwiki	MediaWiki:Guidedtour-tour-oclcfulltext.js
+enwiki	MediaWiki:Guidedtour-tour-finddpla.js
+enwiki	MediaWiki:Guidedtour-tour-MoreMarkupEducator.js
+enwiki	MediaWiki:Guidedtour-tour-BeBoldEducator.js
+enwiki	MediaWiki:Guidedtour-tour-MoreMarkupStudent.js
+enwiki	MediaWiki:Guidedtour-tour-CitationsTranslation.js
+enwiki	MediaWiki:Guidedtour-tour-CitationsStudent.js
+enwiki	MediaWiki:Guidedtour-tour-CitationsEducator.js
+enwiki	MediaWiki:Guidedtour-tour-EducatorTrainingComplete.js
+enwiki	MediaWiki:Guidedtour-tour-BeBoldStudent.js
+enwiki	MediaWiki:Guidedtour-tour-BeBoldTranslation.js
+enwiki	MediaWiki:Guidedtour-tour-MoreMarkupTranslation.js
+enwiki	MediaWiki:Gadget-refToolbarBase.js
+enwiki	MediaWiki:Gadget-confirmationRollback-mobile.js
+enwiki	MediaWiki:Gadget-OSM.js
+enwiki	MediaWiki:Gadget-protection-sidebar.js
+enwiki	MediaWiki:Gadget-edittop.js
+enwiki	MediaWiki:Gadget-CategoryAboveAll.js
+enwiki	MediaWiki:RefToolbarBase.js
+enwiki	MediaWiki:Gadget-NewImageThumb.js
+enwiki	MediaWiki:Gadget-addsection-plus.js
+enwiki	MediaWiki:Gadget-ptoc.js
+enwiki	MediaWiki:Gadget-mySandbox.js
+enwiki	MediaWiki:Gadget-formWizard.js
+enwiki	MediaWiki:Gadget-HideCentralNotice.js
+enwiki	MediaWiki:Gadget-UTCLiveClock.js
+enwiki	MediaWiki:AjaxSubmit.js
+enwiki	MediaWiki:TextCleaner.js
+enwiki	MediaWiki:Gadget-afchelper.js/rw.js
+enwiki	MediaWiki:Gadget-featured-articles-links.js
+enwiki	MediaWiki:LinkFixr.js
+enwiki	MediaWiki:Gadget-geonotice.js
+enwiki	MediaWiki:Edittools.js
+enwiki	MediaWiki:Gadget-GoogleTrans.js
+enwiki	MediaWiki:Gadget-externalsearch.js
+enwiki	MediaWiki:Gadget-revisionjumper.js
+enwiki	MediaWiki:Wikibugs.js
+enwiki	MediaWiki:Gadget-DotsSyntaxHighlighter.js
+enwiki	MediaWiki:Gadget-modrollback.js
+enwiki	MediaWiki:Wikimediaplayer.js
+enwiki	MediaWiki:Gadget-afchelper.js/redirects.js
+enwiki	MediaWiki:RecentRelated.js
+enwiki	MediaWiki:Gadget-sidebar-ca-modern.js
+enwiki	MediaWiki:Guidedtour-tour-historymerge.js
+enwiki	MediaWiki:Gadget-disablesuggestions.js
+enwiki	MediaWiki:Gadget-afchelper.js/ffu.js
+enwiki	MediaWiki:Gadget-PrettyLog.js
+enwiki	MediaWiki:Gadget-searchFocus.js
+enwiki	MediaWiki:UIElements.js
+enwiki	MediaWiki:Gadget-afchelper-beta.js/redirects.js
+enwiki	MediaWiki:Gadget-afchelper-beta.js/ffu.js
+enwiki	MediaWiki:Gadget-oldeditor.js
+enwiki	MediaWiki:RefToolbarMessages-de.js
+enwiki	MediaWiki:Gadget-DebugMode.js
+enwiki	MediaWiki:Gadget-ShowMessageNames.js
+enwiki	MediaWiki:Gadget-topalert2.js
+enwiki	MediaWiki:Guidedtour-tour-studentsandbox.js
+enwiki	MediaWiki:Live eriCSSon.js
+enwiki	MediaWiki:Gadget-NoAnimations.js
+enwiki	MediaWiki:Gadget-HistoryNumDiff.js
+enwiki	MediaWiki:RefToolbarLocal-en.js
+enwiki	MediaWiki:Gadget-modernskin-thunks.js
+enwiki	MediaWiki:Gadget-JSL.js
+enwiki	MediaWiki:Gadget-vectorskin-thunks.js
+enwiki	MediaWiki:Gadget-protection-dropdown.js
+enwiki	MediaWiki:HighlightEditSections.js
