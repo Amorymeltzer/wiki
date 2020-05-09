@@ -1,0 +1,1226 @@
+enwiki	User:Lupin/popups.js
+enwiki	User:AzaToth/twinkle.js
+enwiki	User:Lupin/recent2.js
+enwiki	User:Dr pda/prosesize.js
+enwiki	User:Interiot/Tool2/code.js
+enwiki	User:Cacycle/wikEd.js
+enwiki	User:Shubinator/DYKcheck.js
+enwiki	User:AzaToth/morebits.js
+enwiki	User:Smith609/toolbox.js
+enwiki	User:AndyZ/peerreviewer.js
+enwiki	User:Ohconfucius/script/MOSNUM dates.js
+enwiki	User:GregU/dashes.js
+enwiki	User:Ucucha/duplinks.js
+enwiki	User:Anomie/linkclassifier.js
+enwiki	User:AzaToth/twinklewarn.js
+enwiki	User:AzaToth/twinklefluff.js
+enwiki	User:Ale jrb/Scripts/igloo.js
+enwiki	User:Zhaofeng Li/Reflinks.js
+enwiki	User:TheDJ/qui.js
+enwiki	User:Mr.Z-man/closeAFD.js
+enwiki	User:AzaToth/twinklearv.js
+enwiki	User:AWeenieMan/furme.js
+enwiki	User:AzaToth/twinklespeedy.js
+enwiki	User:Krimpet/CH2.js
+enwiki	User:Lourdes/PageCuration.js
+enwiki	User:TheJosh/Scripts/NewPagePatrol.js
+enwiki	User:AzaToth/twinklediff.js
+enwiki	User:Technical 13/Scripts/OneClickArchiver.js
+enwiki	User:TheDJ/Gadget-HotCat.js
+enwiki	User:Equazcion/ScriptInstaller.js
+enwiki	User:Enterprisey/reply-link.js
+enwiki	User:PleaseStand/userinfo.js
+enwiki	User:Evad37/rater.js
+enwiki	User:MarkS/extraeditbuttons.js
+enwiki	User:Anomie/hide-images.js
+enwiki	User:Ucucha/HarvErrors.js
+enwiki	User:Voice of All/Addtabs/monobook.js
+enwiki	User:Qwertyytrewqqwerty/DisamAssist.js
+enwiki	User:Dr pda/persondata.js
+enwiki	User:Evad37/MoveToDraft.js
+enwiki	User:Ais523/editcount.js
+enwiki	User:Lunchboxhero/externISBN.js
+enwiki	User:Writ Keeper/Scripts/teahouseUtility.js
+enwiki	User:Writ Keeper/Scripts/teahouseTalkbackLink.js
+enwiki	User:Jackmcbarn/editProtectedHelper.js
+enwiki	User:Writ Keeper/Scripts/teahouseTalkback.js
+enwiki	User:AzaToth/twinkleprotect.js
+enwiki	User:Ocaasi/WikiLoveinstallscript.js
+enwiki	User:NuclearWarfare/Mark-blocked script.js
+enwiki	User:Jnothman/afd helper/script.js
+enwiki	User:Ohconfucius/script/formatgeneral.js
+enwiki	User:Cacycle/diff.js
+enwiki	User:Ohconfucius/script/EngvarB.js
+enwiki	User:Kephir/gadgets/rater.js
+enwiki	User:Mr.Z-man/refToolbar.js
+enwiki	User:Ale jrb/Scripts/csdhelper.js
+enwiki	User:Js/watchlist.js
+enwiki	User:PleaseStand/segregate-refs.js
+enwiki	User:Ais523/votesymbols.js
+enwiki	User:Evad37/duplinks-alt.js
+enwiki	User:Zocky/PicturePopups.js
+enwiki	User:Ohconfucius/script/Common Terms.js
+enwiki	User:PleaseStand/hide-vector-sidebar.js
+enwiki	User:Σ/Testing facility/Archiver.js
+enwiki	User:Joeytje50/JWB.js
+enwiki	User:Henrik/js/live-edit-counter.js
+enwiki	User:Henrik/js/automod.js
+enwiki	User:Joeytje50/JWB.js/load.js
+enwiki	User:Voice of All/History/monobook.js
+enwiki	User:Frietjes/findargdups.js
+enwiki	User:AzaToth/twinkleprod.js
+enwiki	User:Timotheus Canens/afchelper4.js
+enwiki	User:Ohconfucius/script/Sources.js
+enwiki	User:Enterprisey/delsort.js
+enwiki	User:MusikAnimal/responseHelper.js
+enwiki	User:Mr.Z-man/badimages.js
+enwiki	User:John254/mass rollback.js
+enwiki	User:Equazcion/OneClickArchiver.js
+enwiki	User:Cacycle/wikEdDiff.js
+enwiki	User:Lightmouse/monobook.js/script.js
+enwiki	User:Ais523/watchlistnotifier.js
+enwiki	User:Writ Keeper/Scripts/massRollback.js
+enwiki	User:Fox Wilson/delsort.js
+enwiki	User:AzaToth/twinklexfd.js
+enwiki	User:Quarl/util.js
+enwiki	User:Animum/easyblock.js
+enwiki	User:Ais523/adminrights.js
+enwiki	User:Quarl/wikipage.js
+enwiki	User:Writ Keeper/Scripts/commonHistory.js
+enwiki	User:Lightdarkness/aiv.js
+enwiki	User:Pediapress/collection.js
+enwiki	User:Evad37/XFDcloser.js
+enwiki	User:Js/ajaxPreview.js
+enwiki	User:Kbh3rd/whackamole.js
+enwiki	User:Lupin/editcount.js
+enwiki	User:Lupin/autoedit.js
+enwiki	User:Nageh/mathJax.js
+enwiki	User:Topbanana/RLRL SR Utility.js
+enwiki	User:Omegatron/monobook.js/addlink.js
+enwiki	User:Dr pda/editrefs.js
+enwiki	User:Ale jrb/Scripts/userhist.js
+enwiki	User:Cacycle/RegExTypoFix.js
+enwiki	User:Salix alba/Citoid.js
+enwiki	User:Alex Smotrov/histcomb.js
+enwiki	User:Andy M. Wang/pageswap.js
+enwiki	User:Splarka/dabfinder.js
+enwiki	User:Voice of All/UTCclock.js
+enwiki	User:Enterprisey/cv-revdel.js
+enwiki	User:Writ Keeper/Scripts/deletionFinder.js
+enwiki	User:Henrik/js/afc-helper.js
+enwiki	User:Gracenotes/rollback.js
+enwiki	User:Timotheus Canens/spihelper.js
+enwiki	User:Howcheng/quickimgdelete.js
+enwiki	User:Splarka/sysopdectector.js
+enwiki	User:Ais523/stubtagtab2.js
+enwiki	User:Zocky/SearchBox.js
+enwiki	User:Galobtter/Shortdesc helper.js
+enwiki	User:Mr.Z-man/rollbackSummary.js
+enwiki	User:Mr.Z-man/refToolbar 2.0.js
+enwiki	User:Misza13/statusChanger.js
+enwiki	User:AzaToth/twinkleimage.js
+enwiki	User:Dr pda/articlehistory.js
+enwiki	User:Dschwen/highlightredirects.js
+enwiki	User:Theopolisme/Scripts/adminhighlighter.js
+enwiki	User:The Earwig/copyvios.js
+enwiki	User:Topaz/wputil.js
+enwiki	User:Headbomb/unreliable.js
+enwiki	User:קיפודנחש/cat-a-lot.js
+enwiki	User:Jsimlo/shortcuts.js
+enwiki	User:Dr pda/prosesizebytes.js
+enwiki	User:Ale jrb/Scripts/statusCheck.js
+enwiki	User:Kaldari/wikilove.js
+enwiki	User:Voice of All/Specialadmin/monobook.js
+enwiki	User:PrimeHunter/My subpages.js
+enwiki	User:Mr.Z-man/patrollinks.js
+enwiki	User:Steel359/protection.js
+enwiki	User:Topaz/comm.js
+enwiki	User:Voice of All/replacetxt.js
+enwiki	User:Gary King/nominations viewer.js
+enwiki	User:Uziel302/typo.js
+enwiki	User:Voice of All/Google/monobook.js
+enwiki	User:Anomie/useridentifier.js
+enwiki	User:Haza-w/cactions.js
+enwiki	User:Pyrospirit/metadata.js
+enwiki	User:Writ Keeper/Scripts/orangeBar.js
+enwiki	User:Xenocidic/statusChanger2.js
+enwiki	User:TheJosh/Scripts/RecentChangesPatrol.js
+enwiki	User:Amalthea/userhighlighter.js
+enwiki	User:Enterprisey/script-installer.js
+enwiki	User:Mr.Z-man/hideClosedAFD.js
+enwiki	User:Dschwen/wikiminiatlas2.js
+enwiki	User:Anomie/unsignedhelper.js
+enwiki	User:Rami R/rfppClerk.js
+enwiki	User:Tra/sidebartranslate.js
+enwiki	User:Tra/userwatchlist.js
+enwiki	User:Odie5533/SnipManager.user.js
+enwiki	User:Anomie/ajaxpreview.js
+enwiki	User:PleaseStand/highlight-comments.js
+enwiki	User:Misza13/viewSource.js
+enwiki	User:Markhurd/hidetopcontrib.js
+enwiki	User:Mr. Stradivarius/gadgets/Draftify.js
+enwiki	User:Enterprisey/diff-permalink.js
+enwiki	User:Equazcion/ActiveWatchers.js
+enwiki	User:Gimmetrow/fixRefs.js
+enwiki	User:Voice of All/Protection/monobook.js
+enwiki	User:Numbermaniac/goToTop.js
+enwiki	User:Lifebaka/closedrv.js
+enwiki	User:Symplectic Map/spell.js
+enwiki	User:TheDJ/sharebox.js
+enwiki	User:Tim Song/afchelper4.js
+enwiki	User:Ais523/topcontrib.js
+enwiki	User:Enterprisey/undo-last-edit.js
+enwiki	User:Voice of All/Adminwarnings/monobook.js
+enwiki	User:Joeytje50/AWB.js/load.js
+enwiki	User:GregU/randomlink.js
+enwiki	User:Gary/nominations viewer.js
+enwiki	User:AzaToth/twinkleunlink.js
+enwiki	User:Meteor sandwich yum/Tidy citations.js
+enwiki	User:SD0001/StubSorter.js
+enwiki	User:Enterprisey/talk-tab-count.js
+enwiki	User:EpochFail/No Biting.js
+enwiki	User:Lenore/autolink.js
+enwiki	User:DannyS712/DiscussionCloser.js
+enwiki	User:Mr.Z-man/refbuttons.js
+enwiki	User:Supadawg/secedit.js
+enwiki	User:ProveIt GT/ProveIt.js
+enwiki	User:Barticus88/WhatLinksHere.js
+enwiki	User:Gary/enhanced random article.js
+enwiki	User:Bradv/Scripts/Superlinks.js
+enwiki	User:Danski454/stubsearch.js
+enwiki	User:UncleDouggie/smart watchlist.js
+enwiki	User:Cumbril/RefConsolidate start.js
+enwiki	User:Equazcion/ContribsTabVector.js
+enwiki	User:Alex Smotrov/wlunwatch.js
+enwiki	User:SD0001/DYK-helper.js
+enwiki	User:The Evil IP address/hdedit.js
+enwiki	User:Evad37/ToDoLister.js
+enwiki	User:Equazcion/SidebarHistoryTools.js
+enwiki	User:Writ Keeper/Scripts/googleTitle.js
+enwiki	User:Bobblewik/monobook.js/dates.js
+enwiki	User:MusikAnimal/userRightsManager.js
+enwiki	User:Splarka/ajaxfilemove.js
+enwiki	User:Enterprisey/link-section-edits.js
+enwiki	User:Voice of All/Revert/monobook.js
+enwiki	User:ערן/autocomplete.js
+enwiki	User:Equazcion/Floater.js
+enwiki	User:JeremyMcCracken/contribstab.js
+enwiki	User:Writ Keeper/Scripts/massRevdel.js
+enwiki	User:Bobblewik/monobook.js/unitformatter.js
+enwiki	User:Sander Säde/quickpreview.js
+enwiki	User:EpochFail/HAPPI.js
+enwiki	User:Cacycle/editor.js
+enwiki	User:Mr. Stradivarius/gadgets/ConfirmRollback.js
+enwiki	User:TheJJJunk/ARA.js
+enwiki	User:Ais523/catwatch.js
+enwiki	User:Ais523 non-admin/adminrights.js
+enwiki	User:Primefac/revdel.js
+enwiki	User:Plastikspork/date.js
+enwiki	User:Kangaroopower/MRollback.js
+enwiki	User:Voice of All/CheckUser/monobook.js
+enwiki	User:Lourdes/Backlinks.js
+enwiki	User:N8wilson/AQFetcher.js
+enwiki	User:EDUCA33E/LiveRC.js
+enwiki	User:קיפודנחש/TemplateParamWizard.js
+enwiki	User:Enterprisey/up-one-lvl-kbd.js
+enwiki	User:AzaToth/twinklebatchdelete.js
+enwiki	User:Ohconfucius/script/flagcruft.js
+enwiki	User:Js/urldecoder.js
+enwiki	User:Ais523/highlightmyname2.js
+enwiki	User:Ioeth/friendlytabs.js
+enwiki	User:Ale jrb/Scripts/csdcheck.js
+enwiki	User:Alex Smotrov/qpreview.js
+enwiki	User:Animum/reset.js
+enwiki	User:SuperHamster/CiteUnseen.js
+enwiki	User:Ais523/bracketmatch.js
+enwiki	User:Js/6tabs-vector.js
+enwiki	User:Anomie/util.js
+enwiki	User:V111P/js/smartLinkingLoader.js
+enwiki	User:Zocky/PicturePopupsVector.js
+enwiki	User:Apoc2400/refToolbarPlus.js
+enwiki	User:Nmajdan/welcome newuser.js
+enwiki	User:Drilnoth/assessortags.js
+enwiki	User:PerfektesChaos/js/lintHint/r.js
+enwiki	User:MusikAnimal/confirmationRollback.js
+enwiki	User:MusikAnimal/customWatchlists.js
+enwiki	User:A930913/vada/import.js
+enwiki	User:Drilnoth/delresized.js
+enwiki	User:AzaToth/twinkledelimages.js
+enwiki	User:Voice of All/Bureaucrat/monobook.js
+enwiki	User:AzaToth/twinkledeprod.js
+enwiki	User:Alex 21/script-functions.js
+enwiki	User:Plastikspork/admindash.js
+enwiki	User:Voice of All/Approvals.js
+enwiki	User:Ais523/stubtagtab.js
+enwiki	User:Smith609/endnote.js
+enwiki	User:Joshua Scott/Scripts/pendingchanges.js
+enwiki	User:Magnus Manske/LinkFixr.js
+enwiki	User:UBX/LiveEditCounter.js
+enwiki	User:Pyrospirit/metadata/projectbanners.js
+enwiki	User:Pyrospirit/metadata/assesslinks.js
+enwiki	User:Misza13/watchlistSorter.js
+enwiki	User:Kephir/gadgets/sagittarius.js
+enwiki	User:YuviPanda/AssessmentBar.js
+enwiki	User:Blue-Haired Lawyer/footnote popups.js
+enwiki	User:Enterprisey/easy-brfa.js
+enwiki	User:X!/userrights.js
+enwiki	User:DStoykov/defaultsort.js
+enwiki	User:Dipankan001/Edit Count.js
+enwiki	User:DannyS712/copyvio-check.js
+enwiki	User:Dispenser/Link checker/toolbox.js
+enwiki	User:Animum/massdelete.js
+enwiki	User:Macy/FastButtons.js
+enwiki	User:Zocky/AutoComplete.js
+enwiki	User:Btilm/aw.js
+enwiki	User:Mvolz/displayContributions.js
+enwiki	User:קיפודנחש/viewstats.js
+enwiki	User:King of Hearts/closexfd.js
+enwiki	User:Anomie/previewtemplatelastmod.js
+enwiki	User:MusikAnimal/MoreMenu.js
+enwiki	User:Kephir/gadgets/table-editor.js
+enwiki	User:Voice of All/Revert.js
+enwiki	User:AzaToth/twinklebatchprotect.js
+enwiki	User:Cacycle/wikEd international en.js
+enwiki	User:DannyS712/Draft no cat.js
+enwiki	User:Bility/copySectionLink.js
+enwiki	User:Omni Flames/PendingChangesLink.js
+enwiki	User:King of Hearts/closerfd.js
+enwiki	User:Mr.Z-man/moverevert.js
+enwiki	User:Rezonansowy/SimpleLightbox.js
+enwiki	User:Bellezzasolo/Scripts/arb.js
+enwiki	User:The Transhumanist/SearchSuite.js
+enwiki	User:Jfmantis/pagesCreated.js
+enwiki	User:Mabdul/saveandedit.js
+enwiki	User:Equazcion/LiveDiffLink.js
+enwiki	User:Theopolisme/Scripts/autocompleter.js
+enwiki	User:Writ Keeper/Scripts/cuStaleness.js
+enwiki	User:V111P/js/whatLinksHereLinkFilter.js
+enwiki	User:Equazcion/CatListMainTalkLinks.js
+enwiki	User:Writ Keeper/Scripts/SearchNamespace.js
+enwiki	User:Gary King/comments in local time.js
+enwiki	User:Mr. Stradivarius/gadgets/SpamUserPage.js
+enwiki	User:Andy M. Wang/closeRM.js
+enwiki	User:Scottywong/diffconverter.js
+enwiki	User:Kephir/gadgets/unclutter.js
+enwiki	User:Mr.Z-man/closeAFD2.js
+enwiki	User:Zocky/LinkComplete.js
+enwiki	User:Olliminatore/sign.js
+enwiki	User:AzaToth/twinkleimagetraverse.js
+enwiki	User:Bellezzasolo/Scripts/subpages.js
+enwiki	User:Amalthea/culoghelper.js
+enwiki	User:EnterpriseyBot/AFCRHS.js
+enwiki	User:Anomie/unwatch.js
+enwiki	User:Bility/convert24hourtime.js
+enwiki	User:Dr pda/generatestats.js
+enwiki	User:Jitse Niesen/Client-side preferences/Main.js
+enwiki	User:Keymanweb/keymanweb.js
+enwiki	User:Wugapodes/Capricorn.js
+enwiki	User:Anne drew Andrew and Drew/SetupAutoArchive.js
+enwiki	User:Legoktm/rescaled.js
+enwiki	User:Paranomia/simplevote.js
+enwiki	User:Theopolisme/Scripts/ajaxWatchlist.js
+enwiki	User:Plastikspork/monobook.js/script.js
+enwiki	User:Olliminatore/godmode-light.js
+enwiki	User:Animum/count.js
+enwiki	User:PhantomTech/scripts/AFCRHS.js
+enwiki	User:King of Hearts/closeffd.js
+enwiki	User:Philip Trueman/recent2.js
+enwiki	User:Evad37/EditWarChecker.js
+enwiki	User:Gary/comments in local time.js
+enwiki	User:Meteor sandwich yum/dabfinder.js
+enwiki	User:King of Hearts/closecfd.js
+enwiki	User:Equazcion/ReverseMarked.js
+enwiki	User:Equazcion/LagToMinutes.js
+enwiki	User:Yair rand/ReferenceTooltips.js
+enwiki	User:Equazcion/sysopdetector.js
+enwiki	User:Magnus Manske/less edit clutter.js
+enwiki	User:Kanegasi/editcounter.js
+enwiki	User:Alex Smotrov/edittop.js
+enwiki	User:The Earwig/afc-helper.js
+enwiki	User:Kaniivel/RefConsolidate start.js
+enwiki	User:Timotheus Canens/massblock.js
+enwiki	User:Cacycle/wikEd dev.js
+enwiki	User:EpochFail/wikignome.js
+enwiki	User:Zyxw/popups.js
+enwiki	User:Anne drew Andrew and Drew/PageDetails.js
+enwiki	User:Gary/subjects age from year.js
+enwiki	User:Equazcion/SidebarTranslate.js
+enwiki	User:Davidgothberg/newmessageshistory.js
+enwiki	User:Ilmari Karonen/rollbacksummary.js
+enwiki	User:Cj005257/scripts/useronline.js/Version2.js
+enwiki	User:AzaToth/twinklebatchundelete.js
+enwiki	User:Lampak/MyLanguages.js
+enwiki	User:Ahecht/Scripts/pageswap.js
+enwiki	User:PrimeHunter/Source links.js
+enwiki	User:Lourdes/AfDclosing.js
+enwiki	User:Fran Rogers/CH2 en.js
+enwiki	User:Dudemanfellabra/diffs.js
+enwiki	User:PleaseStand/userScriptSandbox.js
+enwiki	User:Mr.Z-man/moverevert2.js
+enwiki	User:Voice of All/nolupin/monobook.js
+enwiki	User:Cactus.man/Scripts/MoreTabs.js
+enwiki	User:Enterprisey/link-deleted-revs.js
+enwiki	User:Fred Gandt/getUnpatrolledOfAlexNewArtBotResultsPages.js
+enwiki	User:Bellezzasolo/Scripts/adminhighlighter.js
+enwiki	User:Lourdes/AfDList.js
+enwiki	User:Zhaofeng Li/RefToggle.js
+enwiki	User:Lourdes/SpecialNewPages.js
+enwiki	User:Tim Song/spihelper.js
+enwiki	User:Equazcion/CustomSummaryPresets.js
+enwiki	User:Writ Keeper/Scripts/userHistory.js
+enwiki	User:Evad37/TextDiff.js
+enwiki	User:Suffusion of Yellow/effp-helper.js
+enwiki	User:Alex 21/script-redlinks.js
+enwiki	User:Enterprisey/afch-dev.js
+enwiki	User:Dudemanfellabra/AddCommonsCatLinks.js
+enwiki	User:B/rescaledsidebar.js
+enwiki	User:Yair rand/interwikiwatchlist.js
+enwiki	User:Drilnoth/filescripts.js
+enwiki	User:Anomie/pagestats.js
+enwiki	User:Mr.Z-man/gsearch.js
+enwiki	User:Twinzor/wikimark.js
+enwiki	User:Ebrahim/ArticleTranslator.js
+enwiki	User:NerdyScienceDude/Scripts/extratoolbarbuttons.js
+enwiki	User:Animum/liveclock.js
+enwiki	User:Writ Keeper/Scripts/sockStaleness.js
+enwiki	User:Frietjes/infoboxgap.js
+enwiki	User:Uglemat/RefMan.js
+enwiki	User:Danski454/w2wFinder.js
+enwiki	User:Writ Keeper/Scripts/previewAndDiff.js
+enwiki	User:IagoQnsi/addptlinks.js
+enwiki	User:Nageh/rollbackSum.js
+enwiki	User:Salix alba/TDSkell.js
+enwiki	User:MC10/stubtagtab.js
+enwiki	User:David Condrey/bookmarknav.js
+enwiki	User:Blue-Haired Lawyer/Wide Skin.js
+enwiki	User:NerdyScienceDude/Scripts/emotetoolbar.js
+enwiki	User:Enterprisey/url-select-revdel.js
+enwiki	User:GoldenRing/wordcount.js
+enwiki	User:BrandonXLF/Restorer.js
+enwiki	User:DannyS712/Logs.js
+enwiki	User:Evad37/Watchlist-hideAWB.js
+enwiki	User:Ebrahames/Advisor.js
+enwiki	User:Caorongjin/wordcount.js
+enwiki	User:Theopolisme/afch-rewrite.js
+enwiki	User:MGA73/nowcommonsreview.js
+enwiki	User:Animum/revdelete.js
+enwiki	User:Topaz/statuschanger.js
+enwiki	User:Alex Smotrov/logpage.js
+enwiki	User:Voice of All/admin/monobook.js
+enwiki	User:Enterprisey/unblock-review.js
+enwiki	User:DannyS712/EFFPRH.js
+enwiki	User:Music1201/MyCSD.js
+enwiki	User:Evad37/WikidataWatchlistLabels.js
+enwiki	User:Alex 21/script-plotlength.js
+enwiki	User:NicoV/TemplateDataEditor.js
+enwiki	User:DannyS712/PageMoverClosure.js
+enwiki	User:FR30799386/copyvio-check.js
+enwiki	User:Anomie/talklink.js
+enwiki	User:Equazcion/SkipFileWizard.js
+enwiki	User:PC-XT/Advisor.js
+enwiki	User:Dipankan001/New pages.js
+enwiki	User:Phantomsteve/xfdrelist.js
+enwiki	User:Magnus Manske/HighlightEditSections.js
+enwiki	User:Gary King/script installer.js
+enwiki	User:TheJosh/Scripts/NewUserPatrol.js
+enwiki	User:Dr pda/templatecheck.js
+enwiki	User:Drilnoth/codefixer.js
+enwiki	User:Nihiltres/nothingthree.js
+enwiki	User:Scott.wheeler/relatedarticles.js
+enwiki	User:DannyS712/SATG.js
+enwiki	User:Evad37/Watchlist-openUnread.js
+enwiki	User:Fred Gandt/confirmLogout.js
+enwiki	User:Epicgenius/stubtag.js
+enwiki	User:Enterprisey/quick-before.js
+enwiki	User:Gary/script installer.js
+enwiki	User:קיפודנחש/pageCollector.js
+enwiki	User:Jorgenev/scripts/EnhancedUserContribs.js
+enwiki	User:Equazcion/NoEditSandbox.js
+enwiki	User:Mvolz/veCiteFromURLLoader.js
+enwiki	User:BenjaminWillJS/AjaxUndo.js
+enwiki	User:Tim Laqua/Scripts/formatRecentChanges.js
+enwiki	User:Invitatious/unsigned2.js
+enwiki	User:Amorymeltzer/crathighlighter.js
+enwiki	User:Enterprisey/links-in-logs.js
+enwiki	User:Anomie/nosubmitsummary.js
+enwiki	User:Enterprisey/user-tabs-on-contribs.js
+enwiki	User:Brighterorange/punctuation.js
+enwiki	User:Snottywong/diffconverter.js
+enwiki	User:Thespaceface/MetricFirst.js
+enwiki	User:Ais523/highlightmyname.js
+enwiki	User:V111P/js/wikiTranslTools.js
+enwiki	User:SQL/refcheck.js
+enwiki	User:Dycedarg/easyprod.js
+enwiki	User:Stevage/EnhanceHistory.user.js
+enwiki	User:Quarl/shortcuts.js
+enwiki	User:Quarl/wikiedit.js
+enwiki	User:Enterprisey/draft-sorter.js
+enwiki	User:Zvn/confirmwatchlistrollback.js
+enwiki	User:BrandonXLF/GreenRedirects.js
+enwiki	User:Lingzhi/reviewsourcecheck.js
+enwiki	User:DannyS712/Easy-link.js
+enwiki	User:Guywan/Scripts/12HourFormat.js
+enwiki	User:Eizzen/PageCreator.js
+enwiki	User:Omegatron/monobook.js/floatingSidebar.js
+enwiki	User:Equazcion/TeahouseRespond.js
+enwiki	User:MastCell/user-rights.js
+enwiki	User:Bawolff/wiktLookup.js
+enwiki	User:Quarl/cookie.js
+enwiki	User:Jnothman/automod.js
+enwiki	User:Enterprisey/fancy-diffs.js
+enwiki	User:Amorymeltzer/userinfo.js
+enwiki	User:The Transhumanist/WatchlistSorter.js
+enwiki	User:Epicgenius/pcreview.js
+enwiki	User:Dudemanfellabra/NRHPstats.js
+enwiki	User:Armbrust/closemrv.js
+enwiki	User:Timotheus Canens/SPIW.js
+enwiki	User:EpochFail/ArticleQuality.js
+enwiki	User:Chicocvenancio/HelpDeskTBLinks.js
+enwiki	User:Mattflaschen/CommonsHelper Labs.js
+enwiki	User:Esquivalience/mathjax.js
+enwiki	User:Manishearth/sidebartranslinks.js
+enwiki	User:Michael Devore/wiksort.js
+enwiki	User:Technical 13/Scripts/Edit counter.js
+enwiki	User:Splarka/temused.js
+enwiki	User:Eizzen/SkinSwitcher.js
+enwiki	User:Amalthea/MakeReviewer.js
+enwiki	User:Gary King/reviewer summary.js
+enwiki	User:Ale jrb/Scripts/unblock.js
+enwiki	User:Ravid ziv/highlightSearch.js
+enwiki	User:Dapete/ImageMapEdit.js
+enwiki	User:Omegatron/monobook.js/replacetab.js
+enwiki	User:Omegatron/monobook.js/dashfixer.js
+enwiki	User:Quarl/diff.js
+enwiki	User:Digitalme/aiv.js
+enwiki	User:Newslinger/Notifier.js
+enwiki	User:Lourdes/AfDstarted.js
+enwiki	User:DannyS712/Pending changes.js
+enwiki	User:Enterprisey/orcp-helper.js
+enwiki	User:Mxn/CommentsInLocalTime.js
+enwiki	User:Equazcion/link intermediate revisions.js
+enwiki	User:Music1201/QuickLinks.js
+enwiki	User:Krimpet/CH2 en.js
+enwiki	User:Technical 13/Scripts/helpOTRS.js
+enwiki	User:MusikAnimal/scriptManager.js
+enwiki	User:Bradv/AjaxPatrolLinks.js
+enwiki	User:Animum/urlparameters.js
+enwiki	User:Ais523/hidetopcontrib.js
+enwiki	User:Splarka/contribsrange.js
+enwiki	User:Ais523/editsection0tab.js
+enwiki	User:Jujutacular/closeFPC.js
+enwiki	User:Dipankan001/revert vandalism.js
+enwiki	User:2D/commonsmover.js
+enwiki	User:JDrewniak (WMF)/exploreSimilarSearchResults.js
+enwiki	User:Proteins/editingtips.js
+enwiki	User:Omegatron/monobook.js/unverified.js
+enwiki	User:AndyZ/monobook.js/footnotehelper.js
+enwiki	User:Ultraexactzz/afdsort.js
+enwiki	User:Wikidudeman/wikidudemandeluxe.js
+enwiki	User:Lupin/recentdiffs.js
+enwiki	User:Enterprisey/sync-template-sandbox.js
+enwiki	User:SD0001/easy-merge.js
+enwiki	User:Evad37/kmlToJson.js
+enwiki	User:BrandonXLF/Subpages.js
+enwiki	User:Erutuon/scripts/footnoteCleanup.js
+enwiki	User:קיפודנחש/apiRollback.js
+enwiki	User:Timotheus Canens/massedit.js
+enwiki	User:Anomie/lastmod.js
+enwiki	User:WOSlinker/hlist.js
+enwiki	User:Ucucha/autofc.js
+enwiki	User:Gary King/subjects age from year.js
+enwiki	User:Gerbrant/edit/top.js
+enwiki	User:Tra/whatlinksherewatchlist.js
+enwiki	User:Matma Rex/disFixer.js
+enwiki	User:Supadawg/util.js
+enwiki	User:Persian Poet Gal/vandal.js
+enwiki	User:Animum/usergroups.js
+enwiki	User:Galobtter/scripts/adminhighlighter.js
+enwiki	User:BrandonXLF/QuickEdit.js
+enwiki	User:SD0001/hide-reverted-edits.js
+enwiki	User:Beetstra/Gadget-Spam-blacklist-Handler.js
+enwiki	User:Jackmcbarn/advancedtemplatesandbox.js
+enwiki	User:Evad37/Thanky.js
+enwiki	User:Smith609/citations.js
+enwiki	User:DannyS712/Undo.js
+enwiki	User:Opencooper/lastEdit.js
+enwiki	User:WikiMasterGhibif/capitalize.js
+enwiki	User:Svick/SectionInput.js
+enwiki	User:MusikAnimal/rollbackTouch.js
+enwiki	User:Splarka/oldafd.js
+enwiki	User:ערן/mathjaxdialog.js
+enwiki	User:The wub/CloseCFD.js
+enwiki	User:Fran Rogers/dimorphism.js
+enwiki	User:Tcncv/sorttables.js
+enwiki	User:Rjd0060/OTRS-Text.js
+enwiki	User:Cactus.man/Scripts/ChangeTitles.js
+enwiki	User:Omegatron/monobook.js/autolinker.js
+enwiki	User:Omegatron/monobook.js/headingformattingfixer.js
+enwiki	User:Animum/userrights.js
+enwiki	User:Omegatron/monobook.js/addsincetab.js
+enwiki	User:Omegatron/monobook.js/mathcharacterfixer.js
+enwiki	User:Omegatron/monobook.js/unitformatter.js
+enwiki	User:Omegatron/monobook.js/edittop.js
+enwiki	User:Mr.Z-man/delLog.js
+enwiki	User:SD0001/W-Ping.js
+enwiki	User:Mr. Stradivarius/gadgets/DiffOnly.js
+enwiki	User:SD0001/BDCS.js
+enwiki	User:Evad37/Covery.js
+enwiki	User:DannyS712/De-Stub.js
+enwiki	User:MusikAnimal/spamublock.js
+enwiki	User:Alex 21/script-updateepisodes.js
+enwiki	User:Equazcion/DynaThank.js
+enwiki	User:NKohli (WMF)/megawatch.js
+enwiki	User:Kaldari/assessmentHelper.js
+enwiki	User:Þjarkur/NeverUseMobileVersion.js
+enwiki	User:Enterprisey/CustomSummaryPresets.js
+enwiki	User:Technical 13/Scripts/CVD.js
+enwiki	User:Gary/smaller templates.js
+enwiki	User:Kephir/gadgets/hollis.js
+enwiki	User:Endo999/GoogleTrans.js
+enwiki	User:Equazcion/ToggleEditNotices.js
+enwiki	User:SoWhy/csdreasons.js
+enwiki	User:Bobblewik/monobook.js/units nbsp.js
+enwiki	User:Ohconfucius/script/dateabbreviations.js
+enwiki	User:DerHexer/rollback.js
+enwiki	User:JDrewniak (WMF)/wiktionaryDefinitionInSearchResults.js
+enwiki	User:TheDJ/foldrefs.js
+enwiki	User:Alex Smotrov/iwiki.js
+enwiki	User:Davidgothberg/clock.js
+enwiki	User:Wmahan/wpspell.js
+enwiki	User:Haza-w/interiot.js
+enwiki	User:Animum/watchlistUpdate.js
+enwiki	User:Cactus.man/Scripts/Time.js
+enwiki	User:Svick/HarvErrors.js
+enwiki	User:Lingzhi2/reviewsourcecheck.js
+enwiki	User:Plastikspork/massmove.js
+enwiki	User:DannyS712/deOrphan.js
+enwiki	User:Insertcleverphrasehere/copyvios.js
+enwiki	User:Suffusion of Yellow/filter-highlighter.js
+enwiki	User:Ugog Nizdast/displayNumberOfTags.js
+enwiki	User:Evad37/Xunlink.js
+enwiki	User:Evad37/GeoHack replacement script.js
+enwiki	User:SD0001/twinkleos.js
+enwiki	User:Eizzen/LastEditor.js
+enwiki	User:GregU/hotkeys.js
+enwiki	User:Another Article/workflowstudyclient.js
+enwiki	User:Amorymeltzer/oldafd.js
+enwiki	User:Eizzen/AutoPurge.js
+enwiki	User:PrimeHunter/Pageviews.js
+enwiki	User:ערן/veReplace.js
+enwiki	User:Mvolz/veCiteFromURL.js
+enwiki	User:Timotheus Canens/displaymessage.js
+enwiki	User:Ugog Nizdast/FloatingTOC.js
+enwiki	User:Mxn/serendipity.js
+enwiki	User:P999/Toggle VF.js
+enwiki	User:Bradv/splitpreview.js
+enwiki	User:Ilmari Karonen/nfurbacklink.js
+enwiki	User:Lilac Soul/dabsolve.js
+enwiki	User:Ilmari Karonen/ifdthumbnails.js
+enwiki	User:Opencooper/showKanji.js
+enwiki	User:Kephir/gadgets/jssand.js
+enwiki	User:Darkwind/DAVT.js
+enwiki	User:Cactus.man/Scripts/FixDiffWidth.js
+enwiki	User:Gerbrant/hidePane.js
+enwiki	User:Lupin/sectionkeys.js
+enwiki	User:Animum/moveRV.js
+enwiki	User:DannyS712/New pages feed.js
+enwiki	User:Begoon/addUploadsLink.js
+enwiki	User:Suffusion of Yellow/mark-reverted.js
+enwiki	User:Alex 21/script-linecolour.js
+enwiki	User:Pythoncoder/Scripts/voteSymbols.js
+enwiki	User:Danski454/WhoisSidebar.js
+enwiki	User:Dudemanfellabra/ReorderNRHPlist.js
+enwiki	User:Enterprisey/strike-archived.js
+enwiki	User:Ahecht/Scripts/CVD.js
+enwiki	User:Evad37/FFDcloser.js
+enwiki	User:Lourdes/TFAhistorylink.js
+enwiki	User:Danski454/undo-move.js
+enwiki	User:Yair rand/HistoryView.js
+enwiki	User:Dschwen/MegapixelDisplay.js
+enwiki	User:Utcursch/Migrate Infobox Indian Jurisdiction to Infobox settlement/main.js
+enwiki	User:Czar/closexfd.js
+enwiki	User:Nihiltres/assesslinks.js
+enwiki	User:Bility/statusupdate.js
+enwiki	User:Porchcorpter/rollback.js
+enwiki	User:Nux/wp sk.js
+enwiki	User:Ryan Vesey/sidebar.js
+enwiki	User:Technical 13/Scripts/Gadget-veditLinks.js
+enwiki	User:Nischayn22/OCLC.js
+enwiki	User:Cacycle/wikiWatch.js
+enwiki	User:CBM/quickpreview.js
+enwiki	User:Quarl/show diff since.js
+enwiki	User:Cactus.man/Scripts/Tabs.js
+enwiki	User:Cactus.man/Scripts/PurgeTab.js
+enwiki	User:Animum/headers.js
+enwiki	User:Zocky/CategoryBrowser.js
+enwiki	User:Lupin/listsince.js
+enwiki	User:SD0001/T-Watch.js
+enwiki	User:BrandonXLF/HotDefaultSort.js
+enwiki	User:SD0001/RFUD-helper.js
+enwiki	User:Enterprisey/section-redir-note.js
+enwiki	User:Evad37/OneClickArchiver.js
+enwiki	User:Beetstra/Gadget-Spam-whitelist-Handler.js
+enwiki	User:Sam Sailor/Scripts/WRStitle.js
+enwiki	User:Danski454/code-link.js
+enwiki	User:Alex 21/script-seriesoverview.js
+enwiki	User:Enterprisey/watchlist-notice.js
+enwiki	User:קיפודנחש/searchPersistence.js
+enwiki	User:Enterprisey/userinfo.js
+enwiki	User:Remember the dot/Syntax highlighter.js
+enwiki	User:Oshwah/NewUserPatrol.js
+enwiki	User:Ais523/adminrights-admins.js
+enwiki	User:Voice of All/RC/monobook.js
+enwiki	User:Danski454/goToTop.js
+enwiki	User:Erutuon/scripts/imageSize.js
+enwiki	User:Equazcion/UniversalTransclusionPreviews.js
+enwiki	User:Equazcion/RemoveMarkAll.js
+enwiki	User:Mr.Z-man/autopatrol.js
+enwiki	User:Drilnoth/sampleeditlinks.js
+enwiki	User:Dixtosa/userscriptInterwikiLink.js
+enwiki	User:Equazcion/BetterTwinklePrefs.js
+enwiki	User:Equazcion/ExperiencedEditorPack.js
+enwiki	User:Topaz/usermessagechanger.js
+enwiki	User:Δ/Copyvio Detection Candidates.js
+enwiki	User:Lupin/watchlistDumper.js
+enwiki	User:Kangaroopower/AjaxRC.js
+enwiki	User:Yair rand/interwikiwatchlist2.js
+enwiki	User:Voice of All/adminnolupin/monobook.js
+enwiki	User:Flyingidiot/buttons.js
+enwiki	User:EpochFail/mrclean.js
+enwiki	User:Allstarecho/autoarchive.js
+enwiki	User:Lupin/watchlistfilter.js
+enwiki	User:Lupin/editblind.js
+enwiki	User:MJL/Archer.js
+enwiki	User:SD0001/draft-sort-burst.js
+enwiki	User:BrandonXLF/SubpageMover.js
+enwiki	User:Alex 21/script-episodetable.js
+enwiki	User:Alex 21/script-tablecolour.js
+enwiki	User:DannyS712/Redirectify.js
+enwiki	User:The Voidwalker/alwaysEditSectionLink.js
+enwiki	User:Mr. Stradivarius/gadgets/SignpostTagger.js
+enwiki	User:TachyonJack/gTranslate.js
+enwiki	User:Frietjes/masspurge.js
+enwiki	User:Dl2000/DateFix.js
+enwiki	User:Anomie/fix-tab-text.js
+enwiki	User:Ale jrb/Scripts/waLib.js
+enwiki	User:Amalthea (bot)/userhighlighter.js/sysop.js
+enwiki	User:SoledadKabocha/copySectionLink.js
+enwiki	User:DannyS712/SectionMover.js
+enwiki	User:Manishearth/orphantabs.js
+enwiki	User:Ale jrb/Scripts/contreverse.js
+enwiki	User:Writ Keeper/Scripts/autoCloser.js
+enwiki	User:Fred Gandt/userResourceManager.js
+enwiki	User:Huji/Gadget-intropreload.js
+enwiki	User:Zellfaze/expandEdit.js
+enwiki	User:Magnus Manske/add fist links.js
+enwiki	User:MusikAnimal/previewUserboxes.js
+enwiki	User:Topaz/enhanceduserpage.js
+enwiki	User:Ais523/contribcalendar.js
+enwiki	User:Quarl/rollback.js
+enwiki	User:Agentsoo/dpl.js
+enwiki	User:Gerbrant/edit/linksInDiff.js
+enwiki	User:Splarka/ajaxmassrollback.js
+enwiki	User:Quarl/watchlist.js
+enwiki	User:Pyrospirit/scriptpackage.js
+enwiki	User:Ilmari Karonen/godmode-light.js
+enwiki	User:AzaToth/liveclock.js
+enwiki	User:Daduxing/familytree.js
+enwiki	User:Alex 21/script-categorypagelinks.js
+enwiki	User:Timotheus Canens/acimplnotes.js
+enwiki	User:Evad37/XFDcloser/v3.js
+enwiki	User:Equazcion/SafetyEdit.js
+enwiki	User:DannyS712/SectionRemover.js
+enwiki	User:Writ Keeper/Scripts/sectionLinkShortener.js
+enwiki	User:Enterprisey/mark-join-date.js
+enwiki	User:Evad37/TFDcloser.js
+enwiki	User:Enterprisey/req-helper.js
+enwiki	User:फ़िलप्रो/script/EN-IN.js
+enwiki	User:Technical 13/Scripts/admin eye.js
+enwiki	User:The Voidwalker/centralAuthLink.js
+enwiki	User:Bradv/SearchLinks.js
+enwiki	User:Writ Keeper/Scripts/blockDefaults.js
+enwiki	User:Writ Keeper/Scripts/logoutConfirm.js
+enwiki	User:Writ Keeper/rollbackSummary.js
+enwiki	User:TheDJ/ActualLivePreview.js
+enwiki	User:Ohconfucius/test/Sources.js
+enwiki	User:Anne drew Andrew and Drew/WatchingIndicator.js
+enwiki	User:Technical 13/SandBox/OneClickArchiver.js
+enwiki	User:Remember the dot/ISO date format unifier.js
+enwiki	User:MusikAnimal/confirmationRollback-mobile.js
+enwiki	User:Enterprisey/AFCFFU.js
+enwiki	User:CBM/stubtagtab.js
+enwiki	User:Splarka/ajaxbatchdelete.js
+enwiki	User:Magnus Manske/fixdisambig.js
+enwiki	User:X!/hidehugglecontribs.js
+enwiki	User:J.delanoy/newpage.js
+enwiki	User:DerHexer/revert.js
+enwiki	User:Cactus.man/Scripts/ExtraEditButtons.js
+enwiki	User:JGMalcolm/SimpleLightbox.js
+enwiki	User:Ilmari Karonen/sigdash.js
+enwiki	User:Quarl/toolbox edit count.js
+enwiki	User:DavidWS/afdvote2.js
+enwiki	User:Rjd0060/OTRS.js
+enwiki	User:Md gilbert/vte.js
+enwiki	User:Animum/twinkledelimages.js
+enwiki	User:Alex 21/script-categoriessort.js
+enwiki	User:PrimeHunter/Search sort.js
+enwiki	User:Enterprisey/short-tab-titles.js
+enwiki	User:Trappist the monk/HarvErrors.js
+enwiki	User:DannyS712/Subcategories.js
+enwiki	User:DannyS712/ExpandHistory.js
+enwiki	User:ZLEA/Dashboard.js
+enwiki	User:Þjarkur/CleanDiffURLs.js
+enwiki	User:Pythoncoder/Scripts/userHighlighter.js
+enwiki	User:Anne drew Andrew and Drew/admintagger.js
+enwiki	User:Þjarkur/Highlight recently added text.js
+enwiki	User:Opencooper/talkCount.js
+enwiki	User:Ohconfucius/script/foreigndates.js
+enwiki	User:Timotheus Canens/massunblock.js
+enwiki	User:Alex 21/script-tvepisoderatings.js
+enwiki	User:Mattflaschen/Compare link.js
+enwiki	User:BethNaught/hideSectionDesktop.js
+enwiki	User:Ilmari Karonen/unwatch.js
+enwiki	User:BrandonXLF/MobileView.js
+enwiki	User:Abelmoschus Esculentus/SATG.js
+enwiki	User:Dudemanfellabra/UpdateNRHPProgress.js
+enwiki	User:R3m0t/handywatch.js
+enwiki	User:PerfektesChaos/js/listPageOptions/r.js
+enwiki	User:Evano1van/ProjectTagger.js
+enwiki	User:Danski454/hotcat-summary.js
+enwiki	User:Fred Gandt/responsiveHistoryCompare.js
+enwiki	User:Epicgenius/commonshelperlink.js
+enwiki	User:Epicgenius/safetyedit.js
+enwiki	User:PleaseStand/prevnext.js
+enwiki	User:DannyS712/hide.js
+enwiki	User:Anomie/watchlist-change-style-selector.js
+enwiki	User:Numbermaniac/goToBottom.js
+enwiki	User:GoldenRing/generate-diffs.js
+enwiki	User:AuburnPilot/csd.js
+enwiki	User:Freaksock/image fun.js
+enwiki	User:Technical 13/Scripts/OrphanStatus.js
+enwiki	User:Legoktm/com2.js
+enwiki	User:Writ Keeper/Scripts/contribsHistory.js
+enwiki	User:Equazcion/userinfo.js
+enwiki	User:Zocky/LanguageLinks.js
+enwiki	User:Amalthea/MakeRollbacker.js
+enwiki	User:Genewikiplus/SWL infobox.js
+enwiki	User:Technical 13/Scripts/Enhanced "What links here".js
+enwiki	User:Quarl/auto summary.js
+enwiki	User:Quarl/autofocus.js
+enwiki	User:Quarl/afd vote.js
+enwiki	User:Quarl/show diff last.js
+enwiki	User:Quarl/autoafd.js
+enwiki	User:Quarl/nav afd.js
+enwiki	User:Quarl/popups.js
+enwiki	User:Quarl/userscript.js
+enwiki	User:Quarl/wikiwatch.js
+enwiki	User:Quarl/alexafy.js
+enwiki	User:Quarl/autocloseafd.js
+enwiki	User:Quarl/location canonicalize.js
+enwiki	User:Quarl/purge.js
+enwiki	User:GeorgeMoney/csd.js
+enwiki	User:Nohat/IPA.js
+enwiki	User:Quarl/md5.js
+enwiki	User:Quarl/date canonicalize.js
+enwiki	User:Quarl/coor canonicalize.js
+enwiki	User:Quarl/watchbutton.js
+enwiki	User:Quarl/external editor.js
+enwiki	User:Quarl/newmessages.js
+enwiki	User:Quarl/hide own.js
+enwiki	User:Quarl/directredirect.js
+enwiki	User:Ilmari Karonen/userboxes.js
+enwiki	User:Quarl/smartsubmit.js
+enwiki	User:Quarl/autotag.js
+enwiki	User:Quarl/toolbox logs.js
+enwiki	User:Quarl/edit top link.js
+enwiki	User:Amalthea/VectorMenuToTabs.js
+enwiki	User:Quarl/unwatch.js
+enwiki	User:HelloAnnyong/sockblock.js
+enwiki	User:Voice of All/Backlog/monobook.js
+enwiki	User:Bellezzasolo/Scripts/ajaxrollsum.js
+enwiki	User:Enterprisey/search-links.js
+enwiki	User:PrimeHunter/Subpages.js
+enwiki	User:DannyS712/Readonly.js
+enwiki	User:Titodutta/scripts/SearchHelper.js
+enwiki	User:Djsasso/SimpleWPTab.js
+enwiki	User:Alex 21/script-formatdates.js
+enwiki	User:Magicpiano/NRBot/NRHPstats.js
+enwiki	User:Reinischmax/IABooks.js
+enwiki	User:Enterprisey/diff-context.js
+enwiki	User:The Voidwalker/histFilter.js
+enwiki	User:BrandonXLF/GlobalPrefs.js
+enwiki	User:Enterprisey/superjump.js
+enwiki	User:Danski454/wikidata Qnum.js
+enwiki	User:RealFakeKim/Scripts/pageInfo.js
+enwiki	User:DannyS712/PermaLinkSection.js
+enwiki	User:BrandonXLF/NoRedirect.js
+enwiki	User:Anomie/diffcur.js
+enwiki	User:MJL/textDisallow.js
+enwiki	User:SD0001/UnassessedArticleLinks.js
+enwiki	User:DannyS712/short-tabs.js
+enwiki	User:DannyS712/ContribSearch.js
+enwiki	User:Gary/highlight my username in history.js
+enwiki	User:Þjarkur/Show number of active watchers & monthly views on every page.js
+enwiki	User:Enterprisey/hover-edit-section.js
+enwiki	User:Gary King/smaller templates.js
+enwiki	User:TheDragonFire/scripts/steamroller.js
+enwiki	User:Writ Keeper/Scripts/markBlocked.js
+enwiki	User:Zhaofeng Li/Scratchpad.js
+enwiki	User:Magnus Manske/insertref.js
+enwiki	User:Ale jrb/sandbox.js
+enwiki	User:Hoo man/instantNewPagePatrol.js
+enwiki	User:Henrik/js/dyk-notifier.js
+enwiki	User:Porchcrop/rollback.js
+enwiki	User:DannyS712/12Hours.js
+enwiki	User:Where/commentLocalize.js
+enwiki	User:Voice of All/Dates.js
+enwiki	User:V111P/WikiTranslTools/bg.js
+enwiki	User:Amalthea/MakeAutopatroller.js
+enwiki	User:Writ Keeper/Scripts/generalHistory.js
+enwiki	User:Plastikspork/datetools.js
+enwiki	User:Writ Keeper/Scripts/refTooltips.js
+enwiki	User:Cacycle/wikEd.user.js
+enwiki	User:Quarl/addlilink.js
+enwiki	User:TFOWR/easyDiff2.js
+enwiki	User:Quarl/diffsince.js
+enwiki	User:Func/wpfunc/nupatrol.js
+enwiki	User:MarkS/XEB/dev.js
+enwiki	User:Quarl/wikipageAfd.js
+enwiki	User:CWii/JB2script.js
+enwiki	User:Mdd4696/Image Autotagger/script.js
+enwiki	User:Ilmari Karonen/fixdiffwidth.js
+enwiki	User:Quarl/autoreplace.js
+enwiki	User:Quarl/datetime.js
+enwiki	User:Codehydro/Auto CSS image crop/script.js
+enwiki	User:Quarl/automod.js
+enwiki	User:Dantheox/watchlistdiff.js
+enwiki	User:Animum/easyblock.js/parseUsers.js
+enwiki	User:Cyde/monobook.js/dates.js
+enwiki	User:AzaToth/VoA.js
+enwiki	User:TheDJ/usagecollapse.js
+enwiki	User:Hans2520/MyWikiSpace.js
+enwiki	User:Lupin/redlinks.js
+enwiki	User:Headbomb/citations.js
+enwiki	User:BrandonXLF/WatchDoc.js
+enwiki	User:Amorymeltzer/osal.js
+enwiki	User:DannyS712/Global watchlist.js
+enwiki	User:Frietjes/addcheckforunknownparameters.js
+enwiki	User:Fred Gandt/subdueLinks.js
+enwiki	User:BrandonXLF/ShowRevisionID.js
+enwiki	User:Danski454/codeEditWindowSize.js
+enwiki	User:BrandonXLF/EasySummary.js
+enwiki	User:Enterprisey/ContribsTabVector.js
+enwiki	User:DannyS712/Pretty rights log.js
+enwiki	User:DannyS712/DYK claim.js
+enwiki	User:DannyS712/Draft re cat.js
+enwiki	User:MGA73/movetocommonsreview.js
+enwiki	User:MusikAnimal/nightpedia.js
+enwiki	User:MusikAnimal/Nightpedia.js
+enwiki	User:PAC2/chouette.js
+enwiki	User:BrandonXLF/FloatSide.js
+enwiki	User:Path slopu/scripts/TeahouseSidebar.js
+enwiki	User:Guywan/Scripts/HistoryHighlight.js
+enwiki	User:DannyS712/AjaxRollback.js
+enwiki	User:DannyS712/TagsManager.js
+enwiki	User:DannyS712/Refund requester.js
+enwiki	User:Download/Scripts/Prose tool.js
+enwiki	User:קיפודנחש/wathlistWatcher.js
+enwiki	User:BrandonXLF/ToBottom.js
+enwiki	User:Writ Keeper/Scripts/deorphanizer.js
+enwiki	User:MECU/br.js
+enwiki	User:The Earwig/permalink.js
+enwiki	User:Where next Columbus?/commonsmover.js
+enwiki	User:Technical 13/Scripts/NoThanks.js
+enwiki	User:Smith609/taxonomy.js
+enwiki	User:Danski454/cat-next.js
+enwiki	User:DannyS712/Userspace.js
+enwiki	User:Technical 13/Scripts/fileRedlinks.js
+enwiki	User:Splarka/watchimages.js
+enwiki	User:Writ Keeper/Scripts/watchlistDiffs.js
+enwiki	User:MZMcBride/hideentries.js
+enwiki	User:Zgreenberger/snap.js
+enwiki	User:Splarka/nulledit.js
+enwiki	User:Jj137/CloseMFD.js
+enwiki	User:Victuallers/QRcode.js
+enwiki	User:Yethrosh/LinkTranslator.js
+enwiki	User:Writ Keeper/Scripts/afcDialog.js
+enwiki	User:Gadget850/HarvErrors.js
+enwiki	User:קיפודנחש/watchlistScout.js
+enwiki	User:ErrantX/defaultsummaries.js
+enwiki	User:Rezonansowy/FloatHead.js
+enwiki	User:Ais523/sandbox.js
+enwiki	User:Zro/stubtagtab3.js
+enwiki	User:A930913/wave.js
+enwiki	User:Writ Keeper/Scripts/mickopedia.js
+enwiki	User:SiBr4/TemplateSearch.js
+enwiki	User:1exec1/dates.js
+enwiki	User:PerfektesChaos/js/WikiSyntaxTextMod/r.js
+enwiki	User:Arybolab/WikidataQuality.js
+enwiki	User:X!/forcepreview.js
+enwiki	User:BenjaminWillJS/AjaxRollback.js
+enwiki	User:Svick/DropDownToTabs.js
+enwiki	User:Epicgenius/nothanks.js
+enwiki	User:Quarl/wikitabs.js
+enwiki	User:Quarl/copyvio.js
+enwiki	User:Quarl/wistk.js
+enwiki	User:MarkS/Extra edit buttons/dev.js
+enwiki	User:Quarl/wikistate.js
+enwiki	User:Eric Shalov/tracker.js
+enwiki	User:Omegatron/monobook.js/reffixer.js
+enwiki	User:Oxymoron83/twinklewarnauto.js
+enwiki	User:Technical 13/Scripts/Gadget-LiveClock.js
+enwiki	User:Quarl/imdb canonicalize.js
+enwiki	User:Zocky/jsSandBox.js
+enwiki	User:Quarl/autoedit.js
+enwiki	User:Func/wpfunc/blockiphelp.js
+enwiki	User:Steel359/^demon.js
+enwiki	User:Lupin/evaluator.js
+enwiki	User:Gary King/expand hidden templates.js
+enwiki	User:Lupin/summarynag.js
+enwiki	User:Ilmari Karonen/unwatchredlinks.js
+enwiki	User:Lupin/wpus.js
+enwiki	User:Lupin/nichalp links.js
+enwiki	User:Waldyrious/formatcitations.js
+enwiki	User:Kephir/gadgets/rater/projects.js
+enwiki	User:BrandonXLF/TodoList.js
+enwiki	User:BrandonXLF/FindSources.js
+enwiki	User:BrandonXLF/FFUHelper.js
+enwiki	User:SD0001/RC-links-new-tab.js
+enwiki	User:BrandonXLF/CompareRevisions.js
+enwiki	User:Evad37/SPS.js
+enwiki	User:Mr. Stradivarius/gadgets/RandomRedirect.js
+enwiki	User:Guywan/Scripts/InsertShortcuts.js
+enwiki	User:DannyS712/Cat links.js
+enwiki	User:DannyS712/Examine edits.js
+enwiki	User:David Eppstein/HarvErrors.js
+enwiki	User:BrownHairedGirl/metadatatest.js
+enwiki	User:Epicgenius/sortcategories.js
+enwiki	User:Alex 21/script-seasonlist.js
+enwiki	User:ZLEA/EditRequestLinks.js
+enwiki	User:Erutuon/scripts/charinsert-names.js
+enwiki	User:Enterprisey/StatusChanger.js
+enwiki	User:Enterprisey/afch-master.js
+enwiki	User:Enterprisey/offset-history-link.js
+enwiki	User:Dinoguy1000/scripts/ISO date format unifier.js
+enwiki	User:Enterprisey/set-js-prefs.js
+enwiki	User:Technical 13/Scripts/Teahouse WikiLove.js
+enwiki	User:Dudemanfellabra/NRHPmap.js
+enwiki	User:PrimeHunter/Safe mode.js
+enwiki	User:Enterprisey/search-shortcuts.js
+enwiki	User:Epicgenius/forceineditbox.js
+enwiki	User:Guywan/Scripts/ConfirmLogout.js
+enwiki	User:Anomie/needsReview.js
+enwiki	User:Guywan/Scripts/BulletSort.js
+enwiki	User:Ahecht/Scripts/massmove.js
+enwiki	User:BrandonXLF/UpdateNotifications.js
+enwiki	User:BrandonXLF/ToTop.js
+enwiki	User:Amorymeltzer/logSwap.js
+enwiki	User:RossPatterson/ISO8601 to mmm dd yyyy.js
+enwiki	User:Colin M/scripts/JWB annotated.js
+enwiki	User:Writ Keeper/Scripts/peerReviewCloser.js
+enwiki	User:Magicpiano/NRBot/NRHPmap.js
+enwiki	User:Largoplazo/toplinks.js
+enwiki	User:Abelmoschus Esculentus/DiscussionCloser.js
+enwiki	User:Evad37/Custom GeoHack replacement.js
+enwiki	User:Technical 13/SandBox/ACCHelp.js
+enwiki	User:קיפודנחש/watchlistMark.js
+enwiki	User:Technical 13/Scripts/GANreview.js
+enwiki	User:Guywan/Scripts/LEA.js
+enwiki	User:Frietjes/citetrans.js
+enwiki	User:Theopolisme/whisperbackLink.js
+enwiki	User:LFaraone/autounhide.js
+enwiki	User:Abelmoschus Esculentus/ContribSearch.js
+enwiki	User:Uziel302/typos.js
+enwiki	User:Abelmoschus Esculentus/TagsManager.js
+enwiki	User:Bellezzasolo/Scripts/templatechanges.js
+enwiki	User:Writ Keeper/Scripts/legacyToolbar.js
+enwiki	User:Opencooper/domainRedirect.js
+enwiki	User:BrandonXLF/ToTopButton.js
+enwiki	User:Ohconfucius/test/formatgeneral.js
+enwiki	User:Ohconfucius/script/MOSNUM utils.js
+enwiki	User:Darkwind/stubtagtab2.js
+enwiki	User:Sander Säde/viewsource.js
+enwiki	User:Dereckson/translate.js
+enwiki	User:ReyBrujo/Tools/phs.js
+enwiki	User:Fred Gandt/chessDemo.js
+enwiki	User:Fred Gandt/linkRedirectTitle.js
+enwiki	User:Kangaroopower/ajaxMove.js
+enwiki	User:AndyZ/monobook.js/personalredirect.js
+enwiki	User:AndyZ/personalredirect.js
+enwiki	User:Wolfgang42/stubtagtab.js
+enwiki	User:CBM/ratemath.js
+enwiki	User:Ebe123/MtC/2.js
+enwiki	User:DannyS712/Section-strike.js
+enwiki	User:Ronhjones/pdcV2.js
+enwiki	User:Sunrise/Scripts/AjaxInlineDiffs.js
+enwiki	User:Equazcion/NewSectionSummary.js
+enwiki	User:Cumbril/RefConsolidate.js
+enwiki	User:Gimmetrow/replace.js
+enwiki	User:Anomie/rollback-prompt.js
+enwiki	User:Splarka/stalkcontribs.js
+enwiki	User:Edokter/FontSizer.js
+enwiki	User:Wikidudeman/tags.js
+enwiki	User:Splarka/fetchredirects.js
+enwiki	User:Barticus88/dpl.js
+enwiki	User:Quarl/auto testn.js
+enwiki	User:Magnus animum/count.js
+enwiki	User:Andy M. Wang/warn.js
+enwiki	User:Soxred93/forcepreview.js
+enwiki	User:RRuk/autocopyvio.js
+enwiki	User:PiRSquared17/rcexpander.js
+enwiki	User:Mdd4696/Image Autotagger/lib.js
+enwiki	User:Doge2048/Scripts/orangeBarTest.js
+enwiki	User:RockMFR/disambigeditintro.js
+enwiki	User:Matthew Yeager/renderboard.js
+enwiki	User:Acracia/wp-bibliographica.js
+enwiki	User:Spang/autowatch.js
+enwiki	User:PDD/markAdmins.js
+enwiki	User:Ilmari Karonen/edittoolstest.js
+enwiki	User:Writ Keeper/Scripts/backlinkWarner.js
+enwiki	User:Access Denied/toplinks.js
+enwiki	User:Ilmari Karonen/watchsince.js
+enwiki	User:Edokter/CompactTabs.js
+enwiki	User:Sross (Public Policy)/ambassadorwikilove.js
+enwiki	User:Joshua Scott/Scripts/pendingchangesbeta.js
+enwiki	User:Cacycle/watchlistSorter.js
+enwiki	User:GeorgeMoney/opencontribs.js
+enwiki	User:Interstellarity/Semi-protected edit requests.js
+enwiki	User:Majavah/Unslashifier.js
+enwiki	User:BrandonXLF/Invert.js
+enwiki	User:DemonDays64/Scripts/Dumb quotes.js
+enwiki	User:IceWelder/citationstyle.js
+enwiki	User:Dispenser/alttextexplorer.js
+enwiki	User:BrandonXLF/Autoref.js
+enwiki	User:DannyS712 test/Draft cleaner bot.js
+enwiki	User:DannyS712 test/PC bot.js
+enwiki	User:Suffusion of Yellow/batchtest-plus.js
+enwiki	User:DannyS712/Red files.js
+enwiki	User:Magicpiano/NRBot/UpdateNRHPProgress.js
+enwiki	User:Mr. Stradivarius/gadgets/SearchEditLink.js
+enwiki	User:DannyS712 test/DNC bot.js
+enwiki	User:Tokenzero/infoboxJournal.js
+enwiki	User:SD0001/sandbox4.js
+enwiki	User:PrimeHunter/Image tabs.js
+enwiki	User:Amorymeltzer/qrfpp.js
+enwiki	User:Anomie/file-toggle-transparency.js
+enwiki	User:DannyS712 test/Stub bot.js
+enwiki	User:SD0001/private-sandbox.js
+enwiki	User:Suffusion of Yellow/hidetopcontrib.js
+enwiki	User:DannyS712 test/Map bot.js
+enwiki	User:ST47/cu-log-links.js
+enwiki	User:Smith609/citations dev.js
+enwiki	User:Operator873/SimpleWPTab.js
+enwiki	User:Enterprisey/more-listing-items.js
+enwiki	User:Plastikspork/adminrights.js
+enwiki	User:SD0001/edits-since-decline.js
+enwiki	User:Matthiaspaul/DisamAssist.js
+enwiki	User:FR30799386/undo.js
+enwiki	User:DannyS712/Meta.js
+enwiki	User:Masumrezarock100/mobilemorelinks.js
+enwiki	User:DannyS712/errors.js
+enwiki	User:Danski454/UserLogToolbar.js
+enwiki	User:Wumbolo/pronouns.js
+enwiki	User:Path slopu/scripts/VPpanel.js
+enwiki	User:Timotheus Canens/massrestore.js
+enwiki	User:Snottywong/votetab.js
+enwiki	User:Dudemanfellabra/NRHPProgressHistory.js
+enwiki	User:FlightTime/OneClickArchiver.js
+enwiki	User:Guywan/Scripts/RefCruncher.js
+enwiki	User:Sam Sailor/Scripts/Tidy citations.js
+enwiki	User:CAPTAIN MEDUSA/DYK.js
+enwiki	User:John Vandenberg/switch editor 2.js
+enwiki	User:BethNaught/exportUserOptions.js
+enwiki	User:Czar/delsort+findvgsources.js
+enwiki	User:SuperHamster/statuschanger.js
+enwiki	User:FlightTime/confirm-logout.js
+enwiki	User:SoledadKabocha/badAnchorWarning.js
+enwiki	User:Sam Sailor/Scripts/CloseRMnac.js
+enwiki	User:Sam Sailor/Scripts/autoFormatterSettings.js
+enwiki	User:Rhododendrites/scripts/delsort-monobook-all.js
+enwiki	User:Magicpiano/NRBot/ReorderNRHPlist.js
+enwiki	User:Jcgoble3/SectionInput.js
+enwiki	User:Amorymeltzer/CatListMainTalkLinks.js
+enwiki	User:Zackmann08/unwatch deleted.js
+enwiki	User:Evad37/timeless-newMessageHighlight.js
+enwiki	User:The Transhumanist/RedlinksRemover.js
+enwiki	User:FT2/scripts/previewrefs.js
+enwiki	User:BrandonXLF/WhatLinksHere.js
+enwiki	User:MC10/defaultsummaries.js
+enwiki	User:Download/Scripts/Fancruft tool.js
+enwiki	User:Danski454/ToggleSmall.js
+enwiki	User:Lar/moretabs/monobook.js
+enwiki	User:Lar/DYK/monobook.js
+enwiki	User:Ilmari Karonen/signcheck.js
+enwiki	User:Anne drew Andrew and Drew/ScriptSorter.js
+enwiki	User:Sander Säde/assess.js
+enwiki	User:MusikAnimal/spamublock-toolbox.js
+enwiki	User:MastCell/el-search.js
+enwiki	User:SoledadKabocha/enterInSummaryPreviews.js
+enwiki	User:John Vandenberg/switch editor.js
+enwiki	User:DannyS712/RandomAfC.js
+enwiki	User:Opencooper/IPtoEmoji.js
+enwiki	User:Nitobus/div.GoogleMap.js
+enwiki	User:Danski454/unwatch.js
+enwiki	User:Lightmouse/monobook.js/test script.js
+enwiki	User:Evad37/CFDcloser.js
+enwiki	User:John254/AFD closure/monobook.js
+enwiki	User:Zyxw/autoFormatterSettings.js
+enwiki	User:Thespaceface/ImperialFirst.js
+enwiki	User:ProgrammingGeek/afc-sidebar.js
+enwiki	User:Amorymeltzer/seventabs.js
+enwiki	User:DannyS712/communicator.js
+enwiki	User:Theo's Little Bot/afch/afchelper.js
+enwiki	User:Writ Keeper/Scripts/selfTalkbackLink.js
+enwiki	User:Zyxw/autoFormatter.js
+enwiki	User:Evad37/showhardspaces.js
+enwiki	User:Erutuon/scripts/gadgets-definition.js
+enwiki	User:Gimmetrow/dynabars.js
+enwiki	User:Amorymeltzer/ReverseMarked.js
+enwiki	User:PerfektesChaos/js/lintHint/d.js
+enwiki	User:Poccil/Automation.js
+enwiki	User:Olliminatore/shCore.js
+enwiki	User:Gerbrant/edit/regexReplace.js
+enwiki	User:Ohconfucius/test/MOSNUM dates.js
+enwiki	User:Fred Gandt/sectionFooters.js
+enwiki	User:Ais523/watchlistei.js
+enwiki	User:Porchcorpter/rollbackSum.js
+enwiki	User:MER-C/payattention.js
+enwiki	User:Abelmoschus Esculentus/AjaxRollback.js
+enwiki	User:Quarl/nav custom.js
+enwiki	User:Gerbrant/fw.js
+enwiki	User:Bawolff/test-mode.js
+enwiki	User:Avichai/popups.js
+enwiki	User:Barticus88/edit section zero.js
+enwiki	User:2D/afdvote2.js
+enwiki	User:This, that and the other/cleanupCleanup.js
+enwiki	User:Misza13/godmode-light.js
+enwiki	User:Jsimlo/shortcuts-dev.js
+enwiki	User:Brackenheim/markAdmins.js
+enwiki	User:Dispenser/Checklinks/json.js
+enwiki	User:FR30799386/communicator.js
+enwiki	User:Interiot/js/RealTitle.js
+enwiki	User:Pyrospirit/rollbacksummary.js
+enwiki	User:Manishearth/editns.js
+enwiki	User:EcceNux/replylinks.js
+enwiki	User:HectorMoffet/OfferToHideImages.js
+enwiki	User:Quarl/sandbox.js
+enwiki	User:Jj137/stats.js
+enwiki	User:The sock that should not be/sidebars.js
+enwiki	User:Proteins/checkALTtext.js
+enwiki	User:Proteins/followrandomlinkonpage.js
+enwiki	User:Tiny plastic Grey Knight/scripts/suldropdown.js
+enwiki	User:Pb30/Delsort tab/delsort.js
+enwiki	User:Voice of All/RC/nolupin/monobook.js
+enwiki	User:Bluemoose/monobook.js/catkey.js
+enwiki	User:That Guy, From That Show!/wikipage.js
+enwiki	User:That Guy, From That Show!/advanced sig.js
+enwiki	User:Splarka/lifilter.js
+enwiki	User:Dr pda/generatelist.js
+enwiki	User:Elph/ArticleTranslatorar.js
+enwiki	User:Omni Flames/stubtag.js
+enwiki	User:Bob/script/hideyellowboxes.js
+enwiki	User:Slevinski/signwriting viewer.js
+enwiki	User:Writ Keeper/Scripts/rollbackConfirm.js
+enwiki	User:The Transhumanist/ViewAsOutline-Category.js
+enwiki	User:That Guy, From That Show!/sandbox.js
+enwiki	User:Enterprisey/falsePositiveHelper.js
