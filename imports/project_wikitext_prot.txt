@@ -1,0 +1,32 @@
+enwiki	Wikipedia:WikiProject User scripts/Scripts/AutoAFD.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/Autocopyvio.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/hideOwn.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/test-n.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/CloseAFD.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/warn.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/CleanupTab.js
+enwiki	Wikipedia:WikiProject Deletion sorting/delsort.js
+enwiki	Wikipedia:Main Page/searchfocus.js
+enwiki	Wikipedia:AutoEd/core.js
+enwiki	Wikipedia:AutoEd/unicodify.js
+enwiki	Wikipedia:AutoEd/basic.js
+enwiki	Wikipedia:AutoEd/isbn.js
+enwiki	Wikipedia:AutoEd/wikilinks.js
+enwiki	Wikipedia:AutoEd/htmltowikitext.js
+enwiki	Wikipedia:AutoEd/headlines.js
+enwiki	Wikipedia:AutoEd/unicodecontrolchars.js
+enwiki	Wikipedia:AutoEd/templates.js
+enwiki	Wikipedia:AutoEd/tablestowikitext.js
+enwiki	Wikipedia:AutoEd/wikichecker.js
+enwiki	Wikipedia:AutoEd/extrabreaks.js
+enwiki	Wikipedia:AutoEd/fullwidth.js
+enwiki	Wikipedia:AutoEd/whitespace.js
+enwiki	Wikipedia:AutoEd/formatter.js
+enwiki	Wikipedia:AutoEd/complete.js
+enwiki	Wikipedia:AutoEd/links.js
+enwiki	Wikipedia:Dazzle!/code.js
+enwiki	Wikipedia:AutoEd/unicodehex.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/WikiBreak Enforcer/script.js
+enwiki	Wikipedia:WikiProject User scripts/Scripts/Edit Top.js
+enwiki	Wikipedia:Twinkle/Update to v2.0/notice.js
+enwiki	Wikipedia:Igloo/gloo.js
