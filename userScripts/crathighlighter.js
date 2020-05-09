@@ -60,7 +60,7 @@ var main = function(data) {
 						if (mwtitle.getNamespaceId() === -1) user = user.replace('Contributions/','');
 						$.each(highlight_order, function(_ix, ug) {
 							if(data[ug][user] === 1) {
-								link.attr("class", "userhighlighter_" + ug);
+								link.addClass("userhighlighter_" + ug);
 								return false;
 							}
 						});
