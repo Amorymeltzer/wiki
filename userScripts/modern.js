@@ -129,7 +129,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		importScript('User:Amorymeltzer/logSwap.js'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
 		/* falls through */
 	case 'Userrights':
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=929485616&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/links-in-logs.js&oldid=955857844&action=raw&ctype=text/javascript'); //[[User:Enterprisey/links-in-logs.js]]
 		break;
 	case 'Whatlinkshere':
 		//Add history and delete links
