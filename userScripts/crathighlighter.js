@@ -82,9 +82,9 @@ var main = function(data) {
 	} catch(e) {
 		console.error('crathighlighter: failed to parse cached json object', e.message);
 	}
-	var cache_hours = window.cache_hours || 1;
-	cache_hours *= 60*60*10000; // milliseconds
-	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > cache_hours) {
+	var cache_len = window.cache_hours || 1;
+	cache_len *= 60*60*1000; // milliseconds
+	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > cache_len) {
 		crathighlighterdata = {};
 		var promises = [];
 		$.each(highlight_order, function(idx, perm) {
