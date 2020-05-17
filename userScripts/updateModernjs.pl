@@ -23,6 +23,9 @@ use File::Slurper qw(write_text);
 my $js = 'modern.js';
 if (@ARGV == 1) {
   $js = $ARGV[0] if -e $ARGV[0];
+} elsif (@ARGV >= 2) {
+  print colored ['red'], "Only one file at a time please!\n";
+  exit 1;
 }
 
 # Make sure we have stuff to process
