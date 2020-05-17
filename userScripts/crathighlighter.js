@@ -3,20 +3,24 @@
 // https://en.wikipedia.org/w/index.php?title=User:Amalthea/userhighlighter.js&oldid=437693511
 //
 // Features added:
-// - Apply to sysops, IA, CU, OS, 'crats', AC members
-// - JSON data (~36KB) is cached locally for an hour
+// - Apply to IA, CU, OS, 'crats', AC members in addition to sysops
+// - JSON data (~36KB) is cached locally for speed
 // - Allow custom order (set window.highlight_order)
 // - Allow custom caching length (set window.cache_hours)
+// - Allow application of all user classes (set window.all_groups)
+// - Preserve previous classes
 //
 // If you want to set a custom order, add something like
 // window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'interface-admin', 'sysop', 'steward'];
-// to your common.js file where you load this script
+// to your common.js file where you load this script.
 //
 // If you want different colors, add something like
 // .userhighlighter_bureaucrat {background-color: red !important}
 // to your common.css file.
 //
-// Not at all friendly to other styles, erases 'em all completely
+// If you want to apply multiple changes for OAusers with more than one group, add
+// window.all_groups = true;
+// to your common.js file where you load this script.
 //
 // Caching taken from:
 // Galobtter: https://en.wikipedia.org/w/index.php?title=User:Galobtter/scripts/adminhighlighter.js&oldid=910026828
@@ -24,6 +28,10 @@
 //<nowiki>
 
 var highlight_order = window.highlight_order || ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'interface-admin', 'sysop', 'steward'];
+var all_groups = window.all_groups || false;
+if (all_groups) {
+	highlight_order.reverse();
+}
 var main = function(data) {
 	var ADMINHIGHLIGHT_EXTLINKS = window.ADMINHIGHLIGHT_EXTLINKS || false;
 	var ADMINHIGHLIGHT_NAMESPACES = [-1,2,3];
@@ -61,7 +69,7 @@ var main = function(data) {
 						$.each(highlight_order, function(_ix, ug) {
 							if(data[ug][user] === 1) {
 								link.addClass("userhighlighter_" + ug);
-								return false;
+								return all_groups; // Exit on first match if false, continue if true
 							}
 						});
 					}
