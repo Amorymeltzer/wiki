@@ -92,7 +92,7 @@ var main = function(data) {
 	}
 	var cache_len = window.cache_hours || 1;
 	cache_len *= 60*60*1000; // milliseconds
-	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - crathighlighterdata.date) > cache_len) {
+	if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - new Date(crathighlighterdata.date).getTime()) > cache_len) {
 		crathighlighterdata = {};
 		var promises = [];
 		$.each(highlight_order, function(idx, perm) {
