@@ -170,7 +170,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=851214226&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
 			break;
 		case 'Special:Massmove':
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=912351042&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=958830220&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
 			break;
 		}
 	}
