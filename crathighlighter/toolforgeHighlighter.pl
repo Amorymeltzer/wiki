@@ -303,7 +303,7 @@ if (!$localChange && !$wikiChange) {
   if ($localChange) {
     $updateNote .= 'Files: Changes ';
     if ($localChange && $opts{c}) {
-      my $add = $repo->command(commit => '-m', "$abbrevs{message}");
+      my $add = $repo->command(commit => '--no-gpg-sign', '-m', "$abbrevs{message}");
       my @addE = $add->stderr->getlines();
       $add->close;
       if (scalar @addE) {
