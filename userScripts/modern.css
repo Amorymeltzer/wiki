@@ -16,29 +16,13 @@
 /* Stop the stupid overflow in previews and put a damn scrollbar in there */
 pre { overflow: auto; }
 
-/* Most of the basics stolen from [[User:MuZemike/monobook.css]] http://en.wikipedia.org/w/index.php?title=User:MuZemike/monobook.css&oldid=327174365 */
-
-div.pBody {
-    border-top-right-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-}
-
-#content {
-    border-top-left-radius: 0.75em;
-    border-bottom-left-radius: 0.75em;
-    border: 1px solid #AAAAAA;
-}
-
-#footer {
-    border-radius: 6px;
-}
-
 /*Handle extra buttons; see also [[Special:Permalink/839949276#Recent change breaks scroll in p-cactions menu]]*/
 /*Off for compatibility with easyblock*/
 /*#p-cactions {
         overflow-y: auto !important;
 }*/
 
+/* margin and border are kind of opposing each other, but it works */
 #p-cactions li {
     border-top: 2px solid lightgrey;
     border-left: 2px solid lightgrey;
@@ -47,8 +31,8 @@ div.pBody {
     position: relative;
     float: left;
     margin-right: -3px;
-    border-top-left-radius: .48em;
-    border-top-right-radius: .48em;
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
     font-size: 94%;
 }
 
@@ -68,10 +52,6 @@ div.pBody {
     background: white;
     border-top-right-radius: 1em;
 }*/
-
-#p-navigation, #p-search, #p-tb, #p-navclone, #p-twinkle, #p-info, #p-edit, #p-templatescript-0, #p-regex {
-    padding-top: 1px;
-}
 
 
 /* Shrink notification flyout to show more */
@@ -98,7 +78,7 @@ li#pt-optin-try, li#pt-acaibeta, li#pt-prefswitch-link-off, li#pt-sandbox, li#pt
 /* Make hidden categories smaller */
 div#mw-hidden-catlinks { font-size: 88%; }
 
-/* Turns off the edit saved message */
+/* Turn off the edit saved message */
 /* .postedit { display: none; } */
 
 /* Less space between sidebar items */
@@ -132,6 +112,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 /* make round corners for the rest */
+/* Should expand this to other inputs, as well as to ooui buttons */
 input[type="submit"] {
     background-color: #f9f9f9 !important;
     color: #aaa !important;
