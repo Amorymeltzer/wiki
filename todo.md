@@ -33,3 +33,9 @@
 * Fixes for Vector, see https://en.wikipedia.org/wiki/User:Js/6tabs-vector.js
 * Timeless?
 * Fix spacing for Monobook
+
+#### cratHighlighter/toolforge
+* Remove commit, no need
+    * Add files to the ignore list, just overwrite
+	* Maybe include changes in the log?  Or just file names
+    * *Maybe* add a note if the on-wiki is correct but the file is not?
