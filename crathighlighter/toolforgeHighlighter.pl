@@ -222,14 +222,14 @@ foreach (@rights) {
 
   # Check if local records have changed
   my $file = $_.'.json';
-  my $fileJSON = read_text($file);
+  my $fileJSON = read_text($file) or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   if ($fileState) {
     $localChange = 1;
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes
-    write_text($file, $queryJSON);
+    write_text($file, $queryJSON) or LOGDIE($ERRNO);
   }
 
   # Check if on-wiki records have changed
