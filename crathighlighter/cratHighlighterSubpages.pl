@@ -19,7 +19,7 @@ use JSON;
 
 # Parse commandline options
 my %opts = ();
-getopts('hpcN', \%opts);
+getopts('hPN', \%opts);
 usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
@@ -145,21 +145,10 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
-# Build abbreviation hash: slurp to string, split, assign (simper than loop).
-# Also stores commit message.  Only used if -c but want global
-my %abbrevs;
-if ($opts{c}) {
-  %abbrevs = split /\s+/, do { local $RS=undef; <DATA> };
-  $abbrevs{message} = "cratHighlighterSubpages: Update\n";
-}
-
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
   my (%queryHash, $note);
-
-  my $file = $_.'.json';
-  my $wiki = $_.'.wiki';
 
   # ArbCom isn't a real group so its membership couldn't be queried above.
   # This doesn't strictly need to be in the loop here, but no reason not to.
@@ -200,28 +189,15 @@ foreach (@rights) {
   my $queryJSON = $jsonTemplate->encode(\%queryHash);
 
   # Check if local records have changed
+  my $file = $_.'.json';
   my $fileJSON = read_text($file);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   if ($fileState) {
     $localChange = 1;
-    $note = "$file changed\n";
+    $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes
     write_text($file, $queryJSON);
-
-    # Stage, build edit summary
-    if ($opts{c}) {
-      my $add = $repo->command(add => "*$file");
-      my @addError = $add->stderr->getlines();
-      $add->close;
-      LOGDIE(@addError) if scalar @addError;
-
-      my $commitMessage = "\n$abbrevs{$_}";
-      $commitMessage .= buildSummary($fileAdded,$fileRemoved);
-      $abbrevs{message} .= $commitMessage;
-    } else {
-      $note .= "\tSkipping commit\n";
-    }
   }
 
   # Check if on-wiki records have changed
@@ -231,11 +207,11 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki.';
+    my $summary = buildSummary($wikiAdded,$wikiRemoved);
+    $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki'.$summary;
 
-    if ($opts{p}) {
-      my $editSummary = 'Update'.buildSummary($wikiAdded,$wikiRemoved);
-      $editSummary .=' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
+    if (!$opts{P}) {
+      my $editSummary = 'Update'.$summary.' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
       $note .= " Pushing now...\n";
@@ -263,14 +239,6 @@ if (!$localChange && !$wikiChange) {
   # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
   INFO('No updates needed');
   exit;
-}
-
-# Autocommit changes
-if ($opts{c}) {
-  my $add = $repo->command(commit => '-m', "$abbrevs{message}");
-  my @addError = $add->stderr->getlines();
-  $add->close;
-  LOGDIE(@addError) if scalar @addError;
 }
 
 if (!$opts{N}) {
@@ -363,22 +331,10 @@ sub oxfordComma {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-hpc]
-      -p Push live to wiki
-      -c Automatically commit changes in git
+Usage: $PROGRAM_NAME [-hPN]
+      -P Don't push live to wiki
       -N Don't attempt to use the system notifier
       -h Print this message
 USAGE
   exit;
 }
-
-
-## The lines below do not represent Perl code, and are not examined by the
-## compiler.  Rather, they are used by %abbrevs to build nice commit messages.
-__DATA__
-arbcom AC
-  bureaucrat B
-  checkuser CU
-  interface-admin IA
-  oversight OS
-  steward SW
