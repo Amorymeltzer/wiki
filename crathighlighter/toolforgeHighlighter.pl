@@ -323,6 +323,7 @@ sub gitName {
 sub gitStatus {
   return scalar $repo->run(status => '--porcelain');
 }
+
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
 sub cmpJSON {

@@ -12,7 +12,6 @@ use Getopt::Std;
 use English qw(-no_match_vars);
 
 use Log::Log4perl qw(:easy);
-use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
@@ -32,14 +31,6 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 			   file     => 'STDOUT',
 			   layout   => '%m{indent}%n' }
                         );
-
-# Check repo before doing anything risky
-my $repo = Git::Repository->new();
-if ($repo->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master') {
-  LOGEXIT('Not on master branch, quitting');
-} elsif (scalar $repo->run(status => '--porcelain')) {
-  LOGEXIT('Repository is not clean, quitting');
-}
 
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
