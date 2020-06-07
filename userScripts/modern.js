@@ -555,8 +555,7 @@ function loadFunct(){
 	$('li#pt-userpage a').text('Amory');
 	// $('li#pt-preferences a').text('prefs');
 	// $('li#pt-mycontris a').text('contribs');
-	$('li#t-log a').text('User log');
-	$('li#t-userrights a').text('User rights');
+	$('li#t-userrights a').text('User groups');
 	$('li#ca-unprotect a').text('uprotect');
 	$('li#ca-undelete a').text('udelete');
 	$('li#ca-unwatch a').text('uwatch');
