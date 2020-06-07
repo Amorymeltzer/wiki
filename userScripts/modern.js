@@ -222,7 +222,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	*/
 	/*Articles and Drafts*/
 	if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 118)) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=672790910&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=961185441&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
 	}
 
 	/*Articles and Talk*/
