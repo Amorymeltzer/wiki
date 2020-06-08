@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use diagnostics;
 
-if (@ARGV != 1) {
+if (@ARGV != 1 || ! -e -f -r $ARGV[0]) {
   print "Input table required\n";
   exit;
 }
