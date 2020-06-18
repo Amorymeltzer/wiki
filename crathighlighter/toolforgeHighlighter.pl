@@ -228,8 +228,8 @@ foreach (@rights) {
   if ($fileState) {
     $localChange = 1;
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
-    # Write changes
-    write_text($file, $queryJSON) or LOGDIE($ERRNO);
+    # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
+    write_text($file, $queryJSON);
   }
 
   # Check if on-wiki records have changed
