@@ -297,7 +297,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			importScript('User:Amorymeltzer/qrfpp.js'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
 			//importScript('User:Timotheus Canens/spihelper.js'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=921967289&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=963999269&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
 			//[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			//Originally installed here to keep off certain pages but now installed via gadget
 			//mw.loader.load('ext.gadget.XFDcloser');
@@ -326,7 +326,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=956373819&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=865886460&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=962933313&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
 				/*User talks*/
 				if (mw.config.get('wgNamespaceNumber') === '3') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
