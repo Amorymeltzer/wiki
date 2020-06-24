@@ -100,7 +100,7 @@ var main = function(data) {
 			if (perm === 'sysop') {
 				url += 'User:Amalthea_(bot)/userhighlighter.js/sysop.js';
 			} else {
-				url += 'User:Amorymeltzer/crathighlighter.js/' + perm + '.json';
+				url += 'User:AmoryBot/crathighlighter.js/' + perm + '.json';
 			}
 
 			var deferred = $.getJSON(url, function(data) {
