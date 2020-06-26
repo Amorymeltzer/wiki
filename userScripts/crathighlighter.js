@@ -18,7 +18,7 @@
 // .userhighlighter_bureaucrat {background-color: red !important}
 // to your common.css file.
 //
-// If you want to apply multiple changes for OAusers with more than one group, add
+// If you want to apply multiple changes for users with more than one group, add
 // window.all_groups = true;
 // to your common.js file where you load this script.
 //
