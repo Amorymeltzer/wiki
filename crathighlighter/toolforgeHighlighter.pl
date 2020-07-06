@@ -19,7 +19,7 @@ use File::Slurper qw(read_text write_text);
 use JSON;
 
 
-my $scriptDir = $FindBin::Bin;	# Directory of this script
+my $scriptDir = $FindBin::Bin; # Directory of this script
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
@@ -179,6 +179,7 @@ foreach my $i (0..scalar @pages - 1) {
 
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
+my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
   my (%queryHash, $note);
 
@@ -227,6 +228,8 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
+    push @totAddedFiles, $fileAdded;
+    push @totRemovedFiles, $fileRemoved;
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
@@ -239,6 +242,8 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
+    push @totAddedPages, $wikiAdded;
+    push @totRemovedPages, $wikiRemoved;
     my $summary = buildSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki'.$summary;
 
@@ -278,6 +283,12 @@ if (!$localChange && !$wikiChange) {
   # Local changes
   if ($localChange) {
     $updateNote .= "Files: updated\n";
+    if (@totAddedFiles) {
+      $updateNote .= "\tAdded: ".oxfordComma(@totAddedFiles);
+    }
+    if (@totRemovedFiles) {
+      $updateNote .= "\tRemoved: ".oxfordComma(@totRemovedFiles);
+    }
   }
 
   # Notify on pushed changes
@@ -285,6 +296,12 @@ if (!$localChange && !$wikiChange) {
     $updateNote .= 'Pages: ';
     if (!$opts{P}) {
       $updateNote .= 'updated';
+      if (@totAddedPages) {
+	$updateNote .= "\tAdded: ".oxfordComma(@totAddedPages);
+      }
+      if (@totRemovedPages) {
+	$updateNote .= "\tRemoved: ".oxfordComma(@totRemovedPages);
+      }
     } else {
       $updateNote .= 'not updated';
     }
