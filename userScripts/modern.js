@@ -155,7 +155,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=851213665&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
 			break;
 		case 'Special:Massdelete':
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=883804308&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=967665112&action=raw&ctype=text/javascript'); //[[User:Animum/massdelete.js]]
 			break;
 		case 'Special:Massrestore':
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=851214383&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massrestore.js]]
@@ -180,7 +180,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	  This will eventually devolve to Mainspace or not
 	*/
 	/*Not Special*/
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=919196814&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=967663975&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
 	var notifyByDefaultDec = true; //default is true
 	//var notifyByDefaultDel = true; //default is false
 	var notifyByDefaultPrd = true; //default is true
