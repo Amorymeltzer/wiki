@@ -103,6 +103,5 @@ var myDeclineReasons = new Array(
 
     ['C1', 'Category is populated or is otherwise allowed to be empty'],
 
-    ['T2', 'Not a blatant misrepresentation of policy'],
     ['T3', 'Not a substantial duplicate or hardcoded instance of another template']
 );
