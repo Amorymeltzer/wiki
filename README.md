@@ -3,7 +3,7 @@ Often perl, potentially frivolous
 
 #### enWiki
 ##### [`crathighlighter`](./crathighlighter/)
-Easily update json subpages of [User:Amorymeltzer/crathighlighter.js](https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter.js).  The script ([`cratHighlighterSubpages.pl`](./crathighlighter/cratHighlighterSubpages.pl)) is run regularly via cronjob.
+Easily update json subpages (under [User:AmoryBot](https://en.wikipedia.org/wiki/User:AmoryBot)) for [User:Amorymeltzer/crathighlighter](https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter).  The script ([`toolforgeHighlighter.pl`](./crathighlighter/toolforgeHighlighter.pl)) is run regularly on [Toolforge](https://wikitech.wikimedia.org/wiki/Portal:Toolforge).
 ##### [`sysopIndex`](./sysopIndex/)
 Creates an *h*-index-like metric for sysops, and includes some pretty graphs via R; see [User:Amorymeltzer/s-index](https://en.wikipedia.org/wiki/User:Amorymeltzer/s-index) for results.  Full instructions are available in the [README](./sysopIndex/README.md), but mainly uses a single shim, [sIndex.sh](./sysopIndex/sIndex.sh).
 ##### [`userScripts`](./userScripts/)
