@@ -228,8 +228,8 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    push @totAddedFiles, $fileAdded;
-    push @totRemovedFiles, $fileRemoved;
+    push @totAddedFiles, @{$fileAdded};
+    push @totRemovedFiles, @{$fileRemoved};
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
@@ -242,8 +242,8 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    push @totAddedPages, $wikiAdded;
-    push @totRemovedPages, $wikiRemoved;
+    push @totAddedPages, @{$wikiAdded};
+    push @totRemovedPages, @{$wikiRemoved};
     my $summary = buildSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki'.$summary;
 
@@ -283,10 +283,10 @@ if (!$localChange && !$wikiChange) {
   # Local changes
   if ($localChange) {
     $updateNote .= "Files: updated\n";
-    if (@totAddedFiles) {
+    if (scalar @totAddedFiles) {
       $updateNote .= "\tAdded: ".oxfordComma(@totAddedFiles);
     }
-    if (@totRemovedFiles) {
+    if (scalar @totRemovedFiles) {
       $updateNote .= "\tRemoved: ".oxfordComma(@totRemovedFiles);
     }
   }
@@ -296,10 +296,10 @@ if (!$localChange && !$wikiChange) {
     $updateNote .= 'Pages: ';
     if (!$opts{P}) {
       $updateNote .= 'updated';
-      if (@totAddedPages) {
+      if (scalar @totAddedPages) {
 	$updateNote .= "\tAdded: ".oxfordComma(@totAddedPages);
       }
-      if (@totRemovedPages) {
+      if (scalar @totRemovedPages) {
 	$updateNote .= "\tRemoved: ".oxfordComma(@totRemovedPages);
       }
     } else {
