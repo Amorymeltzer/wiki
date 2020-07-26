@@ -298,12 +298,16 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 			//importScript('User:Timotheus Canens/spihelper.js'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=963999269&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
+
 			//[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			//Originally installed here to keep off certain pages but now installed via gadget
 			//mw.loader.load('ext.gadget.XFDcloser');
 			/*Only for [[WP:AFC/R]]*/
 			if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+			} else if (mw.config.get('wgPageName') === 'Wikipedia:AutoWikiBrowser/Script') {
+				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=955080051&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
 			}
 		} else if (mw.config.get('wgNamespaceNumber') === 14) {
 			/*Categories*/
@@ -631,7 +635,6 @@ importScript('User:Amorymeltzer/test.js'); //[[User:Amorymeltzer/test.js]]
   importScript('User:Yair rand/HistoryView.js'); //[[User:Yair rand/HistoryView.js]] Visual hist with section headers, autodiffs.  Maybe edit for toggle?
   importScript('User:BethNaught/exportUserOptions.js'); //[[User:BethNaught/exportUserOptions.js]
   importScript('User:PrimeHunter/Source links.js'); //[[User:PrimeHunter/Source links.js]]
-  importScript('User:Joeytje50/JWB.js/load.js'); [[User:Joeytje50/JWB.js/load.js]], [[User:Joeytje50/JWB.js]], [[User:Joeytje50/JWB.js]], [[Wikipedia:AutoWikiBrowser/Script]]
   importScript('User:Kangaroopower/ajaxMove.js'); //[[User:Kangaroopower/ajaxMove.js]]
   importScript('User:Evad37/TextDiff.js'); //[[User:Evad37/TextDiff.js]]
   importScript('User:Pyrospirit/metadata/projectbanners.js'); //Busted with [[Wikipedia:Metadata gadget]] gadget at the moment [[User:Pyrospirit/metadata/projectbanners.js]]
