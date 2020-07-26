@@ -25,7 +25,8 @@ my $wiki = $opts{s} || 'en.wikipedia';
 my $diff = $opts{d} || 0;
 if (@ARGV) {
   if ($ARGV[0] eq 'test') {
-    $wiki = shift @ARGV;
+    $wiki = 'test.wikipedia';
+    shift @ARGV;
   }
   if (@ARGV && $ARGV[0] eq 'diff') {
     $diff = 1;
