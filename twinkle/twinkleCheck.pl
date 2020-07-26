@@ -20,7 +20,11 @@ if ($gs !~ /nothing to commit, working tree clean/) {
 }
 
 my %opts = ();
-getopts('s:d', \%opts);
+getopts('s:dh', \%opts);
+if ($opts{h}) {
+  print "-s en.wikipedia -d\n";
+  exit 1;
+}
 my $wiki = $opts{s} || 'en.wikipedia';
 my $diff = $opts{d} || 0;
 if (@ARGV) {
