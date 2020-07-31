@@ -278,7 +278,7 @@ if (!$localChange && !$wikiChange) {
   # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
   INFO('No updates needed');
 } else {
-  my $updateNote = "Toolforge updates\n";
+  my $updateNote = "Toolforge updates\n\n";
 
   # Local changes
   if ($localChange) {
@@ -297,10 +297,10 @@ if (!$localChange && !$wikiChange) {
     if (!$opts{P}) {
       $updateNote .= 'updated';
       if (scalar @totAddedPages) {
-	$updateNote .= "\tAdded: ".oxfordComma(@totAddedPages);
+	$updateNote .= "\nAdded: ".oxfordComma(@totAddedPages);
       }
       if (scalar @totRemovedPages) {
-	$updateNote .= "\tRemoved: ".oxfordComma(@totRemovedPages);
+	$updateNote .= "\nRemoved: ".oxfordComma(@totRemovedPages);
       }
     } else {
       $updateNote .= 'not updated';
