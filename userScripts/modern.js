@@ -323,11 +323,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		/*WP and all talks*/
 		if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=956495686&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=969902048&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; //Optional custom summary
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=965395861&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=970404641&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=962933313&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
