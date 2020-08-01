@@ -68,8 +68,7 @@ if (@ARGV != 0) {
     }
   }
 } else {
-  print "No files provided!\n";
-  exit 1;
+  push @files, 'modern.js';
 }
 # Push
 my $me = 'User:Amorymeltzer/';
