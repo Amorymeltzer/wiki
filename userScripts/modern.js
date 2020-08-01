@@ -91,7 +91,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 						   "<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						   "</span>");
 		$(document).on('click', '.mass_revdel_on', function() {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=954136889&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=970629911&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRevdel.js]]
 			$('#toggle_massrevdel').remove();
 			//Tighten/shorten massRevdel stuff
 			mw.loader.using(['mediawiki.util'], function() {
