@@ -926,8 +926,10 @@
 		if (templateName == "RFPP") {
 			if (response.replied== "true") {
 				txt = $textarea.val();
-				txt = txt.match(/\=\=.*\n.*\* ?\{\{pagelinks.*\n+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
-				txt = '; Reply to ' + txt[2];
+				txt = txt.match(/\=\=.*\n.*(?:\* ?\{\{pagelinks.*\n)+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
+				if (txt[2]) {
+					txt = '; Reply to ' + txt[2];
+				}
 			}
 		} else if (templateName == "AIV") {
 			if (response.code != 'fp') {
