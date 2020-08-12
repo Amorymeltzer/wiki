@@ -284,10 +284,10 @@ if (!$localChange && !$wikiChange) {
   if ($localChange) {
     $updateNote .= "Files: updated\n";
     if (scalar @totAddedFiles) {
-      $updateNote .= "\tAdded: ".oxfordComma(@totAddedFiles);
+      $updateNote .= "\tAdded: ".oxfordComma(@totAddedFiles)."\n";
     }
     if (scalar @totRemovedFiles) {
-      $updateNote .= "\tRemoved: ".oxfordComma(@totRemovedFiles);
+      $updateNote .= "\tRemoved: ".oxfordComma(@totRemovedFiles)."\n";
     }
   }
 
@@ -297,10 +297,10 @@ if (!$localChange && !$wikiChange) {
     if (!$opts{P}) {
       $updateNote .= 'updated';
       if (scalar @totAddedPages) {
-	$updateNote .= "\nAdded: ".oxfordComma(@totAddedPages);
+	$updateNote .= "\nAdded: ".oxfordComma(@totAddedPages)."\n";
       }
       if (scalar @totRemovedPages) {
-	$updateNote .= "\nRemoved: ".oxfordComma(@totRemovedPages);
+	$updateNote .= "\nRemoved: ".oxfordComma(@totRemovedPages)."\n";
       }
     } else {
       $updateNote .= 'not updated';
