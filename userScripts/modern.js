@@ -244,7 +244,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$("li.new[id|=ca-nstab]").length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=965566619&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=971804395&action=raw&ctype=text/javascript');
 			}
 		});
 	}
@@ -307,7 +307,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:EnterpriseyBot/AFCRHS.js&oldid=921218533&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (mw.config.get('wgPageName') === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=955080051&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=971570596&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
 			}
 		} else if (mw.config.get('wgNamespaceNumber') === 14) {
 			/*Categories*/
@@ -323,11 +323,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		/*WP and all talks*/
 		if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=969902048&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=971843536&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; //Optional custom summary
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=970404641&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=971888901&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=962933313&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
