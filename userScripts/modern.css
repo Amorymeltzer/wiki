@@ -68,6 +68,11 @@ pre { overflow: auto; }
 .mw-echo-ui-notificationItemWidget-content {
     padding-left: 0.5em;
 }
+/* Tighten padding, make icons bigger */
+#pt-notifications-alert .mw-echo-notifications-badge, #pt-notifications-notice .mw-echo-notifications-badge {
+    padding: 0 1em 0 1em;
+    height: inherit;
+}
 
 /* Hide notices/warnings/options that I don't need or want
 Some of these are likely quite outdated*/
