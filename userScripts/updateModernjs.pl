@@ -98,7 +98,14 @@ foreach my $url (@loaders) {
   # This always feels like it should be easier to understand visually than
   # json/xml, but it never is.
   my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
-  my %revisions = %{$response->{revisions}[0]};
+
+  # Guard against no found revisions
+  my $revs = $response->{revisions};
+  if (!$revs) {
+    print "No content revs found, maybe the page was moved or deleted?  Skipping...\n";
+    next;
+  }
+  my %revisions = %{${$revs}[0]};
   my $oldContent = $revisions{q{*}};
 
   # Store for later in hash of arrays
