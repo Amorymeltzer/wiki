@@ -83,7 +83,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); //[[User:Markhurd/hidetopcontrib.js]]
 		window.userHideAllSubsequent=true;
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=882368814&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRollback.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=976711884&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/massRollback.js]]
 
 		//Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 		//Script is immensely helpful, but the individual links and OS bolding are as well
@@ -330,7 +330,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=971888901&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=962933313&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=976247637&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
 				/*User talks*/
 				if (mw.config.get('wgNamespaceNumber') === '3') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
