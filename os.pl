@@ -8,7 +8,7 @@ use diagnostics;
 
 if (@ARGV != 1 || ! -e -f -r $ARGV[0]) {
   print "Input table required\n";
-  exit;
+  exit 1;
 }
 
 use URI::Escape;
