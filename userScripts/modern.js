@@ -290,7 +290,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		if (mw.config.get('wgNamespaceNumber') === 4) {
 			/*Wikipedia project space, not talk*/
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=882398530&action=raw&ctype=text/javascript'); //[[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); //[[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
 			importScript('User:Amorymeltzer/oldafd.js'); //[[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
 			importScript('User:Amorymeltzer/responseHelper.js' ); //[[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
 			importScript('User:Amorymeltzer/userRightsManager.js'); //[[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
