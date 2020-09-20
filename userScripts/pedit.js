@@ -16,7 +16,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	mw.loader.load('ext.gadget.Prosesize'); //[[Wikipedia:Prosesize]] at [[MediaWiki:Gadget-Prosesize.js]], rewritten from  [[User:Dr_pda/prosesize.js]]
 	mw.util.addPortletLink("p-edit", '//toolserver.org/~dispenser/view/Peer_reviewer#page:' + mw.config.get("wgPageName"), 'Peer review', 't-peer', "Peer review");
 	mw.util.addPortletLink("p-edit", "https://tools.wmflabs.org/refill/ng/result.php?page=" + encodeURIComponent(mw.config.get('wgPageName')) + "&defaults=y&wiki=en", "reFill 2", "t-reflinks" ); //[[User:Zhaofeng Li/reFill]], [[m:User:Zhaofeng_Li/Reflinks.js]], [[toollabs:refill]]
-	mw.loader.load("https://meta.wikimedia.org/w/index.php?title=User:Zhaofeng_Li/Reflinks.js&oldid=18773634&action=raw&ctype=text/javascript");
+	mw.loader.load('https://meta.wikimedia.org/w/index.php?title=User:Zhaofeng_Li/Reflinks.js&oldid=18773634&action=raw&ctype=text/javascript');
 	//    importScript('User:Lourdes/Backlinks.js'); //[[User:Lourdes/Backlinks.js]]
 	mw.util.addPortletLink("p-edit", '//edwardbetts.com/find_link/' + mw.config.get("wgPageName"), 'Find backlinks', 't-findlink', "Find potential backlinks for this page"); //[[User:Edward/Find link]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/duplinks-alt.js&oldid=975407468&action=raw&ctype=text/javascript'); //[[User:Evad37/duplinks-alt]], [[User:Evad37/duplinks-alt.js]] replaced [[User:Ucucha/duplinks.js]]

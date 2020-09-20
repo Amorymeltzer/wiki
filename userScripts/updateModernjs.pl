@@ -34,7 +34,8 @@ if (@ARGV == 1) {
 
 # Make sure we have stuff to process
 # Find all insteaces of mw.loader.load that target a specific revision
-my @loaders = `grep -io "mw\.loader\.load.*en\.wikipedia\.org.*&oldid=.*&action=" $js`;
+# Intentionally dumb, the project will be matched later
+my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $js`;
 
 if (!@loaders) {
   print colored ['red'], "No mw.loader.load lines to process in $js\n";
@@ -61,16 +62,24 @@ if ($conf{username} !~ '^Amorymeltzer') {
   exit 1;
 }
 
-
 ## Everything checks out
-# Open API and log in
-my $mw = MediaWiki::API->new({
-			      api_url => 'https://en.wikipedia.org/w/api.php'
-			     });
-$mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
-$mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
+# Build lookup hash for each project.  Overkill since I've only got like two
+# or three things that qualify, but makes this more useful.
+my %lookup;
+foreach (@loaders) {
+  chomp;
+  my $project = s/mw\.loader\.load\('\/\/(.*)\/w\/index.*/$1/r;
+  if ($lookup{$project}) {
+    push @{$lookup{$project}}, $_;
+  } else {
+    @{$lookup{$project}} = ($_);
+  }
+}
 
-# Start processing
+
+## Start processing
+# Items that need updating
+my %replacings;
 # Generic basis for each API query to get old revisions
 my %query = (
 	     action => 'query',
@@ -78,45 +87,53 @@ my %query = (
 	     rvlimit => 1,
 	     rvprop => 'content'
 	    );
-# Items that need updating
-my %replacings;
-foreach my $url (@loaders) {
-  chomp $url;
-  my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
-  my $oldID = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+foreach my $project (keys %lookup) {
+  # Open API and log in to each project
+  my $mw = MediaWiki::API->new({
+				api_url => "https://$project/w/api.php"
+			       });
+  $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
+  $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-  my $wikiPage = $mw->get_page({title => $title});
-  my $newID = $wikiPage->{revid};
-  next if !$oldID || !$newID || $oldID == $newID;
+  foreach my $url (@{$lookup{$project}}) {
+    chomp $url;
+    my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
+    my $oldID = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
 
-  # At least some difference exists, so we need to check it out
-  my $newContent = $wikiPage->{q{*}};
-  $query{titles} = $title;
-  $query{rvstartid} = $oldID;
-  my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    my $wikiPage = $mw->get_page({title => $title});
+    my $newID = $wikiPage->{revid};
+    next if !$oldID || !$newID || $oldID == $newID;
 
-  # This always feels like it should be easier to understand visually than
-  # json/xml, but it never is.
-  my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
+    # At least some difference exists, so we need to check it out
+    my $newContent = $wikiPage->{q{*}};
+    $query{titles} = $title;
+    $query{rvstartid} = $oldID;
+    my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
 
-  # Guard against no found revisions
-  my $revs = $response->{revisions};
-  if (!$revs) {
-    print "No content revs found, maybe the page was moved or deleted?  Skipping...\n";
-    next;
+    # This always feels like it should be easier to understand visually than
+    # json/xml, but it never is.
+    my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
+
+    # Guard against no found revisions
+    print "$title\n";
+    my $revs = $response->{revisions};
+    if (!$revs) {
+      print "No content revs found, maybe the page was moved or deleted?  Skipping...\n";
+      next;
+    }
+    my %revisions = %{${$revs}[0]};
+    my $oldContent = $revisions{q{*}};
+
+    # Store for later in hash of arrays
+    @{$replacings{$title}} = ($oldID, $newID);
+
+    # Getting bash to work from inside perl - whether by backticks, system, or
+    # IPC::Open3 - is one thing, but getting icdiff to work on strings of
+    # indeterminate length that each contain several special characters aka code
+    # is entirely different.  Writing to files is slower but easier.
+    write_text($oldID, $oldContent);
+    write_text($newID, $newContent);
   }
-  my %revisions = %{${$revs}[0]};
-  my $oldContent = $revisions{q{*}};
-
-  # Store for later in hash of arrays
-  @{$replacings{$title}} = ($oldID, $newID);
-
-  # Getting bash to work from inside perl - whether by backticks, system, or
-  # IPC::Open3 - is one thing, but getting icdiff to work on strings of
-  # indeterminate length that each contain several special characters aka code
-  # is entirely different.  Writing to files is slower but easier.
-  write_text($oldID, $oldContent);
-  write_text($newID, $newContent);
 }
 
 if (keys %replacings) {

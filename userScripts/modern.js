@@ -526,7 +526,7 @@ if (mw.config.get('wgAction') === 'history') {
 	//var ajaxPreviewButton = 'Ω'; //"preview" button text
 	//var ajaxDiffButton = 'Δ'; //"changes" button text
 
-	mw.loader.load('//he.wikipedia.org/w/load.php?modules=ext.gadget.autocomplete'); // [[User:ערן/autocomplete.js]], [[he:MediaWiki:Gadget-autocomplete.js]] Doesn't work with tab or beta syntax highlighter
+	mw.loader.load('//he.wikipedia.org/w/index.php?title=MediaWiki:Gadget-autocomplete.js&oldid=26575308&action=raw&ctype=text/javascript'); // [[User:ערן/autocomplete.js]], [[he:MediaWiki:Gadget-autocomplete.js]] Doesn't work with tab or beta syntax highlighter
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mabdul/saveandedit.js&oldid=953991602&action=raw&ctype=text/javascript'); //[[User:Mabdul/saveandedit.js]]
 	mw.loader.load('//tools-static.wmflabs.org/meta/scripts/pathoschild.templatescript.js'); //[[meta:TemplateScript]] Successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
 
