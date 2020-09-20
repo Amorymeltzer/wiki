@@ -199,9 +199,12 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=778745654&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
 	importScript('User:Amorymeltzer/pagemods.js'); //Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 
+	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=931925562&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); //[[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 		}
 	});
@@ -348,7 +351,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
   Including them in the above would make it too complex
   Or would require loading them multiple times in different places
   Instead, load them here in overly complex, inefficient, and redundant if statements
-  Basically, places where rollback/diffs exist, a username exists, or places with  wikilinks in dropdown menus
+  Basically, places where rollback/diffs exist, a username exists, or places with wikilinks in dropdown menus
 */
 /*MIXED*/
 if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions'
