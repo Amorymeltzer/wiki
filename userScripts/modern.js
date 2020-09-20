@@ -322,6 +322,13 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			if (imgs.length) {
 				mw.util.addPortletLink('p-cactions', 'http://tineye.com/search?url=' + encodeURIComponent(imgs[0].src), 'TinEye', 'ca-tineye');
 			}
+		} else if (mw.config.get('wgNamespaceNumber') === 8) {
+		    /* MediaWiki, but really just [[MediaWiki:Gadgets-definition]] */
+		    if (mw.config.get('wgPageName') === 'MediaWiki:Gadgets-definition') {
+			// Link and prettify gadgets [[User:Erutuon/scripts/gadgets-definition.js]], [[wikt:User:Erutuon/scripts/gadgets-definition.js]]
+			mw.loader.load('//en.wiktionary.org/w/index.php?title=User:Erutuon/scripts/gadgets-definition.js&oldid=51906780&action=raw&ctype=text/javascript');
+		    }
+		}
 		}//END else if LOOP but remain in not articles
 
 		/*WP and all talks*/
