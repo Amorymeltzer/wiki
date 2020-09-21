@@ -77,7 +77,7 @@ foreach (@loaders) {
 my %replacings;
 my %pagelookup;
 foreach my $project (sort keys %lookup) {
-  # Generic basis for each API query to get old revisions
+  # Generic basis for each API query, will get reused for individual pages
   my %query = (
 	       action => 'query',
 	       prop => 'revisions',
@@ -86,7 +86,8 @@ foreach my $project (sort keys %lookup) {
 	       # Better, even if it means I don't need to use each, which is cool
 	       formatversion => '2'
 	      );
-  @{$query{titles}} = (); # Initialize with empty array, easier than handling it below
+  # Initialize with empty array, easier than handling it below
+  @{$query{titles}} = ();
 
   # Prepare titles for bulk query
   foreach my $url (@{$lookup{$project}}) {
@@ -110,6 +111,10 @@ foreach my $project (sort keys %lookup) {
   my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
   my @pages = @{$response->{query}->{pages}};
 
+  # Prepare query for one-off queries
+  delete $query{titles};
+  $query{rvprop} .= '|content';
+
   # Parse and organize response data
   # Check each page
   foreach my $page (@pages) {
@@ -131,17 +136,9 @@ foreach my $project (sort keys %lookup) {
     next if !$oldID || !$newID || $oldID == $newID;
 
     # There are new differences, so let's diff 'em!
-    # Should probably deduplicate the base query FIXME TODO
     print "$title\n";
-    my %contentQuery = (
-			action => 'query',
-			prop => 'revisions',
-			revids => $oldID.q{|}.$newID,
-			rvprop => 'content|ids',
-			format => 'json',
-			formatversion => '2'
-		       );
-    my $contentResponse = $mw->api(\%contentQuery) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    $query{revids} = $oldID.q{|}.$newID;
+    my $contentResponse = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
     # Goddammit
     my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
 
