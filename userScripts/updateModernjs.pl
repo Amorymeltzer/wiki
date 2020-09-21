@@ -42,9 +42,8 @@ if (!@loaders) {
   exit 1;
 }
 
-# Simpler to just use my twinklerc and check a few things
 my %conf;
-my $config_file = "$ENV{HOME}/.twinklerc";
+my $config_file = '.updatemodernrc';
 %conf = ParseConfig($config_file) if -e -f -r $config_file;
 # Config checks
 if (!exists $conf{username} || !exists $conf{password}) {
@@ -56,10 +55,6 @@ foreach my $key (sort keys %conf) {
     print colored ['red'], "Duplicate config found for $key, quitting\n";
     exit 1;
   }
-}
-if ($conf{username} !~ '^Amorymeltzer') {
-  print colored ['red'], "Not Amorymeltzer, quitting\n";
-  exit 1;
 }
 
 ## Everything checks out

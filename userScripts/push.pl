@@ -18,9 +18,8 @@ use MediaWiki::API;
 use File::Slurper qw(read_text);
 use Term::ANSIColor;
 
-# Simpler to just use my twinklerc and check it's the right me
 my %conf;
-my $config_file = "$ENV{HOME}/.twinklerc";
+my $config_file = '.updatemodernrc';
 %conf = ParseConfig($config_file) if -e -f -r $config_file;
 
 # Checks
@@ -34,11 +33,6 @@ foreach my $key (sort keys %conf) {
     print colored ['red'], "Duplicate config found for $key, quitting\n";
     exit 1;
   }
-}
-# Make sure it's me
-if ($conf{username} !~ '^Amorymeltzer') {
-  print colored ['red'], "Not Amorymeltzer, quitting\n";
-  exit 1;
 }
 
 # Open git handler
