@@ -27,6 +27,7 @@
 #### userScripts
 * Something to process updates to others' that I've modified (maybe parse the first line)
 ##### updateModernjs.pl
+* Fix for non-ascii characters
 * Log out?
 * Show user and edit summary if single/multiple (huh???)
 ##### seventabs

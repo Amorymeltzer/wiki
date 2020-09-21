@@ -80,14 +80,31 @@ foreach (@loaders) {
 ## Start processing
 # Items that need updating
 my %replacings;
-# Generic basis for each API query to get old revisions
-my %query = (
-	     action => 'query',
-	     prop => 'revisions',
-	     rvlimit => 1,
-	     rvprop => 'content'
-	    );
-foreach my $project (keys %lookup) {
+my %pagelookup;
+foreach my $project (sort keys %lookup) {
+  # Generic basis for each API query to get old revisions
+  my %query = (
+	       action => 'query',
+	       prop => 'revisions',
+	       rvprop => 'ids',
+	       format => 'json',
+	       # Better, even if it means I don't need to use each, which is cool
+	       formatversion => '2'
+	      );
+  @{$query{titles}} = (); # Initialize with empty array, easier than handling it below
+
+  # Prepare titles for bulk query
+  foreach my $url (@{$lookup{$project}}) {
+    # Pull out title
+    my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
+    # Add onto query, will be combined in a single query
+    push @{$query{titles}}, $title;
+    # Enable oldid lookup after the fact
+    $pagelookup{$title} = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+  }
+
+  $query{titles} = join q{|}, @{$query{titles}};
+
   # Open API and log in to each project
   my $mw = MediaWiki::API->new({
 				api_url => "https://$project/w/api.php"
@@ -95,44 +112,56 @@ foreach my $project (keys %lookup) {
   $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
   $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-  foreach my $url (@{$lookup{$project}}) {
-    chomp $url;
-    my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
-    my $oldID = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+  my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+  my @pages = @{$response->{query}->{pages}};
 
-    my $wikiPage = $mw->get_page({title => $title});
-    my $newID = $wikiPage->{revid};
-    next if !$oldID || !$newID || $oldID == $newID;
+  # Parse and organize response data
+  # Check each page
+  foreach my $page (@pages) {
+    my $title = ${$page}{title};
 
-    # At least some difference exists, so we need to check it out
-    my $newContent = $wikiPage->{q{*}};
-    $query{titles} = $title;
-    $query{rvstartid} = $oldID;
-    my $wikiOldid = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    # Guard against no found revisions
+    if (${$page}{missing}) {
+      print "No content revs found for $title, maybe the page was moved or deleted?  Skipping...\n";
+      next;
+    }
 
     # This always feels like it should be easier to understand visually than
     # json/xml, but it never is.
-    my ($pageid,$response) = each %{$wikiOldid->{query}->{pages}};
+    my @revisions = @{${$page}{revisions}};
+    my $newID = ${$revisions[0]}{revid};
+    my $oldID = $pagelookup{$title};
 
-    # Guard against no found revisions
+    # Skip if no differences
+    next if !$oldID || !$newID || $oldID == $newID;
+
+    # There are new differences, so let's diff 'em!
+    # Should probably deduplicate the base query FIXME TODO
     print "$title\n";
-    my $revs = $response->{revisions};
-    if (!$revs) {
-      print "No content revs found, maybe the page was moved or deleted?  Skipping...\n";
-      next;
-    }
-    my %revisions = %{${$revs}[0]};
-    my $oldContent = $revisions{q{*}};
+    my %contentQuery = (
+			action => 'query',
+			prop => 'revisions',
+			revids => $oldID.q{|}.$newID,
+			rvprop => 'content|ids',
+			format => 'json',
+			formatversion => '2'
+		       );
+    my $contentResponse = $mw->api(\%contentQuery) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    # Goddammit
+    my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
+
+    # IDs are unique, just use 'em
+    map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
 
     # Store for later in hash of arrays
     @{$replacings{$title}} = ($oldID, $newID);
 
     # Getting bash to work from inside perl - whether by backticks, system, or
     # IPC::Open3 - is one thing, but getting icdiff to work on strings of
-    # indeterminate length that each contain several special characters aka code
-    # is entirely different.  Writing to files is slower but easier.
-    write_text($oldID, $oldContent);
-    write_text($newID, $newContent);
+    # indeterminate length that each contain several special characters aka
+    # code is entirely different.  Writing to files is slower but easier.
+    write_text($oldID, $pagelookup{$oldID});
+    write_text($newID, $pagelookup{$newID});
   }
 }
 
