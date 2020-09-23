@@ -53,7 +53,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	    importScript('User:Amorymeltzer/ARAspaceless.js'); //[[User:TheJJJunk/ARA.js]]
 	    importScript('User:Amorymeltzer/AdvisorDashless.js'); //[[User:Cameltrader/Advisor.js]] and [[User:PC-XT/Advisor.js]] Doesn't work with beta syntax highlighters
 	    mw.loader.load('ext.gadget.ProveIt'); //[[MediaWiki:Gadget-ProveIt.js]] [[WP:ProveIt]] [[commons:MediaWiki:Gadget-ProveIt.js]]
-	    mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=192882659&action=raw&ctype=text/javascript'); //[[m:User:TMg/autoFormatter]]
+	    mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=203880929&action=raw&ctype=text/javascript'); //[[m:User:TMg/autoFormatter]]
 	}
     });
 }
