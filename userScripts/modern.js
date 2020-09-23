@@ -203,7 +203,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=931925562&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=979692157&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); //[[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 		}
