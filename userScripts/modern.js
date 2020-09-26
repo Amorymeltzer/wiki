@@ -203,7 +203,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=979692157&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); //[[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			importScript('User:Amorymeltzer/diff-permalink.js'); //[[User:Enterprisey/diff-permalink.js]]
 		}
@@ -247,7 +247,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$("li.new[id|=ca-nstab]").length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=971804395&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=980365474&action=raw&ctype=text/javascript');
 			}
 		});
 	}
@@ -333,7 +333,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		/*WP and all talks*/
 		if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=971843536&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=980357299&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; //Optional custom summary
