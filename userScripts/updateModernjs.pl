@@ -158,8 +158,10 @@ foreach my $project (sort keys %lookup) {
 }
 
 if (keys %replacings) {
+  print "\n";
   # Confirm diffs, replace in place
   foreach my $title (keys %replacings) {
+    print "\n";
     my ($old, $new) = @{$replacings{$title}};
     print colored ['green'], "$title: updating $old to $new\n";
 
