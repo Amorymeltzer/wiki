@@ -328,7 +328,6 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			// Link and prettify gadgets [[User:Erutuon/scripts/gadgets-definition.js]], [[wikt:User:Erutuon/scripts/gadgets-definition.js]]
 			mw.loader.load('//en.wiktionary.org/w/index.php?title=User:Erutuon/scripts/gadgets-definition.js&oldid=51906780&action=raw&ctype=text/javascript');
 		    }
-		}
 		}//END else if LOOP but remain in not articles
 
 		/*WP and all talks*/
