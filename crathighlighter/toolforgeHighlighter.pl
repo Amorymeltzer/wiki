@@ -41,6 +41,7 @@ if (gitName() ne 'master') {
 } elsif (gitStatus()) {
   LOGDIE('Repository is not clean');
 } else {
+  my $oldSha = $repo->run('rev-parse' => '--short', 'HEAD');
   # Pull, check for errors
   my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
   my @pullE = $pull->stderr->getlines();
@@ -49,6 +50,12 @@ if (gitName() ne 'master') {
     LOGDIE(@pullE);
   } elsif (gitName() ne 'master' || gitStatus()) {
     LOGDIE('Repository dirty after pull');
+  } else {
+    # All good, log if updates were pulled
+    my $newSha = $repo->run('rev-parse' => '--short', 'HEAD');
+    if ($oldSha ne $newSha) {
+      INFO("Updated from $oldSha to $newSha");
+    }
   }
 }
 
