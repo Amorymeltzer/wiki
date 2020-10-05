@@ -300,14 +300,14 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			importScript('User:Amorymeltzer/qrfpp.js'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
 			//importScript('User:Timotheus Canens/spihelper.js'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=963999269&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=981755571&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
 
 			//[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			//Originally installed here to keep off certain pages but now installed via gadget
 			//mw.loader.load('ext.gadget.XFDcloser');
 			/*Only for [[WP:AFC/R]]*/
 			if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=975892186&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=981913416&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (mw.config.get('wgPageName') === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=981034415&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
@@ -336,7 +336,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; //Optional custom summary
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=978390429&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=981910042&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=976247637&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
