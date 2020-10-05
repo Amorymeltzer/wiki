@@ -54,7 +54,7 @@ if (gitName() ne 'master') {
     # All good, log if updates were pulled
     my $newSha = $repo->run('rev-parse' => '--short', 'HEAD');
     if ($oldSha ne $newSha) {
-      INFO("Updated from $oldSha to $newSha");
+      INFO("Updated repo from $oldSha to $newSha");
     }
   }
 }
