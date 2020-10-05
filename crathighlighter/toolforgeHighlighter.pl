@@ -11,13 +11,13 @@ use diagnostics;
 use Getopt::Std;
 use FindBin;
 use English qw(-no_match_vars);
+use List::Util qw(uniq);
 
 use Log::Log4perl qw(:easy);
 use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
-
 
 my $scriptDir = $FindBin::Bin; # Directory of this script
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
@@ -291,10 +291,10 @@ if (!$localChange && !$wikiChange) {
   if ($localChange) {
     $updateNote .= "Files: updated\n";
     if (scalar @totAddedFiles) {
-      $updateNote .= "\tAdded: ".oxfordComma(@totAddedFiles)."\n";
+      $updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedFiles)."\n";
     }
     if (scalar @totRemovedFiles) {
-      $updateNote .= "\tRemoved: ".oxfordComma(@totRemovedFiles)."\n";
+      $updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedFiles)."\n";
     }
   }
 
@@ -302,15 +302,15 @@ if (!$localChange && !$wikiChange) {
   if ($wikiChange) {
     $updateNote .= 'Pages: ';
     if (!$opts{P}) {
-      $updateNote .= 'updated';
+      $updateNote .= "updated\n";
       if (scalar @totAddedPages) {
-	$updateNote .= "\nAdded: ".oxfordComma(@totAddedPages)."\n";
+	$updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedPages)."\n";
       }
       if (scalar @totRemovedPages) {
-	$updateNote .= "\nRemoved: ".oxfordComma(@totRemovedPages)."\n";
+	$updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedPages)."\n";
       }
     } else {
-      $updateNote .= 'not updated';
+      $updateNote .= "not updated\n";
     }
   }
 
