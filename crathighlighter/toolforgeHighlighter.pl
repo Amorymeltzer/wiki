@@ -19,7 +19,7 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
-my $scriptDir = $FindBin::Bin; # Directory of this script
+my $scriptDir = $FindBin::Bin;	# Directory of this script
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
@@ -235,11 +235,12 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    push @totAddedFiles, @{$fileAdded};
-    push @totRemovedFiles, @{$fileRemoved};
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
+
+    push @totAddedFiles, mapGroups($_, \@{$fileAdded});
+    push @totRemovedFiles, mapGroups($_, \@{$fileRemoved});
   }
 
   # Check if on-wiki records have changed
@@ -249,10 +250,11 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    push @totAddedPages, @{$wikiAdded};
-    push @totRemovedPages, @{$wikiRemoved};
     my $summary = buildSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'but' : "$file").' needs updating on-wiki'.$summary;
+
+    push @totAddedPages, mapGroups($_, \@{$wikiAdded});
+    push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
       my $editSummary = 'Update'.$summary." (automatically via [[$bot/crathighlighter|script]])";
@@ -407,4 +409,18 @@ sub oxfordComma {
   }
   my $end = pop @list;
   return join(', ', @list) . ", and $end";
+}
+
+# Map a marker of the group in question onto an array
+sub mapGroups {
+  my ($group, $usersRef) = @_;
+  my %lookup = (
+		bureaucrat => 'B',
+		oversight => 'OS',
+		checkuser => 'CU',
+		'interface-admin' => 'IA',
+		steward => 'SW',
+		arbcom => 'AC',
+	       );
+  return map { $_." ($lookup{$group})" } @{$usersRef};
 }
