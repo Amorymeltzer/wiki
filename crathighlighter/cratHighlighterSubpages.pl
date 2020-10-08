@@ -44,7 +44,8 @@ close $config or LOGDIE($ERRNO);
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php',
-			      on_error => \&dieNice
+			      on_error => \&dieNice,
+			      use_http_get => '1' # use GET where appropriate
 			     });
 $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
@@ -205,7 +206,7 @@ foreach (@rights) {
       my $editSummary = 'Update'.$summary.' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
       my $timestamp = $contentStore{$_}[2];
 
-      $note .= " Pushing now...\n";
+      $note .= ': Pushing now... ';
       $mw->edit({
 		 action => 'edit',
 		 assert => 'user',
@@ -235,6 +236,9 @@ if (!$localChange && !$wikiChange) {
 if (!$opts{N}) {
   system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 }
+
+# Clean up
+$mw->logout();
 
 
 #### SUBROUTINES

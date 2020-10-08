@@ -19,7 +19,8 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
-my $scriptDir = $FindBin::Bin;	# Directory of this script
+# Pop into this script's directory
+my $scriptDir = $FindBin::Bin;
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
@@ -79,7 +80,8 @@ if ($username =~ /^$bot@/) {
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
 			      api_url => 'https://en.wikipedia.org/w/api.php',
-			      on_error => \&dieNice
+			      on_error => \&dieNice,
+			      use_http_get => '1' # use GET where appropriate
 			     });
 $mw->{ua}->agent('tf-cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $username, lgpassword => $password});
@@ -260,7 +262,7 @@ foreach (@rights) {
       my $editSummary = 'Update'.$summary." (automatically via [[$bot/crathighlighter|script]])";
       my $timestamp = $contentStore{$_}[2];
 
-      $note .= " Pushing now...\n";
+      $note .= ': Pushing now... ';
       $mw->edit({
 		 action => 'edit',
 		 assert => 'user',
@@ -321,6 +323,9 @@ if (!$localChange && !$wikiChange) {
   # update the newsletter, but at least initially it's a good idea.
   print $updateNote;
 }
+
+# Clean up
+$mw->logout();
 
 
 #### SUBROUTINES
