@@ -300,7 +300,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			importScript('User:Amorymeltzer/qrfpp.js'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
 			//importScript('User:Timotheus Canens/spihelper.js'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=981755571&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=982433515&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
 
 			//[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			//Originally installed here to keep off certain pages but now installed via gadget
