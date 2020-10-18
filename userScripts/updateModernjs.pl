@@ -20,26 +20,17 @@ use File::Slurper qw(write_text);
 
 # Default to modern.js but also accept any other .js file in this directory,
 # as of this writing only pedit.js has any such imports in them
-my $js = 'modern.js';
-if (@ARGV == 1) {
-  if (!-e $ARGV[0]) {
-    print colored ['red'], "Not a valid file!\n";
-    exit 1;
+my @jsFiles = ();
+if (!@ARGV) {
+  push @jsFiles, 'modern.js';
+} else {
+  foreach (@ARGV) {
+    if (!-e) {
+      print colored ['red'], "$_ is not a valid file!\n";
+      exit 1;
+    }
+    push @jsFiles, $_;
   }
-  $js = $ARGV[0];
-} elsif (@ARGV >= 2) {
-  print colored ['red'], "Only one file at a time please!\n";
-  exit 1;
-}
-
-# Make sure we have stuff to process
-# Find all insteaces of mw.loader.load that target a specific revision
-# Intentionally dumb, the project will be matched later
-my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $js`;
-
-if (!@loaders) {
-  print colored ['red'], "No mw.loader.load lines to process in $js\n";
-  exit 1;
 }
 
 my %conf;
@@ -58,133 +49,145 @@ foreach my $key (sort keys %conf) {
 }
 
 ## Everything checks out
-# Build lookup hash for each project.  Overkill since I've only got like two
-# or three things that qualify, but makes this more useful.
-my %lookup;
-foreach (@loaders) {
-  chomp;
-  my $project = s/mw\.loader\.load\('\/\/(.*)\/w\/index.*/$1/r;
-  if ($lookup{$project}) {
-    push @{$lookup{$project}}, $_;
-  } else {
-    @{$lookup{$project}} = ($_);
-  }
-}
+foreach my $js (@jsFiles) {
+  # Make sure we have stuff to process
+  # Find all instances of mw.loader.load that target a specific revision
+  # Intentionally dumb, the project will be matched later
+  my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $js`;
 
-
-## Start processing
-# Items that need updating
-my %replacings;
-my %pagelookup;
-foreach my $project (sort keys %lookup) {
-  # Generic basis for each API query, will get reused for individual pages
-  my %query = (
-	       action => 'query',
-	       prop => 'revisions',
-	       rvprop => 'ids',
-	       format => 'json',
-	       # Better, even if it means I don't need to use each, which is cool
-	       formatversion => '2'
-	      );
-  # Initialize with empty array, easier than handling it below
-  @{$query{titles}} = ();
-
-  # Prepare titles for bulk query
-  foreach my $url (@{$lookup{$project}}) {
-    # Pull out title
-    my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
-    # Add onto query, will be combined in a single query
-    push @{$query{titles}}, $title;
-    # Enable oldid lookup after the fact
-    $pagelookup{$title} = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+  if (!@loaders) {
+    print colored ['yellow'], "No mw.loader.load lines to process in $js\n";
+    next;
   }
 
-  $query{titles} = join q{|}, @{$query{titles}};
+  # Build lookup hash for each project.  Overkill since I've only got like two
+  # or three things that qualify, but makes this more useful.
+  my %lookup;
+  foreach (@loaders) {
+    chomp;
+    my $project = s/mw\.loader\.load\('\/\/(.*)\/w\/index.*/$1/r;
+    if ($lookup{$project}) {
+      push @{$lookup{$project}}, $_;
+    } else {
+      @{$lookup{$project}} = ($_);
+    }
+  }
 
-  # Open API and log in to each project
-  my $mw = MediaWiki::API->new({
-				api_url => "https://$project/w/api.php"
-			       });
-  $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
-  $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-  my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
-  my @pages = @{$response->{query}->{pages}};
+  ## Start processing
+  # Items that need updating
+  my %replacings;
+  my %pagelookup;
+  foreach my $project (sort keys %lookup) {
+    # Generic basis for each API query, will get reused for individual pages
+    my %query = (
+		 action => 'query',
+		 prop => 'revisions',
+		 rvprop => 'ids',
+		 format => 'json',
+		 # Better, even if it means I don't need to use each, which is cool
+		 formatversion => '2'
+		);
+    # Initialize with empty array, easier than handling it below
+    @{$query{titles}} = ();
 
-  # Prepare query for one-off queries
-  delete $query{titles};
-  $query{rvprop} .= '|content';
-
-  # Parse and organize response data
-  # Check each page
-  foreach my $page (@pages) {
-    my $title = ${$page}{title};
-
-    # Guard against no found revisions
-    if (${$page}{missing}) {
-      print "No content revs found for $title, maybe the page was moved or deleted?  Skipping...\n";
-      next;
+    # Prepare titles for bulk query
+    foreach my $url (@{$lookup{$project}}) {
+      # Pull out title
+      my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
+      # Add onto query, will be combined in a single query
+      push @{$query{titles}}, $title;
+      # Enable oldid lookup after the fact
+      $pagelookup{$title} = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
     }
 
-    # This always feels like it should be easier to understand visually than
-    # json/xml, but it never is.
-    my @revisions = @{${$page}{revisions}};
-    my $newID = ${$revisions[0]}{revid};
-    my $oldID = $pagelookup{$title};
+    $query{titles} = join q{|}, @{$query{titles}};
 
-    # Skip if no differences
-    next if !$oldID || !$newID || $oldID == $newID;
+    # Open API and log in to each project
+    my $mw = MediaWiki::API->new({
+				  api_url => "https://$project/w/api.php"
+				 });
+    $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
+    $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-    # There are new differences, so let's diff 'em!
-    print "$title\n";
-    $query{revids} = $oldID.q{|}.$newID;
-    my $contentResponse = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
-    # Goddammit
-    my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
+    my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    my @pages = @{$response->{query}->{pages}};
 
-    # IDs are unique, just use 'em
-    map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
+    # Prepare query for one-off queries
+    delete $query{titles};
+    $query{rvprop} .= '|content';
 
-    # Store for later in hash of arrays
-    @{$replacings{$title}} = ($oldID, $newID);
+    # Parse and organize response data
+    # Check each page
+    foreach my $page (@pages) {
+      my $title = ${$page}{title};
 
-    # Getting bash to work from inside perl - whether by backticks, system, or
-    # IPC::Open3 - is one thing, but getting icdiff to work on strings of
-    # indeterminate length that each contain several special characters aka
-    # code is entirely different.  Writing to files is slower but easier.
-    write_text($oldID, $pagelookup{$oldID});
-    write_text($newID, $pagelookup{$newID});
+      # Guard against no found revisions
+      if (${$page}{missing}) {
+	print "No content revs found for $title, maybe the page was moved or deleted?  Skipping...\n";
+	next;
+      }
+
+      # This always feels like it should be easier to understand visually than
+      # json/xml, but it never is.
+      my @revisions = @{${$page}{revisions}};
+      my $newID = ${$revisions[0]}{revid};
+      my $oldID = $pagelookup{$title};
+
+      # Skip if no differences
+      next if !$oldID || !$newID || $oldID == $newID;
+
+      # There are new differences, so let's diff 'em!
+      print "$title\n";
+      $query{revids} = $oldID.q{|}.$newID;
+      my $contentResponse = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+      # Goddammit
+      my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
+
+      # IDs are unique, just use 'em
+      map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
+
+      # Store for later in hash of arrays
+      @{$replacings{$title}} = ($oldID, $newID);
+
+      # Getting bash to work from inside perl - whether by backticks, system, or
+      # IPC::Open3 - is one thing, but getting icdiff to work on strings of
+      # indeterminate length that each contain several special characters aka
+      # code is entirely different.  Writing to files is slower but easier.
+      write_text($oldID, $pagelookup{$oldID});
+      write_text($newID, $pagelookup{$newID});
+    }
   }
-}
 
-if (keys %replacings) {
-  print "\n";
-  # Confirm diffs, replace in place
-  foreach my $title (keys %replacings) {
+  if (keys %replacings) {
     print "\n";
-    my ($old, $new) = @{$replacings{$title}};
-    print colored ['green'], "$title: updating $old to $new\n";
+    # Confirm diffs, replace in place
+    foreach my $title (keys %replacings) {
+      print "\n";
+      my ($old, $new) = @{$replacings{$title}};
+      print colored ['green'], "$title: updating $old to $new\n";
 
-    my @args = ('bash', '-c', "icdiff $old $new");
-    system @args;
+      my @args = ('bash', '-c', "icdiff $old $new");
+      system @args;
 
-    print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
-    my $confirm = <STDIN>;
-    chomp $confirm;
-    if (lc $confirm eq 'n') {
-      print "Skipping $title\n";
-    } elsif (lc $confirm eq 'y') {
-      `perl -i -p -e "s/$old/$new/g" $js`;
-    } elsif (lc $confirm eq 'q') {
-      last;
+      print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
+      my $confirm = <STDIN>;
+      chomp $confirm;
+      if (lc $confirm eq 'n') {
+	print "Skipping $title\n";
+      } elsif (lc $confirm eq 'y') {
+	`perl -i -p -e "s/$old/$new/g" $js`;
+      } elsif (lc $confirm eq 'q') {
+	last;
+      }
     }
-  }
 
-  # Clean up
-  foreach my $title (keys %replacings) {
-    unlink $replacings{$title}[0];
-    unlink $replacings{$title}[1];
+    # Clean up
+    foreach my $title (keys %replacings) {
+      unlink $replacings{$title}[0];
+      unlink $replacings{$title}[1];
+    }
+  } else {
+    print colored ['blue'], "No scripts from $js need updating!\n";
   }
-} else {
-  print colored ['blue'], "No files need updating!\n";
 }
