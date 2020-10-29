@@ -28,7 +28,8 @@ window.popupThumbAction = 'sizetoggle'; //Default is 'imagepage'
 window.popupSetupMenu = false;  //Default is true
 window.popupLastEditLink = false; //Default is true
 
-//Config for [[Wikipedia:Comments in Local Time]], [[User:Gary/comments in local time.js]]
+//Config for [[Wikipedia:Comments in Local Time]], [[User:Gary/comments in local time.js]], [[MediaWiki:Gadget-CommentsInLocalTime.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/comments_in_local_time.js&oldid=937247852&action=raw&ctype=text/javascript');
 window.LocalComments = {
 	dateDifference: true,
 	//        dateFormat: 'dmy',
