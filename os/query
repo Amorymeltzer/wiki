@@ -15,4 +15,4 @@ WHERE
 ORDER BY
       rc_timestamp DESC
 LIMIT
-	0;
+	50;
