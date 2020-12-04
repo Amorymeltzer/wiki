@@ -258,6 +258,8 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		window.hotcat_del_needs_diff = true;
 		mw.loader.load('ext.gadget.HotCat');
 
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/PlayAudioNow.js&oldid=982954847&action=raw&ctype=text/javascript'); //[[User:Nardog/PlayAudioNow]], [[User:Nardog/PlayAudioNow.js]]
+
 		importScript('User:Amorymeltzer/pedit.js'); //[[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 		/*Backlinks for pedit:
 		  [[User:Caorongjin/wordcount]], [[User:Caorongjin/wordcount.js]], [[User:Dr_pda/prosesize.js]]
