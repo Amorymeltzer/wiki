@@ -75,9 +75,8 @@ var main = function(data) {
 					}
 				}
 			} catch (e) {
-				console.log(linkraw);
 				// Sometimes we will run into unparsable links, so just log these and move on
-				window.console && console.error('Admin highlighter recoverable error',e.message);
+				console.warn('crathighlighter.js unparsable link', e.message, linkraw);
 			}
 		});
 	});
