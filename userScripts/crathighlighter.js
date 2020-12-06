@@ -59,6 +59,7 @@ var main = function(data) {
 				if (link[0].parentElement.className && link[0].parentElement.classList[0] == 'autocomment') return; // Skip span.autocomment links aka automatic section links in edit summaries
 				if (link[0].tagName === 'IMG') return; // Don't highlight image links
 				if (link[0].className && link[0].classList[0] == 'external') return; // Avoid errors on hard-to-parse external links
+				url = url.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/, "%25");
 				var uri = new mw.Uri(url);
 				if (!ADMINHIGHLIGHT_EXTLINKS && !$.isEmptyObject(uri.query)) return; // Skip links with query strings if highlighting external links is disabled
 				if (uri.host == 'en.wikipedia.org') {
