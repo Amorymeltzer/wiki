@@ -101,7 +101,5 @@ var myDeclineReasons = new Array(
     ['F10', 'File is not a useless non-media file'],
     ['F11', 'Evidence of permission has been given'],
 
-    ['C1', 'Category is populated or is otherwise allowed to be empty'],
-
-    ['T3', 'Not a substantial duplicate or hardcoded instance of another template']
+    ['C1', 'Category is populated or is otherwise allowed to be empty']
 );
