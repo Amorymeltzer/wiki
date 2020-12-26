@@ -45,7 +45,7 @@ if (mw.config.get("wgCanonicalSpecialPageName") === "AbuseLog" && (mw.util.getPa
 		$.each(links, function(k, link) {
 			link = $(link);
 			var last = link.find('a')[link.find('a').length-1];
-			$(last).attr('href', $(last).attr('href') + '&wphidden=1&wpreason=' + encodeURIComponent(summary));
+			$(last).attr('href', $(last).attr('href') + '&wpshoworhide=hide&wpreason=' + encodeURIComponent(summary));
 		});
 	});
 }
