@@ -27,6 +27,11 @@ if (mw.config.get("wgCanonicalSpecialPageName") == "AbuseLog") {
     } else if (mw.util.getParamValue('wphidden') && mw.util.getParamValue('wpreason') && mw.util.getParamValue('hide') && mw.util.getParamValue('autoclick')) {
 	$('.oo-ui-buttonInputWidget')[0].firstChild.click();
     }
+} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Contributions' && !mw.config.exists('wgRelevantUserName')) {
+    var $ip = $('input[name=target]');
+    if ($ip.length && $ip.val() && mw.util.isIPAddress($ip.val(), true)) {
+	mw.config.set('wgRelevantUserName', $ip.val());
+    }
 }
 
 if (mw.config.get('wgPageName') == 'User:Amorymeltzer/Wikipedia:Requests_for_page_protection') {
