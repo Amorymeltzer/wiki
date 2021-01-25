@@ -4,7 +4,7 @@ if (mw.config.get('wgCanonicalSpecialPageName') === 'Contributions' && !mw.confi
 	mw.config.set('wgRelevantUserName', $ip.val());
     }
 } else if (mw.config.get('wgPageName') == 'User:Amorymeltzer/Wikipedia:Requests_for_page_protection') {
-    importScript('User:Amorymeltzer/qrfpp.js/test.js');
+    mw.loader.load('/w/index.php?title=User:Amorymeltzer/qrfpp.js/test.js&action=raw&ctype=text/javascript');
 }
 
-importScript('User:Amorymeltzer/unhide.js');
+mw.loader.load('/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript');

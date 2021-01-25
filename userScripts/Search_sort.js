@@ -7,7 +7,7 @@
    Click one of them to repeat the search with the given sorting.
    Install with this in your [[Special:MyPage/common.js]]:
 
-   importScript('User:PrimeHunter/Search_sort.js'); // Linkback: [[User:PrimeHunter/Search sort.js]]
+   mw.loader.load('/w/index.php?title=User:PrimeHunter/Search_sort.js&action=raw&ctype=text/javascript'); // Linkback: [[User:PrimeHunter/Search sort.js]]
 */
 
 $( document ).ready( function() {

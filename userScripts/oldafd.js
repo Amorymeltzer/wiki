@@ -9,7 +9,7 @@
 
    Updated 2020-04
    - Removed unnecessary modification of Date prototype
-   - Used mw.loader.load instead of deprecated importScriptURI
+   - Used mw.loader.load
 */
 
 if(mw.config.get("wgCurRevisionId") != 0 && mw.config.get("wgNamespaceNumber") == 4 && (mw.config.get("wgPageName").indexOf('_for_deletion/') != -1 || mw.config.get("wgPageName").indexOf('_for_discussion/') != -1)) $(function () {
