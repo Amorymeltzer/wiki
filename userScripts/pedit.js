@@ -44,7 +44,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 
 	if (mw.config.get("wgAction") == "edit" || mw.config.get("wgAction") == "submit") {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Salix_alba/Citoid.js&oldid=823130457&action=raw&ctype=text/javascript'); //[[User:Salix_alba/Citoid.js]]
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ohconfucius/script/formatgeneral.js&oldid=989391282&action=raw&ctype=text/javascript'); //[[User:Ohconfucius/script/formatgeneral.js]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ohconfucius/script/formatgeneral.js&oldid=1002204725&action=raw&ctype=text/javascript'); //[[User:Ohconfucius/script/formatgeneral.js]]
 	    //importScript('User:Ohconfucius/script/Common Terms.js'); //[[User:Ohconfucius/script/Common Terms.js]] Hide countries, etc. Loads outdated regex menu framework, annoying
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Dr_pda/editrefs.js&oldid=847786367&action=raw&ctype=text/javascript'); //[[User:Dr_pda/editrefs.js]] Show on mainpage as well, like autoed?
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Meteor_sandwich_yum/Tidy_citations.js&oldid=600543255&action=raw&ctype=text/javascript'); //[[User:Meteor sandwich yum/Tidy citations.js]]
