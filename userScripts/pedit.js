@@ -32,16 +32,6 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	mw.loader.load('ext.gadget.citations'); //[[MediaWiki:Gadget-citations.js]]
 	mw.util.addPortletLink("p-edit", '//tools.wmflabs.org/iabot/index.php?page=runbotsingle&pagesearch=' + mw.config.get("wgPageName"), 'IABot', 't-iabot', "Load the IA bot interface");
 
-	/*
-	  importScript('Wikipedia:AutoEd/complete.js'); //[[Wikipedia:AutoEd/complete.js]]
-	  importScript('User:Amorymeltzer/dashes.js'); //[[User:GregU/dashes.js]]
-	  //Activates individual modules when "auto ed" tab is clicked
-	  function autoEdFunctions() {
-	  var txt = document.editform.wpTextbox1;
-	  txt.value = autoEdDashes(txt.value);
-	  }
-	*/
-
 	if (mw.config.get("wgAction") == "edit" || mw.config.get("wgAction") == "submit") {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Salix_alba/Citoid.js&oldid=823130457&action=raw&ctype=text/javascript'); //[[User:Salix_alba/Citoid.js]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ohconfucius/script/formatgeneral.js&oldid=1002204725&action=raw&ctype=text/javascript'); //[[User:Ohconfucius/script/formatgeneral.js]]

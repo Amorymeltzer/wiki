@@ -195,7 +195,6 @@ modern.js
   seventabs.js
   csdcheck.js
   suppressionFinder.js
-  dashes.js
   deletionFinder.js
   test.js
   diff-permalink.js
