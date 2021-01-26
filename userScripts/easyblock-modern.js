@@ -10,7 +10,7 @@
  ***************************************************************************************
  *  To use this script, add the following line to your monobook (or other skin) file:  *
 
-    mw.loader.load('/w/index.php?title=User:Animum/easyblock.js&action=raw&ctype=text/javascript'); //[[User:Animum/easyblock.js]]
+    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&action=raw&ctype=text/javascript'); //[[User:Animum/easyblock.js]]
 ***************************************************************************************/
 
 /***************************************
@@ -31,7 +31,7 @@
 //-----------------------------------
 // Libraries
 //-----------------------------------
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/easyblock-modern.css&action=raw&ctype=text/css', 'text/css');
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/easyblock-modern.css&action=raw&ctype=text/css', 'text/css');
 
 function easyblock() {} //So we can have some sanity in the arrangement of this
 

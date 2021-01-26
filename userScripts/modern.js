@@ -41,16 +41,16 @@ window.LocalComments = {
 };
 
 //Might reload the page
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/unhide.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/unhide.js]]
 //[[MediaWiki:Gadget-markblocked.js]] originally installed via [[User:NuclearWarfare/Mark-blocked script.js]], now loaded via prefs
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/seventabs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/seventabs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
 //window.ADMINHIGHLIGHT_EXTLINKS = true;
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Lenore/autolink.js&oldid=945652161&action=raw&ctype=text/javascript'); //[[User:Lenore/autolink.js]], [[User:Lenore/autolink]] Try to display templates, etc in comments everywhere
-//mw.loader.load('/w/index.php?title=User:Amorymeltzer/nulledit.js&action=raw&ctype=text/javascript'); //[[User:MZMcBride/nulledit.js]], [[User:Splarka/nulledit.js]], [[User:Amorymeltzer/nulledit.js]]
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/pinfo.js&action=raw&ctype=text/javascript'); //[[User:Smith609/toolbox.js]], [[User:קיפודנחש/viewstats.js]], [[User:Amorymeltzer/pinfo.js]]
-//mw.loader.load('/w/index.php?title=User:Amorymeltzer/ajaxsendcomment.js&action=raw&ctype=text/javascript'); //[[User:Splarka/ajaxsendcomment.js]] Remove when reclick? [[User:Amorymeltzer/ajaxsendcomment.js]]
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/pagemods.js]
+//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/nulledit.js&action=raw&ctype=text/javascript'); //[[User:MZMcBride/nulledit.js]], [[User:Splarka/nulledit.js]], [[User:Amorymeltzer/nulledit.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pinfo.js&action=raw&ctype=text/javascript'); //[[User:Smith609/toolbox.js]], [[User:קיפודנחש/viewstats.js]], [[User:Amorymeltzer/pinfo.js]]
+//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/ajaxsendcomment.js&action=raw&ctype=text/javascript'); //[[User:Splarka/ajaxsendcomment.js]] Remove when reclick? [[User:Amorymeltzer/ajaxsendcomment.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/pagemods.js]
 /* Should probably make these next two more specific */
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/more-listing-items.js&oldid=882933273&action=raw&ctype=text/javascript'); //[[User:Enterprisey/more-listing-items.js]]
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=930753959&action=raw&ctype=text/javascript'); //[[User:Suffusion_of_Yellow/filter-highlighter.js]]
@@ -123,15 +123,15 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		break;
 	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/ReverseMarked.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/ReverseMarked.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/Thanky.js&oldid=928009085&action=raw&ctype=text/javascript'); //[[User:Evad37/Thanky.js]], [[User:Evad37/Thanky]]
 		break;
 	case 'Log':
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/logSwap.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/logSwap.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/logSwap.js]] initially inspired by [[User:PleaseStand/common.js]]
 		break;
 	case 'Whatlinkshere':
 		//Add history and delete links
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/wlhActionLinks.js&action=raw&ctype=text/javascript'); //[[meta:User:He7d3r/Tools/AddActionLinks.js]], [[User:Amorymeltzer/wlhActionLinks.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/wlhActionLinks.js&action=raw&ctype=text/javascript'); //[[meta:User:He7d3r/Tools/AddActionLinks.js]], [[User:Amorymeltzer/wlhActionLinks.js]]
 		//Quick count of transclusions and links
 		mw.loader.load('//www.wikidata.org/w/index.php?title=MediaWiki:Linkscount.js&action=raw&ctype=text/javascript'); //[[wikidata:MediaWiki:Linkscount.js]]
 		break;
@@ -141,10 +141,10 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		break;
 	case 'Search':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/Search_sort.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/Search_sort.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
 		break;
 	case 'AbuseLog':
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/osal.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/osal.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/osal.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/osal.js]]
 		break;
 	case null:
 		/*Masses [[UserAmorymeltzer/mass]]*/
@@ -191,11 +191,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	var myDeclineSummary = 'Declining speedy (%CRITERION%) — %REASON%';
 	var myDeclineSummarySpecial = 'Declining speedy — %REASON%';
 	var overwriteDeclineReasons = true;
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/CSDHreasons.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/CSDHreasons.js]] Custom decline reasons, inspired by [[User:SoWhy/csdreasons.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/CSDHreasons.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/CSDHreasons.js]] Custom decline reasons, inspired by [[User:SoWhy/csdreasons.js]]
 
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=778745654&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); //Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); //Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
@@ -203,7 +203,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); //[[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-permalink.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-permalink.js]]
 		}
 	});
 
@@ -260,7 +260,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/PlayAudioNow.js&oldid=982954847&action=raw&ctype=text/javascript'); //[[User:Nardog/PlayAudioNow]], [[User:Nardog/PlayAudioNow.js]]
 
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/pedit.js&action=raw&ctype=text/javascript'); //[[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pedit.js&action=raw&ctype=text/javascript'); //[[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 		/*Backlinks for pedit:
 		  [[User:Caorongjin/wordcount]], [[User:Caorongjin/wordcount.js]], [[User:Dr_pda/prosesize.js]]
 		  [[User:Lourdes/Backlinks.js]], [[m:User:Zhaofeng_Li/Reflinks.js]]], [[User:Lourdes/Backlinks.js]]
@@ -272,9 +272,9 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		  [[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]]
 		*/
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/smaller_templates.js&oldid=596443737&action=raw&ctype=text/javascript'); //[[User:Gary/smaller templates.js]]
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/WRStitle.js&action=raw&ctype=text/javascript'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/WRStitle.js&action=raw&ctype=text/javascript'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=857651049&action=raw&ctype=text/javascript'); //[[User:Gary/subjects age from year.js]]
-		//mw.loader.load('/w/index.php?title=User:Amorymeltzer/regex.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/regex.js]] Maybe useful if start processing redirects with content again?  Need to make use of TemplateScript main I guess
+		//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/regex.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/regex.js]] Maybe useful if start processing redirects with content again?  Need to make use of TemplateScript main I guess
 		mw.loader.load('ext.gadget.XTools-ArticleInfo'); //[[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
 	} else {//END ARTICLES
 		/*
@@ -294,12 +294,12 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		if (mw.config.get('wgNamespaceNumber') === 4) {
 			/*Wikipedia project space, not talk*/
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); //[[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); //[[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); //[[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
-			//mw.loader.load('/w/index.php?title=User:Timotheus Canens/spihelper.js&action=raw&ctype=text/javascript'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
+			//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus Canens/spihelper.js&action=raw&ctype=text/javascript'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=988107723&action=raw&ctype=text/javascript'); //[[User:Enterprisey/delsort.js]]
 
 			//[[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
@@ -314,7 +314,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			}
 		} else if (mw.config.get('wgNamespaceNumber') === 14) {
 			/*Categories*/
-			mw.loader.load('/w/index.php?title=User:Amorymeltzer/CatListMainTalkLinks.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/CatListMainTalkLinks.js]] Display main/talk/hist links for pages in categories [[User:Amorymeltzer/CatListMainTalkLinks.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/CatListMainTalkLinks.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/CatListMainTalkLinks.js]] Display main/talk/hist links for pages in categories [[User:Amorymeltzer/CatListMainTalkLinks.js]]
 		} else if (mw.config.get('wgNamespaceNumber') === 6) {
 			/*Files*/
 			//TinEye link, from [[meta:User:Krinkle/Scripts/TinEye]], [[File:Krinkle_TinEye.js]], [[commons:MediaWiki:Gadget-Tineye.js]], [[commons:MediaWiki:Gadget-Tineye]]
@@ -385,17 +385,17 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 			watchlist: true,
 			diff: false
 		};
-		mw.loader.load('/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
 	}
 
 }
 
 /*mw.config.exists('wgRelevantUserName')*/
 if (mw.config.exists('wgRelevantUserName')) {
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); //[[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); //[[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	//[[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	//Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/easyblock-modern.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/easyblock-modern.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
 	ebPrefs = {
 		//returnTo:"Wikipedia:Administrator_intervention_against_vandalism&action=purge"
 		loadPageOnSubmit:false
@@ -404,13 +404,13 @@ if (mw.config.exists('wgRelevantUserName')) {
 /*mw.config.get('wgRelevantPageIsProbablyEditable')*/
 //Excessive perhaps, but want this after userinfo
 if (mw.config.get('wgRelevantPageIsProbablyEditable')) {
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/deletionFinder.js&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/suppressionFinder.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/suppressionFinder.js]] As above
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/deletionFinder.js&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/suppressionFinder.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/suppressionFinder.js]] As above
 }
 
 /*js/css/json pages, likely MediaWiki or userspace*/
 if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) !== -1) && ($.inArray(mw.config.get('wgAction'), ['view', 'edit', 'submit'])>=0)) {
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/raw.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/rawtab.js]], [[User:Amorymeltzer/raw.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/raw.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/rawtab.js]], [[User:Amorymeltzer/raw.js]]
 
 	//Show diffs in monospace.  Maybe include Scribunto?
 	if (mw.config.get('wgDiffNewId')) {
@@ -454,7 +454,7 @@ if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) 
 if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'protect' || mw.config.get('wgAction') === 'unprotect' ||
     mw.config.get('wgCanonicalSpecialPageName') === 'Revisiondelete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block' ||
     mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
-	mw.loader.load('/w/index.php?title=User:Amorymeltzer/csdcheck.js&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Amorymeltzer/csdcheck.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/csdcheck.js&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Amorymeltzer/csdcheck.js]]
 }
 
 //END MIXED
@@ -623,40 +623,40 @@ window.onload = loadFunct();
 
 
 //Check Check 1-2 1-2
-mw.loader.load('/w/index.php?title=User:Amorymeltzer/test.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/test.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/test.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/test.js]]
 
 
 /*Interesting, but not now
-  mw.loader.load('/w/index.php?title=User:Enterprisey/talk-tab-count.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/talk-tab-count.js]]
-  mw.loader.load('/w/index.php?title=User:Equazcion/SafetyEdit.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/SafetyEdit.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/talk-tab-count.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/talk-tab-count.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/SafetyEdit.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/SafetyEdit.js]]
   var sysopSafety = true;
-  mw.loader.load('/w/index.php?title=User:Bradv/splitpreview.js&action=raw&ctype=text/javascript'); //[[User:Bradv/splitpreview.js]] Preview on the side, not top
-  mw.loader.load('/w/index.php?title=User:Enterprisey/undo-last-edit.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/undo-last-edit.js]]
-  mw.loader.load('/w/index.php?title=User:Writ Keeper/Scripts/watchlistContribs.js&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/watchlistContribs.js]]
-  mw.loader.load('/w/index.php?title=User:Kangaroopower/MRollback.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/MRollback.js]] Good menu though!
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/splitpreview.js&action=raw&ctype=text/javascript'); //[[User:Bradv/splitpreview.js]] Preview on the side, not top
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/undo-last-edit.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/undo-last-edit.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ Keeper/Scripts/watchlistContribs.js&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/watchlistContribs.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Kangaroopower/MRollback.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/MRollback.js]] Good menu though!
   mw.loader.load('//tools-static.wmflabs.org/meta/scripts/pathoschild.ajaxsysop.js'); //[[m:Ajax sysop]]
-  mw.loader.load('/w/index.php?title=User:Joshua Scott/Scripts/pendingchanges.js&action=raw&ctype=text/javascript'); //[[User:Joshua Scott/Scripts/pendingchanges.js]]
-  mw.loader.load('/w/index.php?title=User:Bellezzasolo/Scripts/arb.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/arb.js]] Discretionary sanctions
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joshua Scott/Scripts/pendingchanges.js&action=raw&ctype=text/javascript'); //[[User:Joshua Scott/Scripts/pendingchanges.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bellezzasolo/Scripts/arb.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/arb.js]] Discretionary sanctions
   [[meta:User:Krinkle/Scripts/CVNSimpleOverlay]] //Too similar to mark blocked?  Maybe try on a vandal not yet blocked
   [[meta:User:Krinkle/Tools/WhatLeavesHere]]
   [[meta:User:Krinkle/Tools/Real-Time_Recent_Changes]]; also a local gadget
   [[Wikipedia:WPCleaner]]
-  mw.loader.load('/w/index.php?title=User:Yair rand/HistoryView.js&action=raw&ctype=text/javascript'); //[[User:Yair rand/HistoryView.js]] Visual hist with section headers, autodiffs.  Maybe edit for toggle?
-  mw.loader.load('/w/index.php?title=User:BethNaught/exportUserOptions.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/exportUserOptions.js]
-  mw.loader.load('/w/index.php?title=User:PrimeHunter/Source links.js&action=raw&ctype=text/javascript'); //[[User:PrimeHunter/Source links.js]]
-  mw.loader.load('/w/index.php?title=User:Kangaroopower/ajaxMove.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/ajaxMove.js]]
-  mw.loader.load('/w/index.php?title=User:Evad37/TextDiff.js&action=raw&ctype=text/javascript'); //[[User:Evad37/TextDiff.js]]
-  mw.loader.load('/w/index.php?title=User:Pyrospirit/metadata/projectbanners.js&action=raw&ctype=text/javascript'); //Busted with [[Wikipedia:Metadata gadget]] gadget at the moment [[User:Pyrospirit/metadata/projectbanners.js]]
-  mw.loader.load('/w/index.php?title=User:Nihiltres/assesslinks.js&action=raw&ctype=text/javascript'); //[[User:Nihiltres/assesslinks.js]] Color links on a page
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Yair rand/HistoryView.js&action=raw&ctype=text/javascript'); //[[User:Yair rand/HistoryView.js]] Visual hist with section headers, autodiffs.  Maybe edit for toggle?
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/exportUserOptions.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/exportUserOptions.js]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Source links.js&action=raw&ctype=text/javascript'); //[[User:PrimeHunter/Source links.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Kangaroopower/ajaxMove.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/ajaxMove.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TextDiff.js&action=raw&ctype=text/javascript'); //[[User:Evad37/TextDiff.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pyrospirit/metadata/projectbanners.js&action=raw&ctype=text/javascript'); //Busted with [[Wikipedia:Metadata gadget]] gadget at the moment [[User:Pyrospirit/metadata/projectbanners.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nihiltres/assesslinks.js&action=raw&ctype=text/javascript'); //[[User:Nihiltres/assesslinks.js]] Color links on a page
 
 */
 
 /*Not working, seem fixable
-  mw.loader.load('/w/index.php?title=User:Paranomia/simplevote.js&action=raw&ctype=text/javascript'); //[[User:Paranomia/simplevote.js]] Seems fixable for modern, maybe like XfD closer
-  mw.loader.load('/w/index.php?title=User:Dipankan001/external link.js&action=raw&ctype=text/javascript'); //[[User:Dipankan001/external link.js]]
-  mw.loader.load('/w/index.php?title=User:Gary/namespace redirect.js&action=raw&ctype=text/javascript'); //[[User:Gary/namespace redirect.js]]
-  mw.loader.load('/w/index.php?title=User:Dr pda/prosesize.js&action=raw&ctype=text/javascript'); //[[User:Dr pda/prosesize.js]]
-  mw.loader.load('/w/index.php?title=User:Barticus88/WhatLinksHere.js&action=raw&ctype=text/javascript'); //[[User:Barticus88/WhatLinksHere.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Paranomia/simplevote.js&action=raw&ctype=text/javascript'); //[[User:Paranomia/simplevote.js]] Seems fixable for modern, maybe like XfD closer
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Dipankan001/external link.js&action=raw&ctype=text/javascript'); //[[User:Dipankan001/external link.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/namespace redirect.js&action=raw&ctype=text/javascript'); //[[User:Gary/namespace redirect.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Dr pda/prosesize.js&action=raw&ctype=text/javascript'); //[[User:Dr pda/prosesize.js]]
+  mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Barticus88/WhatLinksHere.js&action=raw&ctype=text/javascript'); //[[User:Barticus88/WhatLinksHere.js]]
 */
 
 /*Reference
