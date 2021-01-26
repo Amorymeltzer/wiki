@@ -83,9 +83,8 @@ foreach my $js (@jsFiles) {
     my %query = (
 		 action => 'query',
 		 prop => 'revisions',
-		 rvprop => 'ids',
+		 rvprop => 'ids|user|comment',
 		 format => 'json',
-		 # Better, even if it means I don't need to use each, which is cool
 		 formatversion => '2'
 		);
     # Initialize with empty array, easier than handling it below
@@ -149,8 +148,8 @@ foreach my $js (@jsFiles) {
       # IDs are unique, just use 'em
       map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
 
-      # Store for later in hash of arrays
-      @{$replacings{$title}} = ($oldID, $newID);
+      # Store for later in hash of arrays, along with user and edit summary
+      @{$replacings{$title}} = ($oldID, $newID, ${$revisions[0]}{user}, ${$revisions[0]}{comment});
 
       # Getting bash to work from inside perl - whether by backticks, system, or
       # IPC::Open3 - is one thing, but getting icdiff to work on strings of
@@ -166,13 +165,13 @@ foreach my $js (@jsFiles) {
     # Confirm diffs, replace in place
     foreach my $title (keys %replacings) {
       print "\n";
-      my ($old, $new) = @{$replacings{$title}};
-      print colored ['green'], "$title: updating $old to $new\n";
+      my ($old, $new, $user, $comment) = @{$replacings{$title}};
+      print colored ['green'], "$title: updating $old to $new by $user: $comment\n";
 
       my @args = ('bash', '-c', "icdiff $old $new");
       system @args;
 
-      print colored ['magenta'], "Update $title to revision $new (Y or N)\n";
+      print colored ['magenta'], "Update $title to revision $new by $user (Y or N)\n";
       my $confirm = <STDIN>;
       chomp $confirm;
       if (lc $confirm eq 'n') {
