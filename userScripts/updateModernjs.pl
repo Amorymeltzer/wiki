@@ -95,6 +95,8 @@ foreach my $js (@jsFiles) {
     foreach my $url (@{$lookup{$project}}) {
       # Pull out title
       my $title = $url =~ s/.*\?title=(.*)&oldid=.*/$1/r;
+      # Normalize underscores to spaces, output uses spaces
+      $title =~ s/_/ /g;
       # Add onto query, will be combined in a single query
       push @{$query{titles}}, $title;
       # Enable oldid lookup after the fact
