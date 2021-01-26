@@ -119,11 +119,9 @@ sub buildEditSummary {
       while (<$nl>) {
 	chomp;
 	my @arr = split / /, $_, 2;
-	if ($arr[1] =~ /(\S+(?:\.(?:js|css))?) ?[:|-] ?(.+)/) {
-	  my $fixPer = $2;
-	  $fixPer =~ s/\.$//; # Just in case
-	  $editSummary .= "$fixPer; ";
-	}
+	my $portion = $arr[1] =~ s/^\S+(?::| -) //r;
+	$portion =~ s/\.$//;
+	$editSummary .= "$portion; ";
       }
       close $nl or die colored ['red'], "$ERRNO\n";
     }
