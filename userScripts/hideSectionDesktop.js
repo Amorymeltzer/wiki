@@ -66,22 +66,24 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 	// This hold the stuff that comes from wikitext, and that only
 	var parserOutput = document.getElementsByClassName('mw-parser-output')[0];
 
-	// Initialise loop variables
-	var classifying = false;
-	var sectionID = 0;
-	var temp_a, currentChild;
-	var loopLength = parserOutput.children.length;
+	if (parserOutput) {
+	    // Initialise loop variables
+	    var classifying = false;
+	    var sectionID = 0;
+	    var temp_a, currentChild;
+	    var loopLength = parserOutput.children.length;
 
-	// Loop over children adding necessary stuff
-	for (var i = 0; i < loopLength; i++){
-	    currentChild = parserOutput.children[i];
-	    if (currentChild.nodeName.toLowerCase() == "h2") {
-		classifying = true;  // all subsequent elements need modifying
-		sectionID += 1;
-		temp_a = _createToggleVisibilityLink(sectionID);
-		currentChild.appendChild(temp_a);
-	    } else if (classifying) {
-		currentChild.classList.add('bn-hidesection-' + sectionID);
+	    // Loop over children adding necessary stuff
+	    for (var i = 0; i < loopLength; i++){
+		currentChild = parserOutput.children[i];
+		if (currentChild.nodeName.toLowerCase() == "h2") {
+		    classifying = true;  // all subsequent elements need modifying
+		    sectionID += 1;
+		    temp_a = _createToggleVisibilityLink(sectionID);
+		    currentChild.appendChild(temp_a);
+		} else if (classifying) {
+		    currentChild.classList.add('bn-hidesection-' + sectionID);
+		}
 	    }
 	}
     });
