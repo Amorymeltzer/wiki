@@ -33,7 +33,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	mw.util.addPortletLink("p-edit", '//tools.wmflabs.org/iabot/index.php?page=runbotsingle&pagesearch=' + mw.config.get("wgPageName"), 'IABot', 't-iabot', "Load the IA bot interface");
 
 	if (mw.config.get("wgAction") == "edit" || mw.config.get("wgAction") == "submit") {
-	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Salix_alba/Citoid.js&oldid=823130457&action=raw&ctype=text/javascript'); //[[User:Salix_alba/Citoid.js]]
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Salix_alba/Citoid.js&oldid=985237637&action=raw&ctype=text/javascript'); //[[User:Salix_alba/Citoid.js]]
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ohconfucius/script/formatgeneral.js&oldid=1002204725&action=raw&ctype=text/javascript'); //[[User:Ohconfucius/script/formatgeneral.js]]
 	    //mw.loader.load('/w/index.php?title=User:Ohconfucius/script/Common Terms.js&action=raw&ctype=text/javascript'); //[[User:Ohconfucius/script/Common Terms.js]] Hide countries, etc. Loads outdated regex menu framework, annoying
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Dr_pda/editrefs.js&oldid=847786367&action=raw&ctype=text/javascript'); //[[User:Dr_pda/editrefs.js]] Show on mainpage as well, like autoed?

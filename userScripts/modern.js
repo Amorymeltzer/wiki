@@ -178,7 +178,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	  This will eventually devolve to Mainspace or not
 	*/
 	/*Not Special*/
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=967663975&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=995222286&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
 	var notifyByDefaultDec = true; //default is true
 	//var notifyByDefaultDel = true; //default is false
 	var notifyByDefaultPrd = true; //default is true
@@ -223,7 +223,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	*/
 	/*Articles and Drafts*/
 	if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 118)) {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=961185441&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=1001497018&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
 	}
 
 	/*Articles and Talk*/
@@ -369,7 +369,7 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 	showText = "show&nbsp;diff";
 	hideText = "hide&nbsp;diff";
 	//inlineDiffBigUI = "true"; //Text is hardcoded, breaks above options
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=926702438&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=981877063&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
 
