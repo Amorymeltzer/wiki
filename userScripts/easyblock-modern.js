@@ -634,7 +634,7 @@ easyblock.showTab = function() {
 	    this.addlilink(blockoptions, "javascript:easyblock.block(\"" + target + "\", \"[[WP:Long term abuse|Long-term abuse]]\", \"indefinite\", true, true, true, false)", "lta+indef");
 	    this.addlilink(blockoptions, "/wiki/Special:Block/" + encodedTarget, 'custom block');
 	    if(ebPrefs.showOnClick) {
-		var items = getElementsByClassName(document, "li", "blockmenu")[0].getElementsByTagName("ul")[0];
+		var items = document.querySelectorAll("li.blockmenu")[0].getElementsByTagName("ul")[0];
 		items.style.display = "none";
 		document.getElementById("blockoptions").onclick = function() {
 		    items.style.display = (items.style.display == "block" ? "none" : "block");
