@@ -83,7 +83,7 @@ foreach my $js (@jsFiles) {
     my %query = (
 		 action => 'query',
 		 prop => 'revisions',
-		 rvprop => 'ids|user|comment',
+		 rvprop => 'ids',
 		 format => 'json',
 		 formatversion => '2'
 		);
@@ -116,7 +116,7 @@ foreach my $js (@jsFiles) {
 
     # Prepare query for one-off queries
     delete $query{titles};
-    $query{rvprop} .= '|content';
+    $query{rvprop} .= '|user|comment|content';
 
     # Parse and organize response data
     # Check each page
@@ -149,7 +149,7 @@ foreach my $js (@jsFiles) {
       map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
 
       # Store for later in hash of arrays, along with user and edit summary
-      @{$replacings{$title}} = ($oldID, $newID, ${$revisions[0]}{user}, ${$revisions[0]}{comment});
+      @{$replacings{$title}} = ($oldID, $newID, ${$revs[0]}{user}, ${$revs[0]}{comment});
 
       # Getting bash to work from inside perl - whether by backticks, system, or
       # IPC::Open3 - is one thing, but getting icdiff to work on strings of
