@@ -273,7 +273,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		*/
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/smaller_templates.js&oldid=596443737&action=raw&ctype=text/javascript'); //[[User:Gary/smaller templates.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/WRStitle.js&action=raw&ctype=text/javascript'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=857651049&action=raw&ctype=text/javascript'); //[[User:Gary/subjects age from year.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=1003565926&action=raw&ctype=text/javascript'); //[[User:Gary/subjects age from year.js]]
 		//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/regex.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/regex.js]] Maybe useful if start processing redirects with content again?  Need to make use of TemplateScript main I guess
 		mw.loader.load('ext.gadget.XTools-ArticleInfo'); //[[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
 	} else {//END ARTICLES
