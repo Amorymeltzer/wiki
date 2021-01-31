@@ -2,6 +2,7 @@
 //Remove various dash suggestions
 //[[User:PC-XT/Advisor.js]] and [[User:Cameltrader/Advisor.js]]
 //[[User:PC-XT/Advisor]] and [[User:Cameltrader/Advisor]]
+//<nowiki>
 
 
 // See http://en.wikipedia.org/wiki/User:Cameltrader/Advisor.js/Description
@@ -1443,3 +1444,4 @@ if (!ct.noDefaultRules && (!mw.config.get('wgContentLanguage') || (mw.config.get
     });
 
 } // end if (mw.config.get('wgContentLanguage') === 'en') // end of default rules
+//</nowiki>
