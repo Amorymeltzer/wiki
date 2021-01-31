@@ -337,6 +337,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; //Optional custom summary
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=1002412137&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=998366913&action=raw&ctype=text/javascript'); //[[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/*All talks*/
 			if (mw.config.get('wgNamespaceNumber') !== '4') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=994489112&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
