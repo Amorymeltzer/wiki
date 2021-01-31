@@ -1,4 +1,5 @@
 /*jshint maxerr:999*/
+/* global mw, $ */
 /*
   This page is designed to only load items on specific pages
   It makes use of an irresponsible number of if-else statements
@@ -421,12 +422,14 @@ if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) 
 	//Activate wikilinks, from [[Wikipedia:WikiProject User scripts/Scripts/Autolink]]
 	//Requires commas between consecutive items
 	//Awkward fix to avoid the edit box
+	var targetdiv;
 	if (mw.config.get('wgAction') == 'view') {
 		targetdiv = document.getElementById('mw-content-text');
-	} else if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
+	} else {
+		// edit or submit
 		targetdiv = document.getElementById('wikiPreview');
 	}
-	content = targetdiv.innerHTML;
+	var content = targetdiv.innerHTML;
 	content = content.replace(/([^\[])\[{2}([^\[\]\|<\>\n]*)([^\[\]<\>\n]*?)?\]{2}([^\]])/g, '$1<a class="autolink" href="/wiki/$2">[[$2$3]]</a>$4'); // Make wikilink code into links
 	targetdiv.innerHTML = content; // Write it back
 
