@@ -14,14 +14,20 @@ if (mw.config.get( 'wgNamespaceNumber') === 14) { // Make sure we're in Category
 		// If the link isn't a talk page, start constructing the talk page link
 		if (page.attr('href').indexOf("talk:") == -1 && pageClone.attr('href').indexOf("Talk:") == -1){
 			pageClone.text('talk');
-			var t = mw.Title.newFromText(pageClone.attr('title')).getTalkPage();
-			pageClone.attr('title', t.getPrefixedText());
-			pageClone.attr('href', '/wiki/' + t.getPrefixedDb());
+			var t = mw.Title.newFromText(pageClone.attr('title'));
+			if (t) {
+			    t.getTalkPage();
+			    pageClone.attr('title', t.getPrefixedText());
+			    pageClone.attr('href', '/wiki/' + t.getPrefixedDb());
+			}
 		} else { // If the link IS a talk page, start constructing the main page link
 			pageClone.text('main');
-			var m = mw.Title.newFromText(pageClone.attr('title')).getSubjectPage();
-			pageClone.attr('title', m.getPrefixedText());
-			pageClone.attr('href', '/wiki/' + m.getPrefixedDb());
+			var m = mw.Title.newFromText(pageClone.attr('title'));
+			if (m) {
+			    m.getSubjectPage();
+			    pageClone.attr('title', m.getPrefixedText());
+			    pageClone.attr('href', '/wiki/' + m.getPrefixedDb());
+			}
 		}
 
 		// Link is done, just need to check if the target exists so we can turn it red if not.
