@@ -121,6 +121,8 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 				link.innerHTML = "RevDel";
 			});
 		});
+
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
 		break;
 	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
