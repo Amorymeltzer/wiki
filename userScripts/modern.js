@@ -171,7 +171,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1004824184&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massprotect.js]]
 			break;
 		case 'Special:Massmove':
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=958830220&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1004844200&action=raw&ctype=text/javascript'); //[[User:Plastikspork/massmove.js]]
 			break;
 		}
 	}
@@ -235,7 +235,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=942792601&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=1004872171&action=raw&ctype=text/javascript');
 
 		//[[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
 		// Loading here rather than via rater.js to get specific version
