@@ -149,7 +149,7 @@ foreach my $js (@jsFiles) {
       map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
 
       # Store for later in hash of arrays, along with user and edit summary
-      @{$replacings{$title}} = ($oldID, $newID, ${$revs[0]}{user}, ${$revs[0]}{comment});
+      @{$replacings{$title}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment});
 
       # Getting bash to work from inside perl - whether by backticks, system, or
       # IPC::Open3 - is one thing, but getting icdiff to work on strings of
