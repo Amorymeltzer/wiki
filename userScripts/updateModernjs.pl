@@ -49,14 +49,14 @@ foreach my $key (sort keys %conf) {
 }
 
 ## Everything checks out
-foreach my $js (@jsFiles) {
+foreach my $import (@jsFiles) {
   # Make sure we have stuff to process
   # Find all instances of mw.loader.load that target a specific revision
   # Intentionally dumb, the project will be matched later
-  my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $js`;
+  my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $import`;
 
   if (!@loaders) {
-    print colored ['yellow'], "No mw.loader.load lines to process in $js\n";
+    print colored ['yellow'], "No mw.loader.load lines to process in $import\n";
     next;
   }
 
@@ -177,7 +177,7 @@ foreach my $js (@jsFiles) {
       if (lc $confirm eq 'n') {
 	print "Skipping $title\n";
       } elsif (lc $confirm eq 'y') {
-	`perl -i -p -e "s/$old/$new/g" $js`;
+	`perl -i -p -e "s/$old/$new/g" $import`;
       } elsif (lc $confirm eq 'q') {
 	last;
       }
@@ -189,6 +189,6 @@ foreach my $js (@jsFiles) {
       unlink $replacings{$title}[1];
     }
   } else {
-    print colored ['blue'], "No scripts from $js need updating!\n";
+    print colored ['blue'], "No scripts from $import need updating!\n";
   }
 }
