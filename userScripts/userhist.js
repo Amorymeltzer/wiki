@@ -190,11 +190,13 @@ function UserHistory() {
         } else if ((mw.config.get('wgAction') == 'view') && (mw.config.get('wgCanonicalSpecialPageName') == 'Contributions') && (mw.config.exists('wgRelevantUserName'))) {
             user = mw.config.get('wgRelevantUserName');
             user = mw.util.isIPAddress(user) ? user : 'User:' + user;
-            var list = $('.mw-changeslist-history');
+	    // Everything with a history link but not with this already applied
+	    var list = $('.mw-changeslist-links:has(.mw-changeslist-history):not(:has(.mw-changeslist-all))');
 	    list.each(function(idx, el) {
+		var histNode = el.querySelector('.mw-changeslist-history');
 		var span = document.createElement('span');
-		span.innerHTML = "<a class=\"mw-changeslist-all\" href=\"/w/index.php?title=" + encodeURIComponent(el.title) + "&action=history&isolate=" + user + "\">all</a>";
-		el.parentNode.parentNode.insertBefore(span, null);
+		span.innerHTML = "<a class=\"mw-changeslist-all\" href=\"/w/index.php?title=" + encodeURIComponent(histNode.title) + "&action=history&isolate=" + user + "\">all</a>";
+		el.insertBefore(span, null);
 	    });
         }
     };
