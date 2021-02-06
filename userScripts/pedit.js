@@ -33,7 +33,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	mw.util.addPortletLink("p-edit", '//tools.wmflabs.org/iabot/index.php?page=runbotsingle&pagesearch=' + mw.config.get("wgPageName"), 'IABot', 't-iabot', "Load the IA bot interface");
 
 
-	/* DisamAsist Stuff
+	/* DisamAsist stuff
 	   Lives at [[User:Qwertyytrewqqwerty/DisamAssist.js]], [[User:Qwertyytrewqqwerty/DisamAssist]]
 	   but that's directly pulling in an es user page ([[Usuario:Qwertyytrewqqwerty/DisamAssist-core.js]]), which, ugh.
 	   So, instead, I copy that page's config, then directly import the

@@ -529,7 +529,77 @@ if (cfg.wgAction === 'history') {
 	});
 } else if ((cfg.wgAction === 'edit') || (cfg.wgAction === 'submit')) {
 	/*Edit and Submit*/
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Js/ajaxPreview.js&oldid=916388391&action=raw&ctype=text/javascript'); //[[User:Js/ajaxPreview.js]], [[User:Js/ajaxPreview]]
+	/* ajaxPreview stuff
+	   Lives at [[User:Js/ajaxPreview.js]] ([[User:Js/ajaxPreview]]), with
+	   the meat at [[User:Js/preview2.js]].  As with DisamAssist, it pulls
+	   in a user script directly, so ugh.  The preference option in the
+	   editing tab is nice, and saves the crap here, but I actually rather
+	   like having *both* option...
+	   Placehoders for any upstream updates, rare though they should be
+	   mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Js/ajaxPreview.js&oldid=916388391&action=raw&ctype=text/javascript');
+	*/
+	mw.loader.using( ['mediawiki.util', 'user.options', 'jquery.textSelection'], function () {
+	    //window.ajaxPreviewPos = 'left'; //buttons on the left
+	    window.ajaxPreviewPos = 'bottom'; //buttons on the bottom, old with >
+	    /*Putting previews on the bottom precludes these options*/
+	    //window.ajaxPreviewKey = ''; //"preview" button accesskey
+	    //window.ajaxDiffKey = ''; //"changes" button accesskey
+	    //window.ajaxPreviewButton = 'Ω'; //"preview" button text
+	    //window.ajaxDiffButton = 'Δ'; //"changes" button text
+	    window.ajaxPreviewMsg = {
+		emptydiff: 'No changes',
+		difftip: 'shift-click the button to show changes compared to this old version',
+		diff2old: 'comparison to old version',
+		viewtip: 'shift-click the button to update interwiki and categories as well\
+ (<a href="//en.wikipedia.org/wiki/User:Js/ajaxPreview#Preview" target=_blank>more</a>)'
+	    };
+
+
+	    var ajaxPreviewPos = window.ajaxPreviewPos || 'right';
+	    if( !document.getElementById('wpSave') ){
+		return;
+	    }
+	    // Load in the meat of the script
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Js/preview2.js&oldid=822102883&action=raw&ctype=text/javascript');
+
+	    if( ajaxPreviewPos != 'bottom' ){
+		var previewToolbar = $('<div style="float:'+ajaxPreviewPos+'" />');
+		if ( mw.user.options.get('usebetatoolbar') ) {
+		    $('#wikiPreview').after('<div style="width:100%; clear:both" />', previewToolbar);
+		} else {
+		    var el = $('#toolbar');
+		    if( el.length ) el.prepend(previewToolbar);
+		    else $('#editform').before(previewToolbar);
+		}
+	    }
+
+	    addBtn(window.ajaxPreviewButton, 'wpPreview', window.ajaxPreviewKey || 'p');
+
+	    if( mw.config.get( 'wgArticleId' ) )
+		addBtn(window.ajaxDiffButton, 'wpDiff', window.ajaxDiffKey || 'v');
+
+	    function addBtn(name, id, akey){
+		var $btnOld = $(document.getElementById(id));
+		if( $btnOld.length === 0 ) return
+		var $btn = $('<input type="button" />')
+		    .attr('id', id + 'Live')
+		    .attr( 'title', $btnOld.val() + ' (ajax)');
+		if( ajaxPreviewPos == 'bottom' ){
+		    $btn.val( $btnOld.val() ).insertBefore( $btnOld.val('>') );
+		}else{
+		    if( !name ){ //extract last word from standard buttons
+			var name = $btnOld.val(); var i = name.lastIndexOf(' ') + 1;
+			name = name.substring(i, i+1).toUpperCase() + name.substring(i+1);
+		    }
+		    $btn.val(name).css({height:'22px', padding:'0 1px'}).appendTo(previewToolbar);
+		}
+		if( akey ){ //reassign acces key
+		    if( $btnOld.attr('accesskey') == akey )
+			$btnOld.removeAttr('accesskey').updateTooltipAccessKeys();
+		    $btn.attr('accesskey', akey).updateTooltipAccessKeys();
+		}
+	    }
+	});
 	// code to execute after each preview update
 	window.ajaxPreviewExec = function(previewArea) {
 		//Enable popups
@@ -546,14 +616,6 @@ if (cfg.wgAction === 'history') {
 			$( '#wikiPreview .collapsible' ).makeCollapsible();
 		} );
 	};
-	//Last one has precedence
-	//var ajaxPreviewPos = 'left'; //buttons on the left
-	var ajaxPreviewPos = 'bottom'; //buttons on the bottom, old with >
-	/*Putting previews on the bottom precludes these options*/
-	//var ajaxPreviewKey = ''; //"preview" button accesskey
-	//var ajaxDiffKey = ''; //"changes" button accesskey
-	//var ajaxPreviewButton = 'Ω'; //"preview" button text
-	//var ajaxDiffButton = 'Δ'; //"changes" button text
 
 	mw.loader.load('//he.wikipedia.org/w/index.php?title=MediaWiki:Gadget-autocomplete.js&oldid=26575308&action=raw&ctype=text/javascript'); // [[User:ערן/autocomplete.js]], [[he:MediaWiki:Gadget-autocomplete.js]] Doesn't work with tab or beta syntax highlighter
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mabdul/saveandedit.js&oldid=953991602&action=raw&ctype=text/javascript'); //[[User:Mabdul/saveandedit.js]]
