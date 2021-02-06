@@ -117,7 +117,7 @@ foreach my $import (@jsFiles) {
 
     # Prepare query for one-off queries
     delete $query{titles};
-    $query{rvprop} .= '|user|comment|content';
+    $query{rvprop} .= '|user|comment|timestamp|content';
 
     # Parse and organize response data
     # Check each page
@@ -149,8 +149,8 @@ foreach my $import (@jsFiles) {
       # IDs are unique, just use 'em
       map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
 
-      # Store for later in hash of arrays, along with user and edit summary
-      @{$replacings{$title}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment});
+      # Store for later in hash of arrays, along with user, edit summary, and timestamp
+      @{$replacings{$title}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
 
       # Getting bash to work from inside perl - whether by backticks, system, or
       # IPC::Open3 - is one thing, but getting icdiff to work on strings of
@@ -166,8 +166,8 @@ foreach my $import (@jsFiles) {
     # Confirm diffs, replace in place
     foreach my $title (keys %replacings) {
       print "\n";
-      my ($old, $new, $user, $comment) = @{$replacings{$title}};
-      print colored ['green'], "$title: updating $old to $new by $user: $comment\n";
+      my ($old, $new, $user, $comment, $timestamp) = @{$replacings{$title}};
+      print colored ['green'], "$title: updating $old to $new by $user ($timestamp): $comment\n";
 
       my @args = ('bash', '-c', "icdiff $old $new");
       system @args;
