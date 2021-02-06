@@ -41,7 +41,7 @@
                             }
                             loading = false;
                         }).done(function() {
-			    if (window.endlesscontribsExec) {
+			    if (window.endlesscontribsExec && typeof window.endlesscontribsExec === 'function') {
 				endlesscontribsExec();
 			    }
 			});
