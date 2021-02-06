@@ -389,6 +389,8 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/userhist.js&oldid=920398181&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts/userhist.js]]
 		// Adjusted to work with [[User:Bradv/endlesscontribs.js]] aka [[User:Amorymeltzer/endlesscontribs.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userhist.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/userhist.js]]
+		// Placeholder for userhist's getScript to check for any updates to waLib, rare though they may be
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&oldid=1003567841&action=raw&ctype=text/javascript');
 	}
 	if (mw.config.get('wgCanonicalSpecialPageName') != 'Contributions') {
 		//Add diffOnly links everywhere but diff pages

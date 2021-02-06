@@ -19,7 +19,8 @@ use MediaWiki::API;
 use File::Slurper qw(write_text);
 
 # Default to modern.js but also accept any other .js file in this directory,
-# as of this writing only pedit.js has any such imports in them
+# as of this writing only pedit.js has any such imports in them (my version of
+# userhist.js has one getScript not detected by this).
 my @jsFiles = ();
 if (!@ARGV) {
   push @jsFiles, 'modern.js';
