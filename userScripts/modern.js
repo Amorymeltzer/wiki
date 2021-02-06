@@ -128,7 +128,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
 		// Testing post-load callback
 		window.endlesscontribsExec = shortenText;
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/endlesscontribs.js&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/endlesscontribs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/endlesscontribs.js]]
 		break;
 	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
@@ -385,7 +385,10 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 
 	if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
 		/*History OR Contribs*/
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/userhist.js&oldid=920398181&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts/userhist.js]]
+		// Loads in [[User:Ale_jrb/Scripts/waLib.js]]
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/userhist.js&oldid=920398181&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts/userhist.js]]
+		// Adjusted to work with [[User:Bradv/endlesscontribs.js]] aka [[User:Amorymeltzer/endlesscontribs.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userhist.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/userhist.js]]
 	}
 	if (mw.config.get('wgCanonicalSpecialPageName') != 'Contributions') {
 		//Add diffOnly links everywhere but diff pages
