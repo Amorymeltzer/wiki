@@ -44,27 +44,30 @@ function UserHistory() {
     };
 
     this.getUserHist = function(user) {
-        var api = 'https://en.wikipedia.org/w/api.php';
-        if (typeof user === 'undefined' || !user) {
-            return false;
-        }
+	var self = this;
+	mw.loader.getScript('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&action=raw&ctype=text/javascript').then(function() {
+	    var api = 'https://en.wikipedia.org/w/api.php';
+            if (typeof user === 'undefined' || !user) {
+		return false;
+            }
 
-        user = user.replace(/ /g, '_');
-        user = user.replace(/User(:|%3A)/gi, '');
+            user = user.replace(/ /g, '_');
+            user = user.replace(/User(:|%3A)/gi, '');
 
-        // remove useless interface
-        var histPar = document.getElementById('mw-history-compare');
-        histPar.innerHTML = '<span style="padding: 4px;">isolating edits by <strong>' + user + '</strong> - please wait...</span>';
+            // remove useless interface
+            var histPar = document.getElementById('mw-history-compare');
+            histPar.innerHTML = '<span style="padding: 4px;">isolating edits by <strong>' + user + '</strong> - please wait...</span>';
 
-        var apiLink = '?action=query&format=xml&prop=revisions&titles='+mw.config.get('wgPageName')+'&rvprop=ids|timestamp|flags|comment|user|size&rvlimit=500&rvuser='+user+'';
+            var apiLink = '?action=query&format=xml&prop=revisions&titles='+mw.config.get('wgPageName')+'&rvprop=ids|timestamp|flags|comment|user|size&rvlimit=500&rvuser='+user+'';
 
-        this.req = new wa_ajaxcall();
-        this.req.requestUrl = api + apiLink;
-        this.req.get(function() {
-            userHist.data = userHist.req.response;
-            userHist.showUserHist ();
-            return true;
-        } );
+            self.req = new wa_ajaxcall();
+            self.req.requestUrl = api + apiLink;
+            self.req.get(function() {
+		userHist.data = userHist.req.response;
+		userHist.showUserHist ();
+		return true;
+            });
+	});
     };
 
     this.showUserHist = function() {
@@ -202,6 +205,5 @@ function UserHistory() {
     };
 }
 
-importScript('User:Ale_jrb/Scripts/waLib.js');
 var userHist = new UserHistory();
 $(userHist.init);
