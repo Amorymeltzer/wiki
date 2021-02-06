@@ -1,7 +1,7 @@
 // Taken from [[User:Bradv/endlesscontribs.js]] (as of [[Special:PermaLink/995418220]]) to test post-running function
 (function( $, mw ) {
     'use strict';
-    
+
     if (mw.config.get('wgCanonicalSpecialPageName')==='Contributions') {
         mw.loader.using("mediawiki.util").then(function () {
             const css = mw.util.addCSS(`
@@ -11,7 +11,7 @@
                 #endlesscontribs {
                     margin: 1em;
                 }
-            `)
+            `);
 
             var nexturl = $('a[rel="next"]').attr('href');
             if (nexturl) {
@@ -32,7 +32,7 @@
                             const $newul = $html.find('.mw-contributions-list > li');
                             $newul.each(function (index, element) {
                                 $ul.append($(element));
-                            })
+                            });
 
                             nexturl = $html.find('a[rel="next"]').attr('href');
 
@@ -40,9 +40,13 @@
                                 button.remove();
                             }
                             loading = false;
-                        })
+                        }).done(function() {
+			    if (window.endlesscontribsExec) {
+				endlesscontribsExec();
+			    }
+			});
                     }
-                });                
+                });
             }
         });
     }
