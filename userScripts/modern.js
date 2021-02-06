@@ -108,21 +108,27 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			});
 		});
 
-		//Shorten revdel; change rollback to r; current to top
-		//Adapted from [[User:Writ Keeper/Scripts/watchlistContribs.js]]
-		$(function () {
-			$('[class^="mw-uctop"]').each(function(index, link) {
-				link.innerHTML = "top";
-			});
-			$('[class^="mw-rollback-link"] a').each(function(index, link) {
-				link.innerHTML = link.innerHTML.replace(/rollback: (\d+) edit/, 'roll$1');
-			});
-			$('[class^="mw-revdelundel-link"] a').each(function(index, link) {
-				link.innerHTML = "RevDel";
-			});
-		});
+		// Will run once on load, then also after each endlesscontribs load
+		var shortenText = function() {
+		    console.log('log');
+		    //Shorten revdel; change rollback to r; current to top
+		    //Adapted from [[User:Writ Keeper/Scripts/watchlistContribs.js]]
+		    $('[class^="mw-uctop"]').each(function(index, link) {
+			link.innerHTML = "top";
+		    });
+		    $('[class^="mw-rollback-link"] a').each(function(index, link) {
+			link.innerHTML = link.innerHTML.replace(/rollback: (\d+) edit/, 'roll$1');
+		    });
+		    $('[class^="mw-revdelundel-link"] a').each(function(index, link) {
+			link.innerHTML = "RevDel";
+		    });
+		};
+		$(shortenText());
 
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
+		// Testing post-load callback
+		window.endlesscontribsExec = shortenText;
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/endlesscontribs.js&action=raw&ctype=text/javascript');
 		break;
 	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
