@@ -2,6 +2,7 @@
 //Taken from https://en.wikipedia.org/w/index.php?title=User:Smith609/toolbox.js&oldid=281341033
 //Editing tools restricted to mainspace
 //See also [[User:Amorymeltzer/pinfo.js]]
+//<nowiki>
 
 if (mw.config.get("wgNamespaceNumber") == "0") {
     $(function () {
@@ -167,3 +168,4 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	}
     });
 }
+//</nowiki>
