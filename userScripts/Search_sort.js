@@ -70,6 +70,13 @@ $( document ).ready( function() {
 	);
 	mw.util.addPortletLink(
 	    'p-cactions',
+	    location.href.replace( location.hash, '' ) + ( location.search ? '&' : '?' ) + 'sort=random',
+            'Random',
+            't-sort',
+            'Repeat the search with randomized sort'
+        );
+        mw.util.addPortletLink(
+	    'p-cactions',
 	    location.href.replace( location.hash, '' ) + ( location.search ? '&' : '?' ) + 'sort=relevance',
 	    'Relevance (default)',
 	    't-sort',

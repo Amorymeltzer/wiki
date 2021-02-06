@@ -47,7 +47,7 @@ window.LocalComments = {
 //Might reload the page
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/unhide.js]]
 //[[MediaWiki:Gadget-markblocked.js]] originally installed via [[User:NuclearWarfare/Mark-blocked script.js]], now loaded via prefs
-// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=166176254&action=raw&ctype=text/javascript'); // placeholder
+// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=886363301&action=raw&ctype=text/javascript'); // placeholder
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/seventabs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
 //window.ADMINHIGHLIGHT_EXTLINKS = true;
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
@@ -135,7 +135,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		break;
 	case 'Watchlist':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/LagToMinutes.js&oldid=788726414&action=raw&ctype=text/javascript'); //[[User:Equazcion/LagToMinutes.js]] Display lag in minutes on watchlist
-		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/ReverseMarked.js&oldid=502668210&action=raw&ctype=text/javascript'); // placeholder
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Equazcion/ReverseMarked.js&oldid=1002585662&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/ReverseMarked.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/ReverseMarked.js]] Hide visited pages on watchlist [[User:Amorymeltzer/ReverseMarked.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/Thanky.js&oldid=928009085&action=raw&ctype=text/javascript'); //[[User:Evad37/Thanky.js]], [[User:Evad37/Thanky]]
 		break;
@@ -155,7 +155,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		break;
 	case 'Search':
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
-		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Search_sort.js&oldid=882034346&action=raw&ctype=text/javascript'); // placeholder
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Search_sort.js&oldid=924771697&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/Search_sort.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
 		break;
 	case 'AbuseLog':
@@ -208,7 +208,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	var overwriteDeclineReasons = true;
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/CSDHreasons.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/CSDHreasons.js]] Custom decline reasons, inspired by [[User:SoWhy/csdreasons.js]]
 
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/hideSectionDesktop.js&oldid=852866025&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/hideSectionDesktop.js&oldid=1002949275&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=778745654&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
 
@@ -218,7 +218,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); //[[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); //[[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=876699678&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=992637017&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); //[[User:Enterprisey/diff-permalink.js]]
 		}
 	});
@@ -310,11 +310,11 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		if (cfg.wgNamespaceNumber === 4) {
 			/*Wikipedia project space, not talk*/
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); //[[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=318627702&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1002799239&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); //[[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=778175826&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=912664522&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=831137097&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=937110189&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); //[[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
@@ -432,7 +432,7 @@ if (mw.config.exists('wgRelevantUserName')) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); //[[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	//[[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	//Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=665148625&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=1002961836&action=raw&ctype=text/javascript'); // placeholder
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.css&oldid=686984610&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/easyblock-modern.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
 	ebPrefs = {

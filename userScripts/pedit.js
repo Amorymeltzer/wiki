@@ -163,7 +163,7 @@ if (mw.config.get("wgNamespaceNumber") == "0") {
 	    //These aren't in the sidebar, but are relevant to mainspace editing, so loaded here rather than in modern.js for convenience
 	    // mw.loader.load('//en.wikipedia.org/w/index.php?title=User:TheJJJunk/ARA.js&oldid=813306638&action=raw&ctype=text/javascript'); // placeholder
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/ARAspaceless.js&action=raw&ctype=text/javascript'); //[[User:TheJJJunk/ARA.js]]
-	    // mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PC-XT/Advisor.js&oldid=748222510&action=raw&ctype=text/javascript'); // placeholder
+	    // mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PC-XT/Advisor.js&oldid=1003960855&action=raw&ctype=text/javascript'); // placeholder
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/AdvisorDashless.js&action=raw&ctype=text/javascript'); //[[User:Cameltrader/Advisor.js]] and [[User:PC-XT/Advisor.js]] Doesn't work with beta syntax highlighters
 	    mw.loader.load('ext.gadget.ProveIt'); //[[MediaWiki:Gadget-ProveIt.js]] [[WP:ProveIt]] [[commons:MediaWiki:Gadget-ProveIt.js]]
 	    mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=203880929&action=raw&ctype=text/javascript'); //[[m:User:TMg/autoFormatter]]

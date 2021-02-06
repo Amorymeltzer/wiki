@@ -63,7 +63,7 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 	}
 
 	// BEGIN WORKFLOW
-	// This hold the stuff that comes from wikitext, and that only
+	// This holds the stuff that comes from wikitext, and that only
 	var parserOutput = document.getElementsByClassName('mw-parser-output')[0];
 
 	if (parserOutput) {

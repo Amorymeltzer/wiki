@@ -194,8 +194,13 @@
 			this.expiryInput.getValue()
 		    )
 		).then(function() {
+		    debugger;
 		    // silently add user to MMS list
-		    if (permission === 'New page reviewer') addToMMSList();
+		    if (permission === 'New page reviewer') {
+			addToMMSList();
+		    } else if (permission === 'Autopatrolled') {
+			updateWhiteList();
+		    }
 
 		    if (!!templates[permission]) {
 			addPromise(
@@ -275,6 +280,21 @@
 	    spamlist: 'Wikipedia:New pages patrol/Reviewers/Newsletter list',
 	    add: 'User talk:' + userName
 	});
+    }
+
+    function updateWhiteList() {
+        api.edit( 'Wikipedia:New pages patrol/Redirect whitelist', function (revision) {
+            debugger;
+            var newContent = revision.content.replace(
+                new RegExp('\\*\\s*{{\\s*user2\\s*\\|\\s*' + userName + '\\s*}}\\n'),
+                ''
+            );
+            return {
+                text: newContent,
+                summary: 'Removing ' + userName + ' who is now autopatrolled' + tagLine,
+                minor: true
+            };
+        });
     }
 })();
 // </nowiki>
