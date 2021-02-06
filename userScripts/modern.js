@@ -8,8 +8,11 @@
   There are some exceptions afterward for mixed situations
   But first, load scripts wanted everywhere
 */
-/*Everywhere*/
 
+// Blah
+var cfg = mw.config.get();
+
+/*Everywhere*/
 //Config for [[Wikipedia:Tools/Navigation popups]], [[MediaWiki:Gadget-popups.js]], [[MediaWiki:Gadget-navpop.css]]
 window.popupMaxWidth = 500; //Default is 350
 window.popupAdminLinks = true;
@@ -75,8 +78,8 @@ $(function () {
   Is the page Special or not, and if so, choose between the various sub-options
 */
 /*Special*/
-if (mw.config.get('wgCanonicalNamespace') === 'Special') {
-	switch (mw.config.get('wgCanonicalSpecialPageName')) {
+if (cfg.wgCanonicalNamespace === 'Special') {
+	switch (cfg.wgCanonicalSpecialPageName) {
 	case 'Contributions':
 		if ($('.mw-contributions-list').length) { //Save some space
 			var paraGone = $('.mw-contributions-list')[0].previousSibling; //Remove <p> tag revision date nav
@@ -157,7 +160,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		break;
 	case null:
 		/*Masses [[UserAmorymeltzer/mass]]*/
-		switch (mw.config.get('wgPageName')) {
+		switch (cfg.wgPageName) {
 		case 'Special:Massedit':
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1004824215&action=raw&ctype=text/javascript'); //[[User:Timotheus Canens/massedit.js]]
 			break;
@@ -219,7 +222,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	//Shorten revdel
 	//Should probably combine this with the identical one for Special:Contributions
 	$(function () {
-		if (mw.config.get('wgRevisionId')) {
+		if (cfg.wgRevisionId) {
 			$('[class^="mw-revdelundel-link"] a').each(function(index, link) {
 				link.innerHTML = "RevDel";
 			});
@@ -231,13 +234,13 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	  That being said, some things are articles and elsewhere
 	*/
 	/*Articles and Drafts*/
-	if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 118)) {
+	if ((cfg.wgNamespaceNumber === 0) || (cfg.wgNamespaceNumber === 118)) {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copyvios.js&oldid=1001497018&action=raw&ctype=text/javascript'); //[[User:The Earwig/copyvios.js]]
 	}
 
 	/*Articles and Talk*/
 	//Only on articles and talk
-	if ((mw.config.get('wgNamespaceNumber') === 0) || (mw.config.get('wgNamespaceNumber') === 1)) {
+	if ((cfg.wgNamespaceNumber === 0) || (cfg.wgNamespaceNumber === 1)) {
 		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
@@ -260,7 +263,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 	}
 
 	/*Articles*/
-	if (mw.config.get('wgNamespaceNumber') === 0) {
+	if (cfg.wgNamespaceNumber === 0) {
 		//[[Wikipedia:HotCat]], [[MediaWiki:Gadget-HotCat.js]], [[commons:Help:Gadget-HotCat]]
 		//Installed here to be only in mainspace
 		window.hotcat_no_autocommit = true;
@@ -296,11 +299,11 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 		//YAAFCH originally from [[User:Timotheus Canens/afchelper4.js]]
 		//Manually installed rather than via gadget to keep off User pages
 		//[[User:Enterprisey/afch-master.js]], [[User:Enterprisey/afch-master.js/core.js]
-		if ($.inArray(mw.config.get('wgCanonicalNamespace'), ['Project', 'Project_talk', 'Draft'])>=0) {
+		if ($.inArray(cfg.wgCanonicalNamespace, ['Project', 'Project_talk', 'Draft'])>=0) {
 			mw.loader.load('ext.gadget.afchelper'); //[[MediaWiki:Gadget-afchelper.js]]
 		}
 
-		if (mw.config.get('wgNamespaceNumber') === 4) {
+		if (cfg.wgNamespaceNumber === 4) {
 			/*Wikipedia project space, not talk*/
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); //[[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); //[[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
@@ -315,32 +318,32 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			//Originally installed here to keep off certain pages but now installed via gadget
 			//mw.loader.load('ext.gadget.XFDcloser');
 			/*Only for [[WP:AFC/R]]*/
-			if (mw.config.get('wgPageName') === 'Wikipedia:Articles_for_creation/Redirects') {
+			if (cfg.wgPageName === 'Wikipedia:Articles_for_creation/Redirects') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=997723906&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
-			} else if (mw.config.get('wgPageName') === 'Wikipedia:AutoWikiBrowser/Script') {
+			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=994802386&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
 			}
-		} else if (mw.config.get('wgNamespaceNumber') === 14) {
+		} else if (cfg.wgNamespaceNumber === 14) {
 			/*Categories*/
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/CatListMainTalkLinks.js&action=raw&ctype=text/javascript'); //[[User:Equazcion/CatListMainTalkLinks.js]] Display main/talk/hist links for pages in categories [[User:Amorymeltzer/CatListMainTalkLinks.js]]
-		} else if (mw.config.get('wgNamespaceNumber') === 6) {
+		} else if (cfg.wgNamespaceNumber === 6) {
 			/*Files*/
 			//TinEye link, from [[meta:User:Krinkle/Scripts/TinEye]], [[File:Krinkle_TinEye.js]], [[commons:MediaWiki:Gadget-Tineye.js]], [[commons:MediaWiki:Gadget-Tineye]]
 			var imgs = $('#file img');
 			if (imgs.length) {
 				mw.util.addPortletLink('p-cactions', 'http://tineye.com/search?url=' + encodeURIComponent(imgs[0].src), 'TinEye', 'ca-tineye');
 			}
-		} else if (mw.config.get('wgNamespaceNumber') === 8) {
+		} else if (cfg.wgNamespaceNumber === 8) {
 		    /* MediaWiki, but really just [[MediaWiki:Gadgets-definition]] */
-		    if (mw.config.get('wgPageName') === 'MediaWiki:Gadgets-definition') {
+		    if (cfg.wgPageName === 'MediaWiki:Gadgets-definition') {
 			// Link and prettify gadgets [[User:Erutuon/scripts/gadgets-definition.js]], [[wikt:User:Erutuon/scripts/gadgets-definition.js]]
 			mw.loader.load('//en.wiktionary.org/w/index.php?title=User:Erutuon/scripts/gadgets-definition.js&oldid=51906780&action=raw&ctype=text/javascript');
 		    }
 		}//END else if LOOP but remain in not articles
 
 		/*WP and all talks*/
-		if ((mw.config.get('wgNamespaceNumber') === 4) || (mw.config.get('wgNamespaceNumber')%2 === 1)) {
+		if ((cfg.wgNamespaceNumber === 4) || (cfg.wgNamespaceNumber%2 === 1)) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=993462062&action=raw&ctype=text/javascript'); //[[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); //[[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; //Don't autoload ping template for reply-link
@@ -348,10 +351,10 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=1002412137&action=raw&ctype=text/javascript'); //[[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=998366913&action=raw&ctype=text/javascript'); //[[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/*All talks*/
-			if (mw.config.get('wgNamespaceNumber') !== '4') {
+			if (cfg.wgNamespaceNumber !== '4') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=994489112&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
 				/*User talks*/
-				if (mw.config.get('wgNamespaceNumber') === '3') {
+				if (cfg.wgNamespaceNumber === '3') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
 				}
 			}
@@ -370,8 +373,8 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
   Basically, places where rollback/diffs exist, a username exists, or places with wikilinks in dropdown menus
 */
 /*MIXED*/
-if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions'
-    || mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist' || mw.config.get('wgCanonicalSpecialPageName') === 'Recentchanges') {
+if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributions'
+    || cfg.wgCanonicalSpecialPageName === 'Watchlist' || cfg.wgCanonicalSpecialPageName === 'Recentchanges') {
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
 
 	// Will run once on load, then also after each endlesscontribs load
@@ -386,7 +389,7 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 	    // This might need to be moved out? FIXME TODO
 	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
 
-	    if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
+	    if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributions') {
 		/*History OR Contribs*/
 		// Loads in [[User:Ale_jrb/Scripts/waLib.js]]
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/userhist.js&oldid=920398181&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts/userhist.js]]
@@ -403,7 +406,7 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 	    tmpFunc();
 	    possiblyContribs();
 	};
-	if (mw.config.get('wgCanonicalSpecialPageName') != 'Contributions') {
+	if (cfg.wgCanonicalSpecialPageName != 'Contributions') {
 		//Add diffOnly links everywhere but diff pages
 		DiffOnly = {
 			history: true,
@@ -426,19 +429,19 @@ if (mw.config.exists('wgRelevantUserName')) {
 		loadPageOnSubmit:false
 	};
 }
-/*mw.config.get('wgRelevantPageIsProbablyEditable')*/
+/*cfg.wgRelevantPageIsProbablyEditable*/
 //Excessive perhaps, but want this after userinfo
-if (mw.config.get('wgRelevantPageIsProbablyEditable')) {
+if (cfg.wgRelevantPageIsProbablyEditable) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/deletionFinder.js&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/suppressionFinder.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/suppressionFinder.js]] As above
 }
 
 /*js/css/json pages, likely MediaWiki or userspace*/
-if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) !== -1) && ($.inArray(mw.config.get('wgAction'), ['view', 'edit', 'submit'])>=0)) {
+if ((['javascript', 'css', 'json'].indexOf(cfg.wgPageContentModel) !== -1) && ($.inArray(cfg.wgAction, ['view', 'edit', 'submit'])>=0)) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/raw.js&action=raw&ctype=text/javascript'); //[[User:Kangaroopower/rawtab.js]], [[User:Amorymeltzer/raw.js]]
 
 	//Show diffs in monospace.  Maybe include Scribunto?
-	if (mw.config.get('wgDiffNewId')) {
+	if (cfg.wgDiffNewId) {
 		$('td.diff-addedline, td.diff-deletedline, td.diff-context').css('font-family',"Consolas, 'Courier New', monospace");
 	}
 
@@ -446,7 +449,7 @@ if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) 
 	//Requires commas between consecutive items
 	//Awkward fix to avoid the edit box
 	var targetdiv;
-	if (mw.config.get('wgAction') == 'view') {
+	if (cfg.wgAction == 'view') {
 		targetdiv = document.getElementById('mw-content-text');
 	} else {
 		// edit or submit
@@ -458,15 +461,15 @@ if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) 
 
 	//Add personal js/css nav
 	var ss = window.document.getElementsByClassName('subpages')[0];
-	if (ss && mw.config.get('wgArticleId')) { //In case the page was deleted
+	if (ss && cfg.wgArticleId) { //In case the page was deleted
 		var modLink = " | <a href=\"/wiki/User:Amorymeltzer/modern.js\" title=\"User:Amorymeltzer/modern.js\">modern.js</a> | <a href=\"/wiki/User:Amorymeltzer/modern.css\" title="
 		    + "\"User:Amorymeltzer/modern.css\">modern.css</a> | <a href=\"/wiki/Special:PrefixIndex/User:Amorymeltzer/\" title=\"wiki/Special:PrefixIndex/User:Amorymeltzer/\">subpages</a>";
 		ss.innerHTML = ss.innerHTML + modLink;
 	}
 } else { //Not js/css/json
-	if (mw.config.get('wgAction') == 'edit' || mw.config.get('wgAction') == 'submit') {
+	if (cfg.wgAction == 'edit' || cfg.wgAction == 'submit') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Anomie/previewtemplatelastmod.js&oldid=683547736&action=raw&ctype=text/javascript'); //[[User:Anomie/previewtemplatelastmod]], [[User:Anomie/previewtemplatelastmod.js]] Display info about transcluded templates
-		if (mw.config.get('wgNamespaceNumber') !== 0) {
+		if (cfg.wgNamespaceNumber !== 0) {
 			//Turn enhanced toolbar off if not in mainspace
 			//Defined here to easily allow the code editor on the above pages
 			mw.loader.using(['mediawiki.util'], function() {
@@ -478,9 +481,9 @@ if ((['javascript', 'css', 'json'].indexOf(mw.config.get('wgPageContentModel')) 
 
 /*Delete, (Un)Protect, RevisionDelete, Block, or AbuseLog*/
 //Resurrected version of [[User:Ale jrb/Scripts/csdcheck.js]], requires some CSS (Exampless in [[User:Amorymeltzer/csdcheck.js]] or [[User:Amorymeltzer/modern.css]])
-if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'protect' || mw.config.get('wgAction') === 'unprotect' ||
-    mw.config.get('wgCanonicalSpecialPageName') === 'Revisiondelete' || mw.config.get('wgCanonicalSpecialPageName') === 'Block' ||
-    mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
+if (cfg.wgAction === 'delete' || cfg.wgAction === 'protect' || cfg.wgAction === 'unprotect' ||
+    cfg.wgCanonicalSpecialPageName === 'Revisiondelete' || cfg.wgCanonicalSpecialPageName === 'Block' ||
+    cfg.wgCanonicalSpecialPageName === 'AbuseLog') {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/csdcheck.js&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Amorymeltzer/csdcheck.js]]
 }
 
@@ -490,7 +493,7 @@ if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'pro
   Some scripts need to be loaded only for certain actions
 */
 /*ACTIONS*/
-if (mw.config.get('wgAction') === 'history') {
+if (cfg.wgAction === 'history') {
 	/*History*/
 	// Make compare and revdel buttons act as links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
 	// Compare link
@@ -524,7 +527,7 @@ if (mw.config.get('wgAction') === 'history') {
 			link.innerHTML = "b";
 		});
 	});
-} else if ((mw.config.get('wgAction') === 'edit') || (mw.config.get('wgAction') === 'submit')) {
+} else if ((cfg.wgAction === 'edit') || (cfg.wgAction === 'submit')) {
 	/*Edit and Submit*/
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Js/ajaxPreview.js&oldid=916388391&action=raw&ctype=text/javascript'); //[[User:Js/ajaxPreview.js]], [[User:Js/ajaxPreview]]
 	// code to execute after each preview update
@@ -563,15 +566,14 @@ if (mw.config.get('wgAction') === 'history') {
 	//Don't watch super active projectspace pages
 	//AIV, RFPP, UAA, ANI, Sandbox
 	$(function () {
-		if (mw.config.get('wgNamespaceNumber') === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(mw.config.get('wgTitle')) !== -1) {
+		if (cfg.wgNamespaceNumber === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(cfg.wgTitle) !== -1) {
 			$('#wpWatchthis').prop('checked', false);
 		}
 	});
-} else if (mw.config.get('wgAction') === 'purge' || mw.config.get('wgAction') === 'watch' || mw.config.get('wgAction') === 'unwatch') {
+} else if (['purge', 'watch', 'unwatch'].indexOf(cfg.wgAction) !== -1) {
 	/*Purge, (un)Watch*/
 	/* Automate purge/watch/unwatch confirmation dialog */
-	var qAction = mw.config.get('wgAction');
-	$('form[action*="action='+qAction+'"]').submit();
+	$('form[action*="action='+cfg.wgAction+'"]').submit();
 }//END ACTIONS
 
 
