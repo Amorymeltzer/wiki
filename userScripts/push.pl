@@ -185,7 +185,6 @@ modern.js
   Search_sort.js
   WRStitle.js
   qrfpp.js
-  ajaxsendcomment.js
   raw.js
   articleinfo-gadget.js
   responseHelper.js
