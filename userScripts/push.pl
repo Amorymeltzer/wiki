@@ -205,3 +205,5 @@ modern.js
   wlhActionLinks.js
   logSwap.js
   historyButtonLinks.js
+  endlesscontribs.js
+  userhist.js
