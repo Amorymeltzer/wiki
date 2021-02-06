@@ -45,7 +45,7 @@ function UserHistory() {
 
     this.getUserHist = function(user) {
 	var self = this;
-	mw.loader.getScript('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&action=raw&ctype=text/javascript').then(function() {
+	mw.loader.getScript('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&oldid=1003567841&action=raw&ctype=text/javascript').then(function() {
 	    var api = 'https://en.wikipedia.org/w/api.php';
             if (typeof user === 'undefined' || !user) {
 		return false;
