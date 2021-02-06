@@ -110,7 +110,6 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		// Will run once on load, then also after each endlesscontribs load
 		var shortenText = function() {
-		    console.log('log');
 		    //Shorten revdel; change rollback to r; current to top
 		    //Adapted from [[User:Writ Keeper/Scripts/watchlistContribs.js]]
 		    $('[class^="mw-uctop"]').each(function(index, link) {
@@ -127,6 +126,7 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
 		// Testing post-load callback
+		// Will be added to below
 		window.endlesscontribsExec = shortenText;
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/endlesscontribs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/endlesscontribs.js]]
 		break;
@@ -372,18 +372,21 @@ if (mw.config.get('wgCanonicalNamespace') === 'Special') {
 /*MIXED*/
 if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions'
     || mw.config.get('wgCanonicalSpecialPageName') === 'Watchlist' || mw.config.get('wgCanonicalSpecialPageName') === 'Recentchanges') {
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
 
-	/*Hist/watch/rece/contribs*/
-	//Shows inline diffs everywhere (hist, watch, recent, contribs)
-	inspectText = "show&nbsp;diff";
-	showText = "show&nbsp;diff";
-	hideText = "hide&nbsp;diff";
-	//inlineDiffBigUI = "true"; //Text is hardcoded, breaks above options
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=981877063&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/rollbackSummary.js&oldid=777687372&action=raw&ctype=text/javascript'); //[[User:Mr.Z-man/rollbackSummary.js]], [[User:Writ Keeper/rollbackSummary.js]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
+	// Will run once on load, then also after each endlesscontribs load
+	var possiblyContribs = function() {
+	    /*Hist/watch/rece/contribs*/
+	    //Shows inline diffs everywhere (hist, watch, recent, contribs)
+	    inspectText = "show&nbsp;diff";
+	    showText = "show&nbsp;diff";
+	    hideText = "hide&nbsp;diff";
+	    //inlineDiffBigUI = "true"; //Text is hardcoded, breaks above options
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/commonHistory.js&oldid=981877063&action=raw&ctype=text/javascript'); //[[User:Writ Keeper/Scripts/commonHistory.js]]
+	    // This might need to be moved out? FIXME TODO
+	    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:קיפודנחש/apiRollback.js&oldid=924056620&action=raw&ctype=text/javascript'); //[[User:קיפודנחש/apiRollback.js]]
 
-	if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
+	    if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecialPageName') === 'Contributions') {
 		/*History OR Contribs*/
 		// Loads in [[User:Ale_jrb/Scripts/waLib.js]]
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/userhist.js&oldid=920398181&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts/userhist.js]]
@@ -391,7 +394,15 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userhist.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/userhist.js]]
 		// Placeholder for userhist's getScript to check for any updates to waLib, rare though they may be
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&oldid=1003567841&action=raw&ctype=text/javascript');
-	}
+	    }
+	};
+	$(possiblyContribs());
+	// Already established above, so add to it
+	var tmpFunc = window.endlesscontribsExec;
+	window.endlesscontribsExec = function() {
+	    tmpFunc();
+	    possiblyContribs();
+	};
 	if (mw.config.get('wgCanonicalSpecialPageName') != 'Contributions') {
 		//Add diffOnly links everywhere but diff pages
 		DiffOnly = {
@@ -402,7 +413,6 @@ if (mw.config.get('wgAction') === 'history' || mw.config.get('wgCanonicalSpecial
 		};
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); //[[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
 	}
-
 }
 
 /*mw.config.exists('wgRelevantUserName')*/
