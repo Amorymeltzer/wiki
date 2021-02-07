@@ -88,3 +88,27 @@ total.forEach(function(item) {
 });
 // Object sorted by key values
 ordered = Object.fromEntries(Object.entries(count).sort(([,a],[,b]) => a<b));
+
+
+/********************************************************/
+
+var projQuery = {
+    action: 'query',
+    format: 'json',
+    list: 'search',
+    formatversion: '2',
+    // srsearch: 'intitle:/\.js/ insource:/[\[ (=+,!]wg[A-Za-z]/',
+    srsearch: 'contentmodel:javascript insource:/[\[ (=+,!]wg[A-Za-z]/',
+    srnamespace: '4',
+    srlimit: 'max',
+    srprop: '',
+    srsort: 'last_edit_desc'
+};
+var projRes = [];
+var api4 = new Morebits.wiki.api('Get pages', projQuery, function(data){
+    var search = data.response.query.search;
+    search.forEach(function(title){
+	title.title && projRes.push(title.title);
+    });
+});
+api4.post();
