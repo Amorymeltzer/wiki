@@ -54,7 +54,7 @@ foreach my $import (@jsFiles) {
   # Make sure we have stuff to process
   # Find all instances of mw.loader.load that target a specific revision
   # Intentionally dumb, the project will be matched later
-  my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=" $import`;
+  my @loaders = `grep -io "mw\.loader\.load('\/\/.*\/w\/index.*&oldid=.*&action=.*" $import`;
 
   if (!@loaders) {
     print colored ['yellow'], "No mw.loader.load lines to process in $import\n";
@@ -100,7 +100,11 @@ foreach my $import (@jsFiles) {
       # Add onto query, will be combined in a single query
       push @{$query{titles}}, $title;
       # Enable oldid lookup after the fact
-      $pagelookup{$title} = $url =~ s/.*&oldid=(.*)&action=.*/$1/r;
+      $pagelookup{$title} = [$url =~ s/.*&oldid=(.*)&action=.*/$1/r, 0];
+      # Also store placeholder status
+      if ($url =~ /\/\/ placeholder/) {
+	${$pagelookup{$title}}[1]++;
+      }
     }
 
     $query{titles} = join q{|}, @{$query{titles}};
@@ -134,7 +138,7 @@ foreach my $import (@jsFiles) {
       # json/xml, but it never is.
       my @revisions = @{${$page}{revisions}};
       my $newID = ${$revisions[0]}{revid};
-      my $oldID = $pagelookup{$title};
+      my $oldID = ${$pagelookup{$title}}[0];
 
       # Skip if no differences
       next if !$oldID || !$newID || $oldID == $newID;
@@ -167,7 +171,8 @@ foreach my $import (@jsFiles) {
     foreach my $title (keys %replacings) {
       print "\n";
       my ($old, $new, $user, $comment, $timestamp) = @{$replacings{$title}};
-      print colored ['green'], "$title: updating $old to $new by $user ($timestamp): $comment\n";
+      my $status = ${$pagelookup{$title}}[1] == 0 ? 'updating' : 'UPSTREAM updated';
+      print colored ['green'], "$title: $status $old to $new by $user ($timestamp): $comment\n";
 
       my @args = ('bash', '-c', "icdiff $old $new");
       system @args;
