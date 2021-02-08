@@ -47,7 +47,7 @@ window.LocalComments = {
 //Might reload the page
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/unhide.js]]
 //[[MediaWiki:Gadget-markblocked.js]] originally installed via [[User:NuclearWarfare/Mark-blocked script.js]], now loaded via prefs
-// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=886363301&action=raw&ctype=text/javascript'); // placeholder
+// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=1005393196&action=raw&ctype=text/javascript'); // placeholder
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/seventabs.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
 //window.ADMINHIGHLIGHT_EXTLINKS = true;
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); //[[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
@@ -210,7 +210,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/hideSectionDesktop.js&oldid=1002949275&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); //[[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=778745654&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=1005543115&action=raw&ctype=text/javascript'); //[[User:The Earwig/permalink.js]]
 
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
