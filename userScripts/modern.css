@@ -232,7 +232,7 @@ body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group 
 div#proveit { font-size: 1em; }
 
 /* Downsize [[User:The_Earwig/permalink.js]] */
-.permalink-copy {
+.permalink-wrapper {
  font-size: medium;
 }
 
