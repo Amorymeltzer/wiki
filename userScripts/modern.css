@@ -181,12 +181,12 @@ a[accesskey]:after {
 
 /* Some page-specific stuff */
 /* Restore non-OOUI dropdown appearance by hiding the new menus and showing the old ones
- * Currently: delete, block, move, editfilter, contributions
+ * Currently: delete, block, protect, move, editfilter, contributions
  * Relevant for [[User:Amorymeltzer/csdcheck.js]]*/
-.action-delete .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle, .mw-special-Movepage .oo-ui-dropdownWidget-handle, .mw-special-AbuseLog .oo-ui-dropdownWidget-handle, .mw-special-Contributions .oo-ui-dropdownWidget-handle {
+.action-delete .oo-ui-dropdownWidget-handle, .action-protect .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle, .mw-special-Movepage .oo-ui-dropdownWidget-handle, .mw-special-AbuseLog .oo-ui-dropdownWidget-handle, .mw-special-Contributions .oo-ui-dropdownWidget-handle {
   display: none;
 }
-.action-delete .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down, .mw-special-Movepage .oo-ui-indicator-down, .mw-special-AbuseLog .oo-ui-indicator-down, .mw-special-Contributions .oo-ui-indicator-down {
+.action-delete .oo-ui-indicator-down, .action-protect .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down, .mw-special-Movepage .oo-ui-indicator-down, .mw-special-AbuseLog .oo-ui-indicator-down, .mw-special-Contributions .oo-ui-indicator-down {
   display: inline !important;
 }
 /* Tighten OOUI menus */

@@ -492,9 +492,7 @@ if ((['javascript', 'css', 'json'].indexOf(cfg.wgPageContentModel) !== -1) && ($
 
 /*Delete, (Un)Protect, RevisionDelete, Block, or AbuseLog*/
 //Resurrected version of [[User:Ale jrb/Scripts/csdcheck.js]], requires some CSS (Exampless in [[User:Amorymeltzer/csdcheck.js]] or [[User:Amorymeltzer/modern.css]])
-if (cfg.wgAction === 'delete' || cfg.wgAction === 'protect' || cfg.wgAction === 'unprotect' ||
-    cfg.wgCanonicalSpecialPageName === 'Revisiondelete' || cfg.wgCanonicalSpecialPageName === 'Block' ||
-    cfg.wgCanonicalSpecialPageName === 'AbuseLog') {
+if (['delete', 'protect', 'unprotect'].indexOf(cfg.wgAction) !== -1 || ['Revisiondelete', 'Block', 'AbuseLog'].indexOf(cfg.wgCanonicalSpecialPageName) !== -1 ) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/csdcheck.js&action=raw&ctype=text/javascript'); //[[User:Ale jrb/Scripts]], [[User:Amorymeltzer/csdcheck.js]]
 }
 
