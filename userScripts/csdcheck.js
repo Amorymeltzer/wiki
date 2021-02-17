@@ -32,7 +32,7 @@ $(function () {
     }
 
     if (mw.config.get('wgAction') == 'protect' || mw.config.get('wgAction') == 'unprotect') {
-	cleanList(document.getElementById('wpProtectReasonSelection'));
+	cleanList(document.getElementsByName('wpProtectReasonSelection')[0]);
     } else if (mw.config.get('wgCanonicalSpecialPageName') == 'Revisiondelete') {
 	cleanList(document.getElementById('wpRevDeleteReasonList'));
     } else if (mw.config.get('wgCanonicalSpecialPageName') == 'Block') {
