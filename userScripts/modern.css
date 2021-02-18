@@ -192,6 +192,16 @@ a[accesskey]:after {
 /* Tighten OOUI menus */
 .oo-ui-menuOptionWidget { padding: 0.2em 1em; }
 
+/*
+  Tone down 'Changed since last visit' colors
+  Taken from [[MediaWiki:Gadget-SubtleUpdatemarker.css]]
+  Make slightly more obvious
+*/
+span.updatedmarker {
+	background-color: transparent;
+	color: #393; /* #006400 */
+}
+
 /* Shrink history dropdown panel */
 body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group > div > div {
 	float: left; margin: 0 10px 0 0;
