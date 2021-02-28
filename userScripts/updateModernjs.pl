@@ -4,7 +4,8 @@
 # my modern.js, but if those scripts are subsequently updated it can be a pain
 # to 1. know about it (beyond Special:WLH) and 2. update them.  This script
 # checks each import, presents a diff for me to visually inspect, and prompts
-# for confirmation for each item.
+# for confirmation for each item.  With some comments, can also detect
+# upstream changes as well as skip items marked with /*--skipUpdate--*/
 
 use strict;
 use warnings;
@@ -79,6 +80,7 @@ foreach my $import (@jsFiles) {
   # Items that need updating
   my %replacings;
   my %pagelookup;
+  my %extraInfo;
   foreach my $project (sort keys %lookup) {
     # Generic basis for each API query, will get reused for individual pages
     my %query = (
@@ -101,10 +103,12 @@ foreach my $import (@jsFiles) {
       push @{$query{titles}}, $title;
       # Enable oldid lookup after the fact
       $pagelookup{$title} = [$url =~ s/.*&oldid=(.*)&action=.*/$1/r, 0];
-      # Also store placeholder status
-      if ($url =~ /\/\/ placeholder/) {
-	${$pagelookup{$title}}[1]++;
-      }
+      # If we're skipping, store that, and feel free to skip placeholder
+      # status since we'll never need it
+      ${$extraInfo{$title}}[0] = $url =~ /\/\*--skipUpdate--\*\//;
+      next if ${$extraInfo{$title}}[0];
+      # Store placeholder status
+      ${$extraInfo{$title}}[1] = $url =~ /\/\/ placeholder/;
     }
 
     $query{titles} = join q{|}, @{$query{titles}};
@@ -143,6 +147,12 @@ foreach my $import (@jsFiles) {
       # Skip if no differences
       next if !$oldID || !$newID || $oldID == $newID;
 
+      # Skip items marked as such
+      if (${$extraInfo{$title}}[0] == 1) {
+	print colored ['cyan'], "Skipping updates for $title\n";
+	next;
+      }
+
       # There are new differences, so let's diff 'em!
       print "$title\n";
       $query{revids} = $oldID.q{|}.$newID;
@@ -171,7 +181,8 @@ foreach my $import (@jsFiles) {
     foreach my $title (keys %replacings) {
       print "\n";
       my ($old, $new, $user, $comment, $timestamp) = @{$replacings{$title}};
-      my $status = ${$pagelookup{$title}}[1] == 0 ? 'updating' : 'UPSTREAM updated';
+      # Note placeholders
+      my $status = ${$extraInfo{$title}}[1] == 1 ? 'UPSTREAM updated' : 'updating';
       print colored ['green'], "$title: $status $old to $new by $user ($timestamp): $comment\n";
 
       my @args = ('bash', '-c', "icdiff $old $new");

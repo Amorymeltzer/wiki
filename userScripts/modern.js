@@ -290,7 +290,6 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Sam_Sailor/Scripts/WRStitle.js&oldid=844962945&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/WRStitle.js&action=raw&ctype=text/javascript'); //[[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=1003565926&action=raw&ctype=text/javascript'); //[[User:Gary/subjects age from year.js]]
-		//mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/regex.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/regex.js]] Maybe useful if start processing redirects with content again?  Need to make use of TemplateScript main I guess
 		mw.loader.load('ext.gadget.XTools-ArticleInfo'); //[[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
 	} else {//END ARTICLES
 		/*
@@ -329,7 +328,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=997723906&action=raw&ctype=text/javascript'); //[[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]] /*--skipUpdate--*/
 			}
 		} else if (cfg.wgNamespaceNumber === 14) {
 			/*Categories*/
