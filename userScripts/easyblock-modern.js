@@ -219,7 +219,7 @@ easyblock.isBlocked = function(name) {
 
 easyblock.getLastBlock = function(user) {
     var response = this.syncAjaxGet("format=json&action=query&list=logevents&letype=block&letitle=User:" + encodeURIComponent(user) + "&leprop=details");
-    if(response.query.logevents)
+    if(response && response.query && response.query.logevents)
     {
 	//look for the most recent block log entry that isn't an unblock. We can't filter for both blocks and reblocks, apparently.
 	for (var i=0; i<response.query.logevents.length; i++)

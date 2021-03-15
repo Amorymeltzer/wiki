@@ -359,7 +359,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=998366913&action=raw&ctype=text/javascript'); //[[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/*All talks*/
 			if (cfg.wgNamespaceNumber !== '4') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=994489112&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1011774429&action=raw&ctype=text/javascript'); //[[User:Jackmcbarn/editProtectedHelper.js]]
 				/*User talks*/
 				if (cfg.wgNamespaceNumber === '3') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); //[[User:Enterprisey/unblock-review.js]]
@@ -431,7 +431,7 @@ if (mw.config.exists('wgRelevantUserName')) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); //[[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	//[[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	//Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=1002961836&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=1011678865&action=raw&ctype=text/javascript'); // placeholder
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.css&oldid=686984610&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/easyblock-modern.js&action=raw&ctype=text/javascript'); //[[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
 	ebPrefs = {
