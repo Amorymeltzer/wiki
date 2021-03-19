@@ -264,7 +264,11 @@ ct.observe(window, 'load', function () {
 	}
 	e = p;
     }
-    e.parentNode.insertBefore(ct.eSuggestions, e);
+    if(e) {
+	e.parentNode.insertBefore(ct.eSuggestions, e);
+    } else {
+	return;
+    }
     ct.eAddToSummary = document.createElement('DIV');
     ct.eAddToSummary.style.border = 'dashed #ccc 1px';
     ct.eAddToSummary.style.color = '#888';
