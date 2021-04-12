@@ -5,7 +5,7 @@
 
 function get_help {
     cat <<END_HELP
-Usage: $(basename $0) [-dpgr] <opt1> [opt2] ...
+Usage: $(basename "$0") [-dpgr] <opt1> [opt2] ...
 
   opt		Calculating option(s) (month, rollN, year, or fixedN).  Required with -p and -g/-r.
   -d		Downlaod data
@@ -42,29 +42,29 @@ function download_data() {
 	# Bulk download monthly data from https://xtools.wmflabs.org/adminstats
 	for date in $dates
 	do
-	    mon=$(echo ${date:0:7})
+	    mon=${date:0:7}
 	    raw=$rawD/$mon.'html'
 	    echo "Downloading $date..."
 	    url="$urlBase$date"
-	    echo $url
-	    curl -d '' "$url" -o $raw.tmp
+	    echo "$url"
+	    curl -d '' "$url" -o "$raw.tmp"
 
 	    # Remove variable/easter egg content
-	    perl cleanRaw.pl $raw.tmp > $raw
-	    rm $raw.tmp
-	    md5 -r $raw >> "md5raw.txt"
+	    perl cleanRaw.pl "$raw.tmp" > "$raw"
+	    rm "$raw.tmp"
+	    md5 -r "$raw" >> "md5raw.txt"
 
 	    # Verify date as expected, not likely to be a problem
-	    timestamp=$(grep -A 2 "Ending date" $raw |tail -n 1|xargs)
-	    timestamp=$(echo ${timestamp:0:7})
+	    timestamp=$(grep -A 2 "Ending date" "$raw" |tail -n 1|xargs)
+	    timestamp=${timestamp:0:7}
 	    if [ "$timestamp" != "$mon" ]; then
 		dienice "Timestamp for $date seems erroneous"
 	    fi
 
 	    csv=$csvD/$mon.'csv'
-	    perl table2csv.pl $raw > $csv
-	    md5 -r $csv >> "md5csv.txt"
-	    echo -n $mon > latest
+	    perl table2csv.pl "$raw" > "$csv"
+	    md5 -r "$csv" >> "md5csv.txt"
+	    echo -n "$mon" > latest
 	done
 
 	# Check data for duplication events
@@ -75,7 +75,7 @@ function download_data() {
 	    echo "Duplicate raw data files found"
 	    for dup in $rawDups
 	    do
-		echo $dup
+		echo "$dup"
 	    done
 	    dienice "You should investigate manually"
 	fi
@@ -84,7 +84,7 @@ function download_data() {
 	    echo "Duplicate csv data files found"
 	    for dup in $csvDups
 	    do
-		echo $dup
+		echo "$dup"
 	    done
 	    dienice "You should investigate manually"
 	fi
@@ -93,12 +93,12 @@ function download_data() {
 
 function process_data() {
     echo "Building $sinFile"
-    perl calcH.pl $behav $sinFile $csvD/
+    perl calcH.pl "$behav" "$sinFile" "$csvD/"
 }
 
 function graph_data() {
     echo "Graphing $rPass data from $sinFile"
-    Rscript sindex.r $sinFile "$rPass"
+    Rscript sindex.r "$sinFile" "$rPass"
     rm Rplots.pdf			# Christ R is stupid
 }
 
@@ -107,12 +107,10 @@ while getopts ':dDpPgGrRhH' opt; do
 	d|D) download='1';;
 	p|P) process='1';;
 	g|G|r|R) graph='1';;
-	h|H) get_help $0
+	h|H) get_help "$0"
 	     exit 0;;
-	\?) printf "Invalid option: -"$opt", try $0 -h\n" >&2
-            exit 1;;
-	:) printf "Option -"$opt" requires an argument, try $0 -h\n" >&2
-           exit 1;;
+	*) printf "Invalid option provided, try %s -h\n" "$0" >&2
+	    exit 1;;
     esac
 done
 
@@ -139,30 +137,30 @@ if [[ -n $process || -n $graph ]]; then
 	    sinFile=$sinD/'sindex-monthly.csv'
 	    rPass='monthly'
 	elif [[ $behav =~ ^roll[0-9]+$ ]]; then
-	    rPass=$(echo ${behav:4})
+	    rPass=${behav:4}
 	    if [[ $rPass -ge 1 && $rPass -le 24 ]]; then
 		sinFile=$sinD/'sindex-'$behav'.csv'
 		rPass='rolling ('$rPass'mos)'
 	    else
-		echo $rPass
-		get_help $0
+		echo "$rPass"
+		get_help "$0"
 		exit 0
 	    fi
 	elif [[ $behav =~ ^year$ || $behav =~ ^fixed12$ ]]; then
 	    sinFile=$sinD/'sindex-annual.csv'
 	    rPass='annual'
 	elif [[ $behav =~ ^fixed[0-9]+$ ]]; then
-	    rPass=$(echo ${behav:5})
+	    rPass=${behav:5}
 	    if [[ $rPass -ge 1 && $rPass -le 24 ]]; then
 		sinFile=$sinD/'sindex-'$behav'.csv'
 		rPass='fixed ('$rPass'mos)'
 	    else
-		echo $rPass
-		get_help $0
+		echo "$rPass"
+		get_help "$0"
 		exit 0
 	    fi
 	else
-	    get_help $0
+	    get_help "$0"
 	    exit 0
 	fi
 	if [[ -n $process ]]; then
@@ -173,7 +171,7 @@ if [[ -n $process || -n $graph ]]; then
 		graph_data
 	    else
 		echo "$sinFile doesn't exist"
-		get_help $0
+		get_help "$0"
 		exit 0
 	    fi
 	fi

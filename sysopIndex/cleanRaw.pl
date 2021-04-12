@@ -10,7 +10,7 @@ use diagnostics;
 my $line = 0;
 my $skip = 0;
 my $file = shift;
-open my $data, '<', "$file" or die $1;
+open my $data, '<', "$file" or die $!;
 while (<$data>) {
   next if $line == $.;
   # Skip language links, they're subject to change
@@ -35,4 +35,4 @@ while (<$data>) {
   }
   print "$_";
 }
-close $data or die $1;
+close $data or die $!;
