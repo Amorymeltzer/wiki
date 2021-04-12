@@ -84,12 +84,12 @@ foreach my $import (@jsFiles) {
   foreach my $project (sort keys %lookup) {
     # Generic basis for each API query, will get reused for individual pages
     my %query = (
-		 action => 'query',
-		 prop => 'revisions',
-		 rvprop => 'ids',
-		 format => 'json',
-		 formatversion => '2'
-		);
+                 action => 'query',
+                 prop => 'revisions',
+                 rvprop => 'ids',
+                 format => 'json',
+                 formatversion => '2'
+                );
     # Initialize with empty array, easier than handling it below
     @{$query{titles}} = ();
 
@@ -115,8 +115,8 @@ foreach my $import (@jsFiles) {
 
     # Open API and log in to each project
     my $mw = MediaWiki::API->new({
-				  api_url => "https://$project/w/api.php"
-				 });
+                                  api_url => "https://$project/w/api.php"
+                                 });
     $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
     $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
@@ -134,8 +134,8 @@ foreach my $import (@jsFiles) {
 
       # Guard against no found revisions
       if (${$page}{missing}) {
-	print "No content revs found for $title, maybe the page was moved or deleted?  Skipping...\n";
-	next;
+        print "No content revs found for $title, maybe the page was moved or deleted?  Skipping...\n";
+        next;
       }
 
       # This always feels like it should be easier to understand visually than
@@ -149,8 +149,8 @@ foreach my $import (@jsFiles) {
 
       # Skip items marked as such
       if (${$extraInfo{$title}}[0] == 1) {
-	print colored ['cyan'], "Skipping updates for $title\n";
-	next;
+        print colored ['cyan'], "Skipping updates for $title\n";
+        next;
       }
 
       # There are new differences, so let's diff 'em!
@@ -192,11 +192,11 @@ foreach my $import (@jsFiles) {
       my $confirm = <STDIN>;
       chomp $confirm;
       if (lc $confirm eq 'n') {
-	print "Skipping $title\n";
+        print "Skipping $title\n";
       } elsif (lc $confirm eq 'y') {
-	`perl -i -p -e "s/$old/$new/g" $import`;
+        system "perl -i -p -e 's/$old/$new/g' $import";
       } elsif (lc $confirm eq 'q') {
-	last;
+        last;
       }
     }
 

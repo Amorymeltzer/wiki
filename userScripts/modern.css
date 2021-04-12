@@ -1,13 +1,13 @@
-/*For popups, not currently used
+/* For popups, not currently used
 .navpopup {
   background-color: #FFBE20  !important;
   font-family:      serif    !important;
   color:            #404     !important;
   font-size:        medium   !important;
-}*/
+} */
 
 /* [[Help:CS1 errors]] */
-.citation-comment {display: inline !important;}
+.citation-comment { display: inline !important; }
 
 .localcomments { font-size: 90% !important; }
 
@@ -16,27 +16,30 @@
 /* Stop the stupid overflow in previews and put a damn scrollbar in there */
 pre { overflow: auto; }
 
-/*Handle extra buttons; see also [[Special:Permalink/839949276#Recent change breaks scroll in p-cactions menu]]*/
-/*Off for compatibility with easyblock*/
-/*#p-cactions {
-        overflow-y: auto !important;
-}*/
+/* Handle extra buttons; see also [[Special:Permalink/839949276#Recent change breaks scroll in p-cactions menu]] */
+
+/* Off for compatibility with easyblock */
+
+/* #p-cactions {
+	overflow-y: auto !important;
+} */
 
 /* margin and border are kind of opposing each other, but it works */
 #p-cactions li {
-    border-top: 2px solid lightgrey;
-    border-left: 2px solid lightgrey;
-    border-right: 2px solid lightgrey;
-    border-bottom: 0 solid lightgrey;
-    position: relative;
-    float: left;
-    margin-right: -3px;
-    border-top-left-radius: .5em;
-    border-top-right-radius: .5em;
-    font-size: 94%;
+	border-top: 2px solid lightgrey;
+	border-left: 2px solid lightgrey;
+	border-right: 2px solid lightgrey;
+	border-bottom: 0 solid lightgrey;
+	position: relative;
+	float: left;
+	margin-right: -3px;
+	border-top-left-radius: 0.5em;
+	border-top-right-radius: 0.5em;
+	font-size: 94%;
 }
 
 /* Preen the quickbar, not using at the moment */
+
 /*
 #p-navigation h3, #p-search h3, #p-tb h3, #p-navclone h3, #p-twinkle h3, #p-info h3, #p-edit h3, #p-templatescript-0 h3, #p-regex h3 {
     display: inline;
@@ -51,144 +54,254 @@ pre { overflow: auto; }
     text-transform: lowercase;
     background: white;
     border-top-right-radius: 1em;
-}*/
-
+} */
 
 /* Shrink notification flyout to show more */
 .mw-echo-ui-notificationsListWidget {
-    line-height: 0;
-    font-size: 0.875em;
+	line-height: 0;
+	font-size: 0.875em;
 }
+
 .mw-echo-ui-notificationItemWidget-content-message {
-    padding-right: 0;
+	padding-right: 0;
 }
+
 .mw-echo-ui-notificationItemWidget-content-table {
-    margin-top: 0;
+	margin-top: 0;
 }
+
 .mw-echo-ui-notificationItemWidget-content {
-    padding-left: 0.5em;
+	padding-left: 0.5em;
 }
+
 /* Tighten padding, make icons bigger */
-#pt-notifications-alert .mw-echo-notifications-badge, #pt-notifications-notice .mw-echo-notifications-badge {
-    padding: 0 1em 0 1em;
-    height: inherit;
+#pt-notifications-alert .mw-echo-notifications-badge,
+#pt-notifications-notice .mw-echo-notifications-badge {
+	padding: 0 1em 0 1em;
+	height: inherit;
 }
 
 /* Hide notices/warnings/options that I don't need or want
-Some of these are likely quite outdated*/
-li#pt-optin-try, li#pt-acaibeta, li#pt-prefswitch-link-off, li#pt-sandbox, li#pt-logout, li#pt-betafeatures, li#n-mainpage-description, li#n-featuredcontent, li#n-contents, li#n-currentevents, #p-interaction, #p-lang, div#p-lang, li#t-upload, #t-print, #p-coll-print_export, #p-electronPdfService-sidebar-portlet-heading, #p-wikibase-otherprojects, li#t-wikibase, div.mw-rc-label-legend, div.mw-history-legend, label[for=wpSummary], div#editpage-copywarn, div#editpage-copywarn2, div#editpage-copywarn3, div.editpage-head-copywarn, div.mw-usercssjspublic, div.mw-userconfigpublic, div.mw-tos-summary, span.editHelp, div.previewnote, table#usercsspreview, table#userjspreview, table#jswarning, table#talkpagetext, div#mw-usercssyoucanpreview, div#mw-userjsyoucanpreview, span#clearprefcache, table#mw-script-doc, div#mw-clearyourcache, div#twinkle-config-headerbox, div.aiv-header, table#AIV-edit-notice, div.rfpp-header, table#RFPP-edit-notice, table#AFCR-header-mbox, table#AFCR-edit-notice, div.rfd-header, table#rfd-edit-notice, li#feedlinks, span.assess-info-review, li#pt-OCA, li#pt-OCA-report, li#t-cite, li#t-curationtoolbar, a.kephir-sagittarius-editlink, table#rfpstopeditnotice, table#rfptalkpage, table#accrequesteditnotice, table#rfpautopatrolledednb, table#rfpconfirmedednb, table#rfpextconfinstructions, table#rfpfilemoverednb, table#rfpmmsedna, table#rfpnewpagereviewer, table#rfpfilemoverednb, table#rfpreviewerednb, table#rfprollbackedna, table#rfptemplateeditorednb, table#rfa_group_editnotice, table#afd_group_editnotice, table#WTRFA-editnotice, table#village_pump_proposals_editnotice, table#village_pump_policy_editnotice, table#village_pump_technical_editnotice, table#village_pump_idealab_editnotice, table#afc_talk_editnotice, .afd-help-box, table#editnotice-draft-namespace, div.mw-undelete-history, div#mw-revdelete-suppress-text, table#newarticletext, table#genotice-list-editnotice, table#UAA-edit-notice, div.uaa-header {
-    display: none !important;
+Some of these are likely quite outdated */
+li#pt-optin-try,
+li#pt-acaibeta,
+li#pt-prefswitch-link-off,
+li#pt-sandbox,
+li#pt-logout,
+li#pt-betafeatures,
+li#n-mainpage-description,
+li#n-featuredcontent,
+li#n-contents,
+li#n-currentevents,
+#p-interaction,
+#p-lang,
+div#p-lang,
+li#t-upload,
+#t-print,
+#p-coll-print_export,
+#p-electronPdfService-sidebar-portlet-heading,
+#p-wikibase-otherprojects,
+li#t-wikibase,
+div.mw-rc-label-legend,
+div.mw-history-legend,
+label[for=wpSummary],
+div#editpage-copywarn,
+div#editpage-copywarn2,
+div#editpage-copywarn3,
+div.editpage-head-copywarn,
+div.mw-usercssjspublic,
+div.mw-userconfigpublic,
+div.mw-tos-summary,
+span.editHelp,
+div.previewnote,
+table#usercsspreview,
+table#userjspreview,
+table#jswarning,
+table#talkpagetext,
+div#mw-usercssyoucanpreview,
+div#mw-userjsyoucanpreview,
+span#clearprefcache,
+table#mw-script-doc,
+div#mw-clearyourcache,
+div#twinkle-config-headerbox,
+div.aiv-header,
+table#AIV-edit-notice,
+div.rfpp-header,
+table#RFPP-edit-notice,
+table#AFCR-header-mbox,
+table#AFCR-edit-notice,
+div.rfd-header,
+table#rfd-edit-notice,
+li#feedlinks,
+span.assess-info-review,
+li#pt-OCA,
+li#pt-OCA-report,
+li#t-cite,
+li#t-curationtoolbar,
+a.kephir-sagittarius-editlink,
+table#rfpstopeditnotice,
+table#rfptalkpage,
+table#accrequesteditnotice,
+table#rfpautopatrolledednb,
+table#rfpconfirmedednb,
+table#rfpextconfinstructions,
+table#rfpfilemoverednb,
+table#rfpmmsedna,
+table#rfpnewpagereviewer,
+table#rfpreviewerednb,
+table#rfprollbackedna,
+table#rfptemplateeditorednb,
+table#rfa_group_editnotice,
+table#afd_group_editnotice,
+table#WTRFA-editnotice,
+table#village_pump_proposals_editnotice,
+table#village_pump_policy_editnotice,
+table#village_pump_technical_editnotice,
+table#village_pump_idealab_editnotice,
+table#afc_talk_editnotice,
+.afd-help-box,
+table#editnotice-draft-namespace,
+div.mw-undelete-history,
+div#mw-revdelete-suppress-text,
+table#newarticletext,
+table#genotice-list-editnotice,
+table#UAA-edit-notice,
+div.uaa-header {
+	display: none !important;
 }
 
 /* Make hidden categories smaller */
 div#mw-hidden-catlinks { font-size: 88%; }
 
 /* Turn off the edit saved message */
+
 /* .postedit { display: none; } */
 
 /* Less space between sidebar items */
-#p-tb li, #p-info li, #p-edit li, .generated-sidebar li {
-    margin: 0 0 0 0;
+#p-tb li,
+#p-info li,
+#p-edit li,
+.generated-sidebar li {
+	margin: 0 0 0 0;
 }
 
 /* Bold headline */
 .mw-headline {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 /* Bold and small edit section links */
 .mw-editsection {
-    font-weight: bold;
-    font-size: small;
+	font-weight: bold;
+	font-size: small;
 }
 
 /* Link color changing if I want
 a:visited {
   color: #9224A2;
-}*/
+} */
 
 /* Bigger input boxes */
 input#wpSummary { width: 100%; }
 input#mw-bi-reason { width: 66%; }
 
 /* Nice borders for (almost) all boxes */
-input[type="radio"], input[type="checkbox"] {
-    border: none !important;
+input[type="radio"],
+input[type="checkbox"] {
+	border: none !important;
 }
 
 /* make round corners for the rest */
+
 /* Should expand this to other inputs, as well as to ooui buttons */
 input[type="submit"] {
-    background-color: #f9f9f9 !important;
-    color: #aaa !important;
-    border: 1px solid #aaa !important;
-    border-top-left-radius: 3px !important;
-    border-top-right-radius: 3px !important;
-    border-bottom-left-radius: 3px !important;
-    border-bottom-right-radius: 3px !important;
+	background-color: #F9F9F9 !important;
+	color: #AAA !important;
+	border: 1px solid #AAA !important;
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+	border-bottom-left-radius: 3px !important;
+	border-bottom-right-radius: 3px !important;
 }
 
-input[type="submit"]:hover, input[type="submit"]:focus {
-    background-color: #fff !important;
-    color: #369 !important;
-    cursor: pointer !important;
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+	background-color: #FFF !important;
+	color: #369 !important;
+	cursor: pointer !important;
 }
 
 /* Green save button with black text */
 input#wpSave {
-    background-color: #9f9 !important;
-    color: #000 !important;
-}
-input#wpSave:hover, input#wpSave:focus {
-    /*background-color: #fff !important;*/
-    color: #039 !important;
-    cursor: pointer !important;
+	background-color: #9F9 !important;
+	color: #000 !important;
 }
 
+input#wpSave:hover,
+input#wpSave:focus {
+	/* background-color: #fff !important; */
+	color: #039 !important;
+	cursor: pointer !important;
+}
 
 /* Orange watchlist messages */
 ul#watchlist-message {
-    background-color: orange;
+	background-color: orange;
 }
 
-/*Editing*/
+/* Editing */
+
 /* Adjust line spacings in editors */
 #wpTextbox1 { line-height: 1.1em !important; }
 .ace_editor { line-height: 1.4em !important; }
 
 /* Hide toolbar cruft */
-.tab-characters, .ve-init-mw-editSwitch {
-    display: none !important;
+.tab-characters,
+.ve-init-mw-editSwitch {
+	display: none !important;
 }
 
 /* Green new messages, currently disabled
-div.usermessage.mw-topbox { background-color: #88FF88 !important; }*/
+div.usermessage.mw-topbox { background-color: #88FF88 !important; } */
 
 /* Show access keys */
-a[accesskey]:after {
-    content: " " attr(accesskey) "";
-    font-size: 70%;
-    font-style: italic;
-    text-transform: lowercase;
-    /*vertical-align: sub;
+a[accesskey]::after {
+	content: " " attr(accesskey) "";
+	font-size: 70%;
+	font-style: italic;
+	text-transform: lowercase;
+
+	/* vertical-align: sub;
     white-space: pre;
     border: thin solid;
     font-family: sans-serif;
     text-decoration: underline overline;
-    margin-right: 0.5ex;*/
+    margin-right: 0.5ex; */
 }
-
 
 /* Some page-specific stuff */
+
 /* Restore non-OOUI dropdown appearance by hiding the new menus and showing the old ones
  * Currently: delete, block, protect, move, editfilter, contributions
- * Relevant for [[User:Amorymeltzer/csdcheck.js]]*/
-.action-delete .oo-ui-dropdownWidget-handle, .action-protect .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle, .mw-special-Movepage .oo-ui-dropdownWidget-handle, .mw-special-AbuseLog .oo-ui-dropdownWidget-handle, .mw-special-Contributions .oo-ui-dropdownWidget-handle {
-  display: none;
+ * Relevant for [[User:Amorymeltzer/csdcheck.js]] */
+.action-delete .oo-ui-dropdownWidget-handle,
+.action-protect .oo-ui-dropdownWidget-handle,
+.mw-special-Block .oo-ui-dropdownWidget-handle,
+.mw-special-Movepage .oo-ui-dropdownWidget-handle,
+.mw-special-AbuseLog .oo-ui-dropdownWidget-handle,
+.mw-special-Contributions .oo-ui-dropdownWidget-handle {
+	display: none;
 }
-.action-delete .oo-ui-indicator-down, .action-protect .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down, .mw-special-Movepage .oo-ui-indicator-down, .mw-special-AbuseLog .oo-ui-indicator-down, .mw-special-Contributions .oo-ui-indicator-down {
-  display: inline !important;
+
+.action-delete .oo-ui-indicator-down,
+.action-protect .oo-ui-indicator-down,
+.mw-special-Block .oo-ui-indicator-down,
+.mw-special-Movepage .oo-ui-indicator-down,
+.mw-special-AbuseLog .oo-ui-indicator-down,
+.mw-special-Contributions .oo-ui-indicator-down {
+	display: inline !important;
 }
+
 /* Tighten OOUI menus */
 .oo-ui-menuOptionWidget { padding: 0.2em 1em; }
 
@@ -204,18 +317,23 @@ span.updatedmarker {
 
 /* Shrink history dropdown panel */
 body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group > div > div {
-	float: left; margin: 0 10px 0 0;
+	float: left;
+	margin: 0 10px 0 0;
 }
+
 /* hide rollback on just watchlist */
 .mw-special-Watchlist .mw-rollback-link {
-    display: none;
+	display: none;
 }
+
 /* Color rollback on RecentChanges */
 .mw-special-Recentchanges .mw-rollback-link {
-	background-color: #FFFF88;
+	background-color: #FF8;
 }
+
 /* Extend and tighten results on Search and Logs */
-.mw-special-Search .mw-search-results li, .mw-special-Log .mw-search-results li {
+.mw-special-Search .mw-search-results li,
+.mw-special-Log .mw-search-results li {
 	padding: 0;
 	width: 81em;
 }
@@ -223,19 +341,22 @@ body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group 
 /* Adjust topicons for Modern, looks better in Vector too */
 .mw-indicators { margin: 3px; }
 
-
 /* Hide or tweak some unwanted portions of various user scripts */
+
 /* [[User:Meteor sandwich yum/Tidy citations.js]] */
-#ca-formatcitations-vertical, #ca-formatcitations-crammed, #ca-formatcitations-roomy{
-    display: none !important;
+#ca-formatcitations-vertical,
+#ca-formatcitations-crammed,
+#ca-formatcitations-roomy {
+	display: none !important;
 }
 
 /* Less jarring inline diff buttons [[User:Writ Keeper/Scripts/commonHistory.js]] */
-.inspectDiffButton :first-child{
-  font-weight: normal;
+.inspectDiffButton :first-child {
+	font-weight: normal;
 }
+
 .inspectDiffButton :nth-child(2) {
-  color: #036 !important;
+	color: #036 !important;
 }
 
 /* Make ProveIt text not tiny */
@@ -243,34 +364,35 @@ div#proveit { font-size: 1em; }
 
 /* Downsize [[User:The_Earwig/permalink.js]] */
 .permalink-wrapper {
- font-size: medium;
+	font-size: medium;
 }
 
 /* Template colors for [[User:Anomie/previewtemplatelastmod]] */
 span.PreviewTemplateLastMod_comment {
-  color: #999;
-}
-span.PreviewTemplateLastMod_no_comment {
-  color: #ccc;
-}
-span.PreviewTemplateLastMod_timestamp {
-  color: #036;
+	color: #999;
 }
 
+span.PreviewTemplateLastMod_no_comment {
+	color: #CCC;
+}
+
+span.PreviewTemplateLastMod_timestamp {
+	color: #036;
+}
 
 /* Highlight indented posts */
 
 .ns-talk dd {
- margin:0;
- padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 .ns-talk dl {
- border-top:solid 1px #a7d7f9;
- border-left:solid 1px #a7d7f9;
- padding-top:.5em;
- padding-left:.5em;
- margin-left:1em;
+	border-top: solid 1px #A7D7F9;
+	border-left: solid 1px #A7D7F9;
+	padding-top: 0.5em;
+	padding-left: 0.5em;
+	margin-left: 1em;
 }
 
 .ns-talk dl,
@@ -278,13 +400,11 @@ span.PreviewTemplateLastMod_timestamp {
 .ns-talk dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl dl dl,
-.ns-talk dl dl dl dl dl dl dl dl dl dl dl
-{ background:#f5faff }
+.ns-talk dl dl dl dl dl dl dl dl dl dl dl { background: #F5FAFF; }
 
 .ns-talk dl dl,
 .ns-talk dl dl dl dl,
 .ns-talk dl dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl dl,
 .ns-talk dl dl dl dl dl dl dl dl dl dl,
-.ns-talk dl dl dl dl dl dl dl dl dl dl dl dl
-{ background:white }
+.ns-talk dl dl dl dl dl dl dl dl dl dl dl dl { background: white; }

@@ -36,13 +36,13 @@ foreach my $key (sort keys %conf) {
 }
 
 # Open git handler
-my $cwd = $FindBin::Bin; # Directory of this script
+my $cwd = $FindBin::Bin;        # Directory of this script
 my $repo = Git::Repository->new();
 
 # Open API and log in before anything else
 my $mw = MediaWiki::API->new({
-			      api_url => 'https://en.wikipedia.org/w/api.php'
-			     });
+                              api_url => 'https://en.wikipedia.org/w/api.php'
+                             });
 $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
@@ -83,19 +83,19 @@ foreach my $file (@files) {
       my $timestamp = $wikiPage->{timestamp};
       my $summary = buildEditSummary($page, $file, $wikiPage->{comment});
       $mw->edit({
-		 action => 'edit',
-		 assert => 'user',
-		 title => $page,
-		 basetimestamp => $timestamp, # Avoid edit conflicts
-		 text => $text,
-		 summary => $summary
-		}) || die "\tError editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+                 action => 'edit',
+                 assert => 'user',
+                 title => $page,
+                 basetimestamp => $timestamp, # Avoid edit conflicts
+                 text => $text,
+                 summary => $summary
+                }) || die "\tError editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
       my $return = $mw->{response};
 
       if ($return->{_msg} eq 'OK') {
-	print colored ['green'], "\t$file successfully pushed to $page\n";
+        print colored ['green'], "\t$file successfully pushed to $page\n";
       } else {
-	print colored ['red'], "\tError pushing $file: $mw->{error}->{code}: $mw->{error}->{details}\n";
+        print colored ['red'], "\tError pushing $file: $mw->{error}->{code}: $mw->{error}->{details}\n";
       }
     }
   }
@@ -117,11 +117,11 @@ sub buildEditSummary {
       my $newLog = $repo->run(log => '--oneline', '--no-merges', '--no-color', "$1..HEAD", "$cwd/$file");
       open my $nl, '<', \$newLog or die colored ['red'], "$ERRNO\n";
       while (<$nl>) {
-	chomp;
-	my @arr = split / /, $_, 2;
-	my $portion = $arr[1] =~ s/^\S+(?::| -) //r;
-	$portion =~ s/\.$//;
-	$editSummary .= "$portion; ";
+        chomp;
+        my @arr = split / /, $_, 2;
+        my $portion = $arr[1] =~ s/^\S+(?::| -) //r;
+        $portion =~ s/\.$//;
+        $editSummary .= "$portion; ";
       }
       close $nl or die colored ['red'], "$ERRNO\n";
     }
@@ -146,17 +146,17 @@ sub buildEditSummary {
   # 'Repo at' will add 17 characters and MW truncates at 497 to allow for '...'
   my $maxLength = 480;
   while (length $editSummary > $maxLength) {
-	  my $length = length $editSummary;
-	  my $over = $length - $maxLength;
+    my $length = length $editSummary;
+    my $over = $length - $maxLength;
 
-	  my $message = "The current edit summary is too long by $over character";
-	  $message .= $over == 1 ? q{} : 's';
-	  $message .= "and will therefore be truncated.\n";
-	  print $message;
-	  print "\t$editSummary\n";
-	  print "Please provide a shorter summary (under $maxLength characters, the latest commit ref will be added automatically):\n";
-	  $editSummary = <STDIN>;
-	  chomp $editSummary;
+    my $message = "The current edit summary is too long by $over character";
+    $message .= $over == 1 ? q{} : 's';
+    $message .= "and will therefore be truncated.\n";
+    print $message;
+    print "\t$editSummary\n";
+    print "Please provide a shorter summary (under $maxLength characters, the latest commit ref will be added automatically):\n";
+    $editSummary = <STDIN>;
+    chomp $editSummary;
   }
 
   my $editBeg = 'Repo at '. $repo->run('rev-parse' => '--short', 'HEAD') . ': ';
