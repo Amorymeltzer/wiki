@@ -23,9 +23,9 @@ while (<$list>) {
   chomp;
 
   # Cleanup titles before checking
-  s/\(.*\)//x;		     # get rid of text in parentheses
-  s/__/_/;		     # potential formatting issue as a result of above
-  s/[\+\?\(\)]//gx;	     # odd characters
+  s/\(.*\)//x;		       # get rid of text in parentheses
+  s/__/_/;		       # potential formatting issue as a result of above
+  s/[\+\?\(\)]//gx;	       # odd characters
   # Should probably test the following more... #####FIXME######
   #    s/×//x; # NOT AN X (x Vs. ×) this denotes crosses, muddies things up if you uncomment
 

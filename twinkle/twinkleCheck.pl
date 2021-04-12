@@ -50,7 +50,7 @@ my @files = qw (Twinkle.js Twinkle.css Twinkle-pagestyles.css morebits.js
 		modules/twinklewarn.js modules/twinklexfd.js);
 
 foreach (@files) {
-  my $twName = lc;		# twinke.js/css/-pagestyles.css are capped on-wiki
+  my $twName = lc;	      # twinke.js/css/-pagestyles.css are capped on-wiki
   my $hash = `md5 -q $twName`;
 
   s/modules\///;		# Tidy for MW name
@@ -60,9 +60,9 @@ foreach (@files) {
   my $json = `curl -s -w '\n' "$url"`; # Add newline for diffing/md5ing
 
   my $tmp = $_.'tmp';
-  open my $out, '>', "$tmp" or die $1;
+  open my $out, '>', "$tmp" or die $!;
   print $out $json;
-  close $out or die $1;
+  close $out or die $!;
 
   my $newHash = `md5 -q $tmp`;
   if ($hash ne $newHash) {

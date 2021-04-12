@@ -24,8 +24,8 @@ $namespaces{0} =~ s/Main//;
 
 my $input = $ARGV[0];
 my $output = $input.'.out';
-open my $in, '<', "$input" or die $1;
-open my $out, '>', "$output" or die $1;
+open my $in, '<', "$input" or die $!;
+open my $out, '>', "$output" or die $!;
 while (my $line = <$in>) {
   if ($line =~ /^\|(\d+)\|\|(.*?)\|\|(\d+)\|\|(.*?)\|\|/) {
     my $namespace = $namespaces{$3} // 'error';
@@ -35,8 +35,8 @@ while (my $line = <$in>) {
 
   print $out "$line";
 }
-close $in or die $1;
-close $out or die $1;
+close $in or die $!;
+close $out or die $!;
 
 
 ## The lines below do not represent Perl code, and are not examined by the
