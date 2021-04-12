@@ -30,7 +30,7 @@ Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 			 { level    => $TRACE,
 			   file     => 'STDOUT',
 			   layout   => '%m{indent}%n' }
-                        );
+			);
 
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring

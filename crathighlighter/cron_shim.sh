@@ -6,6 +6,6 @@
 file=$1
 search=$2
 
-if [[ ! $(tail -n 1 "$file" | grep "$2") ]]; then
+if [[ ! $(tail -n 1 "$file" | grep "$search") ]]; then
     exit 1
 fi
