@@ -261,7 +261,7 @@ function getARAFunctions()
 	JJJ.Constants.SUGGESTION_BOX_DIV.empty();
 
 	// Warn about scanning a big article
-	if ((s.length > JJJ.Constants.BIG_THRESHOLD) && !JJJ.Constants.isBigScanConfirmed) {
+	if ((s && s.length > JJJ.Constants.BIG_THRESHOLD) && !JJJ.Constants.isBigScanConfirmed) {
 	    JJJ.Constants.SUGGESTION_BOX_DIV.append(document.createTextNode(
 		JJJ.Functions._('This article is rather long.  ARA may consume a lot of '
 				+ 'RAM and CPU resources while trying to parse the text.  You could limit '
