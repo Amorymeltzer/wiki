@@ -32,6 +32,7 @@ getopts('P', \%opts);
 Log::Log4perl->easy_init({ level  =>  $INFO,
 			   file   =>  ">>$ENV{HOME}/logs/tflog.log",
 			   utf8   =>  1,
+			   # Datetime (level): message
 			   layout =>  '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
 			 });
 

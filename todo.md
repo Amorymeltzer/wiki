@@ -28,15 +28,17 @@
 - Include number of sysops, number of active sysops, etc.?
 - o-index (geometric mean of h-index and most-cited paper)
 
-## userScripts
+## crathighlighter
 
-- Something to process updates to others' that I've modified (maybe parse the first line)
+- Consider redoing logger with an appender so as to make use of `Log::Dispatch::FileRotate` (via `Log::Log4perl::JavaMap::RollingFileAppender`)
+
+## userScripts
 
 ### updateModernjs.pl
 
 - Fix for non-ascii characters
 - Log out?
-- Show user and edit summary if single/multiple (huh???)
+- Show user and edit summary for multiple edits?
 
 ### seventabs
 

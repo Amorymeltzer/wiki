@@ -26,9 +26,11 @@ usage() if $opts{h};
 Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
 			   file     => '>>log.log',
 			   utf8     => 1,
+			   # Datetime (level): message
 			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
 			 { level    => $TRACE,
 			   file     => 'STDOUT',
+			   # message
 			   layout   => '%m{indent}%n' }
 			);
 
