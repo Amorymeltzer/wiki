@@ -25,7 +25,7 @@ chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
 my %opts = ();
-getopts('P', \%opts);
+getopts('Pn', \%opts);
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
@@ -327,6 +327,11 @@ if (!$localChange && !$wikiChange) {
 
 # Clean up
 $mw->logout();
+
+# Only used if run after a failure
+if ($opts{n}) {
+  print "Run completed\n";
+}
 
 
 #### SUBROUTINES

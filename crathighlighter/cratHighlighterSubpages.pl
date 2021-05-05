@@ -18,7 +18,7 @@ use JSON;
 
 # Parse commandline options
 my %opts = ();
-getopts('hPN', \%opts);
+getopts('hPNn', \%opts);
 usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
@@ -242,6 +242,11 @@ if (!$opts{N}) {
 # Clean up
 $mw->logout();
 
+# Only used if run after a failure
+if ($opts{n}) {
+  print "Run completed\n";
+}
+
 
 #### SUBROUTINES
 # Nicer handling of errors
@@ -328,9 +333,10 @@ sub oxfordComma {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-hPN]
+Usage: $PROGRAM_NAME [-hPNn]
       -P Don't push live to wiki
       -N Don't attempt to use the system notifier
+      -n Print a message on completion of a successful run.  Useful for notifying after a failure.
       -h Print this message
 USAGE
   exit;
