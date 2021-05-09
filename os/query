@@ -1,18 +1,18 @@
 SELECT
-	rc_timestamp AS `time`,
-	actor_name AS `user`,
-	rc_namespace AS `namespace`,
-	rc_title AS `page`,
-	comment_text AS `comment`
+  rc_timestamp AS `time`,
+  actor_name AS `user`,
+  rc_namespace AS `namespace`,
+  rc_title AS `page`,
+  comment_text AS `comment`
 FROM
-	recentchanges_userindex
-	LEFT JOIN actor_logging ON actor_id = rc_actor
-	JOIN comment_logging ON comment_id = rc_comment_id
+  recentchanges_userindex
+  LEFT JOIN actor_logging ON actor_id = rc_actor
+  JOIN comment_logging ON comment_id = rc_comment_id
 WHERE
-	rc_timestamp > 20380119031407
-	AND rc_log_type = 'delete'
-	AND comment_text RLIKE "G10"
+  rc_timestamp > 20380119031407
+  AND rc_log_type = 'delete'
+  AND comment_text RLIKE "G10"
 ORDER BY
-      rc_timestamp DESC
+  rc_timestamp DESC
 LIMIT
-	50;
+  50;
