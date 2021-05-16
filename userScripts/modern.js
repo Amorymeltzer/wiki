@@ -352,7 +352,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 		/* WP and all talks */
 		if ((cfg.wgNamespaceNumber === 4) || (cfg.wgNamespaceNumber % 2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1022437832&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1023343493&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); // [[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; // Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; // Optional custom summary
