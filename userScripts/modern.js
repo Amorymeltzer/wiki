@@ -87,7 +87,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); // [[User:Markhurd/hidetopcontrib.js]]
 			window.userHideAllSubsequent = true;
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=976711884&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1026184864&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
@@ -95,7 +95,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 						"<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						'</span>');
 			$(document).on('click', '.mass_revdel_on', function() {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=970629911&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1025668024&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
 				$('#toggle_massrevdel').remove();
 				// Tighten/shorten massRevdel stuff
 				mw.loader.using(['mediawiki.util'], function() {
@@ -275,7 +275,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		window.hotcat_del_needs_diff = true;
 		mw.loader.load('ext.gadget.HotCat');
 
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/PlayAudioNow.js&oldid=1022250140&action=raw&ctype=text/javascript'); // [[User:Nardog/PlayAudioNow]], [[User:Nardog/PlayAudioNow.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/PlayAudioNow.js&oldid=1026634478&action=raw&ctype=text/javascript'); // [[User:Nardog/PlayAudioNow]], [[User:Nardog/PlayAudioNow.js]]
 
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pedit.js&action=raw&ctype=text/javascript'); // [[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 		/* Backlinks for pedit:
@@ -356,7 +356,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); // [[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; // Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; // Optional custom summary
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=1002412137&action=raw&ctype=text/javascript'); // [[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=1028550557&action=raw&ctype=text/javascript'); // [[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=998366913&action=raw&ctype=text/javascript'); // [[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/* All talks */
 			if (cfg.wgNamespaceNumber !== '4') {
