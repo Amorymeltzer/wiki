@@ -194,7 +194,6 @@
 			this.expiryInput.getValue()
 		    )
 		).then(function() {
-		    debugger;
 		    // silently add user to MMS list
 		    if (permission === 'New page reviewer') {
 			addToMMSList();
@@ -284,7 +283,6 @@
 
     function updateWhiteList() {
         api.edit( 'Wikipedia:New pages patrol/Redirect whitelist', function (revision) {
-            debugger;
             var newContent = revision.content.replace(
                 new RegExp('\\*\\s*{{\\s*user2\\s*\\|\\s*' + userName + '\\s*}}\\n'),
                 ''

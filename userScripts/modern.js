@@ -314,12 +314,12 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=912664522&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=937110189&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1030303833&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus Canens/spihelper.js&action=raw&ctype=text/javascript'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=988107723&action=raw&ctype=text/javascript'); // [[User:Enterprisey/delsort.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=1032990228&action=raw&ctype=text/javascript'); // [[User:Enterprisey/delsort.js]]
 
 			// [[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			// Originally installed here to keep off certain pages but now installed via gadget
@@ -352,7 +352,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 		/* WP and all talks */
 		if ((cfg.wgNamespaceNumber === 4) || (cfg.wgNamespaceNumber % 2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1023343493&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1030696712&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); // [[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			window.replyLinkPreloadPing = 'button'; // Don't autoload ping template for reply-link
 			window.replyLinkCustomSummary = true; // Optional custom summary
