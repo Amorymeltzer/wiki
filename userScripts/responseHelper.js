@@ -677,7 +677,7 @@
 				case 'Wikipedia:Requests_for_page_protection':
 				case 'Wikipedia:Requests_for_page_protection/Increase':
 				case 'Wikipedia:Requests_for_page_protection/Decrease':
-				templateName = "RFPP";
+				templateName = "subst:RFPP";
 				defaultPrompt = "Duration?";
 				responses = {
 					"Semi-protected" : {
