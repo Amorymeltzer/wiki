@@ -149,7 +149,7 @@ if (mw.config.get('wgNamespaceNumber') === '0') {
 				redirectSummary: 'Creating redirect to [[$1]] using [[User:Qwertyytrewqqwerty/DisamAssist|DisamAssist]].'
 			}
 		}, window.DisamAssist || {});
-		mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist-core.js&oldid=132701996&action=raw&ctype=text/javascript');
+		mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist-core.js&oldid=137440589&action=raw&ctype=text/javascript');
 		mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist.css&oldid=71656505&action=raw&ctype=text/css', 'text/css');
 
 
