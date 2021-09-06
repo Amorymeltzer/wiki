@@ -354,9 +354,6 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		if ((cfg.wgNamespaceNumber === 4) || (cfg.wgNamespaceNumber % 2 === 1)) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1039635378&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); // [[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
-			window.replyLinkPreloadPing = 'button'; // Don't autoload ping template for reply-link
-			window.replyLinkCustomSummary = true; // Optional custom summary
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/reply-link.js&oldid=1038226039&action=raw&ctype=text/javascript'); // [[User:Enterprisey/reply-link.js]], [[User:Enterprisey/reply-link]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=1033878262&action=raw&ctype=text/javascript'); // [[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/* All talks */
 			if (cfg.wgNamespaceNumber !== '4') {
