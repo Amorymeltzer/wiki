@@ -113,14 +113,9 @@ cache_len *= 60 * 60 * 1000; // milliseconds
 if (!crathighlighterdata || !crathighlighterdata.date || (Date.now() - new Date(crathighlighterdata.date).getTime()) > cache_len) {
 	crathighlighterdata = {};
 	var promises = [];
+	var baseUrl = '/w/index.php?action=raw&ctype=application/json&title=User:AmoryBot/crathighlighter.js/';
 	$.each(highlight_order, function(idx, perm) {
-		var url = '/w/index.php?action=raw&ctype=application/json&title=';
-		if (perm === 'sysop') {
-			url += 'User:Amalthea_(bot)/userhighlighter.js/sysop.js';
-		} else {
-			url += 'User:AmoryBot/crathighlighter.js/' + perm + '.json';
-		}
-
+		var url = baseUrl + perm + '.json';
 		var deferred = $.getJSON(url, function(data) {
 			crathighlighterdata[perm] = data;
 		});
