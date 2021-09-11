@@ -63,7 +63,7 @@ $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 # Steward belongs to a different, global list (agu rather than au) and arbcom
 # isn't real.  They'll be added in due course, although the arbcom list still
 # needs getting.
-my @rights = qw (bureaucrat oversight checkuser interface-admin);
+my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
 # Will store hash of editors for each group.  Basically JSON
 my %groupsStore;
 
@@ -89,8 +89,34 @@ my $groupsReturn = $mw->api($groupsQuery);
 # each hash containing the useris, user name, and (if requested) user groups
 my %groupsQuery = %{${$groupsReturn}{query}};
 
-# Local groups need a loop for processing who goes where
-my @localHashes = @{$groupsQuery{allusers}};
+# Stewards are "simple" thanks to map and simple (one-group) structure
+%{$groupsStore{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+
+
+# Local groups need a loop for processing who goes where, but there are a lot of
+# sysops, so we need to either get the bot flag or iterate over everyone
+my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
+
+# If there's a continue item, then continue, by God!
+while (exists ${$groupsReturn}{continue}) { # avoid autovivification
+  # Process the continue parameters
+  # Probably shit if there's another group that needs continuing
+  # FIXME TODO && aufrom
+  foreach (keys %{${$groupsReturn}{continue}}) {
+    ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
+  }
+
+  # Resubmit new query, using old query
+  $groupsReturn = $mw->api($groupsQuery);
+
+  # Overwrite original data, already stored in @localHashes and needed for
+  # iteration in this loop
+  %groupsQuery = %{${$groupsReturn}{query}};
+  # Append the new stuff
+  push @localHashes, @{$groupsQuery{allusers}};
+}
+
+# NOW we can loop through everyone and figure out what they've got
 foreach my $i (0..scalar @localHashes - 1) {
   my %userHash = %{$localHashes[$i]};
   # Limit to the groups in question (I always forget how neat grep is)
@@ -100,9 +126,6 @@ foreach my $i (0..scalar @localHashes - 1) {
     $groupsStore{$grp}{$userHash{name}} = 1;
   }
 }
-
-# Stewards are "simple" thanks to map and simple (one-group) structure
-%{$groupsStore{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
 
 # Add stewards and arbcom
 push @rights, qw (steward arbcom);
