@@ -303,16 +303,21 @@ foreach (@rights) {
     $note .= "\tbut wiki already up-to-date";
   }
 
-  # Log final message
+  # Log fully constructed message
   INFO($note) if $note;
 }
 
 
-# Log or report final status
-if (!$localChange && !$wikiChange) {
-  # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
-  INFO('No updates needed');
-} else {
+# Also used for checking the previous run was successful
+# Note: LOGEXIT is FATAL (same as LOGDIE except no extra die message)
+my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
+INFO($finalNote);
+
+# Clean up
+$mw->logout();
+
+# Log/report final status
+if ($localChange || $wikiChange) {
   my $updateNote = "Toolforge updates\n\n";
 
   # Local changes
@@ -347,9 +352,6 @@ if (!$localChange && !$wikiChange) {
   # update the newsletter, but at least initially it's a good idea.
   print $updateNote;
 }
-
-# Clean up
-$mw->logout();
 
 # Only used if run after a failure
 if ($opts{n}) {

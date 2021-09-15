@@ -248,22 +248,25 @@ foreach (@rights) {
     $note .= "\tbut wiki already up-to-date";
   }
 
-  # Log final message
+  # Log fully constructed message
   INFO($note) if $note;
 }
 
-if (!$localChange && !$wikiChange) {
-  # LOGEXIT is FATAL (same as LOGDIE except no extra die message)
-  INFO('No updates needed');
-  exit;
-}
+
+# Also used for checking the previous run was successful
+# Note: LOGEXIT is FATAL (same as LOGDIE except no extra die message)
+my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
+INFO($finalNote);
+
+# Clean up
+$mw->logout();
+
+# No changes
+exit if !$localChange && !$wikiChange;
 
 if (!$opts{N}) {
   system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
 }
-
-# Clean up
-$mw->logout();
 
 # Only used if run after a failure
 if ($opts{n}) {
