@@ -290,12 +290,14 @@ easyblock.edit = function(page, comment, summary, replacePage, loadPageOnSubmit)
 
     if(ebPrefs.dislayStatus) this.textUpdate("Adding \"" + comment + "\" to <a href=\"/wiki/" + encodeURIComponent(page) + "\">" + page + "</a>...");
 
-    var info = this.formatResponse(this.syncAjaxGet("action=query&prop=info|revisions&format=json&intoken=edit&rvprop=content|timestamp&titles=" + encodeURIComponent(page)));
+    var rawResponse = this.syncAjaxGet("action=query&prop=info|revisions&format=json&meta=tokens&type=csrf&rvprop=content|timestamp&titles=" + encodeURIComponent(page));
+    var info = this.formatResponse(rawResponse);
+    // This would be better with curtimestamp
     var date = new Date();
     var startTime = date.getUTCFullYear() + this.zeroPad(date.getUTCMonth() + 1) + this.zeroPad(date.getUTCDate()) + this.zeroPad(date.getUTCHours()) + this.zeroPad(date.getUTCMinutes()) + this.zeroPad(date.getUTCSeconds());
     var editTime = (info.revisions ? info.revisions[0].timestamp.replace(/[^0-9]/g, "") : startTime);
     var content = (info.revisions ? (info.revisions[0]["*"].length > 0 ? info.revisions[0]["*"] : "") : "");
-    var editToken = info.edittoken;
+    var editToken = rawResponse.query.tokens.csrftoken;
 
     var postdata = "format=json"
 	+ "&action=edit"
@@ -364,8 +366,8 @@ easyblock.block = function(name, reason, duration, autoblock, nocreate, noemail,
     if(ebPrefs.displayStatus) document.getElementById("contentSub").innerHTML += "<br />";
     this.bgColor("#EFE"); //Begin.
 
-    var responseObject = this.syncAjaxPost("format=json&action=tokens&type=block");
-    var edittoken = responseObject.tokens.blocktoken;
+    var responseObject = this.syncAjaxPost("format=json&action=query&meta=tokens&type=csrf");
+    var edittoken = responseObject.query.tokens.csrftoken;
 
     var isIP = this.isIP(name);
     if(reason.indexOf("sockpuppet") != -1) {
