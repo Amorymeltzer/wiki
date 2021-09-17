@@ -226,7 +226,8 @@ easyblock.getLastBlock = function(user) {
 	{
 	    if(response.query.logevents[i].params)
 	    {
-		return (this.isBlocked(user) ? "blocked" : "last") + ": " + response.query.logevents[i].params.duration;
+		var duration = response && response.query && response.query.logevents[i].params.duration;
+		return (this.isBlocked(user) ? "blocked" : "last") + ": " + duration;
 	    }
 	}
     }
@@ -656,3 +657,4 @@ if(mw.config.get("wgUserGroups").indexOf("sysop") != -1) { //Is the user a sysop
 //-----------------------------------
 // End
 //-----------------------------------
+//</nowiki></pre>
