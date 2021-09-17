@@ -275,20 +275,23 @@ if ($opts{n}) {
 
 
 #### SUBROUTINES
-# Nicer handling of errors
-# Can be expanded using:
+# Nicer handling of some specific mediawiki errors, can be expanded using:
 ## https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 ## https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
-  my $message = 'MediaWiki error';
-  if ($code == 4) {
-    $message .= ' logging in';
-  } elsif ($code == 5) {
-    $message .= ' editing the page';
-  }
-  $message .= ":\n$code: $details";
+
+  # Avoid an elsif ladder.  Could `use experimental qw(switch)` but don't really
+  # feel like it; this is probably more legible anyway
+  my %codes = (
+	       2 => 'HTTP access',
+	       3 => 'API access',
+	       4 => 'logging in',
+	       5 => 'editing the page'
+	      );
+  my $message = q{: }.$codes{$code} // q{};
+  $message = 'MediaWiki error'.$message.":\n$code: $details";
   LOGDIE($message);
 }
 
