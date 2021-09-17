@@ -429,7 +429,7 @@ if (mw.config.exists('wgRelevantUserName')) {
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); // [[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	// [[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	// Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=1011678865&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.js&oldid=1044919537&action=raw&ctype=text/javascript'); // placeholder
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/easyblock.css&oldid=686984610&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/easyblock-modern.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/easyblock-modern.js]], [[User:Amorymeltzer/easyblock-modern.css]]
 	window.ebPrefs = {
