@@ -162,6 +162,14 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
+# Build regex for parsing lines from the arbcom template
+# https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
+my $dateCapture = '(\d{2}\/\d{2}\/\d{4})';
+my $userName = '\[\[User:.*\|(.*)\]\]';
+
+my $arbcomRE = 'from:'.$dateCapture.' till:'.$dateCapture.q{.*}.$userName;
+
+
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 foreach (@rights) {
@@ -189,7 +197,7 @@ foreach (@rights) {
     # 30th is no good as well.
     last if $now =~ /-12-3[0|1]/;
     for (split /^/, $content) {
-      if (/from:(\d{2}\/\d{2}\/\d{4}) till:(\d{2}\/\d{2}\/\d{4}).*\[\[User:.*\|(.*)\]\]/) {
+      if (/$arbcomRE/) {
 	my ($from,$till,$name) = ($1,$2,$3);
 	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
 	$till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
