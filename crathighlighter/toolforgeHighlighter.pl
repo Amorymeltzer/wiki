@@ -106,11 +106,10 @@ $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 
 
 ## Bulk queries: It's easier to do multiple queries but this is more polite
-# @rights doesn't include arbcom or steward at the moment since it's first
-# being used to build the query for determining who has what usergroups.
-# Steward belongs to a different, global list (agu rather than au) and arbcom
-# isn't real.  They'll be added in due course, although the arbcom list still
-# needs getting.
+# @rights doesn't include arbcom or steward at the moment since it's first being
+# used to build the query for determining local usergroups.  Steward belongs to
+# a different, global list (agu rather than au) and arbcom isn't real.  They'll
+# both be added in due course, although the arbcom list needs separate getting.
 my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
 # Will store hash of editors for each group.  Basically JSON
 my %groupsStore;
@@ -144,7 +143,6 @@ my %groupsQuery = %{${$groupsReturn}{query}};
 # Local groups need a loop for processing who goes where, but there are a lot of
 # sysops, so we need to either get the bot flag or iterate over everyone
 my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
-
 # If there's a continue item, then continue, by God!
 while (exists ${$groupsReturn}{continue}) { # avoid autovivification
   # Process the continue parameters
@@ -172,6 +170,42 @@ foreach my $i (0..scalar @localHashes - 1) {
   # Add to hash of hash
   foreach my $grp (@usersGroups) {
     $groupsStore{$grp}{$userHash{name}} = 1;
+  }
+}
+
+# Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
+# membership is high-profile enough that in practice this is updated quickly
+my $acTemplate = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
+my $content = $acTemplate->{q{*}};
+
+# Find the diamonds in the rough
+my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
+$year += 1900;
+# 0-padding
+$mon = sprintf '%02d', $mon+1;
+$mday = sprintf '%02d', $mday;
+my $now = $year.q{-}.$mon.q{-}.$mday;
+# For dumb template reasons, arbs are listed as ending terms on December
+# 30th.  While unlikely, this means the list won't be accurate on the
+# 31st, so just skip it.  Likewise, since we check that the date is
+# greater than the current date to ensure that we catch retiring arbs, the
+# 30th is no good as well.
+last if $now =~ /-12-3[0|1]/;
+
+# Build regex for parsing lines from the arbcom template
+# https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
+my $dateCapture = '(\d{2}\/\d{2}\/\d{4})';
+my $userName = '\[\[User:.*\|(.*)\]\]';
+my $arbcomRE = 'from:'.$dateCapture.' till:'.$dateCapture.q{.*}.$userName;
+
+for (split /^/, $content) {
+  if (/$arbcomRE/) {
+    my ($from,$till,$name) = ($1,$2,$3);
+    $from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+    $till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+    if ($from le $now && $till gt $now) {
+      $groupsStore{arbcom}{$name} = 1;
+    }
   }
 }
 
@@ -210,54 +244,12 @@ foreach my $i (0..scalar @pages - 1) {
 }
 
 
-# Build regex for parsing lines from the arbcom template
-# https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
-my $dateCapture = '(\d{2}\/\d{2}\/\d{4})';
-my $userName = '\[\[User:.*\|(.*)\]\]';
-
-my $arbcomRE = 'from:'.$dateCapture.' till:'.$dateCapture.q{.*}.$userName;
-
-
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
-  my (%queryHash, $note);
-
-  # ArbCom isn't a real group so its membership couldn't be queried above.
-  # This doesn't strictly need to be in the loop here, but no reason not to.
-  if (/arbcom/) {
-    # Imperfect, relies upon the template being updated, but ArbCom membership
-    # is high-profile enough that it will likely be updated quickly
-    my $acTemplate = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
-    my $content = $acTemplate->{q{*}};
-
-    # Find the diamonds in the rough
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
-    $year += 1900;
-    # 0-padding
-    $mon = sprintf '%02d', $mon+1;
-    $mday = sprintf '%02d', $mday;
-    my $now = $year.q{-}.$mon.q{-}.$mday;
-    # For dumb template reasons, arbs are listed as ending terms on December
-    # 30th.  While unlikely, this means the list won't be accurate on the
-    # 31st, so just skip it.  Likewise, since we check that the date is
-    # greater than the current date to ensure that we catch retiring arbs, the
-    # 30th is no good as well.
-    last if $now =~ /-12-3[0|1]/;
-    for (split /^/, $content) {
-      if (/$arbcomRE/) {
-	my ($from,$till,$name) = ($1,$2,$3);
-	$from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-	$till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-	if ($from le $now && $till gt $now) {
-	  $queryHash{$name} = 1;
-	}
-      }
-    }
-  } else {
-    %queryHash = %{$groupsStore{$_}};
-  }
+  my $note;
+  my %queryHash = %{$groupsStore{$_}}; # Just the specific rights hash we want
 
   # Build JSON, needed regardless
   my $queryJSON = $jsonTemplate->encode(\%queryHash);
