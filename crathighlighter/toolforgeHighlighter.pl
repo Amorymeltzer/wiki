@@ -25,7 +25,8 @@ chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
 my %opts = ();
-getopts('Pn', \%opts);
+getopts('hPn', \%opts);
+usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
@@ -463,4 +464,19 @@ sub mapGroups {
 		sysop => 'SY'
 	       );
   return map { $_." ($lookup{$group})" } @{$usersRef};
+}
+
+
+#### Usage statement ####
+# Use POD or whatever?
+# Escapes not necessary but ensure pretty colors
+# Final line must be unindented?
+sub usage {
+  print <<"USAGE";
+Usage: $PROGRAM_NAME [-hPn]
+      -P Don't push live to wiki
+      -n Print a message on completion of a successful run.  Useful for notifying after a failure.
+      -h Print this message
+USAGE
+  exit;
 }
