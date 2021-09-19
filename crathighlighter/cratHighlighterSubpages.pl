@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # cratHighlighterSubpages.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Make it easier to sync subpages of crathighlighter.js
+# Sync JSON lists for crathighlighter.js (not in use, mostly for testing)
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 
 use strict;
@@ -9,12 +9,18 @@ use warnings;
 use diagnostics;
 
 use Getopt::Std;
+use FindBin;
 use English qw(-no_match_vars);
+use List::Util qw(uniq);
 
 use Log::Log4perl qw(:easy);
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
+
+# Pop into this script's directory
+my $scriptDir = $FindBin::Bin;
+chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Parse commandline options
 my %opts = ();
@@ -23,15 +29,15 @@ usage() if $opts{h};
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
-Log::Log4perl->easy_init({ level    => exists $ENV{CRON} ? $TRACE : $INFO,
-			   file     => '>>log.log',
-			   utf8     => 1,
+Log::Log4perl->easy_init({ level  => $INFO,
+			   file   => '>>log.log',
+			   utf8   => 1,
 			   # Datetime (level): message
-			   layout   => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
-			 { level    => $TRACE,
-			   file     => 'STDOUT',
+			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
+			 { level  => $TRACE,
+			   file   => 'STDOUT',
 			   # message
-			   layout   => '%m{indent}%n' }
+			   layout => '%m{indent}%n' }
 			);
 
 # Config consists of just a single line with username and botpassword
@@ -42,6 +48,14 @@ open my $config, '<', "$config_file" or LOGDIE($ERRNO);
 chomp(my $line = <$config>);
 my ($username, $password) = split /:/, $line;
 close $config or LOGDIE($ERRNO);
+
+# Only accept the right user
+my $bot = 'Amorymeltzer';
+if ($username =~ /^$bot@/) {
+  $bot = 'User:'.$bot;
+} else {
+  LOGDIE('Wrong user provided');
+}
 
 # Initialize API object, log in
 my $mw = MediaWiki::API->new({
@@ -165,7 +179,7 @@ for (split /^/, $content) {
 push @rights, qw (steward arbcom);
 
 ### Content of each page
-my @titles = map { 'User:Amorymeltzer/crathighlighter.js/'.$_.'.json' } @rights;
+my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
 my $allTitles = join q{|}, @titles;
 my $contentQuery = {
 		    action => 'query',
@@ -198,6 +212,7 @@ foreach my $i (0..scalar @pages - 1) {
 
 #### Main loop for each right
 my ($localChange,$wikiChange) = (0,0);
+my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
   my $note;
   my %queryHash = %{$groupsStore{$_}}; # Just the specific rights hash we want
@@ -215,6 +230,9 @@ foreach (@rights) {
     $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
+
+    push @totAddedFiles, mapGroups($_, \@{$fileAdded});
+    push @totRemovedFiles, mapGroups($_, \@{$fileRemoved});
   }
 
   # Check if on-wiki records have changed
@@ -227,8 +245,11 @@ foreach (@rights) {
     my $summary = buildSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki'.$summary;
 
+    push @totAddedPages, mapGroups($_, \@{$wikiAdded});
+    push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
+
     if (!$opts{P}) {
-      my $editSummary = 'Update'.$summary.' (automatically via [[User:Amorymeltzer/crathighlighter|script]])';
+      my $editSummary = 'Update'.$summary." (automatically via [[$bot/crathighlighter|script]])";
       my $timestamp = $contentStore{$_}[2];
 
       $note .= ': Pushing now... ';
@@ -261,8 +282,44 @@ INFO($finalNote);
 # Clean up
 $mw->logout();
 
-# No changes
-exit if !$localChange && !$wikiChange;
+# Log/report final status
+if ($localChange || $wikiChange) {
+  my $updateNote = "CratHighlighter updates\n\n";
+
+  # Local changes
+  if ($localChange) {
+    $updateNote .= "Files: updated\n";
+    if (scalar @totAddedFiles) {
+      $updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedFiles)."\n";
+    }
+    if (scalar @totRemovedFiles) {
+      $updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedFiles)."\n";
+    }
+  }
+
+  # Notify on pushed changes
+  if ($wikiChange) {
+    $updateNote .= 'Pages: ';
+    if (!$opts{P}) {
+      $updateNote .= "updated\n";
+      if (scalar @totAddedPages) {
+	$updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedPages)."\n";
+      }
+      if (scalar @totRemovedPages) {
+	$updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedPages)."\n";
+      }
+    } else {
+      $updateNote .= "not updated\n";
+    }
+  }
+
+  # Each item should already be logged above in the main loop, this is just to
+  # trigger an email on changes.  Probably not needed long run, except to
+  # update the newsletter, but at least initially it's a good idea.
+  print $updateNote;
+} else { # No changes
+  exit;
+}
 
 if (!$opts{N}) {
   system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
@@ -355,6 +412,22 @@ sub oxfordComma {
   my $end = pop @list;
   return join(', ', @list) . ", and $end";
 }
+
+# Map a marker of the group in question onto an array
+sub mapGroups {
+  my ($group, $usersRef) = @_;
+  my %lookup = (
+		bureaucrat => 'B',
+		oversight => 'OS',
+		checkuser => 'CU',
+		'interface-admin' => 'IA',
+		steward => 'SW',
+		arbcom => 'AC',
+		sysop => 'SY'
+	       );
+  return map { $_." ($lookup{$group})" } @{$usersRef};
+}
+
 
 #### Usage statement ####
 # Use POD or whatever?

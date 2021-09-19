@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # toolforgeHighlighter.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Sync subpages of crathighlighter.js via toolforge
+# Sync JSON lists subpages for crathighlighter.js via toolforge
 # https://en.wikipedia.org/wiki/User:AmoryBot/crathighlighter
 
 use strict;
@@ -29,11 +29,11 @@ getopts('Pn', \%opts);
 
 # The full options are straightforward, but overly verbose when easy mode
 # (and stealth loggers) is succinct and sufficient
-Log::Log4perl->easy_init({ level  =>  $INFO,
-			   file   =>  ">>$ENV{HOME}/logs/tflog.log",
-			   utf8   =>  1,
+Log::Log4perl->easy_init({ level  => $INFO,
+			   file   => ">>$ENV{HOME}/logs/tflog.log",
+			   utf8   => 1,
 			   # Datetime (level): message
-			   layout =>  '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
 			 });
 
 # Check and update repo before doing anything risky
@@ -318,7 +318,7 @@ $mw->logout();
 
 # Log/report final status
 if ($localChange || $wikiChange) {
-  my $updateNote = "Toolforge updates\n\n";
+  my $updateNote = "CratHighlighter updates\n\n";
 
   # Local changes
   if ($localChange) {
