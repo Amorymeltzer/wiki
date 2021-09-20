@@ -210,8 +210,9 @@ for (split /^/, $content) {
   }
 }
 
-# Add stewards and arbcom
-push @rights, qw (steward arbcom);
+# Add stewards and arbcom, preserving order
+push @rights, qw (steward);
+unshift @rights, qw (arbcom);
 
 ### Content of each page
 my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
@@ -455,13 +456,13 @@ sub oxfordComma {
 sub mapGroups {
   my ($group, $usersRef) = @_;
   my %lookup = (
-		bureaucrat => 'B',
-		oversight => 'OS',
-		checkuser => 'CU',
+		arbcom            => 'AC',
+		bureaucrat        => 'B',
+		oversight         => 'OS',
+		checkuser         => 'CU',
 		'interface-admin' => 'IA',
-		steward => 'SW',
-		arbcom => 'AC',
-		sysop => 'SY'
+		sysop             => 'SY',
+		steward           => 'SW'
 	       );
   return map { $_." ($lookup{$group})" } @{$usersRef};
 }
