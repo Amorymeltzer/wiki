@@ -142,7 +142,7 @@ foreach my $i (0..scalar @localHashes - 1) {
 # Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
 # membership is high-profile enough that in practice this is updated quickly
 my $acTemplate = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
-my $content = $acTemplate->{q{*}};
+my $templateContent = $acTemplate->{q{*}};
 
 # Find the diamonds in the rough
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
@@ -164,7 +164,7 @@ my $dateCapture = '(\d{2}\/\d{2}\/\d{4})';
 my $userName = '\[\[User:.*\|(.*)\]\]';
 my $arbcomRE = 'from:'.$dateCapture.' till:'.$dateCapture.q{.*}.$userName;
 
-for (split /^/, $content) {
+for (split /^/, $templateContent) {
   if (/$arbcomRE/) {
     my ($from,$till,$name) = ($1,$2,$3);
     $from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
