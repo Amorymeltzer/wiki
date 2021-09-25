@@ -10,7 +10,7 @@ use diagnostics;
 
 use Getopt::Std;
 use FindBin;
-use English qw(-no_match_vars);
+use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
 use List::Util qw(uniq);
 
 use Log::Log4perl qw(:easy);
@@ -28,14 +28,13 @@ my %opts = ();
 getopts('hPn', \%opts);
 usage() if $opts{h};
 
-# The full options are straightforward, but overly verbose when easy mode
-# (and stealth loggers) is succinct and sufficient
+# The full options are straightforward but overly verbose, and easy mode
+# (with stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level  => $INFO,
 			   file   => ">>$ENV{HOME}/logs/tflog.log",
 			   utf8   => 1,
 			   # Datetime (level): message
-			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
-			 });
+			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' });
 
 # Check and update repo before doing anything risky
 my $repo = Git::Repository->new();
@@ -309,14 +308,14 @@ foreach (@rights) {
   INFO($note) if $note;
 }
 
+# Clean up
+$mw->logout();
+
 
 # Also used for checking the previous run was successful
 # Note: LOGEXIT is FATAL (same as LOGDIE except no extra die message)
 my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
 INFO($finalNote);
-
-# Clean up
-$mw->logout();
 
 # Log/report final status
 if ($localChange || $wikiChange) {

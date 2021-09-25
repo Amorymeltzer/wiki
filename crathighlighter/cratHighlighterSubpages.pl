@@ -10,7 +10,7 @@ use diagnostics;
 
 use Getopt::Std;
 use FindBin;
-use English qw(-no_match_vars);
+use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
 use List::Util qw(uniq);
 
 use Log::Log4perl qw(:easy);
@@ -27,8 +27,8 @@ my %opts = ();
 getopts('hPNn', \%opts);
 usage() if $opts{h};
 
-# The full options are straightforward, but overly verbose when easy mode
-# (and stealth loggers) is succinct and sufficient
+# The full options are straightforward but overly verbose, and easy mode
+# (with stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level  => $INFO,
 			   file   => '>>log.log',
 			   utf8   => 1,
@@ -37,8 +37,7 @@ Log::Log4perl->easy_init({ level  => $INFO,
 			 { level  => $TRACE,
 			   file   => 'STDOUT',
 			   # message
-			   layout => '%m{indent}%n' }
-			);
+			   layout => '%d - %m{indent}%n' });
 
 # Config consists of just a single line with username and botpassword
 # Jimbo Wales:stochasticstring
@@ -274,14 +273,14 @@ foreach (@rights) {
   INFO($note) if $note;
 }
 
+# Clean up
+$mw->logout();
+
 
 # Also used for checking the previous run was successful
 # Note: LOGEXIT is FATAL (same as LOGDIE except no extra die message)
 my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
 INFO($finalNote);
-
-# Clean up
-$mw->logout();
 
 # Log/report final status
 if ($localChange || $wikiChange) {
