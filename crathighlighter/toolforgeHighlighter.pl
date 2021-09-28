@@ -28,10 +28,12 @@ my %opts = ();
 getopts('hPn', \%opts);
 usage() if $opts{h};
 
+# Set up logger
+my $logLocation = "$ENV{HOME}/logs/tflog.log";
 # The full options are straightforward but overly verbose, and easy mode
 # (with stealth loggers) is succinct and sufficient
 Log::Log4perl->easy_init({ level  => $INFO,
-			   file   => ">>$ENV{HOME}/logs/tflog.log",
+			   file   => ">>$logLocation",
 			   utf8   => 1,
 			   # Datetime (level): message
 			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' });
