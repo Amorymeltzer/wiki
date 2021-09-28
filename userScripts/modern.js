@@ -249,7 +249,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		/* Edit/create redirects with [[User:Wugapodes/Capricorn]] ([[User:Wugapodes/Capricorn.js]])
 		 * [[User:Sam Sailor/Scripts/Sagittarius+]] ([[User:Sam Sailor/Scripts/Sagittarius+.js]])
 		 * [[User:Kephir/gadgets/sagittarius]] ([[User:Kephir/gadgets/sagittarius.js]]) */
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=1013955969&action=raw&ctype=text/javascript');
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Wugapodes/Capricorn.js&oldid=1013955969&action=raw&ctype=text/javascript'); /* --skipUpdate-- */
 
 		// [[User:Evad37/rater.js]], [[User:Evad37/rater/app.js]], [[User:Kephir/gadgets/rater.js]]
 		// Loading here rather than via rater.js to get specific version
@@ -329,7 +329,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=997723906&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]] /*--skipUpdate--*/
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]] /* --skipUpdate-- */
 			}
 		} else if (cfg.wgNamespaceNumber === 14) {
 			/* Categories */
