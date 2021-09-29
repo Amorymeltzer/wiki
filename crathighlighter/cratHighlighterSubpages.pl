@@ -193,22 +193,20 @@ my $contentQuery = {
 		   };
 # JSON, technically a reference to a hash
 my $contentReturn = $mw->api($contentQuery);
-# Stores page title, content and last edited time in an array for each right
+# Stores page title, content, and last edited time in an array for each group
 my %contentStore;
 # This monstrosity results in an array where each item is an array of hashes:
-## title -> set use to set the content, maybe use as key in data hash
+## title     -> used to also snag the specific group used for hash key
 ## revisions -> array containing one item, which is a hash, which has keys:
-### content -> content
-### timestamp -> last edited
+### content   -> full page content
+### timestamp -> time last edited
 # Just awful.
 my @pages = @{${${$contentReturn}{query}}{pages}};
 foreach my $i (0..scalar @pages - 1) {
   my %page = %{$pages[$i]};
-  my $title = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+  my $userGroup = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
   my @revisions = @{$page{revisions}};
-  my $content = ${$revisions[0]}{content};
-  my $timestamp = ${$revisions[0]}{timestamp};
-  $contentStore{$title} = [$page{title},$content,$timestamp];
+  $contentStore{$userGroup} = [$page{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
 }
 
 
@@ -251,8 +249,6 @@ foreach (@rights) {
     push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
-      my $timestamp = $contentStore{$_}[2];
-
       # Multifaceted and overly-verbose edit summaries are the best!
       my $editSummary = 'Update'.$summary;
       # Include the count of the specific group
@@ -264,7 +260,7 @@ foreach (@rights) {
 		 action => 'edit',
 		 assert => 'user',
 		 title => $contentStore{$_}[0],
-		 basetimestamp => $timestamp, # Avoid edit conflicts
+		 basetimestamp => $contentStore{$_}[2], # Avoid edit conflicts
 		 text => $queryJSON,
 		 summary => $editSummary
 		});
