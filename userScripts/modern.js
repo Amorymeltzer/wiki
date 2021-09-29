@@ -164,22 +164,22 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			/* Masses [[UserAmorymeltzer/mass]] */
 			switch (cfg.wgPageName) {
 				case 'Special:Massedit':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1004824215&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1047165041&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
 					break;
 				case 'Special:Massdelete':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1017562162&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
 					break;
 				case 'Special:Massrestore':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1004824200&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1047165143&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
 					break;
 				case 'Special:Massblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1004824195&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1047165125&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
 					break;
 				case 'Special:MassUnblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1004824188&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1047165051&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
 					break;
 				case 'Special:Massprotect':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1004824184&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1047165098&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
 					break;
 				case 'Special:Massmove':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1045251681&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
