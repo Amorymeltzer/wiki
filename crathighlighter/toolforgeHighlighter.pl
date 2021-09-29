@@ -264,7 +264,7 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    $note = "$file changed".buildSummary($fileAdded,$fileRemoved)."\n";
+    $note = "$file changed".changeSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
 
@@ -279,15 +279,20 @@ foreach (@rights) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     $wikiChange = 1;
-    my $summary = buildSummary($wikiAdded,$wikiRemoved);
+    my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki'.$summary;
 
     push @totAddedPages, mapGroups($_, \@{$wikiAdded});
     push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
-      my $editSummary = 'Update'.$summary." (automatically via [[$bot/crathighlighter|script]])";
       my $timestamp = $contentStore{$_}[2];
+
+      # Multifaceted and overly-verbose edit summaries are the best!
+      my $editSummary = 'Update'.$summary;
+      # Include the count of the specific group
+      my $count = scalar keys %queryHash;
+      $editSummary .= "($count) (automatically via [[$bot/crathighlighter|script]])";
 
       $note .= ': Pushing now... ';
       $mw->edit({
@@ -425,9 +430,10 @@ sub cmpJSON {
   return ($state, \@added, \@removed);
 }
 
-# Create a commit/edit summary from the array references of added/removed
-# usernames.  Uses oxfordComma below for proper grammar
-sub buildSummary {
+# Write a summary of added/removed usernames from the provided array references.
+# Uses oxfordComma below for proper grammar.  Used for the git commit entry as
+# well as the basis for the on-wiki edit summary.
+sub changeSummary {
   my ($addedRef,$removedRef) = @_;
   my $change = q{};
 
