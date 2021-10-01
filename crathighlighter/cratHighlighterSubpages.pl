@@ -426,7 +426,7 @@ sub mapGroups {
 		oversight         => 'OS',
 		checkuser         => 'CU',
 		'interface-admin' => 'IA',
-		sysop             => 'SY',
+		sysop             => 'SYS',
 		steward           => 'SW'
 	       );
   return map { $_." ($lookup{$group})" } @{$usersRef};
