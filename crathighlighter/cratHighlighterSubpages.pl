@@ -19,6 +19,11 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
+# Parse commandline options
+my %opts = ();
+getopts('hPn', \%opts);
+usage() if $opts{h};
+
 # Figure out if we're being run on the toolforge grid or not
 my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
 # Likewise, if we're being run via cron, thanks to CRON=1 in crontab
@@ -27,11 +32,6 @@ my $cron = $ENV{CRON};
 # Pop into this script's directory
 my $scriptDir = $FindBin::Bin;
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
-
-# Parse commandline options
-my %opts = ();
-getopts('hPNn', \%opts);
-usage() if $opts{h};
 
 # Set up logger
 # FIXME TODO
@@ -293,6 +293,7 @@ if ($localChange + $wikiChange) {
   my $updateNote = "CratHighlighter updates\n\n";
 
   # Include file/page code in first line? FIXME TODO
+  # Might need to redo handling of totAdded*, mapGroups, etc.
 
   # Local changes
   if ($localChange) {
@@ -322,13 +323,9 @@ if ($localChange + $wikiChange) {
   }
 
   print $updateNote;
-
-  if (!$cron && !$opts{N}) {
-    system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
-  }
 }
 
-# Only used if run after a failure
+# Useful if used when running after a failure, to ensure success on follow-up
 if ($opts{n}) {
   print "Run completed\n";
 }
@@ -536,7 +533,6 @@ sub usage {
   print <<"USAGE";
 Usage: $PROGRAM_NAME [-hPNn]
       -P Don't push live to the wiki
-      -N Don't send a message using the system notifier when there are any changes.  Never sent if run via cron.
       -n Print a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
       -h Print this message
 USAGE
