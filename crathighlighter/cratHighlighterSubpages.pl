@@ -34,12 +34,10 @@ my $scriptDir = $FindBin::Bin;
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 # Set up logger
-# FIXME TODO
-my $logLocation = $tool ? "$ENV{HOME}/logs/tflog.log" : "$scriptDir/log.log";
 # The full options are straightforward but overly verbose, and easy mode
 # (with stealth loggers) is succinct and sufficient
 my $infoLog =  { level  => $INFO,
-		 file   => ">>$logLocation",
+		 file   => ">>$scriptDir/log.log",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
