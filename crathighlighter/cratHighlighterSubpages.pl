@@ -210,7 +210,8 @@ foreach my $i (0..scalar @pages - 1) {
 
 
 #### Main loop for each right
-# FIXME TODO Make these counters
+# These conveniently function as indicators as well as counters for number of
+# files or pages changed, respectively
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
@@ -226,7 +227,7 @@ foreach (@rights) {
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   if ($fileState) {
-    $localChange = 1;
+    $localChange++;
     $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
@@ -241,7 +242,7 @@ foreach (@rights) {
 
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
-    $wikiChange = 1;
+    $wikiChange++;
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki'.$summary;
 
@@ -281,20 +282,21 @@ $mw->logout();
 
 
 # Also used for checking the previous run was successful
-# Note: LOGEXIT is FATAL (same as LOGDIE except no extra die message)
-my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
+my $finalNote = $localChange + $wikiChange ? 'No further updates needed' : 'No updates needed';
 INFO($finalNote);
 
 # Report final status.  Each item should already be logged above in the main
 # loop, this is just to trigger an email on changes when run via `cron`.
 # Probably not needed long run, except to update the newsletter, but at least
 # initially it's a good idea.
-if ($localChange || $wikiChange) {
+if ($localChange + $wikiChange) {
   my $updateNote = "CratHighlighter updates\n\n";
+
+  # Include file/page code in first line? FIXME TODO
 
   # Local changes
   if ($localChange) {
-    $updateNote .= "Files: updated\n";
+    $updateNote .= "Files: $localChange updated\n";
     if (scalar @totAddedFiles) {
       $updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedFiles)."\n";
     }
@@ -305,7 +307,7 @@ if ($localChange || $wikiChange) {
 
   # Notify on pushed changes
   if ($wikiChange) {
-    $updateNote .= 'Pages: ';
+    $updateNote .= 'Pages: $wikiChange ';
     if (!$opts{P}) {
       $updateNote .= "updated\n";
       if (scalar @totAddedPages) {
