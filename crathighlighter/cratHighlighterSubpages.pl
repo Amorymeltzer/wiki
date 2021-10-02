@@ -21,7 +21,7 @@ use JSON;
 
 # Figure out if we're being run on the toolforge grid or not
 my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
-# Likewise, if we're being run via cron
+# Likewise, if we're being run via cron, thanks to CRON=1 in crontab
 my $cron = $ENV{CRON};
 
 # Pop into this script's directory
