@@ -6,7 +6,7 @@ Often perl, potentially frivolous
 
 ### [`crathighlighter`](./crathighlighter/)
 
-Easily update json subpages (under [User:AmoryBot](https://en.wikipedia.org/wiki/User:AmoryBot)) for [User:Amorymeltzer/crathighlighter](https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter).  The script ([`toolforgeHighlighter.pl`](./crathighlighter/toolforgeHighlighter.pl)) is run regularly on [Toolforge](https://wikitech.wikimedia.org/wiki/Portal:Toolforge).
+Easily update json subpages (under [User:AmoryBot](https://en.wikipedia.org/wiki/User:AmoryBot)) for [User:Amorymeltzer/crathighlighter](https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter).  The script ([`cratHighlighterSubpages.pl`](./crathighlighter/cratHighlighterSubpages.pl)) is run regularly on [Toolforge](https://wikitech.wikimedia.org/wiki/Portal:Toolforge).
 
 ### [`sysopIndex`](./sysopIndex/)
 

@@ -1,4 +1,4 @@
 PERL5LIB=/data/project/amorybot/perl5/lib/perl5
-21,42 * * * * jlocal perl ~/wiki/crathighlighter/toolforgeHighlighter.pl
-34,55 * * * * jlocal ~/wiki/crathighlighter/cron_shim.sh ~/logs/tflog.log 'updates needed' || perl ~/wiki/crathighlighter/toolforgeHighlighter.pl -n
+21,42 * * * * jlocal perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
+34,55 * * * * jlocal ~/wiki/crathighlighter/cron_shim.sh ~/logs/tflog.log 'updates needed' || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n
 #15 9 * * * jlocal tail -n 24 ~/logs/tflog.log # fer testin

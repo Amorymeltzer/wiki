@@ -1,8 +1,9 @@
 #!/usr/bin/env perl
 # cratHighlighterSubpages.pl by Amory Meltzer
 # Licensed under the WTFPL http://www.wtfpl.net/
-# Sync JSON lists for crathighlighter.js (not in use, mostly for testing)
+# Sync JSON lists for crathighlighter.js
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
+# Run via cron on toolforge as User:AmoryBot
 
 use strict;
 use warnings;
@@ -18,6 +19,11 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
 
+# Figure out if we're being run on the toolforge grid or not
+my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
+# Likewise, if we're being run via cron
+my $cron = $ENV{CRON};
+
 # Pop into this script's directory
 my $scriptDir = $FindBin::Bin;
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
@@ -28,44 +34,37 @@ getopts('hPNn', \%opts);
 usage() if $opts{h};
 
 # Set up logger
-my $logLocation = "$scriptDir/log.log";
+# FIXME TODO
+my $logLocation = $tool ? "$ENV{HOME}/logs/tflog.log" : "$scriptDir/log.log";
 # The full options are straightforward but overly verbose, and easy mode
 # (with stealth loggers) is succinct and sufficient
-Log::Log4perl->easy_init({ level  => $INFO,
-			   file   => ">>$logLocation",
-			   utf8   => 1,
-			   # Datetime (level): message
-			   layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' },
-			 { level  => $TRACE,
-			   file   => 'STDOUT',
-			   # message
-			   layout => '%d - %m{indent}%n' });
+my $infoLog =  { level  => $INFO,
+		 file   => ">>$logLocation",
+		 utf8   => 1,
+		 # Datetime (level): message
+		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
+# Only if not being run via cron
+my $traceLog = { level  => $TRACE,
+		 file   => 'STDOUT',
+		 # message
+		 layout => '%d - %m{indent}%n' };
+Log::Log4perl->easy_init($cron ? $infoLog : $infoLog, $traceLog);
 
-# Config consists of just a single line with username and botpassword
-# Jimbo Wales:stochasticstring
-# Config::General is easy but this is so simple
-my $config_file = '.crathighlighterrc';
-open my $config, '<', "$config_file" or LOGDIE($ERRNO);
-chomp(my $line = <$config>);
-my ($username, $password) = split /:/, $line;
-close $config or LOGDIE($ERRNO);
 
-# Only accept the right user
-my $bot = 'Amorymeltzer';
-if ($username =~ /^$bot@/) {
-  $bot = 'User:'.$bot;
-} else {
-  LOGDIE('Wrong user provided');
+# Check and update repo before doing anything unsupervised, i.e. via cron
+if ($cron) {
+  require Git::Repository;
+  gitCheck(Git::Repository->new());
 }
 
-# Initialize API object, log in
-my $mw = MediaWiki::API->new({
-			      api_url => 'https://en.wikipedia.org/w/api.php',
-			      on_error => \&dieNice,
-			      use_http_get => '1' # use GET where appropriate
-			     });
-$mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
-$mw->login({lgname => $username, lgpassword => $password});
+# Initialize API object.  Get username/password combo, log in, etc.
+my ($mw, $bot);
+$mw = mwLogin();
+
+# If it's the bot account, include a few checks for (emergency) shutoff
+if ($tool) {
+  botShutoffs();
+}
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON->new->canonical(1);
@@ -161,9 +160,9 @@ last if $now =~ /-12-3[0|1]/;
 
 # Build regex for parsing lines from the arbcom template
 # https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
-my $dateCapture = '(\d{2}\/\d{2}\/\d{4})';
-my $userName = '\[\[User:.*\|(.*)\]\]';
-my $arbcomRE = 'from:'.$dateCapture.' till:'.$dateCapture.q{.*}.$userName;
+my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
+my $userNameRE = '\[\[User:.*\|(.*)\]\]';
+my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
 
 for (split /^/, $templateContent) {
   if (/$arbcomRE/) {
@@ -211,6 +210,7 @@ foreach my $i (0..scalar @pages - 1) {
 
 
 #### Main loop for each right
+# FIXME TODO Make these counters
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
@@ -227,7 +227,7 @@ foreach (@rights) {
 
   if ($fileState) {
     $localChange = 1;
-    $note = "$file changed".changeSummary($fileAdded,$fileRemoved)."\n";
+    $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
 
@@ -250,12 +250,12 @@ foreach (@rights) {
 
     if (!$opts{P}) {
       # Multifaceted and overly-verbose edit summaries are the best!
-      my $editSummary = 'Update'.$summary;
+      my $editSummary = 'Update: '.$summary;
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
-      $editSummary .= "($count) (automatically via [[$bot/crathighlighter|script]])";
+      $editSummary .= " ($count total) (automatically via [[$bot/crathighlighter|script]])";
 
-      $note .= ': Pushing now... ';
+      $note .= '.  Pushing now... ';
       $mw->edit({
 		 action => 'edit',
 		 assert => 'user',
@@ -285,7 +285,10 @@ $mw->logout();
 my $finalNote = !$localChange && !$wikiChange ? 'No updates needed' : 'No further updates needed';
 INFO($finalNote);
 
-# Log/report final status
+# Report final status.  Each item should already be logged above in the main
+# loop, this is just to trigger an email on changes when run via `cron`.
+# Probably not needed long run, except to update the newsletter, but at least
+# initially it's a good idea.
 if ($localChange || $wikiChange) {
   my $updateNote = "CratHighlighter updates\n\n";
 
@@ -316,16 +319,11 @@ if ($localChange || $wikiChange) {
     }
   }
 
-  # Each item should already be logged above in the main loop, this is just to
-  # trigger an email on changes.  Probably not needed long run, except to
-  # update the newsletter, but at least initially it's a good idea.
   print $updateNote;
-} else { # No changes
-  exit;
-}
 
-if (!$opts{N}) {
-  system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+  if (!$cron && !$opts{N}) {
+    system '/opt/local/bin/terminal-notifier -message "Changes or updates made" -title "cratHighlighter"';
+  }
 }
 
 # Only used if run after a failure
@@ -334,10 +332,87 @@ if ($opts{n}) {
 }
 
 
-#### SUBROUTINES
+######## SUBROUTINES ########
+# Check and update repo before doing anything risky
+sub gitCheck {
+  my $repo = shift;
+
+  if (gitOnMaster($repo)) {
+    LOGDIE('Not on master branch');
+  } elsif (gitCleanStatus($repo)) {
+    LOGDIE('Repository is not clean');
+  }
+
+  # All good, we can go ahead and check for new commits
+  my $oldSha = $repo->run('rev-parse' => '--short', 'HEAD');
+  # Pull, check for errors
+  my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
+  my @pullE = $pull->stderr->getlines();
+  $pull->close();
+  if (scalar @pullE) {
+    LOGDIE(@pullE);
+  } elsif (gitCleanStatus($repo) || gitOnMaster($repo)) {
+    LOGDIE('Repository dirty after pull');
+  }
+
+  # All good, log if any new commits were pulled
+  my $newSha = $repo->run('rev-parse' => '--short', 'HEAD');
+  if ($oldSha ne $newSha) {
+    INFO("Updated repo from $oldSha to $newSha");
+  }
+}
+# These two are used above, and are rerun each time just to be extrasuperspecial
+# sure.  Mis/abuses @_ rather than simply `shift`-ing.
+sub gitOnMaster {
+  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master';
+}
+sub gitCleanStatus {
+  return scalar $_[0]->run(status => '--porcelain');
+}
+
+# Handle logging in to the wiki, mainly ensuring we die nicely
+sub mwLogin {
+  my ($username, $password) = getUserAndPass($tool ? 'AmoryBot' : 'Amorymeltzer');
+
+  # Used globally to make edit summaries, page titles, etc. easier
+  $bot = 'User:'.$username =~ s/@.*//r;
+
+  # Global, declared above
+  $mw = MediaWiki::API->new({
+			     api_url => 'https://en.wikipedia.org/w/api.php',
+			     on_error => \&dieNice,
+			     use_http_get => '1' # use GET where appropriate
+			    });
+  $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
+  $mw->login({lgname => $username, lgpassword => $password});
+
+  return $mw;
+}
+# Get relevant username/password combination from the config.  Config consists
+# of simple pairs of username and botpassword separated by a colon:
+# Jimbo Wales:stochasticstring
+# Config::General is easy but this is so simple
+sub getUserAndPass {
+  my $correctname = shift;
+  my ($un, $pw);
+  open my $config, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
+  while (<$config>) {
+    chomp;
+    ($un, $pw) = split /:/;
+    # Only accept the right user
+    last if $un =~ /^$correctname@/;
+  }
+  close $config or LOGDIE($ERRNO);
+  # Only accept the right user
+  if ($un !~ /^$correctname@/) {
+    LOGDIE('Wrong user provided');
+  }
+
+  return ($un, $pw);
+}
 # Nicer handling of some specific mediawiki errors, can be expanded using:
-## https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
-## https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
+# - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
+# - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
@@ -353,6 +428,25 @@ sub dieNice {
   my $message = q{: }.$codes{$code} // q{};
   $message = 'MediaWiki error'.$message.":\n$code: $details";
   LOGDIE($message);
+}
+
+
+# Make sure the bot behaves nicely; extra queries so as to simplify things, but
+# in theory these could be combined.  Hell, all the queries could be combined!
+# But that's dumb since this isn't exactly hammering the API.
+sub botShutoffs {
+  # Manual shutoff; confirm bot should actually run
+  my $page = $mw->get_page({title => $bot.'/disable'});
+  my $checkContent = $page->{q{*}};
+  if (!$checkContent || $checkContent ne '42') {
+    LOGDIE('DISABLED on-wiki');
+  }
+
+  # Automatic shutoff: user has talkpage messages
+  my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
+  if (exists $userNotes{query}{userinfo}{messages}) {
+    LOGDIE("$bot has talkpage message(s))");
+  }
 }
 
 # Compare query hash with a JSON object hash, return negated equality and
@@ -388,7 +482,7 @@ sub cmpJSON {
   return ($state, \@added, \@removed);
 }
 
-# Write a summary of added/removed usernames from the provided array references.
+# Write a summary of added/removed users from the provided array references.
 # Uses oxfordComma below for proper grammar.  Used for the git commit entry as
 # well as the basis for the on-wiki edit summary.
 sub changeSummary {
@@ -402,7 +496,6 @@ sub changeSummary {
     $change .= '; ' if length $change;
     $change .= 'Removed '.oxfordComma(@{$removedRef});
   }
-  $change = ' ('.$change.')' if $change; # Preferred format for both -p and -c
 
   return $change;
 }
@@ -440,9 +533,9 @@ sub mapGroups {
 sub usage {
   print <<"USAGE";
 Usage: $PROGRAM_NAME [-hPNn]
-      -P Don't push live to wiki
-      -N Don't attempt to use the system notifier
-      -n Print a message on completion of a successful run.  Useful for notifying after a failure.
+      -P Don't push live to the wiki
+      -N Don't send a message using the system notifier when there are any changes.  Never sent if run via cron.
+      -n Print a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
       -h Print this message
 USAGE
   exit;
