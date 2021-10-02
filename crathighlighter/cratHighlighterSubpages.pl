@@ -48,7 +48,7 @@ my $traceLog = { level  => $TRACE,
 		 file   => 'STDOUT',
 		 # message
 		 layout => '%d - %m{indent}%n' };
-Log::Log4perl->easy_init($cron ? $infoLog : $infoLog, $traceLog);
+Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
 
 
 # Check and update repo before doing anything unsupervised, i.e. via cron
