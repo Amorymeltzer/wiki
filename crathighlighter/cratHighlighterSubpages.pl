@@ -78,8 +78,8 @@ my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
 # Will store hash of editors for each group.  Basically JSON
 my %groupsStore;
 
-### List of each group; actually a list of users in any of the groups with
-### all of their respective groups
+## List of each group (actually a list of users in any of the chosen groups with
+## all of their respective groups).  $localPerms is also used for a grep later.
 my $localPerms = join q{|}, @rights;
 my $groupsQuery = {
 		   action => 'query',
@@ -102,6 +102,7 @@ my %groupsQuery = %{${$groupsReturn}{query}};
 
 # Stewards are "simple" thanks to map and simple (one-group) structure
 %{$groupsStore{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+push @rights, qw (steward);
 
 
 # Local groups need a loop for processing who goes where, but there are a lot of
@@ -139,9 +140,7 @@ foreach my $i (0..scalar @localHashes - 1) {
 
 # Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
 # membership is high-profile enough that in practice this is updated quickly
-my $acTemplate = $mw->get_page({title => 'Template:Arbitration_committee_chart/recent'});
-my $templateContent = $acTemplate->{q{*}};
-
+my $acTemplate = 'Template:Arbitration_committee_chart/recent';
 # Find the diamonds in the rough
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
 $year += 1900;
@@ -149,44 +148,51 @@ $year += 1900;
 $mon = sprintf '%02d', $mon+1;
 $mday = sprintf '%02d', $mday;
 my $now = $year.q{-}.$mon.q{-}.$mday;
-# For dumb template reasons, arbs are listed as ending terms on December
-# 30th.  While unlikely, this means the list won't be accurate on the
-# 31st, so just skip it.  Likewise, since we check that the date is
-# greater than the current date to ensure that we catch retiring arbs, the
-# 30th is no good as well.
-last if $now =~ /-12-3[0|1]/;
 
-# Build regex for parsing lines from the arbcom template
-# https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
-my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
-my $userNameRE = '\[\[User:.*\|(.*)\]\]';
-my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
+# This isn't (or mightn't?) be true anymore?? FIXME TODO
+# For dumb template reasons, arbs are listed as ending terms on December 30th.
+# While unlikely, this means the list won't be accurate on the 31st, so just
+# skip it.  Likewise, since we check that the date is greater than the current
+# date to ensure that we catch retiring arbs, the 30th is no good as well.  The
+# regex is faster than a pair of `ne`s, even when less specific.
+if ($now !~ /^\$year-12-3[0|1]$/) {
+  my $templateContent = $mw->get_page({title => $acTemplate})->{q{*}};
 
-for (split /^/, $templateContent) {
-  if (/$arbcomRE/) {
-    my ($from,$till,$name) = ($1,$2,$3);
-    $from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-    $till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-    if ($from le $now && $till gt $now) {
-      $groupsStore{arbcom}{$name} = 1;
+  # Build regex for parsing lines from the arbcom template
+  # https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
+  my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
+  my $userNameRE = '\[\[User:.*\|(.*)\]\]';
+  my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
+
+  for (split /^/, $templateContent) {
+    next if !/User:/; # Skip useless lines, worth extra regex to avoid the below
+    if (/$arbcomRE/) {
+      # I bet if I subroutine this whole reformatting and checking it'd be
+      # faster FIXME TODO
+      my ($from,$till,$name) = ($1,$2,$3);
+      $from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+      $till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
+      if ($from le $now && $till gt $now) {
+	$groupsStore{arbcom}{$name} = 1;
+      }
     }
   }
+  unshift @rights, qw (arbcom);
 }
 
-# Add stewards and arbcom, preserving order
-push @rights, qw (steward);
-unshift @rights, qw (arbcom);
 
 ### Content of each page
 my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
 my $allTitles = join q{|}, @titles;
+# Could do this query with get_page but formatversion=2 makes things so much
+# easier to iterate over
 my $contentQuery = {
 		    action => 'query',
 		    prop => 'revisions',
 		    rvprop => 'content',
 		    titles => $allTitles,
 		    format => 'json',
-		    formatversion => 2 # Easier to iterate over
+		    formatversion => 2
 		   };
 # JSON, technically a reference to a hash
 my $contentReturn = $mw->api($contentQuery);
@@ -433,8 +439,7 @@ sub dieNice {
 # But that's dumb since this isn't exactly hammering the API.
 sub botShutoffs {
   # Manual shutoff; confirm bot should actually run
-  my $page = $mw->get_page({title => $bot.'/disable'});
-  my $checkContent = $page->{q{*}};
+  my $checkContent = $mw->get_page({title => $bot.'/disable'})->{q{*}};
   if (!$checkContent || $checkContent ne '42') {
     LOGDIE('DISABLED on-wiki');
   }
