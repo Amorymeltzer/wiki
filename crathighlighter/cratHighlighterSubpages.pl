@@ -221,9 +221,7 @@ my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 foreach (@rights) {
   my $note;
   my %queryHash = %{$groupsStore{$_}}; # Just the specific rights hash we want
-
-  # Build JSON, needed regardless
-  my $queryJSON = $jsonTemplate->encode(\%queryHash);
+  my $queryJSON; # JSON will only be built from the query if there are any updates
 
   # Check if local records have changed
   my $file = $_.'.json';
@@ -233,6 +231,9 @@ foreach (@rights) {
   if ($fileState) {
     $localChange++;
     $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
+
+    # Build JSON from the received query now that we need it
+    $queryJSON = $jsonTemplate->encode(\%queryHash);
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
 
@@ -259,8 +260,11 @@ foreach (@rights) {
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
       $editSummary .= " ($count total) (automatically via [[$bot/crathighlighter|script]])";
-
       $note .= '.  Pushing now... ';
+
+      # Build JSON if not already done so above; only likely if the wiki is out
+      # of date but the local files aren't for some reason
+      $queryJSON ||= $jsonTemplate->encode(\%queryHash);
       $mw->edit({
 		 action => 'edit',
 		 assert => 'user',
