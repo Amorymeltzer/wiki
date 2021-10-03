@@ -326,7 +326,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('ext.gadget.XFDcloser');
 			/* Only for [[WP:AFC/R]] */
 			if (cfg.wgPageName === 'Wikipedia:Articles_for_creation/Redirects') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=997723906&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1047869343&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]] /* --skipUpdate-- */
