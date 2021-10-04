@@ -167,12 +167,8 @@ if ($now !~ /^\$year-12-3[0|1]$/) {
   for (split /^/, $templateContent) {
     next if !/User:/; # Skip useless lines, worth extra regex to avoid the below
     if (/$arbcomRE/) {
-      # I bet if I subroutine this whole reformatting and checking it'd be
-      # faster FIXME TODO
-      my ($from,$till,$name) = ($1,$2,$3);
-      $from =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-      $till =~ s/(\d{2})\/(\d{2})\/(\d{4})/$3-$1-$2/;
-      if ($from le $now && $till gt $now) {
+      my ($from,$till,$name) = ($1,$2,$3); # For clarity
+      if (formatDate($till) gt $now && formatDate($from) le $now) {
 	$groupsStore{arbcom}{$name} = 1;
       }
     }
@@ -453,6 +449,12 @@ sub botShutoffs {
   if (exists $userNotes{query}{userinfo}{messages}) {
     LOGDIE("$bot has talkpage message(s))");
   }
+}
+
+# Turn a MM/DD/YYYY into YYY-MM-DD for proper sorting/comparison
+sub formatDate {
+  my @dates = split /\//, shift;
+  return join q{-}, @dates[2,0,1];
 }
 
 # Compare query hash with a JSON object hash, return negated equality and
