@@ -340,32 +340,42 @@ if ($opts{n}) {
 sub gitCheck {
   my $repo = shift;
 
-  if (gitOnMaster($repo)) {
-    LOGDIE('Not on master branch');
-  } elsif (gitCleanStatus($repo)) {
+  if (gitCleanStatus($repo)) {
     LOGDIE('Repository is not clean');
+  } elsif (gitOnMaster($repo)) {
+    LOGDIE('Not on master branch');
   }
 
-  # All good, we can go ahead and check for new commits
+  # Check for any upstream updates using fetch-then-merge, not pull
+  # https://longair.net/blog/2009/04/16/git-fetch-and-merge/
+  # Not quiet since want number of lines
+  my $fetch = $repo->command('fetch' => 'origin', 'master');
+  my @fetchE = $fetch->stderr->getlines();
+  $fetch->close();
+  # Not a great way of confirming the results, but fetch is annoyingly
+  # unporcelain and this obviates the need for an additional status command.
+  # Two lines means no updates were fetch so we don't need to act further.
+  if (scalar @fetchE <= 2) {
+    return;
+  }
+
+  # Now that we've fetched the updates, we can go ahead and merge them in
   my $oldSha = $repo->run('rev-parse' => '--short', 'HEAD');
-  # Pull, check for errors
-  my $pull = $repo->command('pull' => '--rebase', '--quiet', 'origin', 'master');
-  my @pullE = $pull->stderr->getlines();
-  $pull->close();
-  if (scalar @pullE) {
-    LOGDIE(@pullE);
-  } elsif (gitCleanStatus($repo) || gitOnMaster($repo)) {
+  my $merge = $repo->command('merge' => '--quiet', 'origin/master');
+  my @mergeE = $merge->stderr->getlines();
+  $merge->close();
+  if (scalar @mergeE) {
+    LOGDIE(@mergeE);
+  } elsif (gitCleanStatus($repo) || gitOnMaster($repo)) { # Just to be safe
     LOGDIE('Repository dirty after pull');
   }
 
-  # All good, log if any new commits were pulled
+  # All good, log that new commits were pulled
   my $newSha = $repo->run('rev-parse' => '--short', 'HEAD');
-  if ($oldSha ne $newSha) {
-    INFO("Updated repo from $oldSha to $newSha");
-  }
+  INFO("Updated repo from $oldSha to $newSha");
 }
 # These two are used above, and are rerun each time just to be extrasuperspecial
-# sure.  Mis/abuses @_ rather than simply `shift`-ing.
+# sure.  Mis/abuses @_ for brevity, rather than merely `shift`-ing.
 sub gitOnMaster {
   return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master';
 }
