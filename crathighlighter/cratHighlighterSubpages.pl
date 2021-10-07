@@ -49,174 +49,42 @@ my $traceLog = { level  => $TRACE,
 Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
 
 
-# Check and update repo before doing anything unsupervised, i.e. via cron
+### Check and update repo before doing anything unsupervised, i.e. via cron
 if ($cron) {
   require Git::Repository;
   gitCheck(Git::Repository->new());
 }
 
-# Initialize API object.  Get username/password combo, log in, etc.
+### Initialize API object.  Get username/password combo, log in, etc.
 my ($mw, $bot);
 $mw = mwLogin();
 
-# If it's the bot account, include a few checks for (emergency) shutoff
+### If it's the bot account, include a few checks for (emergency) shutoff
 if ($tool) {
   botShutoffs();
 }
 
-# Template for generating JSON, sorted
-my $jsonTemplate = JSON->new->canonical(1);
-$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+### Get the current group information.  References since we want both a hash and
+### an array back.  The @groups/$groups is only really used since I want an
+### order to how items are returned to me, otherwise simply taking the keys of
+### the hash would work just fine.
+my ($groupsStore, $groups) = getCurrentGroups();
+
+### Latest content of each on-wiki page
+my %contentStore = getPageGroups(@{$groups});
 
 
-## Bulk queries: It's easier to do multiple queries but this is more polite
-# @rights doesn't include arbcom or steward at the moment since it's first being
-# used to build the query for determining local usergroups.  Steward belongs to
-# a different, global list (agu rather than au) and arbcom isn't real.  They'll
-# both be added in due course, although the arbcom list needs separate getting.
-my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
-# Will store hash of editors for each group.  Basically JSON
-my %groupsStore;
-
-## List of each group (actually a list of users in any of the chosen groups with
-## all of their respective groups).  $localPerms is also used for a grep later.
-my $localPerms = join q{|}, @rights;
-my $groupsQuery = {
-		   action => 'query',
-		   list => 'allusers|globalallusers',
-		   augroup => $localPerms,
-		   auprop => 'groups',
-		   aulimit => 'max',
-		   agugroup => 'steward',
-		   agulimit => 'max',
-		   format => 'json',
-		   formatversion => 2, # Easier to iterate over
-		   utf8 => '1'         # Alaa friendly
-		  };
-# JSON, technically a reference to a hash
-# $mw->list doesn't work with multiple lists???  Lame
-my $groupsReturn = $mw->api($groupsQuery);
-# Hash containing each list as a key, with the results as an array of hashes,
-# each hash containing the useris, user name, and (if requested) user groups
-my %groupsQuery = %{${$groupsReturn}{query}};
-
-# Stewards are "simple" thanks to map and simple (one-group) structure
-%{$groupsStore{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
-push @rights, qw (steward);
-
-
-# Local groups need a loop for processing who goes where, but there are a lot of
-# sysops, so we need to either get the bot flag or iterate over everyone
-my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
-# If there's a continue item, then continue, by God!
-while (exists ${$groupsReturn}{continue}) { # avoid autovivification
-  # Process the continue parameters
-  # Probably shit if there's another group that needs continuing
-  # FIXME TODO && aufrom
-  foreach (keys %{${$groupsReturn}{continue}}) {
-    ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
-  }
-
-  # Resubmit new query, using old query
-  $groupsReturn = $mw->api($groupsQuery);
-
-  # Overwrite original data, already stored in @localHashes and needed for
-  # iteration in this loop
-  %groupsQuery = %{${$groupsReturn}{query}};
-  # Append the new stuff
-  push @localHashes, @{$groupsQuery{allusers}};
-}
-
-# NOW we can loop through everyone and figure out what they've got
-foreach my $i (0..scalar @localHashes - 1) {
-  my %userHash = %{$localHashes[$i]};
-  # Limit to the groups in question (I always forget how neat grep is)
-  my @usersGroups = grep {/$localPerms/} @{$userHash{groups}};
-  # Add to hash of hash
-  foreach my $grp (@usersGroups) {
-    $groupsStore{$grp}{$userHash{name}} = 1;
-  }
-}
-
-# Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
-# membership is high-profile enough that in practice this is updated quickly
-my $acTemplate = 'Template:Arbitration_committee_chart/recent';
-# Find the diamonds in the rough
-my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
-$year += 1900;
-# 0-padding
-$mon = sprintf '%02d', $mon+1;
-$mday = sprintf '%02d', $mday;
-my $now = $year.q{-}.$mon.q{-}.$mday;
-
-# This isn't (or mightn't?) be true anymore?? FIXME TODO
-# For dumb template reasons, arbs are listed as ending terms on December 30th.
-# While unlikely, this means the list won't be accurate on the 31st, so just
-# skip it.  Likewise, since we check that the date is greater than the current
-# date to ensure that we catch retiring arbs, the 30th is no good as well.  The
-# regex is faster than a pair of `ne`s, even when less specific.
-if ($now !~ /^\$year-12-3[0|1]$/) {
-  my $templateContent = $mw->get_page({title => $acTemplate})->{q{*}};
-
-  # Build regex for parsing lines from the arbcom template
-  # https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
-  my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
-  my $userNameRE = '\[\[User:.*\|(.*)\]\]';
-  my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
-
-  for (split /^/, $templateContent) {
-    next if !/User:/; # Skip useless lines, worth extra regex to avoid the below
-    if (/$arbcomRE/) {
-      my ($from,$till,$name) = ($1,$2,$3); # For clarity
-      if (formatDate($till) gt $now && formatDate($from) le $now) {
-	$groupsStore{arbcom}{$name} = 1;
-      }
-    }
-  }
-  unshift @rights, qw (arbcom);
-}
-
-
-### Content of each page
-my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
-my $allTitles = join q{|}, @titles;
-# Could do this query with get_page but formatversion=2 makes things so much
-# easier to iterate over
-my $contentQuery = {
-		    action => 'query',
-		    prop => 'revisions',
-		    rvprop => 'content',
-		    titles => $allTitles,
-		    format => 'json',
-		    formatversion => 2
-		   };
-# JSON, technically a reference to a hash
-my $contentReturn = $mw->api($contentQuery);
-# Stores page title, content, and last edited time in an array for each group
-my %contentStore;
-# This monstrosity results in an array where each item is an array of hashes:
-## title     -> used to also snag the specific group used for hash key
-## revisions -> array containing one item, which is a hash, which has keys:
-### content   -> full page content
-### timestamp -> time last edited
-# Just awful.
-my @pages = @{${${$contentReturn}{query}}{pages}};
-foreach my $i (0..scalar @pages - 1) {
-  my %page = %{$pages[$i]};
-  my $userGroup = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-  my @revisions = @{$page{revisions}};
-  $contentStore{$userGroup} = [$page{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
-}
-
-
-#### Main loop for each right
+### Main loop for each group
 # These conveniently function as indicators as well as counters for number of
 # files or pages changed, respectively
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
-foreach (@rights) {
+# Template for generating JSON, sorted
+my $jsonTemplate = JSON->new->canonical(1);
+$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+foreach (@{$groups}) {
   my $note;
-  my %queryHash = %{$groupsStore{$_}}; # Just the specific rights hash we want
+  my %queryHash = %{${$groupsStore}{$_}}; # Just the specific rights hash we want
   my $queryJSON; # JSON will only be built from the query if there are any updates
 
   # Check if local records have changed
@@ -454,6 +322,9 @@ sub dieNice {
 # Make sure the bot behaves nicely; extra queries so as to simplify things, but
 # in theory these could be combined.  Hell, all the queries could be combined!
 # But that's dumb since this isn't exactly hammering the API.
+
+# FIXME TODO Okay but maybe actually combine these two, unlikely either is
+# happening so will still do both each time
 sub botShutoffs {
   # Manual shutoff; confirm bot should actually run
   my $checkContent = $mw->get_page({title => $bot.'/disable'})->{q{*}};
@@ -461,17 +332,171 @@ sub botShutoffs {
     LOGDIE('DISABLED on-wiki');
   }
 
-  # Automatic shutoff: user has talkpage messages
+  # Automatic shutoff: user has talkpage messages.  Unlikely as it redirects to
+  # my main talk page, which I *don't* want to be an autoshutoff.
   my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
   if (exists $userNotes{query}{userinfo}{messages}) {
     LOGDIE("$bot has talkpage message(s))");
   }
 }
 
+
+# Bulk query for getting the current list of rights holders, plus an ad hoc
+# template parsing check for ArbCom members.  Big subroutine that can
+# probably be split up, although admittedly it all fits together here.
+sub getCurrentGroups {
+  # @rights doesn't include arbcom or steward at the moment since it's first being
+  # used to build the query for determining local usergroups.  Steward belongs to
+  # a different, global list (agu rather than au) and arbcom isn't real.  They'll
+  # both be added in due course, although the arbcom list needs separate getting.
+  my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
+  # Will store hash of editors for each group.  Basically JSON as hash of hases.
+  my %groupsData;
+
+  ## List of each group (actually a list of users in any of the chosen groups with
+  ## all of their respective groups).  $localPerms is also used for a grep later.
+  my $localPerms = join q{|}, @rights;
+  my $groupsQuery = {
+		     action => 'query',
+		     list => 'allusers|globalallusers',
+		     augroup => $localPerms,
+		     auprop => 'groups',
+		     aulimit => 'max',
+		     agugroup => 'steward',
+		     agulimit => 'max',
+		     format => 'json',
+		     formatversion => 2, # Easier to iterate over
+		     utf8 => '1'         # Alaa friendly
+		    };
+  # JSON, technically a reference to a hash
+  # $mw->list doesn't work with multiple lists???  Lame
+  my $groupsReturn = $mw->api($groupsQuery);
+  # Hash containing each list as a key, with the results as an array of hashes,
+  # each hash containing the useris, user name, and (if requested) user groups
+  my %groupsQuery = %{${$groupsReturn}{query}};
+
+  # Stewards are "simple" thanks to map and simple (one-group) structure
+  %{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+  push @rights, qw (steward);
+
+
+  # Local groups need a loop for processing who goes where, but there are a lot of
+  # sysops, so we need to either get the bot flag or iterate over everyone
+  my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
+  # If there's a continue item, then continue, by God!
+  while (exists ${$groupsReturn}{continue}) { # avoid autovivification
+    # Process the continue parameters
+    # Probably shit if there's another group that needs continuing
+    # FIXME TODO && aufrom
+    foreach (keys %{${$groupsReturn}{continue}}) {
+      ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
+    }
+
+    # Resubmit new query, using old query
+    $groupsReturn = $mw->api($groupsQuery);
+
+    # Overwrite original data, already stored in @localHashes and needed for
+    # iteration in this loop
+    %groupsQuery = %{${$groupsReturn}{query}};
+    # Append the new stuff
+    push @localHashes, @{$groupsQuery{allusers}};
+  }
+
+  # NOW we can loop through everyone and figure out what they've got
+  foreach my $i (0..scalar @localHashes - 1) {
+    my %userHash = %{$localHashes[$i]};
+    # Limit to the groups in question (I always forget how neat grep is)
+    my @usersGroups = grep {/$localPerms/} @{$userHash{groups}};
+    # Add to hash of hash
+    foreach my $grp (@usersGroups) {
+      $groupsData{$grp}{$userHash{name}} = 1;
+    }
+  }
+
+  # Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
+  # membership is high-profile enough that in practice this is updated quickly
+  my $acTemplate = 'Template:Arbitration_committee_chart/recent';
+  # Find the diamonds in the rough
+  my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
+  $year += 1900;
+  # 0-padding
+  $mon = sprintf '%02d', $mon+1;
+  $mday = sprintf '%02d', $mday;
+  my $now = $year.q{-}.$mon.q{-}.$mday;
+
+
+  # This isn't (or mightn't?) be true anymore?? FIXME TODO
+
+  # For dumb template reasons, arbs are listed as ending terms on December 30th.
+  # While unlikely, this means the list won't be accurate on the 31st, so just
+  # skip it.  Likewise, since we check that the date is greater than the current
+  # date to ensure that we catch retiring arbs, the 30th is no good as well.  The
+  # regex is faster than a pair of `ne`s, even when less specific.
+  if ($now !~ /^\$year-12-3[0|1]$/) {
+    my $templateContent = $mw->get_page({title => $acTemplate})->{q{*}};
+
+    # Build regex for parsing lines from the arbcom template
+    # https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
+    my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
+    my $userNameRE = '\[\[User:.*\|(.*)\]\]';
+    my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
+
+    for (split /^/, $templateContent) {
+      next if !/User:/; # Skip useless lines, worth extra regex to avoid the below
+      if (/$arbcomRE/) {
+	my ($from,$till,$name) = ($1,$2,$3); # For clarity
+	if (formatDate($till) gt $now && formatDate($from) le $now) {
+	  $groupsData{arbcom}{$name} = 1;
+	}
+      }
+    }
+    unshift @rights, qw (arbcom);
+  }
+
+  # Need to return references since we're doing hash and array
+  return (\%groupsData, \@rights);
+}
 # Turn a MM/DD/YYYY into YYY-MM-DD for proper sorting/comparison
 sub formatDate {
   my @dates = split /\//, shift;
   return join q{-}, @dates[2,0,1];
+}
+
+# Get the current content of each on-wiki page, so we can compare to see if
+# there are any updates needed
+sub getPageGroups {
+  my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @_;
+  my $allTitles = join q{|}, @titles;
+
+  # Could do this query with get_page but formatversion=2 makes things so much
+  # easier to iterate over
+  my $contentQuery = {
+		      action => 'query',
+		      prop => 'revisions',
+		      rvprop => 'content',
+		      titles => $allTitles,
+		      format => 'json',
+		      formatversion => 2
+		     };
+  # JSON, technically a reference to a hash
+  my $contentReturn = $mw->api($contentQuery);
+  # Stores page title, content, and last edited time in an array for each group
+  my %contentData;
+  # This monstrosity results in an array where each item is an array of hashes:
+  ## title     -> used to also snag the specific group used for hash key
+  ## revisions -> array containing one item, which is a hash, which has keys:
+  ### content   -> full page content
+  ### timestamp -> time last edited
+  # Just awful.
+  my @pages = @{${${$contentReturn}{query}}{pages}};
+  foreach my $i (0..scalar @pages - 1) {
+    my %page = %{$pages[$i]};
+    my $userGroup = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+    my @revisions = @{$page{revisions}};
+    $contentData{$userGroup} = [$page{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+  }
+
+  return %contentData;
 }
 
 # Compare query hash with a JSON object hash, return negated equality and
