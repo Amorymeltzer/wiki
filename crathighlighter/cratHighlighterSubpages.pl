@@ -360,7 +360,7 @@ sub gitCheck {
   }
 
   # Now that we've fetched the updates, we can go ahead and merge them in
-  my $oldSha = $repo->run('rev-parse' => '--short', 'HEAD');
+  my $oldSHA = gitSHA($repo);
   my $merge = $repo->command('merge' => '--quiet', 'origin/master');
   my @mergeE = $merge->stderr->getlines();
   $merge->close();
@@ -371,16 +371,23 @@ sub gitCheck {
   }
 
   # All good, log that new commits were pulled
-  my $newSha = $repo->run('rev-parse' => '--short', 'HEAD');
-  INFO("Updated repo from $oldSha to $newSha");
+  my $newSHA = gitSHA($repo);
+  if ($oldSHA ne $newSHA) {
+    INFO("Updated repo from $oldSHA to $newSHA");
+  } else {
+    # Don't think getting here should even be possible...
+    LOGDIE('Fetched and merged but SHAs are the same: $newSHA');
+  }
 }
-# These two are used above, and are rerun each time just to be extrasuperspecial
-# sure.  Mis/abuses @_ for brevity, rather than merely `shift`-ing.
+# These all mis/abuse @_ for brevity, rather than merely `shift`-ing
 sub gitOnMaster {
   return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master';
 }
 sub gitCleanStatus {
   return scalar $_[0]->run(status => '--porcelain');
+}
+sub gitSHA {
+  return scalar $_[0]->run('rev-parse' => '--short', 'HEAD');
 }
 
 # Handle logging in to the wiki, mainly ensuring we die nicely
