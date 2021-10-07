@@ -312,7 +312,7 @@ if ($localChange + $wikiChange) {
 
   # Notify on pushed changes
   if ($wikiChange) {
-    $updateNote .= 'Pages: $wikiChange ';
+    $updateNote .= "Pages: $wikiChange ";
     if (!$opts{P}) {
       $updateNote .= "updated\n";
       if (scalar @totAddedPages) {
