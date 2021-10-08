@@ -342,7 +342,7 @@ sub botShutoffs {
 
 
 # Bulk query for getting the current list of rights holders, plus an ad hoc
-# template parsing check for ArbCom members.  Big subroutine that can
+# check of the active/inactive list for ArbCom members.  Big subroutine that can
 # probably be split up, although admittedly it all fits together here.
 sub getCurrentGroups {
   # @rights doesn't include arbcom or steward at the moment since it's first being
@@ -413,53 +413,26 @@ sub getCurrentGroups {
     }
   }
 
-  # Get ArbCom.  Imperfect to rely upon the template being updated, but ArbCom
-  # membership is high-profile enough that in practice this is updated quickly
-  my $acTemplate = 'Template:Arbitration_committee_chart/recent';
-  # Find the diamonds in the rough
-  my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime;
-  $year += 1900;
-  # 0-padding
-  $mon = sprintf '%02d', $mon+1;
-  $mday = sprintf '%02d', $mday;
-  my $now = $year.q{-}.$mon.q{-}.$mday;
 
-
-  # This isn't (or mightn't?) be true anymore?? FIXME TODO
-
-  # For dumb template reasons, arbs are listed as ending terms on December 30th.
-  # While unlikely, this means the list won't be accurate on the 31st, so just
-  # skip it.  Likewise, since we check that the date is greater than the current
-  # date to ensure that we catch retiring arbs, the 30th is no good as well.  The
-  # regex is faster than a pair of `ne`s, even when less specific.
-  if ($now !~ /^\$year-12-3[0|1]$/) {
-    my $templateContent = $mw->get_page({title => $acTemplate})->{q{*}};
-
-    # Build regex for parsing lines from the arbcom template
-    # https://en.wikipedia.org/wiki/Template:Arbitration_committee_chart/recent
-    my $dateCaptureRE = '(\d{2}\/\d{2}\/\d{4})';
-    my $userNameRE = '\[\[User:.*\|(.*)\]\]';
-    my $arbcomRE = 'from:'.$dateCaptureRE.' till:'.$dateCaptureRE.q{.*}.$userNameRE;
-
-    for (split /^/, $templateContent) {
-      next if !/User:/; # Skip useless lines, worth extra regex to avoid the below
-      if (/$arbcomRE/) {
-	my ($from,$till,$name) = ($1,$2,$3); # For clarity
-	if (formatDate($till) gt $now && formatDate($from) le $now) {
-	  $groupsData{arbcom}{$name} = 1;
-	}
-      }
+  # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks
+  # are proficient and timely, and ArbCom membership is high-profile enough that
+  # this is updated quickly.  Previously, relied upon parsing
+  # [[Template:Arbitration_committee_chart/recent]] but that had annoying edge
+  # cases around December 30th and 31st, and is occasionally not updated as
+  # timely as the "official" members list, the latter being enshrined in AC/C/P.
+  my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
+  my $acMembers = $mw->get_page({title => $acTemplate})->{q{*}};
+  for (split /^/, $acMembers) {
+    if (/:#\{\{user\|(.*)}}/) {
+      $groupsData{arbcom}{$1} = 1;
     }
-    unshift @rights, qw (arbcom);
+    # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
+    # the bottom of the list during transitionary periods
+    last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
   }
 
   # Need to return references since we're doing hash and array
   return (\%groupsData, \@rights);
-}
-# Turn a MM/DD/YYYY into YYY-MM-DD for proper sorting/comparison
-sub formatDate {
-  my @dates = split /\//, shift;
-  return join q{-}, @dates[2,0,1];
 }
 
 # Get the current content of each on-wiki page, so we can compare to see if
