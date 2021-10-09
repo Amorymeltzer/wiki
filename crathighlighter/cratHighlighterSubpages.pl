@@ -21,16 +21,10 @@ use JSON;
 # Parse commandline options
 my %opts = ();
 getopts('hPn', \%opts);
-usage() if $opts{h};
 
-# Figure out if we're being run on the toolforge grid or not
-my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
-# Likewise, if we're being run via cron, thanks to CRON=1 in crontab
-my $cron = $ENV{CRON};
-
-# Pop into this script's directory
-my $scriptDir = $FindBin::Bin;
-chdir "$scriptDir" or LOGDIE('Failed to change directory');
+# Figure out where this script is, if we're being run on the toolforge grid or not,
+# if we're being run via cron (thanks to CRON=1 in crontab).  Also runs usage.
+my ($scriptDir, $tool, $cron) = setupEnvironment();
 
 # Set up logger
 # The full options are straightforward but overly verbose, and easy mode
@@ -46,6 +40,9 @@ my $traceLog = { level  => $TRACE,
 		 # message
 		 layout => '%d - %m{indent}%n' };
 Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
+
+# Pop into this script's directory, mostly so file access is simplified
+chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 
 ### Check and update repo before doing anything unsupervised, i.e. via cron
@@ -203,6 +200,12 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
+# Parse some options and decide who is running this show and how
+sub setupEnvironment {
+  usage() if $opts{h};
+
+  return ($FindBin::Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
+}
 # Check and update repo before doing anything risky
 sub gitCheck {
   my $repo = shift;
