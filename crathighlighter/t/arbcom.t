@@ -7,8 +7,7 @@ use diagnostics;
 
 use English;
 
-# use Test::More tests => 42;
-use Test::More;
+use Test::More tests => 3;
 
 # Official list compared to testing pages, minor changes to handle sorting
 # differences and resignations
@@ -40,6 +39,3 @@ sub parseContent {
   @arbs = sort @arbs;
   return \@arbs;
 }
-
-
-done_testing();
