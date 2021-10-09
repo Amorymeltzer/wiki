@@ -7,7 +7,6 @@
 
 use strict;
 use warnings;
-use diagnostics;
 
 use Getopt::Std;
 use FindBin;
