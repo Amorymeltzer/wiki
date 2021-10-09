@@ -7,16 +7,18 @@
 
 use strict;
 use warnings;
+use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
 
 use Getopt::Std;
 use FindBin;
-use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
-use List::Util qw(uniq);
-
 use Log::Log4perl qw(:easy);
+
+use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
+use List::Util qw(uniq);
+
 
 # Parse commandline options
 my %opts = ();
@@ -47,8 +49,7 @@ chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 ### Check and update repo before doing anything unsupervised, i.e. via cron
 if ($cron) {
-  require Git::Repository;
-  gitCheck(Git::Repository->new());
+  gitCheck();
 }
 
 ### Initialize API object.  Get username/password combo, log in, etc.
@@ -208,7 +209,7 @@ sub setupEnvironment {
 }
 # Check and update repo before doing anything risky
 sub gitCheck {
-  my $repo = shift;
+  my $repo = Git::Repository->new();
 
   if (gitCleanStatus($repo)) {
     LOGDIE('Repository is not clean');
