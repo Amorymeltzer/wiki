@@ -322,23 +322,34 @@ sub dieNice {
 }
 
 
-# Make sure the bot behaves nicely; extra queries so as to simplify things, but
-# in theory these could be combined.  Hell, all the queries could be combined!
-# But that's dumb since this isn't exactly hammering the API.
-
-# FIXME TODO Okay but maybe actually combine these two, unlikely either is
-# happening so will still do both each time
+# Make sure the bot behaves nicely.  Slightly more involved since the two checks
+# are combined into one query, but in practice both of these are likely to be
+# run, so might as well save a query, and it's not so bad comparatively!
 sub botShutoffs {
+  my $botCheckQuery = {
+		       action => 'query',
+		       # Page content
+		       prop => 'revisions',
+		       titles => $bot.'/disable',
+		       rvprop => 'content', # Don't care about much else
+		       # Get user talk messages status
+		       meta => 'userinfo',
+		       uiprop => 'hasmsg',
+		       format => 'json',
+		       formatversion => 2
+		      };
+  my $botCheckReturnQuery = $mw->api($botCheckQuery)->{query};
   # Manual shutoff; confirm bot should actually run
-  my $checkContent = $mw->get_page({title => $bot.'/disable'})->{q{*}};
+  # Arrows means no (de)referencing
+  my $checkContent = $botCheckReturnQuery->{pages}[0]->{revisions}[0]->{content};
   if (!$checkContent || $checkContent ne '42') {
     LOGDIE('DISABLED on-wiki');
   }
 
   # Automatic shutoff: user has talkpage messages.  Unlikely as it redirects to
   # my main talk page, which I *don't* want to be an autoshutoff.
-  my %userNotes = %{$mw->api({action => 'query', meta => 'userinfo', uiprop => 'hasmsg'})};
-  if (exists $userNotes{query}{userinfo}{messages}) {
+  my $userNotes = $botCheckReturnQuery->{userinfo}->{messages};
+  if ($userNotes) {
     LOGDIE("$bot has talkpage message(s))");
   }
 }
@@ -368,8 +379,8 @@ sub getCurrentGroups {
 		     agugroup => 'steward',
 		     agulimit => 'max',
 		     format => 'json',
-		     formatversion => 2, # Easier to iterate over
-		     utf8 => '1'         # Alaa friendly
+		     formatversion => 2,
+		     utf8 => '1' # Alaa friendly
 		    };
   # JSON, technically a reference to a hash
   # $mw->list doesn't work with multiple lists???  Lame
