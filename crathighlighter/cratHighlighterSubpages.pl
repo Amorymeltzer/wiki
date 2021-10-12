@@ -452,7 +452,8 @@ sub getCurrentGroups {
 # Get the current content of each on-wiki page, so we can compare to see if
 # there are any updates needed
 sub getPageGroups {
-  my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @_;
+  my @rights = @_;
+  my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
   my $allTitles = join q{|}, @titles;
 
   # Could do this query with get_page but formatversion=2 makes things so much
