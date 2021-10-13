@@ -8,13 +8,14 @@ use diagnostics;
 use English;
 
 use Test::More;
+
 # Only enable on toolforge
 if ($ENV{LOGNAME} eq 'tools.amorybot') {
   plan tests => 3;
 } else {
   plan skip_all => 'Tests annoying when developing';
 }
-use Git::Repository;
+require Git::Repository;
 
 my $repo = Git::Repository->new();
 

@@ -364,7 +364,7 @@ sub getCurrentGroups {
   # a different, global list (agu rather than au) and arbcom isn't real.  They'll
   # both be added in due course, although the arbcom list needs separate getting.
   my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
-  # Will store hash of editors for each group.  Basically JSON as hash of hases.
+  # Will store hash of editors for each group.  Basically JSON as hash of hashes.
   my %groupsData;
 
   ## List of each group (actually a list of users in any of the chosen groups with
