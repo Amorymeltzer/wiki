@@ -245,10 +245,11 @@ sub gitCheck {
   my $newSHA = gitSHA($repo);
   if ($oldSHA ne $newSHA) {
     INFO("Updated repo from $oldSHA to $newSHA");
-  } else {
-    # Don't think getting here should even be possible...
-    LOGDIE('Fetched and merged but SHAs are the same: $newSHA');
+    return;
   }
+
+  # Don't think getting here should even be possible...
+  LOGDIE('Fetched and merged but SHAs are the same: $newSHA');
 }
 # These all mis/abuse @_ for brevity, rather than merely `shift`-ing
 sub gitOnMaster {
