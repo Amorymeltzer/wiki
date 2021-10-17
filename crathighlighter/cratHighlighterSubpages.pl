@@ -17,7 +17,7 @@ use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 use JSON;
-use List::Util qw(uniq);
+use List::Util qw(uniqstr);
 
 
 # Parse commandline options
@@ -168,10 +168,10 @@ if ($localChange + $wikiChange) {
   if ($localChange) {
     $updateNote .= "Files: $localChange updated\n";
     if (scalar @totAddedFiles) {
-      $updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedFiles)."\n";
+      $updateNote .= "\tAdded: ".oxfordComma(uniqstr @totAddedFiles)."\n";
     }
     if (scalar @totRemovedFiles) {
-      $updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedFiles)."\n";
+      $updateNote .= "\tRemoved: ".oxfordComma(uniqstr @totRemovedFiles)."\n";
     }
   }
 
@@ -181,10 +181,10 @@ if ($localChange + $wikiChange) {
     if (!$opts{P}) {
       $updateNote .= "updated\n";
       if (scalar @totAddedPages) {
-	$updateNote .= "\tAdded: ".oxfordComma(uniq @totAddedPages)."\n";
+	$updateNote .= "\tAdded: ".oxfordComma(uniqstr @totAddedPages)."\n";
       }
       if (scalar @totRemovedPages) {
-	$updateNote .= "\tRemoved: ".oxfordComma(uniq @totRemovedPages)."\n";
+	$updateNote .= "\tRemoved: ".oxfordComma(uniqstr @totRemovedPages)."\n";
       }
     } else {
       $updateNote .= "not updated\n";
