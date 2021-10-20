@@ -13,7 +13,7 @@ use Getopt::Long;
 use FindBin;
 use List::Util qw(uniqstr);
 
-use JSON;
+use JSON::MaybeXS;
 use Log::Log4perl qw(:easy);
 use Git::Repository;
 use MediaWiki::API;
@@ -243,7 +243,7 @@ sub gitCheck {
   }
 
   # Don't think getting here should even be possible...
-  LOGDIE('Fetched and merged but SHAs are the same: $newSHA');
+  LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
 }
 # These all mis/abuse @_ for brevity, rather than merely `shift`-ing
 sub gitOnMaster {

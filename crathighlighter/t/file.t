@@ -8,7 +8,7 @@ use diagnostics;
 use English;
 
 use File::Slurper qw(read_text write_text);
-use JSON;
+use JSON::MaybeXS;
 
 use Test::More tests => 2;
 
