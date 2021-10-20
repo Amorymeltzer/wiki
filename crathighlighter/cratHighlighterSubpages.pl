@@ -9,24 +9,24 @@ use strict;
 use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
 
-use Getopt::Std;
+use Getopt::Long;
 use FindBin;
-use Log::Log4perl qw(:easy);
+use List::Util qw(uniqstr);
 
+use JSON;
+use Log::Log4perl qw(:easy);
 use Git::Repository;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
-use JSON;
-use List::Util qw(uniqstr);
 
 
 # Parse commandline options
 my %opts = ();
-getopts('hPn', \%opts);
+GetOptions(\%opts, 'P', 'n', 'help|h|H' => \&usage);
 
 # Figure out where this script is, if we're being run on the toolforge grid or not,
 # if we're being run via cron (thanks to CRON=1 in crontab).  Also runs usage.
-my ($scriptDir, $tool, $cron) = setupEnvironment();
+my ($scriptDir, $tool, $cron) = ($FindBin::Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
 
 # Set up logger
 # The full options are straightforward but overly verbose, and easy mode
@@ -201,12 +201,6 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
-# Parse some options and decide who is running this show and how
-sub setupEnvironment {
-  usage() if $opts{h};
-
-  return ($FindBin::Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
-}
 # Check and update repo before doing anything risky
 sub gitCheck {
   my $repo = Git::Repository->new();
@@ -571,7 +565,7 @@ sub mapGroups {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-hPNn]
+Usage: $PROGRAM_NAME [-hPn]
       -P Don't push live to the wiki
       -n Print a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
       -h Print this message
