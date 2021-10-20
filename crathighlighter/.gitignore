@@ -1,2 +1,3 @@
 .crathighlighterrc
 *.json
+!t/*.json

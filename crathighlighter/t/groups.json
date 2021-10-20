@@ -1,0 +1,356 @@
+{
+  "batchcomplete": true,
+  "limits": {
+    "allusers": 500
+  },
+  "query": {
+    "allusers": [
+      {
+        "userid": 2530149,
+        "name": "Acalamari",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 5759406,
+        "name": "AmandaNP",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "bureaucrat",
+          "checkuser",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 141948,
+        "name": "Amorymeltzer",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "interface-admin",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 353669,
+        "name": "Avraham",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 417929,
+        "name": "Bibliomaniac15",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 35390,
+        "name": "Cecropia",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 14836860,
+        "name": "Cyberpower678",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 309128,
+        "name": "Deskana",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 437689,
+        "name": "Dweller",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 16663390,
+        "name": "Enterprisey",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 16958448,
+        "name": "Evad37",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 2927383,
+        "name": "Izno",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 92123,
+        "name": "MBisanz",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 3516226,
+        "name": "Maxim",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "bureaucrat",
+          "checkuser",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 14882394,
+        "name": "MusikAnimal",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "checkuser",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 29539620,
+        "name": "MusikBot II",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bot",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 446342,
+        "name": "Nihonjoe",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 3174456,
+        "name": "Oshwah",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "checkuser",
+          "interface-admin",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 11508456,
+        "name": "Primefac",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "checkuser",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 319203,
+        "name": "Ragesoss",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 782009,
+        "name": "SilkTork",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 22805,
+        "name": "UninvitedCompany",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 2910303,
+        "name": "Useight",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 20855,
+        "name": "Warofdreams",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 4071608,
+        "name": "WereSpielChequers",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 7469672,
+        "name": "Worm That Turned",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "checkuser",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 15425179,
+        "name": "Writ Keeper",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "interface-admin",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 502540,
+        "name": "Xaosflux",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "bureaucrat",
+          "import",
+          "interface-admin",
+          "oversight",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 1795359,
+        "name": "Xeno",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "bureaucrat",
+          "sysop"
+        ]
+      }
+    ]
+  }
+}

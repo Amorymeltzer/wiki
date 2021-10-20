@@ -1,0 +1,39 @@
+{
+  "batchcomplete": true,
+  "warnings": {
+    "main": {
+      "warnings": "Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application."
+    },
+    "revisions": {
+      "warnings": "Because \"rvslots\" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used."
+    }
+  },
+  "query": {
+    "pages": [
+      {
+        "pageid": 39234141,
+        "ns": 2,
+        "title": "User:Amorymeltzer/crathighlighter.js/bureaucrat.json",
+        "revisions": [
+          {
+            "contentformat": "application/json",
+            "contentmodel": "json",
+            "content": "{\n    \"Acalamari\": 1,\n    \"AmandaNP\": 1,\n    \"Avraham\": 1,\n    \"Bibliomaniac15\": 1,\n    \"Cecropia\": 1,\n    \"Deskana\": 1,\n    \"Dweller\": 1,\n    \"MBisanz\": 1,\n    \"Maxim\": 1,\n    \"Nihonjoe\": 1,\n    \"Primefac\": 1,\n    \"SilkTork\": 1,\n    \"UninvitedCompany\": 1,\n    \"Useight\": 1,\n    \"Warofdreams\": 1,\n    \"WereSpielChequers\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1,\n    \"Xeno\": 1\n}"
+          }
+        ]
+      },
+      {
+        "pageid": 58278290,
+        "ns": 2,
+        "title": "User:Amorymeltzer/crathighlighter.js/interface-admin.json",
+        "revisions": [
+          {
+            "contentformat": "application/json",
+            "contentmodel": "json",
+            "content": "{\n    \"Amorymeltzer\": 1,\n    \"Cyberpower678\": 1,\n    \"Enterprisey\": 1,\n    \"Evad37\": 1,\n    \"Izno\": 1,\n    \"MusikAnimal\": 1,\n    \"MusikBot II\": 1,\n    \"Oshwah\": 1,\n    \"Ragesoss\": 1,\n    \"Writ Keeper\": 1,\n    \"Xaosflux\": 1\n}"
+          }
+        ]
+      }
+    ]
+  }
+}
