@@ -7,7 +7,7 @@
 
 use strict;
 use warnings;
-use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.18
+use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
 use Getopt::Long;
 use FindBin;

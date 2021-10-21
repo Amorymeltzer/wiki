@@ -28,10 +28,6 @@
 - Include number of sysops, number of active sysops, etc.?
 - o-index (geometric mean of h-index and most-cited paper)
 
-## crathighlighter
-
-- Consider redoing logger with an appender so as to make use of `Log::Dispatch::FileRotate` (via `Log::Log4perl::JavaMap::RollingFileAppender`)
-
 ## userScripts
 
 ### updateModernjs.pl
