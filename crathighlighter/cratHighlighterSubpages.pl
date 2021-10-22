@@ -10,7 +10,7 @@ use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
 use Getopt::Long;
-use FindBin;
+use FindBin qw($Bin);
 use List::Util qw(uniqstr);
 
 use JSON::MaybeXS;
@@ -26,7 +26,7 @@ GetOptions(\%opts, 'P', 'n', 'help|h|H' => \&usage);
 
 # Figure out where this script is, if we're being run on the toolforge grid or not,
 # if we're being run via cron (thanks to CRON=1 in crontab).  Also runs usage.
-my ($scriptDir, $tool, $cron) = ($FindBin::Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
+my ($scriptDir, $tool, $cron) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
 
 # Set up logger
 # The full options are straightforward but overly verbose, and easy mode
