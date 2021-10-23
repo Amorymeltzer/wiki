@@ -1,0 +1,5 @@
+requires 'JSON::MaybeXS';
+requires 'Log::Log4perl';
+requires 'Git::Repository';
+requires 'MediaWiki::API';
+requires 'File::Slurper';
