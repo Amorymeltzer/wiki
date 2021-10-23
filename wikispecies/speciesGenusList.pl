@@ -8,17 +8,18 @@
 
 use strict;
 use warnings;
+use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
+
 use diagnostics;
 
-unless (@ARGV == 1)
-  {
-    print "Usage: $0 <species list>\n";
-    exit;
-  }
+if (@ARGV != 1) {
+  print "Usage: $PROGRAM_NAME <species list>\n";
+  exit;
+}
 
 my $input = $ARGV[0];
 
-open my $list, '<', "$input" or die $!;
+open my $list, '<', "$input" or die $ERRNO;
 while (<$list>) {
   chomp;
 
@@ -38,4 +39,4 @@ while (<$list>) {
   my @words = split /_/;	# array to hold each name
   print "$words[0]_$words[1]\n" if ((@words == 2) && ($words[0] =~ m/^$words[1]$/ix));
 }
-close $list or die $!;		# tidy up
+close $list or die $ERRNO;	# tidy up
