@@ -20,22 +20,44 @@ if (@ARGV != 1) {
 my $input = $ARGV[0];
 
 open my $list, '<', "$input" or die $ERRNO;
-while (<$list>) {
-  chomp;
-
+while (my $species = <$list>) {
+  chomp $species;
   # Cleanup titles before checking
-  s/\(.*\)//x;		       # get rid of text in parentheses
-  s/__/_/;		       # potential formatting issue as a result of above
-  s/[\+\?\(\)]//gx;	       # odd characters
-  # Should probably test the following more... #####FIXME######
-  #    s/×//x; # NOT AN X (x Vs. ×) this denotes crosses, muddies things up if you uncomment
+  $species = cleanup($species);
 
-  # Get rid of subspecies and variant names, remove if someone cares for those
-  s/subsp\..*$//x;
-  s/var\..*$//x;
-
-
-  my @words = split /_/;	# array to hold each name
-  print "$words[0]_$words[1]\n" if ((@words == 2) && ($words[0] =~ m/^$words[1]$/ix));
+  my @words = compare($species);
+  if (@words) {
+    print "$words[0]_$words[1]\n";
+  }
 }
 close $list or die $ERRNO;
+
+
+######## SUBROUTINES ########
+# The cleanup process
+sub cleanup {
+  my $title = shift;
+
+  $title =~ s/\(.*\)//x;       # get rid of text in parentheses
+  $title =~ s/__/_/;	       # potential formatting issue as a result of above
+  $title =~ s/[\+\?\(\)]//gx;  # odd characters
+
+  # Should probably test the following more... #####FIXME######
+  # $title =~ s/×//x; # NOT AN X (x Vs. ×) this denotes crosses, muddies things up if you uncomment
+
+  # Get rid of subspecies and variant names, remove if someone cares for those
+  $title =~ s/subsp\..*$//x;
+  $title =~ s/var\..*$//x;
+
+  return $title;
+}
+
+# The actual comparison process
+sub compare {
+  my @words = split /_/, shift; # array to hold each name
+
+  if (@words == 2 && $words[0] =~ m/^$words[1]$/ix) {
+    return @words;
+  }
+  return ();
+}

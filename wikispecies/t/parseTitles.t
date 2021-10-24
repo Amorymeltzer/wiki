@@ -32,6 +32,9 @@ my %titles = (
 	      'Abralia_(Abralia)' => $F,
 	      'Abraxas_(Abraxas)_aritai' => $F,
 	      'Acanthoderes_(Acanthoderes)_uyapensis' => $F,
+	      'Acanthogyrus_(Acanthogyrus)' => $F,
+	      # Should probably fix this next one by just avoiding redirects tbh
+	      'Acanthogyrus_(Acanthogyrus)_acanthogyrus' => $T,
 	      'Aconogonon_×_fennicum' => $F,
 	      'Aerangis_×primulina' => $F,
 	      'Mó_Mó' => $T
@@ -39,9 +42,7 @@ my %titles = (
 
 my $count = scalar keys %titles;
 plan tests => $count;
-
-foreach my $title (keys %titles) {
-  $title = cleanup($title);
+foreach my $title (sort keys %titles) {
   is(compare(cleanup($title)), $titles{$title}, $title);
 }
 
@@ -50,7 +51,6 @@ foreach my $title (keys %titles) {
 sub cleanup {
   my $title = shift;
 
-  # Cleanup titles before checking
   $title =~ s/\(.*\)//x;       # get rid of text in parentheses
   $title =~ s/__/_/;	       # potential formatting issue as a result of above
   $title =~ s/[\+\?\(\)]//gx;  # odd characters
@@ -67,10 +67,9 @@ sub cleanup {
 
 # The actual comparison process
 sub compare {
-  my $word = shift;
-  my @words = split /_/,  $word; # array to hold each name
+  my @words = split /_/, shift; # array to hold each name
 
-  if (@words ==2 && $words[0] =~ m/^$words[1]$/ix) {
+  if (@words == 2 && $words[0] =~ m/^$words[1]$/ix) {
     return $T;
   }
   return $F;
