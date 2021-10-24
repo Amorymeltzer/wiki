@@ -30,8 +30,7 @@ while (<$list>) {
   # Should probably test the following more... #####FIXME######
   #    s/×//x; # NOT AN X (x Vs. ×) this denotes crosses, muddies things up if you uncomment
 
-  # Get rid of subspecies and variant names
-  # Comment-out if you care for these
+  # Get rid of subspecies and variant names, remove if someone cares for those
   s/subsp\..*$//x;
   s/var\..*$//x;
 
@@ -39,4 +38,4 @@ while (<$list>) {
   my @words = split /_/;	# array to hold each name
   print "$words[0]_$words[1]\n" if ((@words == 2) && ($words[0] =~ m/^$words[1]$/ix));
 }
-close $list or die $ERRNO;	# tidy up
+close $list or die $ERRNO;
