@@ -10,7 +10,8 @@ use strict;
 use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
-use diagnostics;
+use lib q{./lib};
+use Wikispecies::GenusSpecies;
 
 if (@ARGV != 1) {
   print "Usage: $PROGRAM_NAME <species list>\n";
@@ -23,53 +24,13 @@ open my $list, '<', "$input" or die $ERRNO;
 while (my $species = <$list>) {
   chomp $species;
   # Cleanup titles before checking
-  $species = cleanup($species);
+  $species = noVars($species);
+  $species = noParens($species); # Must be after rmOdds for the time being
+  $species = rmOdds($species);
 
-  my @words = compare($species);
-  if (@words) {
+  my @words = compareGP($species);
+  if (scalar @words) {
     print "$words[0]_$words[1]\n";
   }
 }
 close $list or die $ERRNO;
-
-
-######## SUBROUTINES ########
-# The cleanup process
-sub cleanup {
-  my $title = shift;
-
-  $title = noVars($title);
-  $title = noParens($title);	# Must be after rmOdds for the time being
-  $title = rmOdds($title);
-
-  return $title;
-}
-sub noParens {
-  my $title = shift;
-  $title =~ s/\(.*\)//x;       # get rid of text in parentheses
-  $title =~ s/__/_/;	       # potential formatting issue as a result of above
-  return $title;
-}
-sub rmOdds {
-  return shift =~ s/[\+\?\(\)]//gxr;  # odd characters
-}
-sub noVars {
-  my $title = shift;
-  # Get rid of subspecies and variant names, remove if someone cares for those
-  # FIXME TODO
-  # _subsp. or _nothosubsp.
-  # same for var.  Maybe also sp.?
-  $title =~ s/subsp\..*$//x;
-  $title =~ s/var\..*$//x;
-  return $title;
-}
-
-# The actual comparison process
-sub compareGP {
-  my @words = split /_/, shift; # array to hold each name
-
-  if (@words == 2 && lc $words[0] eq lc $words[1]) {
-    return @words;
-  }
-  return ();
-}

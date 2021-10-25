@@ -1,8 +1,11 @@
-#!/usr/bin/env perl
+#!perl
 
+use 5.006;
 use strict;
 use warnings;
 use Test::More;
+
+use Wikispecies::GenusSpecies qw(noParens rmOdds noVars);
 
 plan tests => 24;
 
@@ -41,25 +44,3 @@ is(noVars('asd'), 'asd', 'No variant or subspecies');
 
 is(noVars('asd_subsp._ddd'), 'asd_', 'Middle subsp');
 is(noVars('asd_var.._ddd'), 'asd_', 'Middle var');
-
-
-
-sub noParens {
-  my $title = shift;
-  $title =~ s/\(.*\)//x;       # get rid of text in parentheses
-  $title =~ s/__/_/;	       # potential formatting issue as a result of above
-  return $title;
-}
-sub rmOdds {
-  return shift =~ s/[\+\?\(\)]//gxr;  # odd characters
-}
-sub noVars {
-  my $title = shift;
-  # Get rid of subspecies and variant names, remove if someone cares for those
-  # FIXME TODO
-  # _subsp. or _nothosubsp.
-  # same for var.  Maybe also sp.?
-  $title =~ s/subsp\..*$//x;
-  $title =~ s/var\..*$//x;
-  return $title;
-}

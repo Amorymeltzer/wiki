@@ -1,8 +1,11 @@
-#!/usr/bin/env perl
+#!perl
 
+use 5.006;
 use strict;
 use warnings;
 use Test::More;
+
+use Wikispecies::GenusSpecies;
 
 # Match titles to whether they work or not
 my %titles = (
@@ -36,7 +39,7 @@ my @titles = sort keys %titles;
 my $count = scalar @titles;
 plan tests => $count;
 foreach my $title (@titles) {
-  is(compareGP(cleanup($title)), !!$titles{$title}, $title);
+  is(!compareGP(cleanup($title)), !$titles{$title}, $title);
 }
 
 # The cleanup process
@@ -44,34 +47,8 @@ sub cleanup {
   my $title = shift;
 
   $title = noVars($title);
-  $title = noParens($title);	# Must be after rmOdds for the time being
+  $title = noParens($title);
   $title = rmOdds($title);
 
   return $title;
-}
-sub noParens {
-  my $title = shift;
-  $title =~ s/\(.*\)//x;       # get rid of text in parentheses
-  $title =~ s/__/_/;	       # potential formatting issue as a result of above
-  return $title;
-}
-sub rmOdds {
-  return shift =~ s/[\+\?\(\)]//gxr;  # odd characters
-}
-sub noVars {
-  my $title = shift;
-  # Get rid of subspecies and variant names, remove if someone cares for those
-  # FIXME TODO
-  # _subsp. or _nothosubsp.
-  # same for var.  Maybe also sp.?
-  $title =~ s/subsp\..*$//x;
-  $title =~ s/var\..*$//x;
-  return $title;
-}
-
-# The actual comparison process
-sub compareGP {
-  my @words = split /_/, shift; # array to hold each name
-
-  return @words == 2 && lc $words[0] eq lc $words[1];
 }

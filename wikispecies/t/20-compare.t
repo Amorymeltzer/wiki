@@ -1,8 +1,11 @@
-#!/usr/bin/env perl
+#!perl
 
+use 5.006;
 use strict;
 use warnings;
 use Test::More;
+
+use Wikispecies::GenusSpecies qw(compareGP);
 
 # Match titles to whether they work or not
 my %titles = (
@@ -26,11 +29,5 @@ my @titles = sort keys %titles;
 my $count = scalar @titles;
 plan tests => $count;
 foreach my $title (@titles) {
-  is(compareGP($title), !!$titles{$title}, $title);
-}
-
-sub compareGP {
-  my @words = split /_/, shift; # array to hold each name
-
-  return @words == 2 && lc $words[0] eq lc $words[1];
+  is(!compareGP($title), !$titles{$title}, $title);
 }
