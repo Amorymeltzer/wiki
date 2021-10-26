@@ -33,13 +33,12 @@ my @localHashes = @{$groupsQuery{allusers}};
 
 # Will store hash of editors for each group.  Basically JSON as hash of hashes.
 my %groupsData;
-foreach my $i (0..scalar @localHashes - 1) {
-  my %userHash = %{$localHashes[$i]};
-  # Limit to the groups in question (I always forget how neat grep is)
-  my @usersGroups = grep {/$localPerms/} @{$userHash{groups}};
-  # Add to hash of hash
-  foreach my $grp (@usersGroups) {
-    $groupsData{$grp}{$userHash{name}} = 1;
+foreach my $userHash (@localHashes) {
+  # Limit to the groups in question (I always forget how neat grep is), then add
+  # that user to the lookup for each group
+  # Use map? FIXME TODO
+  foreach my $group (grep {/$localPerms/} @{${$userHash}{groups}}) {
+    $groupsData{$group}{${$userHash}{name}} = 1;
   }
 }
 

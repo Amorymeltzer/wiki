@@ -34,17 +34,14 @@ my %contentData;
 ## revisions -> array containing one item, which is a hash, which has keys:
 ### content   -> full page content
 ### timestamp -> time last edited
-# Just awful.
-my @pages = @{${${$contentReturn}{query}}{pages}};
-foreach my $i (0..scalar @pages - 1) {
-  my %page = %{$pages[$i]};
-  my $userGroup = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-  my @revisions = @{$page{revisions}};
-  $contentData{$userGroup} = [$page{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+# Just awful.  Then again, it could be made even worse!
+foreach my $pageHash (@{${${$contentReturn}{query}}{pages}}) {
+  my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+  my @revisions = @{${$pageHash}{revisions}};
+  $contentData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
 }
 
 foreach my $userGroup (@rights) {
-  my $userHashRef = $jsonTemplate->decode($contentData{$userGroup}[1]);
-  my @users = sort keys %{$userHashRef};
+  my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }

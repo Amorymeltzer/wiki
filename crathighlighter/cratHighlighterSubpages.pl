@@ -411,14 +411,13 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
-  # NOW we can loop through everyone and figure out what they've got
-  foreach my $i (0..scalar @localHashes - 1) {
-    my %userHash = %{$localHashes[$i]};
-    # Limit to the groups in question (I always forget how neat grep is)
-    my @usersGroups = grep {/$localPerms/} @{$userHash{groups}};
-    # Add to hash of hash
-    foreach my $grp (@usersGroups) {
-      $groupsData{$grp}{$userHash{name}} = 1;
+  # NOW we can loop through each user and figure out what groups they've got
+  foreach my $userHash (@localHashes) {
+    # Limit to the groups in question (I always forget how neat grep is), then add
+    # that user to the lookup for each group
+    # Use map? FIXME TODO
+    foreach my $group (grep {/$localPerms/} @{${$userHash}{groups}}) {
+      $groupsData{$group}{${$userHash}{name}} = 1;
     }
   }
 
@@ -470,13 +469,11 @@ sub getPageGroups {
   ## revisions -> array containing one item, which is a hash, which has keys:
   ### content   -> full page content
   ### timestamp -> time last edited
-  # Just awful.
-  my @pages = @{${${$contentReturn}{query}}{pages}};
-  foreach my $i (0..scalar @pages - 1) {
-    my %page = %{$pages[$i]};
-    my $userGroup = $page{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-    my @revisions = @{$page{revisions}};
-    $contentData{$userGroup} = [$page{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+  # Just awful.  Then again, it could be made even worse!
+  foreach my $pageHash (@{${${$contentReturn}{query}}{pages}}) {
+    my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+    my @revisions = @{${$pageHash}{revisions}};
+    $contentData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
   }
 
   return %contentData;
