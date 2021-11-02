@@ -110,7 +110,7 @@ foreach (@{$groups}) {
   if ($wikiState) {
     $wikiChange++;
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
-    $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki'.$summary;
+    $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
     push @totAddedPages, mapGroups($_, \@{$wikiAdded});
     push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
