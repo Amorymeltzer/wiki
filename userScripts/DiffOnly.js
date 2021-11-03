@@ -153,7 +153,7 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 
     // Handle history diff links
     if ( config.history && mwConfig.wgAction == "history" ) {
-	handleChangeList( '.mw-history-histlinks>a' );
+	handleChangeList( '.mw-history-histlinks a' );
     }
 
     // Handle recent changes and watchlist diff links

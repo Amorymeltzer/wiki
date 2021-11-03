@@ -6,7 +6,7 @@ $.when( $.ready, mw.loader.using( [ "mediawiki.util" ] ) ).then( function () {
     var page;
     if( suffix ) {
         if( document.getElementsByClassName( "diff-multi" ).length ||
-            mw.config.get("wgPageName") === "Special:ComparePages" ) {
+            mw.config.get("wgCanonicalSpecialPageName") === "ComparePages" ) {
             suffix = mw.config.get( "wgDiffOldId" ) + "/" + suffix;
         }
         page = "Special:Diff/" + suffix;
@@ -19,7 +19,8 @@ $.when( $.ready, mw.loader.using( [ "mediawiki.util" ] ) ).then( function () {
 
     var permalinkEl = $( "<div>" ).append(
         "Permalink: ",
-        $( "<input>", { "id": "diff-permalink-link" } )
+        $( "<input>" )
+        .attr( { "id": "diff-permalink-link" } )
             .val( page ),
         $( "<button>" )
             .text( "Copy" )
@@ -28,7 +29,9 @@ $.when( $.ready, mw.loader.using( [ "mediawiki.util" ] ) ).then( function () {
                 document.getElementById( "diff-permalink-link" ).select();
                 document.execCommand( "copy" );
             } ) );
-    $( "#diff-permalink-link" ).attr( "size", page.length ) // resize to diff length
+
+    $( "#diff-permalink-link" ).attr( "size", page.length ); // resize to diff length
+
     $( "#contentSub" ).after( permalinkEl );
 } );
 // </nowiki>

@@ -164,22 +164,22 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			/* Masses [[UserAmorymeltzer/mass]] */
 			switch (cfg.wgPageName) {
 				case 'Special:Massedit':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1047165041&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1050835632&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
 					break;
 				case 'Special:Massdelete':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1017562162&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
 					break;
 				case 'Special:Massrestore':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1047165143&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1050835680&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
 					break;
 				case 'Special:Massblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1047165125&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1050835732&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
 					break;
 				case 'Special:MassUnblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1047165051&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1050835763&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
 					break;
 				case 'Special:Massprotect':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1047165098&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1050835802&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
 					break;
 				case 'Special:Massmove':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1045251681&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
@@ -219,7 +219,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=992637017&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1050007234&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-permalink.js]]
 		}
 	});
@@ -419,7 +419,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 			watchlist: true,
 			diff: false
 		};
-		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=801071404&action=raw&ctype=text/javascript'); // placeholder
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=1051764517&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
 	}
 }
