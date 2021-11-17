@@ -207,14 +207,14 @@ sub gitCheck {
 
   if (gitCleanStatus($repo)) {
     LOGDIE('Repository is not clean');
-  } elsif (gitOnMaster($repo)) {
-    LOGDIE('Not on master branch');
+  } elsif (gitOnMain($repo)) {
+    LOGDIE('Not on main branch');
   }
 
   # Check for any upstream updates using fetch-then-merge, not pull
   # https://longair.net/blog/2009/04/16/git-fetch-and-merge/
   # Not quiet since want number of lines
-  my $fetch = $repo->command('fetch' => 'origin', 'master');
+  my $fetch = $repo->command('fetch' => 'origin', 'main');
   my @fetchE = $fetch->stderr->getlines();
   $fetch->close();
   # Not a great way of confirming the results, but fetch is annoyingly
@@ -226,12 +226,12 @@ sub gitCheck {
 
   # Now that we've fetched the updates, we can go ahead and merge them in
   my $oldSHA = gitSHA($repo);
-  my $merge = $repo->command('merge' => '--quiet', 'origin/master');
+  my $merge = $repo->command('merge' => '--quiet', 'origin/main');
   my @mergeE = $merge->stderr->getlines();
   $merge->close();
   if (scalar @mergeE) {
     LOGDIE(@mergeE);
-  } elsif (gitCleanStatus($repo) || gitOnMaster($repo)) { # Just to be safe
+  } elsif (gitCleanStatus($repo) || gitOnMain($repo)) { # Just to be safe
     LOGDIE('Repository dirty after pull');
   }
 
@@ -246,8 +246,8 @@ sub gitCheck {
   LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
 }
 # These all mis/abuse @_ for brevity, rather than merely `shift`-ing
-sub gitOnMaster {
-  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master';
+sub gitOnMain {
+  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'main';
 }
 sub gitCleanStatus {
   return scalar $_[0]->run(status => '--porcelain');
