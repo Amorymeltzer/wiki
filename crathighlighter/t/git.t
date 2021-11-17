@@ -19,14 +19,14 @@ require Git::Repository;
 
 my $repo = Git::Repository->new();
 
-ok(!gitOnMaster($repo), 'On master branch');
+ok(!gitOnMain($repo), 'On main branch');
 ok(!gitCleanStatus($repo), 'Repository is clean');
 ok(gitSHA($repo), 'Get a SHA');
 
 
 # These all mis/abuse @_ for brevity, rather than merely `shift`-ing
-sub gitOnMaster {
-  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'master';
+sub gitOnMain {
+  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'main';
 }
 sub gitCleanStatus {
   return scalar $_[0]->run(status => '--porcelain');
