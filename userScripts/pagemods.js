@@ -148,7 +148,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 		});
 
 		function geight(page_title) {
-			api.postWithToken('delete', {
+			api.postWithEditToken({
 				action: 'delete',
 				reason: '[[WP:CSD#G8|G8]]: Dependent on a nonexistant page',
 				title: page_title
@@ -202,7 +202,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 		});
 
 		function geight(page_title) {
-			api.postWithToken('delete', {
+			api.postWithEditToken({
 				action: 'delete',
 				reason: '[[WP:CSD#G8|G8]]: Dependent on a nonexistant page',
 				title: page_title
@@ -247,7 +247,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 		});
 
 		function geight(page_title) {
-			api.postWithToken('delete', {
+			api.postWithEditToken({
 				action: 'delete',
 				reason: '[[WP:CSD#G8|G8]]: Dependent on a nonexistant page',
 				title: page_title
@@ -313,7 +313,7 @@ if (mw.config.get('wgPageName') === 'Wikipedia:Database_reports/Orphaned_talk_pa
 		});
 
 		function gthirteen(page_title) {
-			api.postWithToken('delete', {
+			api.postWithEditToken({
 				action: 'delete',
 				reason: '[[WP:CSD#G13|G13]]: Abandoned [[WP:AFC|Article for creation]] — to retrieve it, see [[WP:REFUND/G13]]',
 				title: page_title
