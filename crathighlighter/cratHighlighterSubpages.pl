@@ -219,7 +219,7 @@ sub gitCheck {
   $fetch->close();
   # Not a great way of confirming the results, but fetch is annoyingly
   # unporcelain and this obviates the need for an additional status command.
-  # Two lines means no updates were fetch so we don't need to act further.
+  # Two lines means no updates were fetched so we don't need to act further.
   if (scalar @fetchE <= 2) {
     return;
   }
@@ -242,7 +242,9 @@ sub gitCheck {
     return;
   }
 
-  # Don't think getting here should even be possible...
+  # Don't entirely know what gets us here, but it seems if there's an issue with
+  # GitHub itself staying up, it's possible to end up here.  Not sure what to
+  # check for that or what errors to go after... FIXME TODO
   LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
 }
 # These all mis/abuse @_ for brevity, rather than merely `shift`-ing
