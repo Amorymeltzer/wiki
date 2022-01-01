@@ -440,6 +440,7 @@ sub getCurrentGroups {
     # the bottom of the list during transitionary periods
     last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
   }
+  unshift @rights, qw (arbcom);
 
   # Need to return references since we're doing hash and array
   return (\%groupsData, \@rights);
