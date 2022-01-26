@@ -167,22 +167,22 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1050835632&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
 					break;
 				case 'Special:Massdelete':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1017562162&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1058090486&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
 					break;
 				case 'Special:Massrestore':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1050835680&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1058090468&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
 					break;
 				case 'Special:Massblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1050835732&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massblock.js&oldid=1058090461&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massblock.js]]
 					break;
 				case 'Special:MassUnblock':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1050835763&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1058090451&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
 					break;
 				case 'Special:Massprotect':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1050835802&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1058090444&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
 					break;
 				case 'Special:Massmove':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1045251681&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1058090434&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
 					break;
 				default:
 					break;
@@ -218,7 +218,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=929579836&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=1060844701&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1050007234&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-permalink.js]]
 		}
@@ -262,7 +262,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$('li.new[id|=ca-nstab]').length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=988617813&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1062790269&action=raw&ctype=text/javascript');
 			}
 		});
 	}
@@ -326,7 +326,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('ext.gadget.XFDcloser');
 			/* Only for [[WP:AFC/R]] */
 			if (cfg.wgPageName === 'Wikipedia:Articles_for_creation/Redirects') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1047869343&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1053491363&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Joeytje50/JWB.js&oldid=1006387480&action=raw&ctype=text/javascript'); // [[User:Joeytje50/JWB]], [[User:Joeytje50/JWB.js]] /* --skipUpdate-- */
@@ -401,7 +401,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 			// Adjusted to work with [[User:Bradv/endlesscontribs.js]] aka [[User:Amorymeltzer/endlesscontribs.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userhist.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/userhist.js]]
 			// Placeholder for userhist's getScript to check for any updates to waLib, rare though they may be
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&oldid=1003567841&action=raw&ctype=text/javascript');
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/waLib.js&oldid=1055926602&action=raw&ctype=text/javascript');
 		}
 	};
 	$(possiblyContribs());
