@@ -45,6 +45,7 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 	config.history = config.all;
 	config.recentchanges = config.all;
 	config.watchlist = config.all;
+	config.contributions = config.all;
     }
 
     /**************************************************************************\
@@ -158,7 +159,8 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 
     // Handle recent changes and watchlist diff links
     if ( config.recentchanges && mwConfig.wgCanonicalSpecialPageName == "Recentchanges"
-	 || config.watchlist && mwConfig.wgCanonicalSpecialPageName == 'Watchlist' )
+	 || config.watchlist && mwConfig.wgCanonicalSpecialPageName == 'Watchlist'
+	 || config.contributions && mwConfig.wgCanonicalSpecialPageName == 'Contributions')
     {
 	handleChangeList( '.mw-changeslist-diff' );
     }

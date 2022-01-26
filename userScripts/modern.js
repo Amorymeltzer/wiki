@@ -419,7 +419,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 			watchlist: true,
 			diff: false
 		};
-		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=1051764517&action=raw&ctype=text/javascript'); // placeholder
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=1056866093&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
 	}
 }
