@@ -519,7 +519,7 @@
 				};
 			} else if (/Wikipedia:Requests_for_permissions\/(?!Rollback|Confirmed|Page_mover)/.test(mw.config.get('wgPageName'))) {
 				// base responses for permission pages
-				indentation = "::";
+				indentation = ":";
 				templateName = "";
 				defaultPrompt = "Reason?";
 				responses = {
