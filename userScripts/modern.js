@@ -314,7 +314,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1034426397&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1030303833&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1054731337&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 

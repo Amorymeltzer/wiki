@@ -184,7 +184,7 @@
 
 	    addPromise(
 		self.markAsDoneProgressField,
-		markAsDone('\n::' + this.closingRemarksInput.getValue())
+		markAsDone('\n:' + this.closingRemarksInput.getValue())
 	    ).then(function(data) {
 		addPromise(
 		    self.changeRightsProgressField,
