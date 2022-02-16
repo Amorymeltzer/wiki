@@ -21,7 +21,7 @@
 	function setResponses() {
 		if (mw.config.get('wgEditMessage') === 'editingsection') {
 			if (/Wikipedia:Administrator_intervention_against_vandalism/.test(mw.config.get('wgPageName'))) {
-				indentation = "::";
+				indentation = "*:";
 				templateName = "AIV";
 				inline = true;
 				responses = {
@@ -141,7 +141,7 @@
 					}
 				};
 			} else if (/Wikipedia:Usernames_for_administrator_attention/.test(mw.config.get('wgPageName'))) {
-				indentation = "::";
+				indentation = "*:";
 				templateName = "UAA";
 				defaultPrompt = "Reason?";
 				inline = true;
