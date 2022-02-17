@@ -120,7 +120,8 @@ foreach my $import (@jsFiles) {
     $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
     $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-    my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+    # skip_encoding prevents reencoding of UTF8 titles
+    my $response = $mw->api(\%query, {skip_encoding => 1}) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
     my @pages = @{$response->{query}->{pages}};
 
     # Prepare query for one-off queries
