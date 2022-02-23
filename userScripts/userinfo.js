@@ -152,7 +152,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 							'oversight': 'oversighter',
 							'patroller': 'new page reviewer',
 							'reviewer': 'pending changes reviewer',
-							'suppress': 'suppressor',
+							'suppress': 'oversighter',
 							'sysop': 'administrator',
 							'templateeditor': 'template editor',
 							'transwiki': 'transwiki importer'
