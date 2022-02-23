@@ -13,7 +13,7 @@ use JSON::MaybeXS;
 use Test::More tests => 3;
 
 # List of each group, but for testing right now just a couple
-my @rights = qw(bureaucrat interface-admin oversight);
+my @rights = qw(bureaucrat interface-admin suppress);
 my $localPerms = join q{|}, @rights;
 # Real deal
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
@@ -38,7 +38,11 @@ foreach my $userHash (@localHashes) {
   # Limit to the groups in question (I always forget how neat grep is), then add
   # that user to the lookup for each group
   # Use map? FIXME TODO
-  foreach my $group (grep {/$localPerms/} @{${$userHash}{groups}}) {
+  my @groups = grep {/$localPerms/} @{${$userHash}{groups}};
+  # Rename suppress to oversight
+  s/suppress/oversight/ for @groups;
+
+  foreach my $group (@groups) {
     $groupsData{$group}{${$userHash}{name}} = 1;
   }
 }

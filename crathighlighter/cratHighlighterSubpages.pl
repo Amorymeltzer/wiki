@@ -297,7 +297,7 @@ sub getCurrentGroups {
   # used to build the query for determining local usergroups.  Steward belongs to
   # a different, global list (agu rather than au) and arbcom isn't real.  They'll
   # both be added in due course, although the arbcom list needs separate getting.
-  my @rights = qw (bureaucrat oversight checkuser interface-admin sysop);
+  my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
   # Will store hash of editors for each group.  Basically JSON as hash of hashes.
   my %groupsData;
 
@@ -355,7 +355,10 @@ sub getCurrentGroups {
     # Limit to the groups in question (I always forget how neat grep is), then add
     # that user to the lookup for each group
     # Use map? FIXME TODO
-    foreach my $group (grep {/$localPerms/} @{${$userHash}{groups}}) {
+    my @groups = grep {/$localPerms/} @{${$userHash}{groups}};
+    # Rename suppress to oversight
+    s/suppress/oversight/ for @groups;
+    foreach my $group (@groups) {
       $groupsData{$group}{${$userHash}{name}} = 1;
     }
   }
@@ -379,6 +382,8 @@ sub getCurrentGroups {
   }
   unshift @rights, qw (arbcom);
 
+  # Rename suppress to oversight
+  s/suppress/oversight/ for @rights;
   # Need to return references since we're doing hash and array
   return (\%groupsData, \@rights);
 }

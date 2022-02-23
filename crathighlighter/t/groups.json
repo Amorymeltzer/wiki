@@ -26,7 +26,7 @@
           "abusefilter",
           "bureaucrat",
           "checkuser",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -38,7 +38,7 @@
           "user",
           "autoconfirmed",
           "interface-admin",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -107,7 +107,7 @@
           "user",
           "autoconfirmed",
           "bureaucrat",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -166,7 +166,7 @@
           "abusefilter",
           "bureaucrat",
           "checkuser",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -217,7 +217,7 @@
           "abusefilter",
           "checkuser",
           "interface-admin",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -230,7 +230,7 @@
           "autoconfirmed",
           "bureaucrat",
           "checkuser",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -309,7 +309,7 @@
           "autoconfirmed",
           "bureaucrat",
           "checkuser",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
@@ -336,7 +336,7 @@
           "bureaucrat",
           "import",
           "interface-admin",
-          "oversight",
+          "suppress",
           "sysop"
         ]
       },
