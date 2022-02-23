@@ -10,15 +10,16 @@ use English;
 use File::Slurper qw(read_text write_text);
 use JSON::MaybeXS;
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 # List of each group, but for testing right now just a couple
-my @rights = qw(bureaucrat interface-admin);
+my @rights = qw(bureaucrat interface-admin oversight);
 my $localPerms = join q{|}, @rights;
 # Real deal
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
 my @inta = ('Amorymeltzer', 'Cyberpower678', 'Enterprisey', 'Evad37', 'Izno', 'MusikAnimal', 'MusikBot II', 'Oshwah', 'Ragesoss', 'Writ Keeper', 'Xaosflux');
-my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta);
+my @over = ('AmandaNP', 'Amorymeltzer', 'Dweller', 'Maxim', 'Oshwah', 'Primefac', 'Worm That Turned', 'Xaosflux');
+my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over);
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON->new->canonical(1);

@@ -33,6 +33,18 @@
             "content": "{\n    \"Amorymeltzer\": 1,\n    \"Cyberpower678\": 1,\n    \"Enterprisey\": 1,\n    \"Evad37\": 1,\n    \"Izno\": 1,\n    \"MusikAnimal\": 1,\n    \"MusikBot II\": 1,\n    \"Oshwah\": 1,\n    \"Ragesoss\": 1,\n    \"Writ Keeper\": 1,\n    \"Xaosflux\": 1\n}"
           }
         ]
+      },
+      {
+        "pageid": 39237974,
+        "ns": 2,
+        "title": "User:Amorymeltzer/crathighlighter.js/oversight.json",
+        "revisions": [
+          {
+            "contentformat": "application/json",
+            "contentmodel": "json",
+            "content": "{\n    \"AmandaNP\": 1,\n    \"Amorymeltzer\": 1,\n    \"Dweller\": 1,\n    \"Maxim\": 1,\n    \"Oshwah\": 1,\n    \"Primefac\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1\n}"
+          }
+        ]
       }
     ]
   }
