@@ -5,7 +5,8 @@
 
 file=$1
 search=$2
+extra=$3
 
-if [[ ! $(tail -n 1 "$file" | grep "$search") ]]; then
+if [[ ! $(tail -n 1 "$file" | grep -e "$search" -e "$extra") ]]; then
     exit 1
 fi
