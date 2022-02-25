@@ -95,7 +95,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 						"<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						'</span>');
 			$(document).on('click', '.mass_revdel_on', function() {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1025668024&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1073868610&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
 				$('#toggle_massrevdel').remove();
 				// Tighten/shorten massRevdel stuff
 				mw.loader.using(['mediawiki.util'], function() {
@@ -361,7 +361,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1011774429&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
 				/* User talks */
 				if (cfg.wgNamespaceNumber === '3') {
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=881687292&action=raw&ctype=text/javascript'); // [[User:Enterprisey/unblock-review.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=1073685522&action=raw&ctype=text/javascript'); // [[User:Enterprisey/unblock-review.js]]
 				}
 			}
 		}
