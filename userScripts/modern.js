@@ -87,7 +87,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); // [[User:Markhurd/hidetopcontrib.js]]
 			window.userHideAllSubsequent = true;
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1026184864&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1075035680&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
@@ -211,7 +211,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/hideSectionDesktop.js&oldid=1002949275&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); // [[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=1005543115&action=raw&ctype=text/javascript'); // [[User:The Earwig/permalink.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=1074774463&action=raw&ctype=text/javascript'); // [[User:The Earwig/permalink.js]]
 
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
@@ -311,7 +311,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		if (cfg.wgNamespaceNumber === 4) {
 			/* Wikipedia project space, not talk */
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); // [[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1002799239&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1074308067&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1071741812&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
