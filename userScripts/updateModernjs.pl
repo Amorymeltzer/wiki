@@ -182,9 +182,15 @@ foreach my $import (@jsFiles) {
     foreach my $title (keys %replacings) {
       print "\n";
       my ($old, $new, $user, $comment, $timestamp) = @{$replacings{$title}};
+
+      print colored ['green'], "$title: ";
       # Note placeholders
-      my $status = ${$extraInfo{$title}}[1] == 1 ? 'PLACEHOLDER NOTE: UPSTREAM updated' : 'updating';
-      print colored ['green'], "$title: $status $old to $new by $user ($timestamp): $comment\n";
+      if (${$extraInfo{$title}}[1] == 1) {
+        print colored ['blue'], 'PLACEHOLDER NOTE: UPSTREAM updated';
+      } else {
+        print colored ['green'], 'updating';
+      }
+      print colored ['green'], " $old to $new by $user ($timestamp): $comment\n";
 
       my @args = ('bash', '-c', "icdiff $old $new");
       system @args;
