@@ -320,7 +320,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
 
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus Canens/spihelper.js&action=raw&ctype=text/javascript'); [[User:Timotheus Canens/spihelper.js]] Not clerking atm. Duplicated in responseHelper?
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=1072739363&action=raw&ctype=text/javascript'); // [[User:Enterprisey/delsort.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/delsort.js&oldid=1082743865&action=raw&ctype=text/javascript'); // [[User:Enterprisey/delsort.js]]
 
 			// [[MediaWiki:Gadget-XFDcloser.js]], [[User:Evad37/XFDcloser/v3.js]], [[User:Evad37/XFDcloser.js]], [[User:Mr.Z-man/closeAFD.js]]
 			// Originally installed here to keep off certain pages but now installed via gadget
