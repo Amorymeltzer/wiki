@@ -282,7 +282,7 @@
     }
 
     function updateWhiteList() {
-        api.edit( 'Wikipedia:New pages patrol/Redirect whitelist', function (revision) {
+        api.edit( 'Wikipedia:New pages patrol/Redirect autopatrol list', function (revision) {
             var newContent = revision.content.replace(
                 new RegExp('\\*\\s*{{\\s*user2\\s*\\|\\s*' + userName + '\\s*}}\\n'),
                 ''
