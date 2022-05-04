@@ -442,6 +442,8 @@ if (mw.config.exists('wgRelevantUserName')) {
 /* cfg.wgRelevantPageIsProbablyEditable */
 // Excessive perhaps, but want this after userinfo
 if (cfg.wgRelevantPageIsProbablyEditable) {
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/deletionFinder.js&oldid=832071460&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/googleTitle.js&oldid=819463472&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/deletionFinder.js&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/suppressionFinder.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/suppressionFinder.js]] As above
 }
