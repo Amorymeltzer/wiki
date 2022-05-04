@@ -27,21 +27,21 @@ function delgoogChecker() {
 	}
 }
 function afdCallback(afdResults) {
-	if (typeof afdResults.query.allpages[0] !== 'undefined') {
+	if (afdResults.query && typeof afdResults.query.allpages[0] !== 'undefined') {
 		var searchNode = " <a id='prevAFDsLink' target='_blank'><span style='font-size:x-small; color:#7F98B2;'>AfDs</span></a>";
 		$("#firstHeading").append(searchNode);
 		$("#prevAFDsLink").attr("href", mw.config.get("wgServer") + "/w/index.php?title=Special%3AAllPages&from=Articles+for+deletion%2F" + encodedTitle + "&to=Articles+for+deletion%2F" + encodedTitle + "+%289z%29&namespace=4");
 	}
 }
 function delCallback(delResults) {
-	if (typeof delResults.query.logevents[0] !== 'undefined') {
+	if (delResults.query && typeof delResults.query.logevents[0] !== 'undefined') {
 		var searchNode = " <a id='prevDelsLink' target='_blank'><span style='font-size:x-small; color:#C55;'>dels</span></a>";
 		$("#firstHeading").append(searchNode);
 		$("#prevDelsLink").attr("href", mw.config.get("wgServer") + "/w/index.php?title=Special%3ALog&type=delete&page=" + encodedTitle);
 	}
 }
 function movCallback(movResults) {
-	if (typeof movResults.query.logevents[0] !== 'undefined') {
+	if (movResults.query && typeof movResults.query.logevents[0] !== 'undefined') {
 		var searchNode = " <a id='prevMovsLink' target='_blank'><span style='font-size:x-small; color:#95F;'>moves</span></a>";
 		$("#firstHeading").append(searchNode);
 		$("#prevMovsLink").attr("href", mw.config.get("wgServer") + "/w/index.php?title=Special%3ALog&type=move&page=" + encodedTitle);
