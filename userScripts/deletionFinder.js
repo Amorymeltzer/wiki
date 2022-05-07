@@ -5,11 +5,11 @@
 // Change colors
 
 $(document).ready(delgoogChecker);
+var pageName = mw.config.get('wgRelevantPageName');
+var encodedTitle = encodeURIComponent(pageName);
 
 function delgoogChecker() {
 	if (mw.config.get('wgRelevantPageIsProbablyEditable') && mw.config.exists('wgRelevantPageName')) {
-		var pageName = mw.config.get('wgRelevantPageName');
-		var encodedTitle = encodeURIComponent(pageName);
 		if (mw.config.get('wgCanonicalNamespace') === '') {
 			var subjectName;
 			if (pageName.charAt(pageName.length - 1) === ')') {
