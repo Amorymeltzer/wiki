@@ -126,7 +126,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			};
 			$(shortenText());
 
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=995418220&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=1090160359&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
 			// Testing post-load callback
 			// Will be added to below
 			window.endlesscontribsExec = shortenText;
