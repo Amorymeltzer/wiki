@@ -194,7 +194,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	  This will eventually devolve to Mainspace or not
 	*/
 	/* Not Special */
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=995222286&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=1095684958&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
 	window.notifyByDefaultDec = true; // default is true
 	// window.notifyByDefaultDel = true; //default is false
 	window.notifyByDefaultPrd = true; // default is true
