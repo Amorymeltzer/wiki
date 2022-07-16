@@ -358,7 +358,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=1033878262&action=raw&ctype=text/javascript'); // [[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/* All talks */
 			if (cfg.wgNamespaceNumber !== '4') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1011774429&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1097991013&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
 				/* User talks */
 				if (cfg.wgNamespaceNumber === '3') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=1073685522&action=raw&ctype=text/javascript'); // [[User:Enterprisey/unblock-review.js]]
