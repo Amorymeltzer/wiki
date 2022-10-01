@@ -643,9 +643,9 @@ if (cfg.wgAction === 'history') {
 	$("label[for='wpWatchthis']").html('Watch');
 
 	// Don't watch super active projectspace pages
-	// AIV, RFPP, UAA, ANI, Sandbox
+	// AIV, RFPP (and subpages), UAA, ANI, Sandbox
 	$(function () {
-		if (cfg.wgNamespaceNumber === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(cfg.wgTitle) !== -1) {
+		if (cfg.wgNamespaceNumber === 4 && ['Administrator intervention against vandalism', 'Requests for page protection', 'Requests for page protection/Increase', 'Requests for page protection/Decrease', 'Usernames for administrator attention', 'Administrator intervention against vandalism/TB2', 'Usernames for administrator attention/Bot', "Administrators' noticeboard/Incidents", 'Sandbox'].indexOf(cfg.wgTitle) !== -1) {
 			$('#wpWatchthis').prop('checked', false);
 		}
 	});
