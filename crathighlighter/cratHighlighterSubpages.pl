@@ -205,6 +205,8 @@ sub mwLogin {
   # Global, declared above
   $mw = MediaWiki::API->new({
 			     api_url => 'https://en.wikipedia.org/w/api.php',
+			     retries => '1',
+			     retry_delay => '300', # Try again after 5 mins
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
