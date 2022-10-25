@@ -1,5 +1,6 @@
 //<nowiki>
 /*jshint maxerr:999*/
+/*NEEDS UPDATING*/
 /*
   Blantantly taken from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
   Finished and fixed the former and smashed in the latter's functions
