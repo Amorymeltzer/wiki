@@ -26,7 +26,7 @@ my $jsonTemplate = JSON->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 
 my $file = 't/groups.json';
-my $fileJSON = read_text($file) or die $ERRNO;
+my $fileJSON = read_text($file);
 
 my $groupsReturn = $jsonTemplate->decode($fileJSON);
 my %groupsQuery = %{${$groupsReturn}{query}};

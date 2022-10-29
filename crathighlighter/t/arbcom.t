@@ -26,7 +26,8 @@ sub parseContent {
   my $fn = shift;
   # Overkill here, but mimic the actual running design
   my %groupsData;
-  open my $ac, '<', "$fn" or die $ERRNO;
+  # Return value ignored, we're testing the process with known quantities
+  open my $ac, '<', "$fn";
   while (<$ac>) {
     if (/:#\{\{user\|(.*)}}/) {
       $groupsData{arbcom}{$1} = 1;
@@ -35,7 +36,8 @@ sub parseContent {
     # the bottom of the list during transitionary periods
     last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
   }
-  close $ac or die $ERRNO;
+  # As above
+  close $ac;
 
   my @arbs = sort keys %{$groupsData{arbcom}};
   return \@arbs;
