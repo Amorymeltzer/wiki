@@ -154,7 +154,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			break;
 		case 'Search':
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Search_sort.js&oldid=924771697&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Search_sort.js&oldid=1111895973&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/Search_sort.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
 			break;
 		case 'AbuseLog':
@@ -313,7 +313,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); // [[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1074308067&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1071741812&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1115769302&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1084627708&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
@@ -521,7 +521,7 @@ if (cfg.wgAction === 'history') {
 	window.histCombTalk = 't'; // string to replace 'Talk'
 	window.histCombContrib = 'c'; // string to replace 'contribs'
 	window.histCombUndo = 'u'; // string to replace 'undo'
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Alex_Smotrov/histcomb.js&oldid=920398942&action=raw&ctype=text/javascript'); // [[User:Alex Smotrov/histcomb.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Alex_Smotrov/histcomb.js&oldid=1110555621&action=raw&ctype=text/javascript'); // [[User:Alex Smotrov/histcomb.js]]
 
 	// Shorten rollback to r; thanks to t; block to b
 	// Adapted from [[User:Writ Keeper/Scripts/watchlistContribs.js]]

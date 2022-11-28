@@ -14,7 +14,7 @@ $( document ).ready( function() {
     if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Search'){
 	mw.util.addPortletLink(
 	    'p-cactions',
-	    'https://en.wikipedia.org/w/index.php?title=Wikipedia:Village_pump_(technical)&oldid=882024973#Sorting_search_results',
+	    'https://www.mediawiki.org/wiki/Help:CirrusSearch#Explicit_sort_orders',
 	    'Sort by:',
 	    't-sort',
 	    'View post about the search sort feature the following links are using'

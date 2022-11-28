@@ -728,6 +728,10 @@
 						prompt : "Reason?",
 						replied : "true"
 					},
+					"Declined co" : {
+						code : "co",
+						summary : "Declined – likely will cause collateral damage"
+					},
 					"Declined not enough" : {
 						code : "nea",
 						summary : "Declined – not enough recent disruptive activity",
