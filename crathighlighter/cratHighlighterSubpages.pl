@@ -223,9 +223,9 @@ sub getUserAndPass {
   my $correctname = shift;
   my ($un, $pw);
   open my $config, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
-  while (<$config>) {
-    chomp;
-    ($un, $pw) = split /:/;
+  while (my $line = <$config>) {
+    chomp $line;
+    ($un, $pw) = split /:/, $line;
     # Only accept the right user
     last if $un =~ /^$correctname@/;
   }
