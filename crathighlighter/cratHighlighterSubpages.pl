@@ -43,12 +43,13 @@ my $traceLog = { level  => $TRACE,
 Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
 
 # Pop into this script's directory, mostly so file access is simplified
+# Unnecessary? FIXME TODO
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
 
 ### Initialize API object.  Get username/password combo, log in, etc.
 my ($mw, $bot);
-$mw = mwLogin();
+$mw = mwLogin({username => $tool ? 'AmoryBot' : 'Amorymeltzer'});
 
 ### If it's the bot account, include a few checks for (emergency) shutoff
 if ($tool) {
@@ -71,6 +72,7 @@ my %contentStore = getPageGroups(@{$groups});
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 # Template for generating JSON, sorted
+# Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new FIXME TODO
 my $jsonTemplate = JSON->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 foreach (@{$groups}) {
@@ -197,50 +199,79 @@ if ($opts{n}) {
 ######## SUBROUTINES ########
 # Handle logging in to the wiki, mainly ensuring we die nicely
 sub mwLogin {
-  my ($username, $password) = getUserAndPass($tool ? 'AmoryBot' : 'Amorymeltzer');
+  # Hashref holding configuration options
+  my $config = getConfig(shift);
+
+  my $username = ${$config}{username};
+  my $password = ${$config}{password};
 
   # Used globally to make edit summaries, page titles, etc. easier
   $bot = 'User:'.$username =~ s/@.*//r;
 
   # Global, declared above
   $mw = MediaWiki::API->new({
-			     api_url => 'https://en.wikipedia.org/w/api.php',
+			     api_url => "${$config}{url}/w/api.php",
 			     retries => '1',
 			     retry_delay => '300', # Try again after 5 mins
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
+  # FIXME TODO Rename to just cratHighlighter
   $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
   $mw->login({lgname => $username, lgpassword => $password});
 
   return $mw;
 }
-# Get relevant username/password combination from the config.  Config consists
+# Process configuration options, including specific APi variables and getting
+# relevant username/password combination from the config file.  Config consists
 # of simple pairs of username and botpassword separated by a colon:
 # Jimbo Wales:stochasticstring
-# Config::General is easy but this is so simple
-sub getUserAndPass {
-  my $correctname = shift;
+# Config::General is easy but this is simple enough
+sub getConfig {
+  # Hashref holding configuration options
+  my $config = shift;
+  # Ensure full config
+  LOGDIE('No username provided') if ! defined ${$config}{username};
+
+  ${$config}{lang} ||= 'en';
+  ${$config}{family} ||= 'wikipedia';
+  ${$config}{url} ||= "https://${$config}{lang}.${$config}{family}.org";
+  # Just in case
+  my $trail = substr ${$config}{url}, -1;
+  chop ${$config}{url} if $trail eq q{/};
+
+  # Pop into this script's directory, mostly so config file access is easy
+  if (${$config}{rcdir}) {
+    ${$config}{rcdir} = $Bin.q{/}.${$config}{rcdir};
+  } else {
+    ${$config}{rcdir} = $Bin;
+  }
+  chdir ${$config}{rcdir} or LOGDIE('Failed to change directory');
+
+  my $correctname = ${$config}{username};
   my ($un, $pw);
-  open my $config, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
-  while (my $line = <$config>) {
+  open my $rc, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
+  while (my $line = <$rc>) {
     chomp $line;
     ($un, $pw) = split /:/, $line;
     # Only accept the right user
     last if $un =~ /^$correctname@/;
   }
-  close $config or LOGDIE($ERRNO);
+  close $rc or LOGDIE($ERRNO);
   # Only accept the right user
   if ($un !~ /^$correctname@/) {
     LOGDIE('Wrong user provided');
   }
+  ${$config}{username} = $un;
+  ${$config}{password} = $pw;
 
-  return ($un, $pw);
+  return $config;
 }
 # Nicer handling of some specific mediawiki errors, can be expanded using:
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
+  $mw = shift || $mw;		# Feels risky FIXME TODO
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
@@ -252,7 +283,7 @@ sub dieNice {
 	       4 => 'logging in',
 	       5 => 'editing the page'
 	      );
-  my $message = q{: }.$codes{$code} // q{};
+  my $message = $codes{$code} ? q{: }.$codes{$code} : q{};
   $message = 'MediaWiki error'.$message.":\n$code: $details";
   LOGDIE($message);
 }
@@ -352,19 +383,7 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
-  # NOW we can loop through each user and figure out what groups they've got
-  foreach my $userHash (@localHashes) {
-    # Limit to the groups in question (I always forget how neat grep is), then add
-    # that user to the lookup for each group
-    # Use map? FIXME TODO
-    my @groups = grep {/$localPerms/} @{${$userHash}{groups}};
-    # Rename suppress to oversight
-    s/suppress/oversight/ for @groups;
-    foreach my $group (@groups) {
-      $groupsData{$group}{${$userHash}{name}} = 1;
-    }
-  }
-
+  findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
 
   # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks
   # are proficient and timely, and ArbCom membership is high-profile enough that
@@ -374,21 +393,55 @@ sub getCurrentGroups {
   # timely as the "official" members list, the latter being enshrined in AC/C/P.
   my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
   my $acMembers = $mw->get_page({title => $acTemplate})->{q{*}};
-  for (split /^/, $acMembers) {
+
+  findArbComMembers($acMembers, \%groupsData);
+  unshift @rights, qw (arbcom);
+
+  # Rename suppress to oversight
+  s/suppress/oversight/ for @rights;
+
+  # Need to return references since we're doing hash and array
+  return (\%groupsData, \@rights);
+}
+
+
+# Loop through each user's data and figure out what groups they've got.  Far
+# from perfect; ideally I wouldn't use the @localHashes/$localData, but until
+# I stop overwriting data on the continue, then it's a necessary hack
+sub findLocalGroupMembers {
+  my ($localData, $localRE, $dataHashRef) = @_;
+
+  foreach my $userHash (@{$localData}) {
+    # Limit to the groups in question (I always forget how neat grep is), then add
+    # that user to the lookup for each group
+    # Use map? FIXME TODO
+    my @groups = grep {/$localRE/} @{${$userHash}{groups}};
+    # Rename suppress to oversight, sigh
+    s/suppress/oversight/ for @groups;
+
+    foreach my $group (@groups) {
+      ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
+    }
+  }
+}
+
+# Proccess each line of the page content to get the users listed
+# This could be smarter, since it's *only* doing arbcom, maybe it could just
+# return the {arbcom} hash data, which gets assigned to %groupsData{arbcom}?
+# FIXME TODO
+sub findArbComMembers {
+  my ($fh, $dataHashRef) = @_;	# Rename fh FIXME TODO
+
+  for (split /^/, $fh) {
     if (/:#\{\{user\|(.*)}}/) {
-      $groupsData{arbcom}{$1} = 1;
+      ${$dataHashRef}{arbcom}{$1} = 1;
     }
     # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
     # the bottom of the list during transitionary periods
     last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
   }
-  unshift @rights, qw (arbcom);
-
-  # Rename suppress to oversight
-  s/suppress/oversight/ for @rights;
-  # Need to return references since we're doing hash and array
-  return (\%groupsData, \@rights);
 }
+
 
 # Get the current content of each on-wiki page, so we can compare to see if
 # there are any updates needed
@@ -409,21 +462,27 @@ sub getPageGroups {
 		     };
   # JSON, technically a reference to a hash
   my $contentReturn = $mw->api($contentQuery);
-  # Stores page title, content, and last edited time in an array for each group
-  my %contentData;
+  return processFileData($contentReturn);
+}
+
+# Build hash of array with per group page title, content, and last edited time
+# Maybe something about formatversion 1 or 2??? FIXME TODO
+sub processFileData {
+  my $contentRef = shift;
+  my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
   ## title     -> used to also snag the specific group used for hash key
   ## revisions -> array containing one item, which is a hash, which has keys:
   ### content   -> full page content
   ### timestamp -> time last edited
   # Just awful.  Then again, it could be made even worse!
-  foreach my $pageHash (@{${${$contentReturn}{query}}{pages}}) {
+  foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
     my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
     my @revisions = @{${$pageHash}{revisions}};
-    $contentData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
   }
 
-  return %contentData;
+  return %returnData;
 }
 
 # Compare query hash with a JSON object hash, return negated equality and
