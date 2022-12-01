@@ -4,12 +4,10 @@
 use strict;
 use warnings;
 
-use English;
-
 use Test::More;
 
-# Only enable on toolforge
-if ($ENV{LOGNAME} eq 'tools.amorybot') {
+# Only enable on toolforge or when releasing
+if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot') {
   plan tests => 3;
 } else {
   plan skip_all => 'Tests annoying when developing';

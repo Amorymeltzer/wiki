@@ -4,8 +4,6 @@
 use strict;
 use warnings;
 
-use English;
-
 use File::Slurper qw(read_text);
 
 use AmoryBot::CratHighlighter qw (findArbComMembers);
