@@ -3,7 +3,6 @@
 
 use strict;
 use warnings;
-use diagnostics;
 
 use English;
 

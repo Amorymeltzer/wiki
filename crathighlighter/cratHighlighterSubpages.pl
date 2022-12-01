@@ -18,6 +18,10 @@ use Log::Log4perl qw(:easy);
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
+# Allows script to be run from elsewhere by prepending the local library to
+# @INC.  Would be nice not to rely on FindBin again... FIXME TODO
+use lib $Bin.'/lib';
+use AmoryBot::CratHighlighter qw(findArbComMembers changeSummary oxfordComma);
 
 # Parse commandline options
 my %opts = ();
@@ -271,7 +275,8 @@ sub getConfig {
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
-  $mw = shift || $mw;		# Feels risky FIXME TODO
+  # Feels risky? FIXME TODO
+  $mw = shift || $mw;
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
@@ -425,24 +430,6 @@ sub findLocalGroupMembers {
   }
 }
 
-# Proccess each line of the page content to get the users listed
-# This could be smarter, since it's *only* doing arbcom, maybe it could just
-# return the {arbcom} hash data, which gets assigned to %groupsData{arbcom}?
-# FIXME TODO
-sub findArbComMembers {
-  my ($fh, $dataHashRef) = @_;	# Rename fh FIXME TODO
-
-  for (split /^/, $fh) {
-    if (/:#\{\{user\|(.*)}}/) {
-      ${$dataHashRef}{arbcom}{$1} = 1;
-    }
-    # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
-    # the bottom of the list during transitionary periods
-    last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
-  }
-}
-
-
 # Get the current content of each on-wiki page, so we can compare to see if
 # there are any updates needed
 sub getPageGroups {
@@ -516,34 +503,6 @@ sub cmpJSON {
   }
 
   return ($state, \@added, \@removed);
-}
-
-# Write a summary of added/removed users from the provided array references.
-# Uses oxfordComma below for proper grammar.  Used as the basis for the on-wiki
-# edit summary and for the emailed note.
-sub changeSummary {
-  my ($addedRef,$removedRef) = @_;
-  my $change = q{};
-
-  if (scalar @{$addedRef}) {
-    $change .= 'Added '.oxfordComma(@{$addedRef});
-  }
-  if (scalar @{$removedRef}) {
-    $change .= '; ' if length $change;
-    $change .= 'Removed '.oxfordComma(@{$removedRef});
-  }
-
-  return $change;
-}
-
-# Oxford comma
-sub oxfordComma {
-  my @list = @_;
-  if (scalar @list < 3) {
-    return join ' and ', @list;
-  }
-  my $end = pop @list;
-  return join(', ', @list) . ", and $end";
 }
 
 # Map a marker of the group in question onto an array
