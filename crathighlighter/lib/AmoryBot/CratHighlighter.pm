@@ -287,12 +287,13 @@ sub findArbComMembers {
   my ($fh, $dataHashRef) = @_;	# Rename fh FIXME TODO
 
   for (split /^/, $fh) {
-    if (/:#\{\{user\|(.*)}}/) {
+    if (/^:#\{\{user\|(.*)}}/) {
       ${$dataHashRef}{arbcom}{$1} = 1;
+    } elsif (/^:;<big>\{\{xtn\|/) {
+      # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
+      # the bottom of the list during transitionary periods
+      last;
     }
-    # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
-    # the bottom of the list during transitionary periods
-    last if /<big>/ && !(/\{\{xt\|Active}}/ || /\{\{!xt\|Inactive}}/);
   }
 }
 
