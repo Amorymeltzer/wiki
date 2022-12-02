@@ -21,7 +21,7 @@ use File::Slurper qw(read_text write_text);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME TODO
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma);
+use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma mapGroups);
 
 # Parse commandline options
 my %opts = ();
@@ -464,21 +464,6 @@ sub cmpJSON {
   }
 
   return ($state, \@added, \@removed);
-}
-
-# Map a marker of the group in question onto an array
-sub mapGroups {
-  my ($group, $usersRef) = @_;
-  my %lookup = (
-		arbcom            => 'AC',
-		bureaucrat        => 'B',
-		oversight         => 'OS',
-		checkuser         => 'CU',
-		'interface-admin' => 'IA',
-		sysop             => 'SYS',
-		steward           => 'SW'
-	       );
-  return map { $_." ($lookup{$group})" } @{$usersRef};
 }
 
 

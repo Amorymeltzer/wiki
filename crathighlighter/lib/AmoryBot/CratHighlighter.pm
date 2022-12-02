@@ -21,7 +21,7 @@ our $VERSION = '0.01';
 # Actually allow methods to be exported
 use Exporter 'import';
 # our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA;
-our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma gitOnMain gitCleanStatus gitSHA);
+our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 our @EXPORT = \@EXPORT_OK;
 
@@ -427,8 +427,14 @@ sub oxfordComma {
 =cut
 
 # Map a marker of the group in question onto an array
+
+# Should rework/rewrite this.  Currently it's only being used to append the list
+# it returns to a given array.  Could take the array as a third parameter?
+# Ugh. But maybe better.  Or just return an array?  Easy to set as array.
+# Anyway, should figure something out. FIXME TODO
 sub mapGroups {
   my ($group, $usersRef) = @_;
+
   my %lookup = (
 		arbcom            => 'AC',
 		bureaucrat        => 'B',

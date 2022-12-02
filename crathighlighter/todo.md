@@ -8,7 +8,9 @@
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - Split out git pull from main check (meaning...?)
 - Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
+- Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid.
 - Restructure for returns from findArbComMembers, findLocalGroupMembers, etc.; should be simpler
+- Consider restructuring around mapGroups and formatting email/note?  Currently shit.
 
 ## Tests
 
@@ -42,4 +44,4 @@
 - [ ] cmpJSON - Figure out JSON stuff, maybe split?  Tricky.
 - [x] changeSummary
 - [x] oxfordComma
-- [ ] mapGroups Probably will restructure and remove as a sub?
+- [x] mapGroups
