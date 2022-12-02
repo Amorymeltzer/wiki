@@ -20,7 +20,8 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA usage);
+# our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA;
+our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma gitOnMain gitCleanStatus gitSHA);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 our @EXPORT = \@EXPORT_OK;
 
@@ -254,25 +255,29 @@ if you don't export anything, such as for a purely object-oriented module.
 # }
 
 
-# # Loop through each user's data and figure out what groups they've got.  Far
-# # from perfect; ideally I wouldn't use the @localHashes/$localData, but until
-# # I stop overwriting data on the continue, then it's a necessary hack
-# sub findLocalGroupMembers {
-#   my ($localData, $localRE, $dataHashRef) = @_;
+=head2 findLocalGroupMembers
 
-#   foreach my $userHash (@{$localData}) {
-#     # Limit to the groups in question (I always forget how neat grep is), then add
-#     # that user to the lookup for each group
-#     # Use map? FIXME TODO
-#     my @groups = grep {/$localRE/} @{${$userHash}{groups}};
-#     # Rename suppress to oversight, sigh
-#     s/suppress/oversight/ for @groups;
+=cut
 
-#     foreach my $group (@groups) {
-#       ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
-#     }
-#   }
-# }
+# Loop through each user's data and figure out what groups they've got.  Far
+# from perfect; ideally I wouldn't use the @localHashes/$localData, but until
+# I stop overwriting data on the continue, then it's a necessary hack
+sub findLocalGroupMembers {
+  my ($localData, $localRE, $dataHashRef) = @_;
+
+  foreach my $userHash (@{$localData}) {
+    # Limit to the groups in question (I always forget how neat grep is), then add
+    # that user to the lookup for each group
+    # Use map? FIXME TODO
+    my @groups = grep {/$localRE/} @{${$userHash}{groups}};
+    # Rename suppress to oversight, sigh
+    s/suppress/oversight/ for @groups;
+
+    foreach my $group (@groups) {
+      ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
+    }
+  }
+}
 
 
 =head2 findArbComMembers
@@ -320,25 +325,29 @@ sub findArbComMembers {
 #   return processFileData($contentReturn);
 # }
 
-# # Build hash of array with per group page title, content, and last edited time
-# # Maybe something about formatversion 1 or 2??? FIXME TODO
-# sub processFileData {
-#   my $contentRef = shift;
-#   my %returnData;
-#   # This monstrosity results in an array where each item is an array of hashes:
-#   ## title     -> used to also snag the specific group used for hash key
-#   ## revisions -> array containing one item, which is a hash, which has keys:
-#   ### content   -> full page content
-#   ### timestamp -> time last edited
-#   # Just awful.  Then again, it could be made even worse!
-#   foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
-#     my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-#     my @revisions = @{${$pageHash}{revisions}};
-#     $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
-#   }
+=head2 processFileData
 
-#   return %returnData;
-# }
+=cut
+
+# Build hash of array with per group page title, content, and last edited time
+# Maybe something about formatversion 1 or 2??? FIXME TODO
+sub processFileData {
+  my $contentRef = shift;
+  my %returnData;
+  # This monstrosity results in an array where each item is an array of hashes:
+  ## title     -> used to also snag the specific group used for hash key
+  ## revisions -> array containing one item, which is a hash, which has keys:
+  ### content   -> full page content
+  ### timestamp -> time last edited
+  # Just awful.  Then again, it could be made even worse!
+  foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
+    my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+    my @revisions = @{${$pageHash}{revisions}};
+    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+  }
+
+  return %returnData;
+}
 
 =head2 cmpJSON
 

@@ -7,6 +7,7 @@ use warnings;
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;
 
+use AmoryBot::CratHighlighter qw (processFileData);
 use Test::More tests => 3;
 
 # List of each group, but for testing right now just a couple
@@ -30,25 +31,4 @@ my %contentData = processFileData($contentReturn);
 foreach my $userGroup (@rights) {
   my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
-}
-
-
-# Build hash of array with per group page title, content, and last edited time
-# Maybe something about formatversion 1 or 2??? FIXME TODO
-sub processFileData {
-  my $contentRef = shift;
-  my %returnData;
-  # This monstrosity results in an array where each item is an array of hashes:
-  ## title     -> used to also snag the specific group used for hash key
-  ## revisions -> array containing one item, which is a hash, which has keys:
-  ### content   -> full page content
-  ### timestamp -> time last edited
-  # Just awful.  Then again, it could be made even worse!
-  foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
-    my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-    my @revisions = @{${$pageHash}{revisions}};
-    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
-  }
-
-  return %returnData;
 }

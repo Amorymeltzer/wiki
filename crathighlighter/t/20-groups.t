@@ -5,6 +5,7 @@ use strict;
 use warnings;
 
 use File::Slurper qw(read_text);
+use AmoryBot::CratHighlighter qw (findLocalGroupMembers);
 use JSON::MaybeXS;
 
 use Test::More tests => 3;
@@ -36,26 +37,4 @@ findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
 foreach my $userGroup (@rights) {
   my @users = sort keys %{$groupsData{$userGroup}};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
-}
-
-
-
-# Loop through each user's data and figure out what groups they've got.  Far
-# from perfect; ideally I wouldn't use the @localHashes/$localData, but until
-# I stop overwriting data on the continue, then it's a necessary hack
-sub findLocalGroupMembers {
-  my ($localData, $localRE, $dataHashRef) = @_;
-
-  foreach my $userHash (@{$localData}) {
-    # Limit to the groups in question (I always forget how neat grep is), then add
-    # that user to the lookup for each group
-    # Use map? FIXME TODO
-    my @groups = grep {/$localRE/} @{${$userHash}{groups}};
-    # Rename suppress to oversight, sigh
-    s/suppress/oversight/ for @groups;
-
-    foreach my $group (@groups) {
-      ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
-    }
-  }
 }

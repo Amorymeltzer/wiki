@@ -21,7 +21,7 @@ use File::Slurper qw(read_text write_text);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME TODO
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(findArbComMembers changeSummary oxfordComma);
+use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma);
 
 # Parse commandline options
 my %opts = ();
@@ -410,26 +410,6 @@ sub getCurrentGroups {
 }
 
 
-# Loop through each user's data and figure out what groups they've got.  Far
-# from perfect; ideally I wouldn't use the @localHashes/$localData, but until
-# I stop overwriting data on the continue, then it's a necessary hack
-sub findLocalGroupMembers {
-  my ($localData, $localRE, $dataHashRef) = @_;
-
-  foreach my $userHash (@{$localData}) {
-    # Limit to the groups in question (I always forget how neat grep is), then add
-    # that user to the lookup for each group
-    # Use map? FIXME TODO
-    my @groups = grep {/$localRE/} @{${$userHash}{groups}};
-    # Rename suppress to oversight, sigh
-    s/suppress/oversight/ for @groups;
-
-    foreach my $group (@groups) {
-      ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
-    }
-  }
-}
-
 # Get the current content of each on-wiki page, so we can compare to see if
 # there are any updates needed
 sub getPageGroups {
@@ -452,25 +432,6 @@ sub getPageGroups {
   return processFileData($contentReturn);
 }
 
-# Build hash of array with per group page title, content, and last edited time
-# Maybe something about formatversion 1 or 2??? FIXME TODO
-sub processFileData {
-  my $contentRef = shift;
-  my %returnData;
-  # This monstrosity results in an array where each item is an array of hashes:
-  ## title     -> used to also snag the specific group used for hash key
-  ## revisions -> array containing one item, which is a hash, which has keys:
-  ### content   -> full page content
-  ### timestamp -> time last edited
-  # Just awful.  Then again, it could be made even worse!
-  foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
-    my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-    my @revisions = @{${$pageHash}{revisions}};
-    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
-  }
-
-  return %returnData;
-}
 
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object

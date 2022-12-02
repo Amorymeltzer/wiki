@@ -4,10 +4,11 @@
 
 - Split out main loop somehow
 - Split out note creation
-- Maybe split cmpJSON?  Why?
+- Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - Split out git pull from main check (meaning...?)
 - Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
+- Restructure for returns from findArbComMembers, findLocalGroupMembers, etc.; should be simpler
 
 ## Tests
 
@@ -16,20 +17,29 @@
 - Posting?
 - Logging?
 
-## All subs?
+## All subs
 
-- [x] gitCheck - Removed!
+### Git
+
 - [x] gitOnMain
 - [x] gitCleanStatus
 - [x] gitSHA
+
+### API - sub module?
+
 - [ ] mwLogin - Logging of course, not to mention dieNice somehow
-- [ ] getUserAndPass UGH need to figure out logging, not to mention file versus not
 - [ ] dieNice - Works with `shift || $mw`?  Feels risky
-- [ ] botShutoffs
+- [ ] botShutoffs - Logging
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
-- [x] findArbComMembers
 - [ ] getPageGroups
-- [ ] cmpJSON
+
+### Local
+
+- [ ] getConfig UGH need to figure out logging, not to mention file versus not
+- [x] findArbComMembers
+- [x] findLocalGroupMembers
+- [x] processFileData
+- [ ] cmpJSON - Figure out JSON stuff, maybe split?  Tricky.
 - [x] changeSummary
 - [x] oxfordComma
 - [ ] mapGroups Probably will restructure and remove as a sub?
