@@ -11,6 +11,7 @@
 - Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid.
 - Restructure for returns from findArbComMembers, findLocalGroupMembers, etc.; should be simpler
 - Consider restructuring around mapGroups and formatting email/note?  Currently shit.
+- processFileData isn't testing timestamp, and is too group/user-focused
 
 ## Tests
 

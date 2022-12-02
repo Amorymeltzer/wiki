@@ -21,7 +21,7 @@ our $VERSION = '0.01';
 # Actually allow methods to be exported
 use Exporter 'import';
 # our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA;
-our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA);
+our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 our @EXPORT = \@EXPORT_OK;
 

@@ -28,6 +28,8 @@ my $fileJSON = read_text($file);
 my $contentReturn = $jsonTemplate->decode($fileJSON);
 my %contentData = processFileData($contentReturn);
 
+# Not testing timestamp??? FIXME TODO
+
 foreach my $userGroup (@rights) {
   my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);

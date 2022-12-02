@@ -21,7 +21,7 @@ use File::Slurper qw(read_text write_text);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME TODO
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers changeSummary oxfordComma mapGroups);
+use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 
 # Parse commandline options
 my %opts = ();
@@ -430,40 +430,6 @@ sub getPageGroups {
   # JSON, technically a reference to a hash
   my $contentReturn = $mw->api($contentQuery);
   return processFileData($contentReturn);
-}
-
-
-# Compare query hash with a JSON object hash, return negated equality and
-# arrays of added added and removed names from the JSON object
-sub cmpJSON {
-  my ($queryRef, $objectRef) = @_;
-
-  my @qNames = sort keys %{$queryRef};
-  my @oNames = sort keys %{$objectRef};
-
-  my (@added, @removed);
-
-  # Only if stringified arrays aren't equivalent
-  my $state = "@qNames" ne "@oNames";
-  if ($state) {
-    # Check all names from the query first, will determine if anyone new
-    # needs adding
-    foreach (@qNames) {
-      # Match in the other file
-      if (!${$objectRef}{$_}) {
-	push @added, $_;
-      } else {
-	# Don't check again
-	delete ${$objectRef}{$_};
-      }
-    }
-
-    # Whatever is left should be anyone that needs removing; @oNames is
-    # unreliable after above
-    @removed = sort keys %{$objectRef};
-  }
-
-  return ($state, \@added, \@removed);
 }
 
 
