@@ -59,7 +59,7 @@ $fetch->close();
 # unporcelain and this obviates the need for an additional status command.
 # Two lines means no updates were fetched so we don't need to act further.
 if (scalar @fetchE <= 2) {
-  return;
+  exit;
 }
 
 # Now that we've fetched the updates, we can go ahead and merge them in
@@ -77,7 +77,7 @@ if (scalar @mergeE) {
 my $newSHA = gitSHA($repo);
 if ($oldSHA ne $newSHA) {
   INFO("Updated repo from $oldSHA to $newSHA");
-  return;
+  exit;
 }
 
 # Don't entirely know what gets us here, but it seems if there's an issue with
