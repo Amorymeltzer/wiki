@@ -13,7 +13,7 @@ if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot') {
   plan skip_all => 'Tests annoying when developing';
 }
 
-use AmoryBot::CratHighlighter qw (gitOnMain gitCleanStatus gitSHA);
+use AmoryBot::CratHighlighter::GitUtils qw (gitOnMain gitCleanStatus gitSHA);
 
 my $repo = Git::Repository->new();
 

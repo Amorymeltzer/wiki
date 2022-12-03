@@ -226,7 +226,7 @@ sub mwLogin {
 
   return $mw;
 }
-# Process configuration options, including specific APi variables and getting
+# Process configuration options, including specific API variables and getting
 # relevant username/password combination from the config file.  Config consists
 # of simple pairs of username and botpassword separated by a colon:
 # Jimbo Wales:stochasticstring
@@ -245,10 +245,11 @@ sub getConfig {
   chop ${$config}{url} if $trail eq q{/};
 
   # Pop into this script's directory, mostly so config file access is easy
+  # Unnecessary? FIXME TODO
   if (${$config}{rcdir}) {
-    ${$config}{rcdir} = $Bin.q{/}.${$config}{rcdir};
+    ${$config}{rcdir} = $scriptDir.q{/}.${$config}{rcdir};
   } else {
-    ${$config}{rcdir} = $Bin;
+    ${$config}{rcdir} = $scriptDir;
   }
   chdir ${$config}{rcdir} or LOGDIE('Failed to change directory');
 
@@ -263,6 +264,7 @@ sub getConfig {
   }
   close $rc or LOGDIE($ERRNO);
   # Only accept the right user
+  # Duplicative? FIXME TODO
   if ($un !~ /^$correctname@/) {
     LOGDIE('Wrong user provided');
   }

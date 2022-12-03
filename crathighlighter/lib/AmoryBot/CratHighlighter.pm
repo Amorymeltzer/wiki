@@ -4,8 +4,6 @@ use 5.006;			# FIXME TODO
 use strict;
 use warnings;
 
-use Git::Repository;
-
 =head1 NAME
 
 AmoryBot::CratHighlighter
@@ -20,8 +18,8 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-# our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA;
-our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups gitOnMain gitCleanStatus gitSHA);
+# our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups);
+our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 our @EXPORT = \@EXPORT_OK;
 
@@ -72,7 +70,7 @@ if you don't export anything, such as for a purely object-oriented module.
 
 #   return $mw;
 # }
-# # Process configuration options, including specific APi variables and getting
+# # Process configuration options, including specific API variables and getting
 # # relevant username/password combination from the config file.  Config consists
 # # of simple pairs of username and botpassword separated by a colon:
 # # Jimbo Wales:stochasticstring
@@ -91,10 +89,11 @@ if you don't export anything, such as for a purely object-oriented module.
 #   chop ${$config}{url} if $trail eq q{/};
 
 #   # Pop into this script's directory, mostly so config file access is easy
+#   # Unnecessary? FIXME TODO
 #   if (${$config}{rcdir}) {
-#     ${$config}{rcdir} = $Bin.q{/}.${$config}{rcdir};
+#     ${$config}{rcdir} = $scriptDir.q{/}.${$config}{rcdir};
 #   } else {
-#     ${$config}{rcdir} = $Bin;
+#     ${$config}{rcdir} = $scriptDir;
 #   }
 #   chdir ${$config}{rcdir} or LOGDIE('Failed to change directory');
 
@@ -109,6 +108,7 @@ if you don't export anything, such as for a purely object-oriented module.
 #   }
 #   close $rc or LOGDIE($ERRNO);
 #   # Only accept the right user
+#   # Duplicative? FIXME TODO
 #   if ($un !~ /^$correctname@/) {
 #     LOGDIE('Wrong user provided');
 #   }
@@ -445,33 +445,6 @@ sub mapGroups {
 		steward           => 'SW'
 	       );
   return map { $_." ($lookup{$group})" } @{$usersRef};
-}
-
-
-=head2 gitOnMain
-
-# These all mis/abuse @_ for brevity, rather than merely `shift`-ing
-
-=cut
-
-sub gitOnMain {
-  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'main';
-}
-
-=head2 gitCleanStatus
-
-=cut
-
-sub gitCleanStatus {
-  return scalar $_[0]->run(status => '--porcelain');
-}
-
-=head2 gitSHA
-
-=cut
-
-sub gitSHA {
-  return scalar $_[0]->run('rev-parse' => '--short', 'HEAD');
 }
 
 =head1 AUTHOR
