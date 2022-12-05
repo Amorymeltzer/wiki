@@ -4,13 +4,12 @@
 
 - Split out main loop somehow
 - Split out note creation
-- Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc
+- Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc.  Tricky.
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - [x] Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
-- Split out git pull from main check (meaning...?)
-- Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid.
+- Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
 - Restructure for returns from findArbComMembers, findLocalGroupMembers, etc.; should be simpler
-- Consider restructuring around mapGroups and formatting email/note?  Currently shit.
+- Consider restructuring around mapGroups and formatting email/note?  Currently awful.
 - processFileData isn't testing timestamp, and is too group/user-focused
 - Cleanup module pod
 
@@ -32,7 +31,7 @@
 ### API - sub module?
 
 - [ ] mwLogin - Logging of course, not to mention dieNice somehow
-- [ ] dieNice - Works with `shift || $mw`?  Feels risky
+- [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botShutoffs - Logging
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
 - [ ] getPageGroups
@@ -43,7 +42,7 @@
 - [x] findArbComMembers
 - [x] findLocalGroupMembers
 - [x] processFileData
-- [ ] cmpJSON - Figure out JSON stuff, maybe split?  Tricky.
+- [x] cmpJSON
 - [x] changeSummary
 - [x] oxfordComma
 - [x] mapGroups

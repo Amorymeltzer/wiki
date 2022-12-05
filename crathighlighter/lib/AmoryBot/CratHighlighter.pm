@@ -121,7 +121,6 @@ if you don't export anything, such as for a purely object-oriented module.
 # # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 # sub dieNice {
-#   $mw = shift || $mw;		# Feels risky FIXME TODO
 #   my $code = $mw->{error}->{code};
 #   my $details = $mw->{error}->{details};
 

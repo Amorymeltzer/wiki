@@ -277,8 +277,6 @@ sub getConfig {
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
-  # Feels risky? FIXME TODO
-  $mw = shift || $mw;
   my $code = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
