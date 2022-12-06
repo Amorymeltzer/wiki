@@ -46,10 +46,6 @@ my $traceLog = { level  => $TRACE,
 		 layout => '%d - %m{indent}%n' };
 Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
 
-# Pop into this script's directory, mostly so file access is simplified
-# Unnecessary? FIXME TODO
-chdir "$scriptDir" or LOGDIE('Failed to change directory');
-
 
 ### Initialize API object.  Get username/password combo, log in, etc.
 my ($mw, $bot);
@@ -300,10 +296,9 @@ sub dieNice {
 sub botShutoffs {
   my $botCheckQuery = {
 		       action => 'query',
-		       # Page content
 		       prop => 'revisions',
-		       titles => $bot.'/disable',
 		       rvprop => 'content', # Don't care about much else
+		       titles => $bot.'/disable',
 		       # Get user talk messages status
 		       meta => 'userinfo',
 		       uiprop => 'hasmsg',
