@@ -21,26 +21,26 @@ use AmoryBot::CratHighlighter::GitUtils qw(gitOnMain gitCleanStatus gitSHA);
 # Figure out where this script is
 my $scriptDir = $Bin;
 
-# Set up logger
-# The full options are straightforward but overly verbose, and easy mode
-# (with stealth loggers) is succinct and sufficient
+# Set up logger.  The full options are straightforward but overly verbose, and
+# easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
+# cratHighlighterSubpages.pl
 my $infoLog =  { level  => $INFO,
 		 file   => ">>$scriptDir/log.log",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
-# Only if not being run via cron
+# Only if not being run via cron, known thanks to CRON=1 in crontab
 my $traceLog = { level  => $TRACE,
 		 file   => 'STDOUT',
 		 # message
 		 layout => '%d - %m{indent}%n' };
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
+
 # Pop into this script's directory, mostly so file access is simplified
 chdir "$scriptDir" or LOGDIE('Failed to change directory');
 
-
-### Check and update repo before doing anything unsupervised, i.e. via cron
+### Check and update repo before doing anything unsupervised
 my $repo = Git::Repository->new();
 
 if (gitCleanStatus($repo)) {

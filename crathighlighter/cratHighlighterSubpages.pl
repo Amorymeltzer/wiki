@@ -27,28 +27,28 @@ use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbCo
 my %opts = ();
 GetOptions(\%opts, 'P', 'n', 'help|h|H' => \&usage);
 
-# Figure out where this script is, if we're being run on the toolforge grid or not,
-# if we're being run via cron (thanks to CRON=1 in crontab)
-my ($scriptDir, $tool, $cron) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot', $ENV{CRON});
+# Figure out where this script is and if it's being run on the toolforge grid
+my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
 
-# Set up logger
-# The full options are straightforward but overly verbose, and easy mode
-# (with stealth loggers) is succinct and sufficient
+# Set up logger.  The full options are straightforward but overly verbose, and
+# easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
+# gitSync.pl
 my $infoLog =  { level  => $INFO,
 		 file   => ">>$scriptDir/log.log",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
-# Only if not being run via cron
+# Only if not being run via cron, known thanks to CRON=1 in crontab
 my $traceLog = { level  => $TRACE,
 		 file   => 'STDOUT',
 		 # message
 		 layout => '%d - %m{indent}%n' };
-Log::Log4perl->easy_init($cron ? $infoLog : ($infoLog, $traceLog));
+Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
-### Initialize API object.  Get username/password combo, log in, etc.
+# Used globally, set through various subroutines
 my ($mw, $bot);
+### Initialize API object.  Get username/password combo, log in, etc.
 $mw = mwLogin({username => $tool ? 'AmoryBot' : 'Amorymeltzer'});
 
 ### If it's the bot account, include a few checks for (emergency) shutoff
