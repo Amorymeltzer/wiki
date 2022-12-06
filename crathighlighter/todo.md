@@ -3,7 +3,7 @@
 ## Main module
 
 - Split out main loop somehow
-- Split out note creation
+- Split out note creation (note and updateNote)
 - Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc.  Tricky.
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - [x] Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
@@ -30,7 +30,7 @@
 
 ### API - sub module?
 
-- [ ] mwLogin - Logging of course, not to mention dieNice somehow
+- [ ] mwLogin - dieNice, which implies logging as well
 - [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botShutoffs - Logging
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there

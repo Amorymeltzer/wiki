@@ -143,15 +143,13 @@ foreach (@{$groups}) {
 # Clean up
 $mw->logout();
 
-
-# Also used for checking the previous run was successful
-my $finalNote = $localChange + $wikiChange ? 'No further updates needed' : 'No updates needed';
-INFO($finalNote);
+# This final log is also used for confirming the prior run was successful
+INFO($localChange + $wikiChange ? 'No further updates needed' : 'No updates needed');
 
 # Report final status.  Each item should already be logged above in the main
-# loop, this is just to trigger an email on changes when run via `cron`.
-# Probably not needed long run, except to update the newsletter, but at least
-# initially it's a good idea.
+# loop, this is just to trigger an email on changes when run via cron.  Probably
+# not needed except to update the newsletter, but I like having the updates.
+# Could put it behind a flag?
 if ($localChange + $wikiChange) {
   my $updateNote = "CratHighlighter updates\n\n";
 
