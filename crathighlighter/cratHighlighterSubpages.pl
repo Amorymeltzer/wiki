@@ -52,9 +52,7 @@ my ($mw, $bot);
 $mw = mwLogin({username => $tool ? 'AmoryBot' : 'Amorymeltzer'});
 
 ### If it's the bot account, include a few checks for (emergency) shutoff
-if ($tool) {
-  botShutoffs();
-}
+botShutoffs($tool);
 
 ### Get the current group information.  References since we want both a hash and
 ### an array back.  The @groups/$groups is only really used since I want an
@@ -294,6 +292,7 @@ sub dieNice {
 # are combined into one query, but in practice both of these are likely to be
 # run, so might as well save a query, and it's not so bad comparatively!
 sub botShutoffs {
+  return if ! shift;
   my $botCheckQuery = {
 		       action => 'query',
 		       prop => 'revisions',

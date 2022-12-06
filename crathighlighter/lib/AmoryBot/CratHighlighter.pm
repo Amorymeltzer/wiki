@@ -142,6 +142,7 @@ if you don't export anything, such as for a purely object-oriented module.
 # # are combined into one query, but in practice both of these are likely to be
 # # run, so might as well save a query, and it's not so bad comparatively!
 # sub botShutoffs {
+#   return if ! shift;
 #   my $botCheckQuery = {
 # 		       action => 'query',
 # 		       # Page content
