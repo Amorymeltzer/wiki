@@ -323,10 +323,13 @@ sub botShutoffs {
 # check of the active/inactive list for ArbCom members.  Big subroutine that can
 # probably be split up, although admittedly it all fits together here.
 sub getCurrentGroups {
-  # @rights doesn't include arbcom or steward at the moment since it's first being
-  # used to build the query for determining local usergroups.  Steward belongs to
-  # a different, global list (agu rather than au) and arbcom isn't real.  They'll
-  # both be added in due course, although the arbcom list needs separate getting.
+  # @rights doesn't include arbcom or steward at the moment since it's first
+  # being used to build the query for determining local usergroups.  Steward
+  # belongs to a different, global list (agu rather than au) and arbcom isn't
+  # real.  They'll both be added in due course, although the arbcom list needs
+  # separate getting.  suppress is used instead of oversight since that's the
+  # actual group name now (ugh), but the page title is still at oversight.json,
+  # so I replace that here and in findLocalGroupMembers.
   my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
   # Will store hash of editors for each group.  Basically JSON as hash of hashes.
   my %groupsData;
