@@ -282,11 +282,12 @@ sub findLocalGroupMembers {
     my @groups = grep {/$localRE/} @{${$userHash}{groups}};
 
     foreach my $group (@groups) {
-      # Rename suppress to oversight, sigh
-      $group = 'oversight' if $group eq 'suppress';
       ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
     }
   }
+
+  # Rename suppress to oversight, sigh
+  ${$dataHashRef}{oversight} = delete ${$dataHashRef}{suppress};
 }
 
 
