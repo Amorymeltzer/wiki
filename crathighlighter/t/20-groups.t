@@ -4,6 +4,8 @@
 use strict;
 use warnings;
 
+use utf8; # Alaa friendly
+
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;
 
@@ -11,7 +13,7 @@ use AmoryBot::CratHighlighter qw (findLocalGroupMembers);
 use Test::More;
 
 # List of each group, but for testing right now just a couple
-my @rights = qw(bureaucrat interface-admin suppress sysop);
+my @rights = qw(bureaucrat interface-admin suppress sysop steward);
 
 plan tests => scalar @rights;
 
@@ -21,7 +23,8 @@ my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'D
 my @inta = ('Amorymeltzer', 'Cyberpower678', 'Enterprisey', 'Evad37', 'Izno', 'MusikAnimal', 'MusikBot II', 'Oshwah', 'Ragesoss', 'Writ Keeper', 'Xaosflux');
 my @over = ('AmandaNP', 'Amorymeltzer', 'Dweller', 'Maxim', 'Oshwah', 'Primefac', 'Worm That Turned', 'Xaosflux');
 my @sys = ('Acalamari', 'AmandaNP', 'Amortias', 'Amorymeltzer', 'Avraham', 'AzaToth', 'Bibliomaniac15', 'Bishonen', 'Cecropia', 'Cyberpower678', 'Deskana', 'Dweller', 'Enterprisey', 'Evad37', 'Izno', 'MBisanz', 'Maxim', 'MusikAnimal', 'MusikBot II', 'Nihonjoe', 'Oshwah', 'Primefac', 'Ragesoss', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Writ Keeper', 'Xaosflux', 'Xeno');
-my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'sysop' => \@sys);
+my @stew = ('-revi', 'AmandaNP', 'AntiCompositeNumber', 'BRPever', 'Base', 'Bsadowski1', 'Cromium', 'Defender', 'DerHexer', 'HakanIST', 'Hasley', 'Hoo man', 'Jon Kolbert', 'Linedwell', 'MarcGarver', 'MarcoAurelio', 'Martin Urbanec', 'Masti', 'MusikAnimal', 'Operator873', 'RadiX', 'Ruslik0', 'Sakretsu', 'Schniggendiller', 'Sotiale', 'Stanglavine', 'Stryn', 'Tegel', 'Teles', 'TheresNoTime', 'Tks4Fish', 'Trijnstel', 'Vermont', 'Vituzzu', 'Wiki13', 'Wim b', 'علاء');
+my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'sysop' => \@sys, 'steward' => \@stew);
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON->new->canonical(1);
@@ -32,10 +35,14 @@ my $fileJSON = read_text($file);
 
 my $groupsReturn = $jsonTemplate->decode($fileJSON);
 my %groupsQuery = %{${$groupsReturn}{query}};
-my @localHashes = @{$groupsQuery{allusers}};
-
 # Will store hash of editors for each group.  Basically JSON as hash of hashes.
 my %groupsData;
+
+# Stewards are "simple" thanks to map and simple (one-group) structure
+# This is a simple copy-paste of the code, it's not subroutinized or anything FIXME TODO
+%{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+
+my @localHashes = @{$groupsQuery{allusers}};
 findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
 
 foreach my $userGroup (@rights) {

@@ -354,6 +354,7 @@ sub getCurrentGroups {
   my %groupsQuery = %{${$groupsReturn}{query}};
 
   # Stewards are "simple" thanks to map and simple (one-group) structure
+  # Make into a subroutine? FIXME TODO
   %{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
   push @rights, qw (steward);
 
