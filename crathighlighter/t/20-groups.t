@@ -9,7 +9,7 @@ use utf8; # Alaa friendly
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;
 
-use AmoryBot::CratHighlighter qw (findLocalGroupMembers);
+use AmoryBot::CratHighlighter qw (findStewardMembers findLocalGroupMembers);
 use Test::More;
 
 # List of each group, but for testing right now just a couple
@@ -35,12 +35,11 @@ my $fileJSON = read_text($file);
 
 my $groupsReturn = $jsonTemplate->decode($fileJSON);
 my %groupsQuery = %{${$groupsReturn}{query}};
+
 # Will store hash of editors for each group.  Basically JSON as hash of hashes.
 my %groupsData;
 
-# Stewards are "simple" thanks to map and simple (one-group) structure
-# This is a simple copy-paste of the code, it's not subroutinized or anything FIXME TODO
-%{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+%{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
 
 my @localHashes = @{$groupsQuery{allusers}};
 findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);

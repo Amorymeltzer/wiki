@@ -21,7 +21,7 @@ use File::Slurper qw(read_text write_text);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME TODO
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
+use AmoryBot::CratHighlighter qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 
 # Parse commandline options
 my %opts = ();
@@ -353,9 +353,7 @@ sub getCurrentGroups {
   # each hash containing the useris, user name, and (if requested) user groups
   my %groupsQuery = %{${$groupsReturn}{query}};
 
-  # Stewards are "simple" thanks to map and simple (one-group) structure
-  # Make into a subroutine? FIXME TODO
-  %{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+  %{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
   push @rights, qw (steward);
 
 

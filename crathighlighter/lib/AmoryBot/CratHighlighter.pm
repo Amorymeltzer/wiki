@@ -18,8 +18,7 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-# our @EXPORT_OK = qw(mwLogin getConfig dieNice botShutoffs getCurrentGroups findLocalGroupMembers findArbComMembers getPageGroups processFileData cmpJSON changeSummary oxfordComma mapGroups);
-our @EXPORT_OK = qw(processFileData findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
+our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 our @EXPORT = \@EXPORT_OK;
 
@@ -206,8 +205,7 @@ if you don't export anything, such as for a purely object-oriented module.
 #   # each hash containing the useris, user name, and (if requested) user groups
 #   my %groupsQuery = %{${$groupsReturn}{query}};
 
-#   # Stewards are "simple" thanks to map and simple (one-group) structure
-#   %{$groupsData{steward}} = map {$_->{name} => 1} @{$groupsQuery{globalallusers}};
+#   %{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
 #   push @rights, qw (steward);
 
 
@@ -254,6 +252,18 @@ if you don't export anything, such as for a purely object-oriented module.
 #   return (\%groupsData, \@rights);
 # }
 
+
+=head2 findStewardMembers
+
+Stewards are "simple" thanks to map and simple (one-group) structure.  As with
+the git utilities in AmoryBot::CratHighlighter::GitUtils, this mis/abuses @_ for
+brevity, rather than merely `shift`-ing
+
+=cut
+
+sub findStewardMembers {
+  return map {$_->{name} => 1} @{$_[0]};
+}
 
 =head2 findLocalGroupMembers
 
