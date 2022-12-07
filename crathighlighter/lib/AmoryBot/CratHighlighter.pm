@@ -278,8 +278,10 @@ sub findLocalGroupMembers {
   foreach my $userHash (@{$localData}) {
     # Limit to the groups in question (I always forget how neat grep is), then add
     # that user to the lookup for each group
-    # Use map? FIXME TODO
+    # Use map? Called quite a lot and adds up FIXME TODO
     my @groups = grep {/$localRE/} @{${$userHash}{groups}};
+
+    # Called over everything?  11+ times FIXME TODO
     # Rename suppress to oversight, sigh
     s/suppress/oversight/ for @groups;
 
@@ -366,6 +368,7 @@ sub processFileData {
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
 
+  # Some way to improve this?  Brute forced FIXME TODO
   my @qNames = sort keys %{$queryRef};
   my @oNames = sort keys %{$objectRef};
 
