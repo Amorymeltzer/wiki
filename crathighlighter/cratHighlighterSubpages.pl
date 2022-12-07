@@ -391,7 +391,7 @@ sub getCurrentGroups {
   my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
   my $acMembers = $mw->get_page({title => $acTemplate})->{q{*}};
 
-  findArbComMembers($acMembers, \%groupsData);
+  $groupsData{arbcom} = findArbComMembers($acMembers);
   unshift @rights, qw (arbcom);
 
   # Rename suppress to oversight

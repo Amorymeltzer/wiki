@@ -284,22 +284,20 @@ sub findLocalGroupMembers {
 
 =cut
 
-# Proccess each line of the page content to get the users listed
-# This could be smarter, since it's *only* doing arbcom, maybe it could just
-# return the {arbcom} hash data, which gets assigned to %groupsData{arbcom}?
-# FIXME TODO Don't add in replace, return an object
+# Process each line of the specific ArbCom page's content to get the users
+# listed.  Returns a reference to a hash.
 sub findArbComMembers {
-  my ($fh, $dataHashRef) = @_;	# Rename fh FIXME TODO
-
-  for (split /^/, $fh) {
+  my %tmpData;
+  for (split /^/, shift) {
     if (/^:#\{\{user\|(.*)}}/) {
-      ${$dataHashRef}{arbcom}{$1} = 1;
+      $tmpData{$1} = 1;
     } elsif (/^:;<big>\{\{xtn\|/) {
       # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
       # the bottom of the list during transitionary periods
       last;
     }
   }
+  return \%tmpData;
 }
 
 

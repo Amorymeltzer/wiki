@@ -18,12 +18,10 @@ plan tests => $count;
 my @arbcom = ('Beeblebrox', 'Bradv', 'Casliber', 'DGG', 'David Fuchs', 'GorillaWarfare', 'Joe Roe', 'KrakatoaKatie', 'Maxim', 'Mkdw', 'Newyorkbrad', 'SoWhy', 'Worm That Turned', 'Xeno');
 
 foreach my $file (@testFiles) {
-  $file = "t/$file";
-  # Overkill here, but mimic the actual running design
+  # This could be made even simpler by just using a direct reference and not
+  # bothering with the hash, but this mimics the actual running design.
   my %groupsData;
-  my $acMembers = read_text($file);
-
-  findArbComMembers($acMembers, \%groupsData);
+  $groupsData{arbcom} = findArbComMembers(read_text("t/$file"));
 
   my @users = sort keys %{$groupsData{arbcom}};
   is_deeply(\@users, \@arbcom, "$file");
