@@ -31,6 +31,18 @@
         ]
       },
       {
+        "userid": 21319995,
+        "name": "Amortias",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "autoreviewer",
+          "rollbacker",
+          "sysop"
+        ]
+      },
+      {
         "userid": 141948,
         "name": "Amorymeltzer",
         "groups": [
@@ -54,6 +66,17 @@
         ]
       },
       {
+        "userid": 128326,
+        "name": "AzaToth",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "abusefilter",
+          "sysop"
+        ]
+      },
+      {
         "userid": 417929,
         "name": "Bibliomaniac15",
         "groups": [
@@ -61,6 +84,17 @@
           "user",
           "autoconfirmed",
           "bureaucrat",
+          "sysop"
+        ]
+      },
+      {
+        "userid": 85193,
+        "name": "Bishonen",
+        "groups": [
+          "*",
+          "user",
+          "autoconfirmed",
+          "autoreviewer",
           "sysop"
         ]
       },
