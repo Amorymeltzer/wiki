@@ -281,11 +281,9 @@ sub findLocalGroupMembers {
     # Use map? Called quite a lot and adds up FIXME TODO
     my @groups = grep {/$localRE/} @{${$userHash}{groups}};
 
-    # Called over everything?  11+ times FIXME TODO
-    # Rename suppress to oversight, sigh
-    s/suppress/oversight/ for @groups;
-
     foreach my $group (@groups) {
+      # Rename suppress to oversight, sigh
+      $group = 'oversight' if $group eq 'suppress';
       ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
     }
   }
