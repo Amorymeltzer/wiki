@@ -51,7 +51,7 @@ findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
 
 plan tests => scalar @rights;
 
-foreach my $userGroup (@rights) {
+foreach my $userGroup (keys %actual) {
   my @users = sort keys %{$groupsData{$userGroup}};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }
