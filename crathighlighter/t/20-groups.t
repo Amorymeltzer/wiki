@@ -46,8 +46,7 @@ my %groupsData;
 %{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
 
 my @localHashes = @{$groupsQuery{allusers}};
-my $localPerms = join q{|}, @rights;
-findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
+findLocalGroupMembers(\@localHashes, \@rights, \%groupsData);
 
 plan tests => scalar @rights;
 

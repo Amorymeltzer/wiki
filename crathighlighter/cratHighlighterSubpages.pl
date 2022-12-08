@@ -335,7 +335,7 @@ sub getCurrentGroups {
   my %groupsData;
 
   ## List of each group (actually a list of users in any of the chosen groups with
-  ## all of their respective groups).  $localPerms is also used for a grep later.
+  ## all of their respective groups)
   my $localPerms = join q{|}, @rights;
   my $groupsQuery = {
 		     action => 'query',
@@ -382,7 +382,7 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
-  findLocalGroupMembers(\@localHashes, $localPerms, \%groupsData);
+  findLocalGroupMembers(\@localHashes, \@rights, \%groupsData);
 
   # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks
   # are proficient and timely, and ArbCom membership is high-profile enough that

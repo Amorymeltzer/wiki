@@ -273,16 +273,17 @@ sub findStewardMembers {
 # from perfect; ideally I wouldn't use the @localHashes/$localData, but until
 # I stop overwriting data on the continue, then it's a necessary hack
 sub findLocalGroupMembers {
-  my ($localData, $localRE, $dataHashRef) = @_;
+  my ($localData, $rightsRef, $dataHashRef) = @_;
 
+  # Limit to the groups in question then add that user to the lookup for each
+  my %interestedGroups = map {$_=>1} @{$rightsRef};
   foreach my $userHash (@{$localData}) {
-    # Limit to the groups in question (I always forget how neat grep is), then add
-    # that user to the lookup for each group
-    # Use map? Called quite a lot and adds up FIXME TODO
-    my @groups = grep {/$localRE/} @{${$userHash}{groups}};
 
-    foreach my $group (@groups) {
-      ${$dataHashRef}{$group}{${$userHash}{name}} = 1;
+    # Interestingly, doing a splice or something to remove the two leading and
+    # uninteresting groups (* and user) doesn't speed this up since the hash
+    # lookup is so fast, even with nearly 5000 calls.
+    foreach my $group (@{${$userHash}{groups}}) {
+      ${$dataHashRef}{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
     }
   }
 

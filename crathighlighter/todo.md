@@ -13,6 +13,10 @@
 - processFileData isn't testing timestamp, and is too group/user-focused
 - Cleanup module pod
 
+## Speedups
+
+- [x] findLocalGroupMembers
+
 ## Tests
 
 - Text
