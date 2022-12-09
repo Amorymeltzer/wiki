@@ -336,11 +336,10 @@ sub getCurrentGroups {
 
   ## List of each group (actually a list of users in any of the chosen groups with
   ## all of their respective groups)
-  my $localPerms = join q{|}, @rights;
   my $groupsQuery = {
 		     action => 'query',
 		     list => 'allusers|globalallusers',
-		     augroup => $localPerms,
+		     augroup => (join q{|}, @rights),
 		     auprop => 'groups',
 		     aulimit => 'max',
 		     agugroup => 'steward',
