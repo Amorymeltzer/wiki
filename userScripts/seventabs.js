@@ -3,6 +3,7 @@
 // Shorten tab names
 // Enable on certain special pages like WhatLinksHere, Move, etc.
 // Work on Modern skin
+// Account for (potential?) [[Special:Homepage]] link in one's own userspace
 
 function sevenTabs() {
 	var pCactions = document.getElementById('p-cactions');
@@ -11,7 +12,8 @@ function sevenTabs() {
 	}
 
 	var zeroCool = window.zeroCool === undefined ? true : window.zeroCool;
-	var caMain = pCactions.getElementsByTagName('li')[0];
+	// Account for (potential?) [[Special:Homepage]] link in one's own userspace
+	var caMain = (mw.config.get('wgNamespaceNumber') === 2 || mw.config.get('wgNamespaceNumber') === 3) ? document.getElementById('ca-user') : pCactions.getElementsByTagName('li')[0];
 	var caTalk = document.getElementById('ca-talk');
 	var caEdit = document.getElementById('ca-edit') || document.getElementById('ca-viewsource');
 	var caHistory = document.getElementById('ca-history');
