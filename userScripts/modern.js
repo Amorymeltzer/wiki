@@ -194,7 +194,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	  This will eventually devolve to Mainspace or not
 	*/
 	/* Not Special */
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=1095684958&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=1130302944&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
 	window.notifyByDefaultDec = true; // default is true
 	// window.notifyByDefaultDel = true; //default is false
 	window.notifyByDefaultPrd = true; // default is true
@@ -221,7 +221,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=1060844701&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1050007234&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-permalink.js]]
-			mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Jon_Harald_Søby/diffedit.js&oldid=22620102&action=raw&ctype=text/javascript' ); // [[meta:User:Jon_Harald_Søby/diffedit.js]], [[meta:User:Jon_Harald_Søby/diffedit]]
+			mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Jon_Harald_Søby/diffedit.js&oldid=22620102&action=raw&ctype=text/javascript'); // [[meta:User:Jon_Harald_Søby/diffedit.js]], [[meta:User:Jon_Harald_Søby/diffedit]]
 		}
 	});
 
