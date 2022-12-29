@@ -4,6 +4,7 @@
 // Enable on certain special pages like WhatLinksHere, Move, etc.
 // Work on Modern skin
 // Account for (potential?) [[Special:Homepage]] link in one's own userspace
+// Account for different class in one's own userspace
 
 function sevenTabs() {
 	var pCactions = document.getElementById('p-cactions');
@@ -12,8 +13,15 @@ function sevenTabs() {
 	}
 
 	var zeroCool = window.zeroCool === undefined ? true : window.zeroCool;
-	// Account for (potential?) [[Special:Homepage]] link in one's own userspace
-	var caMain = (mw.config.get('wgNamespaceNumber') === 2 || mw.config.get('wgNamespaceNumber') === 3) ? document.getElementById('ca-user') : pCactions.getElementsByTagName('li')[0];
+
+	// Account for (potential?) [[Special:Homepage]] link in one's own
+	// userspace, where there's also a different class used
+	var caMain;
+	if (mw.config.get('wgNamespaceNumber') === 2 || mw.config.get('wgNamespaceNumber') === 3) {
+		caMain = mw.config.get('wgRelevantUserName') === mw.config.get('wgUserName') ? document.getElementById('ca-user') : document.getElementById('ca-nstab-user');
+	} else {
+		caMain = pCactions.getElementsByTagName('li')[0];
+	}
 	var caTalk = document.getElementById('ca-talk');
 	var caEdit = document.getElementById('ca-edit') || document.getElementById('ca-viewsource');
 	var caHistory = document.getElementById('ca-history');
