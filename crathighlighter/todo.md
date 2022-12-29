@@ -16,6 +16,8 @@
 ## Speedups
 
 - [x] findLocalGroupMembers
+- [ ] Can I combine the two main queries?  Would require some reworking of the @rights/$groups handling
+- [ ] Is it faster to query for `auprop=>'groups'` as I do currently, or is it faster to query for `auprop=>'rights'?  The former might be slower on the server side, but the latter would require going through a lot of different arrays to look for the few that I need...
 
 ## Tests
 
