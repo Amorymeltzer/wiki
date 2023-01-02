@@ -114,7 +114,7 @@ foreach (@{$groups}) {
       my $editSummary = 'Update: '.$summary;
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
-      $editSummary .= " ($count total) (automatically via [[$bot/crathighlighter|script]])";
+      $editSummary .= " ($count total) ([[$bot/crathighlighter|bot edit]])";
       $note .= '.  Pushing now... ';
 
       # Build JSON if not already done so above; only likely if the wiki is out
