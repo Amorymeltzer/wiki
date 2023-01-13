@@ -1,0 +1,34 @@
+name: crathighlighter-release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    name: Perl macOS
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Perl
+        run: brew install perl
+
+      - name: perl -V
+        run: perl -V
+
+      - name: Install Dependencies
+        uses: perl-actions/install-with-cpm@stable
+        with:
+          sudo: false
+          install: "Test::Perl::Critic"
+          cpanfile: "./crathighlighter/cpanfile"
+
+      - name: Run tests
+        env:
+          RELEASE_TESTING: 1
+        working-directory: ./crathighlighter
+        run: prove -l
