@@ -206,3 +206,4 @@ modern.js
   historyButtonLinks.js
   endlesscontribs.js
   userhist.js
+  abusefilter-diff-check.js
