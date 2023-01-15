@@ -136,6 +136,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 							'*': false,
 							'user': false,
 							'autoconfirmed': false,
+							'named': false,
 							'abusefilter': 'edit filter manager',
 							'abusefilter-helper': 'edit filter helper',
 							'accountcreator': 'account creator',
@@ -237,6 +238,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 
 					// Show the correct gender symbol
 					var fh = document.getElementById('firstHeading') || document.getElementById('section-0');
+					if (!fh) return; // e.g. Minerva user talk pages
 					// Add classes for blocked, registered, and anonymous users
 					var newClasses = [];
 					if (blocked) {
