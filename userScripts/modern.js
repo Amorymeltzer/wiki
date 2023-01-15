@@ -216,6 +216,9 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/abusefilter-diff-check.js&oldid=1047870553&action=raw&ctype=text/javascript'); // placeholder
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/abusefilter-diff-check.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/abusefilter-diff-check.js]],
+[[User:Enterprisey/abusefilter-diff-check]], [[User:Amorymeltzer/abusefilter-diff-check.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=1060844701&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
