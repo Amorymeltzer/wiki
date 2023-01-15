@@ -126,7 +126,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			};
 			$(shortenText());
 
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=1090160359&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]]
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Bradv/endlesscontribs.js&oldid=1090160359&action=raw&ctype=text/javascript'); //[[User:Bradv/endlesscontribs.js]], [[User:Bradv/endlesscontribs]] // placeholder
 			// Testing post-load callback
 			// Will be added to below
 			window.endlesscontribsExec = shortenText;
@@ -217,6 +217,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/abusefilter-diff-check.js&oldid=1047870553&action=raw&ctype=text/javascript'); // placeholder
+			// Buttons are moved to the end of p-cactions below
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/abusefilter-diff-check.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/abusefilter-diff-check.js]], [[User:Enterprisey/abusefilter-diff-check]], [[User:Amorymeltzer/abusefilter-diff-check.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
@@ -431,6 +432,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 
 /* mw.config.exists('wgRelevantUserName') */
 if (mw.config.exists('wgRelevantUserName')) {
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=1086488948&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); // [[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	// [[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	// Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages
@@ -725,6 +727,11 @@ function loadFunct() {
 	movePortletLi('ca-formatcitations', 'p-edit');
 	movePortletLi('t-addmetric', 'p-edit');
 	movePortletLi('ca-AutoEd', 'p-edit');
+
+	// Move to the end, otherwise they get mixed up and that's annoying.
+	// Should ideally have a better place for 'em
+	movePortletLi('pt-abusefilter-examine', 'p-cactions');
+	movePortletLi('pt-abusefilter-test', 'p-cactions');
 
 	var rece = $('#n-recentchanges');
 	rece.html(rece.html() + ' <span style="font-size: x-small"><a href="/w/index.php?title=Special:RecentChanges&hideliu=1">(a)</a></span>');
