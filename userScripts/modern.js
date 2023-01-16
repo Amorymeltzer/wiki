@@ -510,6 +510,10 @@ if (['delete', 'protect', 'unprotect'].indexOf(cfg.wgAction) !== -1 || ['Revisio
 /* ACTIONS */
 if (cfg.wgAction === 'history') {
 	/* History */
+
+	//
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/url-select-revdel.js&oldid=883867406&action=raw&ctype=text/javascript'); // [[User:Enterprisey/url-select-revdel.js]], [[User:Enterprisey/url-select-revdel]]
+
 	// Make compare and revdel buttons act as links [[User:Amorymeltzer/historyButtonLinks.js]] (see [[phab:T244824]] and [[User:Mattflaschen/Compare link.js]]
 	// Compare link
 	$('input.historysubmit').on('click', function(e) {
