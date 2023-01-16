@@ -20,7 +20,7 @@ use Term::ANSIColor;
 
 my %conf;
 my $config_file = '.updatemodernrc';
-%conf = ParseConfig($config_file) if -e -f -r $config_file;
+%conf = ParseConfig($config_file) if -e -r $config_file;
 
 # Checks
 if (!exists $conf{username} || !exists $conf{password}) {
@@ -46,29 +46,11 @@ my $mw = MediaWiki::API->new({
 $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
-# Make sure only valid files are entered
-my %defaultFiles;
-my @files;
-while (<DATA>) {
-  s/\s+//g;
-  $defaultFiles{$_} = 1;
-}
-if (@ARGV != 0) {
-  if ($ARGV[0] eq 'all' || $ARGV[0] eq 'All') {
-    @files = keys %defaultFiles;
-  } else {
-    foreach (@ARGV) {
-      push @files, $_ if $defaultFiles{$_};
-    }
-  }
-} else {
-  push @files, 'modern.js';
-}
-# Push
-my $me = 'User:Amorymeltzer/';
-foreach my $file (@files) {
+
+# Push, making sure only valid files are entered
+foreach my $file (getFiles()) {
   $file =~ s/\s+//g;
-  my $page = $me.$file;
+  my $page = 'User:Amorymeltzer/'.$file;
   # Get old page content
   my $wikiPage = $mw->get_page({title => $page});
   if (defined $wikiPage->{missing}) {
@@ -101,6 +83,25 @@ foreach my $file (@files) {
   }
 }
 
+
+# Make sure only valid files are entered
+sub getFiles {
+  if (@ARGV != 0) {
+    my %defaultFiles;
+    while (<DATA>) {
+      s/\s+//g;
+      $defaultFiles{$_} = 1;
+    }
+
+    if ($ARGV[0] eq 'all' || $ARGV[0] eq 'All') {
+      return keys %defaultFiles;
+    } else {
+      return grep {$defaultFiles{$_}} @ARGV;
+    }
+  } else {
+    return 'modern.js';
+  }
+}
 
 
 # Tries to figure out a good edit summary by using the last one onwiki to find
@@ -170,40 +171,40 @@ sub buildEditSummary {
 __DATA__
 modern.js
   modern.css
-  ARAspaceless.js
-  nulledit.js
-  AdvisorDashless.js
-  oldafd.js
-  CSDHreasons.js
-  osal.js
-  CatListMainTalkLinks.js
-  pagemods.js
-  DiffOnly.js
   pedit.js
-  ReverseMarked.js
   pinfo.js
+  ARAspaceless.js
+  AdvisorDashless.js
+  CSDHreasons.js
+  CatListMainTalkLinks.js
+  DiffOnly.js
+  ReverseMarked.js
   Search_sort.js
   WRStitle.js
+  abusefilter-diff-check.js
+  articleinfo-gadget.js
+  crathighlighter.js
+  csdcheck.js
+  deletionFinder.js
+  diff-permalink.js
+  easyblock-modern.css
+  easyblock-modern.js
+  endlesscontribs.js
+  hideSectionDesktop.js
+  historyButtonLinks.js
+  logSwap.js
+  nulledit.js
+  oldafd.js
+  osal.js
+  pagemods.js
   qrfpp.js
   raw.js
-  articleinfo-gadget.js
   responseHelper.js
-  crathighlighter.js
   seventabs.js
-  csdcheck.js
   suppressionFinder.js
-  deletionFinder.js
   test.js
-  diff-permalink.js
-  easyblock-modern.js
-  easyblock-modern.css
   unhide.js
   userRightsManager.js
-  hideSectionDesktop.js
+  userhist.js
   userinfo.js
   wlhActionLinks.js
-  logSwap.js
-  historyButtonLinks.js
-  endlesscontribs.js
-  userhist.js
-  abusefilter-diff-check.js

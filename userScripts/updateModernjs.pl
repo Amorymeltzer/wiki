@@ -37,7 +37,7 @@ if (!@ARGV) {
 
 my %conf;
 my $config_file = '.updatemodernrc';
-%conf = ParseConfig($config_file) if -e -f -r $config_file;
+%conf = ParseConfig($config_file) if -e -r $config_file;
 # Config checks
 if (!exists $conf{username} || !exists $conf{password}) {
   print colored ['red'], "Username or password not found, quitting\n";
@@ -162,7 +162,9 @@ foreach my $import (@jsFiles) {
       my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
 
       # IDs are unique, just use 'em
-      map { $pagelookup{$_->{revid}} = $_->{content} } @revs;
+      foreach (@revs) {
+        $pagelookup{$_->{revid}} = $_->{content}
+      }
 
       # Store for later in hash of arrays, along with user, edit summary, and timestamp
       @{$replacings{$title}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
