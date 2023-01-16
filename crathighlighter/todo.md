@@ -1,5 +1,7 @@
 # Todos
 
+- [ ] Set up for Kubernetes, consider https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm for email
+
 ## Main module
 
 - Split out main loop somehow
@@ -36,7 +38,7 @@
 
 ### API - sub module?
 
-- [ ] mwLogin - dieNice, which implies logging as well
+- [ ] mwLogin - dieNice, which implies logging as well https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?
 - [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botShutoffs - Logging
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
@@ -44,7 +46,7 @@
 
 ### Local
 
-- [ ] getConfig UGH need to figure out logging, not to mention file versus not
+- [ ] getConfig UGH need to figure out logging, not to mention file versus not https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?
 - [x] findArbComMembers
 - [x] findLocalGroupMembers
 - [x] processFileData
