@@ -1,7 +1,12 @@
 # Todos
 
-- [ ] Set up for Kubernetes, consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> for email
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
+
+## Set up Toolforge for Kubernetes: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Kubernetes>
+
+- yaml file to replace crontab.crontab: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework#Loading_jobs_from_a_YAML_file>
+- Replace all cron runs
+- Emails?  If `onfinish` does it no matter what, then maybe consider https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm if necessary
 
 ## Main module
 
