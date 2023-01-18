@@ -1,11 +1,11 @@
-name: crathighlighter-pr
+name: wikispecies-pr
 
 on:
   push:
     branches-ignore:
       - main
     paths:
-      - crathighlighter/**
+      - wikispecies/**
 
 jobs:
   build:
@@ -22,13 +22,6 @@ jobs:
       - name: perl -V
         run: perl -V
 
-      - name: Install Dependencies
-        uses: perl-actions/install-with-cpm@stable
-        with:
-          sudo: false
-          install: "Test::Perl::Critic"
-          cpanfile: "./crathighlighter/cpanfile"
-
       - name: Run tests
-        working-directory: ./crathighlighter
+        working-directory: ./wikispecies
         run: prove -l
