@@ -19,13 +19,13 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
 # Allows script to be run from elsewhere by prepending the local library to
-# @INC.  Would be nice not to rely on FindBin again... FIXME TODO
+# @INC.  Would be nice not to rely on FindBin again... FIXME
 use lib $Bin.'/lib';
 use AmoryBot::CratHighlighter qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 
 # Parse commandline options
 my %opts = ();
-GetOptions(\%opts, 'P', 'n', 'help|h|H' => \&usage);
+GetOptions(\%opts, 'P', 'n', 'help' => \&usage);
 
 # Figure out where this script is and if it's being run on the toolforge grid
 my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
@@ -70,7 +70,7 @@ my %contentStore = getPageGroups(@{$groups});
 my ($localChange,$wikiChange) = (0,0);
 my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
 # Template for generating JSON, sorted
-# Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new FIXME TODO
+# Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
 my $jsonTemplate = JSON->new->canonical(1);
 $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
 foreach (@{$groups}) {
@@ -78,7 +78,9 @@ foreach (@{$groups}) {
   my %queryHash = %{${$groupsStore}{$_}}; # Just the specific rights hash we want
   my $queryJSON; # JSON will only be built from the query if there are any updates
 
-  # Check if local records have changed
+  # Check if local records have changed.  Would be good to check this early,
+  # just in case something is wrong.  Would be even better to just create the
+  # damn file if need be.  Remind me why I care about the local files? TODO
   my $file = $_.'.json';
   my $fileJSON = read_text($file) or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
@@ -153,7 +155,7 @@ INFO($localChange + $wikiChange ? 'No further updates needed' : 'No updates need
 if ($localChange + $wikiChange) {
   my $updateNote = "CratHighlighter updates\n\n";
 
-  # Include file/page code in first line? FIXME TODO
+  # Include file/page code in first line? TODO
   # Might need to redo handling of totAdded*, mapGroups, etc.
 
   # Local changes
@@ -212,7 +214,7 @@ sub mwLogin {
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
-  # FIXME TODO Rename to just cratHighlighter
+  # TODO Rename to just cratHighlighter
   $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
   $mw->login({lgname => $username, lgpassword => $password});
 
@@ -237,7 +239,7 @@ sub getConfig {
   chop ${$config}{url} if $trail eq q{/};
 
   # Pop into this script's directory, mostly so config file access is easy
-  # Unnecessary? FIXME TODO
+  # Unnecessary? FIXME
   if (${$config}{rcdir}) {
     ${$config}{rcdir} = $scriptDir.q{/}.${$config}{rcdir};
   } else {
@@ -256,7 +258,7 @@ sub getConfig {
   }
   close $rc or LOGDIE($ERRNO);
   # Only accept the right user
-  # Duplicative? FIXME TODO
+  # Duplicative? FIXME
   if ($un !~ /^$correctname@/) {
     LOGDIE('Wrong user provided');
   }
@@ -366,7 +368,7 @@ sub getCurrentGroups {
   while (exists ${$groupsReturn}{continue}) { # avoid autovivification
     # Process the continue parameters
     # Probably shit if there's another group that needs continuing
-    # FIXME TODO && aufrom
+    # FIXME && aufrom
     foreach (keys %{${$groupsReturn}{continue}}) {
       ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
     }
