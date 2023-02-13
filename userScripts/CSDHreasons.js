@@ -97,7 +97,6 @@ window.myDeclineReasons = [
 	['F7', 'File has a valid fair-use claim'],
 	['F8', 'File is not identical to the Commons version, or has been marked as "Keep local"'],
 	['F9', 'Not an unambiguous copyright infringement'],
-	['F10', 'File is not a useless non-media file'],
 	['F11', 'Evidence of permission has been given'],
 
 	['C1', 'Category is populated or is otherwise allowed to be empty']
