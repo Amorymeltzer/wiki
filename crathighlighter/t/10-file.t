@@ -8,10 +8,16 @@ use File::Slurper qw(read_text);
 use JSON::MaybeXS;
 
 use AmoryBot::CratHighlighter qw (processFileData);
-use Test::More tests => 3;
+use Test::More;
 
 # List of each group, but for testing right now just a couple
 my @rights = qw(bureaucrat interface-admin oversight);
+
+# Timestamp isn't being tested, but I should probably include it in the file
+# itself.  I've nothing to compare it to, but since this data is hardcoded, I
+# could at least confirm I've got it instead of undef FIXME
+plan tests => 2*scalar @rights;
+
 # Real deal
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
 my @inta = ('Amorymeltzer', 'Cyberpower678', 'Enterprisey', 'Evad37', 'Izno', 'MusikAnimal', 'MusikBot II', 'Oshwah', 'Ragesoss', 'Writ Keeper', 'Xaosflux');
@@ -28,9 +34,12 @@ my $fileJSON = read_text($file);
 my $contentReturn = $jsonTemplate->decode($fileJSON);
 my %contentData = processFileData($contentReturn);
 
-# Not testing timestamp??? FIXME TODO
+my $titleBaseName = 'User:Amorymeltzer/crathighlighter.js/';
 
 foreach my $userGroup (@rights) {
+  # Title of page matches expected
+  is("$titleBaseName$userGroup.json", $contentData{$userGroup}[0], "$userGroup title");
+  # User data matches
   my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }
