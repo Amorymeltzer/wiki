@@ -26,7 +26,10 @@ jobs:
         uses: perl-actions/install-with-cpm@stable
         with:
           sudo: false
-          install: "Test::Perl::Critic"
+          install: |
+            Test::Perl::Critic
+            Test::Pod
+            Test::Pod::Coverage
           cpanfile: "./crathighlighter/cpanfile"
 
       - name: Run tests
