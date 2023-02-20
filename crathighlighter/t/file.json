@@ -16,6 +16,7 @@
         "title": "User:Amorymeltzer/crathighlighter.js/bureaucrat.json",
         "revisions": [
           {
+            "timestamp": "2022-11-30T02:14:57Z",
             "contentformat": "application/json",
             "contentmodel": "json",
             "content": "{\n    \"Acalamari\": 1,\n    \"AmandaNP\": 1,\n    \"Avraham\": 1,\n    \"Bibliomaniac15\": 1,\n    \"Cecropia\": 1,\n    \"Deskana\": 1,\n    \"Dweller\": 1,\n    \"MBisanz\": 1,\n    \"Maxim\": 1,\n    \"Nihonjoe\": 1,\n    \"Primefac\": 1,\n    \"SilkTork\": 1,\n    \"UninvitedCompany\": 1,\n    \"Useight\": 1,\n    \"Warofdreams\": 1,\n    \"WereSpielChequers\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1,\n    \"Xeno\": 1\n}"
@@ -28,6 +29,7 @@
         "title": "User:Amorymeltzer/crathighlighter.js/interface-admin.json",
         "revisions": [
           {
+            "timestamp": "2022-12-29T03:42:05Z",
             "contentformat": "application/json",
             "contentmodel": "json",
             "content": "{\n    \"Amorymeltzer\": 1,\n    \"Cyberpower678\": 1,\n    \"Enterprisey\": 1,\n    \"Evad37\": 1,\n    \"Izno\": 1,\n    \"MusikAnimal\": 1,\n    \"MusikBot II\": 1,\n    \"Oshwah\": 1,\n    \"Ragesoss\": 1,\n    \"Writ Keeper\": 1,\n    \"Xaosflux\": 1\n}"
@@ -40,6 +42,7 @@
         "title": "User:Amorymeltzer/crathighlighter.js/oversight.json",
         "revisions": [
           {
+            "timestamp": "2022-11-30T02:14:57Z",
             "contentformat": "application/json",
             "contentmodel": "json",
             "content": "{\n    \"AmandaNP\": 1,\n    \"Amorymeltzer\": 1,\n    \"Dweller\": 1,\n    \"Maxim\": 1,\n    \"Oshwah\": 1,\n    \"Primefac\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1\n}"

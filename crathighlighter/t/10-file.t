@@ -13,10 +13,7 @@ use Test::More;
 # List of each group, but for testing right now just a couple
 my @rights = qw(bureaucrat interface-admin oversight);
 
-# Timestamp isn't being tested, but I should probably include it in the file
-# itself.  I've nothing to compare it to, but since this data is hardcoded, I
-# could at least confirm I've got it instead of undef FIXME
-plan tests => 2*scalar @rights;
+plan tests => 3*scalar @rights;
 
 # Real deal
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
@@ -34,11 +31,15 @@ my $fileJSON = read_text($file);
 my $contentReturn = $jsonTemplate->decode($fileJSON);
 my %contentData = processFileData($contentReturn);
 
+# Simple tests.  Can hardcode timestamp since the data is hardcoded
 my $titleBaseName = 'User:Amorymeltzer/crathighlighter.js/';
+my %timestamps = ('bureaucrat' => '2022-11-30T02:14:57Z', 'interface-admin' => '2022-12-29T03:42:05Z', 'oversight' => '2022-11-30T02:14:57Z');
 
 foreach my $userGroup (@rights) {
   # Title of page matches expected
   is("$titleBaseName$userGroup.json", $contentData{$userGroup}[0], "$userGroup title");
+  # Timestamp matches
+  is($timestamps{$userGroup}, $contentData{$userGroup}[2], "$userGroup timestamp");
   # User data matches
   my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);

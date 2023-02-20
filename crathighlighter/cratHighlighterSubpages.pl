@@ -417,7 +417,7 @@ sub getPageGroups {
   my $contentQuery = {
 		      action => 'query',
 		      prop => 'revisions',
-		      rvprop => 'content',
+		      rvprop => 'content|timestamp',
 		      titles => $allTitles,
 		      format => 'json',
 		      formatversion => 2
