@@ -27,14 +27,13 @@ my $contentReturn = $jsonTemplate->decode($fileJSON);
 # Stores page title, content, and last edited time in an array for each group
 my %contentData = processFileData($contentReturn);
 
-my %hash;	 # Sigh FIXME TODO
 # Name of test points to array:
 ## First two items: Parameters passed to cmpJSON
 ## Last two are expected added/removed array refs, respectively
 my %tests = (
 	     actual => [$jsonTemplate->decode($contentData{bureaucrat}[1]), $jsonTemplate->decode($contentData{'interface-admin'}[1]), \@buro, \@inta],
 	     identical => [($jsonTemplate->decode($contentData{'bureaucrat'}[1]))x2, ([])x2],
-	     empty => [(\%hash)x2, ([])x2]
+	     empty => [({})x2, ([])x2] # Empty hash ref, empty array ref
 	    );
 
 my $count = scalar keys %tests;

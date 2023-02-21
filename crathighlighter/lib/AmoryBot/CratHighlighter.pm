@@ -130,6 +130,7 @@ sub processFileData {
 
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
+# Should abort if not hashRef FIXME TODO
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
 
