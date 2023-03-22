@@ -52,6 +52,11 @@
 						summary : "Stale warning. ",
 						prompt : "The last warning issued how long ago?"
 					},
+					"Partially blocked" : {
+						code : "pb|$1",
+						summary : "User partially blocked. ",
+						prompt : "Which page(s) or namespaces was the user blocked from? (accepts wikitext)"
+					},
 					"Insufficient warnings" : {
 						code : "ns",
 						summary : "User insufficiently warned"
