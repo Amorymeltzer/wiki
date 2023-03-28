@@ -14,7 +14,7 @@ use Log::Log4perl qw(:easy);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME TODO
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter::GitUtils qw(gitOnMain gitCleanStatus gitSHA);
+use AmoryBot::CratHighlighter::GitUtils qw(:all);
 
 # Most of this is duplicated, should really avoid that FIXME TODO
 

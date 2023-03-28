@@ -21,7 +21,7 @@ use File::Slurper qw(read_text write_text);
 # Allows script to be run from elsewhere by prepending the local library to
 # @INC.  Would be nice not to rely on FindBin again... FIXME
 use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
+use AmoryBot::CratHighlighter qw(:all);
 
 # Parse commandline options
 my %opts = ();

@@ -20,7 +20,6 @@ our $VERSION = '0.01';
 use Exporter 'import';
 our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
-our @EXPORT = \@EXPORT_OK;
 
 =head1 SYNOPSIS
 

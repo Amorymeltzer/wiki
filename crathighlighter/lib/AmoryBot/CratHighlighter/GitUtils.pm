@@ -22,7 +22,6 @@ our $VERSION = '0.01';
 use Exporter 'import';
 our @EXPORT_OK = qw(gitOnMain gitCleanStatus gitSHA);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
-our @EXPORT = \@EXPORT_OK;
 
 
 =head1 SYNOPSIS
