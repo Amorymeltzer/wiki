@@ -30,11 +30,15 @@ GetOptions(\%opts, 'P', 'n', 'help' => \&usage);
 # Figure out where this script is and if it's being run on the toolforge grid
 my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
 
+my $logfile = "$scriptDir/log.log";
+# easy_init doesn't check the file is actually writable, so do it ourselves.
+# Won't help if the whole filesystem is read-only, but whaddaya gonna do?
+-W $logfile or die $ERRNO;
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # gitSync.pl
 my $infoLog =  { level  => $INFO,
-		 file   => ">>$scriptDir/log.log",
+		 file   => ">>$logfile",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };

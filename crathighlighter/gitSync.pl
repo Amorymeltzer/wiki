@@ -21,11 +21,15 @@ use AmoryBot::CratHighlighter::GitUtils qw(:all);
 # Figure out where this script is
 my $scriptDir = $Bin;
 
+my $logfile = "$scriptDir/log.log";
+# easy_init doesn't check the file is actually writable, so do it ourselves.
+# Won't help if the whole filesystem is read-only, but whaddaya gonna do?
+-W $logfile or die $ERRNO;
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # cratHighlighterSubpages.pl
 my $infoLog =  { level  => $INFO,
-		 file   => ">>$scriptDir/log.log",
+		 file   => ">>$logfile",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };

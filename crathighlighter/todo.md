@@ -1,6 +1,7 @@
 # Todos
 
 - [ ] Set up for Kubernetes, consider https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm for email
+- System to quickly turn off logging?  Occasionally necessary, e.g. <https://phabricator.wikimedia.org/T333477>
 
 ## Main module
 
