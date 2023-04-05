@@ -1,7 +1,7 @@
 PERL5LIB=/data/project/amorybot/perl5/lib/perl5
 CRON=1
-6,35 * * * * jlocal grep -q "labstore-secondary-tools-project .... ro" /proc/mounts && perl ~/wiki/crathighlighter/gitSync.pl -L || perl ~/wiki/crathighlighter/gitSync.pl
+6,35 * * * * jlocal perl ~/wiki/crathighlighter/gitSync.pl
 8,37 * * * * jlocal perl ~/wiki/crathighlighter/proveme.pl 1>/dev/null
-13,42 * * * * jlocal grep -q "labstore-secondary-tools-project .... ro" /proc/mounts && perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -L || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
-26,55 * * * * jlocal ~/wiki/crathighlighter/cron_shim.sh ~/wiki/crathighlighter/log.log 'updates needed' 'DISABLED on-wiki' || grep -q "labstore-secondary-tools-project .... ro" /proc/mounts && perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n -L || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n
+13,42 * * * * jlocal perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
+26,55 * * * * jlocal ~/wiki/crathighlighter/cron_shim.sh ~/wiki/crathighlighter/log.log 'updates needed' 'DISABLED on-wiki' || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n
 0 0 1 */3 * jlocal mv ~/wiki/crathighlighter/log.log ~/wiki/crathighlighter/log.bk.log ; touch ~/wiki/crathighlighter/log.log
