@@ -86,6 +86,8 @@ foreach (@{$groups}) {
   # just in case something is wrong.  Would be even better to just create the
   # damn file if need be.  Remind me why I care about the local files? TODO
   my $file = $_.'.json';
+  # This or doesn't actually work? FIXME
+  # Presumably others...
   my $fileJSON = read_text($file) or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
@@ -320,7 +322,7 @@ sub botShutoffs {
   # my main talk page, which I *don't* want to be an autoshutoff.
   my $userNotes = $botCheckReturnQuery->{userinfo}->{messages};
   if ($userNotes) {
-    LOGDIE("$bot has talkpage message(s))");
+    LOGDIE("$bot has talkpage message(s)");
   }
 }
 
