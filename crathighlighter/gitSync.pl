@@ -7,6 +7,7 @@ use strict;
 use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
+use Getopt::Long;
 use FindBin qw($Bin);
 
 use Log::Log4perl qw(:easy);
@@ -18,6 +19,10 @@ use AmoryBot::CratHighlighter::GitUtils qw(:all);
 
 # Most of this is duplicated, should really avoid that FIXME TODO
 
+# Parse commandline options
+my %opts = ();
+GetOptions(\%opts, 'L', 'help' => \&usage);
+
 # Figure out where this script is
 my $scriptDir = $Bin;
 
@@ -28,13 +33,13 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # cratHighlighterSubpages.pl
-my $infoLog =  { level  => $INFO,
+my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
 		 file   => ">>$logfile",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
 # Only if not being run via cron, known thanks to CRON=1 in crontab
-my $traceLog = { level  => $TRACE,
+my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 file   => 'STDOUT',
 		 # message
 		 layout => '%d - %m{indent}%n' };
@@ -88,3 +93,18 @@ if ($oldSHA ne $newSHA) {
 # GitHub itself staying up, it's possible to end up here.  Not sure what to
 # check for that or what errors to go after... FIXME TODO
 LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
+
+
+
+#### Usage statement ####
+# Use POD or whatever?
+# Escapes not necessary but ensure pretty colors
+# Final line must be unindented?
+sub usage {
+  print <<"USAGE";
+Usage: $PROGRAM_NAME [-Lh]
+      -L Turn off all logging
+      -h Print this message
+USAGE
+  exit;
+}

@@ -25,7 +25,7 @@ use AmoryBot::CratHighlighter qw(:all);
 
 # Parse commandline options
 my %opts = ();
-GetOptions(\%opts, 'P', 'n', 'help' => \&usage);
+GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
 
 # Figure out where this script is and if it's being run on the toolforge grid
 my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
@@ -37,13 +37,13 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # gitSync.pl
-my $infoLog =  { level  => $INFO,
+my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
 		 file   => ">>$logfile",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
 # Only if not being run via cron, known thanks to CRON=1 in crontab
-my $traceLog = { level  => $TRACE,
+my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 file   => 'STDOUT',
 		 # message
 		 layout => '%d - %m{indent}%n' };
@@ -438,9 +438,10 @@ sub getPageGroups {
 # Final line must be unindented?
 sub usage {
   print <<"USAGE";
-Usage: $PROGRAM_NAME [-hPn]
+Usage: $PROGRAM_NAME [-PnLh]
       -P Don't push live to the wiki
       -n Print a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
+      -L Turn off all logging
       -h Print this message
 USAGE
   exit;
