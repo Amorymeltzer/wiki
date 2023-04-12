@@ -13,6 +13,10 @@ use Getopt::Long;
 use FindBin qw($Bin);
 use List::Util qw(uniqstr);
 
+# Parse commandline options
+my %opts = ();
+GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
+
 use JSON::MaybeXS;
 use Log::Log4perl qw(:easy);
 use MediaWiki::API;
@@ -22,10 +26,6 @@ use File::Slurper qw(read_text write_text);
 # @INC.  Would be nice not to rely on FindBin again... FIXME
 use lib $Bin.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
-
-# Parse commandline options
-my %opts = ();
-GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
 
 # Figure out where this script is and if it's being run on the toolforge grid
 my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
@@ -49,11 +49,16 @@ my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 layout => '%d - %m{indent}%n' };
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
+# Pop into this script's directory so config and json file access is easy.  I'd
+# like to get rid of this, but I have to change around things when read_text and
+# write_text with the json files. FIXME TODO
+chdir $scriptDir or LOGDIE('Failed to change directory');
+
 
 # Used globally, set through various subroutines
 my ($mw, $bot);
 ### Initialize API object.  Get username/password combo, log in, etc.
-$mw = mwLogin({username => $tool ? 'AmoryBot' : 'Amorymeltzer'});
+$mw = mwLogin($tool ? 'AmoryBot' : 'Amorymeltzer');
 
 ### If it's the bot account, include a few checks for (emergency) shutoff
 botShutoffs($tool);
@@ -203,18 +208,13 @@ if ($opts{n}) {
 ######## SUBROUTINES ########
 # Handle logging in to the wiki, mainly ensuring we die nicely
 sub mwLogin {
-  # Hashref holding configuration options
-  my $config = getConfig(shift);
-
-  my $username = ${$config}{username};
-  my $password = ${$config}{password};
-
+  my ($username, $password) = getConfig(shift);
   # Used globally to make edit summaries, page titles, etc. easier
   $bot = 'User:'.$username =~ s/@.*//r;
 
   # Global, declared above
   $mw = MediaWiki::API->new({
-			     api_url => "${$config}{url}/w/api.php",
+			     api_url => 'https://en.wikipedia.org/w/api.php',
 			     retries => '1',
 			     retry_delay => '300', # Try again after 5 mins
 			     on_error => \&dieNice,
@@ -226,34 +226,13 @@ sub mwLogin {
 
   return $mw;
 }
-# Process configuration options, including specific API variables and getting
-# relevant username/password combination from the config file.  Config consists
-# of simple pairs of username and botpassword separated by a colon:
-# Jimbo Wales:stochasticstring
+# Get relevant username/password combination from the config file, which
+# consists of simple pairs of username and botpassword separated by a colon:
+## Jimbo Wales:stochasticstring
 # Config::General is easy but this is simple enough
 sub getConfig {
-  # Hashref holding configuration options
-  my $config = shift;
-  # Ensure full config
-  LOGDIE('No username provided') if ! defined ${$config}{username};
+  my $correctname = shift or LOGDIE('No username provided');
 
-  ${$config}{lang} ||= 'en';
-  ${$config}{family} ||= 'wikipedia';
-  ${$config}{url} ||= "https://${$config}{lang}.${$config}{family}.org";
-  # Just in case
-  my $trail = substr ${$config}{url}, -1;
-  chop ${$config}{url} if $trail eq q{/};
-
-  # Pop into this script's directory, mostly so config file access is easy
-  # Unnecessary? FIXME
-  if (${$config}{rcdir}) {
-    ${$config}{rcdir} = $scriptDir.q{/}.${$config}{rcdir};
-  } else {
-    ${$config}{rcdir} = $scriptDir;
-  }
-  chdir ${$config}{rcdir} or LOGDIE('Failed to change directory');
-
-  my $correctname = ${$config}{username};
   my ($un, $pw);
   open my $rc, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
   while (my $line = <$rc>) {
@@ -268,10 +247,8 @@ sub getConfig {
   if ($un !~ /^$correctname@/) {
     LOGDIE('Wrong user provided');
   }
-  ${$config}{username} = $un;
-  ${$config}{password} = $pw;
 
-  return $config;
+  return ($un, $pw);
 }
 # Nicer handling of some specific mediawiki errors, can be expanded using:
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm

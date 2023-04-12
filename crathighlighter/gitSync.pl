@@ -10,6 +10,10 @@ use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 use Getopt::Long;
 use FindBin qw($Bin);
 
+# Parse commandline options
+my %opts = ();
+GetOptions(\%opts, 'L', 'help' => \&usage);
+
 use Log::Log4perl qw(:easy);
 
 # Allows script to be run from elsewhere by prepending the local library to
@@ -18,11 +22,6 @@ use lib $Bin.'/lib';
 use AmoryBot::CratHighlighter::GitUtils qw(:all);
 
 # Most of this is duplicated, should really avoid that FIXME TODO
-
-# Parse commandline options
-my %opts = ();
-GetOptions(\%opts, 'L', 'help' => \&usage);
-
 # Figure out where this script is
 my $scriptDir = $Bin;
 
