@@ -45,11 +45,9 @@ my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
-# Pop into this script's directory, mostly so file access is simplified
-chdir "$scriptDir" or LOGDIE('Failed to change directory');
-
 ### Check and update repo before doing anything unsupervised
-my $repo = Git::Repository->new();
+# Initiate git from the right place
+my $repo = Git::Repository->new(work_tree => $scriptDir);
 
 if (gitCleanStatus($repo)) {
   LOGDIE('Repository is not clean');
