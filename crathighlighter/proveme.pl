@@ -4,10 +4,12 @@
 use strict;
 use warnings;
 
-use FindBin qw($Bin);
 use App::Prove;
 
-chdir "$Bin" or die 'Failed to change directory';
+# Figure out where this script is
+use Cwd 'abs_path';
+use File::Basename 'dirname';
+chdir dirname abs_path __FILE__ or die 'Failed to change directory';
 
 my $app = App::Prove->new;
 # Use the local lib, be real quiet

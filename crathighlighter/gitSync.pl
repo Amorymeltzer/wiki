@@ -8,22 +8,27 @@ use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
 use Getopt::Long;
-use FindBin qw($Bin);
 
 # Parse commandline options
 my %opts = ();
 GetOptions(\%opts, 'L', 'help' => \&usage);
 
-use Log::Log4perl qw(:easy);
+# Figure out where this script is
+use Cwd 'abs_path';
+use File::Basename 'dirname';
+# Get ready for local lib, also used elsewhere for logs
+my $scriptDir;
+BEGIN {
+    $scriptDir = dirname abs_path __FILE__;
+}
 
-# Allows script to be run from elsewhere by prepending the local library to
-# @INC.  Would be nice not to rely on FindBin again... FIXME TODO
-use lib $Bin.'/lib';
+# Allow script to be run from elsewhere by prepending the local library to @INC
+use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter::GitUtils qw(:all);
 
+use Log::Log4perl qw(:easy);
+
 # Most of this is duplicated, should really avoid that FIXME TODO
-# Figure out where this script is
-my $scriptDir = $Bin;
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.

@@ -10,25 +10,34 @@ use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
 
 use Getopt::Long;
-use FindBin qw($Bin);
-use List::Util qw(uniqstr);
 
 # Parse commandline options
 my %opts = ();
 GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
 
-use JSON::MaybeXS;
+# Figure out where this script is
+use Cwd 'abs_path';
+use File::Basename 'dirname';
+# Get ready for local lib, also used elsewhere for logs and chdir
+my $scriptDir;
+BEGIN {
+    $scriptDir = dirname abs_path __FILE__;
+}
+
+# Allow script to be run from elsewhere by prepending the local library to @INC
+use lib $scriptDir.'/lib';
+use AmoryBot::CratHighlighter qw(:all);
+
+use List::Util qw(uniqstr);
+
 use Log::Log4perl qw(:easy);
+use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
-# Allows script to be run from elsewhere by prepending the local library to
-# @INC.  Would be nice not to rely on FindBin again... FIXME
-use lib $Bin.'/lib';
-use AmoryBot::CratHighlighter qw(:all);
 
-# Figure out where this script is and if it's being run on the toolforge grid
-my ($scriptDir, $tool) = ($Bin, $ENV{LOGNAME} eq 'tools.amorybot');
+# Check if this is being run on the toolforge grid
+my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.
