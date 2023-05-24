@@ -28,8 +28,6 @@ BEGIN {
 use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
-use List::Util qw(uniqstr);
-
 use Log::Log4perl qw(:easy);
 use JSON::MaybeXS;
 use MediaWiki::API;
@@ -181,12 +179,8 @@ if ($localChange + $wikiChange) {
   # Local changes
   if ($localChange) {
     $updateNote .= "Files: $localChange updated\n";
-    if (scalar @totAddedFiles) {
-      $updateNote .= "\tAdded: ".oxfordComma(uniqstr @totAddedFiles)."\n";
-    }
-    if (scalar @totRemovedFiles) {
-      $updateNote .= "\tRemoved: ".oxfordComma(uniqstr @totRemovedFiles)."\n";
-    }
+    $updateNote .= buildNote('Added', \@totAddedFiles);
+    $updateNote .= buildNote('Removed', \@totRemovedFiles);
   }
 
   # Notify on pushed changes
@@ -194,12 +188,8 @@ if ($localChange + $wikiChange) {
     $updateNote .= "Pages: $wikiChange ";
     if (!$opts{P}) {
       $updateNote .= "updated\n";
-      if (scalar @totAddedPages) {
-	$updateNote .= "\tAdded: ".oxfordComma(uniqstr @totAddedPages)."\n";
-      }
-      if (scalar @totRemovedPages) {
-	$updateNote .= "\tRemoved: ".oxfordComma(uniqstr @totRemovedPages)."\n";
-      }
+      $updateNote .= buildNote('Added', \@totAddedPages);
+      $updateNote .= buildNote('Removed', \@totRemovedPages);
     } else {
       $updateNote .= "not updated\n";
     }

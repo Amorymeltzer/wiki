@@ -4,6 +4,8 @@ use 5.006;			# FIXME TODO
 use strict;
 use warnings;
 
+use List::Util qw(uniqstr);
+
 =head1 NAME
 
 AmoryBot::CratHighlighter
@@ -18,7 +20,7 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups);
+our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 =head1 SYNOPSIS
@@ -221,6 +223,18 @@ sub mapGroups {
 		steward           => 'SW'
 	       );
   return map { $_." ($lookup{$group})" } @{$usersRef};
+}
+
+
+=head2 buildNote
+
+=cut
+
+sub buildNote {
+  my ($message, $listRef) = @_;
+  return q{} if ! scalar @{$listRef};
+
+  return "\t$message: ".oxfordComma(uniqstr @{$listRef})."\n";
 }
 
 =head1 AUTHOR
