@@ -36,9 +36,6 @@ use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
 
-# Check if this is being run on the toolforge grid
-my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
-
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.
 # Won't help if the whole filesystem is read-only, but whaddaya gonna do?
@@ -63,6 +60,9 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 # write_text with the json files. FIXME TODO
 chdir $scriptDir or LOGDIE('Failed to change directory');
 
+
+# Check if this is being run on the toolforge grid
+my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
 
 # Used globally, set through various subroutines
 my ($mw, $bot);
