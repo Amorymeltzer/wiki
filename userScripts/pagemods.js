@@ -17,7 +17,8 @@ $(function () {
 		}
 
 		if (mw.config.get('wgAction') === 'delete') {
-			document.getElementById('wpReason').value = gSumm;
+			var wpReason = $('#wpReason > input');
+			wpReason.attr('value', gSumm);
 			document.getElementById('deleteconfirm').submit();
 		} else if (mw.config.get('wgAction') === 'view') {
 			mw.util.addPortletLink('p-cactions', '//en.wikipedia.org/wiki/' + mw.config.get('wgPageName') + '?action=delete&' + gWhich + '=yes', gName, gName, 'Delete under CSD ' + gName);

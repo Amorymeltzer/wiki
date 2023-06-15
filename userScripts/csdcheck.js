@@ -42,7 +42,8 @@ $(function () {
 	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
 		cleanList(document.getElementsByName('wpdropdownreason')[0]); // OS
 	} else if (mw.config.get('wgAction') === 'delete') {
-		cleanList(document.getElementById('wpDeleteReasonList'));
+		var delReasonList = document.getElementsByName('wpDeleteReasonList')[0]; // Delete is just as bad now
+		cleanList(delReasonList);
 
 		// Blank the reason box and replace with the relevant list item, if applicable
 		if (mw.util.getParamValue('wpReason')) {
@@ -51,11 +52,11 @@ $(function () {
 			var reg = /23([a-z0-9]+)/ig;
 
 			var result = reg.exec(loc);
-			var options = document.getElementById('wpDeleteReasonList').options;
+			var options = delReasonList.options;
 
 			for (var i = 0; i < options.length; i++) {
 				if (options[i].value.indexOf(result[1]) > -1) {
-					document.getElementById('wpDeleteReasonList').selectedIndex = options[i].index;
+					delReasonList.selectedIndex = options[i].index;
 					document.getElementById('wpReason').value = '';
 					break;
 				}
