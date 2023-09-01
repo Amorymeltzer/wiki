@@ -87,7 +87,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); // [[User:Markhurd/hidetopcontrib.js]]
 			window.userHideAllSubsequent = true;
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1078677422&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1166752807&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
@@ -95,7 +95,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 						"<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						'</span>');
 			$(document).on('click', '.mass_revdel_on', function() {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1078676732&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1166753295&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
 				$('#toggle_massrevdel').remove();
 				// Tighten/shorten massRevdel stuff
 				mw.loader.using(['mediawiki.util'], function() {
@@ -167,7 +167,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massedit.js&oldid=1050835632&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massedit.js]]
 					break;
 				case 'Special:Massdelete':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1058090486&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Animum/massdelete.js&oldid=1169081726&action=raw&ctype=text/javascript'); // [[User:Animum/massdelete.js]]
 					break;
 				case 'Special:Massrestore':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massrestore.js&oldid=1058090468&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massrestore.js]]
@@ -179,7 +179,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massunblock.js&oldid=1058090451&action=raw&ctype=text/javascript'); // [[User:X!/massunblock.js]], [[User:Timotheus Canens/massunblock.js]]
 					break;
 				case 'Special:Massprotect':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1070973311&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1168672260&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
 					break;
 				case 'Special:Massmove':
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1058090434&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
@@ -316,7 +316,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); // [[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1074308067&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1145768095&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1163581043&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1084627708&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
@@ -448,7 +448,7 @@ if (mw.config.exists('wgRelevantUserName')) {
 // Excessive perhaps, but want this after userinfo
 if (cfg.wgRelevantPageIsProbablyEditable) {
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/deletionFinder.js&oldid=832071460&action=raw&ctype=text/javascript'); // placeholder
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/googleTitle.js&oldid=819463472&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/googleTitle.js&oldid=1168065019&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/deletionFinder.js&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/deletionFinder.js]], [[User:Writ Keeper/Scripts/googleTitle.js]], [[User:Amorymeltzer/deletionFinder.js]]
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/suppressionFinder.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/suppressionFinder.js]] As above
 }
