@@ -10,7 +10,7 @@ var encodedTitle = encodeURIComponent(pageName);
 
 function delgoogChecker() {
 	if (mw.config.get('wgRelevantPageIsProbablyEditable') && mw.config.exists('wgRelevantPageName')) {
-		if (mw.config.get('wgCanonicalNamespace') === '' || mw.config.get('wgCanonicalNamespace') === 'Draft')
+		if (mw.config.get('wgCanonicalNamespace') === '' || mw.config.get('wgCanonicalNamespace') === 'Draft') {
 			var subjectName;
 			if (pageName.charAt(pageName.length - 1) === ')') {
 				subjectName = pageName.substring(0, pageName.lastIndexOf('(') - 1);
