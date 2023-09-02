@@ -644,11 +644,19 @@ if (cfg.wgAction === 'history') {
 	};
 
 	mw.loader.load('//he.wikipedia.org/w/index.php?title=MediaWiki:Gadget-autocomplete.js&oldid=26575308&action=raw&ctype=text/javascript'); // [[User:ערן/autocomplete.js]], [[he:MediaWiki:Gadget-autocomplete.js]] Doesn't work with tab or beta syntax highlighter
-	mw.loader.load('//tools-static.wmflabs.org/meta/scripts/pathoschild.templatescript.js'); // [[meta:TemplateScript]] Successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
+
+
+	// Replace "smart" curly quotes with the proper "'.  Not in pedit since arguably useful everywhere
+	// [[User:GorillaWarfare/script/curlies.js]], [[https://en.wikipedia.org/wiki/User:GorillaWarfare/script/curlies]
+	// Also intelligently loads [[meta:TemplateScript]], the successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
+	//  FIXME TODO tools-static still arguably unsafe-ish
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:GorillaWarfare/script/curlies.js&oldid=997234113&action=raw&ctype=text/javascript');
+
 
 	// More succinct text when editing
 	$("label[for='wpMinoredit']").html('Minor');
 	$("label[for='wpWatchthis']").html('Watch');
+
 
 	// Don't watch super active projectspace pages
 	// AIV, RFPP (and subpages), UAA, ANI, Sandbox
