@@ -12,7 +12,7 @@
 - Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
 - Restructure for returns from findLocalGroupMembers, etc.
 - Consider restructuring around mapGroups and formatting email/note?  Currently awful.
-- processFileData isn't testing timestamp, and is too group/user-focused
+- processFileData is too group/user-focused(?)
 - Cleanup module pod
 
 ## Speedups

@@ -105,8 +105,8 @@ sub findArbComMembers {
 
 =cut
 
-# Build hash of array with per group page title, content, and last edited time
-# Maybe something about formatversion 1 or 2??? FIXME TODO
+# Build hash of array with per group page title, content, and last edited time.
+# Requires the query used formatversion=2
 sub processFileData {
   my $contentRef = shift;
   my %returnData;
@@ -131,9 +131,11 @@ sub processFileData {
 
 # Compare query hash with a JSON object hash, return negated equality and
 # arrays of added added and removed names from the JSON object
-# Should abort if not hashRef FIXME TODO
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
+
+  return if ref $queryRef ne ref {};
+  return if ref $objectRef ne ref {};
 
   # Some way to improve this?  Brute forced FIXME TODO
   my @qNames = sort keys %{$queryRef};
