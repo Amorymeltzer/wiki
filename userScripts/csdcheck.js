@@ -3,15 +3,30 @@
   Expanded to work for block, (un)protect, and RevDel menus in addition to delete
 
   For deletion and blocking, THIS ONLY WORKS if you switch the new ooui menus for the old (better) ones.  Put this in your css:
-  .action-delete .oo-ui-dropdownWidget-handle, .action-protect .oo-ui-dropdownWidget-handle, .mw-special-Block .oo-ui-dropdownWidget-handle {
+
+  .action-delete .oo-ui-dropdownWidget-handle,
+  .action-protect .oo-ui-dropdownWidget-handle,
+  .mw-special-Block .oo-ui-dropdownWidget-handle,
+  .mw-special-Movepage .oo-ui-dropdownWidget-handle,
+  .mw-special-Revisiondelete .oo-ui-dropdownWidget-handle,
+  .mw-special-AbuseLog .oo-ui-dropdownWidget-handle,
+  .mw-special-Contributions .oo-ui-dropdownWidget-handle {
   display: none;
   }
-  .action-delete .oo-ui-indicator-down, .action-protect .oo-ui-indicator-down, .mw-special-Block .oo-ui-indicator-down {
+
+  .action-delete .oo-ui-indicator-down,
+  .action-protect .oo-ui-indicator-down,
+  .mw-special-Block .oo-ui-indicator-down,
+  .mw-special-Movepage .oo-ui-indicator-down,
+  .mw-special-Revisiondelete  .oo-ui-indicator-down,
+  .mw-special-AbuseLog .oo-ui-indicator-down,
+  .mw-special-Contributions .oo-ui-indicator-down {
   display: inline !important;
   }
 
+
   Alternatively, put this in your js:
-  if (mw.config.get('wgAction') === 'delete' || mw.config.get('wgAction') === 'protect' || mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
+  if ((['delete', 'protect', 'unprotect'].indexOf(mw.config.get('wgAction')) !== -1) || (['Revisiondelete', 'Block', 'AbuseLog'].indexOf(mw.config.get('wgCanonicalSpecialPageName')) !== -1)) {
   mw.util.addCSS(".oo-ui-dropdownWidget-handle {display: none;}");
   mw.util.addCSS(".oo-ui-indicator-down {display: inline !important;}");
   }
@@ -36,7 +51,7 @@ $(function () {
 	if (mw.config.get('wgAction') === 'protect' || mw.config.get('wgAction') === 'unprotect') {
 		cleanList(document.getElementsByName('wpProtectReasonSelection')[0]);
 	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Revisiondelete') {
-		cleanList(document.getElementById('wpRevDeleteReasonList'));
+		cleanList(document.getElementsByName('wpRevDeleteReasonList')[0]); // Sigh
 	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'Block') {
 		cleanList(document.getElementsByName('wpReason')[0]); // Block dropdown is bad and should feel bad
 	} else if (mw.config.get('wgCanonicalSpecialPageName') === 'AbuseLog') {
