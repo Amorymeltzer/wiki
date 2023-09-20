@@ -1,6 +1,7 @@
 package AmoryBot::CratHighlighter;
 
-use 5.006;			# FIXME TODO
+# Just for POD, toolforge has 5.028
+use 5.006;
 use strict;
 use warnings;
 
@@ -60,6 +61,7 @@ sub findStewardMembers {
 # Loop through each user's data and figure out what groups they've got.  Far
 # from perfect; ideally I wouldn't use the @localHashes/$localData, but until
 # I stop overwriting data on the continue, then it's a necessary hack
+# Should rewrite to return FIXME TODO
 sub findLocalGroupMembers {
   my ($localData, $rightsRef, $dataHashRef) = @_;
 
@@ -137,7 +139,7 @@ sub cmpJSON {
   return if ref $queryRef ne ref {};
   return if ref $objectRef ne ref {};
 
-  # Some way to improve this?  Brute forced FIXME TODO
+  # Feels inefficient/brute force-y, but it's quick enough
   my @qNames = sort keys %{$queryRef};
   my @oNames = sort keys %{$objectRef};
 

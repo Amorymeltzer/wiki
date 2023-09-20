@@ -365,6 +365,7 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
+  # Should rework this whole thang (above AND below) to return TODO FIXME
   findLocalGroupMembers(\@localHashes, \@rights, \%groupsData);
 
   # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks

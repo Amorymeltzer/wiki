@@ -1,6 +1,7 @@
 package AmoryBot::CratHighlighter::GitUtils;
 
-use 5.006;			# FIXME TODO
+# Just for POD, toolforge has 5.028
+use 5.006;
 use strict;
 use warnings;
 

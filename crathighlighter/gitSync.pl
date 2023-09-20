@@ -92,8 +92,8 @@ if ($oldSHA ne $newSHA) {
 }
 
 # Don't entirely know what gets us here, but it seems if there's an issue with
-# GitHub itself staying up, it's possible to end up here.  Not sure what to
-# check for that or what errors to go after... FIXME TODO
+# GitHub itself staying up, it's possible to end up here.  Don't know that
+# there's anything else to check or look for...
 LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
 
 
