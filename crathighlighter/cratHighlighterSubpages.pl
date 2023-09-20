@@ -219,8 +219,7 @@ sub mwLogin {
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
-  # TODO Rename to just cratHighlighter
-  $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
+  $mw->{ua}->agent($PROGRAM_NAME.' ('.$mw->{ua}->agent.')');
   $mw->login({lgname => $username, lgpassword => $password});
 
   return $mw;
