@@ -12,9 +12,9 @@ use Test::More tests => 5;
 # match with the data structures in the main script, but should probably be
 # reworked at some point FIXME TODO
 my @AddedFiles = ('Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)');
-my @RemovedFiles = ('Amorymeltzer (OS)', 'Cyberpower678 (SYS)', 'Enterprisey (IA)');
+my @RemovedFiles = ('Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)');
 my @AddedPages = ('Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)');
-my @RemovedPages = ('Amorymeltzer (OS)', 'Cyberpower678 (SYS)', 'Enterprisey (IA)');
+my @RemovedPages = ('Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)');
 my @testData = (
 		\@AddedFiles,
 		\@RemovedFiles,
@@ -22,27 +22,26 @@ my @testData = (
 		\@RemovedPages
 	       );
 # Number of local and wiki changes, repeatedly used
-my ($l, $w) = (4, 5);
+my ($l, $w) = (4, 6);
 my $push = 0;
 
+# Note pieces
+my $header = "CratHighlighter updates\n\n";
+my $files = "Files: $l updated\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
+my $pages = "Pages: $w updated\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
 
-my $note = "CratHighlighter updates\n\nFiles: $l updated\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)\nPages: $w updated\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)\n";
-
+my $note = $header.$files.$pages;
 is(createEmail($l, $w, \@testData, $push), $note, 'basic test');
 
-my $noPushNote = "CratHighlighter updates\n\nFiles: $l updated\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)\nPages: $w not updated\n";
-
+my $noPushNote = $header.$files."Pages: $w not updated\n";
 is(createEmail($l, $w, \@testData, !$push), $noPushNote, 'not pushed');
 
-my $noLocalNote = "CratHighlighter updates\n\nPages: $w updated\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)\n";
-
+my $noLocalNote = $header.$pages;
 is(createEmail(0, $w, \@testData, $push), $noLocalNote, 'no local');
 
-my $noWikiNote = "CratHighlighter updates\n\nFiles: $l updated\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)\n";
-
+my $noWikiNote = $header.$files;
 is(createEmail($l, 0, \@testData, $push), $noWikiNote, 'no wiki');
 
 # Not possible (see note in main script) but eventually will be...
 my $noneNote = "CratHighlighter updates\n\n";
-
 is(createEmail(0, 0, \@testData, $push), $noneNote, 'none');
