@@ -554,7 +554,7 @@
 				};
 			} else switch (mw.config.get('wgPageName')) {
 				case 'Wikipedia:Requests_for_permissions/Rollback':
-				indentation = "::";
+				indentation = ":";
 				templateName = "subst:RFPR";
 				defaultPrompt = "Admin's name?";
 				responses = {
@@ -591,7 +591,7 @@
 				};
 				break;
 				case 'Wikipedia:Requests_for_permissions/Confirmed':
-				indentation = "::";
+				indentation = ":";
 				templateName = "subst:RFPC";
 				responses = {
 					"Done" : {
@@ -647,7 +647,7 @@
 				};
 				break;
 				case 'Wikipedia:Requests_for_permissions/Page_mover':
-				indentation = "::";
+				indentation = ":";
 				templateName = "subst:RFPPM";
 				responses = {
 					"Done" : {
