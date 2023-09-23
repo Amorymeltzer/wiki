@@ -21,7 +21,7 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote);
+our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 =head1 SYNOPSIS
@@ -240,6 +240,47 @@ sub buildNote {
 
   return "\t$message: ".oxfordComma(uniqstr @{$listRef})."\n";
 }
+
+
+=head2 createEmail
+
+=cut
+
+# Report final status via email.  Each item should already be logged above in the
+# main loop, this is just to trigger an email on changes when run via cron.
+# Probably not needed except to update the newsletter, but I like having the
+# updates.  Could put it behind a flag?
+sub createEmail {
+  my ($local, $wiki, $changeRef, $pushing) = @_;
+
+  my $updateNote = "CratHighlighter updates\n\n";
+
+  # Include file/page code in first line? TODO
+  # Might need to redo handling of Added/Removed*, mapGroups, etc.
+
+  # Local changes
+  if ($local) {
+    $updateNote .= "Files: $local updated\n";
+    $updateNote .= buildNote('Added', @{$changeRef}[0]);
+    $updateNote .= buildNote('Removed', @{$changeRef}[1]);
+  }
+
+  # Notify on pushed changes
+  if ($wiki) {
+    $updateNote .= "Pages: $wiki ";
+    if (!$pushing) {
+      $updateNote .= "updated\n";
+      $updateNote .= buildNote('Added', @{$changeRef}[2]);
+      $updateNote .= buildNote('Removed', @{$changeRef}[3]);
+    } else {
+      $updateNote .= "not updated\n";
+    }
+  }
+
+  return $updateNote;
+
+}
+
 
 =head1 AUTHOR
 

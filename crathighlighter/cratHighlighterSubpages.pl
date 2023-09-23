@@ -84,7 +84,7 @@ my %contentStore = getPageGroups(@{$groups});
 # These conveniently function as indicators as well as counters for number of
 # files or pages changed, respectively
 my ($localChange,$wikiChange) = (0,0);
-my (@totAddedFiles, @totRemovedFiles, @totAddedPages, @totRemovedPages);
+my (@AddedFiles, @RemovedFiles, @AddedPages, @RemovedPages);
 # Template for generating JSON, sorted
 # Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
 my $jsonTemplate = JSON->new->canonical(1);
@@ -112,8 +112,8 @@ foreach (@{$groups}) {
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     write_text($file, $queryJSON);
 
-    push @totAddedFiles, mapGroups($_, \@{$fileAdded});
-    push @totRemovedFiles, mapGroups($_, \@{$fileRemoved});
+    push @AddedFiles, mapGroups($_, \@{$fileAdded});
+    push @RemovedFiles, mapGroups($_, \@{$fileRemoved});
   }
 
   # Check if on-wiki records have changed
@@ -126,8 +126,8 @@ foreach (@{$groups}) {
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
-    push @totAddedPages, mapGroups($_, \@{$wikiAdded});
-    push @totRemovedPages, mapGroups($_, \@{$wikiRemoved});
+    push @AddedPages, mapGroups($_, \@{$wikiAdded});
+    push @RemovedPages, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
       # Multifaceted and overly-verbose edit summaries are the best!
@@ -163,39 +163,28 @@ foreach (@{$groups}) {
 # Clean up
 $mw->logout();
 
-# This final log is also used for confirming the prior run was successful
-INFO($localChange + $wikiChange ? 'No further updates needed' : 'No updates needed');
-
-# Report final status.  Each item should already be logged above in the main
-# loop, this is just to trigger an email on changes when run via cron.  Probably
-# not needed except to update the newsletter, but I like having the updates.
-# Could put it behind a flag?
+# This final log is also used for confirming the prior run was successful.  This
+# *could* be part of createNote, but currently all Log::Log4perl stuff is in
+# this main file and not in the library.  That could (and perhaps will!) be
+# changed, but for now this remains separate.
 if ($localChange + $wikiChange) {
-  my $updateNote = "CratHighlighter updates\n\n";
+  INFO('No further updates needed');
 
-  # Include file/page code in first line? TODO
-  # Might need to redo handling of totAdded*, mapGroups, etc.
+  # I hate array referencing, somehow hashes are easier?!
+  my @total = (
+	       \@AddedFiles,
+	       \@RemovedFiles,
+	       \@AddedPages,
+	       \@RemovedPages
+	      );
 
-  # Local changes
-  if ($localChange) {
-    $updateNote .= "Files: $localChange updated\n";
-    $updateNote .= buildNote('Added', \@totAddedFiles);
-    $updateNote .= buildNote('Removed', \@totRemovedFiles);
-  }
-
-  # Notify on pushed changes
-  if ($wikiChange) {
-    $updateNote .= "Pages: $wikiChange ";
-    if (!$opts{P}) {
-      $updateNote .= "updated\n";
-      $updateNote .= buildNote('Added', \@totAddedPages);
-      $updateNote .= buildNote('Removed', \@totRemovedPages);
-    } else {
-      $updateNote .= "not updated\n";
-    }
-  }
-
-  print $updateNote;
+  # Report final status via email.  Each item should already be logged above in the
+  # main loop, this is just to trigger an email on changes when run via cron.
+  # Probably not needed except to update the newsletter, but I like having the
+  # updates.  Could put it behind a flag?
+  print createEmail($localChange, $wikiChange, \@total, $opts{P});
+} else {
+  INFO('No updates needed');
 }
 
 # Useful if used when running after a failure, to ensure success on follow-up
