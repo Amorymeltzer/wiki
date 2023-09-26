@@ -31,8 +31,7 @@ my $push = 0;
 
 # Note pieces
 my $header = 'CratHighlighter updates';
-my $insert = (!$push && $w) ? " (@w)" : q{};
-my $headerPlus = "$header$insert\n\n";
+my $headerPlus = "$header (@w)\n\n";
 my $headerBare = "$header\n\n";
 my $files = "Files: $l updated (@l)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
 my $pages = "Pages: $w updated (@w)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
