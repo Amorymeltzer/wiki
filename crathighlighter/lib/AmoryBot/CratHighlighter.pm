@@ -251,15 +251,19 @@ sub buildNote {
 # Probably not needed except to update the newsletter, but I like having the
 # updates.  Could put it behind a flag?
 sub createEmail {
-  my ($localRef, $wikiRef, $changeRef, $pushing) = @_;
+  my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
 
-  my $updateNote = "CratHighlighter updates\n\n";
+  my $updateNote = 'CratHighlighter updates';
+  # Include pages changed if pushing and available
+  if (!$skipPush && scalar @{$wikiRef}) {
+    $updateNote .= " (@{$wikiRef})";
+  }
+  # Maybe remove these if there's nothing else to be added FIXME TODO
+  $updateNote .= "\n\n";
 
-  # Include file/page code in first line? TODO
-  # Might need to redo handling of Added/Removed*, mapGroups, etc.
 
   # Local changes
-  my $local = scalar @{$localRef};
+  my $local = @{$localRef};
   if ($local) {
     $updateNote .= "Files: $local updated (@{$localRef})\n";
     $updateNote .= buildNote('Added', @{$changeRef}[0]);
@@ -270,7 +274,7 @@ sub createEmail {
   my $wiki = @{$wikiRef};
   if ($wiki) {
     $updateNote .= "Pages: $wiki ";
-    if (!$pushing) {
+    if (!$skipPush) {
       $updateNote .= "updated (@{$wikiRef})\n";
       $updateNote .= buildNote('Added', @{$changeRef}[2]);
       $updateNote .= buildNote('Removed', @{$changeRef}[3]);

@@ -30,22 +30,25 @@ my ($l, $w) = (scalar @l, scalar @w);
 my $push = 0;
 
 # Note pieces
-my $header = "CratHighlighter updates\n\n";
+my $header = 'CratHighlighter updates';
+my $insert = (!$push && $w) ? " (@w)" : q{};
+my $headerPlus = "$header$insert\n\n";
+my $headerBare = "$header\n\n";
 my $files = "Files: $l updated (@l)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
 my $pages = "Pages: $w updated (@w)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
 
-my $note = $header.$files.$pages;
+my $note = $headerPlus.$files.$pages;
 is(createEmail(\@l, \@w, \@testData, $push), $note, 'basic test');
 
-my $noPushNote = $header.$files."Pages: $w not updated (@w)\n";
+my $noPushNote = $headerBare.$files."Pages: $w not updated (@w)\n";
 is(createEmail(\@l, \@w, \@testData, !$push), $noPushNote, 'not pushed');
 
-my $noLocalNote = $header.$pages;
+my $noLocalNote = $headerPlus.$pages;
 is(createEmail(\@null, \@w, \@testData, $push), $noLocalNote, 'no local');
 
-my $noWikiNote = $header.$files;
+my $noWikiNote = $headerBare.$files;
 is(createEmail(\@l, \@null, \@testData, $push), $noWikiNote, 'no wiki');
 
 # Not possible (see note in main script) but eventually will be...
-my $noneNote = "CratHighlighter updates\n\n";
+my $noneNote = $headerBare;
 is(createEmail(\@null, \@null, \@testData, $push), $noneNote, 'none');

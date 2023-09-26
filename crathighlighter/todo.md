@@ -5,13 +5,14 @@
 ## Main module
 
 - Split out main loop somehow
-- Split out note creation (note and updateNote) (kind of done?  See createEmail)
+- [x] Split out note creation (note and updateNote) (done but poorly)
+- Possible to improve note creation?
 - Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc.  Tricky.
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - [x] Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
 - Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
 - Restructure for returns from findLocalGroupMembers, etc.
-- Consider restructuring around mapGroups and formatting email/note?  Currently awful.
+- [x] Consider restructuring around mapGroups and formatting email/note?  Currently awful.
 - processFileData is too group/user-focused(?)
 - Cleanup module pod
 
