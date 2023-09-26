@@ -21,15 +21,15 @@
                     'id': 'endlesscontribs',
                     'class': 'mw-ui-button mw-ui-progressive'})
                 .text('Load more')
-                .insertAfter($('.mw-contributions-list'))
+                .insertAfter($('.mw-pager-body'))
                 .click(function () {
                     $('body').addClass('endlesscontribs');
                     if (!loading) {
                         loading = true;
                         $.get(nexturl, function(data) {
                             var $html = $(data);
-                            const $ul = $('.mw-contributions-list');
-                            const $newul = $html.find('.mw-contributions-list > li');
+                            const $ul = $('.mw-pager-body');
+                            const $newul = $html.find('.mw-pager-body > li');
                             $newul.each(function (index, element) {
                                 $ul.append($(element));
                             });

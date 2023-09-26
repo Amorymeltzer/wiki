@@ -80,8 +80,8 @@ $(function () {
 if (cfg.wgCanonicalNamespace === 'Special') {
 	switch (cfg.wgCanonicalSpecialPageName) {
 		case 'Contributions':
-			if ($('.mw-contributions-list').length) { // Save some space
-				var paraGone = $('.mw-contributions-list')[0].previousSibling; // Remove <p> tag revision date nav
+			if ($('.mw-pager-body').length) { // Save some space
+				var paraGone = $('.mw-pager-body')[0].previousSibling; // Remove <p> tag revision date nav
 				$(paraGone).replaceWith(paraGone.childNodes);
 			}
 
@@ -91,7 +91,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
-			$('.mw-contributions-list').before("<span id=toggle_massrevdel class='toggle_massrevdel' style='font-size:85%;'>" +
+			$('.mw-pager-body').before("<span id=toggle_massrevdel class='toggle_massrevdel' style='font-size:85%;'>" +
 						"<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						'</span>');
 			$(document).on('click', '.mass_revdel_on', function() {
