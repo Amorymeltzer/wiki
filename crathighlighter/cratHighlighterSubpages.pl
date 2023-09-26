@@ -83,7 +83,7 @@ my %contentStore = getPageGroups(@{$groups});
 ### Main loop for each group
 # These conveniently function as indicators as well as counters for number of
 # files or pages changed, respectively
-my ($localChange,$wikiChange) = (0,0);
+my (@localChange, @wikiChange);
 my (@AddedFiles, @RemovedFiles, @AddedPages, @RemovedPages);
 # Template for generating JSON, sorted
 # Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
@@ -104,7 +104,7 @@ foreach (@{$groups}) {
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   if ($fileState) {
-    $localChange++;
+    push @localChange, $_;
     $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
 
     # Build JSON from the received query now that we need it
@@ -122,7 +122,7 @@ foreach (@{$groups}) {
 
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
-    $wikiChange++;
+    push @wikiChange, $_;
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
@@ -167,7 +167,7 @@ $mw->logout();
 # *could* be part of createNote, but currently all Log::Log4perl stuff is in
 # this main file and not in the library.  That could (and perhaps will!) be
 # changed, but for now this remains separate.
-if ($localChange + $wikiChange) {
+if (scalar @localChange + scalar @wikiChange) {
   INFO('No further updates needed');
 
   # I hate array referencing, somehow hashes are easier?!
@@ -182,7 +182,7 @@ if ($localChange + $wikiChange) {
   # main loop, this is just to trigger an email on changes when run via cron.
   # Probably not needed except to update the newsletter, but I like having the
   # updates.  Could put it behind a flag?
-  print createEmail($localChange, $wikiChange, \@total, $opts{P});
+  print createEmail(\@localChange, \@wikiChange, \@total, $opts{P});
 } else {
   INFO('No updates needed');
 }

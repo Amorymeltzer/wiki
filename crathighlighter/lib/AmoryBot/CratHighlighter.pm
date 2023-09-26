@@ -251,7 +251,7 @@ sub buildNote {
 # Probably not needed except to update the newsletter, but I like having the
 # updates.  Could put it behind a flag?
 sub createEmail {
-  my ($local, $wiki, $changeRef, $pushing) = @_;
+  my ($localRef, $wikiRef, $changeRef, $pushing) = @_;
 
   my $updateNote = "CratHighlighter updates\n\n";
 
@@ -259,21 +259,23 @@ sub createEmail {
   # Might need to redo handling of Added/Removed*, mapGroups, etc.
 
   # Local changes
+  my $local = scalar @{$localRef};
   if ($local) {
-    $updateNote .= "Files: $local updated\n";
+    $updateNote .= "Files: $local updated (@{$localRef})\n";
     $updateNote .= buildNote('Added', @{$changeRef}[0]);
     $updateNote .= buildNote('Removed', @{$changeRef}[1]);
   }
 
   # Notify on pushed changes
+  my $wiki = @{$wikiRef};
   if ($wiki) {
     $updateNote .= "Pages: $wiki ";
     if (!$pushing) {
-      $updateNote .= "updated\n";
+      $updateNote .= "updated (@{$wikiRef})\n";
       $updateNote .= buildNote('Added', @{$changeRef}[2]);
       $updateNote .= buildNote('Removed', @{$changeRef}[3]);
     } else {
-      $updateNote .= "not updated\n";
+      $updateNote .= "not updated (@{$wikiRef})\n";
     }
   }
 
