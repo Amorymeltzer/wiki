@@ -12,9 +12,8 @@ use JSON::MaybeXS;
 use AmoryBot::CratHighlighter qw (findStewardMembers findLocalGroupMembers);
 use Test::More;
 
-# List of each group, different from main script in that steward is included
-# right off the bat, since we're not using this to build the query
-my @rights = qw (bureaucrat suppress checkuser interface-admin sysop steward);
+# List groups; just like in the main script, steward and arbcom are added later
+my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
 # [] used to create array references from the jump
 my %actual = (
 	      'bureaucrat' => ['Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno'],
@@ -27,7 +26,6 @@ my %actual = (
 	      'sysop' => ['Acalamari', 'AmandaNP', 'Amortias', 'Amorymeltzer', 'Avraham', 'AzaToth', 'Bibliomaniac15', 'Bishonen', 'Cecropia', 'Cyberpower678', 'Deskana', 'Dweller', 'Enterprisey', 'Evad37', 'Izno', 'MBisanz', 'Maxim', 'MusikAnimal', 'MusikBot II', 'Nihonjoe', 'Oshwah', 'Primefac', 'Ragesoss', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Writ Keeper', 'Xaosflux', 'Xeno'],
 	      'steward' => ['-revi', 'AmandaNP', 'AntiCompositeNumber', 'BRPever', 'Base', 'Bsadowski1', 'Cromium', 'Defender', 'DerHexer', 'HakanIST', 'Hasley', 'Hoo man', 'Jon Kolbert', 'Linedwell', 'MarcGarver', 'MarcoAurelio', 'Martin Urbanec', 'Masti', 'MusikAnimal', 'Operator873', 'RadiX', 'Ruslik0', 'Sakretsu', 'Schniggendiller', 'Sotiale', 'Stanglavine', 'Stryn', 'Tegel', 'Teles', 'TheresNoTime', 'Tks4Fish', 'Trijnstel', 'Vermont', 'Vituzzu', 'Wiki13', 'Wim b', 'علاء']
 	     );
-
 
 
 # Template for generating JSON, sorted
@@ -43,10 +41,19 @@ my %groupsQuery = %{${$groupsReturn}{query}};
 # Will store hash of editors for each group.  Basically JSON as hash of hashes.
 my %groupsData;
 
-%{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
+# Need to store stewards for later since they get overwritten by the continue,
+# and it's faster/nicer to only process the (large) set of local groups once,
+# since it's by user, not by group.  Stewards are easy anyway.
+my $stewRef = $groupsQuery{globalallusers};
 
+
+# Just to match the main script
 my @localHashes = @{$groupsQuery{allusers}};
-findLocalGroupMembers(\@localHashes, \@rights, \%groupsData);
+%groupsData = findLocalGroupMembers(\@localHashes, \@rights);
+
+# Stewards are easy
+%{$groupsData{steward}} = findStewardMembers($stewRef);
+push @rights, qw (steward);
 
 plan tests => scalar @rights;
 

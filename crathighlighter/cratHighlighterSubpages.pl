@@ -324,12 +324,13 @@ sub getCurrentGroups {
   # $mw->list doesn't work with multiple lists???  Lame
   my $groupsReturn = $mw->api($groupsQuery);
   # Hash containing each list as a key, with the results as an array of hashes,
-  # each hash containing the useris, user name, and (if requested) user groups
+  # each hash containing the userid, user name, and (if requested) user groups
   my %groupsQuery = %{${$groupsReturn}{query}};
 
-  %{$groupsData{steward}} = findStewardMembers($groupsQuery{globalallusers});
-  push @rights, qw (steward);
-
+  # Need to store stewards for later since they get overwritten by the continue,
+  # and it's faster/nicer to only process the (large) set of local groups once,
+  # since it's by user, not by group.  Stewards are easy anyway.
+  my $stewRef = $groupsQuery{globalallusers};
 
   # Local groups need a loop for processing who goes where, but there are a lot of
   # sysops, so we need to either get the bot flag or iterate over everyone
@@ -353,8 +354,13 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
-  # Should rework this whole thang (above AND below) to return TODO FIXME
-  findLocalGroupMembers(\@localHashes, \@rights, \%groupsData);
+  # Go through each of the local groups and find the people (technically the
+  # other way around)
+  %groupsData = findLocalGroupMembers(\@localHashes, \@rights);
+
+  # Stewards easy
+  %{$groupsData{steward}} = findStewardMembers($stewRef);
+  push @rights, qw (steward);
 
   # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks
   # are proficient and timely, and ArbCom membership is high-profile enough that

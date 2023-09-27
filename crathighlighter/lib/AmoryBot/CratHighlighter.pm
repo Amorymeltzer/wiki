@@ -63,22 +63,24 @@ sub findStewardMembers {
 # I stop overwriting data on the continue, then it's a necessary hack
 # Should rewrite to return FIXME TODO
 sub findLocalGroupMembers {
-  my ($localData, $rightsRef, $dataHashRef) = @_;
+  my ($localData, $rightsRef) = @_;
+  my %dataHash;
 
   # Limit to the groups in question then add that user to the lookup for each
   my %interestedGroups = map {$_=>1} @{$rightsRef};
   foreach my $userHash (@{$localData}) {
-
     # Interestingly, doing a splice or something to remove the two leading and
     # uninteresting groups (* and user) doesn't speed this up since the hash
     # lookup is so fast, even with nearly 5000 calls.
     foreach my $group (@{${$userHash}{groups}}) {
-      ${$dataHashRef}{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
+      $dataHash{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
     }
   }
 
   # Rename suppress to oversight, sigh
-  ${$dataHashRef}{oversight} = delete ${$dataHashRef}{suppress};
+  $dataHash{oversight} = delete $dataHash{suppress};
+
+  return %dataHash;
 }
 
 

@@ -11,7 +11,7 @@
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - [x] Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
 - Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
-- [ ] Restructure `findLocalGroupMembers` to return return
+- [x] Restructure `findLocalGroupMembers` to use return
 - [x] Consider restructuring around mapGroups and formatting email/note?  Currently awful.
 - processFileData is too group/user-focused(?)
 - Cleanup module pod
