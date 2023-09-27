@@ -22,24 +22,28 @@ my @testData = (
 		\@RemovedPages
 	       );
 # Number of local and wiki changes, repeatedly used
-my @l = qw(B OS SYS IA);
-my @w = qw(B AC SYS OS CU IA);
+my @l = qw(bureaucrat oversight sysop interface-admin);
+my @w = qw(bureaucrat arbcom sysop oversight checkuser interface-admin);
 my @null = qw();
 
 my ($l, $w) = (scalar @l, scalar @w);
+# Rather than use mapGroups here, let's hard code things
+my @lMap = qw(B OS SYS IA);
+my @wMap = qw(B AC SYS OS CU IA);
+
 my $push = 0;
 
 # Note pieces
 my $header = 'CratHighlighter updates';
-my $headerPlus = "$header (@w)\n\n";
+my $headerPlus = "$header (@wMap)\n\n";
 my $headerBare = "$header\n\n";
-my $files = "Files: $l updated (@l)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
-my $pages = "Pages: $w updated (@w)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
+my $files = "Files: $l updated (@lMap)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
+my $pages = "Pages: $w updated (@wMap)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
 
 my $note = $headerPlus.$files.$pages;
 is(createEmail(\@l, \@w, \@testData, $push), $note, 'basic test');
 
-my $noPushNote = $headerBare.$files."Pages: $w not updated (@w)\n";
+my $noPushNote = $headerBare.$files."Pages: $w not updated (@wMap)\n";
 is(createEmail(\@l, \@w, \@testData, !$push), $noPushNote, 'not pushed');
 
 my $noLocalNote = $headerPlus.$pages;

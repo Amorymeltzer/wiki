@@ -217,6 +217,8 @@ sub oxfordComma {
 sub mapGroups {
   my ($group, $usersRef) = @_;
 
+  return if !$group;
+
   my %lookup = (
 		arbcom            => 'AC',
 		bureaucrat        => 'B',
@@ -226,6 +228,13 @@ sub mapGroups {
 		sysop             => 'SYS',
 		steward           => 'SW'
 	       );
+
+  return if ! $lookup{$group};
+
+  # String
+  return $lookup{$group} if !$usersRef;
+
+  # Array
   return map { $_." ($lookup{$group})" } @{$usersRef};
 }
 
@@ -254,9 +263,12 @@ sub createEmail {
   my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
 
   my $updateNote = 'CratHighlighter updates';
-  # Include pages changed if pushing and available
+  my $short;
+  # Include pages changed if pushing and available.  Maybe I should always have
+  # *something* here?  Really clutching at straws though, so prob not worth it
   if (!$skipPush && scalar @{$wikiRef}) {
-    $updateNote .= " (@{$wikiRef})";
+    $short = join q{ }, map { mapGroups($_) } @{$wikiRef};
+    $updateNote .= " ($short)";
   }
   # Maybe remove these if there's nothing else to be added FIXME TODO
   $updateNote .= "\n\n";
@@ -265,7 +277,8 @@ sub createEmail {
   # Local changes
   my $local = @{$localRef};
   if ($local) {
-    $updateNote .= "Files: $local updated (@{$localRef})\n";
+    $short = join q{ }, map { mapGroups($_) } @{$localRef};
+    $updateNote .= "Files: $local updated ($short)\n";
     $updateNote .= buildNote('Added', @{$changeRef}[0]);
     $updateNote .= buildNote('Removed', @{$changeRef}[1]);
   }
@@ -274,12 +287,13 @@ sub createEmail {
   my $wiki = @{$wikiRef};
   if ($wiki) {
     $updateNote .= "Pages: $wiki ";
+    $short = join q{ }, map { mapGroups($_) } @{$wikiRef};
     if (!$skipPush) {
-      $updateNote .= "updated (@{$wikiRef})\n";
+      $updateNote .= "updated ($short)\n";
       $updateNote .= buildNote('Added', @{$changeRef}[2]);
       $updateNote .= buildNote('Removed', @{$changeRef}[3]);
     } else {
-      $updateNote .= "not updated (@{$wikiRef})\n";
+      $updateNote .= "not updated ($short)\n";
     }
   }
 
