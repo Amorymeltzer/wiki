@@ -344,11 +344,11 @@ sub getCurrentGroups {
       ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
     }
 
-    # Resubmit new query, using old query
+    # Resubmit new query, using old query + new continue, rewriting old data
     $groupsReturn = $mw->api($groupsQuery);
 
     # Overwrite original data, already stored in @localHashes and needed for
-    # iteration in this loop
+    # iteration in this loop.  Can I just merge? %h = (%a, %b) FIXME TODO
     %groupsQuery = %{${$groupsReturn}{query}};
     # Append the new stuff
     push @localHashes, @{$groupsQuery{allusers}};
