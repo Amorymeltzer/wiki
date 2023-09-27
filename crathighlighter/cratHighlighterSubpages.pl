@@ -98,8 +98,10 @@ foreach (@{$groups}) {
   # just in case something is wrong.  Would be even better to just create the
   # damn file if need be.  Remind me why I care about the local files? TODO
   my $file = $_.'.json';
-  # This or doesn't actually work? FIXME
-  # Presumably others...
+
+  # read_text and write_text don't actually return anything
+  # (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so should maybe
+  # test them? FIXME TODO
   my $fileJSON = read_text($file) or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
@@ -110,6 +112,7 @@ foreach (@{$groups}) {
     # Build JSON from the received query now that we need it
     $queryJSON = $jsonTemplate->encode(\%queryHash);
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
+    # Could test that this works?
     write_text($file, $queryJSON);
 
     push @AddedFiles, mapGroups($_, \@{$fileAdded});

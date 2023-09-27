@@ -1,6 +1,6 @@
 # Todos
 
-- [ ] Set up for Kubernetes, consider https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm for email
+- [ ] Set up for Kubernetes, consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> for email
 
 ## Main module
 
@@ -20,7 +20,7 @@
 
 - [x] findLocalGroupMembers
 - [ ] Can I combine the two main queries?  Would require some reworking of the @rights/$groups handling
-- [ ] Is it faster to query for `auprop=>'groups'` as I do currently, or is it faster to query for `auprop=>'rights'?  The former might be slower on the server side, but the latter would require going through a lot of different arrays to look for the few that I need...
+- [ ] Is it faster to query for `auprop=>'groups'` as I do currently, or is it faster to query for `auprop=>'rights'`?  The former might be slower on the server side, but the latter would require going through a lot of different arrays to look for the few that I need...
 
 ## Tests
 
@@ -39,7 +39,7 @@
 
 ### API - sub module?
 
-- [ ] mwLogin - dieNice, which implies logging as well https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?
+- [ ] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>
 - [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botShutoffs - Logging
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
@@ -47,7 +47,7 @@
 
 ### Local
 
-- [ ] getConfig UGH need to figure out logging, not to mention file versus not https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?
+- [ ] getConfig UGH need to figure out logging, not to mention file versus not <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>
 - [x] findArbComMembers
 - [x] findLocalGroupMembers
 - [x] processFileData
