@@ -13,7 +13,9 @@ use Test::More;
 # List of each group, but for testing right now just a couple
 my @rights = qw(bureaucrat interface-admin oversight);
 
-plan tests => 3*scalar @rights;
+plan tests => 1+3*scalar @rights;
+
+is(processFileData(), undef, 'No data passed');
 
 # Real deal
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');

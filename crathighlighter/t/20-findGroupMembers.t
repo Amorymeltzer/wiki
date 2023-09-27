@@ -55,9 +55,13 @@ my @localHashes = @{$groupsQuery{allusers}};
 %{$groupsData{steward}} = findStewardMembers($stewRef);
 push @rights, qw (steward);
 
-plan tests => scalar @rights;
+plan tests => scalar @rights + 2;
 
 foreach my $userGroup (keys %actual) {
   my @users = sort keys %{$groupsData{$userGroup}};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }
+
+# Bad data
+is(findLocalGroupMembers(), undef, 'No localData');
+is(findLocalGroupMembers(\@localHashes), undef, 'No rightsRef');

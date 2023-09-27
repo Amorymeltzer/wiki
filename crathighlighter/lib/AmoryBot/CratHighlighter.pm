@@ -64,8 +64,9 @@ sub findStewardMembers {
 # Should rewrite to return FIXME TODO
 sub findLocalGroupMembers {
   my ($localData, $rightsRef) = @_;
-  my %dataHash;
+  return if (!$localData || !$rightsRef);
 
+  my %dataHash;
   # Limit to the groups in question then add that user to the lookup for each
   my %interestedGroups = map {$_=>1} @{$rightsRef};
   foreach my $userHash (@{$localData}) {
@@ -91,8 +92,10 @@ sub findLocalGroupMembers {
 # Process each line of the specific ArbCom page's content to get the users
 # listed.  Returns a reference to a hash.
 sub findArbComMembers {
+  my $members = shift || return;
+
   my %tmpData;
-  for (split /^/, shift) {
+  for (split /^/, $members) {
     if (/^:#\{\{user\|(.*)}}/) {
       $tmpData{$1} = 1;
     } elsif (/^:;<big>\{\{xtn\|/) {
@@ -112,7 +115,7 @@ sub findArbComMembers {
 # Build hash of array with per group page title, content, and last edited time.
 # Requires the query used formatversion=2
 sub processFileData {
-  my $contentRef = shift;
+  my $contentRef = shift or return;
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
   ## title     -> used to also snag the specific group used for hash key
@@ -178,7 +181,11 @@ sub cmpJSON {
 # Uses oxfordComma below for proper grammar.  Used as the basis for the on-wiki
 # edit summary and for the emailed note.
 sub changeSummary {
-  my ($addedRef,$removedRef) = @_;
+  my ($addedRef, $removedRef) = @_;
+
+  # Empty arrays are okay, but missing arrays are not!
+  return if (!$addedRef || !$removedRef);
+
   my $change = q{};
 
   if (scalar @{$addedRef}) {
@@ -247,6 +254,8 @@ sub mapGroups {
 
 sub buildNote {
   my ($message, $listRef) = @_;
+  return if (!$message || !$listRef);
+
   return q{} if ! scalar @{$listRef};
 
   return "\t$message: ".oxfordComma(uniqstr @{$listRef})."\n";
@@ -263,6 +272,7 @@ sub buildNote {
 # updates.  Could put it behind a flag?
 sub createEmail {
   my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
+  return if (!$localRef || !$wikiRef);
 
   my $updateNote = 'CratHighlighter updates';
   my $short;

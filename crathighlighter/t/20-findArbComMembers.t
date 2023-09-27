@@ -10,8 +10,10 @@ use AmoryBot::CratHighlighter qw (findArbComMembers);
 use Test::More;
 
 my @testFiles = ('arbcom_members.txt', 'arbcom_members_former.txt', 'arbcom_members_elect.txt');
-my $count = scalar @testFiles;
-plan tests => $count;
+plan tests => 1+scalar @testFiles;
+
+# Bad data
+is(findArbComMembers(), undef, 'No data');
 
 # Official list compared to testing pages, minor changes to handle sorting
 # differences and resignations

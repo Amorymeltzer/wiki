@@ -5,7 +5,7 @@ use warnings;
 
 # Relies upon buildNote (which relies upon oxfordComma)
 use AmoryBot::CratHighlighter qw(createEmail);
-use Test::More tests => 5;
+use Test::More tests => 7;
 
 
 # I hate array referencing, somehow hashes are easier?!  Only done this way to
@@ -24,7 +24,7 @@ my @testData = (
 # Number of local and wiki changes, repeatedly used
 my @l = qw(bureaucrat oversight sysop interface-admin);
 my @w = qw(bureaucrat arbcom sysop oversight checkuser interface-admin);
-my @null = qw();
+my @null = ();
 
 my ($l, $w) = (scalar @l, scalar @w);
 # Rather than use mapGroups here, let's hard code things
@@ -55,3 +55,7 @@ is(createEmail(\@l, \@null, \@testData, $push), $noWikiNote, 'no wiki');
 # Not possible (see note in main script) but eventually will be...
 my $noneNote = $headerBare;
 is(createEmail(\@null, \@null, \@testData, $push), $noneNote, 'none');
+
+# Bad data
+is(createEmail(), undef, 'No localRef');
+is(createEmail(\@l, q{}), undef, 'No wikiRef');
