@@ -232,11 +232,9 @@ sub getConfig {
     last if $un =~ /^$correctname@/;
   }
   close $rc or LOGDIE($ERRNO);
-  # Only accept the right user
-  # Duplicative? FIXME
-  if ($un !~ /^$correctname@/) {
-    LOGDIE('Wrong user provided');
-  }
+
+  # Catch wrong user if right user not actually provided
+  LOGDIE('Wrong user provided') if $un !~ /^$correctname@/;
 
   return ($un, $pw);
 }
