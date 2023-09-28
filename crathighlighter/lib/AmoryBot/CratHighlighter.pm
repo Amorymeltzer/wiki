@@ -5,6 +5,7 @@ use 5.006;
 use strict;
 use warnings;
 
+# Only needed in buildNote
 use List::Util qw(uniqstr);
 
 =head1 NAME
@@ -70,10 +71,11 @@ sub findLocalGroupMembers {
   # Limit to the groups in question then add that user to the lookup for each
   my %interestedGroups = map {$_=>1} @{$rightsRef};
   foreach my $userHash (@{$localData}) {
-    # Interestingly, doing a splice or something to remove the two leading and
-    # uninteresting groups (* and user) doesn't speed this up since the hash
-    # lookup is so fast, even with nearly 5000 calls.
-    foreach my $group (@{${$userHash}{groups}}) {
+    # The hash lookup is so fast that the savings of doing an array slice here
+    # aren't as much as one might think, but we are going through a half-dozen
+    # groups for around a thousand users, so it does shake out to be worth it to
+    # remove the two leading and uninteresting groups (* and user)
+    foreach my $group (@{${$userHash}{groups}}[2..$#{${$userHash}{groups}}]) {
       $dataHash{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
     }
   }

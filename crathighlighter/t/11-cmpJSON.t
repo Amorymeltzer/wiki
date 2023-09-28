@@ -43,7 +43,7 @@ is(cmpJSON('42'), undef, 'return when not hashref');
 is(cmpJSON({}, '42'), undef, 'return when not hashref');
 
 foreach my $test (sort keys %tests) {
-  my ($fileState, $fileAdded, $fileRemoved) = cmpJSON($tests{$test}[0], $tests{$test}[1]);
+  my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%{$tests{$test}[0]}, \%{$tests{$test}[1]});
   is($fileState, $test eq 'actual', "$test - Accurate state");
   is_deeply(\@{$fileAdded}, \@{$tests{$test}[2]}, "$test - Added");
   is_deeply(\@{$fileRemoved}, \@{$tests{$test}[3]}, "$test - Removed");
