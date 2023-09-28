@@ -237,14 +237,16 @@ sub mapGroups {
 		sysop             => 'SYS',
 		steward           => 'SW'
 	       );
+  # Reassign bad but w/e
+  $group = $lookup{$group};
 
-  return if ! $lookup{$group};
+  return if ! $group;
 
   # String
-  return $lookup{$group} if !$usersRef;
+  return $group if !$usersRef;
 
   # Array
-  return map { $_." ($lookup{$group})" } @{$usersRef};
+  return map { "$_ ($group)" } @{$usersRef};
 }
 
 
