@@ -388,7 +388,6 @@ sub getCurrentGroups {
 sub getPageGroups {
   my @rights = @_;
   my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
-  my $allTitles = join q{|}, @titles;
 
   # Could do this query with get_page but formatversion=2 makes things so much
   # easier to iterate over
@@ -396,7 +395,7 @@ sub getPageGroups {
 		      action => 'query',
 		      prop => 'revisions',
 		      rvprop => 'content|timestamp',
-		      titles => $allTitles,
+		      titles => (join q{|}, @titles),
 		      format => 'json',
 		      formatversion => 2
 		     };
