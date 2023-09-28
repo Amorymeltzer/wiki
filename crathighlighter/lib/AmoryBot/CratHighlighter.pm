@@ -92,10 +92,10 @@ sub findLocalGroupMembers {
 # Process each line of the specific ArbCom page's content to get the users
 # listed.  Returns a reference to a hash.
 sub findArbComMembers {
-  my $members = shift || return;
+  my $templateText = shift || return;
 
   my %tmpData;
-  for (split /^/, $members) {
+  for (split /^/, $templateText) {
     if (/^:#\{\{user\|(.*)}}/) {
       $tmpData{$1} = 1;
     } elsif (/^:;<big>\{\{xtn\|/) {
