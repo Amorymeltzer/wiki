@@ -279,8 +279,6 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		window.hotcat_del_needs_diff = true;
 		mw.loader.load('ext.gadget.HotCat');
 
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/PlayAudioNow.js&oldid=1042500700&action=raw&ctype=text/javascript'); // [[User:Nardog/PlayAudioNow]], [[User:Nardog/PlayAudioNow.js]]
-
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pedit.js&action=raw&ctype=text/javascript'); // [[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pedit.js]]
 		/* Backlinks for pedit:
 		   [[User:Lourdes/Backlinks.js]], [[m:User:Zhaofeng_Li/Reflinks.js]]], [[User:Lourdes/Backlinks.js]]
