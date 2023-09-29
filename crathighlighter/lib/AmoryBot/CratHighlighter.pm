@@ -22,7 +22,7 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail);
+our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 =head1 SYNOPSIS
@@ -316,6 +316,37 @@ sub createEmail {
   return $updateNote;
 
 }
+
+
+=head2 botShutoffs
+
+=cut
+
+# Make sure the bot behaves nicely.  The actual query is in the main script,
+# where MediaWiki::API and Log::Log4perl are available; this is just to process
+# the data and to produce errors for proper logging.
+sub botShutoffs {
+  my $json = shift;
+  return 'No data' if ! $json;
+
+  my $botCheckReturnQuery = $json->{query};
+
+  # Manual shutoff; confirm bot should actually run
+  # Arrows means no (de)referencing
+  my $checkContent = $botCheckReturnQuery->{pages}[0]->{revisions}[0]->{content};
+  if (!$checkContent || $checkContent ne '42') {
+    return 'DISABLED on-wiki';
+  }
+
+  # Automatic shutoff: user has talkpage messages.  Unlikely as it redirects to
+  # my main talk page, which I *don't* want to be an autoshutoff.
+  my $userNotes = $botCheckReturnQuery->{userinfo}->{messages};
+  if ($userNotes) {
+    return 'User has talkpage message(s)';
+  }
+  return;
+}
+
 
 
 =head1 AUTHOR
