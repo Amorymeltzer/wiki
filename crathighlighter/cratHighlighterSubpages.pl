@@ -262,6 +262,7 @@ sub dieNice {
 # Make sure the bot behaves nicely.  Slightly more involved since the two checks
 # are combined into one query, but in practice both of these are likely to be
 # run, so might as well save a query, and it's not so bad comparatively!
+# Currently tested in 30-botShutoffs.t; update that if this is changed!
 sub botShutoffs {
   return if ! shift;
   my $botCheckQuery = {

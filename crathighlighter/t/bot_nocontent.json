@@ -1,0 +1,32 @@
+{
+    "batchcomplete": true,
+    "warnings": {
+	"main": {
+	    "warnings": "Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application."
+	},
+	"revisions": {
+	    "warnings": "Because \"rvslots\" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used."
+	}
+    },
+    "query": {
+	"pages": [
+	    {
+		"pageid": 63847076,
+		"ns": 2,
+		"title": "User:AmoryBot/disable",
+		"revisions": [
+		    {
+			"contentformat": "text/x-wiki",
+			"contentmodel": "wikitext",
+			"content": ""
+		    }
+		]
+	    }
+	],
+	"userinfo": {
+	    "id": 141948,
+	    "name": "AmoryBot",
+	    "messages": false
+	}
+    }
+}

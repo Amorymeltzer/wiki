@@ -34,7 +34,7 @@ my $contentReturn = $jsonTemplate->decode($fileJSON);
 my %contentData = processFileData($contentReturn);
 
 # Simple tests.  Can hardcode timestamp since the data is hardcoded
-my $titleBaseName = 'User:Amorymeltzer/crathighlighter.js/';
+my $titleBaseName = 'User:AmoryBot/crathighlighter.js/';
 my %timestamps = ('bureaucrat' => '2022-11-30T02:14:57Z', 'interface-admin' => '2022-12-29T03:42:05Z', 'oversight' => '2022-11-30T02:14:57Z');
 
 foreach my $userGroup (@rights) {
