@@ -47,7 +47,7 @@ if you don't export anything, such as for a purely object-oriented module.
 
 Stewards are "simple" thanks to map and simple (one-group) structure.  As with
 the git utilities in AmoryBot::CratHighlighter::GitUtils, this mis/abuses @_ for
-brevity, rather than merely `shift`-ing
+brevity, rather than merely `shift`-ing.  No real error handling.
 
 =cut
 
@@ -60,9 +60,8 @@ sub findStewardMembers {
 =cut
 
 # Loop through each user's data and figure out what groups they've got.  Far
-# from perfect; ideally I wouldn't use the @localHashes/$localData, but until
-# I stop overwriting data on the continue, then it's a necessary hack
-# Should rewrite to return FIXME TODO
+# from perfect; ideally I wouldn't use the @localHashes/$localData, but until I
+# stop overwriting data on the continue, then it's a necessary hack.
 sub findLocalGroupMembers {
   my ($localData, $rightsRef) = @_;
   return if (!$localData || !$rightsRef);
@@ -246,7 +245,6 @@ sub mapGroups {
 
   # String
   return $group if !$usersRef;
-
   # Array
   return map { "$_ ($group)" } @{$usersRef};
 }
@@ -258,7 +256,7 @@ sub mapGroups {
 
 sub buildNote {
   my ($message, $listRef) = @_;
-  return if (!$message || !$listRef);
+  return if !$listRef;
 
   return q{} if ! scalar @{$listRef};
 
@@ -324,7 +322,8 @@ sub createEmail {
 
 # Make sure the bot behaves nicely.  The actual query is in the main script,
 # where MediaWiki::API and Log::Log4perl are available; this is just to process
-# the data and to produce errors for proper logging.
+# the data and to produce errors for proper logging.  Notably, that means this
+# is the only subroutine one where the bare return is the good state.
 sub botShutoffs {
   my $json = shift;
   return 'No data' if ! $json;

@@ -37,10 +37,12 @@ my %tests = (
 	    );
 
 my $count = scalar keys %tests;
-plan tests => $count*3 + 2;
+plan tests => $count*3 + 3;
 
-is(cmpJSON('42'), undef, 'return when not hashref');
-is(cmpJSON({}, '42'), undef, 'return when not hashref');
+# First one technically excessive
+is(cmpJSON(), undef, 'empty');
+is(cmpJSON('42'), undef, 'queryRef not hashref');
+is(cmpJSON({}, '42'), undef, 'objectRef not hashref');
 
 foreach my $test (sort keys %tests) {
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%{$tests{$test}[0]}, \%{$tests{$test}[1]});

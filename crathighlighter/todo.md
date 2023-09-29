@@ -24,10 +24,11 @@
 
 ## Tests
 
-- Text
+- [x] Text
 - [x] Disable
 - Posting?
 - Logging?
+- Exceptions?
 
 ## All subs
 
