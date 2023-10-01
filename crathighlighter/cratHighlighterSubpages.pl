@@ -59,16 +59,20 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 chdir $scriptDir or LOGDIE('Failed to change directory');
 
 
-# Check if this is being run on the toolforge grid
-my $tool = $ENV{LOGNAME} eq 'tools.amorybot';
+# Define the bot and non-bot users, then check if this is being run on the
+# toolforge grid.  It's a little added complexity but makes it easier for me to
+# test API things without changing configs, etc.
+my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
+my $user = $ENV{LOGNAME} eq 'tools.amorybot' ? $botUser : $userUser;
 
-# Used globally, set through various subroutines
-my ($mw, $bot);
 ### Initialize API object.  Get username/password combo, log in, etc.
-$mw = mwLogin($tool ? 'AmoryBot' : 'Amorymeltzer');
+my $mw = mwLogin($user);
 
-### If it's the bot account, include a few checks for (emergency) shutoff
-botQuery($tool);
+# Used globally to make edit summaries, page titles, etc. easier
+my $userPage = 'User:'.$user;
+
+### If this is the bot account, include a few checks for (emergency) shutoff
+botQuery($user);
 
 ### Get the current group information.  References since we want both a hash and
 ### an array back.  The @groups/$groups is only really used since I want an
@@ -137,7 +141,7 @@ foreach (@{$groups}) {
       my $editSummary = 'Update: '.$summary;
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
-      $editSummary .= " ($count total) ([[$bot/crathighlighter|bot edit]])";
+      $editSummary .= " ($count total) ([[$userPage/crathighlighter|bot edit]])";
       $note .= '.  Pushing now... ';
 
       # Build JSON if not already done so above; only likely if the wiki is out
@@ -200,8 +204,6 @@ if ($opts{n}) {
 # Handle logging in to the wiki, mainly ensuring we die nicely
 sub mwLogin {
   my ($username, $password) = getConfig(shift);
-  # Used globally to make edit summaries, page titles, etc. easier
-  $bot = 'User:'.$username =~ s/@.*//r;
 
   # Global, declared above
   $mw = MediaWiki::API->new({
@@ -263,14 +265,14 @@ sub dieNice {
 # messages) are combined into one query since both will typically be checked, so
 # might as well save a query!  The processing is handled by botShutoffs.
 sub botQuery {
-  # Used to only check if it's actually the bot
-  return if ! shift;
+  # Only run the checks if it's a bot being a bot
+  return if $botUser ne shift;
 
   my $botCheckQuery = {
 		       action => 'query',
 		       prop => 'revisions',
 		       rvprop => 'content', # Don't care about much else
-		       titles => $bot.'/disable',
+		       titles => $userPage.'/disable',
 		       # Get user talk messages status
 		       meta => 'userinfo',
 		       uiprop => 'hasmsg',
@@ -378,7 +380,7 @@ sub getCurrentGroups {
 # there are any updates needed
 sub getPageGroups {
   my @rights = @_;
-  my @titles = map { $bot.'/crathighlighter.js/'.$_.'.json' } @rights;
+  my @titles = map { $userPage.'/crathighlighter.js/'.$_.'.json' } @rights;
 
   # Could do this query with get_page but formatversion=2 makes things so much
   # easier to iterate over
