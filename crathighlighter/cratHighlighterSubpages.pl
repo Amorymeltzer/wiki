@@ -5,9 +5,10 @@
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 # Run via cron on toolforge as User:AmoryBot
 
+use 5.006;
 use strict;
 use warnings;
-use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
+use English;
 
 use Getopt::Long;
 
