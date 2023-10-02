@@ -7,6 +7,7 @@
 # for confirmation for each item.  With some comments, can also detect
 # upstream changes as well as skip items marked with `/* --skipUpdate-- */`
 
+use 5.010;
 use strict;
 use warnings;
 use diagnostics;

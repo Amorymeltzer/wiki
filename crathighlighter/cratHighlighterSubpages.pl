@@ -6,6 +6,7 @@
 # Run via cron on toolforge as User:AmoryBot
 
 use 5.006;
+use 5.006;
 use strict;
 use warnings;
 use English;

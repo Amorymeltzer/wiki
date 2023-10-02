@@ -3,9 +3,9 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Make a list of links to various Wikispecies pages
 
+use 5.006;
 use strict;
 use warnings;
-use diagnostics;
 
 if (@ARGV != 1) {
   print "Usage: makeWikiSpeciesLinks.pl <species_list.txt>\n";

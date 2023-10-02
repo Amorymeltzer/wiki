@@ -5,6 +5,7 @@
 # Caluclate an h-index/Eddington number-like statistic for admin actions
 # Data from XTools AdminStats
 
+use 5.006;
 use strict;
 use warnings;
 use diagnostics;

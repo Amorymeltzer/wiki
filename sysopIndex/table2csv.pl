@@ -3,6 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Process the table from XTools, convert the relevant to csv
 
+use 5.006;
 use strict;
 use warnings;
 use diagnostics;

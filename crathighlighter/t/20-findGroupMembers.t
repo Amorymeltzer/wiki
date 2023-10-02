@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 # Test non-ArbCom group processing
 
+# utf8
+use 5.008;
 use strict;
 use warnings;
 

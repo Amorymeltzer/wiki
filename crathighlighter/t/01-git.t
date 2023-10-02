@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 # Ensure the Git repository is clean and on the right branch
 
+use 5.006;
 use strict;
 use warnings;
 

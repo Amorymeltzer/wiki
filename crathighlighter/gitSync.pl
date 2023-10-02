@@ -3,6 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Pull the latest from git repo
 
+use 5.006;
 use strict;
 use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16

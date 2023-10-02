@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 # Tests for ArbCom template processing
 
+use 5.006;
 use strict;
 use warnings;
 

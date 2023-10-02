@@ -3,6 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Tidy data so checksums don't change
 
+use 5.006;
 use strict;
 use warnings;
 use diagnostics;

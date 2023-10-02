@@ -1,6 +1,6 @@
 package Wikispecies::GenusSpecies;
 
-use 5.013;
+use 5.006;
 use strict;
 use warnings;
 

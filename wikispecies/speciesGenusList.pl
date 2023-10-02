@@ -6,6 +6,7 @@
 # Use all title from mainspace
 # Consider > to genus_species_date after uniq due to some weird dupes I didn't fix
 
+use 5.006;
 use strict;
 use warnings;
 use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16

@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 # More easily run prove from another directory via cron
 
+use 5.006;
 use strict;
 use warnings;
 

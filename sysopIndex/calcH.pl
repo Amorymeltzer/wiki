@@ -3,6 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Bulk calculate s-index for a given directory
 
+use 5.006;
 use strict;
 use warnings;
 use diagnostics;

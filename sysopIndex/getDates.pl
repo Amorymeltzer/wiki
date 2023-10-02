@@ -3,6 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Figure out which dates we need to download
 
+use 5.006;
 use strict;
 use warnings;
 use diagnostics;
