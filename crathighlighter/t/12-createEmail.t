@@ -12,15 +12,15 @@ use Test::More tests => 7;
 # I hate array referencing, somehow hashes are easier?!  Only done this way to
 # match with the data structures in the main script, but should probably be
 # reworked at some point FIXME TODO
-my @AddedFiles = ('Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)');
-my @RemovedFiles = ('Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)');
-my @AddedPages = ('Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)');
-my @RemovedPages = ('Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)');
+my @addedFiles = ('Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)');
+my @removedFiles = ('Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)');
+my @addedPages = ('Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)');
+my @removedPages = ('Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)');
 my @testData = (
-		\@AddedFiles,
-		\@RemovedFiles,
-		\@AddedPages,
-		\@RemovedPages
+		\@addedFiles,
+		\@removedFiles,
+		\@addedPages,
+		\@removedPages
 	       );
 # Number of local and wiki changes, repeatedly used
 my @l = qw(bureaucrat oversight sysop interface-admin);

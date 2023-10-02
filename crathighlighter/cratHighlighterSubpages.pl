@@ -90,7 +90,7 @@ my %contentStore = getPageGroups(@{$groups});
 # These conveniently function as indicators as well as counters for number of
 # files or pages changed, respectively
 my (@localChange, @wikiChange);
-my (@AddedFiles, @RemovedFiles, @AddedPages, @RemovedPages);
+my (@addedFiles, @removedFiles, @addedPages, @removedPages);
 # Template for generating JSON, sorted
 # Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
 my $jsonTemplate = JSON->new->canonical(1);
@@ -121,8 +121,8 @@ foreach (@{$groups}) {
     # Could test that this works?
     write_text($file, $queryJSON);
 
-    push @AddedFiles, mapGroups($_, \@{$fileAdded});
-    push @RemovedFiles, mapGroups($_, \@{$fileRemoved});
+    push @addedFiles, mapGroups($_, \@{$fileAdded});
+    push @removedFiles, mapGroups($_, \@{$fileRemoved});
   }
 
   # Check if on-wiki records have changed
@@ -135,8 +135,8 @@ foreach (@{$groups}) {
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
-    push @AddedPages, mapGroups($_, \@{$wikiAdded});
-    push @RemovedPages, mapGroups($_, \@{$wikiRemoved});
+    push @addedPages, mapGroups($_, \@{$wikiAdded});
+    push @removedPages, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
       # Multifaceted and overly-verbose edit summaries are the best!
@@ -181,10 +181,10 @@ if (scalar @localChange + scalar @wikiChange) {
 
   # I hate array referencing, somehow hashes are easier?!
   my @total = (
-	       \@AddedFiles,
-	       \@RemovedFiles,
-	       \@AddedPages,
-	       \@RemovedPages
+	       \@addedFiles,
+	       \@removedFiles,
+	       \@addedPages,
+	       \@removedPages
 	      );
 
   # Report final status via email.  Each item should already be logged above in the
