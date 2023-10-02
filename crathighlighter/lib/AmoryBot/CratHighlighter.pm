@@ -2,7 +2,6 @@ package AmoryBot::CratHighlighter;
 
 # Just for POD, toolforge has 5.028 as of late 2023
 use 5.006;
-use 5.006;
 use strict;
 use warnings;
 
