@@ -14,7 +14,8 @@ use JSON::MaybeXS;
 use AmoryBot::CratHighlighter qw (findStewardMembers findLocalGroupMembers);
 use Test::More;
 
-# List groups; just like in the main script, steward and arbcom are added later
+# List groups; just like in the main script, steward and arbcom are added
+# later. Doesn't contain the full count of sysop or checkuser
 my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
 # [] used to create array references from the jump
 my %actual = (

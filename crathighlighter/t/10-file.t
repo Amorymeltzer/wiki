@@ -11,18 +11,23 @@ use JSON::MaybeXS;
 use AmoryBot::CratHighlighter qw (processFileData);
 use Test::More;
 
-# List of each group, but for testing right now just a couple
-my @rights = qw(bureaucrat interface-admin oversight);
 
-plan tests => 1+3*scalar @rights;
-
-is(processFileData(), undef, 'No data passed');
-
-# Real deal
+# Real deal data
 my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
 my @inta = ('Amorymeltzer', 'Cyberpower678', 'Enterprisey', 'Evad37', 'Izno', 'MusikAnimal', 'MusikBot II', 'Oshwah', 'Ragesoss', 'Writ Keeper', 'Xaosflux');
 my @over = ('AmandaNP', 'Amorymeltzer', 'Dweller', 'Maxim', 'Oshwah', 'Primefac', 'Worm That Turned', 'Xaosflux');
+
+# List of each group, but for testing right now just a couple.  Of note, since
+# this is just checking processFileData, which processes page content, it's a
+# quick and straightforward process; adding a big honkin' group like sysops
+# won't make this test more durable/informative, since it's going to be quick.
 my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over);
+my @rights = keys %actual;
+
+plan tests => 1+3*scalar @rights;
+
+# Bad data
+is(processFileData(), undef, 'No data passed');
 
 # Template for generating JSON, sorted
 my $jsonTemplate = JSON->new->canonical(1);
