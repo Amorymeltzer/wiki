@@ -21,9 +21,11 @@ my %tests = (
 	     empty => [([])x4],
 	     identicalBuro => [(\@buro)x2, ([])x2],
 	     identicalInta => [(\@inta)x2, ([])x2],
+	     identicalSyso => [(\@syso)x2, ([])x2],
 	     actual => [(\@buro, \@inta)x2],
-	     identicalSyso => [(\@syso)x2, ([])x2]
-	    );
+	     actualSysopPlusone => [[@syso, 'ThisIsaTest'], \@syso, ['ThisIsaTest'], []],
+	     actualSysopMinusone => [\@syso, [@syso, 'ThisIsaTest'], [], ['ThisIsaTest']]
+	     );
 
 my $count = scalar keys %tests;
 plan tests => 3+3*$count;
@@ -41,7 +43,7 @@ foreach my $test (sort keys %tests) {
 
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%qr, \%or);
 
-  is($fileState, $test eq 'actual', "$test - Accurate state");
+  is($fileState, $test =~ /^actual/, "$test - Accurate state");
   is_deeply(\@{$fileAdded}, \@{$tests{$test}[2]}, "$test - Added");
   is_deeply(\@{$fileRemoved}, \@{$tests{$test}[3]}, "$test - Removed");
 }
