@@ -73,11 +73,21 @@ sub findLocalGroupMembers {
     # The hash lookup is so fast that the savings of doing an array slice here
     # aren't as much as one might think, but we are going through a half-dozen
     # groups for around a thousand users, so it does shake out to be worth it to
-    # remove the two leading and uninteresting groups (* and user)
-    foreach my $group (@{${$userHash}{groups}}[2..$#{${$userHash}{groups}}]) {
+    # remove the two leading and uninteresting groups (* and user).  Truth be
+    # told, we can do even better by skipping the third group, autoconfirmed, as
+    # well, with one caveat: the user "Edit filter" annoyingly exists and has
+    # sysop rights, so we need to account for that later since it's not
+    # autoconfirmed.  That will hopefully be removed at some point (T212268).
+    foreach my $group (@{${$userHash}{groups}}[3..$#{${$userHash}{groups}}]) {
       $dataHash{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
     }
   }
+
+  # As noted above, manually reinsert the Edit filter user (see
+  # <https://phabricator.wikimedia.org/T212268>).  I'm unsure if this should be
+  # done here or in the body of the script since it's technically a hack, but
+  # for now let's do it here as a drop-in replacement.
+  $dataHash{sysop}{'Edit filter'} = 1;
 
   # Rename suppress to oversight, sigh
   $dataHash{oversight} = delete $dataHash{suppress};
