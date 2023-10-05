@@ -22,9 +22,11 @@ my %tests = (
 	     identicalBuro => [(\@buro)x2, ([])x2],
 	     identicalInta => [(\@inta)x2, ([])x2],
 	     identicalSyso => [(\@syso)x2, ([])x2],
-	     actual => [(\@buro, \@inta)x2],
-	     actualSysopPlusone => [[@syso, 'ThisIsaTest'], \@syso, ['ThisIsaTest'], []],
-	     actualSysopMinusone => [\@syso, [@syso, 'ThisIsaTest'], [], ['ThisIsaTest']]
+	     diffAll => [(\@buro, \@inta)x2],
+	     diffSysopPlusone => [[@syso, 'ThisIsaTest'], \@syso, ['ThisIsaTest'], []],
+	     diffSysopMinusone => [\@syso, [@syso, 'ThisIsaTest'], [], ['ThisIsaTest']],
+	     # First and Last
+	     diffSysopPlusMinus => [[@syso[0..$#syso-1]], [@syso[1..$#syso]], ['28bytes'], ['Zzyzx11']]
 	     );
 
 my $count = scalar keys %tests;
@@ -43,7 +45,7 @@ foreach my $test (sort keys %tests) {
 
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%qr, \%or);
 
-  is($fileState, $test =~ /^actual/, "$test - Accurate state");
+  is($fileState, $test =~ /^diff/, "$test - Accurate state");
   is_deeply(\@{$fileAdded}, \@{$tests{$test}[2]}, "$test - Added");
   is_deeply(\@{$fileRemoved}, \@{$tests{$test}[3]}, "$test - Removed");
 }
