@@ -147,41 +147,37 @@ sub processFileData {
 
 =cut
 
-# Compare query hash with a JSON object hash, return negated equality and
-# arrays of added added and removed names from the JSON object
+# Compare hash from the query with the hash from the file's JSON object, return
+# negated equality and arrayrefs of names added/removed to/from the JSON object
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
 
   return if ref $queryRef ne ref {};
   return if ref $objectRef ne ref {};
 
-  # Feels inefficient/brute force-y, but it's quick enough
-  my @qNames = sort keys %{$queryRef};
-  my @oNames = sort keys %{$objectRef};
 
-  my (@added, @removed);
-
-  # Only if stringified arrays aren't equivalent
-  my $state = "@qNames" ne "@oNames";
-  if ($state) {
-    # Check all names from the query first, will determine if anyone new
-    # needs adding
-    foreach (@qNames) {
-      # Match in the other file
-      if (!${$objectRef}{$_}) {
-	push @added, $_;
-      } else {
-	# Don't check again
-	delete ${$objectRef}{$_};
-      }
-    }
-
-    # Whatever is left should be anyone that needs removing; @oNames is
-    # unreliable after above
-    @removed = sort keys %{$objectRef};
+  # Check array length first, which should be a quick short-circuit for most
+  # scenarios, then check if the stringified arrays are equivalent
+  if (keys %{$queryRef} == keys %{$objectRef} && join (q{}, sort keys %{$queryRef}) eq join (q{}, sort keys %{$objectRef})) {
+    # Nada
+    return (q{}, [], []);
   }
 
-  return ($state, \@added, \@removed);
+  # If not, we've got differences!  Check all the names from the query first,
+  # which determines if anyone new needs adding
+  my @added;
+  foreach (keys %{$queryRef}) {
+    # Match in the other file
+    if (!${$objectRef}{$_}) {
+      push @added, $_;
+    } else {
+      # Don't check again
+      delete ${$objectRef}{$_};
+    }
+  }
+
+  # 1 is the negated equality, indicating that yes, there are differences
+  return (1, [sort @added], [sort keys %{$objectRef}]);
 }
 
 =head2 changeSummary
