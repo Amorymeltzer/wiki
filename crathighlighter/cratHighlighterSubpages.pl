@@ -6,7 +6,6 @@
 # Run via cron on toolforge as User:AmoryBot
 
 use 5.006;
-use 5.006;
 use strict;
 use warnings;
 use English;
@@ -34,7 +33,6 @@ use Log::Log4perl qw(:easy);
 use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
-
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.

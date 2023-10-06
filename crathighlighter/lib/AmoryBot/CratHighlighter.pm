@@ -223,8 +223,17 @@ sub oxfordComma {
 =head2 mapGroups
 
 =cut
-
-# Map a marker of the group in question onto an array
+# The lookup hash, pulled out since it's used repeatedly
+my  %lookup = (
+	       arbcom            => 'AC',
+	       bureaucrat        => 'B',
+	       oversight         => 'OS',
+	       checkuser         => 'CU',
+	       'interface-admin' => 'IA',
+	       sysop             => 'SYS',
+	       steward           => 'SW'
+	      );
+# Map a marker of the group in question onto an array or string
 
 # Should rework/rewrite this.  Currently it's only being used to append the list
 # it returns to a given array.  Could take the array as a third parameter?
@@ -235,15 +244,6 @@ sub mapGroups {
 
   return if !$group;
 
-  my %lookup = (
-		arbcom            => 'AC',
-		bureaucrat        => 'B',
-		oversight         => 'OS',
-		checkuser         => 'CU',
-		'interface-admin' => 'IA',
-		sysop             => 'SYS',
-		steward           => 'SW'
-	       );
   # Reassign bad but w/e
   $group = $lookup{$group};
 
