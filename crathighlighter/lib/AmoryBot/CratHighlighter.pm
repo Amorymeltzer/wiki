@@ -124,7 +124,7 @@ sub findArbComMembers {
 =cut
 
 # Build hash of array with per group page title, content, and last edited time.
-# Requires the query used formatversion=2
+# Requires the query to have been done with formatversion=2
 sub processFileData {
   my $contentRef = shift or return;
   my %returnData;
@@ -133,10 +133,16 @@ sub processFileData {
   ## revisions -> array containing one item, which is a hash, which has keys:
   ### content   -> full page content
   ### timestamp -> time last edited
-  # Just awful.  Then again, it could be made even worse!
+  # With the final result being:
+  ## userGroup => [title, content, timestamp]
+  # Just awful.  Then again, it could be made even worse!  Worth noting that it
+  # should be pretty fast, since it's just reformatting data that's already
+  # present, rather than going through each user or anything like that.
   foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
+    # Make things just slightly more clear for the final data assignment
     my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
     my @revisions = @{${$pageHash}{revisions}};
+
     $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
   }
 
