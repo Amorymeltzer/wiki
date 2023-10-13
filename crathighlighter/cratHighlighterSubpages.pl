@@ -19,7 +19,8 @@ GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
 # Figure out where this script is
 use Cwd 'abs_path';
 use File::Basename 'dirname';
-# Get ready for local lib, also used elsewhere for logs and chdir
+# Get ready for local lib, also used elsewhere for logs and proper
+# reading/writing of files
 my $scriptDir;
 BEGIN {
     $scriptDir = dirname abs_path __FILE__;
@@ -40,7 +41,7 @@ my $logfile = "$scriptDir/log.log";
 -W $logfile or die $ERRNO;
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
-# gitSync.pl
+# gitSync.pl FIXME
 my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
 		 file   => ">>$logfile",
 		 utf8   => 1,
@@ -52,11 +53,6 @@ my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 # message
 		 layout => '%d - %m{indent}%n' };
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
-
-# Pop into this script's directory so config and json file access is easy.  I'd
-# like to get rid of this, but I have to change around things when read_text and
-# write_text with the json files. FIXME TODO
-chdir $scriptDir or LOGDIE('Failed to change directory');
 
 
 # Define the bot and non-bot users, then check if this is being run on the
@@ -106,7 +102,7 @@ foreach (@{$groups}) {
   # read_text and write_text don't actually return anything
   # (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so should maybe
   # test them? FIXME TODO
-  my $fileJSON = read_text($file) or LOGDIE($ERRNO);
+  my $fileJSON = read_text("$scriptDir/$file") or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   if ($fileState) {
@@ -117,7 +113,7 @@ foreach (@{$groups}) {
     $queryJSON = $jsonTemplate->encode(\%queryHash);
     # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
     # Could test that this works?
-    write_text($file, $queryJSON);
+    write_text("$scriptDir/$file", $queryJSON);
 
     push @addedFiles, mapGroups($_, \@{$fileAdded});
     push @removedFiles, mapGroups($_, \@{$fileRemoved});
@@ -226,7 +222,7 @@ sub getConfig {
   my $correctname = shift or LOGDIE('No username provided');
 
   my ($un, $pw);
-  open my $rc, '<', '.crathighlighterrc' or LOGDIE($ERRNO);
+  open my $rc, '<', "$scriptDir/.crathighlighterrc" or LOGDIE($ERRNO);
   while (my $line = <$rc>) {
     chomp $line;
     ($un, $pw) = split /:/, $line;
