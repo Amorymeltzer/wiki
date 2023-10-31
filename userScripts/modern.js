@@ -216,7 +216,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
 		if (mw.util.getParamValue('diff') || mw.util.getParamValue('oldid')) {
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/abusefilter-diff-check.js&oldid=1047870553&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/abusefilter-diff-check.js&oldid=1182347393&action=raw&ctype=text/javascript'); // placeholder
 			// Buttons are moved to the end of p-cactions below
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/abusefilter-diff-check.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/abusefilter-diff-check.js]], [[User:Enterprisey/abusefilter-diff-check]], [[User:Amorymeltzer/abusefilter-diff-check.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]

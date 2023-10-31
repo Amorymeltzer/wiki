@@ -45,7 +45,7 @@
                         } ).then( function ( data ) {
                             var stringDiffNewId = mw.config.get( "wgDiffNewId" );
                             var entries = ( data.query.abuselog || [] ).filter( function ( entry ) {
-                                return entry.revid === stringDiffNewId ||
+                                return ( "" + entry.revid ) === stringDiffNewId ||
 
                                     // Sometimes an abuse filter entry can have a different timestamp than the triggering edit
                                     Math.abs( parseTimestamp( entry.timestamp ) - timestamp ) < 10000; // 10 seconds
