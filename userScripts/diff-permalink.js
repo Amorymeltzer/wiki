@@ -11,9 +11,9 @@ $.when( $.ready, mw.loader.using( [ "mediawiki.util" ] ) ).then( function () {
         }
         page = "Special:Diff/" + suffix;
     } else {
-        var oldidMatch = mw.util.getParamValue( "oldid" );
-        if( oldidMatch ) {
-            page = "Special:Permalink/" + oldidMatch;
+        // If "oldid" is present in the URL, show an appropriate rev id there as well.
+        if( mw.util.getParamValue( "oldid" ) ) {
+            page = "Special:Permalink/" + mw.config.get( "wgRevisionId" );
         } else return; // nothing to do here
     }
 

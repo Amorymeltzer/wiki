@@ -222,7 +222,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=1060844701&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1050007234&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1184853636&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-permalink.js]]
 			mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Jon_Harald_Søby/diffedit.js&oldid=22620102&action=raw&ctype=text/javascript'); // [[meta:User:Jon_Harald_Søby/diffedit.js]], [[meta:User:Jon_Harald_Søby/diffedit]]
 		}
