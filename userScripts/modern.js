@@ -431,6 +431,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 /* mw.config.exists('wgRelevantUserName') */
 if (mw.config.exists('wgRelevantUserName')) {
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=1086488948&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/userinfo.js&oldid=1107033661&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); // [[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	// [[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
 	// Also loads on all diffs; putting it here should be light than just adjusting ebPrefs.showOnPages

@@ -72,14 +72,14 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 		// Note that this is allowed to be up to 5 minutes old.
 		var et = encodeURIComponent(mw.config.get('wgRelevantUserName'));
 
-		$.getJSON(mw.config.get('wgScriptPath') + '/api.php?format=json&action=query&list=users|usercontribs&usprop=blockinfo|editcount|gender|registration|groups&uclimit=1&ucprop=timestamp&ususers=' + et + '&ucuser=' + et + '&meta=allmessages&amprefix=grouppage-&amincludelocal=1')
+		$.getJSON(mw.config.get('wgScriptPath') + '/api.php?format=json&action=query&list=users|usercontribs&usprop=blockinfo|editcount|gender|registration|groups&uclimit=1&ucprop=timestamp&ususers=' + et + '&ucuser=' + et + '&guiuser=' + et + '&meta=allmessages|globaluserinfo&amprefix=grouppage-&amincludelocal=1')
 			.done(function(query) {
 				// When response arrives extract the information we need.
 				if (!query.query) {
 					return;
 				} // Suggested by Gary King to avoid JS errors --PS 2010-08-25
 				query = query.query;
-				var user, invalid, missing, groups, groupPages = {}, editcount, registration, blocked, partial, gender, lastEdited;
+				var user, invalid, missing, groups, groupPages = {}, editcount, registration, blocked, locked, partial, gender, lastEdited;
 				try {
 					user = query.users[0];
 					invalid = typeof user.invalid !== 'undefined';
@@ -89,6 +89,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 					registration = typeof user.registration === 'string' ?
 						new Date(user.registration) : null;
 					blocked = typeof user.blockedby !== 'undefined';
+					locked = typeof query.globaluserinfo.locked !== 'undefined';
 					partial = typeof user.blockpartial !== 'undefined';
 					gender = typeof user.gender === 'string' ? user.gender : null;
 					lastEdited = (typeof query.usercontribs[0] === 'object') &&
@@ -109,6 +110,13 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 				var ipv6User = false;
 
 				// User status
+				if (locked) {
+					statusText += '<a href="//meta.wikimedia.org/wiki/Special:CentralAuth/' + user.name +
+						'">locked</a> ';
+					if (blocked) {
+						statusText += 'and ';
+					}
+				}
 				if (blocked) {
 					statusText += '<a href="' + mw.config.get('wgScript') +
 						'?title=Special:Log&amp;page=' +
@@ -178,7 +186,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 							// --PS 2010-05-16
 
 							// statusText += "user";
-							if (blocked) {
+							if (blocked || locked) {
 								statusText += 'user';
 							} else {
 								statusText += 'registered user';
