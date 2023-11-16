@@ -274,13 +274,16 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 				// Now show the other information. Non-standard? Yes, but it gets the job done.
 				// Add a period after the tagline when doing so. --PS 2010-07-03
 
-				var ss = document.getElementById('siteSub');
+				var ss = document.getElementsByClassName('mw-contributions-editor-info')[0];
 				if (!ss) {
-					ss = document.createElement('div');
-					ss.id = 'siteSub';
-					ss.innerHTML = '';
-					var bc = document.getElementById('bodyContent');
-					bc.insertBefore(ss, bc.firstChild);
+					ss = document.getElementById('siteSub');
+					if (!ss) {
+						ss = document.createElement('div');
+						ss.id = 'siteSub';
+						ss.innerHTML = '';
+						var bc = document.getElementById('bodyContent');
+						bc.insertBefore(ss, bc.firstChild);
+					}
 				}
 				//            ss.innerHTML = '<span id="ps-userinfo">' + statusText + '</span> ' + ss.innerHTML + '.';
 				ss.innerHTML = '<span id="ps-userinfo">' + statusText + '</span>';
