@@ -15,17 +15,17 @@ NOTE: When updating to record retirement/resignations or new elections/appointme
 <!-- NOTE: THIS LIST IS MAINTAINED BY THE COMMITTEE AND THE ARBCOM CLERKS, BASED ON COMMUNICATION ON THE CLERK'S MAILING LIST. PLEASE DO NOT EDIT IT -->
 <div style="margin-left: 1.6em">
 '''{{big|{{xt|{{vanchor|Active}}}}}}'''
-#{{user|Barkeep49}}
+# {{user|Barkeep49}}
 #{{user|Beeblebrox}}
 #{{user|Cabayi}}
 #{{user|CaptainEek}}
 #{{user|Enterprisey}}
 #{{user|GeneralNotability}}
 #{{user|Guerillero}}
-#{{user|Izno}}
+# {{user|Izno}}
 #{{user|L235}}
 #{{user|Moneytrees}}
-#{{user|Primefac}}
+# {{user|Primefac}}
 #{{user|SilkTork}}
 #{{user|Wugapodes}}
 

@@ -22,7 +22,7 @@ NOTE: When updating to record retirement/resignations or new elections/appointme
 #{{user|Enterprisey}}
 #{{user|GeneralNotability}}
 #{{user|Guerillero}}
-#{{user|Izno}}
+# {{user|Izno}}
 #{{user|L235}}
 #{{user|Moneytrees}}
 #{{user|Primefac}}
@@ -30,11 +30,11 @@ NOTE: When updating to record retirement/resignations or new elections/appointme
 #{{user|Wugapodes}}
 
 '''{{big|{{!xt|{{vanchor|Inactive}}}}}}'''
-#{{user|Opabinia regalis}}
+# {{user|Opabinia regalis}}
 
 '''{{big|{{xtn|{{vanchor|Outgoing arbitrators (eligible to remain on cases opened before 31 December 2019)}}}}}}'''
-#{{user|GorillaWarfare}}
-#{{user|Worm That Turned}}
+# {{user|GorillaWarfare}}
+# {{user|Worm That Turned}}
 
 
 </div><noinclude>

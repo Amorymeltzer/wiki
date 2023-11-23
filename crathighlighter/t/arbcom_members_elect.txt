@@ -18,12 +18,12 @@ NOTE: When updating to record retirement/resignations or new elections/appointme
 #{{user|Barkeep49}}
 #{{user|Beeblebrox}}
 #{{user|Cabayi}}
-#{{user|CaptainEek}}
-#{{user|Enterprisey}}
+# {{user|CaptainEek}}
+# {{user|Enterprisey}}
 #{{user|GeneralNotability}}
 #{{user|Guerillero}}
 #{{user|Izno}}
-#{{user|L235}}
+# {{user|L235}}
 #{{user|Moneytrees}}
 #{{user|Primefac}}
 #{{user|SilkTork}}
