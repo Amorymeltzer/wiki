@@ -18,7 +18,7 @@ is(findArbComMembers(), undef, 'No data');
 
 # Official list compared to testing pages, minor changes to handle sorting
 # differences and resignations
-my @arbcom = ('Beeblebrox', 'Bradv', 'Casliber', 'DGG', 'David Fuchs', 'GorillaWarfare', 'Joe Roe', 'KrakatoaKatie', 'Maxim', 'Mkdw', 'Newyorkbrad', 'SoWhy', 'Worm That Turned', 'Xeno');
+my @arbcom = ('Barkeep49', 'Beeblebrox', 'Cabayi', 'CaptainEek', 'Enterprisey', 'GeneralNotability', 'Guerillero', 'Izno', 'L235', 'Moneytrees', 'Opabinia regalis', 'Primefac', 'SilkTork', 'Wugapodes');
 
 foreach my $file (@testFiles) {
   # This could be made even simpler by just using a direct reference and not

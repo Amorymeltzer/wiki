@@ -1,8 +1,8 @@
-<noinclude>{{ArbCom navigation}}{{shortcut|WP:ACMEM|WP:AC/CM}}
+<noinclude>{{ArbCom navigation}}{{shortcut|WP:ACMEM|WP:AC/M|WP:AC/CM}}
 </noinclude>
 == Members ==
 {{seealso|Wikipedia:Arbitration Committee/History#Current and former members}}
-These editors are the [[Wikipedia:Arbitration Committee Elections|elected]] members of the Arbitration Committee (known as arbitrators). Votes of the committee are taken among the active members. Members are marked {{xt|active}} or {{!xt|inactive}} so that the [[majority]] for new votes can be calculated. Members on [[wikipedia:Wikibreak|wikibreak]], not participating in arbitration within the past week, or indicating they will be absent are marked {{!xt|inactive}}.
+These editors are the [[Wikipedia:Arbitration Committee Election|elected]] members of the Arbitration Committee (known as arbitrators). Votes of the committee are taken among the active members. Members are marked {{xt|active}} or {{!xt|inactive}} so that the [[majority]] for new votes can be calculated. Members on [[wikipedia:Wikibreak|wikibreak]], not participating in arbitration within the past week, or indicating they will be absent are marked {{!xt|inactive}}.
 
 Members moving back to active may remain inactive on some or all existing business. If you wish to know whether an arbitrator is active on a particular matter, please ask on their talk page (or check the proposed decision talk page, for cases). The list below is used to determine whether each arbitrator is active by default. Arbitrators who go on to participate in a vote will be counted as active for it even if they are listed as inactive below. <!--"Outgoing arbitrators" are arbitrators whose terms have expired but have elected to remain active on a pending case that opened during their term.-->
 
@@ -12,32 +12,30 @@ The following list is accurate as of {{#time:j F Y|{{REVISIONTIMESTAMP:Wikipedia
 NOTE: When updating to record retirement/resignations or new elections/appointments, please also update [[Wikipedia:Arbitration Committee/History]] 
  
 -->
-<div id="Active">
-:;<big>{{xt|Active}}</big>
-:#{{user|Beeblebrox}}
-:#{{user|Bradv}}
-:#{{user|Casliber}}
-:#{{user|David Fuchs}}
-:#{{user|DGG}}
-:#{{user|Joe Roe}}
-:#{{user|KrakatoaKatie}}
-:#{{user|Mkdw}}
-:#{{user|Newyorkbrad}}
-:#{{user|SoWhy}}
-:#{{user|Worm That Turned}}
+<!-- NOTE: THIS LIST IS MAINTAINED BY THE COMMITTEE AND THE ARBCOM CLERKS, BASED ON COMMUNICATION ON THE CLERK'S MAILING LIST. PLEASE DO NOT EDIT IT -->
+<div style="margin-left: 1.6em">
+'''{{big|{{xt|{{vanchor|Active}}}}}}'''
+#{{user|Barkeep49}}
+#{{user|Beeblebrox}}
+#{{user|Cabayi}}
+#{{user|CaptainEek}}
+#{{user|Enterprisey}}
+#{{user|GeneralNotability}}
+#{{user|Guerillero}}
+#{{user|Izno}}
+#{{user|L235}}
+#{{user|Moneytrees}}
+#{{user|Primefac}}
+#{{user|SilkTork}}
+#{{user|Wugapodes}}
 
-</div><div id="Inactive">
-:;<big>{{!xt|Inactive}}</big>
-:#{{user|GorillaWarfare}}
-:#{{user|Maxim}}
-:#{{user|Xeno}}
+'''{{big|{{!xt|{{vanchor|Inactive}}}}}}'''
+#{{user|Opabinia regalis}}
 
-:;<big>{{xtn|Arbitrators-elect (taking office 1 January 2021)}}</big>
-:#{{user|Barkeep49}}
-:#{{user|BDD}}
-:#{{user|CaptainEek}}
-:#{{user|L235}}
-:#{{user|Primefac}}
+'''{{big|{{xtn|{{vanchor|Arbitrators-elect (taking office 1 January 2021)}}}}}}'''
+#{{user|GorillaWarfare}}
+#{{user|Risker}}
+#{{user|Worm That Turned}}
 
 </div><noinclude>
 [[Category:Wikipedia Arbitration Committee|Members]]
