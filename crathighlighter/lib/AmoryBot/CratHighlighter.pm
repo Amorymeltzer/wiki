@@ -107,9 +107,9 @@ sub findArbComMembers {
 
   my %tmpData;
   for (split /^/, $templateText) {
-    if (/^#\s?\{\{user\|(.*)}}/) {
+    if (/^:?#\s?\{\{user\|(.*)}}/) {
       $tmpData{$1} = 1;
-    } elsif (/^'''\{\{big\|\{\{xtn\|/) {
+    } elsif (/(?:\{\{|<)big[\|>]\{\{xtn/) {
       # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
       # the bottom of the list during transitionary periods
       last;

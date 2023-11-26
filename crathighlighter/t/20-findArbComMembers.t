@@ -10,7 +10,7 @@ use File::Slurper qw(read_text);
 use AmoryBot::CratHighlighter qw (findArbComMembers);
 use Test::More;
 
-my @testFiles = ('arbcom_members.txt', 'arbcom_members_former.txt', 'arbcom_members_elect.txt');
+my @testFiles = ('arbcom_members.txt', 'arbcom_members_former.txt', 'arbcom_members_elect.txt', 'arbcom_members_old.txt', 'arbcom_members_former_old.txt', 'arbcom_members_elect_old.txt');
 plan tests => 1+scalar @testFiles;
 
 # Bad data
