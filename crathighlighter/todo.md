@@ -1,6 +1,7 @@
 # Todos
 
 - [ ] Set up for Kubernetes, consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> for email
+- [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
 
 ## Main module
 

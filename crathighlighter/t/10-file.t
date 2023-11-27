@@ -13,15 +13,17 @@ use Test::More;
 
 
 # Real deal data
-my @buro = ('Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'MBisanz', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
-my @inta = ('Amorymeltzer', 'Cyberpower678', 'Enterprisey', 'Evad37', 'Izno', 'MusikAnimal', 'MusikBot II', 'Oshwah', 'Ragesoss', 'Writ Keeper', 'Xaosflux');
-my @over = ('AmandaNP', 'Amorymeltzer', 'Dweller', 'Maxim', 'Oshwah', 'Primefac', 'Worm That Turned', 'Xaosflux');
+my @buro = ('28bytes', 'Acalamari', 'AmandaNP', 'Avraham', 'Bibliomaniac15', 'Cecropia', 'Deskana', 'Dweller', 'Lee Vilenski', 'Maxim', 'Nihonjoe', 'Primefac', 'SilkTork', 'UninvitedCompany', 'Useight', 'Warofdreams', 'WereSpielChequers', 'Worm That Turned', 'Xaosflux', 'Xeno');
+my @inta = ('Amorymeltzer', 'Enterprisey', 'Galobtter', 'Izno', 'MusikAnimal', 'MusikBot II', 'Novem Linguae', 'Oshwah', 'Pppery', 'Writ Keeper', 'Xaosflux');
+my @over = ('AmandaNP', 'Amorymeltzer', 'Anarchyte', 'Barkeep49', 'Beeblebrox', 'Bradv', 'Cabayi', 'Callanecc', 'CaptainEek', 'Doug Weller', 'Dreamy Jazz', 'Drmies', 'Dweller', 'Enterprisey', 'GB fan', 'GeneralNotability', 'GorillaWarfare', 'Guerillero', 'HJ Mitchell', 'Izno', 'KrakatoaKatie', 'Ks0stm', 'L235', 'Lofty abyss', 'LuK3', 'Mailer diablo', 'Moneytrees', 'Mz7', 'Oshwah', 'PhilKnight', 'Ponyo', 'Primefac', 'Richwales', 'RickinBaltimore', 'Risker', 'Salvio giuliano', 'SilkTork', 'Stwalkerster', 'The Blade of the Northern Lights', 'Thryduulf', 'Vanamonde93', 'Wugapodes', 'Xaosflux');
+# my @arbs = ('Barkeep49', 'Beeblebrox', 'Cabayi', 'CaptainEek', 'Enterprisey', 'GeneralNotability', 'Guerillero', 'Izno', 'L235', 'Moneytrees', 'Primefac', 'SilkTork', 'Wugapodes');
+my @arbs = qw(Barkeep49 Beeblebrox Cabayi CaptainEek Enterprisey GeneralNotability Guerillero Izno L235 Moneytrees Primefac SilkTork Wugapodes);
 
 # List of each group, but for testing right now just a couple.  Of note, since
 # this is just checking processFileData, which processes page content, it's a
 # quick and straightforward process; adding a big honkin' group like sysops
 # won't make this test more durable/informative, since it's going to be quick.
-my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over);
+my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'arbcom' => \@arbs);
 my @rights = keys %actual;
 
 plan tests => 1+3*scalar @rights;
@@ -41,7 +43,7 @@ my %contentData = processFileData($contentReturn);
 
 # Simple tests.  Can hardcode timestamp since the data is hardcoded
 my $titleBaseName = 'User:AmoryBot/crathighlighter.js/';
-my %timestamps = ('bureaucrat' => '2022-11-30T02:14:57Z', 'interface-admin' => '2022-12-29T03:42:05Z', 'oversight' => '2022-11-30T02:14:57Z');
+my %timestamps = ('bureaucrat' => '2023-06-01T01:13:07Z', 'interface-admin' => '2023-10-31T15:42:04Z', 'oversight' => '2023-11-26T11:42:05Z', 'arbcom' => '2023-11-25T09:42:05Z');
 
 foreach my $userGroup (@rights) {
   # Title of page matches expected

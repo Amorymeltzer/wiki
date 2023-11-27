@@ -1,54 +1,75 @@
 {
-  "batchcomplete": true,
-  "warnings": {
-    "main": {
-      "warnings": "Subscribe to the mediawiki-api-announce mailing list at <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> for notice of API deprecations and breaking changes. Use [[Special:ApiFeatureUsage]] to see usage of deprecated features by your application."
-    },
-    "revisions": {
-      "warnings": "Because \"rvslots\" was not specified, a legacy format has been used for the output. This format is deprecated, and in the future the new format will always be used."
+    "batchcomplete": true,
+    "query": {
+        "pages": [
+            {
+                "pageid": 63847585,
+                "ns": 2,
+                "title": "User:AmoryBot/crathighlighter.js/arbcom.json",
+                "revisions": [
+                    {
+                        "timestamp": "2023-11-25T09:42:05Z",
+                        "slots": {
+                            "main": {
+                                "contentmodel": "json",
+                                "contentformat": "application/json",
+                                "content": "{\n    \"Barkeep49\": 1,\n    \"Beeblebrox\": 1,\n    \"Cabayi\": 1,\n    \"CaptainEek\": 1,\n    \"Enterprisey\": 1,\n    \"GeneralNotability\": 1,\n    \"Guerillero\": 1,\n    \"Izno\": 1,\n    \"L235\": 1,\n    \"Moneytrees\": 1,\n    \"Primefac\": 1,\n    \"SilkTork\": 1,\n    \"Wugapodes\": 1\n}"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "pageid": 63847587,
+                "ns": 2,
+                "title": "User:AmoryBot/crathighlighter.js/bureaucrat.json",
+                "revisions": [
+                    {
+                        "timestamp": "2023-06-01T01:13:07Z",
+                        "slots": {
+                            "main": {
+                                "contentmodel": "json",
+                                "contentformat": "application/json",
+                                "content": "{\n    \"28bytes\": 1,\n    \"Acalamari\": 1,\n    \"AmandaNP\": 1,\n    \"Avraham\": 1,\n    \"Bibliomaniac15\": 1,\n    \"Cecropia\": 1,\n    \"Deskana\": 1,\n    \"Dweller\": 1,\n    \"Lee Vilenski\": 1,\n    \"Maxim\": 1,\n    \"Nihonjoe\": 1,\n    \"Primefac\": 1,\n    \"SilkTork\": 1,\n    \"UninvitedCompany\": 1,\n    \"Useight\": 1,\n    \"Warofdreams\": 1,\n    \"WereSpielChequers\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1,\n    \"Xeno\": 1\n}"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "pageid": 63847591,
+                "ns": 2,
+                "title": "User:AmoryBot/crathighlighter.js/interface-admin.json",
+                "revisions": [
+                    {
+                        "timestamp": "2023-10-31T15:42:04Z",
+                        "slots": {
+                            "main": {
+                                "contentmodel": "json",
+                                "contentformat": "application/json",
+                                "content": "{\n    \"Amorymeltzer\": 1,\n    \"Enterprisey\": 1,\n    \"Galobtter\": 1,\n    \"Izno\": 1,\n    \"MusikAnimal\": 1,\n    \"MusikBot II\": 1,\n    \"Novem Linguae\": 1,\n    \"Oshwah\": 1,\n    \"Pppery\": 1,\n    \"Writ Keeper\": 1,\n    \"Xaosflux\": 1\n}"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "pageid": 63847592,
+                "ns": 2,
+                "title": "User:AmoryBot/crathighlighter.js/oversight.json",
+                "revisions": [
+                    {
+                        "timestamp": "2023-11-26T11:42:05Z",
+                        "slots": {
+                            "main": {
+                                "contentmodel": "json",
+                                "contentformat": "application/json",
+                                "content": "{\n    \"AmandaNP\": 1,\n    \"Amorymeltzer\": 1,\n    \"Anarchyte\": 1,\n    \"Barkeep49\": 1,\n    \"Beeblebrox\": 1,\n    \"Bradv\": 1,\n    \"Cabayi\": 1,\n    \"Callanecc\": 1,\n    \"CaptainEek\": 1,\n    \"Doug Weller\": 1,\n    \"Dreamy Jazz\": 1,\n    \"Drmies\": 1,\n    \"Dweller\": 1,\n    \"Enterprisey\": 1,\n    \"GB fan\": 1,\n    \"GeneralNotability\": 1,\n    \"GorillaWarfare\": 1,\n    \"Guerillero\": 1,\n    \"HJ Mitchell\": 1,\n    \"Izno\": 1,\n    \"KrakatoaKatie\": 1,\n    \"Ks0stm\": 1,\n    \"L235\": 1,\n    \"Lofty abyss\": 1,\n    \"LuK3\": 1,\n    \"Mailer diablo\": 1,\n    \"Moneytrees\": 1,\n    \"Mz7\": 1,\n    \"Oshwah\": 1,\n    \"PhilKnight\": 1,\n    \"Ponyo\": 1,\n    \"Primefac\": 1,\n    \"Richwales\": 1,\n    \"RickinBaltimore\": 1,\n    \"Risker\": 1,\n    \"Salvio giuliano\": 1,\n    \"SilkTork\": 1,\n    \"Stwalkerster\": 1,\n    \"The Blade of the Northern Lights\": 1,\n    \"Thryduulf\": 1,\n    \"Vanamonde93\": 1,\n    \"Wugapodes\": 1,\n    \"Xaosflux\": 1\n}"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
     }
-  },
-  "query": {
-    "pages": [
-      {
-        "pageid": 39234141,
-        "ns": 2,
-        "title": "User:AmoryBot/crathighlighter.js/bureaucrat.json",
-        "revisions": [
-          {
-            "timestamp": "2022-11-30T02:14:57Z",
-            "contentformat": "application/json",
-            "contentmodel": "json",
-            "content": "{\n    \"Acalamari\": 1,\n    \"AmandaNP\": 1,\n    \"Avraham\": 1,\n    \"Bibliomaniac15\": 1,\n    \"Cecropia\": 1,\n    \"Deskana\": 1,\n    \"Dweller\": 1,\n    \"MBisanz\": 1,\n    \"Maxim\": 1,\n    \"Nihonjoe\": 1,\n    \"Primefac\": 1,\n    \"SilkTork\": 1,\n    \"UninvitedCompany\": 1,\n    \"Useight\": 1,\n    \"Warofdreams\": 1,\n    \"WereSpielChequers\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1,\n    \"Xeno\": 1\n}"
-          }
-        ]
-      },
-      {
-        "pageid": 58278290,
-        "ns": 2,
-        "title": "User:AmoryBot/crathighlighter.js/interface-admin.json",
-        "revisions": [
-          {
-            "timestamp": "2022-12-29T03:42:05Z",
-            "contentformat": "application/json",
-            "contentmodel": "json",
-            "content": "{\n    \"Amorymeltzer\": 1,\n    \"Cyberpower678\": 1,\n    \"Enterprisey\": 1,\n    \"Evad37\": 1,\n    \"Izno\": 1,\n    \"MusikAnimal\": 1,\n    \"MusikBot II\": 1,\n    \"Oshwah\": 1,\n    \"Ragesoss\": 1,\n    \"Writ Keeper\": 1,\n    \"Xaosflux\": 1\n}"
-          }
-        ]
-      },
-      {
-        "pageid": 39237974,
-        "ns": 2,
-        "title": "User:AmoryBot/crathighlighter.js/oversight.json",
-        "revisions": [
-          {
-            "timestamp": "2022-11-30T02:14:57Z",
-            "contentformat": "application/json",
-            "contentmodel": "json",
-            "content": "{\n    \"AmandaNP\": 1,\n    \"Amorymeltzer\": 1,\n    \"Dweller\": 1,\n    \"Maxim\": 1,\n    \"Oshwah\": 1,\n    \"Primefac\": 1,\n    \"Worm That Turned\": 1,\n    \"Xaosflux\": 1\n}"
-          }
-        ]
-      }
-    ]
-  }
 }

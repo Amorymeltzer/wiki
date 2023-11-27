@@ -131,8 +131,9 @@ sub processFileData {
   # This monstrosity results in an array where each item is an array of hashes:
   ## title     -> used to also snag the specific group used for hash key
   ## revisions -> array containing one item, which is a hash, which has keys:
-  ### content   -> full page content
   ### timestamp -> time last edited
+  ### slots, which is a dumbfuck construct for rvslots, which has:
+  #### content   -> full page content
   # With the final result being:
   ## userGroup => [title, content, timestamp]
   # Just awful.  Then again, it could be made even worse!  Worth noting that it
@@ -142,8 +143,8 @@ sub processFileData {
     # Make things just slightly more clear for the final data assignment
     my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
     my @revisions = @{${$pageHash}{revisions}};
-
-    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{content},${$revisions[0]}{timestamp}];
+    # rvslots is so dumb
+    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{slots}{main}{content},${$revisions[0]}{timestamp}];
   }
 
   return %returnData;
@@ -335,7 +336,7 @@ sub createEmail {
 # Make sure the bot behaves nicely.  The actual query is in the main script,
 # where MediaWiki::API and Log::Log4perl are available; this is just to process
 # the data and to produce errors for proper logging.  Notably, that means this
-# is the only subroutine one where the bare return is the good state.
+# is the only subroutine one where the bare return is the good state. FIXME
 sub botShutoffs {
   my $json = shift;
   return 'No data' if ! $json;
@@ -344,7 +345,8 @@ sub botShutoffs {
 
   # Manual shutoff; confirm bot should actually run
   # Arrows means no (de)referencing
-  my $checkContent = $botCheckReturnQuery->{pages}[0]->{revisions}[0]->{content};
+  # rvslots is so dumb
+  my $checkContent = $botCheckReturnQuery->{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
   if (!$checkContent || $checkContent ne '42') {
     return 'DISABLED on-wiki';
   }

@@ -269,12 +269,14 @@ sub botQuery {
 		       prop => 'revisions',
 		       rvprop => 'content', # Don't care about much else
 		       titles => $userPage.'/disable',
+		       rvslots => 'main', # rvslots is so dumb
 		       # Get user talk messages status
 		       meta => 'userinfo',
 		       uiprop => 'hasmsg',
 		       format => 'json',
 		       formatversion => 2
 		      };
+  # Note if warnings FIXME TODO
   my $botCheck = botShutoffs($mw->api($botCheckQuery));
   LOGDIE $botCheck if $botCheck;
   return;
@@ -359,6 +361,8 @@ sub getCurrentGroups {
   # cases around December 30th and 31st, and is occasionally not updated as
   # timely as the "official" members list, the latter being enshrined in AC/C/P.
   my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
+
+  # get_page uses old query format, hence * FIXME TODO
   my $acMembers = $mw->get_page({title => $acTemplate})->{q{*}};
 
   $groupsData{arbcom} = findArbComMembers($acMembers);
@@ -385,10 +389,12 @@ sub getPageGroups {
 		      prop => 'revisions',
 		      rvprop => 'content|timestamp',
 		      titles => (join q{|}, @titles),
+		      rvslots => 'main', # rvslots is so dumb
 		      format => 'json',
 		      formatversion => 2
 		     };
   # JSON, technically a reference to a hash
+  # Note if warnings FIXME TODO
   my $contentReturn = $mw->api($contentQuery);
   return processFileData($contentReturn);
 }
