@@ -209,7 +209,7 @@ sub mwLogin {
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
-  $mw->{ua}->agent('cratHighlighterSubpages.pl ('.$mw->{ua}->agent.')');
+  $mw->{ua}->agent("$user/cratHighlighterSubpages.pl (".$mw->{ua}->agent.')');
   $mw->login({lgname => $username, lgpassword => $password});
 
   return $mw;
