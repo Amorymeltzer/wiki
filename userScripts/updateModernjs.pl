@@ -127,6 +127,7 @@ foreach my $import (@jsFiles) {
 
     # Prepare query for one-off queries
     delete $query{titles};
+    $query{rvslots} = 'main'; # rvslots is so dumb
     $query{rvprop} .= '|user|comment|timestamp|content';
 
     # Parse and organize response data
@@ -164,7 +165,8 @@ foreach my $import (@jsFiles) {
 
       # IDs are unique, just use 'em
       foreach (@revs) {
-        $pagelookup{$_->{revid}} = $_->{content}
+        # rvslots is so dumb
+        $pagelookup{$_->{revid}} = $_->{slots}{main}{content};
       }
 
       # Store for later in hash of arrays, along with user, edit summary, and timestamp
