@@ -9,18 +9,12 @@ use AmoryBot::CratHighlighter qw(createEmail);
 use Test::More tests => 7;
 
 
-# I hate array referencing, somehow hashes are easier?!  Only done this way to
-# match with the data structures in the main script, but should probably be
-# reworked at some point FIXME TODO
-my @addedFiles = ('Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)');
-my @removedFiles = ('Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)');
-my @addedPages = ('Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)');
-my @removedPages = ('Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)');
+# addedFiles, removedFileds, addedPages, removedPages
 my @testData = (
-		\@addedFiles,
-		\@removedFiles,
-		\@addedPages,
-		\@removedPages
+		['Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)'],
+		['Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)'],
+		['Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)'],
+		['Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)']
 	       );
 # Number of local and wiki changes, repeatedly used
 my @l = qw(bureaucrat oversight sysop interface-admin);
