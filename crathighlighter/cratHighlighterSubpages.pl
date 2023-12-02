@@ -362,10 +362,20 @@ sub getCurrentGroups {
   # timely as the "official" members list, the latter being enshrined in AC/C/P.
   my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
 
-  # get_page uses old query format, hence * FIXME TODO
-  my $acMembers = $mw->get_page({title => $acTemplate})->{q{*}};
-
-  $groupsData{arbcom} = findArbComMembers($acMembers);
+  # Can combine with the above query??? TODO FIXME
+  my $acQuery = {
+		 action => 'query',
+		 prop => 'revisions',
+		 rvprop => 'content',
+		 titles => $acTemplate,
+		 rvslots => 'main', # rvslots is so dumb
+		 format => 'json',
+		 formatversion => 2
+		};
+  # Could shunt this off to the sub like botShutoffs or processFileData, but I'd
+  # rather not save the test pages as json.  Probably smarter, though.
+  my $acContent = $mw->api($acQuery)->{query}->{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
+  $groupsData{arbcom} = findArbComMembers($acContent);
   unshift @rights, qw (arbcom);
 
   # Rename suppress to oversight
@@ -382,8 +392,7 @@ sub getPageGroups {
   my @rights = @_;
   my @titles = map { $userPage.'/crathighlighter.js/'.$_.'.json' } @rights;
 
-  # Could do this query with get_page but formatversion=2 makes things so much
-  # easier to iterate over
+  # formatversion=2 makes things so nice to iterate over
   my $contentQuery = {
 		      action => 'query',
 		      prop => 'revisions',
