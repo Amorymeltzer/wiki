@@ -151,7 +151,7 @@ foreach my $import (@jsFiles) {
       next if !$oldID || !$newID || $oldID == $newID;
 
       # Skip items marked as such
-      if (${$extraInfo{$title}}[0] == 1) {
+      if (${$extraInfo{$title}}[0]) {
         print colored ['cyan'], "Skipping updates for $title\n";
         next;
       }
