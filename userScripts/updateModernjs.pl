@@ -123,16 +123,10 @@ foreach my $import (@jsFiles) {
 
     # skip_encoding prevents reencoding of UTF8 titles
     my $response = $mw->api(\%query, {skip_encoding => 1}) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
-    my @pages = @{$response->{query}->{pages}};
 
-    # Prepare query for one-off queries
-    delete $query{titles};
-    $query{rvslots} = 'main'; # rvslots is so dumb
-    $query{rvprop} .= '|user|comment|timestamp|content';
-
-    # Parse and organize response data
     # Check each page
-    foreach my $page (@pages) {
+    my @revids;
+    foreach my $page (@{$response->{query}->{pages}}) {
       my $title = ${$page}{title};
 
       # Guard against no found revisions
@@ -156,28 +150,46 @@ foreach my $import (@jsFiles) {
       # Skip if no differences
       next if !$oldID || !$newID || $oldID == $newID;
 
-      # There are new differences, so let's diff 'em!
+      # Add to query
+      push @revids, $oldID, $newID;
       print "$title\n";
-      $query{revids} = $oldID.q{|}.$newID;
+    }
+
+   # There are new differences, so let's diff 'em!
+    if (scalar @revids) {
+      # Prepare new bulk query
+      delete $query{titles};
+      $query{rvslots} = 'main'; # rvslots is so dumb
+      $query{rvprop} .= '|user|comment|timestamp|content';
+
+      $query{revids} = join q{|}, @revids;
+
+      # Parse and organize response data
       my $contentResponse = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
-      # Goddammit
-      my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
+      foreach my $page (@{$contentResponse->{query}->{pages}}) {
+        # Goddammit
+        # my @revs = @{@{$contentResponse->{query}->{pages}}[0]->{revisions}};
+        my @revs = @{$page->{revisions}};
 
-      # IDs are unique, just use 'em
-      foreach (@revs) {
+        # IDs are unique, just use 'em
+        my $oldID = $revs[0]->{revid};
+        my $newID = $revs[1]->{revid};
         # rvslots is so dumb
-        $pagelookup{$_->{revid}} = $_->{slots}{main}{content};
+        $pagelookup{$oldID} = $revs[0]->{slots}{main}{content};
+        $pagelookup{$newID} = $revs[1]->{slots}{main}{content};
+
+        # Store for later in hash of arrays, along with user, edit summary, and timestamp
+        @{$replacings{$page->{title}}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
+
+
+          # Getting bash to work from inside perl - whether by backticks,
+          # system, or IPC::Open3 - is one thing, but getting icdiff to work on
+          # strings of indeterminate length that each contain several special
+          # characters aka code is entirely different.  Writing to files is
+          # slower but easier.
+        write_text($oldID, $pagelookup{$oldID});
+        write_text($newID, $pagelookup{$newID});
       }
-
-      # Store for later in hash of arrays, along with user, edit summary, and timestamp
-      @{$replacings{$title}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
-
-      # Getting bash to work from inside perl - whether by backticks, system, or
-      # IPC::Open3 - is one thing, but getting icdiff to work on strings of
-      # indeterminate length that each contain several special characters aka
-      # code is entirely different.  Writing to files is slower but easier.
-      write_text($oldID, $pagelookup{$oldID});
-      write_text($newID, $pagelookup{$newID});
     }
   }
 
@@ -190,7 +202,7 @@ foreach my $import (@jsFiles) {
 
       print colored ['green'], "$title: ";
       # Note placeholders
-      if (${$extraInfo{$title}}[1] == 1) {
+      if (${$extraInfo{$title}}[1]) {
         print colored ['blue'], 'PLACEHOLDER NOTE: UPSTREAM updated';
       } else {
         print colored ['green'], 'updating';
