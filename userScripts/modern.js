@@ -792,7 +792,7 @@ mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/test.js&a
 
 /* Reference
    [[Wikipedia:User_scripts/List]] //See also Guide
-   [[User:Facenapalm/Most_imported_scripts]]
+   [[Wikipedia:User scripts/Most_imported_scripts]]
    [[User:Haza-w/Drop-down_menus]] //[[m:MoreMenu]]
    [[User:Cyberpower678/API]]
    [[mw:Manual:Interface/JavaScript]
