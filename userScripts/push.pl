@@ -53,18 +53,30 @@ foreach my $file (getFiles()) {
   $file =~ s/\s+//g;
   my $page = 'User:Amorymeltzer/'.$file;
   # Get old page content
-  my $wikiPage = $mw->get_page({title => $page});
+  my $query = {
+                 action => 'query',
+                 prop => 'revisions',
+                 rvprop => 'content|timestamp|comment',
+                 titles => $page,
+                 rvslots => 'main', # rvslots is so dumb
+                 format => 'json',
+                 formatversion => 2
+                };
+  my $wikiPage = $mw->api($query)->{query}->{pages}[0];
   if (defined $wikiPage->{missing}) {
     print colored ['red'], "$page does not exist\n";
   } else {
     print "Pushing $file...\n";
+    my $rev = $wikiPage->{revisions}[0];
+
+    my $wikiText = $rev->{slots}->{main}->{content}."\n"; # MediaWiki doesn't have trailing newlines
+
     my $text = read_text($file);
-    my $wikiText = $wikiPage->{q{*}}."\n"; # MediaWiki doesn't have trailing newlines
     if ($text eq $wikiText) {
       print colored ['blue'], "\tNo changes needed, skipping\n";
     } else {
-      my $timestamp = $wikiPage->{timestamp};
-      my $summary = buildEditSummary($page, $file, $wikiPage->{comment});
+      my $timestamp = $rev->{timestamp};
+      my $summary = buildEditSummary($page, $file, $rev->{comment});
       $mw->edit({
                  action => 'edit',
                  assert => 'user',
