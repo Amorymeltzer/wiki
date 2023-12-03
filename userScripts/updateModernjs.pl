@@ -141,6 +141,12 @@ foreach my $import (@jsFiles) {
         next;
       }
 
+      # Skip items marked as such
+      if (${$extraInfo{$title}}[0]) {
+        print colored ['cyan'], "Skipping updates for $title\n";
+        next;
+      }
+
       # This always feels like it should be easier to understand visually than
       # json/xml, but it never is.
       my @revisions = @{${$page}{revisions}};
@@ -149,12 +155,6 @@ foreach my $import (@jsFiles) {
 
       # Skip if no differences
       next if !$oldID || !$newID || $oldID == $newID;
-
-      # Skip items marked as such
-      if (${$extraInfo{$title}}[0]) {
-        print colored ['cyan'], "Skipping updates for $title\n";
-        next;
-      }
 
       # There are new differences, so let's diff 'em!
       print "$title\n";
