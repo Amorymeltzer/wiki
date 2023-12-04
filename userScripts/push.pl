@@ -48,26 +48,49 @@ $mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
 
-# Push, making sure only valid files are entered
+# Sigh, should probably combine these? FIXME TODO
+# Just map tho FIXME TODO
+my @titles;
+# Stupid annoyingness to deal with _ to space shit
+my %lookup;
 foreach my $file (getFiles()) {
+  # Hmmm: my $page = 'User:Amorymeltzer/'.$file =~ s/\s+//rg; TODO
   $file =~ s/\s+//g;
   my $page = 'User:Amorymeltzer/'.$file;
-  # Get old page content
-  my $query = {
-                 action => 'query',
-                 prop => 'revisions',
-                 rvprop => 'content|timestamp|comment',
-                 titles => $page,
-                 rvslots => 'main', # rvslots is so dumb
-                 format => 'json',
-                 formatversion => 2
-                };
-  my $wikiPage = $mw->api($query)->{query}->{pages}[0];
-  if (defined $wikiPage->{missing}) {
+  # sigh
+  $lookup{$page} = $file;
+
+  # Add to query
+  push @titles, $page;
+}
+
+# Get old pages' content, for comparison
+my %query = (
+             action => 'query',
+             prop => 'revisions',
+             rvprop => 'content|timestamp|comment',
+             rvslots => 'main', # rvslots is so dumb
+             format => 'json',
+             formatversion => 2
+            );
+$query{titles} = join q{|}, @titles;
+my $response = $mw->api(\%query) or die $mw->{error}->{code}.': '.$mw->{error}->{details};
+
+# Stupid lookup fix for page normalization from _ to space
+# Use map? FIXME TODO
+foreach my $norm (@{$response->{query}->{normalized}}) {
+  $lookup{$norm->{to}} = $norm->{from} =~ s/^User:Amorymeltzer\///r;
+}
+
+# Go through 'em all!
+foreach my $page (@{$response->{query}->{pages}}) {
+  if ($page->{missing}) {
     print colored ['red'], "$page does not exist\n";
   } else {
+    my $file = $lookup{$page->{title}};
+    # Push, making sure only valid files are entered
     print "Pushing $file...\n";
-    my $rev = $wikiPage->{revisions}[0];
+    my $rev = $page->{revisions}[0];
 
     my $wikiText = $rev->{slots}->{main}->{content}."\n"; # MediaWiki doesn't have trailing newlines
 
