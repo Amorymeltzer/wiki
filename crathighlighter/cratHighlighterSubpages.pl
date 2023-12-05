@@ -290,16 +290,26 @@ sub getCurrentGroups {
   # @rights doesn't include arbcom or steward at the moment since it's first
   # being used to build the query for determining local usergroups.  Steward
   # belongs to a different, global list (agu rather than au) and arbcom isn't
-  # real.  They'll both be added in due course, although the arbcom list needs
-  # separate getting.  suppress is used instead of oversight since that's the
-  # actual group name now (ugh), but the page title is still at oversight.json,
-  # so I replace that here and in findLocalGroupMembers.
+  # real.  They'll both be added in due course.  suppress is used instead of
+  # oversight since that's the actual group name now (ugh), but the page title
+  # is still at oversight.json, so I replace that here and in
+  # findLocalGroupMembers.
   my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
   # Will store hash of editors for each group.  Basically JSON as hash of hashes.
   my %groupsData;
 
-  ## List of each group (actually a list of users in any of the chosen groups with
-  ## all of their respective groups)
+  # Get ArbCom.  Not ideal to rely upon the member list being updated, but the
+  # Clerks are proficient and timely, and ArbCom membership is high-profile
+  # enough that this is updated quickly.  Previously, relied upon parsing
+  # [[Template:Arbitration_committee_chart/recent]] but that had annoying edge
+  # cases around December 30th and 31st, and is occasionally not updated as
+  # timely as the "official" members list, which is enshrined in AC/C/P.
+  my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
+
+  ## List of each group (actually a list of users in any of the chosen groups
+  ## with all of their respective groups).  $mw->list doesn't work with multiple
+  ## lists, which is a drag, but we're getting the ArbCom template's revisions
+  ## at the same time, so it's no real loss
   my $groupsQuery = {
 		     action => 'query',
 		     list => 'allusers|globalallusers',
@@ -308,12 +318,15 @@ sub getCurrentGroups {
 		     aulimit => 'max',
 		     agugroup => 'steward',
 		     agulimit => 'max',
+		     prop => 'revisions',
+		     rvprop => 'content',
+		     titles => $acTemplate,
+		     rvslots => 'main', # rvslots is so dumb
 		     format => 'json',
 		     formatversion => 2,
 		     utf8 => '1' # Alaa friendly
 		    };
   # JSON, technically a reference to a hash
-  # $mw->list doesn't work with multiple lists???  Lame
   my $groupsReturn = $mw->api($groupsQuery);
   # Hash containing each list as a key, with the results as an array of hashes,
   # each hash containing the userid, user name, and (if requested) user groups
@@ -324,14 +337,19 @@ sub getCurrentGroups {
   # since it's by user, not by group.  Stewards are easy anyway.
   my $stewRef = $groupsQuery{globalallusers};
 
+  # Likewise, needs to store the ArbCom data.  Could shunt this off to the sub
+  # like botShutoffs or processFileData, but I'd rather not save the test pages
+  # as json.  Probably smarter, though.
+  my $acContent = $groupsQuery{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
+
+
   # Local groups need a loop for processing who goes where, but there are a lot of
   # sysops, so we need to either get the bot flag or iterate over everyone
   my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
-  # If there's a continue item, then continue, by God!
+  # If there's a continue item, then continue, by God!  Although it looks
+  # generic, it's only set up to handle processing sysops afterward.
   while (exists ${$groupsReturn}{continue}) { # avoid autovivification
     # Process the continue parameters
-    # Probably shit if there's another group that needs continuing
-    # FIXME && aufrom
     foreach (keys %{${$groupsReturn}{continue}}) {
       ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
     }
@@ -346,35 +364,15 @@ sub getCurrentGroups {
     push @localHashes, @{$groupsQuery{allusers}};
   }
 
-  # Go through each of the local groups and find the people (technically the
-  # other way around)
+  ## Now that we've got all the data stored properly, it's pretty
+  ## straightforward to just go through 'em all!
+  # Go through each local group and find the people (technically the other way
+  # around)
   %groupsData = findLocalGroupMembers(\@localHashes, \@rights);
-
   # Stewards easy
   %{$groupsData{steward}} = findStewardMembers($stewRef);
   push @rights, qw (steward);
-
-  # Get ArbCom.  Imperfect to rely upon this list being updated, but the Clerks
-  # are proficient and timely, and ArbCom membership is high-profile enough that
-  # this is updated quickly.  Previously, relied upon parsing
-  # [[Template:Arbitration_committee_chart/recent]] but that had annoying edge
-  # cases around December 30th and 31st, and is occasionally not updated as
-  # timely as the "official" members list, the latter being enshrined in AC/C/P.
-  my $acTemplate = 'Wikipedia:Arbitration Committee/Members';
-
-  # Can combine with the above query??? TODO FIXME
-  my $acQuery = {
-		 action => 'query',
-		 prop => 'revisions',
-		 rvprop => 'content',
-		 titles => $acTemplate,
-		 rvslots => 'main', # rvslots is so dumb
-		 format => 'json',
-		 formatversion => 2
-		};
-  # Could shunt this off to the sub like botShutoffs or processFileData, but I'd
-  # rather not save the test pages as json.  Probably smarter, though.
-  my $acContent = $mw->api($acQuery)->{query}->{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
+  # ArbCom too
   $groupsData{arbcom} = findArbComMembers($acContent);
   unshift @rights, qw (arbcom);
 
