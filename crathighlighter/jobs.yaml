@@ -28,5 +28,5 @@
   command: mv ~/wiki/crathighlighter/log.log ~/wiki/crathighlighter/log.bk.log ; touch ~/wiki/crathighlighter/log.log
   image: perl5.36
   no-filelog: false             # For now
-  schedule: "0 0 1 */3 *"
+  schedule: "0 0 1 */6 *"
   emails: onfailure
