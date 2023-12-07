@@ -9,13 +9,13 @@ use AmoryBot::CratHighlighter qw(createEmail);
 use Test::More tests => 7;
 
 
-# addedFiles, removedFileds, addedPages, removedPages
-my @testData = (
-		['Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)'],
-		['Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)'],
-		['Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)'],
-		['Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)']
+my %testData = (
+		addedFiles => ['Acalamari (B)', 'AmandaNP (OS)', 'Avraham (SYS)'],
+		removedFiles => ['Amorymeltzer (OS)', 'Bradv (SYS)', 'Enterprisey (IA)'],
+		addedPages => ['Acalamari (B)', 'AmandaNP (AC)', 'Avraham (SYS)'],
+		removedPages => ['Amorymeltzer (OS)', 'Bradv (CU)', 'Enterprisey (IA)']
 	       );
+
 # Number of local and wiki changes, repeatedly used
 my @l = qw(bureaucrat oversight sysop interface-admin);
 my @w = qw(bureaucrat arbcom sysop oversight checkuser interface-admin);
@@ -36,21 +36,21 @@ my $files = "Files: $l updated (@lMap)\n\tAdded: Acalamari (B), AmandaNP (OS), a
 my $pages = "Pages: $w updated (@wMap)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
 
 my $note = $headerPlus.$files.$pages;
-is(createEmail(\@l, \@w, \@testData, $push), $note, 'basic test');
+is(createEmail(\@l, \@w, \%testData, $push), $note, 'basic test');
 
 my $noPushNote = $headerBare.$files."Pages: $w not updated (@wMap)\n";
-is(createEmail(\@l, \@w, \@testData, !$push), $noPushNote, 'not pushed');
+is(createEmail(\@l, \@w, \%testData, !$push), $noPushNote, 'not pushed');
 
 my $noLocalNote = $headerPlus.$pages;
-is(createEmail(\@null, \@w, \@testData, $push), $noLocalNote, 'no local');
+is(createEmail(\@null, \@w, \%testData, $push), $noLocalNote, 'no local');
 
 my $noWikiNote = $headerBare.$files;
-is(createEmail(\@l, \@null, \@testData, $push), $noWikiNote, 'no wiki');
+is(createEmail(\@l, \@null, \%testData, $push), $noWikiNote, 'no wiki');
 
 # Not possible (see note in main script) but eventually will be...
 my $noneNote = $headerBare;
-is(createEmail(\@null, \@null, \@testData, $push), $noneNote, 'none');
+is(createEmail(\@null, \@null, \%testData, $push), $noneNote, 'none');
 
-# Bad data
+# Bad data, include changeRef?
 is(createEmail(), undef, 'No localRef');
 is(createEmail(\@l, q{}), undef, 'No wikiRef');

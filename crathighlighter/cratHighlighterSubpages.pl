@@ -84,7 +84,8 @@ my %contentStore = getPageGroups(@{$groups});
 # These conveniently function as indicators as well as counters for number of
 # files or pages changed, respectively
 my (@localChange, @wikiChange);
-my (@addedFiles, @removedFiles, @addedPages, @removedPages);
+# Hold all changes for later
+my %changes;
 # Template for generating JSON, sorted
 # Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
 my $jsonTemplate = JSON->new->canonical(1);
@@ -115,8 +116,8 @@ foreach (@{$groups}) {
     # Could test that this works?
     write_text("$scriptDir/$file", $queryJSON);
 
-    push @addedFiles, mapGroups($_, \@{$fileAdded});
-    push @removedFiles, mapGroups($_, \@{$fileRemoved});
+    push @{$changes{addedFiles}}, mapGroups($_, \@{$fileAdded});
+    push @{$changes{removedFiles}}, mapGroups($_, \@{$fileRemoved});
   }
 
   # Check if on-wiki records have changed
@@ -129,8 +130,8 @@ foreach (@{$groups}) {
     my $summary = changeSummary($wikiAdded,$wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
-    push @addedPages, mapGroups($_, \@{$wikiAdded});
-    push @removedPages, mapGroups($_, \@{$wikiRemoved});
+    push @{$changes{addedPages}}, mapGroups($_, \@{$wikiAdded});
+    push @{$changes{removedPages}}, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
       # Multifaceted and overly-verbose edit summaries are the best!
@@ -173,19 +174,11 @@ $mw->logout();
 if (scalar @localChange + scalar @wikiChange) {
   INFO('No further updates needed');
 
-  # I hate array referencing, somehow hashes are easier?!
-  my @total = (
-	       \@addedFiles,
-	       \@removedFiles,
-	       \@addedPages,
-	       \@removedPages
-	      );
-
   # Report final status via email.  Each item should already be logged above in the
   # main loop, this is just to trigger an email on changes when run via cron.
   # Probably not needed except to update the newsletter, but I like having the
   # updates.  Could put it behind a flag?
-  print createEmail(\@localChange, \@wikiChange, \@total, $opts{P});
+  print createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
 } else {
   INFO('No updates needed');
 }
