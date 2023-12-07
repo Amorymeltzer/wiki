@@ -8,7 +8,7 @@ use warnings;
 use Test::More;
 
 # Only enable on toolforge or when releasing
-if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot') {
+if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot' || $ENV{KUBERNETES_PORT}) {
   plan tests => 4;
 } else {
   plan skip_all => 'Tests annoying when developing';

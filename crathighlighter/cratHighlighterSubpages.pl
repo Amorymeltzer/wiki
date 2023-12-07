@@ -59,7 +59,7 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 # toolforge grid.  It's a little added complexity but makes it easier for me to
 # test API things without changing configs, etc.
 my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
-my $user = $ENV{LOGNAME} eq 'tools.amorybot' ? $botUser : $userUser;
+my $user = ($ENV{KUBERNETES_PORT} || $ENV{LOGNAME} eq 'tools.amorybot') ? $botUser : $userUser;
 
 ### Initialize API object.  Get username/password combo, log in, etc.
 my $mw = mwLogin($user);

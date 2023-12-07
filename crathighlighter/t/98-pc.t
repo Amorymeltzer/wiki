@@ -7,7 +7,7 @@ use warnings;
 
 use Test::More;
 
-if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot') {
+if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot' || $ENV{KUBERNETES_PORT}) {
   plan tests => 20;
 } else {
   plan skip_all => 'Tests annoying when developing';
