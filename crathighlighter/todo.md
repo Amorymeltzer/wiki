@@ -22,7 +22,7 @@
 - [x] findLocalGroupMembers
 - [x] cmpJSON
 - [ ] Combine the two main queries?  Yes I think so: it would require reworking @rights/$groups handling and all that, but should make things faster since the queries are the only real bottlenecks, plus it's nicer!
-- [ ] Rework `getCurrentGroups` to just be API stuff, thus pulling out group processing?  Will need an intermediate storage hash, but especially if the page content query is combine (as above) then it would be cleaner, with fewer subs and the like.  Might even make testing some items easier.
+- [ ] Rework `getCurrentGroups` to just be API stuff, thus pulling out group processing?  Will need an intermediate storage hash, but especially if the page content query is combine (as above) then it would be cleaner, with fewer subs and the like.  Might even make testing some items easier.  Likewise, connects with some ideals of removing more and more stuff from being connected to the API (see section below).
 - [ ] Is it faster to query for `auprop=>'groups'` as I do currently, or is it faster to query for `auprop=>'rights'`?  The former might be slower on the server side, but the latter would require going through a lot of different arrays to look for the few that I need...
 
 ## Tests
@@ -45,7 +45,7 @@
 
 - [ ] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>
 - [ ] dieNice - Ideally would take in self, PR opened.
-- [ ] botShutoffs - Logging
+- [ ] botQuery - Logging?
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
 - [ ] getPageGroups
 
