@@ -1,5 +1,40 @@
 # Toolforge testing
 
+## Location of modules
+
+**Summary**: Need to pass `$PERL5LIB` to actually make the modules available, but issues with JSON::MaybeXS persist.  Maybe check the various dependencies/things it checks?  Seems likely:
+
+- `Cpanel::JSON::XS`:`/data/project/amorybot/perl5/lib/perl5/x86_64-linux-gnu-thread-multi/Cpanel/JSON/XS.pm`
+- `JSON::XS`: `/usr/lib/x86_64-linux-gnu/perl5/5.28/JSON/XS.pm`
+- `JSON::PP`: `/usr/share/perl/5.28/JSON/PP.pm`
+
+Installing all three via `cpanm` actually made it worse: `MediaWiki::API` is now broken?  Seems to be related to installing `JSON::XS`, as a dependency?  Same XS.c error.
+
+### Plain
+
+Doing the ol' `perl -MGit::Repository -e 'print $INC{"Git/Repository.pm"}'` trick for all my modules gives that `/usr/share/perl5/` has `Log::Log4perl` and `MediaWiki::API`, but not `Git::Repository`, `File::Slurper`, and `JSON::MaybeXS`.  Makes sense, since:
+
+```text
+@INC:
+/etc/perl
+/usr/local/lib/x86_64-linux-gnu/perl/5.36.0
+/usr/local/share/perl/5.36.0
+/usr/lib/x86_64-linux-gnu/perl5/5.36
+/usr/share/perl5
+/usr/lib/x86_64-linux-gnu/perl-base
+/usr/lib/x86_64-linux-gnu/perl/5.36
+/usr/share/perl/5.36
+/usr/local/lib/site_perl
+```
+
+### Export
+
+`toolforge jobs run wherejson-export --command "export PERL5LIB='/data/project/amorybot/perl5/lib/perl5/'; ./wherejson.sh" --image perl5.36` gave `Log::Log4perl`, `MediaWiki::API`, `Git::Repository`, and `File::Slurper`, but not `JSON::MaybeXS`.  Better!  The error: `XS.c: loadable library and perl binaries are mismatched (got first handshake key 0xce00080, needed 0xeb80080)`
+
+### Variable
+
+`toolforge jobs run wherejson-var --command "PERL5LIB='/data/project/amorybot/perl5/lib/perl5/' ./wherejson.sh" --image perl5.36`: As above
+
 ## gitSync.pl
 
 **Summary**: Any option works
