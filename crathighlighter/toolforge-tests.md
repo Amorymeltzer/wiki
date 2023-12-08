@@ -1,5 +1,7 @@
 # Toolforge testing
 
+Turns out, I was providing `PERL5LIB` in my crontab the whole time!  So it's not really much different.  Can maybe try in [jobs.yaml](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/#using-environment-variables-inside-of-your-config)?  Still need to fix installation of modules, though.
+
 ## Location of modules
 
 **Summary**: Need to pass `$PERL5LIB` to actually make the modules available, but issues with JSON::MaybeXS persist.  Maybe check the various dependencies/things it checks?  Seems likely:
@@ -9,6 +11,8 @@
 - `JSON::PP`: `/usr/share/perl/5.28/JSON/PP.pm`
 
 Installing all three via `cpanm` actually made it worse: `MediaWiki::API` is now broken?  Seems to be related to installing `JSON::XS`, as a dependency?  Same XS.c error.
+
+**SO**: I have now installed Perl 5.36.0 on the tool account, so consider switching to that and reinstalling all modules.  Maybe that will solve things?
 
 ### Plain
 
