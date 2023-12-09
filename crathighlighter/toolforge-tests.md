@@ -14,6 +14,34 @@ Installing all three via `cpanm` actually made it worse: `MediaWiki::API` is now
 
 **SO**: I have now installed Perl 5.36.0 on the tool account, so consider switching to that and reinstalling all modules.  Maybe that will solve things?
 
+By itself: no, doesn't solve anything.  Still same issues; `JSON::MaybeXS` installed and available in new brewperl 5.36.0 installation, but k8s still fails as below.  That's largely because `@INC` is:
+
+```text
+@INC:
+/etc/perl
+/usr/local/lib/x86_64-linux-gnu/perl/5.36.0
+/usr/local/share/perl/5.36.0
+/usr/lib/x86_64-linux-gnu/perl5/5.36
+/usr/share/perl5
+/usr/lib/x86_64-linux-gnu/perl-base
+/usr/lib/x86_64-linux-gnu/perl/5.36
+/usr/share/perl/5.36
+/usr/local/lib/site_perl
+```
+
+Prepending with the variable (`PERL5LIB='/data/project/amorybot/perl5/lib/perl5/'`) correctly places things in the @INC; so yeah, checks out!  Still some failures because...
+
+**EXCEPT**: There is a huge difference between:
+
+- `/data/project/amorybot/perl5/lib/perl5/`
+- `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/`
+
+The latter is seemingly where most of the things got installed?  Fucked if I know how or why.  The latter works perfectly when testing loading, so just use that I guess?!  Not sure why perlbrew uses one or the other.  Of note, with perlbrew, I'm not exporting `$PERL5LIB` in my `.bash_profile`, so that might not help.  Still, major progress!!  (Could the difference be age?  It seems so!  Everything in the former was installed *before* switching and using a perlbrew-installed Perl, so yeah, that's gotta be it!)
+
+So, maybe going forward: tweak .bash_profile, confirm a good $PERL5LIB, yay?  No, perlbrew `unset`s PERL5LIB intentionally, so, uh, just add manually?  Seems to work.
+
+Going forward: Good idea could be to just use the system perl to install modules, yeah?  Would require a lot of setup, maybe.  setup.sh?  But maybe not URGENT to get working the first time around.
+
 ### Plain
 
 Doing the ol' `perl -MGit::Repository -e 'print $INC{"Git/Repository.pm"}'` trick for all my modules gives that `/usr/share/perl5/` has `Log::Log4perl` and `MediaWiki::API`, but not `Git::Repository`, `File::Slurper`, and `JSON::MaybeXS`.  Makes sense, since:
