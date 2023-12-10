@@ -36,11 +36,26 @@ Prepending with the variable (`PERL5LIB='/data/project/amorybot/perl5/lib/perl5/
 - `/data/project/amorybot/perl5/lib/perl5/`
 - `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/`
 
-The latter is seemingly where most of the things got installed?  Fucked if I know how or why.  The latter works perfectly when testing loading, so just use that I guess?!  Not sure why perlbrew uses one or the other.  Of note, with perlbrew, I'm not exporting `$PERL5LIB` in my `.bash_profile`, so that might not help.  Still, major progress!!  (Could the difference be age?  It seems so!  Everything in the former was installed *before* switching and using a perlbrew-installed Perl, so yeah, that's gotta be it!)
+The latter is seemingly where most of the things got installed?  Fucked if I know how or why.  The latter works perfectly when testing loading, so just use that I guess?!  Not sure why perlbrew uses one or the other.  Of note, with perlbrew, I'm not exporting `$PERL5LIB` in my `.bash_profile`, so that might not help.  Still, major progress!  (Could the difference be age?  It seems so!  Everything in the former was installed *before* switching and using a perlbrew-installed Perl, so yeah, that's gotta be it!)
 
-So, maybe going forward: tweak .bash_profile, confirm a good $PERL5LIB, yay?  No, perlbrew `unset`s PERL5LIB intentionally, so, uh, just add manually?  Seems to work.
+So, maybe going forward: tweak .bash_profile, confirm a good $PERL5LIB, yay?  No, perlbrew `unset`s PERL5LIB intentionally, so, uh, just add manually?  Seems to work.  Testing:
 
-Going forward: Good idea could be to just use the system perl to install modules, yeah?  Would require a lot of setup, maybe.  setup.sh?  But maybe not URGENT to get working the first time around.
+- Nothing: Incomplete
+- `/data/project/amorybot/perl5/lib/perl5/`: Incomplete
+- `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/`: **SUCCESS**
+- `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/`: **SUCCESS**
+- `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/lib/`: Incomplete
+- `/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/`: Incomplete
+
+**So**: They work!  For proveme.pl anyway.  Still an issue with Pod checks, though; I think that's related to not having access to the .perlcritic file?  I dunno.  But progress!  Could be a path issue!  Access to `perlcritic`, etc.  Not sure though; jobs run says can't find `perlcritic` but the path is there and accurate?!
+
+**LOOK INTO**: Providing via `toolforge envvars`?  Looks good: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Envvars_Service>  Also see for `cron`, `logname`, etc.
+
+ALSO: Check out .kube/config?
+
+----
+
+Going forward beyond this: Good idea could be to just use the system perl to install modules, yeah?  Would require a lot of setup, maybe.  setup.sh?  But maybe not URGENT to get working the first time around.  Could try in the webservice too--`webservice --backend=kubernetes perl5.36 shell`--but there are some issues, since that loads my .bashrc, .bash_profile, etc., whereas the `toolforge jobs run` doesn't.
 
 ### Plain
 
