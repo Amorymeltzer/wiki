@@ -7,7 +7,8 @@ use warnings;
 
 use Test::More;
 
-if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot' || $ENV{KUBERNETES_PORT}) {
+# Kubernetes LOGNAME added manually via toolforge envvars
+if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot' || $ENV{LOGNAME} eq 'tools.amorybot.k8s') {
   plan tests => 20;
 } else {
   plan skip_all => 'Tests annoying when developing';

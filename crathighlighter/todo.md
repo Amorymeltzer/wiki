@@ -8,8 +8,9 @@
 - Replace all cron runs
 - Can't find modules, duh.  Maybe <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Raw_Kubernetes_jobs#Cron_jobs> works?
   - Actually, maybe I can just install them in the environment? <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Python#Virtual_environments>
-- Emails?  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm if necessary
+- Emails?  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
 - [ ] Fix or alter `$ENV{cron}` stuff for k8s running
+- [ ] Remove toolforge `$LOGNAME` (`tools.amorybot`) when done with toolforge grid and all running on kubernetes
 
 ## Main module
 
