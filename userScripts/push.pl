@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 # push.pl by Amory Meltzer
 # Push new version live to my userspace
-# Heavily borrowed from cratHighlighterSubpages.pl, as well as my rewrite of Twinkle's sync.pl:
-# https://github.com/azatoth/twinkle/blob/616aeb6e1933162c25a95bbcbf82df0a613f9707/sync.pl
 
 use 5.010;
 use strict;

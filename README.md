@@ -16,24 +16,8 @@ Creates an *h*-index-like metric for sysops, and includes some pretty graphs via
 
 My on-wiki userscripts and custom JavaScript/CSS.  Easier to edit them locally, plus there are a few scripts to make updating things easier:
 
-- [`push.pl`](./userScripts/push.pl): Pushes new versions live to my userspace, based on Twinkle's sync.pl
+- [`push.pl`](./userScripts/push.pl): Pushes new versions live to my userspace
 - [`updateModernjs.pl`](./userScripts/updateModernjs.pl): For safety reasons, I only import specific revisions of user scripts.  This script checks those pages for any new updates, then shows me the diffs so I can review them for safety, then updates my js file.
-
-### [`twinkle`](./twinkle/)
-
-Stuff for [Twinkle](https://github.com/azatoth/twinkle) (WP:TW)
-
-#### [`twinkleCheck`](./twinkle/twinkleCheck.pl)
-
-Quickly check which [Twinkle](https://github.com/azatoth/twinkle/) files need updating on-wiki.  Works on enwiki or testwiki, and can show diffs.  Rough.
-
-#### [`tagCleanup`](./twinkle/tagCleanup/)
-
-Some stuff for <https://github.com/azatoth/twinkle/issues/178> and <https://github.com/azatoth/twinkle/pull/840>
-
-#### [`warningComments`](./twinkle/warningComments/)
-
-Some stuff for <https://github.com/azatoth/twinkle/issues/922>
 
 ## [Wikispecies](./wikispecies/)
 
