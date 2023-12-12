@@ -1,7 +1,8 @@
 # https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework
+# envvars: CRON=1, LOGNAME=tools.amorybot.k8s, PERL5LIB
 ---
 - name: git-sync
-  command: CRON=1 perl ~/wiki/crathighlighter/gitSync.pl
+  command: perl ~/wiki/crathighlighter/gitSync.pl
   image: perl5.36
   no-filelog: false             # For now
   schedule: "6,35 * * * *"
@@ -13,13 +14,13 @@
   schedule: "8,37 * * * *"
   emails: onfailure
 - name: crat-highlighter-subpages
-  command: CRON=1 perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
+  command: perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
   image: perl5.36
   no-filelog: false             # For now
   schedule: "13,42 * * * *"
   emails: onfailure
 - name: cron-shim
-  command: CRON=1 ~/wiki/crathighlighter/cron_shim.sh ~/wiki/crathighlighter/log.log 'updates needed' 'DISABLED on-wiki' || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n
+  command: ~/wiki/crathighlighter/cron_shim.sh ~/wiki/crathighlighter/log.log 'updates needed' 'DISABLED on-wiki' || perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl -n
   image: perl5.36
   no-filelog: false             # For now
   schedule: "26,55 * * * *"

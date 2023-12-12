@@ -49,7 +49,7 @@ So, maybe going forward: tweak .bash_profile, confirm a good $PERL5LIB, yay?  No
 
 **So**: They work!  For proveme.pl anyway.  Still an issue with Pod checks, though; I think that's related to not having access to the .perlcritic file?  I dunno.  But progress!  Could be a path issue!  Access to `perlcritic`, etc.  Not sure though; jobs run says can't find `perlcritic` but the path is there and accurate?!
 
-**LOOK INTO**: Providing via `toolforge envvars`?  Looks good: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Envvars_Service>  Also see for `cron`, `logname`, etc.
+**LOOK INTO**: Providing via `toolforge envvars`?  Looks good: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Envvars_Service>  Also see for `cron`, `logname`, etc.  Good place for botpasswords
 
 ALSO: Check out .kube/config?
 
