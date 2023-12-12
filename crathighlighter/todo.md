@@ -6,11 +6,11 @@
 
 - [x] yaml file to replace crontab.crontab: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework#Loading_jobs_from_a_YAML_file>
 - [ ] Replace all cron runs
-  - [ ] gitSync.pl
+  - [x] gitSync.pl
   - [ ] proveme.pl (issue with perlcritic and POD?)
-  - [ ] cratHighlighterSubpages.pl
+  - [x] cratHighlighterSubpages.pl
   - [ ] cron_shim.sh
-  - [ ] log rotation
+  - [x] log rotation
 - [x] Install Perl 5.36 and subsequent modules via Perlbrew and cpanm
 - [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
 - [ ] Fix or alter `$ENV{CRON}` stuff for k8s running, likely not necessary
@@ -21,7 +21,7 @@
 - [ ] Move botpasswords/secrets to envvars
 - [ ] Consider setup_perl.sh for installing modules via system Perl /usr/bin/perl (might mean just running scripts via system Perl?) or even just setup?
 - [ ] Look into .kube/config
-- <https://k8s-status.toolforge.org/namespaces/tool-amorybot/>
+- <https://k8s-status.toolforge.org/namespaces/tool-amorybot/> and <https://grafana.wmcloud.org/d/TJuKfnt4z/kubernetes-namespace?orgId=1&var-namespace=tool-amorybot&refresh=5s>
 
 ## Main module
 
