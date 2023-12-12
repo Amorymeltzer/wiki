@@ -7,9 +7,9 @@
 - [x] yaml file to replace crontab.crontab: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework#Loading_jobs_from_a_YAML_file>
 - [ ] Replace all cron runs
   - [x] gitSync.pl
-  - [ ] proveme.pl (issue with perlcritic and POD?)
+  - [ ] proveme.pl (issue with `perlcritic` loading files, issues in pc and pod coverage?)
   - [x] cratHighlighterSubpages.pl
-  - [ ] cron_shim.sh
+  - [x] cron_shim.sh
   - [x] log rotation
 - [x] Install Perl 5.36 and subsequent modules via Perlbrew and cpanm
 - [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
