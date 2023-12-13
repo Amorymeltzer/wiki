@@ -7,7 +7,7 @@
 - [x] yaml file to replace crontab.crontab: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Jobs_framework#Loading_jobs_from_a_YAML_file>
 - [ ] Replace all cron runs
   - [x] gitSync.pl
-  - [ ] proveme.pl (issue with `perlcritic` loading files, issues in pc and pod coverage?)
+  - [ ] proveme.pl (issue with `perlcritic` loading files, issues in pc and pod coverage?) (Looks like some modules are in the wrong place, like Pod::PlainText)  The `$PATH` is totally fine, I think, but for some reason it's inaccessible, and manually providing the `$PATH` solves the issue?
   - [x] cratHighlighterSubpages.pl
   - [x] cron_shim.sh
   - [x] log rotation
