@@ -8,7 +8,7 @@
   schedule: "6,35 * * * *"
   emails: onfailure
 - name: proveme
-  command: export PATH="/data/project/amorybot/perl5/perlbrew/bin:/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/bin:$PATH"; perl ~/wiki/crathighlighter/proveme.pl
+  command: export PATH="/data/project/amorybot/perl5/perlbrew/bin:/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/bin:$PATH"; perl ~/wiki/crathighlighter/proveme.pl 1>/dev/null
   image: perl5.36
   no-filelog: false             # For now
   schedule: "8,37 * * * *"
