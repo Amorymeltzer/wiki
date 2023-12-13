@@ -7,12 +7,12 @@
   no-filelog: false             # For now
   schedule: "6,35 * * * *"
   emails: onfailure
-# - name: proveme
-#   command: perl ~/wiki/crathighlighter/proveme.pl
-#   image: perl5.36
-#   no-filelog: false             # For now
-#   schedule: "8,37 * * * *"
-#   emails: onfailure
+- name: proveme
+  command: export PATH="/data/project/amorybot/perl5/perlbrew/bin:/data/project/amorybot/perl5/perlbrew/perls/perl-5.36.0/bin:$PATH"; perl ~/wiki/crathighlighter/proveme.pl
+  image: perl5.36
+  no-filelog: false             # For now
+  schedule: "8,37 * * * *"
+  emails: onfailure
 - name: crat-highlighter-subpages
   command: perl ~/wiki/crathighlighter/cratHighlighterSubpages.pl
   image: perl5.36
