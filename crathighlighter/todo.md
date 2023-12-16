@@ -1,6 +1,7 @@
 # Todos
 
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
+- [ ] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay?  `say` and `try/catch` maybe
 
 ## Set up Toolforge for Kubernetes: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Kubernetes>
 
@@ -14,15 +15,14 @@
   - [x] log rotation
 - [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
 - [ ] Fix or alter `$ENV{CRON}` stuff for k8s running, likely not necessary
-- [ ] Remove toolforge `$LOGNAME` (`tools.amorybot`) when done with toolforge grid and all running on kubernetes (replacement is... ?)
+- [ ] Remove toolforge `$LOGNAME` (`tools.amorybot`) when done with toolforge grid and all running on kubernetes (replacement is... ?) (combines with `CRON`, prob want at least one of them...)
 - [ ] Look into retry
-- [ ] Rename cron_shim
-- [ ] Reenable read-only stuff?
+- [ ] Rename cron_shim, make sure to fix in jobs.yaml
+- [x] Reenable read-only stuff?  Nah, just remove
 - [ ] Move botpasswords/secrets to envvars
 - [ ] Annoying not having `$PATH` set and doing manually for proveme.pl, perhaps setup_perl.sh can deal with this?  Prob not.
 - [ ] Consider setup_perl.sh for installing modules via system Perl /usr/bin/perl (might mean just running scripts via system Perl?) or even just setup?
 - [ ] Look into .kube/config
-- <https://k8s-status.toolforge.org/namespaces/tool-amorybot/> and <https://grafana.wmcloud.org/d/TJuKfnt4z/kubernetes-namespace?orgId=1&var-namespace=tool-amorybot&refresh=5s>
 
 ## Main module
 
