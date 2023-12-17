@@ -20,8 +20,8 @@
 - [ ] Rename cron_shim, make sure to fix in jobs.yaml
 - [x] Reenable read-only stuff?  Nah, just remove
 - [ ] Move botpasswords/secrets to envvars
-- [ ] Annoying not having `$PATH` set and doing manually for proveme.pl, perhaps setup_perl.sh can deal with this?  Prob not.
-- [ ] Consider setup_perl.sh for installing modules via system Perl /usr/bin/perl (might mean just running scripts via system Perl?) or even just setup?
+- [x] Annoying not having `$PATH` set and doing manually for proveme.pl, perhaps setup_perl.sh can deal with this?  Prob not.
+- [x] Consider setup_perl.sh for installing modules via system Perl /usr/bin/perl (might mean just running scripts via system Perl?) or even just setup?  Meh, unneeded atm
 - [ ] Look into .kube/config
 
 ## Main module
