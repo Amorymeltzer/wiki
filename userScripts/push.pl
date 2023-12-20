@@ -82,10 +82,11 @@ foreach my $norm (@{$response->{query}->{normalized}}) {
 
 # Go through 'em all!
 foreach my $page (@{$response->{query}->{pages}}) {
+  my $title = $page->{title};
   if ($page->{missing}) {
-    print colored ['red'], "$page does not exist\n";
+    print colored ['red'], "$title does not exist\n";
   } else {
-    my $file = $lookup{$page->{title}};
+    my $file = $lookup{$title};
     # Push, making sure only valid files are entered
     print "Pushing $file...\n";
     my $rev = $page->{revisions}[0];
@@ -97,19 +98,19 @@ foreach my $page (@{$response->{query}->{pages}}) {
       print colored ['blue'], "\tNo changes needed, skipping\n";
     } else {
       my $timestamp = $rev->{timestamp};
-      my $summary = buildEditSummary($page, $file, $rev->{comment});
+      my $summary = buildEditSummary($title, $file, $rev->{comment});
       $mw->edit({
                  action => 'edit',
                  assert => 'user',
-                 title => $page,
+                 title => $title,
                  basetimestamp => $timestamp, # Avoid edit conflicts
                  text => $text,
                  summary => $summary
-                }) || die "\tError editing the page: $mw->{error}->{code}: $mw->{error}->{details}\n";
+                }) || die "\tError editing the page $title: $mw->{error}->{code}: $mw->{error}->{details}\n";
       my $return = $mw->{response};
 
       if ($return->{_msg} eq 'OK') {
-        print colored ['green'], "\t$file successfully pushed to $page\n";
+        print colored ['green'], "\t$file successfully pushed to $title\n";
       } else {
         print colored ['red'], "\tError pushing $file: $mw->{error}->{code}: $mw->{error}->{details}\n";
       }
