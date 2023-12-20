@@ -43,7 +43,7 @@ my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
-# Only if not being run via cron, known thanks to CRON=1 in crontab
+# Only if not being run automatically, known thanks to CRON=1 in k8s envvars
 my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 file   => 'STDOUT',
 		 # message

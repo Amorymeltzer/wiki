@@ -3,7 +3,7 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Sync JSON lists for crathighlighter.js
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
-# Run via cron on toolforge as User:AmoryBot
+# Run regularly on toolforge as User:AmoryBot
 
 use 5.006;
 use strict;
@@ -47,7 +47,7 @@ my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
-# Only if not being run via cron, known thanks to CRON=1 in crontab
+# Only if not being run automatically, known thanks to CRON=1 in k8s envvars
 my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 		 file   => 'STDOUT',
 		 # message
@@ -60,7 +60,7 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 # test API things without changing configs, etc.
 my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
 # Kubernetes LOGNAME added manually via toolforge envvars
-my $user = ($ENV{LOGNAME} eq 'tools.amorybot.k8s' || $ENV{LOGNAME} eq 'tools.amorybot') ? $botUser : $userUser;
+my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
 
 ### Initialize API object.  Get username/password combo, log in, etc.
 my $mw = mwLogin($user);
@@ -175,10 +175,10 @@ $mw->logout();
 if (scalar @localChange + scalar @wikiChange) {
   INFO('No further updates needed');
 
-  # Report final status via email.  Each item should already be logged above in the
-  # main loop, this is just to trigger an email on changes when run via cron.
-  # Probably not needed except to update the newsletter, but I like having the
-  # updates.  Could put it behind a flag?
+  # Report final status.  Each item should already be logged above in the main
+  # loop, this is just to trigger an update on changes when run on the
+  # kubernetes schedule.  Probably not needed, but I like having the updates.
+  # Could put it behind a flag?
   print createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
 } else {
   INFO('No updates needed');

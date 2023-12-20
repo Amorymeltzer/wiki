@@ -281,10 +281,10 @@ sub buildNote {
 
 =cut
 
-# Report final status via email.  Each item should already be logged above in the
-# main loop, this is just to trigger an email on changes when run via cron.
-# Probably not needed except to update the newsletter, but I like having the
-# updates.  Could put it behind a flag?
+# Report final status.  Each item should already be logged above in the main
+# loop, this is just to trigger an update on changes when run on the kubernetes
+# schedule.  Probably not needed, but I like having the updates.  Could put it
+# behind a flag?
 sub createEmail {
   my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
   return if (!$localRef || !$wikiRef);

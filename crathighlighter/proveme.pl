@@ -1,5 +1,5 @@
 #!/usr/bin/env perl
-# More easily run prove from another directory via cron
+# More easily run prove automatically (cron, k8s) from another directory
 
 use 5.006;
 use strict;
