@@ -759,7 +759,7 @@ function getARARules()
 	    var name = document.URL;
 	    if (name.indexOf("section=") < 0)
 	    {
-		if (s.indexOf("<ref") > -1 && s.indexOf(re) < 0 && s.indexOf(Re) < 0 && s.indexOf(ore) < 0 && s.indexOf(oree) < 0 && s.indexOf("{{reflist))") < 0 && s.indexOf("{{relist}}") < 0 && s.indexOf("{{Reflist|refs=") < 0 && s.indexOf("{{reflist|refs=") < 0
+		if (s && s.indexOf("<ref") > -1 && s.indexOf(re) < 0 && s.indexOf(Re) < 0 && s.indexOf(ore) < 0 && s.indexOf(oree) < 0 && s.indexOf("{{reflist))") < 0 && s.indexOf("{{relist}}") < 0 && s.indexOf("{{Reflist|refs=") < 0 && s.indexOf("{{reflist|refs=") < 0
 		    && document.URL.indexOf("title=Portal:") < 0) //(don't add reflist to portals)
 		{
 		    if (s.indexOf("==References==") > -1 || s.indexOf("== References ==") > -1 || s.indexOf("==Sources==") > -1 || s.indexOf("== Sources ==") > -1)
