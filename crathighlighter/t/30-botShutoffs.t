@@ -24,9 +24,8 @@ is(testFile('t/bot_allclear.json'), undef, 'Success');
 sub testFile {
   my $fileJSON = read_text(shift);
 
-  # Template for generating JSON, sorted
-  my $jsonTemplate = JSON->new->canonical(1);
-  $jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+  # Template for generating JSON, sorted and prettyish
+  my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 
   my $botReturn = $jsonTemplate->decode($fileJSON);
 

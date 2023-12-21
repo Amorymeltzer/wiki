@@ -87,10 +87,11 @@ my %contentStore = getPageGroups(@{$groups});
 my (@localChange, @wikiChange);
 # Hold all changes for later
 my %changes;
-# Template for generating JSON, sorted
-# Make into hashref? https://metacpan.org/pod/JSON::MaybeXS#new TODO
-my $jsonTemplate = JSON->new->canonical(1);
-$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+# Template for generating JSON, sorted and prettyish
+# Use decode_json and encode_json instead of encode and decode?  Gets annoying,
+# and means using Encode to handle non-ascii script, I think?
+# https://metacpan.org/pod/JSON::MaybeXS TODO FIXME
+my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 foreach (@{$groups}) {
   my $note;
   my %queryHash = %{${$groupsStore}{$_}}; # Just the specific rights hash we want

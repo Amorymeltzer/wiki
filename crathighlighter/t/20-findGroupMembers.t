@@ -32,9 +32,8 @@ my %actual = (
 	      'steward' => ['AmandaNP', 'AntiCompositeNumber', 'BRPever', 'Base', 'Bsadowski1', 'DerHexer', 'Elton', 'HakanIST', 'Hasley', 'Hoo man', 'Jon Kolbert', 'MarcGarver', 'MarcoAurelio', 'Martin Urbanec', 'Masti', 'Mykola7', 'Operator873', 'RadiX', 'Sakretsu', 'Schniggendiller', 'Sotiale', 'Stryn', 'Superpes15', 'Tegel', 'Teles', 'Tks4Fish', 'Vermont', 'Vituzzu', 'Wiki13', 'Wim b', 'Xaosflux', 'علاء']
 	     );
 
-# Template for generating JSON, sorted
-my $jsonTemplate = JSON->new->canonical(1);
-$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+# Template for generating JSON, sorted and prettyish
+my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 
 my $file = 't/groups.json';
 my $fileJSON = read_text($file);

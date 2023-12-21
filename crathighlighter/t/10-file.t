@@ -31,9 +31,8 @@ plan tests => 1+3*scalar @rights;
 # Bad data
 is(processFileData(), undef, 'No data passed');
 
-# Template for generating JSON, sorted
-my $jsonTemplate = JSON->new->canonical(1);
-$jsonTemplate = $jsonTemplate->indent(1)->space_after(1); # Make prettyish
+# Template for generating JSON, sorted and prettyish
+my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 
 my $file = 't/file.json';
 my $fileJSON = read_text($file);
