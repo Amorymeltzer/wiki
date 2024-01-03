@@ -200,7 +200,8 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
-# Handle logging in to the wiki, mainly ensuring we die nicely
+# Handle logging in to the wiki, mainly ensuring we die nicely.  Need to roughly
+# keep this in sync with the version in t/50-mwUA.t
 sub mwLogin {
   my ($username, $password) = @_;
 
