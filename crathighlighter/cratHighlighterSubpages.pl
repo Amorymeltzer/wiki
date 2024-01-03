@@ -60,6 +60,7 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 # test API things without changing configs, etc.
 my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
 # Kubernetes LOGNAME added manually via toolforge envvars
+LOGDIE('Unable to determine user') if !$ENV{LOGNAME};
 my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
 
 ### Initialize API object.  Get username/password combo, log in, etc.
