@@ -55,6 +55,8 @@ my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
+### User details
+my $scriptName = 'cratHighlighterSubpages.pl';
 # Define the bot and non-bot users, then check if this is being run on the
 # toolforge grid.  It's a little added complexity but makes it easier for me to
 # test API things without changing configs, etc.
@@ -62,9 +64,14 @@ my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
 # Kubernetes LOGNAME added manually via toolforge envvars
 LOGDIE('Unable to determine user') if !$ENV{LOGNAME};
 my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
+# Get BotPassword for the given user.  It's stored in an environment variable,
+# so need to be annoyingly roundabout.
+my $envUsername = uc $user.'PW';
+LOGDIE('Unable to get user login information') if !$ENV{$envUsername};
 
-### Initialize API object.  Get username/password combo, log in, etc.
-my $mw = mwLogin($user);
+
+### Initialize API object, log in, etc.
+my $mw = mwLogin("$user\@$scriptName", $ENV{$envUsername});
 
 # Used globally to make edit summaries, page titles, etc. easier
 my $userPage = 'User:'.$user;
@@ -195,7 +202,7 @@ if ($opts{n}) {
 ######## SUBROUTINES ########
 # Handle logging in to the wiki, mainly ensuring we die nicely
 sub mwLogin {
-  my ($username, $password) = getConfig(shift);
+  my ($username, $password) = @_;
 
   # Global, declared above
   $mw = MediaWiki::API->new({
@@ -205,32 +212,10 @@ sub mwLogin {
 			     on_error => \&dieNice,
 			     use_http_get => '1' # use GET where appropriate
 			    });
-  $mw->{ua}->agent("$user/cratHighlighterSubpages.pl (".$mw->{ua}->agent.')');
+  $mw->{ua}->agent("$username (".$mw->{ua}->agent.')');
   $mw->login({lgname => $username, lgpassword => $password});
 
   return $mw;
-}
-# Get relevant username/password combination from the config file, which
-# consists of simple pairs of username and botpassword separated by a colon:
-## Jimbo Wales:stochasticstring
-# Config::General is easy but this is simple enough
-sub getConfig {
-  my $correctname = shift or LOGDIE('No username provided');
-
-  my ($un, $pw);
-  open my $rc, '<', "$scriptDir/.crathighlighterrc" or LOGDIE($ERRNO);
-  while (my $line = <$rc>) {
-    chomp $line;
-    ($un, $pw) = split /:/, $line;
-    # Only accept the right user
-    last if $un =~ /^$correctname@/;
-  }
-  close $rc or LOGDIE($ERRNO);
-
-  # Catch wrong user if right user not actually provided
-  LOGDIE('Wrong user provided') if $un !~ /^$correctname@/;
-
-  return ($un, $pw);
 }
 # Nicer handling of some specific mediawiki errors, can be expanded using:
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm

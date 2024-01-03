@@ -61,7 +61,7 @@
 
 ### API - sub module?
 
-- [ ] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>
+- [ ] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> and <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>  But also maybe can add later?  If pull all logging out could be local, and can at least confirm it exists, user agent, etc.  Might even make more sense to log in separate from building the object?  Probably the only one that makes sense, so seems silly to do.  Just copy for testing, and ensure any changes are covered there?
 - [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botQuery - Logging?
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there
@@ -69,7 +69,6 @@
 
 ### Local
 
-- [ ] getConfig UGH need to figure out logging, not to mention file versus not <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>
 - [x] findArbComMembers
 - [x] findLocalGroupMembers
 - [x] processFileData
