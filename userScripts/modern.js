@@ -599,7 +599,7 @@ if (cfg.wgAction === 'history') {
 
 		addBtn(window.ajaxPreviewButton, 'wpPreview', window.ajaxPreviewKey || 'p');
 
-		if (mw.config.get('wgArticleId')) {
+		if (cfg.wgArticleId === 'wgArticleId') {
 			addBtn(window.ajaxDiffButton, 'wpDiff', window.ajaxDiffKey || 'v');
 		}
 
