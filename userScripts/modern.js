@@ -160,6 +160,9 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		case 'AbuseLog':
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/osal.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/osal.js]]
 			break;
+		case 'Wantedcategories':
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Qwerfjkl/scripts/hideUnwantedCategories.js&oldid=1192662282&action=raw&ctype=text/javascript'); // [[https://en.wikipedia.org/wiki/User:Qwerfjkl/scripts/hideUnwantedCategories.js]], [[User:Qwerfjkl/scripts/hideUnwantedCategories]]
+			break;
 		default:
 			/* Masses [[UserAmorymeltzer/mass]] */
 			switch (cfg.wgPageName) {
