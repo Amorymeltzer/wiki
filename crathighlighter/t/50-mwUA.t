@@ -1,25 +1,25 @@
 #!/usr/bin/env perl
-
-# Test and confirm the mediawiki object, mainly to confirm UA.  Not part of the
-# library because it seems silly to import MediaWiki::API just for this, and
-# also because then I'd have to log-in and add dieNice separately.  Should
-# probably do that.  But until then, this needs to be kept (largely) in sync
-# with mwLogin in the main script.
+# Test and confirm the mediawiki object, mainly to confirm UA
 
 # For isa
 use 5.036;
 
 use MediaWiki::API;
 
+use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
-plan tests => 6;
+plan tests => 7;
 
-my ($un, $pw) = ('Macbeth', 'Lady Macbeth');
+my $username = 'Macbeth';
+# These are hardcoded in the library
 my ($api_url, $retries, $retry_delay, $use_http_get) = ('https://en.wikipedia.org/w/api.php', 1, 300, 1);
 
-my $mw = mwLogin($un, $pw);
+my $mw = MediaWiki::API->new();
+isa_ok($mw, 'MediaWiki::API', '$mw 1');
 
-isa_ok($mw, 'MediaWiki::API', '$mw');
+$mw = buildMW($mw, $username);
+# Just to check we're still who we think we are
+isa_ok($mw, 'MediaWiki::API', '$mw 2');
 
 my $cfg = $mw->{config};
 is($cfg->{api_url}, $api_url, 'api_url');
@@ -28,18 +28,4 @@ is($cfg->{retry_delay}, $retry_delay, 'retry_delay');
 is($cfg->{use_http_get}, $use_http_get, 'use_http_get');
 
 # Hardcoded.  Bad.  But whatever.  FIXME
-is($mw->{ua}->agent, "$un (MediaWiki::API/0.52)", 'UA');
-
-sub mwLogin {
-  my ($username, $password) = @_;
-
-  # Global, declared above
-  $mw = MediaWiki::API->new({
-			     api_url => $api_url,
-			     retries => $retries,
-			     retry_delay => $retry_delay, # Try again after 5 mins
-			     use_http_get => $use_http_get # use GET where appropriate
-			    });
-  $mw->{ua}->agent("$username (".$mw->{ua}->agent.')');
-  return $mw;
-}
+is($mw->{ua}->agent, "$username (MediaWiki::API/0.52)", 'UA');

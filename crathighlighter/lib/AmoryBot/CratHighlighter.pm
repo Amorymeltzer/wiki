@@ -14,15 +14,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.1
+Version 0.2
 
 =cut
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs);
+our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 =head1 SYNOPSIS
@@ -358,6 +358,34 @@ sub botShutoffs {
     return 'User has talkpage message(s)';
   }
   return;
+}
+
+
+=head2 buildMW
+
+=cut
+
+# Take a MediaWiki::API object, add some things, return it.  Dumb AF way of
+# getting around importing MediaWiki::API here, which I don't want to do
+# for... reasons?  Whatever.  Minor testing abilities thanks to this.
+sub buildMW {
+  # should $mw be a ref?  FIXME TODO
+  my ($mw, $agent, $errorRef, $url) = @_;
+  return if !$mw;
+  # Should return if not MediaWiki::API, requires isa FIXME TODO
+  $url ||= 'https://en.wikipedia.org/w/api.php';
+
+  my $cfg = $mw->{config};
+  $cfg->{api_url} = $url;
+  $cfg->{retries} = 1;
+  $cfg->{retry_delay} = 300;
+  $cfg->{use_http_get} = 1;
+
+  $cfg->{on_error} = \&{$errorRef} if $errorRef;
+
+  $mw->{ua}->agent("$agent (".$mw->{ua}->agent.')') if $agent;
+
+  return $mw;
 }
 
 
