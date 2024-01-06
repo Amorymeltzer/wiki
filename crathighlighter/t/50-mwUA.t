@@ -1,8 +1,11 @@
 #!/usr/bin/env perl
 # Test and confirm the mediawiki object, mainly to confirm UA
 
-# For isa
-use 5.036;
+# new_ok in Test::More first part of Perl v5.10.1
+use 5.010001;
+
+use strict;
+use warnings;
 
 use MediaWiki::API;
 
@@ -13,10 +16,7 @@ plan tests => 2+3*6;
 # Bad object
 is(buildMW(), undef, 'no $mw');
 
-my $mw = MediaWiki::API->new();
-# new_ok? TODO
-# isnt? TODO
-isa_ok($mw, 'MediaWiki::API', '$mw');
+my $mw = new_ok('MediaWiki::API');
 
 my $count = 1;
 
@@ -33,6 +33,7 @@ my %opts = (
 	   );
 
 
+# Should make these more organized FIXME TODO
 $mw = buildMW($mw, \%opts);
 checkEntries($mw, \%opts);
 
