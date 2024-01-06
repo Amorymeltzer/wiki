@@ -11,10 +11,12 @@ use MediaWiki::API;
 
 use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
-plan tests => 2+3*6;
+plan tests => 3+3*6;
 
 # Bad object
 is(buildMW(), undef, 'no $mw');
+my $string = 'string';
+is(buildMW($string), undef, 'wrong class');
 
 my $mw = new_ok('MediaWiki::API');
 

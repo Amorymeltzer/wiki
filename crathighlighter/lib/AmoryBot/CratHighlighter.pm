@@ -370,10 +370,8 @@ sub botShutoffs {
 # for... reasons?  Whatever.  Minor testing abilities thanks to this.
 sub buildMW {
   # should $mw be a ref?  FIXME TODO
-  # Add error/dieNice FIXME TODO
   my ($mw, $opts) = @_;
-  return if !$mw;
-  # Should return if not MediaWiki::API, requires isa FIXME TODO
+  return if !$mw || ref $mw ne 'MediaWiki::API';
 
   my $cfg = $mw->{config};
   $cfg->{api_url} = ${$opts}{url} // 'https://en.wikipedia.org/w/api.php';
@@ -381,6 +379,7 @@ sub buildMW {
   $cfg->{retry_delay} = ${$opts}{delay} // 300;
   $cfg->{use_http_get} = ${$opts}{get} // 1;
 
+  # Add error/dieNice FIXME TODO
   # $cfg->{on_error} = \&{${$opts}{error}} if ${$opts}{error};
 
   $mw->{ua}->agent("${$opts}{agent} (".$mw->{ua}->agent.')') if ${$opts}{agent};
