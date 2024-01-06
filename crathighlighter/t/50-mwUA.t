@@ -8,44 +8,64 @@ use MediaWiki::API;
 
 use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
-plan tests => 2+2*6;
+plan tests => 2+3*6;
 
-my $username = 'Macbeth';
-# These are hardcoded in the library
-my ($api_url, $retries, $retry_delay, $use_http_get) = ('https://en.wikipedia.org/w/api.php', 1, 300, 1);
+# Bad object
+is(buildMW(), undef, 'no $mw');
 
 my $mw = MediaWiki::API->new();
 # new_ok? TODO
 # isnt? TODO
 isa_ok($mw, 'MediaWiki::API', '$mw');
 
-# Bad object
-is(buildMW(), undef, 'no $mw');
-
 my $count = 1;
 
-$mw = buildMW($mw, $username, $api_url, $retries, $retry_delay, $use_http_get);
-checkEntries($mw, $api_url, $retries, $retry_delay, $use_http_get);
+my $username = 'Macbeth';
+my $agentString = 'MediaWiki::API/0.52';
+# These are hardcoded in the library
+my %opts = (
+	    agent => $username,
+	    url => 'https://en.wikipedia.org/w/api.php',
+	    retry => 1,
+	    delay => 300,
+	    get => 1
+	    # error => ()
+	   );
+
+
+$mw = buildMW($mw, \%opts);
+checkEntries($mw, \%opts);
 
 # E, none of the above
+$mw = MediaWiki::API->new();
 $mw = buildMW($mw);
-checkEntries($mw);
+delete $opts{agent};
+checkEntries($mw, \%opts);
+
+# Different defaults
+$opts{url} = 'asdasd';
+$opts{retry} = '0';
+$opts{delay} = 404;
+$opts{get} = '0';
+$mw = MediaWiki::API->new();
+$mw = buildMW($mw, \%opts);
+checkEntries($mw, \%opts);
+
 
 
 sub checkEntries {
-  my ($mwR, $url, $retry, $delay, $get) = @_;
+  my ($mwR, $opts) = @_;
 
   # Just to check we're still who we think we are
   isa_ok($mw, 'MediaWiki::API', "\$mw $count");
 
   my $cfg = $mw->{config};
-  is($cfg->{api_url}, $api_url, "api_url $count");
-  is($cfg->{retries}, $retries, "retries $count");
-  is($cfg->{retry_delay}, $retry_delay, "retry_delay $count");
-  is($cfg->{use_http_get}, $use_http_get, "use_http_get $count");
+  is($cfg->{api_url}, ${$opts}{url}, "api_url $count");
+  is($cfg->{retries}, ${$opts}{retry}, "retries $count");
+  is($cfg->{retry_delay}, ${$opts}{delay}, "retry_delay $count");
+  is($cfg->{use_http_get}, ${$opts}{get}, "use_http_get $count");
 
-  # Hardcoded.  Bad.  But whatever.  FIXME
-  is($mw->{ua}->agent, "$username (MediaWiki::API/0.52)", "UA $count");
+  is($mw->{ua}->agent, $opts{agent} ? "$username ($agentString)" : $agentString, "UA $count");
 
   $count++;
 }

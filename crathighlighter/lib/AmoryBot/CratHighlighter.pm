@@ -14,11 +14,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.2.1
+Version 0.2.2
 
 =cut
 
-our $VERSION = '0.2.1';
+our $VERSION = '0.2.2';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -370,21 +370,20 @@ sub botShutoffs {
 # for... reasons?  Whatever.  Minor testing abilities thanks to this.
 sub buildMW {
   # should $mw be a ref?  FIXME TODO
-  # Too many, take object? FIXME TODO
   # Add error/dieNice FIXME TODO
-  my ($mw, $agent, $url, $retry, $delay, $get) = @_;
+  my ($mw, $opts) = @_;
   return if !$mw;
   # Should return if not MediaWiki::API, requires isa FIXME TODO
 
   my $cfg = $mw->{config};
-  $cfg->{api_url} = $url // 'https://en.wikipedia.org/w/api.php';
-  $cfg->{retries} = $retry // 1;
-  $cfg->{retry_delay} = $delay // 300;
-  $cfg->{use_http_get} = $get // 1;
+  $cfg->{api_url} = ${$opts}{url} // 'https://en.wikipedia.org/w/api.php';
+  $cfg->{retries} = ${$opts}{retry} // 1;
+  $cfg->{retry_delay} = ${$opts}{delay} // 300;
+  $cfg->{use_http_get} = ${$opts}{get} // 1;
 
-  # $cfg->{on_error} = \&{$errorRef} if $errorRef;
+  # $cfg->{on_error} = \&{${$opts}{error}} if ${$opts}{error};
 
-  $mw->{ua}->agent("$agent (".$mw->{ua}->agent.')') if $agent;
+  $mw->{ua}->agent("${$opts}{agent} (".$mw->{ua}->agent.')') if ${$opts}{agent};
 
   return $mw;
 }
