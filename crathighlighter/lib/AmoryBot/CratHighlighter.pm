@@ -1,7 +1,7 @@
 package AmoryBot::CratHighlighter;
 
-# Just for POD, toolforge has 5.028 as of late 2023
-use 5.006;
+# Just for POD, toolforge k8s runs on 5.036
+use 5.010;
 use strict;
 use warnings;
 
@@ -14,11 +14,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.2
+Version 0.2.1
 
 =cut
 
-our $VERSION = '0.2';
+our $VERSION = '0.2.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -370,18 +370,19 @@ sub botShutoffs {
 # for... reasons?  Whatever.  Minor testing abilities thanks to this.
 sub buildMW {
   # should $mw be a ref?  FIXME TODO
-  my ($mw, $agent, $errorRef, $url) = @_;
+  # Too many, take object? FIXME TODO
+  # Add error/dieNice FIXME TODO
+  my ($mw, $agent, $url, $retry, $delay, $get) = @_;
   return if !$mw;
   # Should return if not MediaWiki::API, requires isa FIXME TODO
-  $url ||= 'https://en.wikipedia.org/w/api.php';
 
   my $cfg = $mw->{config};
-  $cfg->{api_url} = $url;
-  $cfg->{retries} = 1;
-  $cfg->{retry_delay} = 300;
-  $cfg->{use_http_get} = 1;
+  $cfg->{api_url} = $url // 'https://en.wikipedia.org/w/api.php';
+  $cfg->{retries} = $retry // 1;
+  $cfg->{retry_delay} = $delay // 300;
+  $cfg->{use_http_get} = $get // 1;
 
-  $cfg->{on_error} = \&{$errorRef} if $errorRef;
+  # $cfg->{on_error} = \&{$errorRef} if $errorRef;
 
   $mw->{ua}->agent("$agent (".$mw->{ua}->agent.')') if $agent;
 

@@ -1,6 +1,6 @@
 package AmoryBot::CratHighlighter::GitUtils;
 
-# Just for POD, toolforge has 5.028 as of late 2023
+# Just for POD, toolforge k8s runs on 5.036
 use 5.006;
 use strict;
 use warnings;

@@ -8,20 +8,28 @@ use MediaWiki::API;
 
 use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
-plan tests => 7;
+plan tests => 2+2*6;
 
 my $username = 'Macbeth';
 # These are hardcoded in the library
 my ($api_url, $retries, $retry_delay, $use_http_get) = ('https://en.wikipedia.org/w/api.php', 1, 300, 1);
 
-
 my $mw = MediaWiki::API->new();
+# new_ok? TODO
+# isnt? TODO
 isa_ok($mw, 'MediaWiki::API', '$mw');
+
+# Bad object
+is(buildMW(), undef, 'no $mw');
 
 my $count = 1;
 
-$mw = buildMW($mw, $username);
+$mw = buildMW($mw, $username, $api_url, $retries, $retry_delay, $use_http_get);
 checkEntries($mw, $api_url, $retries, $retry_delay, $use_http_get);
+
+# E, none of the above
+$mw = buildMW($mw);
+checkEntries($mw);
 
 
 sub checkEntries {
