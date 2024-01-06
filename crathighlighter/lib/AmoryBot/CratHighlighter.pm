@@ -1,7 +1,7 @@
 package AmoryBot::CratHighlighter;
 
-# Just for POD, toolforge k8s runs on 5.036
-use 5.010;
+# Just for POD and /r, toolforge k8s runs on 5.036
+use 5.013002;
 use strict;
 use warnings;
 
@@ -14,11 +14,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.2.2
+Version 0.2.3
 
 =cut
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.2.3';
 
 # Actually allow methods to be exported
 use Exporter 'import';
