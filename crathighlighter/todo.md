@@ -25,7 +25,8 @@
 
 - Split out main loop somehow
 - [x] Split out note creation (note and updateNote) (done but poorly)
-- Possible to improve note creation?
+- [ ] Possible to improve note creation?
+- [ ] If I completely rework the main loop for each group, the note can just be saved, and can use that for the email/output message?  Would avoid some extraneous stuff (`@localChange`, `@wikiChange`, etc.)
 - Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc.  Tricky.
 - Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
 - [x] Split out git stuff into separate module?  Separate script.  But then again, only used there and I don't bother testing it much, so pointless?
