@@ -230,6 +230,7 @@ sub oxfordComma {
 =head2 mapGroups
 
 =cut
+
 # The lookup hash, pulled out since it's used repeatedly
 my  %lookup = (
 	       arbcom            => 'AC',
@@ -404,4 +405,4 @@ This is free software, licensed under:
 
 =cut
 
-1; # End of AmoryBot::CratHighlighter
+1;

@@ -6,7 +6,7 @@ use 5.008;
 use strict;
 use warnings;
 
-use utf8; # Alaa and Torai friendly
+use utf8;			# Alaa and Torai friendly
 
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;

@@ -85,4 +85,4 @@ This is free software, licensed under:
 
 =cut
 
-1; # End of AmoryBot::CratHighlighter::GitUtils
+1;

@@ -27,7 +27,7 @@ my %tests = (
 	     diffSysopMinusone => [\@syso, [@syso, 'ThisIsaTest'], [], ['ThisIsaTest']],
 	     # First and Last
 	     diffSysopPlusMinus => [[@syso[0..$#syso-1]], [@syso[1..$#syso]], ['28bytes'], ['Zzyzx11']]
-	     );
+	    );
 
 my $count = scalar keys %tests;
 plan tests => 3+3*$count;

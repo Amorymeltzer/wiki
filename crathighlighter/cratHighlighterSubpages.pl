@@ -23,7 +23,7 @@ use File::Basename 'dirname';
 # reading/writing of files
 my $scriptDir;
 BEGIN {
-    $scriptDir = dirname abs_path __FILE__;
+  $scriptDir = dirname abs_path __FILE__;
 }
 
 # Allow script to be run from elsewhere by prepending the local library to @INC
@@ -306,7 +306,7 @@ sub getCurrentGroups {
 		     rvslots => 'main', # rvslots is so dumb
 		     format => 'json',
 		     formatversion => 2,
-		     utf8 => '1' # Alaa friendly
+		     utf8 => '1' # Alaa and Torai friendly
 		    };
   # JSON, technically a reference to a hash
   my $groupsReturn = $mw->api($groupsQuery);
