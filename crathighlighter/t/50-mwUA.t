@@ -22,7 +22,9 @@ my $mw = new_ok('MediaWiki::API');
 
 my $count = 1;
 
-my $username = 'Macbeth';
+my $user = 'Macbeth';
+my $scriptName = 'cratHighlighterSubpages.pl';
+my $username = "$user\@$scriptName";
 my $agentString = 'MediaWiki::API/0.52';
 # These are hardcoded in the library
 my %opts = (
@@ -40,8 +42,7 @@ $mw = buildMW($mw, \%opts);
 checkEntries($mw, \%opts);
 
 # E, none of the above
-$mw = MediaWiki::API->new();
-$mw = buildMW($mw);
+$mw = buildMW(MediaWiki::API->new());
 delete $opts{agent};
 checkEntries($mw, \%opts);
 
@@ -50,8 +51,8 @@ $opts{url} = 'asdasd';
 $opts{retry} = '0';
 $opts{delay} = 404;
 $opts{get} = '0';
-$mw = MediaWiki::API->new();
-$mw = buildMW($mw, \%opts);
+$opts{agent} = $user;
+$mw = buildMW(MediaWiki::API->new(), \%opts);
 checkEntries($mw, \%opts);
 
 
@@ -68,7 +69,8 @@ sub checkEntries {
   is($cfg->{retry_delay}, ${$opts}{delay}, "retry_delay $count");
   is($cfg->{use_http_get}, ${$opts}{get}, "use_http_get $count");
 
-  is($mw->{ua}->agent, $opts{agent} ? "$username ($agentString)" : $agentString, "UA $count");
+  is($mw->{ua}->agent, $opts{agent} ? "$opts{agent} ($agentString)" : $agentString, "UA $count");
 
   $count++;
+  return;
 }

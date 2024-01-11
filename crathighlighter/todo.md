@@ -16,7 +16,7 @@
 - [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
 - [ ] Look into retry
 - [x] Reenable read-only stuff?  Nah, just remove
-- [ ] Move botpasswords/secrets to envvars
+- [x] Move botpasswords/secrets to envvars
 - [x] Annoying not having `$PATH` set and doing manually for proveme.pl, perhaps setup_perl.sh can deal with this?  Prob not.
 - [x] Consider setup_perl.sh for installing modules via system Perl /usr/bin/perl (might mean just running scripts via system Perl?) or even just setup?  Meh, unneeded atm
 - [ ] Look into .kube/config
@@ -54,6 +54,8 @@
 
 ## All subs
 
+- [ ] Add `on_error` to `buildMW`
+
 ### Git
 
 - [x] gitOnMain
@@ -62,7 +64,7 @@
 
 ### API - sub module?
 
-- [ ] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> and <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>  But also maybe can add later?  If pull all logging out could be local, and can at least confirm it exists, user agent, etc.  Might even make more sense to log in separate from building the object?  Probably the only one that makes sense, so seems silly to do a whole new module just for this.  Currently copied for testing.
+- [x] mwLogin - dieNice, which implies logging as well <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> and <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?>  But also maybe can add later?  If pull all logging out could be local, and can at least confirm it exists, user agent, etc.  Might even make more sense to log in separate from building the object?  Probably the only one that makes sense, so seems silly to do a whole new module just for this.  Currently copied for testing.
 - [ ] dieNice - Ideally would take in self, PR opened.
 - [ ] botQuery - Logging?
 - [ ] getCurrentGroups Need to remove need for rights from the script, no need for that to be in there

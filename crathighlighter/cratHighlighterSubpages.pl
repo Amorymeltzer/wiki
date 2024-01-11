@@ -68,10 +68,13 @@ my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
 # so need to be annoyingly roundabout.
 my $envUsername = uc $user.'PW';
 LOGDIE('Unable to get user login information') if !$ENV{$envUsername};
+my $username = "$user\@$scriptName";
 
 
-### Initialize API object, log in, etc.
-my $mw = mwLogin("$user\@$scriptName", $ENV{$envUsername});
+### Initialize API object, ensure we die nicely, log in, etc.
+my $mw = buildMW(MediaWiki::API->new(), {agent => $username});
+$mw->{config}->{on_error} = \&dieNice;
+$mw->login({lgname => $username, lgpassword => $ENV{$envUsername}});
 
 # Used globally to make edit summaries, page titles, etc. easier
 my $userPage = 'User:'.$user;
@@ -200,24 +203,6 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
-# Handle logging in to the wiki, mainly ensuring we die nicely.  Need to roughly
-# keep this in sync with the version in t/50-mwUA.t
-sub mwLogin {
-  my ($username, $password) = @_;
-
-  # Global, declared above
-  $mw = MediaWiki::API->new({
-			     api_url => 'https://en.wikipedia.org/w/api.php',
-			     retries => '1',
-			     retry_delay => '300', # Try again after 5 mins
-			     on_error => \&dieNice,
-			     use_http_get => '1' # use GET where appropriate
-			    });
-  $mw->{ua}->agent("$username (".$mw->{ua}->agent.')');
-  $mw->login({lgname => $username, lgpassword => $password});
-
-  return $mw;
-}
 # Nicer handling of some specific mediawiki errors, can be expanded using:
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
