@@ -14,13 +14,14 @@ use Getopt::Long;
 my %opts = ();
 GetOptions(\%opts, 'L', 'help' => \&usage);
 
-# Figure out where this script is
+# Get ready for local lib by finding out where this script is.  Also used
+# elsewhere for logs and proper reading/writing of files
+my $scriptDir;
 use Cwd 'abs_path';
 use File::Basename 'dirname';
-# Get ready for local lib, also used elsewhere for logs
-my $scriptDir;
+
 BEGIN {
-    $scriptDir = dirname abs_path __FILE__;
+  $scriptDir = dirname abs_path __FILE__;
 }
 
 # Allow script to be run from elsewhere by prepending the local library to @INC
@@ -38,16 +39,20 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # cratHighlighterSubpages.pl
-my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
-		 file   => ">>$logfile",
-		 utf8   => 1,
-		 # Datetime (level): message
-		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
+my $infoLog =  {
+		level  => $opts{L} ? $OFF : $INFO,
+		file   => ">>$logfile",
+		utf8   => 1,
+		# Datetime (level): message
+		layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+	       };
 # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
-		 file   => 'STDOUT',
-		 # message
-		 layout => '%d - %m{indent}%n' };
+my $traceLog = {
+		level  => $opts{L} ? $OFF : $TRACE,
+		file   => 'STDOUT',
+		# message
+		layout => '%d - %m{indent}%n'
+	       };
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 

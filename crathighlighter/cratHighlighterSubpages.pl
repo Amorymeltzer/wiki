@@ -16,12 +16,12 @@ use Getopt::Long;
 my %opts = ();
 GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
 
-# Figure out where this script is
+# Get ready for local lib by finding out where this script is.  Also used
+# elsewhere for logs and proper reading/writing of files
+my $scriptDir;
 use Cwd 'abs_path';
 use File::Basename 'dirname';
-# Get ready for local lib, also used elsewhere for logs and proper
-# reading/writing of files
-my $scriptDir;
+
 BEGIN {
   $scriptDir = dirname abs_path __FILE__;
 }
@@ -42,16 +42,20 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # gitSync.pl FIXME
-my $infoLog =  { level  => $opts{L} ? $OFF : $INFO,
-		 file   => ">>$logfile",
-		 utf8   => 1,
-		 # Datetime (level): message
-		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n' };
+my $infoLog =  {
+		level  => $opts{L} ? $OFF : $INFO,
+		file   => ">>$logfile",
+		utf8   => 1,
+		# Datetime (level): message
+		layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+	       };
 # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-my $traceLog = { level  => $opts{L} ? $OFF : $TRACE,
-		 file   => 'STDOUT',
-		 # message
-		 layout => '%d - %m{indent}%n' };
+my $traceLog = {
+		level  => $opts{L} ? $OFF : $TRACE,
+		file   => 'STDOUT',
+		# message
+		layout => '%d - %m{indent}%n'
+	       };
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
@@ -104,7 +108,6 @@ my %changes;
 # https://metacpan.org/pod/JSON::MaybeXS TODO FIXME
 my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 foreach (@{$groups}) {
-  my $note;
   my %queryHash = %{${$groupsStore}{$_}}; # Just the specific rights hash we want
   my $queryJSON; # JSON will only be built from the query if there are any updates
 
@@ -119,6 +122,7 @@ foreach (@{$groups}) {
   my $fileJSON = read_text("$scriptDir/$file") or LOGDIE($ERRNO);
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
+  my $note;
   if ($fileState) {
     push @localChange, $_;
     $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
@@ -237,6 +241,7 @@ sub botQuery {
 		       rvprop => 'content', # Don't care about much else
 		       titles => $userPage.'/disable',
 		       rvslots => 'main', # rvslots is so dumb
+
 		       # Get user talk messages status
 		       meta => 'userinfo',
 		       uiprop => 'hasmsg',
@@ -310,12 +315,14 @@ sub getCurrentGroups {
   my $acContent = $groupsQuery{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
 
 
-  # Local groups need a loop for processing who goes where, but there are a lot of
-  # sysops, so we need to either get the bot flag or iterate over everyone
-  my @localHashes = @{$groupsQuery{allusers}}; # Store what we've got, for now
+  # Local groups need a loop for processing who goes where, but there are a lot
+  # of sysops, so we need to either get the bot flag or iterate over everyone.
+  # In the meantime, store what we've got for now
+  my @localHashes = @{$groupsQuery{allusers}};
   # If there's a continue item, then continue, by God!  Although it looks
   # generic, it's only set up to handle processing sysops afterward.
   while (exists ${$groupsReturn}{continue}) { # avoid autovivification
+
     # Process the continue parameters
     foreach (keys %{${$groupsReturn}{continue}}) {
       ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
