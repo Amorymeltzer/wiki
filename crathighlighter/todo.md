@@ -13,7 +13,7 @@
   - [x] cratHighlighterSubpages.pl
   - [x] cron_shim.sh
   - [x] log rotation
-- [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary
+- [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm> if necessary.  See also <https://metacpan.org/pod/Email::Simple>
 - [ ] Look into retry
 - [x] Reenable read-only stuff?  Nah, just remove
 - [x] Move botpasswords/secrets to envvars

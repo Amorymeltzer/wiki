@@ -25,21 +25,33 @@ use Exporter 'import';
 our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
 our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
-=head1 SYNOPSIS
+=head1 EXPORTS
 
-Quick summary of what the module does.
+=over 2
 
-Perhaps a little code snippet.
+=item * L</processFileData>
 
-    use AmoryBot::CratHighlighter;
+=item * L</findStewardMembers>
 
-    my $foo = AmoryBot::CratHighlighter->new();
-    ...
+=item * L</findLocalGroupMembers>
 
-=head1 EXPORT
+=item * L</findArbComMembers>
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=item * L</cmpJSON>
+
+=item * L</changeSummary>
+
+=item * L</oxfordComma>
+
+=item * L</mapGroups>
+
+=item * L</buildNote>
+
+=item * L</createEmail>
+
+=item * L</botShutoffs>
+
+=item * L</buildMW>
 
 =head1 SUBROUTINES/METHODS
 
