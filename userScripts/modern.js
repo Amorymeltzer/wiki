@@ -228,6 +228,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1184853636&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/diff-permalink.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-permalink.js]]
 			mw.loader.load('//meta.wikimedia.org/w/index.php?title=User:Jon_Harald_Søby/diffedit.js&oldid=22620102&action=raw&ctype=text/javascript'); // [[meta:User:Jon_Harald_Søby/diffedit.js]], [[meta:User:Jon_Harald_Søby/diffedit]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Elominius/gadget/diff_arrow_keys_without_CTRL.js&oldid=1111221104&action=raw&ctype=text/javascript'); // [[User:Elominius/gadget/diff arrow keys without CTRL.js]], [[User:Elominius/gadget/diff arrow keys]]
 		}
 	});
 
