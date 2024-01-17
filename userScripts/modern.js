@@ -297,6 +297,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/WRStitle.js&action=raw&ctype=text/javascript'); // [[User:Sam Sailor/Scripts/WRStitle.js]] Link to reference search [[WP:WRS] [[User:Amorymeltzer/WRStitle.js]]
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/subjects_age_from_year.js&oldid=1003565926&action=raw&ctype=text/javascript'); // [[User:Gary/subjects age from year.js]]
 		mw.loader.load('ext.gadget.XTools-ArticleInfo'); // [[MediaWiki:Gadget-XTools-ArticleInfo.js]], [[mw:XTools/ArticleInfo.js]], [[User:Amorymeltzer/articleinfo-gadget.js]]
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Rublov/refspace.js&oldid=1132391367&action=raw&ctype=text/javascript'); // [[User:Rublov/refspace.js]], [[User:Rublov/refspace]]
 	} else { // END ARTICLES
 		/*
 		  Most scripts aren't needed in mainspace, so load them individually
