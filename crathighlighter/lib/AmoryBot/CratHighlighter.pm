@@ -53,6 +53,8 @@ our %EXPORT_TAGS = ( all => \@EXPORT_OK);
 
 =item * L</buildMW>
 
+=back
+
 =head1 SUBROUTINES/METHODS
 
 =head2 findStewardMembers
