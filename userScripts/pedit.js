@@ -166,7 +166,7 @@ if (mw.config.get('wgNamespaceNumber') === '0') {
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PC-XT/Advisor.js&oldid=1012510957&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/AdvisorDashless.js&action=raw&ctype=text/javascript'); // [[User:Cameltrader/Advisor.js]] and [[User:PC-XT/Advisor.js]] Doesn't work with beta syntax highlighters
 			mw.loader.load('ext.gadget.ProveIt'); // [[MediaWiki:Gadget-ProveIt.js]] [[WP:ProveIt]] [[commons:MediaWiki:Gadget-ProveIt.js]]
-			mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=234334647&action=raw&ctype=text/javascript'); // [[m:User:TMg/autoFormatter]]
+			mw.loader.load('//de.wikipedia.org/w/index.php?title=Benutzer:TMg/autoFormatter.js&oldid=241270521&action=raw&ctype=text/javascript'); // [[m:User:TMg/autoFormatter]]
 		}
 	});
 }

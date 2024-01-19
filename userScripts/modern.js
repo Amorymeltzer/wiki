@@ -87,7 +87,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); // [[User:Markhurd/hidetopcontrib.js]]
 			window.userHideAllSubsequent = true;
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1194895015&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1196942814&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
