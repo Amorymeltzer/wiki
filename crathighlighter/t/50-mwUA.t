@@ -11,7 +11,7 @@ use MediaWiki::API;
 
 use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
-plan tests => 3+3*6;
+plan tests => 3 + 3 * 6;
 
 # Bad object
 is(buildMW(), undef, 'no $mw');
@@ -22,17 +22,16 @@ my $mw = new_ok('MediaWiki::API');
 
 my $count = 1;
 
-my $user = 'Macbeth';
-my $scriptName = 'cratHighlighterSubpages.pl';
-my $username = "$user\@$scriptName";
+my $user        = 'Macbeth';
+my $scriptName  = 'cratHighlighterSubpages.pl';
+my $username    = "$user\@$scriptName";
 my $agentString = 'MediaWiki::API/0.52';
 # These are hardcoded in the library
-my %opts = (
-	    agent => $username,
-	    url => 'https://en.wikipedia.org/w/api.php',
+my %opts = (agent => $username,
+	    url   => 'https://en.wikipedia.org/w/api.php',
 	    retry => 1,
 	    delay => 300,
-	    get => 1
+	    get   => 1
 	    # error => ()
 	   );
 
@@ -47,12 +46,12 @@ delete $opts{agent};
 checkEntries($mw, \%opts);
 
 # Different defaults
-$opts{url} = 'asdasd';
+$opts{url}   = 'asdasd';
 $opts{retry} = '0';
 $opts{delay} = 404;
-$opts{get} = '0';
+$opts{get}   = '0';
 $opts{agent} = $user;
-$mw = buildMW(MediaWiki::API->new(), \%opts);
+$mw          = buildMW(MediaWiki::API->new(), \%opts);
 checkEntries($mw, \%opts);
 
 
@@ -64,10 +63,10 @@ sub checkEntries {
   isa_ok($mw, 'MediaWiki::API', "\$mw $count");
 
   my $cfg = $mw->{config};
-  is($cfg->{api_url}, ${$opts}{url}, "api_url $count");
-  is($cfg->{retries}, ${$opts}{retry}, "retries $count");
-  is($cfg->{retry_delay}, ${$opts}{delay}, "retry_delay $count");
-  is($cfg->{use_http_get}, ${$opts}{get}, "use_http_get $count");
+  is($cfg->{api_url},      ${$opts}{url},   "api_url $count");
+  is($cfg->{retries},      ${$opts}{retry}, "retries $count");
+  is($cfg->{retry_delay},  ${$opts}{delay}, "retry_delay $count");
+  is($cfg->{use_http_get}, ${$opts}{get},   "use_http_get $count");
 
   is($mw->{ua}->agent, $opts{agent} ? "$opts{agent} ($agentString)" : $agentString, "UA $count");
 

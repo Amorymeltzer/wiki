@@ -42,17 +42,15 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # gitSync.pl FIXME
-my $infoLog =  {
-		level  => $opts{L} ? $OFF : $INFO,
-		file   => ">>$logfile",
-		utf8   => 1,
-		# Datetime (level): message
-		layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
-	       };
+my $infoLog = {level => $opts{L} ? $OFF : $INFO,
+	       file  => ">>$logfile",
+	       utf8  => 1,
+	       # Datetime (level): message
+	       layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+	      };
 # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-my $traceLog = {
-		level  => $opts{L} ? $OFF : $TRACE,
-		file   => 'STDOUT',
+my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
+		file  => 'STDOUT',
 		# message
 		layout => '%d - %m{indent}%n'
 	       };
@@ -108,8 +106,8 @@ my %changes;
 # https://metacpan.org/pod/JSON::MaybeXS TODO FIXME
 my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
 foreach (@{$groups}) {
-  my %queryHash = %{${$groupsStore}{$_}}; # Just the specific rights hash we want
-  my $queryJSON; # JSON will only be built from the query if there are any updates
+  my %queryHash = %{${$groupsStore}{$_}};    # Just the specific rights hash we want
+  my $queryJSON;                             # JSON will only be built from the query if there are any updates
 
   # Check if local records have changed.  Would be good to check this early,
   # just in case something is wrong.  Would be even better to just create the
@@ -125,7 +123,7 @@ foreach (@{$groups}) {
   my $note;
   if ($fileState) {
     push @localChange, $_;
-    $note = "$file changed: ".changeSummary($fileAdded,$fileRemoved)."\n";
+    $note = "$file changed: ".changeSummary($fileAdded, $fileRemoved)."\n";
 
     # Build JSON from the received query now that we need it
     $queryJSON = $jsonTemplate->encode(\%queryHash);
@@ -133,7 +131,7 @@ foreach (@{$groups}) {
     # Could test that this works?
     write_text("$scriptDir/$file", $queryJSON);
 
-    push @{$changes{addedFiles}}, mapGroups($_, \@{$fileAdded});
+    push @{$changes{addedFiles}},   mapGroups($_, \@{$fileAdded});
     push @{$changes{removedFiles}}, mapGroups($_, \@{$fileRemoved});
   }
 
@@ -144,10 +142,10 @@ foreach (@{$groups}) {
   # Check if everything is up-to-date onwiki, optional push otherwise
   if ($wikiState) {
     push @wikiChange, $_;
-    my $summary = changeSummary($wikiAdded,$wikiRemoved);
+    my $summary = changeSummary($wikiAdded, $wikiRemoved);
     $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
 
-    push @{$changes{addedPages}}, mapGroups($_, \@{$wikiAdded});
+    push @{$changes{addedPages}},   mapGroups($_, \@{$wikiAdded});
     push @{$changes{removedPages}}, mapGroups($_, \@{$wikiRemoved});
 
     if (!$opts{P}) {
@@ -156,18 +154,17 @@ foreach (@{$groups}) {
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
       $editSummary .= " ($count total) ([[$userPage/crathighlighter|bot edit]])";
-      $note .= '.  Pushing now... ';
+      $note        .= '.  Pushing now... ';
 
       # Build JSON if not already done so above; only likely if the wiki is out
       # of date but the local files aren't for some reason
       $queryJSON ||= $jsonTemplate->encode(\%queryHash);
-      $mw->edit({
-		 action => 'edit',
-		 assert => 'user',
-		 title => $contentStore{$_}[0],
-		 basetimestamp => $contentStore{$_}[2], # Avoid edit conflicts
-		 text => $queryJSON,
-		 summary => $editSummary
+      $mw->edit({action        => 'edit',
+		 assert        => 'user',
+		 title         => $contentStore{$_}[0],
+		 basetimestamp => $contentStore{$_}[2],    # Avoid edit conflicts
+		 text          => $queryJSON,
+		 summary       => $editSummary
 		});
       $note .= "$mw->{response}->{_msg}";
     } else {
@@ -211,13 +208,12 @@ if ($opts{n}) {
 # - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
 # - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
 sub dieNice {
-  my $code = $mw->{error}->{code};
+  my $code    = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
   # Avoid an elsif ladder.  Could `use experimental qw(switch)` but don't really
   # feel like it; this is probably more legible anyway
-  my %codes = (
-	       2 => 'HTTP access',
+  my %codes = (2 => 'HTTP access',
 	       3 => 'API access',
 	       4 => 'logging in',
 	       5 => 'editing the page'
@@ -235,17 +231,16 @@ sub botQuery {
   # Only run the checks if it's a bot being a bot
   return if $botUser ne shift;
 
-  my $botCheckQuery = {
-		       action => 'query',
-		       prop => 'revisions',
-		       rvprop => 'content', # Don't care about much else
-		       titles => $userPage.'/disable',
-		       rvslots => 'main', # rvslots is so dumb
+  my $botCheckQuery = {action  => 'query',
+		       prop    => 'revisions',
+		       rvprop  => 'content',              # Don't care about much else
+		       titles  => $userPage.'/disable',
+		       rvslots => 'main',                 # rvslots is so dumb
 
 		       # Get user talk messages status
-		       meta => 'userinfo',
-		       uiprop => 'hasmsg',
-		       format => 'json',
+		       meta          => 'userinfo',
+		       uiprop        => 'hasmsg',
+		       format        => 'json',
 		       formatversion => 2
 		      };
   # Note if warnings FIXME TODO
@@ -282,21 +277,20 @@ sub getCurrentGroups {
   ## with all of their respective groups).  $mw->list doesn't work with multiple
   ## lists, which is a drag, but we're getting the ArbCom template's revisions
   ## at the same time, so it's no real loss
-  my $groupsQuery = {
-		     action => 'query',
-		     list => 'allusers|globalallusers',
-		     augroup => (join q{|}, @rights),
-		     auprop => 'groups',
-		     aulimit => 'max',
-		     agugroup => 'steward',
-		     agulimit => 'max',
-		     prop => 'revisions',
-		     rvprop => 'content',
-		     titles => $acTemplate,
-		     rvslots => 'main', # rvslots is so dumb
-		     format => 'json',
+  my $groupsQuery = {action        => 'query',
+		     list          => 'allusers|globalallusers',
+		     augroup       => (join q{|}, @rights),
+		     auprop        => 'groups',
+		     aulimit       => 'max',
+		     agugroup      => 'steward',
+		     agulimit      => 'max',
+		     prop          => 'revisions',
+		     rvprop        => 'content',
+		     titles        => $acTemplate,
+		     rvslots       => 'main',                      # rvslots is so dumb
+		     format        => 'json',
 		     formatversion => 2,
-		     utf8 => '1' # Alaa and Torai friendly
+		     utf8          => '1'                          # Alaa and Torai friendly
 		    };
   # JSON, technically a reference to a hash
   my $groupsReturn = $mw->api($groupsQuery);
@@ -321,11 +315,11 @@ sub getCurrentGroups {
   my @localHashes = @{$groupsQuery{allusers}};
   # If there's a continue item, then continue, by God!  Although it looks
   # generic, it's only set up to handle processing sysops afterward.
-  while (exists ${$groupsReturn}{continue}) { # avoid autovivification
+  while (exists ${$groupsReturn}{continue}) {    # avoid autovivification
 
     # Process the continue parameters
     foreach (keys %{${$groupsReturn}{continue}}) {
-      ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_}; # total dogshit
+      ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_};    # total dogshit
     }
 
     # Resubmit new query, using old query + new continue, rewriting old data
@@ -362,16 +356,15 @@ sub getCurrentGroups {
 # there are any updates needed
 sub getPageGroups {
   my @rights = @_;
-  my @titles = map { $userPage.'/crathighlighter.js/'.$_.'.json' } @rights;
+  my @titles = map {$userPage.'/crathighlighter.js/'.$_.'.json'} @rights;
 
   # formatversion=2 makes things so nice to iterate over
-  my $contentQuery = {
-		      action => 'query',
-		      prop => 'revisions',
-		      rvprop => 'content|timestamp',
-		      titles => (join q{|}, @titles),
-		      rvslots => 'main', # rvslots is so dumb
-		      format => 'json',
+  my $contentQuery = {action        => 'query',
+		      prop          => 'revisions',
+		      rvprop        => 'content|timestamp',
+		      titles        => (join q{|}, @titles),
+		      rvslots       => 'main',                 # rvslots is so dumb
+		      format        => 'json',
 		      formatversion => 2
 		     };
   # JSON, technically a reference to a hash

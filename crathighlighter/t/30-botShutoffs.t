@@ -14,10 +14,10 @@ plan tests => 5;
 # Bad data
 is(botShutoffs(), 'No data', 'No data');
 
-is(testFile('t/bot_disabled.json'), 'DISABLED on-wiki', 'Disabled');
-is(testFile('t/bot_nocontent.json'), 'DISABLED on-wiki', 'No content');
-is(testFile('t/bot_usermsg.json'), 'User has talkpage message(s)', 'User message');
-is(testFile('t/bot_allclear.json'), undef, 'Success');
+is(testFile('t/bot_disabled.json'),  'DISABLED on-wiki',             'Disabled');
+is(testFile('t/bot_nocontent.json'), 'DISABLED on-wiki',             'No content');
+is(testFile('t/bot_usermsg.json'),   'User has talkpage message(s)', 'User message');
+is(testFile('t/bot_allclear.json'),  undef,                          'Success');
 
 
 # Read in the JSON and process it a la the main script

@@ -6,7 +6,7 @@
 use 5.006;
 use strict;
 use warnings;
-use English qw(-no_match_vars); # Avoid regex speed penalty in perl <=5.16
+use English;
 
 use Getopt::Long;
 
@@ -39,17 +39,15 @@ my $logfile = "$scriptDir/log.log";
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
 # cratHighlighterSubpages.pl
-my $infoLog =  {
-		level  => $opts{L} ? $OFF : $INFO,
-		file   => ">>$logfile",
-		utf8   => 1,
-		# Datetime (level): message
-		layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
-	       };
+my $infoLog = {level => $opts{L} ? $OFF : $INFO,
+	       file  => ">>$logfile",
+	       utf8  => 1,
+	       # Datetime (level): message
+	       layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+	      };
 # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-my $traceLog = {
-		level  => $opts{L} ? $OFF : $TRACE,
-		file   => 'STDOUT',
+my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
+		file  => 'STDOUT',
 		# message
 		layout => '%d - %m{indent}%n'
 	       };
@@ -69,7 +67,7 @@ if (gitCleanStatus($repo)) {
 # Check for any upstream updates using fetch-then-merge, not pull
 # https://longair.net/blog/2009/04/16/git-fetch-and-merge/
 # Not quiet since want number of lines
-my $fetch = $repo->command('fetch' => 'origin', 'main');
+my $fetch  = $repo->command('fetch' => 'origin', 'main');
 my @fetchE = $fetch->stderr->getlines();
 $fetch->close();
 # Not a great way of confirming the results, but fetch is annoyingly
@@ -81,12 +79,12 @@ if (scalar @fetchE <= 2) {
 
 # Now that we've fetched the updates, we can go ahead and merge them in
 my $oldSHA = gitSHA($repo);
-my $merge = $repo->command('merge' => '--quiet', 'origin/main');
+my $merge  = $repo->command('merge' => '--quiet', 'origin/main');
 my @mergeE = $merge->stderr->getlines();
 $merge->close();
 if (scalar @mergeE) {
   LOGDIE(@mergeE);
-} elsif (gitCleanStatus($repo) || gitOnMain($repo)) { # Just to be safe
+} elsif (gitCleanStatus($repo) || gitOnMain($repo)) {    # Just to be safe
   LOGDIE('Repository dirty after pull');
 }
 

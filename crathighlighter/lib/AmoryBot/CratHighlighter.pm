@@ -22,8 +22,8 @@ our $VERSION = '0.2.3';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
-our %EXPORT_TAGS = ( all => \@EXPORT_OK);
+our @EXPORT_OK   = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
+our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 =head1 EXPORTS
 
@@ -82,7 +82,7 @@ sub findLocalGroupMembers {
 
   my %dataHash;
   # Limit to the groups in question then add that user to the lookup for each
-  my %interestedGroups = map {$_=>1} @{$rightsRef};
+  my %interestedGroups = map {$_ => 1} @{$rightsRef};
   foreach my $userHash (@{$localData}) {
     # The hash lookup is so fast that the savings of doing an array slice here
     # aren't as much as one might think, but we are going through a half-dozen
@@ -92,7 +92,7 @@ sub findLocalGroupMembers {
     # well, with one caveat: the user "Edit filter" annoyingly exists and has
     # sysop rights, so we need to account for that later since it's not
     # autoconfirmed.  That will hopefully be removed at some point (T212268).
-    foreach my $group (@{${$userHash}{groups}}[3..$#{${$userHash}{groups}}]) {
+    foreach my $group (@{${$userHash}{groups}}[3 .. $#{${$userHash}{groups}}]) {
       $dataHash{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
     }
   }
@@ -158,7 +158,7 @@ sub processFileData {
     my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
     my @revisions = @{${$pageHash}{revisions}};
     # rvslots is so dumb
-    $returnData{$userGroup} = [${$pageHash}{title},${$revisions[0]}{slots}{main}{content},${$revisions[0]}{timestamp}];
+    $returnData{$userGroup} = [${$pageHash}{title}, ${$revisions[0]}{slots}{main}{content}, ${$revisions[0]}{timestamp}];
   }
 
   return %returnData;
@@ -173,13 +173,13 @@ sub processFileData {
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
 
-  return if ref $queryRef ne ref {};
+  return if ref $queryRef ne ref  {};
   return if ref $objectRef ne ref {};
 
 
   # Check array length first, which should be a quick short-circuit for most
   # scenarios, then check if the stringified arrays are equivalent
-  if (keys %{$queryRef} == keys %{$objectRef} && join (q{}, sort keys %{$queryRef}) eq join (q{}, sort keys %{$objectRef})) {
+  if (keys %{$queryRef} == keys %{$objectRef} && join(q{}, sort keys %{$queryRef}) eq join(q{}, sort keys %{$objectRef})) {
     # Nada
     return (q{}, [], []);
   }
@@ -238,7 +238,7 @@ sub oxfordComma {
     return join ' and ', @list;
   }
   my $end = pop @list;
-  return join(', ', @list) . ", and $end";
+  return join(', ', @list).", and $end";
 }
 
 =head2 mapGroups
@@ -246,15 +246,14 @@ sub oxfordComma {
 =cut
 
 # The lookup hash, pulled out since it's used repeatedly
-my  %lookup = (
-	       arbcom            => 'AC',
-	       bureaucrat        => 'B',
-	       oversight         => 'OS',
-	       checkuser         => 'CU',
-	       'interface-admin' => 'IA',
-	       sysop             => 'SYS',
-	       steward           => 'SW'
-	      );
+my %lookup = (arbcom            => 'AC',
+	      bureaucrat        => 'B',
+	      oversight         => 'OS',
+	      checkuser         => 'CU',
+	      'interface-admin' => 'IA',
+	      sysop             => 'SYS',
+	      steward           => 'SW'
+	     );
 # Map a marker of the group in question onto an array or string
 
 # Should rework/rewrite this.  Currently it's only being used to append the list
@@ -269,12 +268,12 @@ sub mapGroups {
   # Reassign bad but w/e
   $group = $lookup{$group};
 
-  return if ! $group;
+  return if !$group;
 
   # String
   return $group if !$usersRef;
   # Array
-  return map { "$_ ($group)" } @{$usersRef};
+  return map {"$_ ($group)"} @{$usersRef};
 }
 
 
@@ -286,7 +285,7 @@ sub buildNote {
   my ($message, $listRef) = @_;
   return if !$listRef;
 
-  return q{} if ! scalar @{$listRef};
+  return q{} if !scalar @{$listRef};
 
   return "\t$message: ".oxfordComma(uniqstr @{$listRef})."\n";
 }
@@ -309,7 +308,7 @@ sub createEmail {
   # Include pages changed if pushing and available.  Maybe I should always have
   # *something* here?  Really clutching at straws though, so prob not worth it
   if (!$skipPush && scalar @{$wikiRef}) {
-    $short = join q{ }, map { mapGroups($_) } @{$wikiRef};
+    $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     $updateNote .= " ($short)";
   }
   # Maybe remove these if there's nothing else to be added FIXME TODO
@@ -319,9 +318,9 @@ sub createEmail {
   # Local changes
   my $local = @{$localRef};
   if ($local) {
-    $short = join q{ }, map { mapGroups($_) } @{$localRef};
+    $short = join q{ }, map {mapGroups($_)} @{$localRef};
     $updateNote .= "Files: $local updated ($short)\n";
-    $updateNote .= buildNote('Added', ${$changeRef}{addedFiles});
+    $updateNote .= buildNote('Added',   ${$changeRef}{addedFiles});
     $updateNote .= buildNote('Removed', ${$changeRef}{removedFiles});
   }
 
@@ -329,10 +328,10 @@ sub createEmail {
   my $wiki = @{$wikiRef};
   if ($wiki) {
     $updateNote .= "Pages: $wiki ";
-    $short = join q{ }, map { mapGroups($_) } @{$wikiRef};
+    $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     if (!$skipPush) {
       $updateNote .= "updated ($short)\n";
-      $updateNote .= buildNote('Added', ${$changeRef}{addedPages});
+      $updateNote .= buildNote('Added',   ${$changeRef}{addedPages});
       $updateNote .= buildNote('Removed', ${$changeRef}{removedPages});
     } else {
       $updateNote .= "not updated ($short)\n";
@@ -354,7 +353,7 @@ sub createEmail {
 # is the only subroutine one where the bare return is the good state. FIXME
 sub botShutoffs {
   my $json = shift;
-  return 'No data' if ! $json;
+  return 'No data' if !$json;
 
   my $botCheckReturnQuery = $json->{query};
 
@@ -389,10 +388,10 @@ sub buildMW {
   return if !$mw || ref $mw ne 'MediaWiki::API';
 
   my $cfg = $mw->{config};
-  $cfg->{api_url} = ${$opts}{url} // 'https://en.wikipedia.org/w/api.php';
-  $cfg->{retries} = ${$opts}{retry} // 1;
-  $cfg->{retry_delay} = ${$opts}{delay} // 300;
-  $cfg->{use_http_get} = ${$opts}{get} // 1;
+  $cfg->{api_url}      = ${$opts}{url}   // 'https://en.wikipedia.org/w/api.php';
+  $cfg->{retries}      = ${$opts}{retry} // 1;
+  $cfg->{retry_delay}  = ${$opts}{delay} // 300;
+  $cfg->{use_http_get} = ${$opts}{get}   // 1;
 
   # Add error/dieNice FIXME TODO
   # $cfg->{on_error} = \&{${$opts}{error}} if ${$opts}{error};

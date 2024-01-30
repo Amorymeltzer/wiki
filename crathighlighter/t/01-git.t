@@ -18,7 +18,7 @@ if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot.k8s') {
 use AmoryBot::CratHighlighter::GitUtils qw (:all);
 
 my $repo = Git::Repository->new();
-ok(!gitOnMain($repo), 'On main branch');
+ok(!gitOnMain($repo),      'On main branch');
 ok(!gitCleanStatus($repo), 'Repository is clean');
-ok(gitSHA($repo), 'Get a SHA');
+ok(gitSHA($repo),          'Get a SHA');
 is(gitSHA($repo), $repo->run('rev-parse' => '--short', 'HEAD'), 'Compare SHAs');
