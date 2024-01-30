@@ -10,9 +10,8 @@
 use 5.010;
 use strict;
 use warnings;
-use diagnostics;
 
-use English qw(-no_match_vars);
+use English;
 use utf8;
 
 use Term::ANSIColor;
@@ -178,8 +177,8 @@ foreach my $import (@jsFiles) {
         $pagelookup{$oldID} = $revs[0]->{slots}{main}{content};
         $pagelookup{$newID} = $revs[1]->{slots}{main}{content};
 
-        # Store for later in hash of arrays, along with user, edit summary, and timestamp
-        @{$replacings{$page->{title}}} = ($oldID, $newID, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
+        # Store for later in hash of arrays, along with user, edit summary, timestamp
+        @{$replacings{$page->{title}}} = ($oldID, $newID, $project, ${$revs[1]}{user}, ${$revs[1]}{comment}, ${$revs[1]}{timestamp});
 
 
           # Getting bash to work from inside perl - whether by backticks,
@@ -198,8 +197,9 @@ foreach my $import (@jsFiles) {
     # Confirm diffs, replace in place
     foreach my $title (keys %replacings) {
       print "\n";
-      my ($old, $new, $user, $comment, $timestamp) = @{$replacings{$title}};
+      my ($old, $new, $project, $user, $comment, $timestamp) = @{$replacings{$title}};
 
+      print colored ['blue'], "$project/wiki/";
       print colored ['green'], "$title: ";
       # Note placeholders
       if (${$extraInfo{$title}}[1]) {
