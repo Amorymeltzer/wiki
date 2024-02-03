@@ -393,8 +393,8 @@ sub buildMW {
   $cfg->{retry_delay}  = ${$opts}{delay} // 300;
   $cfg->{use_http_get} = ${$opts}{get}   // 1;
 
-  # Add error/dieNice FIXME TODO
-  # $cfg->{on_error} = \&{${$opts}{error}} if ${$opts}{error};
+  # Add error/dieNice
+  $cfg->{on_error} = \&{$opts->{error}} if $opts->{error};
 
   $mw->{ua}->agent("${$opts}{agent} (".$mw->{ua}->agent.')') if ${$opts}{agent};
 

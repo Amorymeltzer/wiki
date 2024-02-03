@@ -74,8 +74,7 @@ my $username = "$user\@$scriptName";
 
 
 ### Initialize API object, ensure we die nicely, log in, etc.
-my $mw = buildMW(MediaWiki::API->new(), {agent => $username});
-$mw->{config}->{on_error} = \&dieNice;
+my $mw = buildMW(MediaWiki::API->new(), {agent => $username, error => \&dieNice});
 $mw->login({lgname => $username, lgpassword => $ENV{$envUsername}});
 
 # Used globally to make edit summaries, page titles, etc. easier

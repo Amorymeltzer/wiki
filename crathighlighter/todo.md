@@ -55,7 +55,7 @@
 ## All subs
 
 - [ ] Make a lot of `return`s be `die`/`croak` instead?  Might not make sense to `return undef`.
-- [ ] Add `on_error` to `buildMW`
+- [x] Add `on_error` to `buildMW`
 
 ### Git
 
