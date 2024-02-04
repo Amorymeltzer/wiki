@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 # Relies upon buildNote (which relies upon oxfordComma)
 use AmoryBot::CratHighlighter qw(createEmail);
@@ -31,13 +29,13 @@ my $push = 0;
 my $header     = 'CratHighlighter updates';
 my $headerPlus = "$header (@wMap)\n\n";
 my $headerBare = "$header\n\n";
-my $files      = "Files: $l updated (@lMap)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)\n";
-my $pages      = "Pages: $w updated (@wMap)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)\n";
+my $files      = "Files: $l updated (@lMap)\n\tAdded: Acalamari (B), AmandaNP (OS), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (SYS), and Enterprisey (IA)";
+my $pages      = "Pages: $w updated (@wMap)\n\tAdded: Acalamari (B), AmandaNP (AC), and Avraham (SYS)\n\tRemoved: Amorymeltzer (OS), Bradv (CU), and Enterprisey (IA)";
 
 my $note = $headerPlus.$files.$pages;
 is(createEmail(\@l, \@w, \%testData, $push), $note, 'basic test');
 
-my $noPushNote = $headerBare.$files."Pages: $w not updated (@wMap)\n";
+my $noPushNote = $headerBare.$files."Pages: $w not updated (@wMap)";
 is(createEmail(\@l, \@w, \%testData, !$push), $noPushNote, 'not pushed');
 
 my $noLocalNote = $headerPlus.$pages;

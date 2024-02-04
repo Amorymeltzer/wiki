@@ -1,9 +1,7 @@
 #!/usr/bin/env perl
 # Test comparison of different JSON bodies
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 use AmoryBot::CratHighlighter qw(cmpJSON);
 use Test::More;

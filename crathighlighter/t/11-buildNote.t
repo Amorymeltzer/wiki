@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 # Relies upon oxfordComma
 use AmoryBot::CratHighlighter qw(buildNote);
@@ -16,6 +14,6 @@ is(buildNote('Ford'), undef, 'No listRef');
 
 is(buildNote('Ford', []), q{}, 'Empty list');
 
-is(buildNote('Added',   \@added),   "\t".'Added: Acalamari (B), AmandaNP (OS), and Avraham (SYS)'."\n",                'Added');
-is(buildNote('Removed', \@removed), "\t".'Removed: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)'."\n", 'Removed');
-is(buildNote(q{},       \@added),   "\t".': Acalamari (B), AmandaNP (OS), and Avraham (SYS)'."\n",                     'Empty message');
+is(buildNote('Added',   \@added),   "\t".'Added: Acalamari (B), AmandaNP (OS), and Avraham (SYS)',                'Added');
+is(buildNote('Removed', \@removed), "\t".'Removed: Amorymeltzer (OS), Cyberpower678 (SYS), and Enterprisey (IA)', 'Removed');
+is(buildNote(q{},       \@added),   "\t".': Acalamari (B), AmandaNP (OS), and Avraham (SYS)',                     'Empty message');

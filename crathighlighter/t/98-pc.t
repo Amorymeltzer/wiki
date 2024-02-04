@@ -1,9 +1,7 @@
 #!/usr/bin/env perl
 # Perl::Critic tests
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 use Test::More;
 

@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 # Relies upon oxfordComma
 use AmoryBot::CratHighlighter qw(changeSummary);

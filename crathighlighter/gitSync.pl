@@ -3,9 +3,8 @@
 # Licensed under the WTFPL http://www.wtfpl.net/
 # Pull the latest from git repo
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
+
 use English;
 
 use Getopt::Long;
@@ -110,7 +109,7 @@ sub usage {
   print <<"USAGE";
 Usage: $PROGRAM_NAME [-Lh]
       -L Turn off all logging
-      -h Print this message
+      -h Show this message
 USAGE
   exit;
 }

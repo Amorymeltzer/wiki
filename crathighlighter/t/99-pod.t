@@ -1,7 +1,6 @@
-#!perl
-use 5.006;
-use strict;
-use warnings;
+#!/usr/bin/env perl
+
+use 5.036;
 
 use Test::More;
 use Test::Pod;

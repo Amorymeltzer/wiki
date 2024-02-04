@@ -1,11 +1,7 @@
 #!/usr/bin/env perl
 # Test and confirm the mediawiki object, mainly to confirm UA
 
-# new_ok in Test::More first part of Perl v5.10.1
-use 5.010001;
-
-use strict;
-use warnings;
+use 5.036;
 
 use MediaWiki::API;
 

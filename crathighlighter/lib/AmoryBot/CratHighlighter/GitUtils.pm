@@ -1,9 +1,6 @@
 package AmoryBot::CratHighlighter::GitUtils;
 
-# Just for POD, toolforge k8s runs on 5.036
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 use Git::Repository;
 

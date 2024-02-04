@@ -1,7 +1,8 @@
 # Todos
 
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
-- [ ] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay?  `say` and `try/catch` maybe
+- [x] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay `say`
+  - [ ] Consider `try/catch`
 
 ## Set up Toolforge for Kubernetes: <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Kubernetes>
 

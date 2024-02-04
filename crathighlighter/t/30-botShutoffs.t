@@ -1,8 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;

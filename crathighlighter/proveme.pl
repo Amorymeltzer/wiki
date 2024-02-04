@@ -1,9 +1,7 @@
 #!/usr/bin/env perl
 # More easily run prove automatically (cron, k8s) from another directory
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 
 use App::Prove;
 

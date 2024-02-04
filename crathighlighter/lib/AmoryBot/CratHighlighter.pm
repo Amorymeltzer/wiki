@@ -1,9 +1,6 @@
 package AmoryBot::CratHighlighter;
 
-# Just for POD and /r, toolforge k8s runs on 5.036
-use 5.013002;
-use strict;
-use warnings;
+use 5.036;
 
 # Only needed in buildNote
 use List::Util qw(uniqstr);
@@ -287,7 +284,7 @@ sub buildNote {
 
   return q{} if !scalar @{$listRef};
 
-  return "\t$message: ".oxfordComma(uniqstr @{$listRef})."\n";
+  return "\t$message: ".oxfordComma(uniqstr @{$listRef});
 }
 
 
@@ -319,9 +316,7 @@ sub createEmail {
   my $local = @{$localRef};
   if ($local) {
     $short = join q{ }, map {mapGroups($_)} @{$localRef};
-    $updateNote .= "Files: $local updated ($short)\n";
-    $updateNote .= buildNote('Added',   ${$changeRef}{addedFiles});
-    $updateNote .= buildNote('Removed', ${$changeRef}{removedFiles});
+    $updateNote .= join "\n", ("Files: $local updated ($short)", buildNote('Added',   ${$changeRef}{addedFiles}), buildNote('Removed', ${$changeRef}{removedFiles}));
   }
 
   # Notify on pushed changes
@@ -330,11 +325,9 @@ sub createEmail {
     $updateNote .= "Pages: $wiki ";
     $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     if (!$skipPush) {
-      $updateNote .= "updated ($short)\n";
-      $updateNote .= buildNote('Added',   ${$changeRef}{addedPages});
-      $updateNote .= buildNote('Removed', ${$changeRef}{removedPages});
+      $updateNote .= join "\n", ("updated ($short)", buildNote('Added',   ${$changeRef}{addedPages}), buildNote('Removed', ${$changeRef}{removedPages}));
     } else {
-      $updateNote .= "not updated ($short)\n";
+      $updateNote .= "not updated ($short)";
     }
   }
 

@@ -5,9 +5,7 @@
 # https://en.wikipedia.org/wiki/User:Amorymeltzer/crathighlighter
 # Run regularly on toolforge as User:AmoryBot
 
-use 5.006;
-use strict;
-use warnings;
+use 5.036;
 use English;
 
 use Getopt::Long;
@@ -37,7 +35,8 @@ use File::Slurper qw(read_text write_text);
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.
-# Won't help if the whole filesystem is read-only, but whaddaya gonna do?
+# Won't help if the whole filesystem is read-only, but whaddaya gonna do?  I
+# don't think autodie covers file checks like -W?
 -W $logfile or die $ERRNO;
 # Set up logger.  The full options are straightforward but overly verbose, and
 # easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
@@ -191,14 +190,14 @@ if (scalar @localChange + scalar @wikiChange) {
   # loop, this is just to trigger an update on changes when run on the
   # kubernetes schedule.  Probably not needed, but I like having the updates.
   # Could put it behind a flag?
-  print createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
+  say createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
 } else {
   INFO('No updates needed');
 }
 
 # Useful if used when running after a failure, to ensure success on follow-up
 if ($opts{n}) {
-  print "Run completed\n";
+  say 'Run completed';
 }
 
 
@@ -381,9 +380,9 @@ sub usage {
   print <<"USAGE";
 Usage: $PROGRAM_NAME [-PnLh]
       -P Don't push live to the wiki
-      -n Print a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
+      -n Send a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
       -L Turn off all logging
-      -h Print this message
+      -h Show this message
 USAGE
   exit;
 }
