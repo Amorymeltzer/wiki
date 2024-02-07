@@ -322,6 +322,7 @@ sub createEmail {
   # Notify on pushed changes
   my $wiki = @{$wikiRef};
   if ($wiki) {
+    $updateNote .= "\n" if $local;
     $updateNote .= "Pages: $wiki ";
     $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     if (!$skipPush) {
