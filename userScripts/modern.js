@@ -653,9 +653,9 @@ if (cfg.wgAction === 'history') {
 
 	// Replace "smart" curly quotes with the proper "'.  Not in pedit since arguably useful everywhere
 	// [[User:GorillaWarfare/script/curlies.js]], [[https://en.wikipedia.org/wiki/User:GorillaWarfare/script/curlies]
-	// Also intelligently loads [[meta:TemplateScript]], the successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
-	//  FIXME TODO tools-static still arguably unsafe-ish
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:GorillaWarfare/script/curlies.js&oldid=997234113&action=raw&ctype=text/javascript');
+	// Also loads [[meta:TemplateScript]], the successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
+	// tools-static still arguably unsafe-ish, so turn off TemplateScript
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:GorillaWarfare/script/curlies.js&oldid=997234113&action=raw&ctype=text/javascript');
 
 
 	// More succinct text when editing
