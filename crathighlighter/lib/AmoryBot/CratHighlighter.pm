@@ -316,7 +316,8 @@ sub createEmail {
   my $local = @{$localRef};
   if ($local) {
     $short = join q{ }, map {mapGroups($_)} @{$localRef};
-    $updateNote .= join "\n", ("Files: $local updated ($short)", buildNote('Added',   ${$changeRef}{addedFiles}), buildNote('Removed', ${$changeRef}{removedFiles}));
+    # Remove empty items
+    $updateNote .= join "\n", grep { $_ ne q{} } ("Files: $local updated ($short)", buildNote('Added',   ${$changeRef}{addedFiles}), buildNote('Removed', ${$changeRef}{removedFiles}));
   }
 
   # Notify on pushed changes
@@ -326,7 +327,8 @@ sub createEmail {
     $updateNote .= "Pages: $wiki ";
     $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     if (!$skipPush) {
-      $updateNote .= join "\n", ("updated ($short)", buildNote('Added',   ${$changeRef}{addedPages}), buildNote('Removed', ${$changeRef}{removedPages}));
+    # Remove empty items
+      $updateNote .= join "\n", grep { $_ ne q{} } ("updated ($short)", buildNote('Added',   ${$changeRef}{addedPages}), buildNote('Removed', ${$changeRef}{removedPages}));
     } else {
       $updateNote .= "not updated ($short)";
     }

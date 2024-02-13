@@ -72,7 +72,12 @@ is(createEmail(\@l, q{}), undef, 'No wikiRef');
 sub makeString {
   return join "\n", @_;
 }
-# Return a hash reference to just the data in the specified keys.
+# Return a hash reference to just the data in the specified keys
 sub hashPortion {
-  return {map {$_ => $testData{$_}} @_};
+  my %lookup = map {$_ => 1} @_;
+
+  # remove the undesirables
+  $lookup{$_} = ($lookup{$_} ? $testData{$_} : []) for keys %testData;
+
+  return \%lookup;
 }
