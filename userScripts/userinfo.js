@@ -154,7 +154,6 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 						'extendedconfirmed': 'extended confirmed user',
 						'extendedmover': 'page mover',
 						'filemover': 'file mover',
-						'flow-bot': 'Flow bot',
 						'import': 'importer',
 						'ipblock-exempt': 'IP block exemption',
 						'massmessage-sender': 'mass message sender',
