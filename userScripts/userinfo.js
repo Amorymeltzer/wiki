@@ -157,6 +157,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 						'import': 'importer',
 						'ipblock-exempt': 'IP block exemption',
 						'massmessage-sender': 'mass message sender',
+						'no-ipinfo': 'no IP Info',
 						'oversight': 'oversighter',
 						'patroller': 'new page reviewer',
 						'reviewer': 'pending changes reviewer',
