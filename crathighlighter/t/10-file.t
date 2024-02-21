@@ -8,6 +8,7 @@ use JSON::MaybeXS;
 
 use AmoryBot::CratHighlighter qw (processFileData);
 use Test::More;
+use Test::Fatal;
 
 
 # Real deal data
@@ -27,7 +28,7 @@ my @rights = keys %actual;
 plan tests => 1 + 3 * scalar @rights;
 
 # Bad data
-is(processFileData(), undef, 'No data passed');
+like(exception {processFileData()}, qr/Missing data/, 'No data passed');
 
 # Template for generating JSON, sorted and prettyish
 my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);

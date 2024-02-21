@@ -5,6 +5,7 @@ use 5.036;
 # Relies upon buildNote (which relies upon oxfordComma)
 use AmoryBot::CratHighlighter qw(createEmail);
 use Test::More tests => 9;
+use Test::Fatal;
 
 
 my %testData = (addedFiles   => ['Acalamari (B)',     'AmandaNP (OS)', 'Avraham (SYS)'],
@@ -63,9 +64,9 @@ is(createEmail(\@l, \@null, \%testData, $push), $noWikiNote, 'no wiki');
 my $noneNote = $headerBare;
 is(createEmail(\@null, \@null, \%testData, $push), $noneNote, 'none');
 
-# Bad data, include changeRef?
-is(createEmail(),         undef, 'No localRef');
-is(createEmail(\@l, q{}), undef, 'No wikiRef');
+# Bad data, include changeRef? FIXME TODO
+like(exception {createEmail()},         qr/Missing data/, 'No localRef');
+like(exception {createEmail(\@l, q{})}, qr/Missing data/, 'No wikiRef');
 
 
 # Make creating strings easier

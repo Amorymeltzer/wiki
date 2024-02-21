@@ -4,10 +4,11 @@ use 5.036;
 
 use AmoryBot::CratHighlighter qw(mapGroups);
 use Test::More tests => 7;
+use Test::Fatal;
 
 # Bad data
-is(mapGroups(),         undef, 'Empty');
-is(mapGroups('purple'), undef, 'Bad group');
+like(exception {mapGroups()},         qr/Missing data/,        'Empty');
+like(exception {mapGroups('purple')}, qr/not found in lookup/, 'Bad group');
 
 # Just group
 is(mapGroups('arbcom'),          'AC', 'arbcom');

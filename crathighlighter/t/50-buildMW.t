@@ -7,6 +7,7 @@ use MediaWiki::API;
 
 use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
+use Test::Fatal;
 
 my $user        = 'Macbeth';
 my $scriptName  = 'cratHighlighterSubpages.pl';
@@ -25,9 +26,8 @@ plan tests => 3 + 3 * (1 + scalar keys %opts);
 
 
 # Bad object
-is(buildMW(), undef, 'no $mw');
-my $string = 'string';
-is(buildMW($string), undef, 'wrong class');
+like(exception {buildMW()},         qr/Missing MW object/,                 'no $mw');
+like(exception {buildMW('string')}, qr/Wrong class, not 'MediaWiki::API'/, 'wrong class');
 
 my $mw = new_ok('MediaWiki::API');
 
@@ -44,13 +44,13 @@ delete $opts{agent};
 checkEntries($mw, \%opts);
 
 # Different defaults
-$opts{url}      = 'asdasd';
-$opts{retry}    = '0';
-$opts{delay}    = 404;
-$opts{get}      = '0';
-$opts{agent}    = $user;
+$opts{url}   = 'asdasd';
+$opts{retry} = '0';
+$opts{delay} = 404;
+$opts{get}   = '0';
+$opts{agent} = $user;
 $opts{error} = \&answers;
-$mw             = buildMW(MediaWiki::API->new(), \%opts);
+$mw          = buildMW(MediaWiki::API->new(), \%opts);
 checkEntries($mw, \%opts);
 
 
@@ -76,7 +76,6 @@ sub checkEntries {
   is($mw->{ua}->agent, $opts{agent} ? "$opts{agent} ($agentString)" : $agentString, "UA $count");
 
   $count++;
-  return;
 }
 
 

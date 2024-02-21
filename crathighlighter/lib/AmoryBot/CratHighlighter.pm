@@ -1,6 +1,7 @@
 package AmoryBot::CratHighlighter;
 
 use 5.036;
+use Carp;
 
 # Only needed in buildNote
 use List::Util qw(uniqstr);
@@ -56,14 +57,14 @@ our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 =head2 findStewardMembers
 
-Stewards are "simple" thanks to map and simple (one-group) structure.  As with
-the git utilities in AmoryBot::CratHighlighter::GitUtils, this mis/abuses @_ for
-brevity, rather than merely `shift`-ing.  No real error handling.
-
 =cut
 
+# Stewards are "simple" thanks to map and simple (one-group) structure
 sub findStewardMembers {
-  return map {$_->{name} => 1} @{$_[0]};
+  my $stewardData = shift;
+  croak 'Missing data' if !$stewardData;
+
+  return map {$_->{name} => 1} $stewardData->@*;
 }
 
 =head2 findLocalGroupMembers
@@ -75,7 +76,7 @@ sub findStewardMembers {
 # stop overwriting data on the continue, then it's a necessary hack.
 sub findLocalGroupMembers {
   my ($localData, $rightsRef) = @_;
-  return if (!$localData || !$rightsRef);
+  croak 'Missing data' if (!$localData || !$rightsRef);
 
   my %dataHash;
   # Limit to the groups in question then add that user to the lookup for each
@@ -114,7 +115,8 @@ sub findLocalGroupMembers {
 # Process each line of the specific ArbCom page's content to get the users
 # listed.  Returns a reference to a hash.
 sub findArbComMembers {
-  my $templateText = shift || return;
+  my $templateText = shift;
+  croak 'Missing data' if !$templateText;
 
   my %tmpData;
   for (split /^/, $templateText) {
@@ -137,7 +139,9 @@ sub findArbComMembers {
 # Build hash of array with per group page title, content, and last edited time.
 # Requires the query to have been done with formatversion=2
 sub processFileData {
-  my $contentRef = shift or return;
+  my $contentRef = shift;
+  croak 'Missing data' if !$contentRef;
+
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
   ## title     -> used to also snag the specific group used for hash key
@@ -169,9 +173,10 @@ sub processFileData {
 # negated equality and arrayrefs of names added/removed to/from the JSON object
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
+  croak 'Missing data' if (!$queryRef || !$objectRef);
 
-  return if ref $queryRef ne ref  {};
-  return if ref $objectRef ne ref {};
+  croak 'queryRef not a hashref' if ref $queryRef ne ref {};
+  croak 'objectRef not a hashref' if ref $objectRef ne ref {};
 
 
   # Check array length first, which should be a quick short-circuit for most
@@ -207,9 +212,8 @@ sub cmpJSON {
 # edit summary and for the emailed note.
 sub changeSummary {
   my ($addedRef, $removedRef) = @_;
-
   # Empty arrays are okay, but missing arrays are not!
-  return if (!$addedRef || !$removedRef);
+  croak 'Missing data' if (!$addedRef || !$removedRef);
 
   my $change = q{};
 
@@ -259,18 +263,15 @@ my %lookup = (arbcom            => 'AC',
 # Anyway, should figure something out. FIXME TODO
 sub mapGroups {
   my ($group, $usersRef) = @_;
+  croak 'Missing data' if !$group;
 
-  return if !$group;
-
-  # Reassign bad but w/e
-  $group = $lookup{$group};
-
-  return if !$group;
+  my $code = $lookup{$group};
+  croak "Group \"$group\" not found in lookup" if !$code;
 
   # String
-  return $group if !$usersRef;
+  return $code if !$usersRef;
   # Array
-  return map {"$_ ($group)"} @{$usersRef};
+  return map {"$_ ($code)"} @{$usersRef};
 }
 
 
@@ -280,7 +281,7 @@ sub mapGroups {
 
 sub buildNote {
   my ($message, $listRef) = @_;
-  return if !$listRef;
+  croak 'Missing data' if !$listRef;
 
   return q{} if !scalar @{$listRef};
 
@@ -298,7 +299,7 @@ sub buildNote {
 # behind a flag?
 sub createEmail {
   my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
-  return if (!$localRef || !$wikiRef);
+  croak 'Missing data' if (!$localRef || !$wikiRef);
 
   my $updateNote = 'CratHighlighter updates';
   my $short;
@@ -345,8 +346,7 @@ sub createEmail {
 
 # Make sure the bot behaves nicely.  The actual query is in the main script,
 # where MediaWiki::API and Log::Log4perl are available; this is just to process
-# the data and to produce errors for proper logging.  Notably, that means this
-# is the only subroutine one where the bare return is the good state. FIXME
+# the data and to produce errors for proper logging.
 sub botShutoffs {
   my $json = shift;
   return 'No data' if !$json;
@@ -381,7 +381,8 @@ sub botShutoffs {
 sub buildMW {
   # should $mw be a ref?  FIXME TODO
   my ($mw, $opts) = @_;
-  return if !$mw || ref $mw ne 'MediaWiki::API';
+  croak 'Missing MW object' if !$mw;
+  croak 'Wrong class, not \'MediaWiki::API\'' if ref $mw ne 'MediaWiki::API';
 
   my $cfg = $mw->{config};
   $cfg->{api_url}      = ${$opts}{url}   // 'https://en.wikipedia.org/w/api.php';

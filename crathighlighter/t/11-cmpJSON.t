@@ -5,6 +5,7 @@ use 5.036;
 
 use AmoryBot::CratHighlighter qw(cmpJSON);
 use Test::More;
+use Test::Fatal;
 
 # List users from each group.  Essentially cribbed from file.t/file.json, but
 # without the one overlapper (Xaosflux)
@@ -27,12 +28,13 @@ my %tests = (empty             => [([]) x 4],
 	    );
 
 my $count = scalar keys %tests;
-plan tests => 3 + 3 * $count;
+plan tests => 4 + 3 * $count;
 
 # First one technically excessive
-is(cmpJSON(),         undef, 'empty');
-is(cmpJSON('42'),     undef, 'queryRef not hashref');
-is(cmpJSON({}, '42'), undef, 'objectRef not hashref');
+like(exception {cmpJSON()},         qr/Missing data/,            'Mising queryRef');
+like(exception {cmpJSON({})},       qr/Missing data/,            'Mising objectRef');
+like(exception {cmpJSON('42', {})}, qr/queryRef not a hashref/,  'queryRef not hashref');
+like(exception {cmpJSON({}, '42')}, qr/objectRef not a hashref/, 'objectRef not hashref');
 
 
 foreach my $test (sort keys %tests) {

@@ -5,13 +5,14 @@ use 5.036;
 # Relies upon oxfordComma
 use AmoryBot::CratHighlighter qw(changeSummary);
 use Test::More tests => 6;
+use Test::Fatal;
 
 my @added   = qw(Acalamari AmandaNP Avraham);
 my @removed = qw(Amorymeltzer Cyberpower678 Enterprisey);
 
 # Bad data
-is(changeSummary(),   undef, 'no addedRef');
-is(changeSummary([]), undef, 'No removedRef');
+like(exception {changeSummary()},   qr/Missing data/, 'No addedRef');
+like(exception {changeSummary([])}, qr/Missing data/, 'No removedRef');
 
 # changeSummary relies on there being two array refs, so provide an empty ref
 is(changeSummary([],      []),        q{},                                                                                            'Empty');

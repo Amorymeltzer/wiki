@@ -10,6 +10,7 @@ use JSON::MaybeXS;
 
 use AmoryBot::CratHighlighter qw (findStewardMembers findLocalGroupMembers);
 use Test::More;
+use Test::Fatal;
 
 # List groups; just like in the main script, steward and arbcom are added later
 my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
@@ -57,9 +58,10 @@ push @rights, qw (steward);
 plan tests => 3 + scalar keys %actual;
 
 # Bad data
-is(findLocalGroupMembers(),              undef, 'No localData');
-is(findLocalGroupMembers(\@localHashes), undef, 'No rightsRef');
-is(findStewardMembers(),                 0,     'No steward data');
+like(exception {findLocalGroupMembers()},              qr/Missing data/, 'No localData');
+like(exception {findLocalGroupMembers(\@localHashes)}, qr/Missing data/, 'No rightsRef');
+
+like(exception {findStewardMembers()}, qr/Missing data/, 'No steward data');
 
 foreach my $userGroup (keys %actual) {
   my @users = sort keys %{$groupsData{$userGroup}};
