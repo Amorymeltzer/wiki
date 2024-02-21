@@ -23,6 +23,10 @@ use Exporter 'import';
 our @EXPORT_OK   = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
+
+# Common error message for subs missing inputs
+my $errData = 'Missing data';
+
 =head1 EXPORTS
 
 =over 2
@@ -62,7 +66,7 @@ our %EXPORT_TAGS = (all => \@EXPORT_OK);
 # Stewards are "simple" thanks to map and simple (one-group) structure
 sub findStewardMembers {
   my $stewardData = shift;
-  croak 'Missing data' if !$stewardData;
+  croak $errData if !$stewardData;
 
   return map {$_->{name} => 1} $stewardData->@*;
 }
@@ -76,7 +80,7 @@ sub findStewardMembers {
 # stop overwriting data on the continue, then it's a necessary hack.
 sub findLocalGroupMembers {
   my ($localData, $rightsRef) = @_;
-  croak 'Missing data' if (!$localData || !$rightsRef);
+  croak $errData if (!$localData || !$rightsRef);
 
   my %dataHash;
   # Limit to the groups in question then add that user to the lookup for each
@@ -116,7 +120,7 @@ sub findLocalGroupMembers {
 # listed.  Returns a reference to a hash.
 sub findArbComMembers {
   my $templateText = shift;
-  croak 'Missing data' if !$templateText;
+  croak $errData if !$templateText;
 
   my %tmpData;
   for (split /^/, $templateText) {
@@ -140,7 +144,7 @@ sub findArbComMembers {
 # Requires the query to have been done with formatversion=2
 sub processFileData {
   my $contentRef = shift;
-  croak 'Missing data' if !$contentRef;
+  croak $errData if !$contentRef;
 
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
@@ -173,7 +177,7 @@ sub processFileData {
 # negated equality and arrayrefs of names added/removed to/from the JSON object
 sub cmpJSON {
   my ($queryRef, $objectRef) = @_;
-  croak 'Missing data' if (!$queryRef || !$objectRef);
+  croak $errData if (!$queryRef || !$objectRef);
 
   croak 'queryRef not a hashref' if ref $queryRef ne ref {};
   croak 'objectRef not a hashref' if ref $objectRef ne ref {};
@@ -213,7 +217,7 @@ sub cmpJSON {
 sub changeSummary {
   my ($addedRef, $removedRef) = @_;
   # Empty arrays are okay, but missing arrays are not!
-  croak 'Missing data' if (!$addedRef || !$removedRef);
+  croak $errData if (!$addedRef || !$removedRef);
 
   my $change = q{};
 
@@ -263,7 +267,7 @@ my %lookup = (arbcom            => 'AC',
 # Anyway, should figure something out. FIXME TODO
 sub mapGroups {
   my ($group, $usersRef) = @_;
-  croak 'Missing data' if !$group;
+  croak $errData if !$group;
 
   my $code = $lookup{$group};
   croak "Group \"$group\" not found in lookup" if !$code;
@@ -281,7 +285,7 @@ sub mapGroups {
 
 sub buildNote {
   my ($message, $listRef) = @_;
-  croak 'Missing data' if !$listRef;
+  croak $errData if !$listRef;
 
   return q{} if !scalar @{$listRef};
 
@@ -299,7 +303,7 @@ sub buildNote {
 # behind a flag?
 sub createEmail {
   my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
-  croak 'Missing data' if (!$localRef || !$wikiRef);
+  croak $errData if (!$localRef || !$wikiRef);
 
   my $updateNote = 'CratHighlighter updates';
   my $short;
