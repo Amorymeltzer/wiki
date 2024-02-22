@@ -89,7 +89,7 @@ botQuery($user);
 my ($groupsStore, $groups) = getCurrentGroups();
 
 ### Latest content of each on-wiki page
-my %contentStore = getPageGroups(@{$groups});
+my %pagesContent = getPageGroups(@{$groups});
 
 
 ### Main loop for each group
@@ -134,7 +134,7 @@ foreach (@{$groups}) {
   }
 
   # Check if on-wiki records have changed
-  my $wikiJSON = $contentStore{$_}[1];
+  my $wikiJSON = $pagesContent{$_}[1];
   my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
 
   # Check if everything is up-to-date onwiki, optional push otherwise
@@ -159,8 +159,8 @@ foreach (@{$groups}) {
       $queryJSON ||= $jsonTemplate->encode(\%queryHash);
       $mw->edit({action        => 'edit',
 		 assert        => 'user',
-		 title         => $contentStore{$_}[0],
-		 basetimestamp => $contentStore{$_}[2],    # Avoid edit conflicts
+		 title         => $pagesContent{$_}[0],
+		 basetimestamp => $pagesContent{$_}[2],    # Avoid edit conflicts
 		 text          => $queryJSON,
 		 summary       => $editSummary
 		});
@@ -302,8 +302,8 @@ sub getCurrentGroups {
   my $stewRef = $groupsQuery{globalallusers};
 
   # Likewise, needs to store the ArbCom data.  Could shunt this off to the sub
-  # like botShutoffs or processFileData, but I'd rather not save the test pages
-  # as json.  Probably smarter, though.
+  # like botShutoffs or processPagesData, but I'd rather not save the test pages
+  # as json.  Probably smarter, though. TODO
   my $acContent = $groupsQuery{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
 
 
@@ -368,7 +368,7 @@ sub getPageGroups {
   # JSON, technically a reference to a hash
   # Note if warnings FIXME TODO
   my $contentReturn = $mw->api($contentQuery);
-  return processFileData($contentReturn);
+  return processPagesData($contentReturn);
 }
 
 

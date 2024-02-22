@@ -20,7 +20,7 @@ our $VERSION = '0.2.3';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processFileData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -31,7 +31,7 @@ my $errData = 'Missing data';
 
 =over 2
 
-=item * L</processFileData>
+=item * L</processPagesData>
 
 =item * L</findStewardMembers>
 
@@ -136,13 +136,13 @@ sub findArbComMembers {
 }
 
 
-=head2 processFileData
+=head2 processPagesData
 
 =cut
 
 # Build hash of array with per group page title, content, and last edited time.
 # Requires the query to have been done with formatversion=2
-sub processFileData {
+sub processPagesData {
   my $contentRef = shift;
   croak $errData if !$contentRef;
 

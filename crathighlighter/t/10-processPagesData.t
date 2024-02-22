@@ -6,7 +6,7 @@ use 5.036;
 use File::Slurper qw(read_text);
 use JSON::MaybeXS;
 
-use AmoryBot::CratHighlighter qw (processFileData);
+use AmoryBot::CratHighlighter qw (processPagesData);
 use Test::More;
 use Test::Fatal;
 
@@ -19,7 +19,7 @@ my @over = ('AmandaNP',     'Amorymeltzer', 'Anarchyte', 'Barkeep49', 'Beeblebro
 my @arbs = qw(Barkeep49 Beeblebrox Cabayi CaptainEek Enterprisey GeneralNotability Guerillero Izno L235 Moneytrees Primefac SilkTork Wugapodes);
 
 # List of each group, but for testing right now just a couple.  Of note, since
-# this is just checking processFileData, which processes page content, it's a
+# this is just checking processPagesData, which processes page content, it's a
 # quick and straightforward process; adding a big honkin' group like sysops
 # won't make this test more durable/informative, since it's going to be quick.
 my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'arbcom' => \@arbs);
@@ -28,7 +28,7 @@ my @rights = keys %actual;
 plan tests => 1 + 3 * scalar @rights;
 
 # Bad data
-like(exception {processFileData()}, qr/Missing data/, 'No data passed');
+like(exception {processPagesData()}, qr/Missing data/, 'No data passed');
 
 # Template for generating JSON, sorted and prettyish
 my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
@@ -37,7 +37,7 @@ my $file     = 't/file.json';
 my $fileJSON = read_text($file);
 
 my $contentReturn = $jsonTemplate->decode($fileJSON);
-my %contentData   = processFileData($contentReturn);
+my %pagesData   = processPagesData($contentReturn);
 
 # Simple tests.  Can hardcode timestamp since the data is hardcoded
 my $titleBaseName = 'User:AmoryBot/crathighlighter.js/';
@@ -45,10 +45,10 @@ my %timestamps    = ('bureaucrat' => '2023-06-01T01:13:07Z', 'interface-admin' =
 
 foreach my $userGroup (@rights) {
   # Title of page matches expected
-  is("$titleBaseName$userGroup.json", $contentData{$userGroup}[0], "$userGroup title");
+  is("$titleBaseName$userGroup.json", $pagesData{$userGroup}[0], "$userGroup title");
   # Timestamp matches
-  is($timestamps{$userGroup}, $contentData{$userGroup}[2], "$userGroup timestamp");
+  is($timestamps{$userGroup}, $pagesData{$userGroup}[2], "$userGroup timestamp");
   # User data matches
-  my @users = sort keys %{$jsonTemplate->decode($contentData{$userGroup}[1])};
+  my @users = sort keys %{$jsonTemplate->decode($pagesData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }

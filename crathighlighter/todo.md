@@ -19,6 +19,7 @@
 - [ ] Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
 - [ ] processFileData is too group/user-focused(?)
 - [ ] Cleanup module pod
+- [ ] Test `File::Slurper` imports, and better check in main script (`-R`, `-W`, `-e`, `-f`, `-s`).  See <https://rt.cpan.org/Public/Bug/Display.html?id=114341> and <https://github.com/Leont/file-slurp-sane/issues/9>
 
 ## Speedups
 
