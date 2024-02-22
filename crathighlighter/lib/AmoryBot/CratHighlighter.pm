@@ -94,8 +94,8 @@ sub findLocalGroupMembers {
     # well, with one caveat: the user "Edit filter" annoyingly exists and has
     # sysop rights, so we need to account for that later since it's not
     # autoconfirmed.  That will hopefully be removed at some point (T212268).
-    foreach my $group (@{${$userHash}{groups}}[3 .. $#{${$userHash}{groups}}]) {
-      $dataHash{$group}{${$userHash}{name}} = 1 if $interestedGroups{$group};
+    foreach my $group (@{$userHash->{groups}}[3 .. $#{$userHash->{groups}}]) {
+      $dataHash{$group}{$userHash->{name}} = 1 if $interestedGroups{$group};
     }
   }
 
@@ -158,12 +158,12 @@ sub processFileData {
   # Just awful.  Then again, it could be made even worse!  Worth noting that it
   # should be pretty fast, since it's just reformatting data that's already
   # present, rather than going through each user or anything like that.
-  foreach my $pageHash (@{${${$contentRef}{query}}{pages}}) {
+  foreach my $pageHash ($contentRef->{query}->{pages}->@*) {
     # Make things just slightly more clear for the final data assignment
-    my $userGroup = ${$pageHash}{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-    my @revisions = @{${$pageHash}{revisions}};
+    my $userGroup = $pageHash->{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+    my @revisions = $pageHash->{revisions}->@*;
     # rvslots is so dumb
-    $returnData{$userGroup} = [${$pageHash}{title}, ${$revisions[0]}{slots}{main}{content}, ${$revisions[0]}{timestamp}];
+    $returnData{$userGroup} = [$pageHash->{title}, $revisions[0]->{slots}{main}{content}, $revisions[0]->{timestamp}];
   }
 
   return %returnData;
@@ -322,7 +322,7 @@ sub createEmail {
   if ($local) {
     $short = join q{ }, map {mapGroups($_)} @{$localRef};
     # Remove empty items
-    $updateNote .= join "\n", grep { $_ ne q{} } ("Files: $local updated ($short)", buildNote('Added',   ${$changeRef}{addedFiles}), buildNote('Removed', ${$changeRef}{removedFiles}));
+    $updateNote .= join "\n", grep { $_ ne q{} } ("Files: $local updated ($short)", buildNote('Added',   $changeRef->{addedFiles}), buildNote('Removed', $changeRef->{removedFiles}));
   }
 
   # Notify on pushed changes
@@ -333,7 +333,7 @@ sub createEmail {
     $short = join q{ }, map {mapGroups($_)} @{$wikiRef};
     if (!$skipPush) {
     # Remove empty items
-      $updateNote .= join "\n", grep { $_ ne q{} } ("updated ($short)", buildNote('Added',   ${$changeRef}{addedPages}), buildNote('Removed', ${$changeRef}{removedPages}));
+      $updateNote .= join "\n", grep { $_ ne q{} } ("updated ($short)", buildNote('Added',   $changeRef->{addedPages}), buildNote('Removed', $changeRef->{removedPages}));
     } else {
       $updateNote .= "not updated ($short)";
     }
