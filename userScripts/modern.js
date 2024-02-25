@@ -334,7 +334,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('ext.gadget.XFDcloser');
 			/* Only for [[WP:AFC/R]] */
 			if (cfg.wgPageName === 'Wikipedia:Articles_for_creation/Redirects') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1053491363&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1208953219&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]; see also [https://github.com/wikimedia-gadgets/JWB]
 				// No way to reliably ensure JWB is safe, since it loads configs stored as js rather than json, without copying, which is too much of a drag.
