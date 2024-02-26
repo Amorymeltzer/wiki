@@ -383,7 +383,6 @@ sub botShutoffs {
 # getting around importing MediaWiki::API here, which I don't want to do
 # for... reasons?  Whatever.  Minor testing abilities thanks to this.
 sub buildMW {
-  # should $mw be a ref?  FIXME TODO
   my ($mw, $opts) = @_;
   croak 'Missing MW object' if !$mw;
   croak 'Wrong class, not \'MediaWiki::API\'' if ref $mw ne 'MediaWiki::API';
