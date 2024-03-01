@@ -1,12 +1,13 @@
 # Todos
 
+- [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#How-can-I-configure-Log::Log4perl-to-send-me-email-if-something-happens?> if necessary.  See also <https://metacpan.org/pod/Email::Simple> and <https://perldoc.perl.org/5.39.4/perlfaq9#How-do-I-send-email?>.  Old examples in past commits.  Maybe custom appender is the way to go, but implies config file.   Can just do via other modules.
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
 - [x] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay `say`
   - [ ] Consider `try/catch`
-- [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#How-can-I-configure-Log::Log4perl-to-send-me-email-if-something-happens?> if necessary.  See also <https://metacpan.org/pod/Email::Simple> and <https://perldoc.perl.org/5.39.4/perlfaq9#How-do-I-send-email?>
+- [ ] Share logging config <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> etc.
 - [ ] Maybe also more logging for things like proveMe?  Can rely on filelog, especially if not redirecting output since no emails that way.
 - [ ] Consider retry?  Or does it just complicate my set up?
-- [ ] Share logging config <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> etc.
+- [ ] Fix spacing in logs (`Skipping push`)
 
 ## Main script
 
@@ -16,7 +17,7 @@
 - [ ] If I completely rework the main loop for each group, the note can just be saved, and can use that for the email/output message?  Would avoid some extraneous stuff (`@localChange`, `@wikiChange`, etc.)
 - [ ] Maybe split cmpJSON?  Why?  Figure out JSON::MaybeXS, etc.  Tricky.
 - [ ] Somehow handle MediaWiki::API stuff, maybe OO?  Ugh
-- [ ] Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.
+- [ ] Log::Log4perl stuff only in main script, getConfig, and various API-related things.  Could do that only in separate module?  Stupid?  Definitely stupid.  But maybe a way to handle config...?
 - [ ] processFileData is too group/user-focused(?)
 - [ ] Cleanup module pod
 - [ ] Test `File::Slurper` imports, and better check in main script (`-R`, `-W`, `-e`, `-f`, `-s`).  See <https://rt.cpan.org/Public/Bug/Display.html?id=114341> and <https://github.com/Leont/file-slurp-sane/issues/9>
