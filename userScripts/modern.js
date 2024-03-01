@@ -290,7 +290,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		   [[User:Qwertyytrewqqwerty/DisamAssist.js]], [[MediaWiki:Gadget-citations.js]], [[Wikipedia:AutoEd/complete.js]]
 		   [[User:GregU/dashes.js]], [[User:Salix_alba/Citoid.js]], [[User:Ohconfucius/script/formatgeneral.js]]
 		   [[User:Ohconfucius/script/Common Terms.js]], [[User:Dr_pda/editrefs.js]], [[User:TheJJJunk/ARA.js]]
-		   [[User:Meteor sandwich yum/Tidy citations.js]], [[User:Cameltrader/Advisor.js]], [[User:PC-XT/Advisor.js]]
+		   [[User:Mesidast/Tidy citations.js]], [[User:Cameltrader/Advisor.js]], [[User:PC-XT/Advisor.js]]
 		   [[MediaWiki:Gadget-ProveIt.js]], [[WP:ProveIt]], [[m:User:TMg/autoFormatter]]
 		*/
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/smaller_templates.js&oldid=596443737&action=raw&ctype=text/javascript'); // [[User:Gary/smaller templates.js]]

@@ -346,10 +346,10 @@ body.action-history div.oo-ui-panelLayout-framed div.oo-ui-fieldsetLayout-group 
 
 /* Hide or tweak some unwanted portions of various user scripts */
 
-/* [[User:Meteor sandwich yum/Tidy citations.js]] */
-#ca-formatcitations-vertical,
-#ca-formatcitations-crammed,
-#ca-formatcitations-roomy {
+/* [[User:Mesidast/Tidy citations]] */
+#t-tidyCiteVertical,
+#t-tidyCiteCrammed,
+#t-tidyCiteRoomy {
 	display: none !important;
 }
 
