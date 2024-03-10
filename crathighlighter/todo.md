@@ -1,6 +1,7 @@
 # Todos
 
 - [ ] Set up notification emails.  Doesn't work for toolforge-jobs (<https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email#Sending_via_the_command_line>), and since `onfinish` does it no matter what, then maybe consider <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#How-can-I-configure-Log::Log4perl-to-send-me-email-if-something-happens?> if necessary.  See also <https://metacpan.org/pod/Email::Simple> and <https://perldoc.perl.org/5.39.4/perlfaq9#How-do-I-send-email?>.  Old examples in past commits.  Maybe custom appender is the way to go, but implies config file.   Can just do via other modules.
+  - <https://metacpan.org/pod/Log::Log4perl::Appender> and <https://metacpan.org/pod/Log::Dispatch::Email#SYNOPSIS> and <https://metacpan.org/pod/Log%3A%3ALog%34perl#Appenders> and <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email> and <https://www.perlmonks.org/?node_id=1091507> and <https://metacpan.org/pod/Log::Log4perl::Appender::SMTP>
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
 - [x] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay `say`
   - [ ] Consider `try/catch`
