@@ -269,8 +269,7 @@ sub mapGroups {
   my ($group, $usersRef) = @_;
   croak $errData if !$group;
 
-  my $code = $lookup{$group};
-  croak "Group \"$group\" not found in lookup" if !$code;
+  my $code = $lookup{$group} or croak "Group \"$group\" not found in lookup";
 
   # String
   return $code if !$usersRef;
