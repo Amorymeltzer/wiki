@@ -1,4 +1,65 @@
 /* jshint maxerr:999 */
+
+// Sigh
+// Enable caching for resource loads, see [[User:SD0001/Making_user_scripts_load_faster]], @revision 6
+if (!/\bnocache=\b/.test(location.href)) { // Don't enable if nocache=1 url parameter is given
+	let loadResource = (page, sitename, ctype) => {
+		page = page.replace(/special:mypage/i, 'User:' + mw.config.get('wgUserName'));
+		return $.get(
+			'https://' + sitename + '/w/api.php?titles=' + page + // page is already URL-encoded
+				'&origin=*&format=json&formatversion=2&uselang=content&maxage=86400&smaxage=86400' +
+				'&action=query&prop=revisions|info&rvprop=content&rvlimit=1'
+		).then((apiResponse) => {
+			let apiPage = apiResponse.query.pages[0];
+			if (apiPage.missing) {
+				return;
+			}
+			let content = apiPage.revisions[0].content;
+			if ((!ctype || ctype === 'text/javascript') && apiPage.contentmodel === 'javascript') {
+				let scriptTag = document.createElement('script');
+				scriptTag.innerHTML = content;
+				document.head.appendChild(scriptTag);
+			} else if (ctype === 'text/css' && apiPage.contentmodel === 'css') {
+				mw.loader.addStyleTag(content);
+			} else {
+				return $.Deferred().reject('Refused to load "' + page + '"@' + sitename + ': content type mismatch');
+			}
+		});
+	};
+	let getSiteTitle = (url) => {
+		let siteRgx = /^(?:(?:https:)?\/\/(.*))?\/w\/index.php/.exec(url),
+		    titleRgx = /\btitle=([^=?&]*)/.exec(url);
+		if (siteRgx && titleRgx && /\baction=raw\b/.test(url) && /\bctype=/.test(url)) {
+			return [titleRgx[1], siteRgx[1] || mw.config.get('wgServerName')];
+		} else return null;
+	};
+	window.importScript = (page) => {
+		loadResource(encodeURIComponent(page), mw.config.get('wgServerName'), 'text/javascript');
+	};
+	window.importStyleSheet = (page) => {
+		loadResource(encodeURIComponent(page), mw.config.get('wgServerName'), 'text/css');
+	};
+	let oldMwLoaderLoad = mw.loader.load;
+	mw.loader.load = function(url, type) {
+		let linkParts = getSiteTitle(url);
+		if (linkParts) {
+			loadResource(linkParts[0], linkParts[1], type);
+		} else {
+			oldMwLoaderLoad.apply(mw.loader, [...arguments]);
+		}
+	};
+	let oldMwLoaderGetScript = mw.loader.getScript;
+	mw.loader.getScript = function(url) {
+		let linkParts = getSiteTitle(url);
+		if (linkParts) {
+			return loadResource(linkParts[0], linkParts[1], 'text/javascript');
+		} else {
+			return oldMwLoaderGetScript.apply(mw.loader, [...arguments]);
+		}
+	};
+}
+
+
 /*
   This page is designed to only load items on specific pages
   It makes use of an irresponsible number of if-else statements
