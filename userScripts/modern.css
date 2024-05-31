@@ -186,8 +186,8 @@ div#mw-hidden-catlinks { font-size: 88%; }
 	margin: 0 0 0 0;
 }
 
-/* Bold headline */
-.mw-headline {
+/* Bold headline, probably unnecessary? FIXME TODO */
+.mw-headline > h2 {
 	font-weight: bold;
 }
 
