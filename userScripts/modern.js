@@ -319,7 +319,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				}
 				clicked = true;
 				// [[User:Nardog/MoveHistory-core.js]]
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory-core.js&oldid=1199508250&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory-core.js&oldid=1228268690&action=raw&ctype=text/javascript');
 				mw.loader.using([
 					'mediawiki.api', 'mediawiki.util', 'mediawiki.Title', 'oojs-ui-windows',
 					'oojs-ui-widgets', 'mediawiki.widgets', 'mediawiki.widgets.DateInputWidget',
