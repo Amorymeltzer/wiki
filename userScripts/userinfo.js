@@ -144,7 +144,6 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 						'*': false,
 						'user': false,
 						'autoconfirmed': false,
-						'named': false,
 						'abusefilter': 'edit filter manager',
 						'abusefilter-helper': 'edit filter helper',
 						'accountcreator': 'account creator',
