@@ -214,7 +214,10 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:BethNaught/hideSectionDesktop.js&oldid=1002949275&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/hideSectionDesktop.js&action=raw&ctype=text/javascript'); // [[User:BethNaught/hideSectionDesktop.js]], [[User:Amorymeltzer/hideSectionDesktop.js]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/permalink.js&oldid=1074774463&action=raw&ctype=text/javascript'); // [[User:The Earwig/permalink.js]]
+
+	// Was [[User:The Earwig/permalink.js]], now [[User:The Earwig/copy-section-link.js]], but see also [[User:Enterprisey/copy-section-link.js]] via [[User:Enterprisey/copy-section-link]]
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/copy-section-link.js&oldid=1230024148&action=raw&ctype=text/javascript'); // placeholder
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:The_Earwig/copy-section-link.js&oldid=1230023942&action=raw&ctype=text/javascript');
 
 	// Diffs
 	mw.loader.using(['mediawiki.util'], function() {
