@@ -19,7 +19,7 @@ $(function () {
 	mw.loader.load('https://meta.wikimedia.org/w/index.php?title=User:Zhaofeng_Li/Reflinks.js&oldid=18773634&action=raw&ctype=text/javascript');
 	//    mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Lourdes/Backlinks.js&action=raw&ctype=text/javascript'); //[[User:Lourdes/Backlinks.js]]
 	mw.util.addPortletLink('p-edit', '//edwardbetts.com/find_link/' + mw.config.get('wgPageName'), 'Find backlinks', 't-findlink', 'Find potential backlinks for this page'); // [[User:Edward/Find link]]
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/duplinks-alt.js&oldid=1097482556&action=raw&ctype=text/javascript'); // [[User:Evad37/duplinks-alt]], [[User:Evad37/duplinks-alt.js]] replaced [[User:Ucucha/duplinks.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/duplinks-alt.js&oldid=1229783301&action=raw&ctype=text/javascript'); // [[User:Evad37/duplinks-alt]], [[User:Evad37/duplinks-alt.js]] replaced [[User:Ucucha/duplinks.js]]
 
 	if ($.inArray('All article disambiguation pages', mw.config.get('wgCategories')) >= 0) {
 		mw.util.addPortletLink('p-edit', '//dispenser.info.tm/~dispenser/cgi-bin/dabfix.py?page=' + mw.config.get('wgPageName'), 'DabFix', 'pt-dabfix', 'DabFix');
