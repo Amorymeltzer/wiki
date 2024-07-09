@@ -9,6 +9,7 @@
 // - Allow custom caching length (set window.cache_hours)
 // - Allow application of all user classes (set window.all_groups)
 // - Preserve previous classes
+// - Don't highlight talkpage discussion tools links
 //
 // If you want to set a custom order, add something like
 // window.highlight_order = ['arbcom', 'bureaucrat', 'oversight', 'checkuser', 'interface-admin', 'sysop', 'steward'];
@@ -69,8 +70,8 @@ var main = function(data) {
 				} // Skip span.autocomment links aka automatic section links in edit summaries
 				if (link[0].tagName === 'IMG') {
 					return;
-				} // Don't highlight image links
-				if (link[0].className && link[0].classList[0] === 'external') {
+				} // Don't highlight image links or talk page discussion tools links
+				if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
 					return;
 				} // Avoid errors on hard-to-parse external links
 				url = url.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/g, '%25');
