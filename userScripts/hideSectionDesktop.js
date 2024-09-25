@@ -64,7 +64,7 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 
 	// BEGIN WORKFLOW
 	// This holds the stuff that comes from wikitext, and that only
-	var parserOutput = document.getElementsByClassName('mw-parser-output')[1];
+	var parserOutput = document.getElementById('mw-content-text').firstChild;
 
 	if (parserOutput) {
 	    // Initialise loop variables
@@ -76,11 +76,15 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 	    // Loop over children adding necessary stuff
 	    for (var i = 0; i < loopLength; i++){
 		currentChild = parserOutput.children[i];
-		if (currentChild.className == "mw-heading mw-heading2") {
+		if (currentChild.classList.contains("mw-heading2") && currentChild.classList.contains("mw-heading")) {
 		    classifying = true;  // all subsequent elements need modifying
 		    sectionID += 1;
 		    temp_a = _createToggleVisibilityLink(sectionID);
-		    currentChild.appendChild(temp_a);
+
+		    var es = currentChild.querySelector('.mw-editsection');
+		    if (es) {
+			    es.parentNode.insertBefore(temp_a, es.nextSibling);
+		    }
 		} else if (classifying) {
 		    currentChild.classList.add('bn-hidesection-' + sectionID);
 		}
