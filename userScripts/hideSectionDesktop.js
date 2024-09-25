@@ -76,7 +76,7 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 	    // Loop over children adding necessary stuff
 	    for (var i = 0; i < loopLength; i++){
 		currentChild = parserOutput.children[i];
-		if (currentChild.nodeName.toLowerCase() == "h2") {
+		if (currentChild.className == "mw-heading mw-heading2") {
 		    classifying = true;  // all subsequent elements need modifying
 		    sectionID += 1;
 		    temp_a = _createToggleVisibilityLink(sectionID);
