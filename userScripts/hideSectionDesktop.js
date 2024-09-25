@@ -64,7 +64,7 @@ if (document.getElementsByClassName('mw-parser-output').length) {
 
 	// BEGIN WORKFLOW
 	// This holds the stuff that comes from wikitext, and that only
-	var parserOutput = document.getElementsByClassName('mw-parser-output')[0];
+	var parserOutput = document.getElementsByClassName('mw-parser-output')[1];
 
 	if (parserOutput) {
 	    // Initialise loop variables
