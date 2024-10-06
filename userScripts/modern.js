@@ -299,7 +299,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$('li.new[id|=ca-nstab]').length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1193895381&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1249462961&action=raw&ctype=text/javascript');
 			}
 		});
 	}
