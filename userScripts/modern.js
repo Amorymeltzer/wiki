@@ -391,7 +391,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			/* MediaWiki, but really just [[MediaWiki:Gadgets-definition]] */
 			if (cfg.wgPageName === 'MediaWiki:Gadgets-definition') {
 				// Link and prettify gadgets [[User:Erutuon/scripts/gadgets-definition.js]], [[wikt:User:Erutuon/scripts/gadgets-definition.js]]
-				mw.loader.load('//en.wiktionary.org/w/index.php?title=User:Erutuon/scripts/gadgets-definition.js&oldid=77752822&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wiktionary.org/w/index.php?title=User:Erutuon/scripts/gadgets-definition.js&oldid=82331001&action=raw&ctype=text/javascript');
 			}
 		}// END else if LOOP but remain in not articles
 
