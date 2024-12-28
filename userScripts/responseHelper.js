@@ -910,7 +910,7 @@
 		var response = e.data.response;
 		var code = response.code, comment = "", value = "", value2 = "";
 
-		if (code.indexOf("|$1") !== -1) {
+		if (code.indexOf("$1") !== -1) {
 			value = prompt((response.prompt ? response.prompt : defaultPrompt) +
 				       (response.valueRequired ? '' : " (optional, hit OK to omit)"));
 			if (value === null) return false;
@@ -927,14 +927,14 @@
 		}
 
 		var $textarea = $("#wpTextbox1");
-		var currentText = $textarea.val();
+		var currentText = $textarea.textSelection('getContents');
 		var responseStr = indentation + "{{" + (templateName ? templateName + "|" : "") + code.replace(/\|$/, '') + "}}" + comment + " ~~~~";
 
 		//Try to capture username on RFPP, offer popup on AIV
 		var txt = "";
 		if (templateName == "RFPP") {
 			if (response.replied== "true") {
-				txt = $textarea.val();
+				txt = $textarea.textSelection('getContents');
 				txt = txt.match(/\=\=.*\n.*(?:\* ?\{\{pagelinks.*\n)+.*\[\[User([ _]talk)?:([\.\- \w\d]+).*\n?.*/);
 				if (txt[2]) {
 					txt = '; Reply to ' + txt[2];
@@ -949,20 +949,20 @@
 
 		if (inline) {
 			var caretPos = $textarea.textSelection('getCaretPosition');
-			$textarea.val(currentText.substring(0, caretPos) + responseStr + currentText.substring(caretPos));
+			$textarea.textSelection('setContents', currentText.substring(0, caretPos) + responseStr + currentText.substring(caretPos));
 		} else if (spi) {
-			$textarea.val(
-				currentText.replace(/(\n----<\!---|$)/, responseStr + "\n$&")
+			$textarea.textSelection(
+				'setContents', currentText.replace(/(\n----<\!---|$)/, responseStr + "\n$&")
 			);
 		} else {
-			$textarea.val(currentText + responseStr);
+			$textarea.textSelection('setContents', currentText + responseStr);
 		}
 
 		if (anew && !unresolved) {
-			var textArray = $textarea.val().split("\n");
-			$textarea.val(
-				textArray[0].replace('(Result: )','(Result: ' + (response.summary[0].toUpperCase() + response.summary.slice(1) + value).trim() + ')') +
-					'\n' + $textarea.val().split("\n").splice(1).join("\n")
+			var textArray = $textarea.textSelection('getContents').split("\n");
+			$textarea.textSelection(
+				'setContents', textArray[0].replace('(Result: )','(Result: ' + (response.summary[0].toUpperCase() + response.summary.slice(1) + value).trim() + ')') +
+					'\n' + $textarea.textSelection('getContents').split("\n").splice(1).join("\n")
 			);
 		}
 

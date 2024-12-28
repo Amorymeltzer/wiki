@@ -355,7 +355,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/strike-archived.js&oldid=977679272&action=raw&ctype=text/javascript'); // [[User:Enterprisey/strike-archived.js]], [[User:Enterprisey/strike-archived]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Splarka/oldafd.js&oldid=1074308067&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1176115582&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1263828689&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1084627708&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
