@@ -405,6 +405,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1097991013&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
 				/* User talks */
 				if (cfg.wgNamespaceNumber === '3') {
+					// Could move to [[User:Novem_Linguae/Scripts/UnblockReview.js]] aka [[User:Novem_Linguae/Scripts/UnblockReview]] but it's a lot to review FIXME TODO
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/unblock-review.js&oldid=1073685522&action=raw&ctype=text/javascript'); // [[User:Enterprisey/unblock-review.js]]
 				}
 			}
