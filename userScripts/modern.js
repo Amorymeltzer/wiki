@@ -757,7 +757,7 @@ function loadFunct() {
 
 	// $('#pt-logs').after($('#t-log'));
 
-	movePortletLi('t-specialpages', 'p-navigation');
+	movePortletLi('n-specialpages', 'p-navigation');
 	movePortletLi('n-recentchanges', 'p-navigation');
 	movePortletLi('n-randompage', 'p-navigation');
 	movePortletLi('n-randomredirect', 'p-navigation');
