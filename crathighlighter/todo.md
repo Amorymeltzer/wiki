@@ -9,6 +9,7 @@
 - [ ] Maybe also more logging for things like proveMe?  Can rely on filelog, especially if not redirecting output since no emails that way.
 - [ ] Consider retry?  Or does it just complicate my set up?
 - [ ] Fix spacing in logs (`Skipping push`)
+- [ ] Catch login errors?  Something weird.
 
 ## Main script
 

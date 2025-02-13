@@ -28,7 +28,8 @@ BEGIN {
 use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
-use Log::Log4perl qw(:easy);
+use Log::Log4perl qw(:easy);	# Maybe don't need easy FIXME TODO
+use Log::Dispatch::Email::MailSend; # For email notifications
 use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
@@ -53,7 +54,28 @@ my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
 		# message
 		layout => '%d - %m{indent}%n'
 	       };
+# Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
+
+my $emailConfig = qq(
+    # Email notifications for changes
+    log4perl.category.ChangeNotifier          = INFO, EmailAppender
+    # log4perl.appender.EmailAppender           = Log::Dispatch::Email::MailSend
+    log4perl.appender.EmailAppender           = Log::Dispatch::Email
+    log4perl.appender.EmailAppender.to        = tools.amorybot\@toolforge.org
+    log4perl.appender.EmailAppender.from   = tools.amorybot\@toolforge.org
+    log4perl.appender.EmailAppender.subject   = CratHighlighter Updates
+    log4perl.appender.EmailAppender.layout    = PatternLayout
+    log4perl.appender.EmailAppender.layout.ConversionPattern = %m{indent}%n
+    log4perl.appender.EmailAppender.buffered  = 0
+);
+
+# Initialize both logging systems
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
+Log::Log4perl::init(\$emailConfig);
+
+# Get email logger
+my $emailLogger = Log::Log4perl->get_logger("EmailLogger");
+
 
 
 ### User details
@@ -191,6 +213,8 @@ if (scalar @localChange + scalar @wikiChange) {
   # kubernetes schedule.  Probably not needed, but I like having the updates.
   # Could put it behind a flag?
   say createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
+  my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
+  $emailLogger->fatal($emailContent);
 } else {
   INFO('No updates needed');
 }
