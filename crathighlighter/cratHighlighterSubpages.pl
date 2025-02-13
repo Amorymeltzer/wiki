@@ -28,8 +28,8 @@ BEGIN {
 use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
-use Log::Log4perl qw(:easy);	# Maybe don't need easy FIXME TODO
-use Log::Dispatch::Email::MailSend; # For email notifications
+use Log::Log4perl qw(:easy);           # Maybe don't need easy FIXME TODO
+use Log::Dispatch::Email::MailSend;    # For email notifications
 use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
@@ -39,9 +39,9 @@ my $logfile = "$scriptDir/log.log";
 # Won't help if the whole filesystem is read-only, but whaddaya gonna do?  I
 # don't think autodie covers file checks like -W?
 -W $logfile or die $ERRNO;
-# Set up logger.  The full options are straightforward but overly verbose, and
-# easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
-# gitSync.pl FIXME
+# Set up basic logger.  The full options are straightforward but overly verbose,
+# and easy mode (with stealth loggers) is succinct and sufficient.  Duplicated
+# in gitSync.pl FIXME
 my $infoLog = {level => $opts{L} ? $OFF : $INFO,
 	       file  => ">>$logfile",
 	       utf8  => 1,
@@ -54,19 +54,14 @@ my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
 		# message
 		layout => '%d - %m{indent}%n'
 	       };
-# Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
-
-# Okay:
-# Info level sent all three (info fatal logdie)
-# Fatal level sent just fatal and logdie
-# Leave off from since unnecessary
+# Set up email logger.  The "from" is from since unnecessary.
+# Convert to key value hash FIXME TODO
+# Should use config file?
 my $emailConfig = qq(
-    # Email notifications for changes
-    log4perl.category          = INFO, EmailLogger
+    log4perl.category                       = INFO, EmailLogger
     log4perl.appender.EmailLogger           = Log::Dispatch::Email::MailSend
     log4perl.appender.EmailLogger.to        = tools.amorybot\@toolforge.org
-    # log4perl.appender.EmailLogger.from   = tools.amorybot\@toolforge.org
     log4perl.appender.EmailLogger.subject   = CratHighlighter Updates-info3
     log4perl.appender.EmailLogger.layout    = PatternLayout
     log4perl.appender.EmailLogger.layout.ConversionPattern = %m{indent}%n
@@ -76,14 +71,7 @@ my $emailConfig = qq(
 # Initialize both logging systems
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 Log::Log4perl::init(\$emailConfig);
-
-# Get email logger
-my $emailLogger = Log::Log4perl->get_logger("EmailLogger");
-
-$emailLogger->info('info');
-$emailLogger->fatal('fatal');
-$emailLogger->logdie('logdie');
-exit;
+my $emailLogger = Log::Log4perl->get_logger('EmailLogger');
 
 
 ### User details
@@ -220,9 +208,9 @@ if (scalar @localChange + scalar @wikiChange) {
   # loop, this is just to trigger an update on changes when run on the
   # kubernetes schedule.  Probably not needed, but I like having the updates.
   # Could put it behind a flag?
-  say createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
   my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
-  $emailLogger->fatal($emailContent);
+  say $emailContent;
+  $emailLogger->info($emailContent);
 } else {
   INFO('No updates needed');
 }
