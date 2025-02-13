@@ -60,14 +60,14 @@ my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
 # Should use config file?
 my $emailConfig = qq(
     log4perl.category                       = INFO, EmailLogger
-    log4perl.appender.EmailLogger           = Log::Dispatch::Email::MailSend
+    log4perl.appender.EmailLogger           = Log::Dispatch::Email
     log4perl.appender.EmailLogger.to        = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailLogger.subject   = CratHighlighter Updates-info3
+    log4perl.appender.EmailLogger.from      = tools.amorybot\@toolforge.org
+    log4perl.appender.EmailLogger.subject   = CratHighlighter Updates
     log4perl.appender.EmailLogger.layout    = PatternLayout
     log4perl.appender.EmailLogger.layout.ConversionPattern = %m{indent}%n
     log4perl.appender.EmailLogger.buffered  = 0
 );
-
 # Initialize both logging systems
 Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 Log::Log4perl::init(\$emailConfig);
