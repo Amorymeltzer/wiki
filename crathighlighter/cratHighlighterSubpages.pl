@@ -56,17 +56,21 @@ my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
 	       };
 # Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
+
+# Okay:
+# Info level sent all three (info fatal logdie)
+# Fatal level sent just fatal and logdie
+# Leave off from since unnecessary
 my $emailConfig = qq(
     # Email notifications for changes
-    log4perl.category.ChangeNotifier          = INFO, EmailAppender
-    # log4perl.appender.EmailAppender           = Log::Dispatch::Email::MailSend
-    log4perl.appender.EmailAppender           = Log::Dispatch::Email
-    log4perl.appender.EmailAppender.to        = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailAppender.from   = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailAppender.subject   = CratHighlighter Updates
-    log4perl.appender.EmailAppender.layout    = PatternLayout
-    log4perl.appender.EmailAppender.layout.ConversionPattern = %m{indent}%n
-    log4perl.appender.EmailAppender.buffered  = 0
+    log4perl.category          = INFO, EmailLogger
+    log4perl.appender.EmailLogger           = Log::Dispatch::Email::MailSend
+    log4perl.appender.EmailLogger.to        = tools.amorybot\@toolforge.org
+    # log4perl.appender.EmailLogger.from   = tools.amorybot\@toolforge.org
+    log4perl.appender.EmailLogger.subject   = CratHighlighter Updates-info3
+    log4perl.appender.EmailLogger.layout    = PatternLayout
+    log4perl.appender.EmailLogger.layout.ConversionPattern = %m{indent}%n
+    log4perl.appender.EmailLogger.buffered  = 0
 );
 
 # Initialize both logging systems
@@ -76,6 +80,10 @@ Log::Log4perl::init(\$emailConfig);
 # Get email logger
 my $emailLogger = Log::Log4perl->get_logger("EmailLogger");
 
+$emailLogger->info('info');
+$emailLogger->fatal('fatal');
+$emailLogger->logdie('logdie');
+exit;
 
 
 ### User details
