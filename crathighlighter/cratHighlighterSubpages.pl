@@ -238,7 +238,7 @@ foreach (@{$groups}) {
   }
 
   # Log fully constructed message
-  INFO($note) if $note;
+  $fileLogger->info($note) if $note;
 }
 
 # Clean up
@@ -249,7 +249,7 @@ $mw->logout();
 # this main file and not in the library.  That could (and perhaps will!) be
 # changed, but for now this remains separate.
 if (scalar @localChange + scalar @wikiChange) {
-  INFO('No further updates needed');
+  $fileLogger->info('No further updates needed');
 
   # Report final status.  Each item should already be logged above in the main
   # loop, this is just to trigger an update on changes when run on the
@@ -259,7 +259,7 @@ if (scalar @localChange + scalar @wikiChange) {
   say $emailContent;
   $emailLogger->info($emailContent);
 } else {
-  INFO('No updates needed');
+  $fileLogger->info('No updates needed');
 }
 
 # Useful if used when running after a failure, to ensure success on follow-up
