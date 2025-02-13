@@ -60,7 +60,8 @@ my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
 # Should use config file?
 my $emailConfig = qq(
     log4perl.category                       = INFO, EmailLogger
-    log4perl.appender.EmailLogger           = Log::Dispatch::Email::Sendmail
+    log4perl.appender.EmailLogger           = Log::Dispatch::Email::MailSend
+    log4perl.appender.EmailLoger.mailer     = sendmail
     log4perl.appender.EmailLogger.to        = tools.amorybot\@toolforge.org
     log4perl.appender.EmailLogger.from      = tools.amorybot\@toolforge.org
     log4perl.appender.EmailLogger.subject   = CratHighlighter Updates
