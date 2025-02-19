@@ -1,5 +1,6 @@
 //Taken from https://en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=801071404
 //[[User:Mr._Stradivarius/gadgets/DiffOnly.js]] to use "o" instead of "only" and tighten the separator
+//Updated to use native URL constructor
 
 /*                            DiffOnly
  *
@@ -22,7 +23,7 @@
  * https://en.wikipedia.org/w/index.php?title=User:HighInBC/common.js&oldid=682081230
  */
 
-mw.loader.using( ['mediawiki.Uri'], function () {
+(function () {
     var DOT_SEPARATOR = '•';
     var mwConfig = mw.config.get( [
 	'wgAction',
@@ -56,7 +57,7 @@ mw.loader.using( ['mediawiki.Uri'], function () {
     // $diffLink should be a jQuery object consisting of exactly one <a>
     // element.
     function makeDiffOnlyLink( $diffLink, display ) {
-	var diffUri, $diffOnlyLink;
+	var diffUrl, $diffOnlyLink;
 
 	if ( $diffLink.length !== 1 ) {
 	    throw Error( 'makeDiffOnlyLink must be passed a jQuery object of length 1' );
@@ -66,12 +67,12 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 	}
 
 	// Make the new diff-only URL
-	diffUri = new mw.Uri( $diffLink.attr( 'href' ) );
-	diffUri.extend( { diffonly: 1 } );
+	diffUrl = new URL( $diffLink.attr( 'href' ), window.location.origin);
+	diffUrl.searchParams.set( 'diffonly', 1 );
 
 	// Make the diff-only link
 	$diffOnlyLink = $( '<a>' )
-	    .attr( 'href', diffUri.toString() )
+	    .attr( 'href', diffUrl.toString() )
 	    .text( display );
 	if ( $diffLink.attr( 'title' ) )  {
 	    $diffOnlyLink.attr( 'title', $diffLink.attr( 'title' ) );
@@ -86,7 +87,7 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 
     // Handle a "Next edit" or "Previous edit" link on a diff page.
     function handleDiffPageLink( options ) {
-	var $diffOnlyLink, diffUri,
+	var $diffOnlyLink, diffUrl,
 	    $diffLink = $( options.selector );
 
 	if ( $diffLink.length !== 1 ) {
@@ -110,10 +111,10 @@ mw.loader.using( ['mediawiki.Uri'], function () {
 	// the standard diff link will have a diffonly parameter. We don't want
 	// to have two diff-only links, so we delete the diffonly parameter
 	// in the original diff link.
-	diffUri = new mw.Uri( $diffLink.attr( 'href' ) );
-	delete diffUri.query.diffonly;
+	diffUrl = new URL( $diffLink.attr( 'href' ), window.location.origin );
+	diffUrl.searchParams.delete('diffonly');
 	$diffLink
-	    .attr( 'href', diffUri.toString() )
+	    .attr( 'href', diffUrl.toString() )
 	    .text( options.diffLinkDisplay );
     }
 
@@ -164,4 +165,4 @@ mw.loader.using( ['mediawiki.Uri'], function () {
     {
 	handleChangeList( '.mw-changeslist-diff' );
     }
-} );
+} )();
