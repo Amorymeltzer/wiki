@@ -50,7 +50,7 @@ var main = function(data) {
 		'steward': 'FF9933'
 	};
 
-	mw.loader.using(['mediawiki.util', 'mediawiki.Uri', 'mediawiki.Title'], function() {
+	mw.loader.using(['mediawiki.util', 'mediawiki.Title'], function() {
 		for (var perm in highlight_order) {
 			mw.util.addCSS('.userhighlighter_' + highlight_order[perm] + ' {background-color: #' + classDefs[highlight_order[perm]] + '}');
 		}
@@ -58,13 +58,13 @@ var main = function(data) {
 		$('#mw-content-text a').each(function(index, linkraw) {
 			try {
 				var link = $(linkraw);
-				var url = link.attr('href');
-				if (!url || url === '/wiki/' || url.charAt(0) === '#') {
+				var href = link.attr('href');
+				if (!href || href === '/wiki/' || href.charAt(0) === '#') {
 					return;
 				} // Skip <a> elements that aren't actually links; skip anchors
-				if (url.lastIndexOf('http://', 0) !== 0 && url.lastIndexOf('https://', 0) !== 0 && url.lastIndexOf('/', 0) !== 0) {
+				if (href.lastIndexOf('http://', 0) !== 0 && href.lastIndexOf('https://', 0) !== 0 && href.lastIndexOf('/', 0) !== 0) {
 					return;
-				} // require http(s) links, avoid "javascript:..." etc. which mw.Uri does not support
+				} // require http(s) links, avoid "javascript:..." etc.
 				if (link[0].parentElement.className && link[0].parentElement.classList[0] === 'autocomment') {
 					return;
 				} // Skip span.autocomment links aka automatic section links in edit summaries
@@ -74,13 +74,13 @@ var main = function(data) {
 				if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
 					return;
 				} // Avoid errors on hard-to-parse external links
-				url = url.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/g, '%25');
-				var uri = new mw.Uri(url);
-				if (!ADMINHIGHLIGHT_EXTLINKS && !$.isEmptyObject(uri.query)) {
+				href = href.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/g, '%25');
+				var url = new URL(href, window.location.origin);
+				if (!ADMINHIGHLIGHT_EXTLINKS && url.searchParams.size) {
 					return;
 				} // Skip links with query strings if highlighting external links is disabled
-				if (uri.host === 'en.wikipedia.org') {
-					var mwtitle = new mw.Title(mw.util.getParamValue('title', url) || decodeURIComponent(uri.path.slice(6))); // Try to get the title parameter of URL; if not available, remove '/wiki/' and use that
+				if (url.host === 'en.wikipedia.org') {
+					var mwtitle = new mw.Title(mw.util.getParamValue('title', href) || decodeURIComponent(url.pathname.slice(6))); // Try to get the title parameter of URL; if not available, remove '/wiki/' and use that
 					if ($.inArray(mwtitle.getNamespaceId(), ADMINHIGHLIGHT_NAMESPACES) >= 0) {
 						var user = mwtitle.getMain().replace(/_/g, ' ');
 						if (mwtitle.getNamespaceId() === -1) {
