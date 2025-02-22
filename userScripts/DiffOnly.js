@@ -1,6 +1,5 @@
 //Taken from https://en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=801071404
 //[[User:Mr._Stradivarius/gadgets/DiffOnly.js]] to use "o" instead of "only" and tighten the separator
-//Updated to use native URL constructor
 
 /*                            DiffOnly
  *
@@ -23,8 +22,9 @@
  * https://en.wikipedia.org/w/index.php?title=User:HighInBC/common.js&oldid=682081230
  */
 
-(function () {
+$( document ).ready( function() {
     var DOT_SEPARATOR = '•';
+    var BASE_URL = (new URL( window.location ) ).origin;
     var mwConfig = mw.config.get( [
 	'wgAction',
 	'wgCanonicalSpecialPageName'
@@ -57,7 +57,7 @@
     // $diffLink should be a jQuery object consisting of exactly one <a>
     // element.
     function makeDiffOnlyLink( $diffLink, display ) {
-	var diffUrl, $diffOnlyLink;
+	var diffUri, $diffOnlyLink;
 
 	if ( $diffLink.length !== 1 ) {
 	    throw Error( 'makeDiffOnlyLink must be passed a jQuery object of length 1' );
@@ -67,12 +67,14 @@
 	}
 
 	// Make the new diff-only URL
-	diffUrl = new URL( $diffLink.attr( 'href' ), window.location.origin);
-	diffUrl.searchParams.set( 'diffonly', 1 );
+	diffUri = URL.parse( $diffLink.attr( 'href' ), BASE_URL );
+	if ( !diffUri.searchParams.has( 'diffonly' ) ) {
+	    diffUri.searchParams.append( 'diffonly', 1 );
+	}
 
 	// Make the diff-only link
 	$diffOnlyLink = $( '<a>' )
-	    .attr( 'href', diffUrl.toString() )
+	    .attr( 'href', diffUri.toString() )
 	    .text( display );
 	if ( $diffLink.attr( 'title' ) )  {
 	    $diffOnlyLink.attr( 'title', $diffLink.attr( 'title' ) );
@@ -87,7 +89,7 @@
 
     // Handle a "Next edit" or "Previous edit" link on a diff page.
     function handleDiffPageLink( options ) {
-	var $diffOnlyLink, diffUrl,
+	var $diffOnlyLink, diffUri,
 	    $diffLink = $( options.selector );
 
 	if ( $diffLink.length !== 1 ) {
@@ -111,10 +113,10 @@
 	// the standard diff link will have a diffonly parameter. We don't want
 	// to have two diff-only links, so we delete the diffonly parameter
 	// in the original diff link.
-	diffUrl = new URL( $diffLink.attr( 'href' ), window.location.origin );
-	diffUrl.searchParams.delete('diffonly');
+	diffUri = URL.parse( $diffLink.attr( 'href' ), BASE_URL );
+	diffUri.searchParams.delete( 'diffonly' );
 	$diffLink
-	    .attr( 'href', diffUrl.toString() )
+	    .attr( 'href', diffUri.toString() )
 	    .text( options.diffLinkDisplay );
     }
 
@@ -165,4 +167,4 @@
     {
 	handleChangeList( '.mw-changeslist-diff' );
     }
-} )();
+} );

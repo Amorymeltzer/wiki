@@ -153,7 +153,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			$('input[name=wpWatch]').prop('checked', true);
 			break;
 		case 'Search':
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=684105738&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/SearchEditLink.js&oldid=1276751098&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/SearchEditLink.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PrimeHunter/Search_sort.js&oldid=1111895973&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/Search_sort.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/Search_sort.js]], [[User:PrimeHunter/Search_sort.js]]
 			break;
@@ -467,7 +467,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 			contributions: true,
 			diff: false
 		};
-		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=1056866093&action=raw&ctype=text/javascript'); // placeholder
+		// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Mr._Stradivarius/gadgets/DiffOnly.js&oldid=1276754867&action=raw&ctype=text/javascript'); // placeholder
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/DiffOnly.js&action=raw&ctype=text/javascript'); // [[User:Mr. Stradivarius/gadgets/DiffOnly.js]], [[User:Amorymeltzer/DiffOnly.js]]
 	}
 }
@@ -693,7 +693,7 @@ if (cfg.wgAction === 'history') {
 	// [[User:GorillaWarfare/script/curlies.js]], [[https://en.wikipedia.org/wiki/User:GorillaWarfare/script/curlies]
 	// Also loads [[meta:TemplateScript]], the successor to [[meta:User:Pathoschild/Scripts/Regex menu framework]]
 	// tools-static still arguably unsafe-ish, so turn off TemplateScript
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:GorillaWarfare/script/curlies.js&oldid=997234113&action=raw&ctype=text/javascript');
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:GorillaWarfare/script/curlies.js&oldid=1274344281&action=raw&ctype=text/javascript');
 
 
 	// More succinct text when editing
