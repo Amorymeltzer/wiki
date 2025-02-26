@@ -330,7 +330,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Rublov/refspace.js&oldid=1132391367&action=raw&ctype=text/javascript'); // [[User:Rublov/refspace.js]], [[User:Rublov/refspace]]
 
 		// Load [[User:Evad37/EditWarChecker.js]], [[User:Evad37/EditWarChecker]], running it only after clicking a button
-		var ewcLink = mw.util.addPortletLink('p-cactions', '#', 'ew check', 'ca-ewchecker');
+		mw.util.addPortletLink('p-cactions', '#', 'ew check', 'ca-ewchecker');
 		$(document).on('click', '#ca-ewchecker', function() {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/EditWarChecker.js&oldid=953988307&action=raw&ctype=text/javascript');
 		});
