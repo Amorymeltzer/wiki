@@ -59,28 +59,35 @@ var main = function(data) {
 			try {
 				var link = $(linkraw);
 				var href = link.attr('href');
+				// Skip <a> elements that aren't actually links; skip anchors
 				if (!href || href === '/wiki/' || href.charAt(0) === '#') {
 					return;
-				} // Skip <a> elements that aren't actually links; skip anchors
+				}
+				// require http(s) links, avoid "javascript:..." etc.
 				if (href.lastIndexOf('http://', 0) !== 0 && href.lastIndexOf('https://', 0) !== 0 && href.lastIndexOf('/', 0) !== 0) {
 					return;
-				} // require http(s) links, avoid "javascript:..." etc.
+				}
+				 // Skip span.autocomment links aka automatic section links in edit summaries
 				if (link[0].parentElement.className && link[0].parentElement.classList[0] === 'autocomment') {
 					return;
-				} // Skip span.autocomment links aka automatic section links in edit summaries
+				}
+				 // Don't highlight image links or talk page discussion tools links
 				if (link[0].tagName === 'IMG') {
 					return;
-				} // Don't highlight image links or talk page discussion tools links
+				}
+				 // Avoid errors on hard-to-parse external links
 				if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
 					return;
-				} // Avoid errors on hard-to-parse external links
+				}
 				href = href.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/g, '%25');
 				var url = new URL(href, window.location.origin);
+				// Skip links with query strings if highlighting external links is disabled
 				if (!ADMINHIGHLIGHT_EXTLINKS && url.searchParams.size) {
 					return;
-				} // Skip links with query strings if highlighting external links is disabled
+				}
 				if (url.host === 'en.wikipedia.org') {
-					var mwtitle = new mw.Title(mw.util.getParamValue('title', href) || decodeURIComponent(url.pathname.slice(6))); // Try to get the title parameter of URL; if not available, remove '/wiki/' and use that
+					// Try to get the title parameter of URL; if not available, remove '/wiki/' and use that
+					var mwtitle = new mw.Title(mw.util.getParamValue('title', href) || decodeURIComponent(url.pathname.slice(6)));
 					if ($.inArray(mwtitle.getNamespaceId(), ADMINHIGHLIGHT_NAMESPACES) >= 0) {
 						var user = mwtitle.getMain().replace(/_/g, ' ');
 						if (mwtitle.getNamespaceId() === -1) {
