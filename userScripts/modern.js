@@ -250,13 +250,17 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	// [[User:Nardog/MoveHistory]], this bit just recapitulates [[User:Nardog/MoveHistory.js]]
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory.js&oldid=1199508341&action=raw&ctype=text/javascript'); // placeholder
 	$(function moveHistory() {
-		if (!document.getElementById('p-tb')) return;
+		if (!document.getElementById('p-tb')) {
+			return;
+		}
 		mw.loader.using('mediawiki.util', () => {
 			let clicked;
 			mw.util.addPortletLink('p-tb', '#', 'Move history', 't-movehistory').firstElementChild.addEventListener('click', e => {
 				e.preventDefault();
 				if (clicked) {
-					if (window.moveHistoryDialog) window.moveHistoryDialog.open();
+					if (window.moveHistoryDialog) {
+						window.moveHistoryDialog.open();
+					}
 					return;
 				}
 				clicked = true;
