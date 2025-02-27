@@ -115,6 +115,15 @@ try {
 	crathighlighterdata = JSON.parse(localStorage.getItem('crathighlighterjson'));
 } catch (e) {
 	mw.log.error('crathighlighter: failed to parse local storage', e.message);
+	crathighlighterdata = null; // Ensure data is null to trigger refresh
+
+	// Try to clear (corrupted?) data
+	try {
+		localStorage.removeItem('crathighlighterjson');
+	} catch (storageError) {
+		mw.log.error('crathighlighter: could not clear localStorage', storageError.message);
+	}
+
 }
 var cache_len = window.cache_hours || 1;
 cache_len *= 60 * 60 * 1000; // milliseconds
