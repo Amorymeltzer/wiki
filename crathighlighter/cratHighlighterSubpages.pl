@@ -29,7 +29,7 @@ use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
 use Log::Log4perl qw(:easy);           # Maybe don't need easy FIXME TODO
-use Log::Dispatch::Email::MailSend;    # For email notifications
+use Log::Dispatch;    # For email notifications
 use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
@@ -72,7 +72,7 @@ my $logConfig = qq(
 
     # Email logging
     log4perl.category.EmailLogger         = INFO, EmailAppender
-    log4perl.appender.EmailAppender       = Log::Dispatch::Email::MailSend
+    log4perl.appender.EmailAppender       = Log::Dispatch::Email::MailSender
     log4perl.appender.EmailAppender.smtp  = mail.tools.wmflabs.org
     log4perl.appender.EmailAppender.to    = amorymeltzer\@toolforge.org
     log4perl.appender.EmailAppender.from  = amorymeltzer\@toolforge.org
