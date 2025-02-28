@@ -28,97 +28,38 @@ BEGIN {
 use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
-use Log::Log4perl qw(:easy);           # Maybe don't need easy FIXME TODO
-use Log::Dispatch;    # For email notifications
+use Log::Log4perl qw(:easy);
 use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
+
+# For sending email updates
+use Email::Sender::Simple qw(sendmail);
+use Email::Sender::Transport::SMTP;
+use Email::Simple;
+use Email::Simple::Creator;
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.
 # Won't help if the whole filesystem is read-only, but whaddaya gonna do?  I
 # don't think autodie covers file checks like -W?
 -W $logfile or die $ERRNO;
-# Set up basic logger.  The full options are straightforward but overly verbose,
-# and easy mode (with stealth loggers) is succinct and sufficient.  Duplicated
-# in gitSync.pl FIXME
-# my $infoLog = {level => $opts{L} ? $OFF : $INFO,
-# 	       file  => ">>$logfile",
-# 	       utf8  => 1,
-# 	       # Datetime (level): message
-# 	       layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
-# 	      };
-# # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-# my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
-# 		file  => 'STDOUT',
-# 		# message
-# 		layout => '%d - %m{indent}%n'
-# 	       };
-my $logConfig = qq(
-    # File logging
-    log4perl.category.FileLogger           = INFO, FileAppender
-    log4perl.appender.FileAppender        = Log::Log4perl::Appender::File
-    log4perl.appender.FileAppender.filename = $logfile
-    log4perl.appender.FileAppender.layout  = PatternLayout
-    log4perl.appender.FileAppender.layout.ConversionPattern = %d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n
-    log4perl.appender.FileAppender.utf8    = 1
-
-    # Console logging when not running via CRON
-    log4perl.category.ConsoleLogger        = TRACE, ConsoleAppender
-    log4perl.appender.ConsoleAppender      = Log::Log4perl::Appender::Screen
-    log4perl.appender.ConsoleAppender.stderr = 0
-    log4perl.appender.ConsoleAppender.layout = PatternLayout
-    log4perl.appender.ConsoleAppender.layout.ConversionPattern = %d - %m{indent}%n
-
-    # Email logging
-    log4perl.category.EmailLogger         = INFO, EmailAppender
-    log4perl.appender.EmailAppender       = Log::Dispatch::Email::MailSender
-    log4perl.appender.EmailAppender.smtp  = mail.tools.wmcloud.org
-    log4perl.appender.EmailAppender.to    = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailAppender.from  = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailAppender.subject = CratHighlighter Updates
-    log4perl.appender.EmailAppender.layout = PatternLayout
-    log4perl.appender.EmailAppender.layout.ConversionPattern = %m{indent}%n
-    log4perl.appender.EmailAppender.buffered = 0
-);
-
-# Initialize once
-Log::Log4perl->init(\$logConfig);
-
-# Get our loggers
-my $fileLogger = Log::Log4perl->get_logger("FileLogger");
-my $consoleLogger = Log::Log4perl->get_logger("ConsoleLogger");
-my $emailLogger = Log::Log4perl->get_logger("EmailLogger");
-
-# Then conditionally enable console logging based on CRON
-if ($ENV{CRON}) {
-    $consoleLogger->level($OFF);
-}
-if ($opts{L}) {
-    $fileLogger->level($OFF);
-    $consoleLogger->level($OFF);
-}
-# # Initialize the logger with our config
-# Log::Log4perl->init(\$logConfig);
-
-# # Set up email logger.  The "from" is from since unnecessary.
-# # Convert to key value hash FIXME TODO
-# # Should use config file?
-# my $emailConfig = qq(
-#     log4perl.category                       = INFO, EmailLogger
-#     log4perl.appender.EmailLogger           = Log::Dispatch::Email::MailSend
-#     log4perl.appender.EmailLoger.mailer     = sendmail
-#     log4perl.appender.EmailLogger.to        = tools.amorybot\@toolforge.org
-#     log4perl.appender.EmailLogger.from      = tools.amorybot\@toolforge.org
-#     log4perl.appender.EmailLogger.subject   = CratHighlighter Updates
-#     log4perl.appender.EmailLogger.layout    = PatternLayout
-#     log4perl.appender.EmailLogger.layout.ConversionPattern = %m{indent}%n
-#     log4perl.appender.EmailLogger.buffered  = 0
-# );
-# # Initialize both logging systems
-# Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
-# Log::Log4perl::init(\$emailConfig);
-# my $emailLogger = Log::Log4perl->get_logger('EmailLogger');
+# Set up logger.  The full options are straightforward but overly verbose, and
+# easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
+# gitSync.pl FIXME
+my $infoLog = {level => $opts{L} ? $OFF : $INFO,
+	       file  => ">>$logfile",
+	       utf8  => 1,
+	       # Datetime (level): message
+	       layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+	      };
+# Only if not being run automatically, known thanks to CRON=1 in k8s envvars
+my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
+		file  => 'STDOUT',
+		# message
+		layout => '%d - %m{indent}%n'
+	       };
+Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
 ### User details
@@ -238,7 +179,7 @@ foreach (@{$groups}) {
   }
 
   # Log fully constructed message
-  $fileLogger->info($note) if $note;
+  INFO($note) if $note;
 }
 
 # Clean up
@@ -249,17 +190,26 @@ $mw->logout();
 # this main file and not in the library.  That could (and perhaps will!) be
 # changed, but for now this remains separate.
 if (scalar @localChange + scalar @wikiChange) {
-  $fileLogger->info('No further updates needed');
+  INFO('No further updates needed');
 
   # Report final status.  Each item should already be logged above in the main
   # loop, this is just to trigger an update on changes when run on the
   # kubernetes schedule.  Probably not needed, but I like having the updates.
-  # Could put it behind a flag?
+  # Could put it behind a flag? TODO
   my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
   say $emailContent;
-  $emailLogger->info($emailContent);
+
+  # Let's send the email!
+  my $email = Email::Simple->create(header => [To      => 'tools.amorybot@toolforge.org',
+					       From    => 'tools.amorybot@toolforge.org',
+					       Subject => 'CratHighlighter Updates'
+					      ],
+				    body => $emailContent
+				   );
+  my $transport = Email::Sender::Transport::SMTP->new({host => 'mail.tools.wmcloud.org'});
+  sendmail($email, {transport => $transport});
 } else {
-  $fileLogger->info('No updates needed');
+  INFO('No updates needed');
 }
 
 # Useful if used when running after a failure, to ensure success on follow-up
