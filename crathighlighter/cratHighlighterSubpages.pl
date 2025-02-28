@@ -33,11 +33,6 @@ use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
-# For sending email updates
-use Email::Sender::Simple qw(sendmail);
-use Email::Sender::Transport::SMTP;
-use Email::Simple;
-use Email::Simple::Creator;
 
 my $logfile = "$scriptDir/log.log";
 # easy_init doesn't check the file is actually writable, so do it ourselves.
@@ -198,16 +193,6 @@ if (scalar @localChange + scalar @wikiChange) {
   # Could put it behind a flag? TODO
   my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
   say $emailContent;
-
-  # Let's send the email!
-  my $email = Email::Simple->create(header => [To      => 'tools.amorybot@toolforge.org',
-					       From    => 'tools.amorybot@toolforge.org',
-					       Subject => 'CratHighlighter Updates'
-					      ],
-				    body => $emailContent
-				   );
-  my $transport = Email::Sender::Transport::SMTP->new({host => 'mail.tools.wmcloud.org'});
-  sendmail($email, {transport => $transport});
 } else {
   INFO('No updates needed');
 }
