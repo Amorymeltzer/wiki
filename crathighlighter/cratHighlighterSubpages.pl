@@ -73,8 +73,8 @@ my $logConfig = qq(
     # Email logging
     log4perl.category.EmailLogger         = INFO, EmailAppender
     log4perl.appender.EmailAppender       = Log::Dispatch::Email::MailSend
-    log4perl.appender.EmailAppender.to    = tools.amorybot\@toolforge.org
-    log4perl.appender.EmailAppender.from  = tools.amorybot\@toolforge.org
+    log4perl.appender.EmailAppender.to    = amorymeltzer\@toolforge.org
+    log4perl.appender.EmailAppender.from  = amorymeltzer\@toolforge.org
     log4perl.appender.EmailAppender.subject = CratHighlighter Updates
     log4perl.appender.EmailAppender.layout = PatternLayout
     log4perl.appender.EmailAppender.layout.ConversionPattern = %m{indent}%n
