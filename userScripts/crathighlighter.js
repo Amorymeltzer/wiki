@@ -65,15 +65,15 @@ var main = function(data) {
 				return true;
 			}
 			// Skip span.autocomment links aka automatic section links in edit summaries
-			if (link[0].parentElement.className && link[0].parentElement.classList[0] === 'autocomment') {
+			if (link.parent().hasClass('autocomment')) {
 				return true;
 			}
-			// Don't highlight image links or talk page discussion tools links
+			// Don't highlight image links
 			if (link[0].tagName === 'IMG') {
 				return true;
 			}
-			// Avoid errors on hard-to-parse external links
-			if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
+			// Avoid errors on hard-to-parse external links or talk page discussion tools links
+			if (link.hasClass('external') || link.hasClass('ext-discussiontools-init-timestamplink')) {
 				return true;
 			}
 
