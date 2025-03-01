@@ -55,30 +55,40 @@ var main = function(data) {
 			mw.util.addCSS('.userhighlighter_' + highlight_order[perm] + ' {background-color: #' + classDefs[highlight_order[perm]] + '}');
 		}
 
+		function linksToSkip(link, href) {
+			// Skip <a> elements that aren't actually links; skip anchor
+			if (!href || href === '/wiki/' || href.charAt(0) === '#') {
+				return true;
+			}
+			// require http(s) links, avoid "javascript:..." etc.
+			if (href.lastIndexOf('http://', 0) !== 0 && href.lastIndexOf('https://', 0) !== 0 && href.lastIndexOf('/', 0) !== 0) {
+				return true;
+			}
+			// Skip span.autocomment links aka automatic section links in edit summaries
+			if (link[0].parentElement.className && link[0].parentElement.classList[0] === 'autocomment') {
+				return true;
+			}
+			// Don't highlight image links or talk page discussion tools links
+			if (link[0].tagName === 'IMG') {
+				return true;
+			}
+			// Avoid errors on hard-to-parse external links
+			if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
+				return true;
+			}
+
+			return false;
+		}
+
 		$('#mw-content-text a').each(function(index, linkraw) {
 			try {
 				var link = $(linkraw);
 				var href = link.attr('href');
-				// Skip <a> elements that aren't actually links; skip anchors
-				if (!href || href === '/wiki/' || href.charAt(0) === '#') {
+
+				if (linksToSkip(link, href)) {
 					return;
 				}
-				// require http(s) links, avoid "javascript:..." etc.
-				if (href.lastIndexOf('http://', 0) !== 0 && href.lastIndexOf('https://', 0) !== 0 && href.lastIndexOf('/', 0) !== 0) {
-					return;
-				}
-				 // Skip span.autocomment links aka automatic section links in edit summaries
-				if (link[0].parentElement.className && link[0].parentElement.classList[0] === 'autocomment') {
-					return;
-				}
-				 // Don't highlight image links or talk page discussion tools links
-				if (link[0].tagName === 'IMG') {
-					return;
-				}
-				 // Avoid errors on hard-to-parse external links
-				if (link[0].className && (link[0].classList[0] === 'external' || link[0].classList[0] === 'ext-discussiontools-init-timestamplink')) {
-					return;
-				}
+
 				href = href.replace(/%(?![0-9a-fA-F][0-9a-fA-F])/g, '%25');
 				var url = new URL(href, window.location.origin);
 				// Skip links with query strings if highlighting external links is disabled
@@ -103,7 +113,7 @@ var main = function(data) {
 				}
 			} catch (e) {
 				// Sometimes we will run into unparsable links, so just log these and move on
-				mw.log.warn('crathighlighter.js unparsable link', e.message, linkraw);
+				mw.log.warn('crathighlighter: unparsable link', e.message, linkraw);
 			}
 		});
 	});
