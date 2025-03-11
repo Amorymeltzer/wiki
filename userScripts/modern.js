@@ -56,7 +56,7 @@ mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pinfo.js&
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); // Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 /* Should probably make these next two more specific */
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/more-listing-items.js&oldid=882933273&action=raw&ctype=text/javascript'); // [[User:Enterprisey/more-listing-items.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=930753959&action=raw&ctype=text/javascript'); // [[User:Suffusion_of_Yellow/filter-highlighter.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=1279326672&action=raw&ctype=text/javascript'); // [[User:Suffusion_of_Yellow/filter-highlighter.js]]
 
 // Quick access for quick access
 $(function () {
@@ -161,7 +161,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/osal.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/osal.js]]
 			break;
 		case 'Wantedcategories':
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Qwerfjkl/scripts/hideUnwantedCategories.js&oldid=1192662282&action=raw&ctype=text/javascript'); // [[https://en.wikipedia.org/wiki/User:Qwerfjkl/scripts/hideUnwantedCategories.js]], [[User:Qwerfjkl/scripts/hideUnwantedCategories]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Qwerfjkl/scripts/hideUnwantedCategories.js&oldid=1279638808&action=raw&ctype=text/javascript'); // [[https://en.wikipedia.org/wiki/User:Qwerfjkl/scripts/hideUnwantedCategories.js]], [[User:Qwerfjkl/scripts/hideUnwantedCategories]]
 			break;
 		default:
 			/* Masses [[UserAmorymeltzer/mass]] */
@@ -185,7 +185,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Timotheus_Canens/massprotect.js&oldid=1168672260&action=raw&ctype=text/javascript'); // [[User:Timotheus Canens/massprotect.js]]
 					break;
 				case 'Special:Massmove':
-					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1239846339&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
+					mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Plastikspork/massmove.js&oldid=1279622441&action=raw&ctype=text/javascript'); // [[User:Plastikspork/massmove.js]]
 					break;
 				default:
 					break;
