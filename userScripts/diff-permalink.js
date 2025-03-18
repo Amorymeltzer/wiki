@@ -24,7 +24,8 @@ $.when( $.ready, mw.loader.using( [ "mediawiki.util" ] ) ).then( function () {
             .val( page ),
         $( "<button>" )
             .text( "Copy" )
-            .css( { "padding": "0.05em", "cursor": "pointer", "margin-left": "0.5em" } )
+            .css( { "padding": "0 0.5em", "cursor": "pointer", "margin-left": "0.5em" } )
+	    .attr( { "class": "mw-userscript-diff-permalink" } )
             .click( function () {
                 document.getElementById( "diff-permalink-link" ).select();
                 document.execCommand( "copy" );
