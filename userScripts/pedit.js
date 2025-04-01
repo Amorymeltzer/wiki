@@ -149,7 +149,7 @@ $(function () {
 		}
 	}, window.DisamAssist || {});
 	mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist-core.js&oldid=141607981&action=raw&ctype=text/javascript');
-	mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist.css&oldid=71656505&action=raw&ctype=text/css', 'text/css');
+	mw.loader.load('//es.wikipedia.org/w/index.php?title=Usuario:Qwertyytrewqqwerty/DisamAssist.css&oldid=166262087&action=raw&ctype=text/css', 'text/css');
 
 
 	if (mw.config.get('wgAction') === 'edit' || mw.config.get('wgAction') === 'submit') {
