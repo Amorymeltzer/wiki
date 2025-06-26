@@ -46,7 +46,7 @@ window.LocalComments = {
 // Might reload the page
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/unhide.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/unhide.js]]
 // [[MediaWiki:Gadget-markblocked.js]] originally installed via [[User:NuclearWarfare/Mark-blocked script.js]], now loaded via prefs
-// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=1005393196&action=raw&ctype=text/javascript'); // placeholder
+// mw.loader.load('//en.wikipedia.org/w/index.php?title=Wikipedia:WikiProject_User_scripts/Scripts/Six_tabs&oldid=1293594189&action=raw&ctype=text/javascript'); // placeholder
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/seventabs.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/seventabs.js]], a much improved version of [[Wikipedia:WikiProject User scripts/Scripts/Six tabs]]
 // window.ADMINHIGHLIGHT_EXTLINKS = true;
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); // [[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
@@ -248,7 +248,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 
 	// [[User:Nardog/MoveHistory]], this bit just recapitulates [[User:Nardog/MoveHistory.js]]
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory.js&oldid=1199508341&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory.js&oldid=1289023883&action=raw&ctype=text/javascript'); // placeholder
 	$(function moveHistory() {
 		if (!document.getElementById('p-tb')) {
 			return;
@@ -265,11 +265,12 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 				}
 				clicked = true;
 				// [[User:Nardog/MoveHistory-core.js]]
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory-core.js&oldid=1235779110&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Nardog/MoveHistory-core.js&oldid=1289036544&action=raw&ctype=text/javascript');
 				mw.loader.using([
-					'mediawiki.api', 'mediawiki.util', 'mediawiki.Title', 'oojs-ui-windows',
-					'oojs-ui-widgets', 'mediawiki.widgets', 'mediawiki.widgets.DateInputWidget',
-					'oojs-ui.styles.icons-interactions', 'mediawiki.interface.helpers.styles'
+					'mediawiki.api', 'mediawiki.util', 'mediawiki.Title', 'mediawiki.DateFormatter',
+					'oojs-ui-windows', 'oojs-ui-widgets', 'mediawiki.widgets',
+					'mediawiki.widgets.DateInputWidget', 'oojs-ui.styles.icons-interactions',
+					'mediawiki.interface.helpers.styles'
 				]);
 			});
 		});
@@ -303,7 +304,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$('li.new[id|=ca-nstab]').length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1283447944&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1293613769&action=raw&ctype=text/javascript');
 			}
 		});
 	}
