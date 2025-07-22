@@ -95,7 +95,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 						"<span style='margin-left:0.4em;'>(<a style='cursor:pointer;' title='Mass RevDel' class='mass_revdel_on'>Mass RevDel</a>)</span>" +
 						'</span>');
 			$(document).on('click', '.mass_revdel_on', function() {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1166753295&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRevdel.js&oldid=1301300625&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRevdel.js]]
 				$('#toggle_massrevdel').remove();
 				// Tighten/shorten massRevdel stuff
 				mw.loader.using(['mediawiki.util'], function() {
@@ -402,7 +402,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 		/* WP and all talks */
 		if ((cfg.wgNamespaceNumber === 4) || (cfg.wgNamespaceNumber % 2 === 1)) {
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1254870852&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Pythoncoder/Scripts/voteSymbols.js&oldid=1301762500&action=raw&ctype=text/javascript'); // [[User:Ais523/votesymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols.js]], [[User:Pythoncoder/Scripts/voteSymbols]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/OneClickArchiver.js&oldid=953990693&action=raw&ctype=text/javascript'); // [[User:Evad37/OneClickArchiver.js]], [[User:Technical 13/Scripts/OneClickArchiver]], [[User:Technical 13/Scripts/OneClickArchiver.js]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=1033878262&action=raw&ctype=text/javascript'); // [[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/* All talks */
