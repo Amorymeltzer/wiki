@@ -36,31 +36,6 @@ if (mw.config.get('wgRelevantPageIsProbablyEditable') || mw.config.exists('wgRel
 		// Restrict to mainspace
 		if (mw.config.get('wgNamespaceNumber') === '0' || mw.config.get('wgNamespaceNumber') === '1') {
 			mw.util.addPortletLink('p-info', 'https://tools.wmflabs.org/sigma/usersearch.py?server=enwiki&page=' + mw.config.get('wgTitle'), 'Edits by user', 'pt-editsbyuser', 'Edits by user');
-
-
-			// Taken from https://en.wikipedia.org/w/index.php?title=User:%D7%A7%D7%99%D7%A4%D7%95%D7%93%D7%A0%D7%97%D7%A9/viewstats.js&oldid=779818996
-			// [[User:קיפודנחש/viewstats.js]]
-			// Only show in mainspace, put in info menu
-			$(mw.util.addPortletLink('p-info', '#', 'Pageview graph'))
-				.click(function() {
-					mw.loader.using(['mediawiki.api', 'jquery.ui' ], function() {
-						var api = new mw.Api();
-						api.get({ action: 'parse', text: '{{PageViews graph | 60 | ' + mw.config.get('wgTitle') + '}}' })
-							.done(function(data) {
-								if (data && data.parse && data.parse.text && data.parse.text['*']) {
-									var content = data.parse.text['*'];
-									$('<div>')
-										.dialog({
-											title: 'Page view statistics',
-											width: 'auto',
-											height: 'auto',
-											position: [$('body').width() * 0.2, $('body').height() * 0.1]
-										})
-										.append(content);
-								}
-							});
-					});
-				});
 		}
 	});
 }
