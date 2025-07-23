@@ -52,7 +52,7 @@ mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/seventabs
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/crathighlighter.js&action=raw&ctype=text/javascript'); // [[User:Bellezzasolo/Scripts/adminhighlighter.js]], [[User:Ais523/adminrights.js]], [[User:Amalthea/userhighlighter.js]], [[User:Amorymeltzer/crathighlighter.js]]
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Lenore/autolink.js&oldid=945652161&action=raw&ctype=text/javascript'); // [[User:Lenore/autolink.js]], [[User:Lenore/autolink]] Try to display templates, etc in comments everywhere
 // mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/nulledit.js&action=raw&ctype=text/javascript'); //[[User:MZMcBride/nulledit.js]], [[User:Splarka/nulledit.js]], [[User:Amorymeltzer/nulledit.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pinfo.js&action=raw&ctype=text/javascript'); // [[User:Smith609/toolbox.js]], [[User:קיפודנחש/viewstats.js]], [[User:Amorymeltzer/pinfo.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pinfo.js&action=raw&ctype=text/javascript'); // [[User:Smith609/toolbox.js]], [[User:Amorymeltzer/pinfo.js]]
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); // Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 /* Should probably make these next two more specific */
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/more-listing-items.js&oldid=882933273&action=raw&ctype=text/javascript'); // [[User:Enterprisey/more-listing-items.js]]
