@@ -12,11 +12,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.3.0
+Version 0.3.1
 
 =cut
 
-our $VERSION = '0.3.0';
+our $VERSION = '0.3.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -373,6 +373,19 @@ sub botShutoffs {
   return;
 }
 
+=head2 packageVersion
+
+Mostly just to make testing easier, but used below to wrap package name and
+version together for the user agent
+
+=cut
+
+sub packageVersion {
+    my ($classOrObj) = @_;
+    my $class = ref($classOrObj) || $classOrObj;
+    return $class.q{/}.$class->VERSION;
+}
+
 
 =head2 buildMW
 
@@ -398,7 +411,7 @@ sub buildMW {
   # Build out basic user agent string as required by WMF policy:
   # <https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy>
   # Start with a basic string for the libraries
-  my $agent = __PACKAGE__."/$VERSION (via ".$mw->{ua}->agent.qw{)};
+  my $agent = packageVersion(__PACKAGE__).' (via '.$mw->{ua}->agent.qw{)};
   if (${$opts}{agent}) {
     $agent = ${$opts}{agent}.' (en-wp.org/wiki/User:'.${$opts}{agent}.") $agent";
   } else {

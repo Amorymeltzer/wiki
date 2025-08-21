@@ -10,11 +10,8 @@ use Test::More;
 use Test::Fatal;
 
 my $user        = 'AmoryBot';
-my $scriptName  = 'cratHighlighterSubpages.pl';
-my $username    = "$user\@$scriptName";
 my $agentString = 'MediaWiki::API/0.52';
-my $libName     = 'AmoryBot::CratHighlighter';
-my $libVersion  = AmoryBot::CratHighlighter->VERSION;
+my $libVersion  = AmoryBot::CratHighlighter->packageVersion;
 my $shortUrl    = 'en-wp.org/wiki/User:';
 # These are hardcoded in the library
 my %opts = (agent => $user,
@@ -77,7 +74,7 @@ sub checkEntries {
   }
 
   # Sigh
-  my $agent = " $libName/$libVersion (via $agentString)";
+  my $agent = " $libVersion (via $agentString)";
   if ($opts{agent}) {
     $agent = "$opts{agent} ($shortUrl$opts{agent})".$agent;
   } else {
