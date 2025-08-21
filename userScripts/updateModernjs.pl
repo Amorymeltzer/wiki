@@ -117,7 +117,7 @@ foreach my $import (@jsFiles) {
     my $mw = MediaWiki::API->new({
                                   api_url => "https://$project/w/api.php"
                                  });
-    $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl ('.$mw->{ua}->agent.')');
+    $mw->{ua}->agent('Amorymeltzer/updateModernjs.pl (en-wp.org/wiki/User:Amorymeltzer) (via '.$mw->{ua}->agent.')');
     $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
     # skip_encoding prevents reencoding of UTF8 titles
