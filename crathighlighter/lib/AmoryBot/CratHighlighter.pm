@@ -12,11 +12,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.2.3
+Version 0.3.0
 
 =cut
 
-our $VERSION = '0.2.3';
+our $VERSION = '0.3.0';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -395,8 +395,17 @@ sub buildMW {
   # Add error/dieNice
   $cfg->{on_error} = \&{$opts->{error}} if $opts->{error};
 
-  $mw->{ua}->agent("${$opts}{agent} (".$mw->{ua}->agent.')') if ${$opts}{agent};
-
+  # Build out basic user agent string as required by WMF policy:
+  # <https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy>
+  # Start with a basic string for the libraries
+  my $agent = __PACKAGE__."/$VERSION (via ".$mw->{ua}->agent.qw{)};
+  if (${$opts}{agent}) {
+    $agent = ${$opts}{agent}.' (en-wp.org/wiki/User:'.${$opts}{agent}.") $agent";
+  } else {
+    # No username, provide a link to me
+    $agent = '(en-wp.org/wiki/User:Amorymeltzer)'." $agent";
+}
+  $mw->{ua}->agent($agent);
   return $mw;
 }
 

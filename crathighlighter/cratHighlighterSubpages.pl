@@ -58,7 +58,6 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 
 
 ### User details
-my $scriptName = 'cratHighlighterSubpages.pl';
 # Define the bot and non-bot users, then check if this is being run on the
 # toolforge grid.  It's a little added complexity but makes it easier for me to
 # test API things without changing configs, etc.
@@ -70,11 +69,13 @@ my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
 # so need to be annoyingly roundabout.
 my $envUsername = uc $user.'PW';
 LOGDIE('Unable to get user login information') if !$ENV{$envUsername};
+# Defined here in case things are modified in BotPasswords
+my $scriptName = 'cratHighlighterSubpages.pl';
 my $username = "$user\@$scriptName";
 
 
 ### Initialize API object, ensure we die nicely, log in, etc.
-my $mw = buildMW(MediaWiki::API->new(), {agent => $username, error => \&dieNice});
+my $mw = buildMW(MediaWiki::API->new(), {agent => $user, error => \&dieNice});
 $mw->login({lgname => $username, lgpassword => $ENV{$envUsername}});
 
 # Used globally to make edit summaries, page titles, etc. easier

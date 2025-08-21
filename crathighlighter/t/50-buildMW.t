@@ -9,12 +9,15 @@ use AmoryBot::CratHighlighter qw (buildMW);
 use Test::More;
 use Test::Fatal;
 
-my $user        = 'Macbeth';
+my $user        = 'AmoryBot';
 my $scriptName  = 'cratHighlighterSubpages.pl';
 my $username    = "$user\@$scriptName";
 my $agentString = 'MediaWiki::API/0.52';
+my $libName     = 'AmoryBot::CratHighlighter';
+my $libVersion  = AmoryBot::CratHighlighter->VERSION;
+my $shortUrl    = 'en-wp.org/wiki/User:';
 # These are hardcoded in the library
-my %opts = (agent => $username,
+my %opts = (agent => $user,
 	    url   => 'https://en.wikipedia.org/w/api.php',
 	    retry => 1,
 	    delay => 300,
@@ -48,7 +51,7 @@ $opts{url}   = 'asdasd';
 $opts{retry} = '0';
 $opts{delay} = 404;
 $opts{get}   = '0';
-$opts{agent} = $user;
+$opts{agent} = 'Amorymeltzer';
 $opts{error} = \&answers;
 $mw          = buildMW(MediaWiki::API->new(), \%opts);
 checkEntries($mw, \%opts);
@@ -73,11 +76,18 @@ sub checkEntries {
     is($cfg->{on_error}, undef, "on_error $count (undef)");
   }
 
-  is($mw->{ua}->agent, $opts{agent} ? "$opts{agent} ($agentString)" : $agentString, "UA $count");
+  # Sigh
+  my $agent = " $libName/$libVersion (via $agentString)";
+  if ($opts{agent}) {
+    $agent = "$opts{agent} ($shortUrl$opts{agent})".$agent;
+  } else {
+    $agent = "($shortUrl".'Amorymeltzer)'.$agent;
+  }
+  is($mw->{ua}->agent, $agent, "UA $count");
+  note 'User agent: '.$mw->{ua}->agent;
 
   $count++;
 }
-
 
 sub answer {
   return 42;
