@@ -42,7 +42,7 @@ my $repo = Git::Repository->new();
 my $mw = MediaWiki::API->new({
                               api_url => 'https://en.wikipedia.org/w/api.php'
                              });
-$mw->{ua}->agent('Amorymeltzer/push.pl ('.$mw->{ua}->agent.')');
+$mw->{ua}->agent('Amorymeltzer/push.pl (en-wp.org/wiki/User:Amorymeltzer) (via '.$mw->{ua}->agent.')');
 $mw->login({lgname => $conf{username}, lgpassword => $conf{password}});
 
 
