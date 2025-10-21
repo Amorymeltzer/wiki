@@ -163,6 +163,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 						'suppress': 'oversighter',
 						'sysop': 'administrator',
 						'templateeditor': 'template editor',
+						'temporary-account-viewer': 'temporary account IP viewer',
 						'temp': 'temporary user',
 						'transwiki': 'transwiki importer'
 					};
