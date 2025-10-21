@@ -20,7 +20,8 @@
 	'Page mover': 'extendedmover',
 	'Pending changes reviewer': 'reviewer',
 	'Rollback': 'rollbacker',
-	'Template editor': 'templateeditor'
+	'Template editor': 'templateeditor',
+	'Temporary account IP viewer': 'temporary-account-viewer'
     };
 
     var templates = {
@@ -36,7 +37,8 @@
 	'Page mover': 'Page mover granted',
 	'Pending changes reviewer': 'Pending changes reviewer granted',
 	'Rollback': 'Rollback granted 3',
-	'Template editor': 'Template editor granted'
+	'Template editor': 'Template editor granted',
+	'Temporary account IP viewer': 'Temporary account IP viewer granted'
     };
 
     var api,

@@ -362,7 +362,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/oldafd.js&action=raw&ctype=text/javascript'); // [[User:Splarka/oldafd.js]], [[User:Amorymeltzer/oldafd.js]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/responseHelper.js&oldid=1263828689&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/responseHelper.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/responseHelper.js]], [[User:Amorymeltzer/responseHelper.js]]
-			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1084627708&action=raw&ctype=text/javascript'); // placeholder
+			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:MusikAnimal/userRightsManager.js&oldid=1303953572&action=raw&ctype=text/javascript'); // placeholder
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userRightsManager.js&action=raw&ctype=text/javascript'); // [[User:MusikAnimal/userRightsManager.js]], [[User:Amorymeltzer/userRightsManager.js]]
 			// Not at the moment, needs updating for restructured layout
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/qrfpp.js&action=raw&ctype=text/javascript'); // [[User:Amorymeltzer/qrfpp.js]] from [[User:Evad37/RPPhelper.js]] and [[User:MusikAnimal/userRightsManager.js]]
@@ -375,7 +375,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('ext.gadget.XFDcloser');
 			/* Only for [[WP:AFC/R]] */
 			if (cfg.wgPageName === 'Wikipedia:Articles_for_creation/Redirects') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1208953219&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/AFCRHS.js&oldid=1311690359&action=raw&ctype=text/javascript'); // [[User:Enterprisey/AFCRHS]], [[User:EnterpriseyBot/AFCRHS.js]]
 			} else if (cfg.wgPageName === 'Wikipedia:AutoWikiBrowser/Script') {
 				// JWB only active on [[Wikipedia:AutoWikiBrowser/Script]]; see also [https://github.com/wikimedia-gadgets/JWB]
 				// No way to reliably ensure JWB is safe, since it loads configs stored as js rather than json, without copying, which is too much of a drag.
@@ -533,7 +533,7 @@ if ((['javascript', 'css', 'json'].indexOf(cfg.wgPageContentModel) !== -1) && ($
 	}
 } else { // Not js/css/json
 	if (cfg.wgAction === 'edit' || cfg.wgAction === 'submit') {
-		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Anomie/previewtemplatelastmod.js&oldid=683547736&action=raw&ctype=text/javascript'); // [[User:Anomie/previewtemplatelastmod]], [[User:Anomie/previewtemplatelastmod.js]] Display info about transcluded templates
+		mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Anomie/previewtemplatelastmod.js&oldid=1309058070&action=raw&ctype=text/javascript'); // [[User:Anomie/previewtemplatelastmod]], [[User:Anomie/previewtemplatelastmod.js]] Display info about transcluded templates
 		if (cfg.wgNamespaceNumber !== 0) {
 			// Turn enhanced toolbar off if not in mainspace
 			// Defined here to easily allow the code editor on the above pages
