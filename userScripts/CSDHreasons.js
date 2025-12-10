@@ -85,8 +85,6 @@ window.myDeclineReasons = [
 
 	['U1', '[[WP:CSD#U1|U1]] does not apply to talk pages; user talk pages are [[WP:DELTALK|generally not deleted]]'],
 	['U2', 'Not a user page of a nonexistent user'],
-	['U5', 'Not a blatant misuse of Wikipedia as a web host'],
-	['U5', 'User has made significant edits outside of user space'],
 
 	['F1', 'File is used, or it is not a lower-quality version of an existing image'],
 	['F2', 'File is neither corrupt, missing, or empty'],
