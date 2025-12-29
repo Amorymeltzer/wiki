@@ -32,7 +32,7 @@ window.popupSetupMenu = false;  // Default is true
 window.popupLastEditLink = false; // Default is true
 
 // Config for [[Wikipedia:Comments in Local Time]], [[User:Gary/comments in local time.js]], [[MediaWiki:Gadget-CommentsInLocalTime.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/comments_in_local_time.js&oldid=1103519446&action=raw&ctype=text/javascript');
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Gary/comments_in_local_time.js&oldid=1329919280&action=raw&ctype=text/javascript');
 window.LocalComments = {
 	dateDifference: true,
 	//        dateFormat: 'dmy',
@@ -197,7 +197,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 	  This will eventually devolve to Mainspace or not
 	*/
 	/* Not Special */
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=1260951790&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Ale_jrb/Scripts/csdhelper.js&oldid=1326734035&action=raw&ctype=text/javascript'); // [[User:Ale jrb/Scripts]], [[User:Ale jrb/Scripts/csdhelper.js]]
 	window.notifyByDefaultDec = true; // default is true
 	// window.notifyByDefaultDel = true; //default is false
 	window.notifyByDefaultPrd = true; // default is true
@@ -225,7 +225,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/abusefilter-diff-check.js&oldid=1182347393&action=raw&ctype=text/javascript'); // placeholder
 			// Buttons are moved to the end of p-cactions below
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/abusefilter-diff-check.js&action=raw&ctype=text/javascript'); // [[User:Enterprisey/abusefilter-diff-check.js]], [[User:Enterprisey/abusefilter-diff-check]], [[User:Amorymeltzer/abusefilter-diff-check.js]]
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=954758921&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/link-deleted-revs.js&oldid=1326607171&action=raw&ctype=text/javascript'); // [[User:Enterprisey/link-deleted-revs.js]], [[User:Enterprisey/link-deleted-revs]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-context.js&oldid=980040434&action=raw&ctype=text/javascript'); // [[User:Enterprisey/diff-context.js]], [[User:Enterprisey/diff-context]]
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/offset-history-link.js&oldid=1060844701&action=raw&ctype=text/javascript'); // [[User:Enterprisey/offset-history-link.js]], [[User:Enterprisey/offset-history-link]]
 			// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/diff-permalink.js&oldid=1279684434&action=raw&ctype=text/javascript'); // placeholder
