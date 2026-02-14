@@ -576,7 +576,7 @@ if (cfg.wgAction === 'history') {
 	window.histCombTalk = 't'; // string to replace 'Talk'
 	window.histCombContrib = 'c'; // string to replace 'contribs'
 	window.histCombUndo = 'u'; // string to replace 'undo'
-	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Alex_Smotrov/histcomb.js&oldid=1110555621&action=raw&ctype=text/javascript'); // [[User:Alex Smotrov/histcomb.js]]
+	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Alex_Smotrov/histcomb.js&oldid=1330281362&action=raw&ctype=text/javascript'); // [[User:Alex Smotrov/histcomb.js]]
 
 	// Shorten rollback to r; thanks to t; block to b
 	// Adapted from [[User:Writ Keeper/Scripts/watchlistContribs.js]]
