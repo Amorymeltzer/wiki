@@ -3,6 +3,8 @@ package AmoryBot::CratHighlighter;
 use 5.036;
 use Carp;
 
+use POSIX qw(strftime);
+
 # Only needed in buildNote
 use List::Util qw(uniqstr);
 
@@ -12,15 +14,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.3.1
+Version 0.3.2
 
 =cut
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.3.2';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW withTimestamp);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -54,6 +56,8 @@ my $errData = 'Missing data';
 =item * L</botShutoffs>
 
 =item * L</buildMW>
+
+=item * L</withTimestamp>
 
 =back
 
@@ -420,6 +424,15 @@ sub buildMW {
 }
   $mw->{ua}->agent($agent);
   return $mw;
+}
+
+=head2 withTimestamp
+
+=cut
+
+sub withTimestamp {
+    my ($message) = @_;
+    return strftime('%Y-%m-%d %H:%M:%S', localtime) . ": $message";
 }
 
 

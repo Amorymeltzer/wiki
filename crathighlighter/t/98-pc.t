@@ -7,7 +7,7 @@ use Test::More;
 
 # Kubernetes LOGNAME added manually via toolforge envvars
 if ($ENV{RELEASE_TESTING} || $ENV{LOGNAME} eq 'tools.amorybot.k8s') {
-  plan tests => 21;
+  plan tests => 22;
 } else {
   plan skip_all => 'Tests annoying when developing';
 }

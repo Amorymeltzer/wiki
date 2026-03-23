@@ -193,14 +193,14 @@ if (scalar @localChange + scalar @wikiChange) {
   # kubernetes schedule.  Probably not needed, but I like having the updates.
   # Could put it behind a flag? TODO
   my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
-  say $emailContent;
+  say withTimestamp($emailContent);
 } else {
   INFO('No updates needed');
 }
 
 # Useful if used when running after a failure, to ensure success on follow-up
 if ($opts{n}) {
-  say 'Run completed';
+  say withTimestamp('Run completed');
 }
 
 
@@ -221,7 +221,11 @@ sub dieNice {
 	      );
   my $message = $codes{$code} ? q{: }.$codes{$code} : q{};
   $message = 'MediaWiki error'.$message.":\n$code: $details";
-  LOGDIE($message);
+
+  # Ensure we get the timestamps in the toolforge log auto-created, but we
+  # *don't* get a duplicate timestamp in our own log
+  FATAL($message);
+  die withTimestamp("$message\n");
 }
 
 
