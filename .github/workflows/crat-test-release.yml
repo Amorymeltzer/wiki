@@ -14,7 +14,7 @@ jobs:
     name: Perl macOS
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
 
       - name: Set up Perl
         run: brew install perl
@@ -23,7 +23,7 @@ jobs:
         run: perl -V
 
       - name: Install Dependencies
-        uses: perl-actions/install-with-cpm@stable
+        uses: perl-actions/install-with-cpm@v2
         with:
           sudo: false
           cpanfile: "./crathighlighter/cpanfile"
