@@ -150,6 +150,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 						'accountcreator': 'account creator',
 						'autoreviewer': 'autopatrolled user',
 						'confirmed': 'confirmed user',
+						'electionclerk': 'election clerk',
 						'eventcoordinator': 'event coordinator',
 						'extendedconfirmed': 'extended confirmed user',
 						'extendedmover': 'page mover',
