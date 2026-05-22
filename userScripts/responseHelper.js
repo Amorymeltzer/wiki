@@ -839,6 +839,10 @@
 						code : "b|$1",
 						summary : "Blocked "
 					},
+					"P-blocked" : {
+						code : "pb|$1",
+						summary : "Partially blocked "
+					},
 					"Nom. blocked" : {
 						code : "nb|$1",
 						summary : "Nominator blocked "
@@ -850,6 +854,10 @@
 					"Already blocked" : {
 						code : "ab",
 						summary : "Already blocked"
+					},
+					"No action" : {
+						code : "na",
+						summary : "No action needed"
 					},
 					"No violation" : {
 						code : "nv",
