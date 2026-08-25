@@ -18,7 +18,7 @@ our $VERSION = '0.01';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(gitOnMain gitCleanStatus gitSHA);
+our @EXPORT_OK   = qw(gitOnMain gitIsDirty gitSHA);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -50,11 +50,11 @@ sub gitOnMain {
   return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') eq 'main';
 }
 
-=head2 gitCleanStatus
+=head2 gitIsDirty
 
 =cut
 
-sub gitCleanStatus {
+sub gitIsDirty {
   return scalar $_[0]->run(status => '--porcelain');
 }
 

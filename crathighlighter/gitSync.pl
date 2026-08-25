@@ -57,7 +57,7 @@ Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
 # Initiate git from the right place
 my $repo = Git::Repository->new(work_tree => $scriptDir);
 
-if (gitCleanStatus($repo)) {
+if (gitIsDirty($repo)) {
   LOGDIE('Repository is not clean');
 } elsif (!gitOnMain($repo)) {
   LOGDIE('Not on main branch');
@@ -83,7 +83,7 @@ my @mergeE = $merge->stderr->getlines();
 $merge->close();
 if (scalar @mergeE) {
   LOGDIE(@mergeE);
-} elsif (gitCleanStatus($repo) || !gitOnMain($repo)) {    # Just to be safe
+} elsif (gitIsDirty($repo) || !gitOnMain($repo)) {    # Just to be safe
   LOGDIE('Repository dirty after pull');
 }
 
