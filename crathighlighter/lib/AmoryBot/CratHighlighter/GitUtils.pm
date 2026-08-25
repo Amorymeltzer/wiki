@@ -47,7 +47,7 @@ These all mis/abuse @_ for brevity, rather than merely `shift`-ing
 =cut
 
 sub gitOnMain {
-  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') ne 'main';
+  return $_[0]->run('rev-parse' => '--abbrev-ref', 'HEAD') eq 'main';
 }
 
 =head2 gitCleanStatus

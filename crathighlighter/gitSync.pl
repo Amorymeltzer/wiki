@@ -59,7 +59,7 @@ my $repo = Git::Repository->new(work_tree => $scriptDir);
 
 if (gitCleanStatus($repo)) {
   LOGDIE('Repository is not clean');
-} elsif (gitOnMain($repo)) {
+} elsif (!gitOnMain($repo)) {
   LOGDIE('Not on main branch');
 }
 
@@ -83,7 +83,7 @@ my @mergeE = $merge->stderr->getlines();
 $merge->close();
 if (scalar @mergeE) {
   LOGDIE(@mergeE);
-} elsif (gitCleanStatus($repo) || gitOnMain($repo)) {    # Just to be safe
+} elsif (gitCleanStatus($repo) || !gitOnMain($repo)) {    # Just to be safe
   LOGDIE('Repository dirty after pull');
 }
 
