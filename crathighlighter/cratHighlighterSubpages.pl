@@ -114,10 +114,11 @@ foreach (@{$groups}) {
   # damn file if need be.  Remind me why I care about the local files? TODO
   my $file = $_.'.json';
 
-  # read_text and write_text don't actually return anything
-  # (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so should maybe
-  # test them? FIXME TODO
-  my $fileJSON = read_text("$scriptDir/$file") or LOGDIE($ERRNO);
+  # read_text and write_text don't need the LOGDIE since they throw their own
+  # exceptions (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so I
+  # should maybe test them? FIXME TODO An empty/missing file will fail in
+  # cmpJSON in the next line.
+  my $fileJSON = read_text("$scriptDir/$file");
   my ($fileState, $fileAdded, $fileRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($fileJSON));
 
   my $note;
@@ -127,8 +128,7 @@ foreach (@{$groups}) {
 
     # Build JSON from the received query now that we need it
     $queryJSON = $jsonTemplate->encode(\%queryHash);
-    # Write changes, error handling weird: https://rt.cpan.org/Public/Bug/Display.html?id=114341
-    # Could test that this works?
+    # Write changes, handles it's own errors, see above note for read_text
     write_text("$scriptDir/$file", $queryJSON);
 
     push @{$changes{addedFiles}},   mapGroups($_, \@{$fileAdded});
