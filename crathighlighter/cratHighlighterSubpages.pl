@@ -168,7 +168,7 @@ foreach (@{$groups}) {
 		});
       $note .= "$mw->{response}->{_msg}";
     } else {
-      $note .= "\tSkipping push\n";
+      $note .= ".  Skipping push.\n";
     }
   } elsif ($fileState) {
     $note .= "\tbut wiki already up-to-date";
