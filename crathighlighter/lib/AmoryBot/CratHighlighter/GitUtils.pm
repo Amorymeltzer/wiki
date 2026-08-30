@@ -10,11 +10,12 @@ AmoryBot::CratHighlighter::GitUtils
 
 =head1 VERSION
 
-Version 0.01
+Version 0.1
 
 =cut
 
-our $VERSION = '0.01';
+# Not actually used anywhere...
+our $VERSION = '0.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';

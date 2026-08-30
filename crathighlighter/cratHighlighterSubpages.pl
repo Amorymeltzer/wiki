@@ -33,28 +33,9 @@ use JSON::MaybeXS;
 use MediaWiki::API;
 use File::Slurper qw(read_text write_text);
 
-
+## Set up logger
 my $logfile = "$scriptDir/log.log";
-# easy_init doesn't check the file is actually writable, so do it ourselves.
-# Won't help if the whole filesystem is read-only, but whaddaya gonna do?  I
-# don't think autodie covers file checks like -W?
--W $logfile or die $ERRNO;
-# Set up logger.  The full options are straightforward but overly verbose, and
-# easy mode (with stealth loggers) is succinct and sufficient.  Duplicated in
-# gitSync.pl FIXME
-my $infoLog = {level => $opts{L} ? $OFF : $INFO,
-	       file  => ">>$logfile",
-	       utf8  => 1,
-	       # Datetime (level): message
-	       layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
-	      };
-# Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-my $traceLog = {level => $opts{L} ? $OFF : $TRACE,
-		file  => 'STDOUT',
-		# message
-		layout => '%d - %m{indent}%n'
-	       };
-Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
+initLogging($logfile, $opts{L});
 
 
 ### User details

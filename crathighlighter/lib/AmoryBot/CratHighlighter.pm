@@ -1,12 +1,15 @@
 package AmoryBot::CratHighlighter;
 
 use 5.036;
-use Carp;
 
+use English;
+use Carp  qw(croak);
 use POSIX qw(strftime);
 
 # Only needed in buildNote
 use List::Util qw(uniqstr);
+# Needed for shared logging system initLogging
+use Log::Log4perl qw(:easy);
 
 =head1 NAME
 
@@ -14,15 +17,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.3.2
+Version 0.4
 
 =cut
 
-our $VERSION = '0.3.2';
+our $VERSION = '0.4';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW withTimestamp);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -56,6 +59,8 @@ my $errData = 'Missing data';
 =item * L</botShutoffs>
 
 =item * L</buildMW>
+
+=item * L</initLogging>
 
 =item * L</withTimestamp>
 
@@ -425,6 +430,40 @@ sub buildMW {
   $mw->{ua}->agent($agent);
   return $mw;
 }
+
+=head2 initLogging
+
+=cut
+
+# Set up logger the same way for everyone: INFO file logger always, and if not
+# run automatically via cron/k8s, TRACE to STDOUT (basically, when
+# interactive/testing).  The full options are straightforward but overly
+# verbose, and easy mode (with stealth loggers) is succinct and sufficient.
+sub initLogging {
+  my ($logfile, $quiet) = @_;
+  croak $errData if !$logfile;
+
+  # easy_init doesn't check the file is actually writable, so do it ourselves.
+  # Won't help if the whole filesystem is read-only, but whaddaya gonna do?
+  # Pretty sure autodie doesn't covers file checks like -W
+  -W $logfile or croak "$ERRNO"; # Double quotes prevents Carp from clobbering
+
+  my $infoLog = {level  => $quiet ? $OFF : $INFO,
+		 file   => ">>$logfile",
+		 utf8   => 1,
+		 # Datetime (level): message
+		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
+		};
+  # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
+  my $traceLog = {level  => $quiet ? $OFF : $TRACE,
+		  file   => 'STDOUT',
+		  # message
+		  layout => '%d - %m{indent}%n'
+		 };
+  Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
+  return;
+}
+
 
 =head2 withTimestamp
 

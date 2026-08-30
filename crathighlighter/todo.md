@@ -5,7 +5,7 @@
 - [ ] Alert if warnings detected, or something like that.  MediaWiki::API should really have a method for this kind of thing.
 - [x] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay `say`
   - [ ] Consider `try/catch`
-- [ ] Share logging config <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-new-module-uses-Log4perl-but-what-happens-if-the-calling-program-didn't-configure-it?> etc.
+- [ ] Consider putting `initLogging` into separate `AmoryBot::CratHighlighter::Log` or something?
 - [ ] Maybe also more logging for things like proveMe?  Can rely on filelog, especially if not redirecting output since no emails that way.
 - [ ] Consider retry?  Or does it just complicate my set up?
 - [ ] Catch login errors?  Something weird.
