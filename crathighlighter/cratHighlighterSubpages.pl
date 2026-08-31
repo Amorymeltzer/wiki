@@ -294,29 +294,10 @@ sub getCurrentGroups {
   # as json.  Probably smarter, though. TODO
   my $acContent = $groupsQuery{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
 
-
   # Local groups need a loop for processing who goes where, but there are a lot
-  # of sysops, so we need to either get the bot flag or iterate over everyone.
-  # In the meantime, store what we've got for now
-  my @localHashes = @{$groupsQuery{allusers}};
-  # If there's a continue item, then continue, by God!  Although it looks
-  # generic, it's only set up to handle processing sysops afterward.
-  while (exists ${$groupsReturn}{continue}) {    # avoid autovivification
-
-    # Process the continue parameters
-    foreach (keys %{${$groupsReturn}{continue}}) {
-      ${$groupsQuery}{$_} = ${${$groupsReturn}{continue}}{$_};    # total dogshit
-    }
-
-    # Resubmit new query, using old query + new continue, rewriting old data
-    $groupsReturn = $mw->api($groupsQuery);
-
-    # Overwrite original data, already stored in @localHashes and needed for
-    # iteration in this loop.  Can I just merge? %h = (%a, %b) FIXME TODO
-    %groupsQuery = %{${$groupsReturn}{query}};
-    # Append the new stuff
-    push @localHashes, @{$groupsQuery{allusers}};
-  }
+  # of sysops, so we need to either get the bot flag or iterate over everyone
+  # every time; fetchAllUsers handles all that
+  my @localHashes = fetchAllUsers($mw, $groupsReturn, $groupsQuery, 'allusers');
 
   ## Now that we've got all the data stored properly, it's pretty
   ## straightforward to just go through 'em all!

@@ -17,15 +17,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4
+Version 0.4.1
 
 =cut
 
-our $VERSION = '0.4';
+our $VERSION = '0.4.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -63,6 +63,8 @@ my $errData = 'Missing data';
 =item * L</initLogging>
 
 =item * L</withTimestamp>
+
+=item * L</fetchAllUsers>
 
 =back
 
@@ -470,9 +472,54 @@ sub initLogging {
 =cut
 
 sub withTimestamp {
-    my ($message) = @_;
-    return strftime('%Y-%m-%d %H:%M:%S', localtime) . ": $message";
+  my ($message) = @_;
+  return strftime('%Y-%m-%d %H:%M:%S', localtime) . ": $message";
 }
+
+
+=head2 fetchAllUsers
+
+Pulled out of `getCurrentGroups` in cratHighlighterSubpages.pl to try to manage
+that giant sub, and make things testable.  For now, takes an already-existing
+MediaWiki::API response, and follows the continuation until we've exhausted what
+we're after, merging everybody into one array.  This will basically happen every
+time with sysops.  Should only be run after saving any other data from the query
+since items (e.g. stewards) will get overwritten by the continue.
+
+`$return` is the JSON response returned by the API to `$query`; `$key` is the
+specific item we need to iterate over, in our case 'allusers'.
+
+=cut
+
+sub fetchAllUsers {
+  my ($mw, $return, $query, $key) = @_;
+  croak $errData if (!$mw || !$return || !$query || !$key);
+
+  # First, store what we've got for now
+  my @results = @{$return->{query}{$key}};
+  # If there's a continue item, then continue, by God!  Although it looks
+  # generic, it's only set up to handle processing sysops afterward.
+  while (exists $return->{continue}) { # avoid autovivification
+    # Process the continue parameters
+    foreach (keys %{${$return}{continue}}) {
+      ${$query}{$_} = ${${$return}{continue}}{$_};    # total dogshit
+    }
+
+    # # Merge the continue params into the existing query and resubmit
+    # %{$query} = (%{$query}, %{$return->{continue}});
+
+    # Resubmit new query, using old query + new continue, rewriting old data
+    $return = $mw->api($query);
+
+    # Fail loudly if we thought we'd continue but didn't.  Seems unlikely
+    croak "Expected more '$key' data while continuing but got none" if !$return->{query}{$key};
+
+    push @results, @{$return->{query}{$key}};
+  }
+
+  return @results;
+}
+
 
 
 
