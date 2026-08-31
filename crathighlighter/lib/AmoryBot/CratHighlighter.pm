@@ -17,11 +17,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4.1
+Version 0.4.2
 
 =cut
 
-our $VERSION = '0.4.1';
+our $VERSION = '0.4.2';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -392,9 +392,9 @@ version together for the user agent
 =cut
 
 sub packageVersion {
-    my ($classOrObj) = @_;
-    my $class = ref($classOrObj) || $classOrObj;
-    return $class.q{/}.$class->VERSION;
+  my ($class) = @_;
+  # Don't need ref($classOrObj) since no ->new() method (yet?)
+  return $class.q{/}.$class->VERSION;
 }
 
 
