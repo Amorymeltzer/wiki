@@ -9,7 +9,7 @@ use POSIX qw(strftime);
 # Only needed in buildNote
 use List::Util qw(uniqstr);
 # Needed for shared logging system initLogging
-use Log::Log4perl qw(:easy);
+use Log::Log4perl;
 
 =head1 NAME
 
@@ -450,14 +450,14 @@ sub initLogging {
   # Pretty sure autodie doesn't covers file checks like -W
   -W $logfile or croak "$ERRNO"; # Double quotes prevents Carp from clobbering
 
-  my $infoLog = {level  => $quiet ? $OFF : $INFO,
+  my $infoLog = {level  => $quiet ? 'OFF' : 'INFO',
 		 file   => ">>$logfile",
 		 utf8   => 1,
 		 # Datetime (level): message
 		 layout => '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n'
 		};
   # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
-  my $traceLog = {level  => $quiet ? $OFF : $TRACE,
+  my $traceLog = {level  => $quiet ? 'OFF' : 'TRACE',
 		  file   => 'STDOUT',
 		  # message
 		  layout => '%d - %m{indent}%n'
