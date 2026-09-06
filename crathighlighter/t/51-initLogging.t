@@ -4,6 +4,7 @@
 use 5.036;
 
 use English;
+use autodie;
 
 use File::Temp    qw(tempfile);
 use Log::Log4perl qw(:easy);
@@ -73,22 +74,28 @@ is($stdout, q{}, 'CRON set: STDOUT trace logger is not active');
 
 # Read a logfile to confirm messages actually get there
 sub readLog {
-  open my $fh, '<', shift or return q{};
-  local $INPUT_RECORD_SEPARATOR = undef;
-  return <$fh> // q{};
+  open my $fh, '<', shift;
+  my $content = do {local $INPUT_RECORD_SEPARATOR = undef; <$fh>};
+  close $fh;
+  return $content;
 }
 
 # Capture everything written to STDOUT.  Log4perl's STDOUT appender binds the
 # real filehandle directly, so a mere select() isn't enough to intercept it;
-# dup/close/reopen the actual filehandle instead.  FIXME TODO DON'T UNDERSTAND
-# THIS
+# dup/close/reopen the actual filehandle instead.  FIXME TODO DON'T REALLY
+# UNDERSTAND THIS
 sub captureStdout {
   my $code     = shift;
   my $captured = q{};
-  open my $oldStdout, '>&', \*STDOUT or die "dup failed: $ERRNO";
-  close STDOUT or die $ERRNO;
-  open STDOUT, '>', \$captured or die "reopen failed: $ERRNO";
+  # Dup
+  open my $oldStdout, '>&', \*STDOUT;
+  close STDOUT;
+  # Reopen
+  open STDOUT, '>', \$captured;
   $code->();
-  open STDOUT, '>&', $oldStdout or die "restore failed: $ERRNO";
+  # Restore
+  open STDOUT, '>&', $oldStdout;
+  close $oldStdout;
+
   return $captured;
 }
