@@ -487,7 +487,8 @@ time with sysops.  Should only be run after saving any other data from the query
 since items (e.g. stewards) will get overwritten by the continue.
 
 `$return` is the JSON response returned by the API to `$query`; `$key` is the
-specific item we need to iterate over, in our case 'allusers'.
+specific item we need to iterate over, in our case 'allusers'.  Should I just
+make this *always* use allusers, aka get rid of $key? FIXME TODO
 
 =cut
 
@@ -500,13 +501,8 @@ sub fetchAllUsers {
   # If there's a continue item, then continue, by God!  Although it looks
   # generic, it's only set up to handle processing sysops afterward.
   while (exists $return->{continue}) { # avoid autovivification
-    # Process the continue parameters
-    foreach (keys %{${$return}{continue}}) {
-      ${$query}{$_} = ${${$return}{continue}}{$_};    # total dogshit
-    }
-
-    # # Merge the continue params into the existing query and resubmit
-    # %{$query} = (%{$query}, %{$return->{continue}});
+    # Merge in the continue params
+    %{$query} = (%{$query}, %{$return->{continue}});
 
     # Resubmit new query, using old query + new continue, rewriting old data
     $return = $mw->api($query);
