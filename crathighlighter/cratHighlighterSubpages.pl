@@ -186,22 +186,13 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
-# Nicer handling of some specific mediawiki errors, can be expanded using:
-# - https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm
-# - https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages
+
+# Handle errors in the MediaWiki::API object better, with logging and all that
 sub dieNice {
   my $code    = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
-  # Avoid an elsif ladder.  Could `use experimental qw(switch)` but don't really
-  # feel like it; this is probably more legible anyway
-  my %codes = (2 => 'HTTP access',
-	       3 => 'API access',
-	       4 => 'logging in',
-	       5 => 'editing the page'
-	      );
-  my $message = $codes{$code} ? q{: }.$codes{$code} : q{};
-  $message = 'MediaWiki error'.$message.":\n$code: $details";
+  my $message = mwErrorMessage($code, $details);
 
   # Ensure we get the timestamps in the toolforge log auto-created, but we
   # *don't* get a duplicate timestamp in our own log

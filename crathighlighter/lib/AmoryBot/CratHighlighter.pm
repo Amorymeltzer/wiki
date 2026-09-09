@@ -17,15 +17,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4.4
+Version 0.4.5
 
 =cut
 
-our $VERSION = '0.4.4';
+our $VERSION = '0.4.5';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -67,6 +67,8 @@ my $errData = 'Missing data';
 =item * L</fetchAllUsers>
 
 =item * L</getPageContent>
+
+=item * L</mwErrorMessage>
 
 =back
 
@@ -538,6 +540,31 @@ sub getPageContent {
   return $revision->{slots}->{main}->{content};
 }
 
+=head2 mwErrorMessage
+
+Nicer handling of some specific mediawiki errors, can be expanded using:
+- L<https://metacpan.org/release/MediaWiki-API/source/lib/MediaWiki/API.pm>
+- L<https://www.mediawiki.org/wiki/API:Errors_and_warnings#Standard_error_messages>
+
+=cut
+
+sub mwErrorMessage {
+  my ($code, $details) = @_;
+  # Right?  FIXME TODO
+  croak $errData if !$code;
+
+  # Avoid an elsif ladder.  Could `use experimental qw(switch)` but don't really
+  # feel like it; this is probably more legible anyway
+  my %codes = (2 => 'HTTP access',
+	       3 => 'API access',
+	       4 => 'logging in',
+	       5 => 'editing the page'
+	      );
+  my $message = $codes{$code} ? q{: }.$codes{$code} : q{};
+
+  # Don't always have details, should maybe check for that FIXME TODO
+  return 'MediaWiki error'.$message.":\n$code: $details";
+}
 
 
 
