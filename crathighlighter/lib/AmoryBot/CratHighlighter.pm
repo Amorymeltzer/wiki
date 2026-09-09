@@ -200,7 +200,7 @@ sub cmpJSON {
 
   # Check array length first, which should be a quick short-circuit for most
   # scenarios, then check if the stringified arrays are equivalent
-  if (keys %{$queryRef} == keys %{$objectRef} && join(q{}, sort keys %{$queryRef}) eq join(q{}, sort keys %{$objectRef})) {
+  if (keys %{$queryRef} == keys %{$objectRef} && (join q{}, sort keys %{$queryRef}) eq (join q{}, sort keys %{$objectRef})) {
     # Nada
     return (q{}, [], []);
   }

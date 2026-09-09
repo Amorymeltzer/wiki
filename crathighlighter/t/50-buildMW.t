@@ -84,6 +84,7 @@ sub checkEntries {
   note 'User agent: '.$mw->{ua}->agent;
 
   $count++;
+  return;
 }
 
 sub answer {

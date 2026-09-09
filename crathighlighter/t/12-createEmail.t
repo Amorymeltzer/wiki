@@ -75,7 +75,8 @@ sub makeString {
 }
 # Return a hash reference to just the data in the specified keys
 sub hashPortion {
-  my %lookup = map {$_ => 1} @_;
+  my @portion = @_;
+  my %lookup = map {$_ => 1} @portion;
 
   # remove the undesirables
   $lookup{$_} = ($lookup{$_} ? $testData{$_} : []) for keys %testData;
