@@ -17,15 +17,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4.2
+Version 0.4.4
 
 =cut
 
-our $VERSION = '0.4.2';
+our $VERSION = '0.4.4';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -65,6 +65,8 @@ my $errData = 'Missing data';
 =item * L</withTimestamp>
 
 =item * L</fetchAllUsers>
+
+=item * L</getPageContent>
 
 =back
 
@@ -368,9 +370,7 @@ sub botShutoffs {
   my $botCheckReturnQuery = $json->{query};
 
   # Manual shutoff; confirm bot should actually run
-  # Arrows means no (de)referencing
-  # rvslots is so dumb
-  my $checkContent = $botCheckReturnQuery->{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
+  my $checkContent = getPageContent($botCheckReturnQuery);
   if (!$checkContent || $checkContent ne '42') {
     return 'DISABLED on-wiki';
   }
@@ -515,6 +515,29 @@ sub fetchAllUsers {
 
   return @results;
 }
+
+=head2 getPageContent
+
+Simple sub to just return and parse page content from a MW API response, pulling
+the content of the first (ideally only?) page from the result.  Currently used
+by botShutoffs and getCurrentGroups in cratHighlighterSubpages.pl, which share
+the rvslots nonsense.
+
+=cut
+
+sub getPageContent {
+  my $queryRef = shift;
+  croak $errData if !$queryRef;
+  my $page = $queryRef->{pages}[0];
+  croak 'No page data in query result' if !$page;
+
+  # Autovivifies if empty, but who cares?
+  my $revision = $page->{revisions}[0];
+  croak 'No revision data in page query result' if !$revision;
+
+  return $revision->{slots}->{main}->{content};
+}
+
 
 
 

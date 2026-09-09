@@ -289,10 +289,8 @@ sub getCurrentGroups {
   # since it's by user, not by group.  Stewards are easy anyway.
   my $stewRef = $groupsQuery{globalallusers};
 
-  # Likewise, needs to store the ArbCom data.  Could shunt this off to the sub
-  # like botShutoffs or processPagesData, but I'd rather not save the test pages
-  # as json.  Probably smarter, though. TODO
-  my $acContent = $groupsQuery{pages}[0]->{revisions}[0]->{slots}->{main}->{content};
+  # Likewise, need to store the ArbCom data
+  my $acContent = getPageContent(\%groupsQuery);
 
   # Local groups need a loop for processing who goes where, but there are a lot
   # of sysops, so we need to either get the bot flag or iterate over everyone
