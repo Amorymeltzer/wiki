@@ -7,7 +7,7 @@ use File::Slurper qw(read_text);
 
 use AmoryBot::CratHighlighter qw (findArbComMembers);
 use Test::More;
-use Test::Fatal;
+use Test::Fatal qw(exception);
 
 my @testFiles = ('arbcom_members.txt', 'arbcom_members_former.txt', 'arbcom_members_elect.txt', 'arbcom_members_old.txt', 'arbcom_members_former_old.txt', 'arbcom_members_elect_old.txt');
 plan tests => 1 + scalar @testFiles;

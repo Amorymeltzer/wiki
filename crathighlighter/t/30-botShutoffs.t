@@ -3,7 +3,7 @@
 use 5.036;
 
 use File::Slurper qw(read_text);
-use JSON::MaybeXS;
+use JSON::MaybeXS ();
 
 use AmoryBot::CratHighlighter qw (botShutoffs);
 use Test::More;
@@ -22,10 +22,7 @@ is(testFile('t/bot_allclear.json'),  undef,                          'Success');
 sub testFile {
   my $fileJSON = read_text(shift);
 
-  # Template for generating JSON, sorted and prettyish
-  my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
-
-  my $botReturn = $jsonTemplate->decode($fileJSON);
+  my $botReturn = JSON::MaybeXS->new->decode($fileJSON);
 
   return botShutoffs($botReturn);
 }

@@ -4,11 +4,11 @@
 use 5.036;
 
 use File::Slurper qw(read_text);
-use JSON::MaybeXS;
+use JSON::MaybeXS ();
 
 use AmoryBot::CratHighlighter qw (processPagesData);
 use Test::More;
-use Test::Fatal;
+use Test::Fatal qw(exception);
 
 
 # Real deal data
@@ -30,14 +30,11 @@ plan tests => 1 + 3 * scalar @rights;
 # Bad data
 like(exception {processPagesData()}, qr/Missing data/, 'No data passed');
 
-# Template for generating JSON, sorted and prettyish
-my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
-
 my $file     = 't/file.json';
 my $fileJSON = read_text($file);
 
-my $contentReturn = $jsonTemplate->decode($fileJSON);
-my %pagesData   = processPagesData($contentReturn);
+my $contentReturn = JSON::MaybeXS->new->decode($fileJSON);
+my %pagesData     = processPagesData($contentReturn);
 
 # Simple tests.  Can hardcode timestamp since the data is hardcoded
 my $titleBaseName = 'User:AmoryBot/crathighlighter.js/';
@@ -49,6 +46,6 @@ foreach my $userGroup (@rights) {
   # Timestamp matches
   is($timestamps{$userGroup}, $pagesData{$userGroup}[2], "$userGroup timestamp");
   # User data matches
-  my @users = sort keys %{$jsonTemplate->decode($pagesData{$userGroup}[1])};
+  my @users = sort keys %{JSON::MaybeXS->new->decode($pagesData{$userGroup}[1])};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }

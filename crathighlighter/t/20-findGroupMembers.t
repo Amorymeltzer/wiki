@@ -6,11 +6,11 @@ use 5.036;
 use utf8;    # Alaa and Torai friendly
 
 use File::Slurper qw(read_text);
-use JSON::MaybeXS;
+use JSON::MaybeXS ();
 
 use AmoryBot::CratHighlighter qw (findStewardMembers findLocalGroupMembers);
 use Test::More;
-use Test::Fatal;
+use Test::Fatal qw(exception);
 
 # List groups; just like in the main script, steward and arbcom are added later
 my @rights = qw (bureaucrat suppress checkuser interface-admin sysop);
@@ -29,13 +29,10 @@ my %actual = ('bureaucrat' => ['28bytes', 'Acalamari', 'AmandaNP', 'Avraham', 'B
 	      'steward'         => ['AmandaNP',     'AntiCompositeNumber', 'BRPever',   'Base',            'Bsadowski1',  'DerHexer',      'Elton',         'HakanIST',  'Hasley',              'Hoo man',      'Jon Kolbert', 'MarcGarver', 'MarcoAurelio', 'Martin Urbanec', 'Masti',    'Mykola7',   'Operator873', 'RadiX', 'Sakretsu', 'Schniggendiller', 'Sotiale', 'Stryn', 'Superpes15', 'Tegel', 'Teles', 'Tks4Fish', 'Vermont', 'Vituzzu', 'Wiki13', 'Wim b', 'Xaosflux', 'علاء']
 	     );
 
-# Template for generating JSON, sorted and prettyish
-my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
-
 my $file     = 't/groups.json';
 my $fileJSON = read_text($file);
 
-my $groupsReturn = $jsonTemplate->decode($fileJSON);
+my $groupsReturn = JSON::MaybeXS->new->decode($fileJSON);
 my %groupsQuery  = %{${$groupsReturn}{query}};
 
 # Will store hash of editors for each group.  Basically JSON as hash of hashes.
