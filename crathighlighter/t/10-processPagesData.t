@@ -25,10 +25,13 @@ my @arbs = qw(Barkeep49 Beeblebrox Cabayi CaptainEek Enterprisey GeneralNotabili
 my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'arbcom' => \@arbs);
 my @rights = keys %actual;
 
-plan tests => 1 + 3 * scalar @rights;
+plan tests => 4 + 3 * scalar @rights;
 
 # Bad data
 like(exception {processPagesData()}, qr/Missing data/, 'No data passed');
+like(exception {processPagesData({query => {yomama => []}})}, qr/No page data in query result/, 'No pages key in query response');
+like(exception {processPagesData({query => {pages => []}})}, qr/No page data in query result/, 'No pages in query response');
+like(exception {processPagesData({query => {pages => [{title => 'User:AmoryBot/crathighlighter.js/sysop.json'}]}})}, qr/No revision data for page "User:AmoryBot\/crathighlighter.js\/sysop.json"/, 'Page missing revisions');
 
 my $file     = 't/file.json';
 my $fileJSON = read_text($file);

@@ -17,11 +17,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4.5
+Version 0.4.6
 
 =cut
 
-our $VERSION = '0.4.5';
+our $VERSION = '0.4.6';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -161,6 +161,9 @@ sub processPagesData {
   my $contentRef = shift;
   croak $errData if !$contentRef;
 
+  my $pages = $contentRef->{query}->{pages};
+  croak 'No page data in query result' if !$pages || !scalar @{$pages};
+
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
   ## title     -> used to also snag the specific group used for hash key
@@ -173,10 +176,14 @@ sub processPagesData {
   # Just awful.  Then again, it could be made even worse!  Worth noting that it
   # should be pretty fast, since it's just reformatting data that's already
   # present, rather than going through each user or anything like that.
-  foreach my $pageHash ($contentRef->{query}->{pages}->@*) {
+  foreach my $pageHash ($pages->@*) {
     # Make things just slightly more clear for the final data assignment
     my $userGroup = $pageHash->{title} =~ s/.*\.js\/(.+)\.json/$1/r;
-    my @revisions = $pageHash->{revisions}->@*;
+
+    my $revisionsRef = $pageHash->{revisions};
+    croak "No revision data for page \"$pageHash->{title}\"" if !$revisionsRef;
+
+    my @revisions = $revisionsRef->@*;
     # rvslots is so dumb
     $returnData{$userGroup} = [$pageHash->{title}, $revisions[0]->{slots}{main}{content}, $revisions[0]->{timestamp}];
   }
