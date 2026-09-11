@@ -87,7 +87,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Markhurd/hidetopcontrib.js&oldid=934625836&action=raw&ctype=text/javascript'); // [[User:Markhurd/hidetopcontrib.js]]
 			window.userHideAllSubsequent = true;
-			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1196942814&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
+			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Writ_Keeper/Scripts/massRollback.js&oldid=1371257788&action=raw&ctype=text/javascript'); // [[User:Writ Keeper/Scripts/massRollback.js]]
 
 			// Create button to turn on [[User:Writ Keeper/Scripts/massRevdel.js]]
 			// Script is immensely helpful, but the individual links and OS bolding are as well
@@ -304,7 +304,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 		], function() {
 			// Do not operate on non-existent pages or their talk pages
 			if (!$('li.new[id|=ca-nstab]').length) {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1293613769&action=raw&ctype=text/javascript');
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/rater/app.js&oldid=1367315678&action=raw&ctype=text/javascript');
 			}
 		});
 	}
