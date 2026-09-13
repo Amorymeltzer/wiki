@@ -4,8 +4,8 @@ use 5.036;
 
 # Relies upon buildNote (which relies upon oxfordComma)
 use AmoryBot::CratHighlighter qw(createEmail);
-use Test::More tests => 9;
-use Test::Fatal;
+use Test::More tests => 12;
+use Test::Fatal qw(exception);
 
 
 my %testData = (addedFiles   => ['Acalamari (B)',     'AmandaNP (OS)', 'Avraham (SYS)'],
@@ -16,7 +16,7 @@ my %testData = (addedFiles   => ['Acalamari (B)',     'AmandaNP (OS)', 'Avraham 
 
 # Number of local and wiki changes, repeatedly used
 my @l    = qw(bureaucrat oversight sysop interface-admin);
-my @w    = qw(bureaucrat arbcom sysop oversight checkuser interface-admin);
+my @w    = qw(bureaucrat arbcom    sysop oversight checkuser interface-admin);
 my @null = ();
 
 my ($l, $w) = (scalar @l, scalar @w);
@@ -41,6 +41,14 @@ my $files        = makeString($filesHeader, $filesAdded,   $filesRemoved);
 my $pages        = makeString($pagesHeader, $pagesAdded,   $pagesRemoved);
 my $addedOnly    = makeString($filesHeader, $filesAdded,   $pagesHeader, $pagesAdded);
 my $removedOnly  = makeString($filesHeader, $filesRemoved, $pagesHeader, $pagesRemoved);
+my @warn         = ('abusefilters: The value "5001" for parameter "abflimit" must be between 1 and 5,000.', 'revisions: The value "5001" for parameter "rvlimit" must be between 1 and 5,000.');
+my $warnBlock    = makeString('Warnings:', map {"\t$_"} @warn)."\n\n";
+
+
+# Bad data, include changeRef? FIXME TODO
+like(exception {createEmail()},         qr/Missing data/, 'No localRef');
+like(exception {createEmail(\@l, q{})}, qr/Missing data/, 'No wikiRef');
+
 
 my $note = $headerPlus.makeString($files, $pages);
 is(createEmail(\@l, \@w, \%testData, $push), $note, 'basic test');
@@ -60,13 +68,17 @@ is(createEmail(\@null, \@w, \%testData, $push), $noLocalNote, 'no local');
 my $noWikiNote = $headerBare.$files;
 is(createEmail(\@l, \@null, \%testData, $push), $noWikiNote, 'no wiki');
 
-# Not possible (see note in main script) but eventually will be...
+# Not possible (see note in main script) but eventually will be... FIXME TODO
 my $noneNote = $headerBare;
 is(createEmail(\@null, \@null, \%testData, $push), $noneNote, 'none');
 
-# Bad data, include changeRef? FIXME TODO
-like(exception {createEmail()},         qr/Missing data/, 'No localRef');
-like(exception {createEmail(\@l, q{})}, qr/Missing data/, 'No wikiRef');
+is(createEmail(\@null, \@null, \%testData, $push, []), $noneNote, 'empty warnings same as none');
+my $warnOnlyNote = $headerBare.$warnBlock;
+is(createEmail(\@null, \@null, \%testData, $push, \@warn), $warnOnlyNote, 'warnings only');
+
+my $warnAndChangesNote = $headerPlus.$warnBlock.makeString($files, $pages);
+is(createEmail(\@l, \@w, \%testData, $push, \@warn), $warnAndChangesNote, 'warnings and changes');
+
 
 
 # Make creating strings easier
@@ -76,7 +88,7 @@ sub makeString {
 # Return a hash reference to just the data in the specified keys
 sub hashPortion {
   my @portion = @_;
-  my %lookup = map {$_ => 1} @portion;
+  my %lookup  = map {$_ => 1} @portion;
 
   # remove the undesirables
   $lookup{$_} = ($lookup{$_} ? $testData{$_} : []) for keys %testData;

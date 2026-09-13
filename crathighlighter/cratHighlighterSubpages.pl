@@ -8,7 +8,7 @@
 use 5.036;
 use English;
 
-use Getopt::Long;
+use Getopt::Long qw(GetOptions);
 
 # Parse commandline options
 my %opts = ();
@@ -29,8 +29,8 @@ use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(:all);
 
 use Log::Log4perl qw(:easy);
-use JSON::MaybeXS;
-use MediaWiki::API;
+use JSON::MaybeXS ();
+use MediaWiki::API ();
 use File::Slurper qw(read_text write_text);
 
 ## Set up logger
@@ -77,8 +77,9 @@ my %pagesContent = getPageGroups(@{$groups});
 
 ### Main loop for each group
 # These conveniently function as indicators as well as counters for number of
-# files or pages changed, respectively
-my (@localChange, @wikiChange);
+# files or pages changed, respectively.  Also keep track of any accumulated
+# warnings we run into throughout our various API calls.
+my (@localChange, @wikiChange, @apiWarnings);
 # Hold all changes for later
 my %changes;
 # Template for generating JSON, sorted and prettyish
@@ -147,6 +148,7 @@ foreach (@{$groups}) {
 		 text          => $queryJSON,
 		 summary       => $editSummary
 		});
+      # Can/should we check for warnings here? FIXME TODO
       $note .= "$mw->{response}->{_msg}";
     } else {
       $note .= ".  Skipping push.\n";
@@ -166,14 +168,14 @@ $mw->logout();
 # *could* be part of createNote, but currently all Log::Log4perl stuff is in
 # this main file and not in the library.  That could (and perhaps will!) be
 # changed, but for now this remains separate.
-if (scalar @localChange + scalar @wikiChange) {
+if (scalar @localChange + scalar @wikiChange + scalar @apiWarnings) {
   INFO('No further updates needed');
 
   # Report final status.  Each item should already be logged above in the main
   # loop, this is just to trigger an update on changes when run on the
   # kubernetes schedule.  Probably not needed, but I like having the updates.
   # Could put it behind a flag? TODO
-  my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P});
+  my $emailContent = createEmail(\@localChange, \@wikiChange, \%changes, $opts{P}, \@apiWarnings);
   say withTimestamp($emailContent);
 } else {
   INFO('No updates needed');
@@ -200,6 +202,13 @@ sub dieNice {
   die withTimestamp("$message\n");
 }
 
+# Handle and log any non-fatal warnings and track 'em for the final summary.
+sub logWarnings {
+  my @warn = apiWarnings(shift);
+  WARN("$_\n") for @warn;
+  push @apiWarnings, @warn;
+  return;
+}
 
 # Make sure the bot behaves nicely.  Both checks (disable page and user talk
 # messages) are combined into one query since both will typically be checked, so
@@ -220,8 +229,9 @@ sub botQuery {
 		       format        => 'json',
 		       formatversion => 2
 		      };
-  # Note if warnings FIXME TODO
-  my $botCheck = botShutoffs($mw->api($botCheckQuery));
+  my $botCheckReturn = $mw->api($botCheckQuery);
+  logWarnings($botCheckReturn);
+  my $botCheck = botShutoffs($botCheckReturn);
   LOGDIE $botCheck if $botCheck;
   return;
 }
@@ -271,6 +281,9 @@ sub getCurrentGroups {
 		    };
   # JSON, technically a reference to a hash
   my $groupsReturn = $mw->api($groupsQuery);
+  # Check if warnings
+  logWarnings($groupsReturn);
+
   # Hash containing each list as a key, with the results as an array of hashes,
   # each hash containing the userid, user name, and (if requested) user groups
   my %groupsQuery = %{${$groupsReturn}{query}};
@@ -324,8 +337,8 @@ sub getPageGroups {
 		      formatversion => 2
 		     };
   # JSON, technically a reference to a hash
-  # Note if warnings FIXME TODO
   my $contentReturn = $mw->api($contentQuery);
+  logWarnings($contentQuery);
   return processPagesData($contentReturn);
 }
 

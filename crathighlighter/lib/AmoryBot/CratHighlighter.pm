@@ -25,7 +25,7 @@ our $VERSION = '0.4.6';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -69,6 +69,8 @@ my $errData = 'Missing data';
 =item * L</getPageContent>
 
 =item * L</mwErrorMessage>
+
+=item * L</apiWarnings>
 
 =back
 
@@ -321,9 +323,10 @@ sub buildNote {
 # Report final status.  Each item should already be logged above in the main
 # loop, this is just to trigger an update on changes when run on the kubernetes
 # schedule.  Probably not needed, but I like having the updates.  Could put it
-# behind a flag?
+# behind a flag?  Final parameter is just if there's warnings.  A lot of
+# parameters here, too many? FIXME TODO
 sub createEmail {
-  my ($localRef, $wikiRef, $changeRef, $skipPush) = @_;
+  my ($localRef, $wikiRef, $changeRef, $skipPush, $warnRef) = @_;
   croak $errData if (!$localRef || !$wikiRef);
 
   my $updateNote = 'CratHighlighter updates';
@@ -336,6 +339,11 @@ sub createEmail {
   }
   # Maybe remove these if there's nothing else to be added FIXME TODO
   $updateNote .= "\n\n";
+
+  # Show any API warnings ahead of any details
+  if ($warnRef && scalar @{$warnRef}) {
+    $updateNote .= join("\n", 'Warnings:', map {"\t$_"} @{$warnRef})."\n\n";
+  }
 
 
   # Local changes
@@ -573,6 +581,27 @@ sub mwErrorMessage {
   return 'MediaWiki error'.$message.":\n$code: $details";
 }
 
+
+=head2 apiWarnings
+
+Detect and pull out any warnings from an API response.  Returns a list of each
+module and text pair as strings, or empty if missing, which is the
+normal/expected case, hence no croak.  Inherently assumes the
+original--bc--errorformat.
+
+=cut
+
+sub apiWarnings {
+  my $response = shift;
+  croak $errData if !$response;
+
+  # Yay!
+  return () if !$response->{warnings};
+
+  # Boo!
+  my %warnings = %{$response->{warnings}};
+  return map {"$_: $warnings{$_}{warnings}"} sort keys %warnings;
+}
 
 
 

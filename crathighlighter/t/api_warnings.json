@@ -1,0 +1,14 @@
+{
+    "batchcomplete": true,
+    "warnings": {
+        "abusefilters": {
+            "warnings": "The value \"5001\" for parameter \"abflimit\" must be between 1 and 5,000."
+        },
+        "revisions": {
+            "warnings": "The value \"5001\" for parameter \"rvlimit\" must be between 1 and 5,000."
+        }
+    },
+    "query": {
+      "pages": []
+    }
+}
