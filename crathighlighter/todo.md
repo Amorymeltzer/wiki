@@ -4,8 +4,6 @@
   - <https://metacpan.org/pod/Log::Log4perl::Appender> and <https://metacpan.org/pod/Log::Dispatch::Email#SYNOPSIS> and <https://metacpan.org/pod/Log%3A%3ALog%34perl#Appenders> and <https://wikitech.wikimedia.org/wiki/Help:Toolforge/Email> and <https://www.perlmonks.org/?node_id=1091507> and <https://metacpan.org/pod/Log::Log4perl::Appender::SMTP>
 - [x] Can `use 5.036` since we know the k8s image guarantees 5.36(.0), so yay `say`
   - [ ] Consider `try/catch`
-- [ ] Consider putting `initLogging` into separate `AmoryBot::CratHighlighter::Log` or something?
-  - [ ] Actually, maybe we don't need Log::Log4perl in the library, and `initLogging` can just return the config?  Might be a good idea, actually
 - [ ] Maybe also more logging for things like proveMe?  Can rely on filelog, especially if not redirecting output since no emails that way.
 - [ ] Consider retry?  Or does it just complicate my set up?
 - [ ] Catch login errors?  Something weird.

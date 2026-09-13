@@ -34,8 +34,7 @@ use MediaWiki::API ();
 use File::Slurper qw(read_text write_text);
 
 ## Set up logger
-my $logfile = "$scriptDir/log.log";
-initLogging($logfile, $opts{L});
+Log::Log4perl->easy_init(configLogging("$scriptDir/log.log", $opts{L}));
 
 
 ### User details

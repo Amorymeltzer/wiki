@@ -8,8 +8,6 @@ use POSIX qw(strftime);
 
 # Only needed in buildNote
 use List::Util qw(uniqstr);
-# Needed for shared logging system initLogging
-use Log::Log4perl;
 
 =head1 NAME
 
@@ -17,15 +15,15 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.4.6
+Version 0.5.1
 
 =cut
 
-our $VERSION = '0.4.6';
+our $VERSION = '0.5.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW initLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW configLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -60,7 +58,7 @@ my $errData = 'Missing data';
 
 =item * L</buildMW>
 
-=item * L</initLogging>
+=item * L</configLogging>
 
 =item * L</withTimestamp>
 
@@ -450,15 +448,16 @@ sub buildMW {
   return $mw;
 }
 
-=head2 initLogging
+=head2 configLogging
+
+Build the shared Log::Log4perl configuration the same way for everyone: INFO
+file logger always, and if not run automatically via cron/k8s, TRACE to STDOUT
+(basically, when interactive/testing).  The full options are straightforward but
+overly verbose, and easy mode (with stealth loggers) is succinct and sufficient.
 
 =cut
 
-# Set up logger the same way for everyone: INFO file logger always, and if not
-# run automatically via cron/k8s, TRACE to STDOUT (basically, when
-# interactive/testing).  The full options are straightforward but overly
-# verbose, and easy mode (with stealth loggers) is succinct and sufficient.
-sub initLogging {
+sub configLogging {
   my ($logfile, $quiet) = @_;
   croak $errData if !$logfile;
 
@@ -479,8 +478,7 @@ sub initLogging {
 		  # message
 		  layout => '%d - %m{indent}%n'
 		 };
-  Log::Log4perl->easy_init($ENV{CRON} ? $infoLog : ($infoLog, $traceLog));
-  return;
+  return $ENV{CRON} ? ($infoLog) : ($infoLog, $traceLog);
 }
 
 

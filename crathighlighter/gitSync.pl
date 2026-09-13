@@ -25,15 +25,14 @@ BEGIN {
 
 # Allow script to be run from elsewhere by prepending the local library to @INC
 use lib $scriptDir.'/lib';
-use AmoryBot::CratHighlighter qw(initLogging);
+use AmoryBot::CratHighlighter qw(configLogging);
 use AmoryBot::CratHighlighter::GitUtils qw(:all);
 
 use Log::Log4perl qw(:easy);
 
 
 ## Set up logger
-my $logfile = "$scriptDir/log.log";
-initLogging($logfile, $opts{L});
+Log::Log4perl->easy_init(configLogging("$scriptDir/log.log", $opts{L}));
 
 
 ### Check and update repo before doing anything unsupervised

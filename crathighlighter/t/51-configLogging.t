@@ -9,28 +9,49 @@ use autodie;
 use File::Temp    qw(tempfile);
 use Log::Log4perl qw(:easy);
 
-use AmoryBot::CratHighlighter qw (initLogging);
+use AmoryBot::CratHighlighter qw (configLogging);
 use Test::More;
 use Test::Fatal qw(exception);
 
-plan tests => 7;
+plan tests => 11;
 
 
 # Bad data
-like(exception {initLogging()}, qr/Missing data/, 'No logfile');
+like(exception {configLogging()}, qr/Missing data/, 'No logfile');
 # Nonexistent aka not writable
-like(exception {initLogging('/fake-path/log.log')}, qr/No such file or directory/, 'Unwritable logfile');
+like(exception {configLogging('/fake-path/log.log')}, qr/No such file or directory/, 'Unwritable logfile');
+
+
+my (undef, $configFile) = tempfile(UNLINK => 1);
+my $infoLayout       = '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n';
+my $traceLayout      = '%d - %m{indent}%n';
+my $expectedInfo     = {level => 'INFO',  file => ">>$configFile", utf8   => 1, layout => $infoLayout};
+my $expectedInfoOff  = {level => 'OFF',   file => ">>$configFile", utf8   => 1, layout => $infoLayout};
+my $expectedTrace    = {level => 'TRACE', file => 'STDOUT',        layout => $traceLayout};
+my $expectedTraceOff = {level => 'OFF',   file => 'STDOUT',        layout => $traceLayout};
+
+{
+  local $ENV{CRON} = 1;
+  is_deeply([configLogging($configFile)],    [$expectedInfo],    'CRON: info');
+  is_deeply([configLogging($configFile, 1)], [$expectedInfoOff], 'CRON + quiet: info OFF');
+}
+{
+  delete local $ENV{CRON};
+  is_deeply([configLogging($configFile)],    [$expectedInfo,    $expectedTrace],    'CRON off: info and trace');
+  is_deeply([configLogging($configFile, 1)], [$expectedInfoOff, $expectedTraceOff], 'CRON off + quiet: info and trace OFF');
+}
 
 
 # Create a temporary logfile.  Got to basically redo it every time since each
-# invocation of easy_init (via initLogging) reconfigures the whole thang.
-# initLogging enables trace logging via STDOUT unless CRON is set, so test on
-# and off states throughout
+# invocation of easy_init (via configLogging) reconfigures the whole thang.
+# configLogging enables trace logging via STDOUT unless CRON is set, so test on
+# and off states throughout.  These init logging to do a kind of integration
+# test for each.
 my (undef, $logfile) = tempfile(UNLINK => 1);
 {
   local $ENV{CRON} = 1;
 
-  initLogging($logfile);
+  Log::Log4perl->easy_init(configLogging($logfile));
   INFO('hello');
 }
 # Gotta be a better way to confirm the format?
@@ -43,7 +64,7 @@ my $stdout;
 {
   delete local $ENV{CRON};
 
-  initLogging($logfile, 1);
+  Log::Log4perl->easy_init(configLogging($logfile, 1));
   $stdout = captureStdout(sub {INFO('should not appear')});
 }
 is(readLog($logfile), q{}, 'quiet suppresses file logging entirely');
@@ -58,16 +79,16 @@ is($stdout,           q{}, 'quiet also suppresses STDOUT trace logging');
 {
   delete local $ENV{CRON};
 
-  initLogging($logfile);
-  $stdout = captureStdout(sub { INFO('interactive run') });
+  Log::Log4perl->easy_init(configLogging($logfile));
+  $stdout = captureStdout(sub {INFO('interactive run')});
 }
 like($stdout, qr/ - interactive run$/m, 'CRON unset: STDOUT trace logger is active');
 
 (undef, $logfile) = tempfile(UNLINK => 1);
 {
   local $ENV{CRON} = 1;
-  initLogging($logfile);
-  $stdout = captureStdout(sub { INFO('automated run') });
+  Log::Log4perl->easy_init(configLogging($logfile));
+  $stdout = captureStdout(sub {INFO('automated run')});
 }
 is($stdout, q{}, 'CRON set: STDOUT trace logger is not active');
 
