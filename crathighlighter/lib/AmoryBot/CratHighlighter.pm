@@ -27,8 +27,9 @@ our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers 
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
-# Common error message for subs missing inputs
+# Common error messages
 my $errData = 'Missing data';
+my $errPage = 'No page data in query result';
 
 =head1 EXPORTS
 
@@ -162,7 +163,7 @@ sub processPagesData {
   croak $errData if !$contentRef;
 
   my $pages = $contentRef->{query}->{pages};
-  croak 'No page data in query result' if !$pages || !scalar @{$pages};
+  croak $errPage if !$pages || !scalar @{$pages};
 
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
@@ -544,7 +545,7 @@ sub getPageContent {
   my $queryRef = shift;
   croak $errData if !$queryRef;
   my $page = $queryRef->{pages}[0];
-  croak 'No page data in query result' if !$page;
+  croak $errPage if !$page;
 
   # Autovivifies if empty, but who cares?
   my $revision = $page->{revisions}[0];
