@@ -56,7 +56,7 @@ mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pinfo.js&
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/pagemods.js&action=raw&ctype=text/javascript'); // Mix of namespaces, actions, etc. [[User:Amorymeltzer/pagemods.js]]
 /* Should probably make these next two more specific */
 mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/more-listing-items.js&oldid=882933273&action=raw&ctype=text/javascript'); // [[User:Enterprisey/more-listing-items.js]]
-mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=1279326672&action=raw&ctype=text/javascript'); // [[User:Suffusion_of_Yellow/filter-highlighter.js]]
+mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Suffusion_of_Yellow/filter-highlighter.js&oldid=1377975191&action=raw&ctype=text/javascript'); // [[User:Suffusion_of_Yellow/filter-highlighter.js]]
 
 // Quick access for quick access
 $(function () {
