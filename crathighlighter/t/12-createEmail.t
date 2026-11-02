@@ -4,7 +4,7 @@ use 5.036;
 
 # Relies upon buildNote (which relies upon oxfordComma)
 use AmoryBot::CratHighlighter qw(createEmail);
-use Test::More tests => 12;
+use Test::More tests => 14;
 use Test::Fatal qw(exception);
 
 
@@ -79,6 +79,11 @@ is(createEmail(\@null, \@null, \%testData, $push, \@warn), $warnOnlyNote, 'warni
 my $warnAndChangesNote = $headerPlus.$warnBlock.makeString($files, $pages);
 is(createEmail(\@l, \@w, \%testData, $push, \@warn), $warnAndChangesNote, 'warnings and changes');
 
+
+# One entry per changed page
+my %noChanges = (addedPages => [], removedPages => []);
+is(createEmail(\@null, [qw(arbcom arbcom)], \%noChanges, $push),  "CratHighlighter updates (AC AC)\n\nPages: 2 updated (AC AC)", 'Two pages, one group, pushed');
+is(createEmail(\@null, [qw(arbcom arbcom)], \%noChanges, !$push), "CratHighlighter updates\n\nPages: 2 not updated (AC AC)",     'Two pages, one group, not pushed');
 
 
 # Make creating strings easier

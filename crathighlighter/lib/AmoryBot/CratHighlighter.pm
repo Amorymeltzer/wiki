@@ -156,7 +156,7 @@ sub findArbComMembers {
 
 =cut
 
-# Build hash of array with per group page title, content, and last edited time.
+# Build hash of array with per page title, content, and last edited time.
 # Requires the query to have been done with formatversion=2
 sub processPagesData {
   my $contentRef = shift;
@@ -167,26 +167,28 @@ sub processPagesData {
 
   my %returnData;
   # This monstrosity results in an array where each item is an array of hashes:
-  ## title     -> used to also snag the specific group used for hash key
+  ## title     -> > also used as the hash key
   ## revisions -> array containing one item, which is a hash, which has keys:
   ### timestamp -> time last edited
   ### slots, which is a dumbfuck construct for rvslots, which has:
   #### content   -> full page content
   # With the final result being:
-  ## userGroup => [title, content, timestamp]
+  ## title => [title, content, timestamp]
   # Just awful.  Then again, it could be made even worse!  Worth noting that it
   # should be pretty fast, since it's just reformatting data that's already
   # present, rather than going through each user or anything like that.
   foreach my $pageHash ($pages->@*) {
-    # Make things just slightly more clear for the final data assignment
-    my $userGroup = $pageHash->{title} =~ s/.*\.js\/(.+)\.json/$1/r;
+    # Use full title as the key, since there may be multiple pages, not
+    # necessarily tied to the same <group>.json pattern, meaning we can't
+    # guarantee getting the group name from each title
+    my $title = $pageHash->{title};
 
     my $revisionsRef = $pageHash->{revisions};
-    croak "No revision data for page \"$pageHash->{title}\"" if !$revisionsRef;
+    croak "No revision data for page \"$title\"" if !$revisionsRef;
 
     my @revisions = $revisionsRef->@*;
     # rvslots is so dumb
-    $returnData{$userGroup} = [$pageHash->{title}, $revisions[0]->{slots}{main}{content}, $revisions[0]->{timestamp}];
+    $returnData{$title} = [$title, $revisions[0]->{slots}{main}{content}, $revisions[0]->{timestamp}];
   }
 
   return %returnData;

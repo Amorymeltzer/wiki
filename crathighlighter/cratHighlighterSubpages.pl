@@ -70,8 +70,14 @@ botQuery($user);
 ### the hash would work just fine.
 my ($groupsStore, $groups) = getCurrentGroups();
 
+### On-wiki pages.  There could be more than one for each group, start with the
+### default in User:AmoryBot space.
+my %pageTitles = (map {$_ => ["$userPage/crathighlighter.js/$_.json"]} @{$groups});
+# Add any extra locations here, e.g.
+# push @{$pageTitles{arbcom}}, "$userPage/crathighlighter.js/arbcom-2.json";
+
 ### Latest content of each on-wiki page
-my %pagesContent = getPageGroups(@{$groups});
+my %pagesContent = getPageGroups(map {@{$pageTitles{$_}}} @{$groups});
 
 
 ### Main loop for each group
@@ -116,15 +122,19 @@ foreach (@{$groups}) {
     push @{$changes{removedFiles}}, mapGroups($_, \@{$fileRemoved});
   }
 
-  # Check if on-wiki records have changed
-  my $wikiJSON = $pagesContent{$_}[1];
-  my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
 
-  # Check if everything is up-to-date onwiki, optional push otherwise
-  if ($wikiState) {
-    push @wikiChange, $_;
-    my $summary = changeSummary($wikiAdded, $wikiRemoved);
-    $note .= ($fileState ? 'and' : "$file").' needs updating on-wiki: '.$summary;
+  # Check if each on-wiki record for this group has changed.  Each one
+  # checked/compared/pushed on its own merit, so if the group in question has
+  # more than one page, one out-of-date page won't affect or depend on
+  # another. Optional push.
+  my @wikiNotes;
+  foreach my $title (@{$pageTitles{$_}}) {
+    my $wikiJSON = $pagesContent{$title}[1];
+    my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
+    next if !$wikiState;
+
+    my $summary  = changeSummary($wikiAdded, $wikiRemoved);
+    my $wikiNote = "$file needs updating on-wiki at $title: $summary";
 
     push @{$changes{addedPages}},   mapGroups($_, \@{$wikiAdded});
     push @{$changes{removedPages}}, mapGroups($_, \@{$wikiRemoved});
@@ -135,25 +145,31 @@ foreach (@{$groups}) {
       # Include the count of the specific group
       my $count = scalar keys %queryHash;
       $editSummary .= " ($count total) ([[$userPage/crathighlighter|bot edit]])";
-      $note        .= '.  Pushing now... ';
 
       # Build JSON if not already done so above; only likely if the wiki is out
       # of date but the local files aren't for some reason
       $queryJSON ||= $jsonTemplate->encode(\%queryHash);
       $mw->edit({action        => 'edit',
 		 assert        => 'user',
-		 title         => $pagesContent{$_}[0],
-		 basetimestamp => $pagesContent{$_}[2],    # Avoid edit conflicts
+		 title         => $title,
+		 basetimestamp => $pagesContent{$title}[2],    # Avoid edit conflicts
 		 text          => $queryJSON,
 		 summary       => $editSummary
 		});
       # Can/should we check for warnings here? FIXME TODO
-      $note .= "$mw->{response}->{_msg}";
+      $wikiNote .= ".  Pushing now... $mw->{response}->{_msg}";
     } else {
-      $note .= ".  Skipping push.\n";
+      $wikiNote .= '.  Skipping push.';
     }
-  } elsif ($fileState) {
-    $note .= "\tbut wiki already up-to-date";
+    # One entry per changed page, so report pages rather than groups
+    push @wikiChange, $_;
+    push @wikiNotes, "$wikiNote\n";
+  }
+
+  # Each location gets its own line after the file line (if any)
+  $note .= join q{}, @wikiNotes;
+  if (!@wikiNotes && $fileState) {
+    $note .= "\tbut wiki already up-to-date\n";
   }
 
   # Log fully constructed message
@@ -321,10 +337,9 @@ sub getCurrentGroups {
 
 
 # Get the current content of each on-wiki page, so we can compare to see if
-# there are any updates needed
+# there are any updates needed.  Takes in full titles of the pages to fetch.
 sub getPageGroups {
-  my @rights = @_;
-  my @titles = map {$userPage.'/crathighlighter.js/'.$_.'.json'} @rights;
+  my @titles = @_;
 
   # formatversion=2 makes things so nice to iterate over
   my $contentQuery = {action        => 'query',
@@ -337,7 +352,7 @@ sub getPageGroups {
 		     };
   # JSON, technically a reference to a hash
   my $contentReturn = $mw->api($contentQuery);
-  logWarnings($contentQuery);
+  logWarnings($contentReturn);
   return processPagesData($contentReturn);
 }
 
