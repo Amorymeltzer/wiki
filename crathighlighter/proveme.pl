@@ -3,7 +3,7 @@
 
 use 5.036;
 
-use App::Prove;
+use App::Prove ();
 
 # Figure out where this script is
 use Cwd 'abs_path';
@@ -13,4 +13,5 @@ chdir dirname abs_path __FILE__ or die 'Failed to change directory';
 my $app = App::Prove->new;
 # Use the local lib, be real quiet
 $app->process_args(('-l', '-Q'));
-$app->run;
+# Get the exit code
+exit($app->run ? 0 : 1);
