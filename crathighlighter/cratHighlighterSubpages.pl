@@ -92,14 +92,14 @@ my %changes;
 # and means using Encode to handle non-ascii script, I think?
 # https://metacpan.org/pod/JSON::MaybeXS TODO FIXME
 my $jsonTemplate = JSON::MaybeXS->new(canonical => 1, indent => 1, space_after => 1);
-foreach (@{$groups}) {
-  my %queryHash = %{${$groupsStore}{$_}};    # Just the specific rights hash we want
-  my $queryJSON;                             # JSON will only be built from the query if there are any updates
+foreach my $group (@{$groups}) {
+  my %queryHash = %{${$groupsStore}{$group}};    # Just the specific rights hash we want
+  my $queryJSON;                                 # JSON will only be built from the query if there are any updates
 
   # Check if local records have changed.  Would be good to check this early,
   # just in case something is wrong.  Would be even better to just create the
   # damn file if need be.  Remind me why I care about the local files? TODO
-  my $file = $_.'.json';
+  my $file = $group.'.json';
 
   # read_text and write_text don't need the LOGDIE since they throw their own
   # exceptions (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so I
@@ -110,7 +110,7 @@ foreach (@{$groups}) {
 
   my $note;
   if ($fileState) {
-    push @localChange, $_;
+    push @localChange, $group;
     $note = "$file changed: ".changeSummary($fileAdded, $fileRemoved)."\n";
 
     # Build JSON from the received query now that we need it
@@ -118,8 +118,8 @@ foreach (@{$groups}) {
     # Write changes, handles it's own errors, see above note for read_text
     write_text("$scriptDir/$file", $queryJSON);
 
-    push @{$changes{addedFiles}},   mapGroups($_, \@{$fileAdded});
-    push @{$changes{removedFiles}}, mapGroups($_, \@{$fileRemoved});
+    push @{$changes{addedFiles}},   mapGroups($group, \@{$fileAdded});
+    push @{$changes{removedFiles}}, mapGroups($group, \@{$fileRemoved});
   }
 
 
@@ -128,7 +128,7 @@ foreach (@{$groups}) {
   # more than one page, one out-of-date page won't affect or depend on
   # another. Optional push.
   my @wikiNotes;
-  foreach my $title (@{$pageTitles{$_}}) {
+  foreach my $title (@{$pageTitles{$group}}) {
     my $wikiJSON = $pagesContent{$title}[1];
     my ($wikiState, $wikiAdded, $wikiRemoved) = cmpJSON(\%queryHash, $jsonTemplate->decode($wikiJSON));
     next if !$wikiState;
@@ -136,8 +136,8 @@ foreach (@{$groups}) {
     my $summary  = changeSummary($wikiAdded, $wikiRemoved);
     my $wikiNote = "$file needs updating on-wiki at $title: $summary";
 
-    push @{$changes{addedPages}},   mapGroups($_, \@{$wikiAdded});
-    push @{$changes{removedPages}}, mapGroups($_, \@{$wikiRemoved});
+    push @{$changes{addedPages}},   mapGroups($group, \@{$wikiAdded});
+    push @{$changes{removedPages}}, mapGroups($group, \@{$wikiRemoved});
 
     if (!$opts{P}) {
       # Multifaceted and overly-verbose edit summaries are the best!
@@ -162,7 +162,7 @@ foreach (@{$groups}) {
       $wikiNote .= '.  Skipping push.';
     }
     # One entry per changed page, so report pages rather than groups
-    push @wikiChange, $_;
+    push @wikiChange, $group;
     push @wikiNotes, "$wikiNote\n";
   }
 
