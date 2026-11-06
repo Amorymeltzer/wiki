@@ -225,7 +225,7 @@ if (mw.config.exists('wgRelevantUserName') && !(window.userinfoHideSelf && mw.co
 				// Edit count
 				if (editcount !== null) {
 					statusText += ', with ' +
-						'<a href="//xtools.wmflabs.org/ec/' +
+						'<a href="//xtools.wmcloud.org/ec/' +
 						mw.config.get('wgDBname') +
 						'/' + encodeURIComponent(user.name) + '">' +
 						UserinfoJsFormatQty(editcount, 'edit', 'edits') + '</a>';
