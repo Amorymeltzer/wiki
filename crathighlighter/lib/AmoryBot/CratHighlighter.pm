@@ -389,7 +389,12 @@ sub botShutoffs {
 
   my $botCheckReturnQuery = $json->{query};
 
-  # Manual shutoff; confirm bot should actually run
+  # Manual shutoff; confirm bot should actually run.  Quick check that the page
+  # exists, otherwise getPageContent croaks, which fine, stops things, but means
+  # this won't end up in the log
+  my $page = $botCheckReturnQuery->{pages}[0];
+  return 'DISABLED on-wiki' if $page->{missing};
+  # Okay now check the content
   my $checkContent = getPageContent($botCheckReturnQuery);
   if (!$checkContent || $checkContent ne '42') {
     return 'DISABLED on-wiki';

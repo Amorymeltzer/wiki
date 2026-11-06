@@ -1,0 +1,17 @@
+{
+    "batchcomplete": true,
+    "query": {
+        "pages": [
+            {
+                "ns": 2,
+                "title": "User:AmoryBot/disable",
+                "missing": true
+            }
+        ],
+        "userinfo": {
+            "id": 141948,
+            "name": "AmoryBot",
+            "messages": false
+        }
+    }
+}
