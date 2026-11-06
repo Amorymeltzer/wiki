@@ -468,8 +468,10 @@ sub configLogging {
 
   # easy_init doesn't check the file is actually writable, so do it ourselves.
   # Won't help if the whole filesystem is read-only, but whaddaya gonna do?
-  # Pretty sure autodie doesn't covers file checks like -W
-  -W $logfile or croak "$ERRNO"; # Double quotes prevents Carp from clobbering
+  # Pretty sure autodie doesn't cover file checks like -W.  Double quotes around
+  # $ERRNO prevents Carp from clobbering
+  -e $logfile or croak "Log file '$logfile' does not exist: $ERRNO";
+  -W $logfile or croak "Log file '$logfile' is not writable";
 
   my $infoLog = {level  => $quiet ? 'OFF' : 'INFO',
 		 file   => ">>$logfile",

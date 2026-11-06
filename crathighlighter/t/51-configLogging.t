@@ -13,14 +13,21 @@ use AmoryBot::CratHighlighter qw (configLogging);
 use Test::More;
 use Test::Fatal qw(exception);
 
-plan tests => 11;
+plan tests => 12;
 
 
 # Bad data
 like(exception {configLogging()}, qr/Missing data/, 'No logfile');
 # Nonexistent aka not writable
-like(exception {configLogging('/fake-path/log.log')}, qr/No such file or directory/, 'Unwritable logfile');
-
+my $fake = '/fake-path/log.log';
+like(exception {configLogging($fake)}, qr/Log file '$fake' does not exist: No such file or directory/, 'Nonexistent logfile');
+# Create an unreadable file
+my ($fh, $unreadable) = tempfile(UNLINK => 1);
+close $fh;
+chmod 0000, $unreadable;
+like(exception {configLogging($unreadable)}, qr/Log file '.*?' is not writable/i, 'Unwritable logfile');
+# Clean up
+chmod 0644, $unreadable;
 
 my (undef, $configFile) = tempfile(UNLINK => 1);
 my $infoLayout       = '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n';
