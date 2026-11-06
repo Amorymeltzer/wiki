@@ -407,7 +407,7 @@ if (cfg.wgCanonicalNamespace === 'Special') {
 			mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Evad37/TimestampDiffs.js&oldid=1033878262&action=raw&ctype=text/javascript'); // [[User:Evad37/TimestampDiffs.js]], [[User:Evad37/TimestampDiffs]]
 			/* All talks */
 			if (cfg.wgNamespaceNumber !== '4') {
-				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1097991013&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
+				mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Jackmcbarn/editProtectedHelper.js&oldid=1381327029&action=raw&ctype=text/javascript'); // [[User:Jackmcbarn/editProtectedHelper.js]]
 				/* User talks */
 				if (cfg.wgNamespaceNumber === '3') {
 					// Could move to [[User:Novem_Linguae/Scripts/UnblockReview.js]] aka [[User:Novem_Linguae/Scripts/UnblockReview]] but it's a lot to review FIXME TODO
@@ -479,7 +479,7 @@ if (cfg.wgAction === 'history' || cfg.wgCanonicalSpecialPageName === 'Contributi
 
 /* mw.config.exists('wgRelevantUserName') */
 if (mw.config.exists('wgRelevantUserName')) {
-	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=1351866189&action=raw&ctype=text/javascript'); // placeholder
+	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:PleaseStand/userinfo.js&oldid=1383974895&action=raw&ctype=text/javascript'); // placeholder
 	// mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Enterprisey/userinfo.js&oldid=1107033661&action=raw&ctype=text/javascript'); // placeholder
 	mw.loader.load('//en.wikipedia.org/w/index.php?title=User:Amorymeltzer/userinfo.js&action=raw&ctype=text/javascript'); // [[User:PleaseStand/userinfo.js]], see also [[User:Equazcion/sysopdetector.js]] Display perms, edit count, age, gender, last edited [[User:Amorymeltzer/userinfo.js]]
 	// [[User:Animum/EasyBlock]], but for the modern skin [[User:Animum/easyblock.js]], [[User:Animum/easyblock.css]]
