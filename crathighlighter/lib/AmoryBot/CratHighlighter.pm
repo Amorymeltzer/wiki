@@ -105,18 +105,24 @@ sub findLocalGroupMembers {
     # The hash lookup is so fast that the savings of doing an array slice here
     # aren't as much as one might think, but we are going through a half-dozen
     # groups for around a thousand users, so it does shake out to be worth it to
-    # remove the two leading and uninteresting groups (* and user).  Truth be
-    # told, we can do even better by skipping the third group, autoconfirmed, as
-    # well, with one caveat: the user "Edit filter" annoyingly exists and has
-    # sysop rights, so we need to account for that later since it's not
-    # autoconfirmed.  That will hopefully be removed at some point (T212268).
-    foreach my $group (@{$userHash->{groups}}[3 .. $#{$userHash->{groups}}]) {
+    # remove the two leading and uninteresting groups (* and user).  Previously,
+    # I removed the first three uninteresting groups, to include autoconfirmed
+    # as well, but that's not 100% reliable.  There's the "user" "Edit filter"
+    # that annoyingly exists and has sysop rights (in theory tracked at
+    # <https://phabricator.wikimedia.org/T212268>), and doesn't have
+    # autoconfirmed.  That means it would get removed.  Also, there are several
+    # bots with sysop rights; those get taken care of, because while they don't
+    # have autoconfirmed, they *do* have bot, which gets removed in stead.
+    # Still, that's kind of fragile, and one can imagine some annoying future
+    # where administrator replaces sysop or some other such thing.  It's faster
+    # to do 3 and just add in the "Edit filter" user as I did before, but this
+    # feels safer and more widely applicable, and things are fast enough.
+    foreach my $group (@{$userHash->{groups}}[2 .. $#{$userHash->{groups}}]) {
       $dataHash{$group}{$userHash->{name}} = 1 if $interestedGroups{$group};
     }
   }
 
-  # As noted above, manually reinsert the Edit filter user (see
-  # <https://phabricator.wikimedia.org/T212268>).  I'm unsure if this should be
+  # As noted above, manually reinsert the Edit filter user .  I'm unsure if this should be
   # done here or in the body of the script since it's technically a hack, but
   # for now let's do it here as a drop-in replacement.
   $dataHash{sysop}{'Edit filter'} = 1;
