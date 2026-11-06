@@ -23,7 +23,7 @@ our $VERSION = '0.5.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW configLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW configLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings emptyGroups);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -70,6 +70,8 @@ my $errPage = 'No page data in query result';
 =item * L</mwErrorMessage>
 
 =item * L</apiWarnings>
+
+=item * L</emptyGroups>
 
 =back
 
@@ -617,6 +619,22 @@ sub apiWarnings {
   # Boo!
   my %warnings = %{$response->{warnings}};
   return map {"$_: $warnings{$_}{warnings}"} sort keys %warnings;
+}
+
+
+=head2 emptyGroups
+
+Take in a hashRef of group data an arrayRef of groups we expect, return the
+any that are missing/empty.  Probably indicative of an error.
+
+=cut
+
+sub emptyGroups {
+  my ($groupsRef, $rightsRef) = @_;
+  croak $errData if (!$groupsRef || !$rightsRef);
+
+  # Should exist and have some entries
+  return grep {!$groupsRef->{$_} || !scalar keys $groupsRef->{$_}->%*} $rightsRef->@*;
 }
 
 

@@ -331,6 +331,10 @@ sub getCurrentGroups {
   # Rename suppress to oversight
   s/suppress/oversight/ for @rights;
 
+  # Make sure nothing is empty, that'd be an error most likely
+  my @empty = emptyGroups(\%groupsData, \@rights);
+  LOGDIE('No members found for: '.join q{, }, @empty) if @empty;
+
   # Need to return references since we're doing hash and array
   return (\%groupsData, \@rights);
 }
