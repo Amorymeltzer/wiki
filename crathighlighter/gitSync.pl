@@ -7,7 +7,7 @@ use 5.036;
 
 use English;
 
-use Getopt::Long;
+use Getopt::Long qw(GetOptions);
 
 # Parse commandline options
 my %opts = ();
@@ -26,7 +26,7 @@ BEGIN {
 # Allow script to be run from elsewhere by prepending the local library to @INC
 use lib $scriptDir.'/lib';
 use AmoryBot::CratHighlighter qw(configLogging);
-use AmoryBot::CratHighlighter::GitUtils qw(:all);
+use AmoryBot::CratHighlighter::GitUtils qw(gitIsDirty gitOnMain gitSHA);
 
 use Log::Log4perl qw(:easy);
 
@@ -47,20 +47,20 @@ if (gitIsDirty($repo)) {
 
 # Check for any upstream updates using fetch-then-merge, not pull
 # https://longair.net/blog/2009/04/16/git-fetch-and-merge/
-# Not quiet since want number of lines
-my $fetch  = $repo->command('fetch' => 'origin', 'main');
+my $fetch  = $repo->command('fetch' => '--quiet', 'origin', 'main');
 my @fetchE = $fetch->stderr->getlines();
 $fetch->close();
-# Not a great way of confirming the results, but fetch is annoyingly
-# unporcelain and this obviates the need for an additional status command.
-# Two lines means no updates were fetched so we don't need to act further.
-if (scalar @fetchE <= 2) {
-  exit;
+if ($fetch->exit) {
+  chomp @fetchE;
+  # A failed fetch is an error.  Fetch is annoyingly unporcelain
+  LOGDIE('git fetch failed: '.join q{ }, @fetchE);
 }
+# There's nothing upstream that we don't already have
+exit if !$repo->run('rev-list' => '--count', 'HEAD..origin/main');
 
 # Now that we've fetched the updates, we can go ahead and merge them in
 my $oldSHA = gitSHA($repo);
-my $merge  = $repo->command('merge' => '--quiet', 'origin/main');
+my $merge  = $repo->command('merge' => '--quiet', '--ff-only', 'origin/main');
 my @mergeE = $merge->stderr->getlines();
 $merge->close();
 if (scalar @mergeE) {
