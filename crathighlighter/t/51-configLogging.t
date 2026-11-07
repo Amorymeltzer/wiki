@@ -31,7 +31,7 @@ chmod 0644, $unreadable;
 
 my (undef, $configFile) = tempfile(UNLINK => 1);
 my $infoLayout       = '%d{yyyy-MM-dd HH:mm:ss} (%p): %m{indent}%n';
-my $traceLayout      = '%d - %m{indent}%n';
+my $traceLayout      = '%d{yyyy-MM-dd HH:mm:ss}: %m{indent}%n';
 my $expectedInfo     = {level => 'INFO',  file => ">>$configFile", utf8   => 1, layout => $infoLayout};
 my $expectedInfoOff  = {level => 'OFF',   file => ">>$configFile", utf8   => 1, layout => $infoLayout};
 my $expectedTrace    = {level => 'TRACE', file => 'STDOUT',        layout => $traceLayout};
@@ -89,7 +89,7 @@ is($stdout,           q{}, 'quiet also suppresses STDOUT trace logging');
   Log::Log4perl->easy_init(configLogging($logfile));
   $stdout = captureStdout(sub {INFO('interactive run')});
 }
-like($stdout, qr/ - interactive run$/m, 'CRON unset: STDOUT trace logger is active');
+like($stdout, qr/\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d: interactive run$/m, 'CRON unset: STDOUT trace logger is active');
 
 (undef, $logfile) = tempfile(UNLINK => 1);
 {

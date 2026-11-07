@@ -495,8 +495,8 @@ sub configLogging {
   # Only if not being run automatically, known thanks to CRON=1 in k8s envvars
   my $traceLog = {level  => $quiet ? 'OFF' : 'TRACE',
 		  file   => 'STDOUT',
-		  # message
-		  layout => '%d - %m{indent}%n'
+		 # Datetime: message
+		  layout => '%d{yyyy-MM-dd HH:mm:ss}: %m{indent}%n'
 		 };
   return $ENV{CRON} ? ($infoLog) : ($infoLog, $traceLog);
 }
