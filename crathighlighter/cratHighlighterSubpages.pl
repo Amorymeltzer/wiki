@@ -35,7 +35,23 @@ use File::Slurper qw(read_text write_text);
 
 ## Set up logger
 Log::Log4perl->easy_init(configLogging("$scriptDir/log.log", $opts{L}));
+# Handler to catch die/croak, so everything ends up logging.  This way
+# cron_shim.sh will catch anything, not just explicitly logged stuff.  See
+# <https://metacpan.org/dist/Log-Log4perl/view/lib/Log/Log4perl/FAQ.pm#My-program-already-uses-warn()-and-die().-How-can-I-switch-to-Log4perl?>
+local $SIG{__DIE__} = sub {
+  # $^S: Died in an eval so don't log it, not really real
+  return if $EXCEPTIONS_BEING_CAUGHT;
 
+  my $msg = shift;
+  chomp $msg;
+
+  local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1;
+
+  # Ensure we get the timestamps in the toolforge log auto-created, but we
+  # *don't* get a duplicate timestamp in our own log
+  FATAL($msg);
+  die withTimestamp("$msg\n");
+};
 
 ### User details
 # Define the bot and non-bot users, then check if this is being run on the
@@ -43,12 +59,12 @@ Log::Log4perl->easy_init(configLogging("$scriptDir/log.log", $opts{L}));
 # test API things without changing configs, etc.
 my ($botUser, $userUser) = qw (AmoryBot Amorymeltzer);
 # Kubernetes LOGNAME added manually via toolforge envvars
-LOGDIE('Unable to determine user') if !$ENV{LOGNAME};
+die 'Unable to determine user' if !$ENV{LOGNAME};
 my $user = $ENV{LOGNAME} eq 'tools.amorybot.k8s' ? $botUser : $userUser;
 # Get BotPassword for the given user.  It's stored in an environment variable,
 # so need to be annoyingly roundabout.
 my $envUsername = uc $user.'PW';
-LOGDIE('Unable to get user login information') if !$ENV{$envUsername};
+die 'Unable to get user login information' if !$ENV{$envUsername};
 # Defined here in case things are modified in BotPasswords
 my $scriptName = 'cratHighlighterSubpages.pl';
 my $username = "$user\@$scriptName";
@@ -101,7 +117,7 @@ foreach my $group (@{$groups}) {
   # damn file if need be.  Remind me why I care about the local files? TODO
   my $file = $group.'.json';
 
-  # read_text and write_text don't need the LOGDIE since they throw their own
+  # read_text and write_text don't need the die since they throw their own
   # exceptions (<https://rt.cpan.org/Public/Bug/Display.html?id=114341>) so I
   # should maybe test them? FIXME TODO An empty/missing file will fail in
   # cmpJSON in the next line.
@@ -204,17 +220,13 @@ if ($opts{n}) {
 
 ######## SUBROUTINES ########
 
-# Handle errors in the MediaWiki::API object better, with logging and all that
+# Handle errors in the MediaWiki::API object better
 sub dieNice {
   my $code    = $mw->{error}->{code};
   my $details = $mw->{error}->{details};
 
   my $message = mwErrorMessage($code, $details);
-
-  # Ensure we get the timestamps in the toolforge log auto-created, but we
-  # *don't* get a duplicate timestamp in our own log
-  FATAL($message);
-  die withTimestamp("$message\n");
+  die "$message\n";
 }
 
 # Handle and log any non-fatal warnings and track 'em for the final summary.
@@ -247,7 +259,7 @@ sub botQuery {
   my $botCheckReturn = $mw->api($botCheckQuery);
   logWarnings($botCheckReturn);
   my $botCheck = botShutoffs($botCheckReturn);
-  LOGDIE $botCheck if $botCheck;
+  die $botCheck if $botCheck;
   return;
 }
 
@@ -333,7 +345,7 @@ sub getCurrentGroups {
 
   # Make sure nothing is empty, that'd be an error most likely
   my @empty = emptyGroups(\%groupsData, \@rights);
-  LOGDIE('No members found for: '.join q{, }, @empty) if @empty;
+  die 'No members found for: '.join q{, }, @empty if @empty;
 
   # Need to return references since we're doing hash and array
   return (\%groupsData, \@rights);
