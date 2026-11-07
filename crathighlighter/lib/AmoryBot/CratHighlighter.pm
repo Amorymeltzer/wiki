@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.5.1
+Version 0.8.2
 
 =cut
 
-our $VERSION = '0.5.1';
+our $VERSION = '0.8.2';
 
 # Actually allow methods to be exported
 use Exporter 'import';
