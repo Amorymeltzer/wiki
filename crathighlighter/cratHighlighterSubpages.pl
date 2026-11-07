@@ -71,7 +71,8 @@ my $username = "$user\@$scriptName";
 
 
 ### Initialize API object, ensure we die nicely, log in, etc.
-my $mw = buildMW(MediaWiki::API->new(), {agent => $user, error => \&dieNice});
+my $mw = MediaWiki::API->new();
+$mw = buildMW($mw, {agent => $user, error => sub {dieNice($mw)}});
 $mw->login({lgname => $username, lgpassword => $ENV{$envUsername}});
 
 # Used globally to make edit summaries, page titles, etc. easier
@@ -219,15 +220,6 @@ if ($opts{n}) {
 
 
 ######## SUBROUTINES ########
-
-# Handle errors in the MediaWiki::API object better
-sub dieNice {
-  my $code    = $mw->{error}->{code};
-  my $details = $mw->{error}->{details};
-
-  my $message = mwErrorMessage($code, $details);
-  die "$message\n";
-}
 
 # Handle and log any non-fatal warnings and track 'em for the final summary.
 sub logWarnings {

@@ -23,7 +23,7 @@ our $VERSION = '0.5.1';
 
 # Actually allow methods to be exported
 use Exporter 'import';
-our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW configLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings emptyGroups);
+our @EXPORT_OK   = qw(processPagesData findStewardMembers findLocalGroupMembers findArbComMembers cmpJSON changeSummary oxfordComma mapGroups buildNote createEmail botShutoffs buildMW configLogging withTimestamp fetchAllUsers getPageContent mwErrorMessage apiWarnings emptyGroups dieNice);
 our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 
@@ -72,6 +72,8 @@ my $errPage = 'No page data in query result';
 =item * L</apiWarnings>
 
 =item * L</emptyGroups>
+
+=item * L</dieNice>
 
 =back
 
@@ -433,11 +435,12 @@ sub packageVersion {
 
 =head2 buildMW
 
+Take a MediaWiki::API object, add some things, return it.  Dumb AF way of
+getting around importing MediaWiki::API here, which I don't want to do
+for... reasons?  Whatever.  Minor testing abilities thanks to this.
+
 =cut
 
-# Take a MediaWiki::API object, add some things, return it.  Dumb AF way of
-# getting around importing MediaWiki::API here, which I don't want to do
-# for... reasons?  Whatever.  Minor testing abilities thanks to this.
 sub buildMW {
   my ($mw, $opts) = @_;
   croak 'Missing MW object' if !$mw;
@@ -635,6 +638,27 @@ sub emptyGroups {
 
   # Should exist and have some entries
   return grep {!$groupsRef->{$_} || !scalar keys $groupsRef->{$_}->%*} $rightsRef->@*;
+}
+
+=head2 dieNice
+
+Handle errors in the MediaWiki::API object better.  A MediaWiki::API calls its C<on_error> with no arguments, so this
+takes the object explicitly and is meant to be wrapped, e.g.
+C<< error => sub { dieNice($mw) } >> in L</buildMW>.  Doesn't log or timestamp
+anything: the C<__DIE__> handler in the main script does that.
+
+=cut
+
+sub dieNice {
+  my $mw = shift;
+  croak $errData if !$mw;
+
+  # Confirm we actually have an on_error, should only happen and be executed
+  # when the MediaWiki::API object has an error.
+  my $error = $mw->{error};
+  croak 'No error in MediaWiki::API object' if !$error || !$error->{code};
+
+  die mwErrorMessage($error->{code}, $error->{details})."\n";
 }
 
 
