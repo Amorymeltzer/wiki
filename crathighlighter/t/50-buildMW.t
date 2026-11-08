@@ -3,11 +3,11 @@
 
 use 5.036;
 
-use MediaWiki::API;
+use MediaWiki::API ();
 
-use AmoryBot::CratHighlighter qw (buildMW);
+use AmoryBot::CratHighlighter qw(buildMW dieNice);
 use Test::More;
-use Test::Fatal;
+use Test::Fatal qw(exception);
 
 my $user        = 'AmoryBot';
 my $agentString = 'MediaWiki::API/0.52';
@@ -40,7 +40,7 @@ checkEntries($mw, \%opts);
 
 # E, none of the above
 $mw = buildMW(MediaWiki::API->new());
-delete $opts{agent};
+delete @opts{qw(agent error)};
 checkEntries($mw, \%opts);
 
 # Different defaults
@@ -67,10 +67,13 @@ sub checkEntries {
   is($cfg->{retry_delay},  ${$opts}{delay}, "retry_delay $count");
   is($cfg->{use_http_get}, ${$opts}{get},   "use_http_get $count");
 
-  if ($cfg->{on_error}) {
+  if ($opts->{error}) {
     is(&{$cfg->{on_error}}, $count == 1 ? 42 : 43, "on_error $count (42/43)");
   } else {
-    is($cfg->{on_error}, undef, "on_error $count (undef)");
+    # Defaults to dieNice (see 55-dieNice.t)
+    $mw->{error} = {code => 3, details => '42'};
+    is(exception {&{$cfg->{on_error}}}, exception {dieNice($mw)}, "on_error $count (dieNice)");
+
   }
 
   # Sigh

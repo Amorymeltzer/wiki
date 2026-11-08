@@ -2,11 +2,9 @@
 
 use 5.036;
 
-use AmoryBot::CratHighlighter qw(dieNice buildMW);
-use Test::More tests => 10;
+use AmoryBot::CratHighlighter qw(dieNice);
+use Test::More tests => 9;
 use Test::Fatal qw(exception);
-
-use MediaWiki::API ();
 
 # Bad data
 like(exception {dieNice()},                           qr/Missing data/,                      'No mw');
@@ -24,9 +22,3 @@ foreach my $code (sort keys %codes) {
 
 # Other codes
 is(exception {dieNice({error => {code => 7, details => '42'}})}, "MediaWiki error:\n7: 42\n", 'Unmapped code');
-
-# Do it the way the main script does it, but add our own error
-my $mw = MediaWiki::API->new();
-$mw = buildMW($mw, {error => sub {dieNice($mw)}});
-$mw->{error} = {code => 3, details => '42'};
-is(exception {$mw->{config}{on_error}->()}, "MediaWiki error: API access:\n3: 42\n", 'Script-like');

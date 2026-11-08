@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.2
+Version 0.8.3
 
 =cut
 
-our $VERSION = '0.8.2';
+our $VERSION = '0.8.3';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -452,8 +452,8 @@ sub buildMW {
   $cfg->{retry_delay}  = ${$opts}{delay} // 300;
   $cfg->{use_http_get} = ${$opts}{get}   // 1;
 
-  # Add error/dieNice
-  $cfg->{on_error} = \&{$opts->{error}} if $opts->{error};
+  # Add dieNice as the default on_error handler
+  $cfg->{on_error} = $opts->{error} ? \&{$opts->{error}} : sub {dieNice($mw)};
 
   # Build out basic user agent string as required by WMF policy:
   # <https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy>
@@ -642,10 +642,9 @@ sub emptyGroups {
 
 =head2 dieNice
 
-Handle errors in the MediaWiki::API object better.  A MediaWiki::API calls its C<on_error> with no arguments, so this
-takes the object explicitly and is meant to be wrapped, e.g.
-C<< error => sub { dieNice($mw) } >> in L</buildMW>.  Doesn't log or timestamp
-anything: the C<__DIE__> handler in the main script does that.
+Handle errors from a MediaWiki::API object better.  C<on_error> is called with
+no arguments, which is a drag, so this has to take the object itself explicitly.
+L</buildMW> uses this as the default handler.
 
 =cut
 
