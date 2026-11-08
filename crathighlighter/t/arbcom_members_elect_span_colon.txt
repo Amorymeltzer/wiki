@@ -1,0 +1,48 @@
+<noinclude>{{ArbCom navigation}}{{shortcut|WP:ARBS|WP:ACMEM|WP:AC/M}}
+</noinclude>
+== Members ==
+{{seealso|Wikipedia:Arbitration Committee/History#Current and former members}}
+These editors are the [[Wikipedia:Arbitration Committee Election|elected]] members of the Arbitration Committee (known as arbitrators). Votes of the committee are taken among the active members. Members are marked {{xt|active}} or {{!xt|inactive}} so that the [[majority]] for new votes can be calculated. Members on [[wikipedia:Wikibreak|wikibreak]], not participating in arbitration within the past week, or indicating they will be absent are marked {{!xt|inactive}}.
+
+Members moving back to active may remain inactive on some or all existing business. If you wish to know whether an arbitrator is active on a particular matter, please ask on their talk page (or check the proposed decision talk page, for cases). The list below is used to determine whether each arbitrator is active by default. Arbitrators who go on to participate in a vote will be counted as active for it even if they are listed as inactive below. <!--"Outgoing arbitrators" are arbitrators whose terms have expired but have elected to remain active on a pending case that opened during their term.-->
+
+The following list is accurate as of {{#time:j F Y|{{REVISIONTIMESTAMP:Wikipedia:Arbitration Committee/Members}}}}<!-- this "accurate as of" time and date stamp will update automatically when you save your edit, so please do not change the code -->:
+<!-- 
+When updating to record retirement/resignations or new elections/appointments, please also update [[Wikipedia:Arbitration Committee/History]].
+
+If you change the style of a specific line for each arb or the "headings", please let Amorymeltzer know. AmoryBot updates the user highlighter gadget based on a dumb regex. See https://en.wikipedia.org/w/index.php?oldid=1186429223#Arbcomhighlight 
+ 
+THIS LIST IS MAINTAINED BY THE COMMITTEE AND THE ARBCOM CLERKS, BASED ON COMMUNICATION ON THE CLERK'S MAILING LIST. PLEASE DO NOT EDIT IT
+
+-->
+<div style="margin-left: 1.6em">
+'''{{big|{{xt|{{vanchor|Active}}}}}}'''
+:#{{user|Barkeep49}}
+:#{{user|Beeblebrox}}
+:#{{user|Cabayi}}
+:#{{user|CaptainEek}}
+:#{{user|L235}}
+:#{{user|Moneytrees}}
+:#{{user|Opabinia regalis}}
+:#{{user|Primefac}}
+:#{{user|SilkTork}}
+:#{{user|Wugapodes}}
+
+'''{{big|{{!xt|{{vanchor|Inactive}}}}}}'''
+:#{{user|Enterprisey}}
+:#{{user|GeneralNotability}}
+:#{{user|Guerillero}}
+:#{{user|Izno}}
+
+<div id="Elect">
+:;<span style="font-family: Georgia, 'DejaVu Serif', serif;"><big>Arbitrators-elect</big></span>
+:#{{user|Asilvering}}
+:#{{user|Girth Summit}}
+:#{{user|Guerillero}}
+:#{{user|HouseBlaster}}
+:#{{user|Izno}}
+:#{{user|SilverLocust}}
+</div>
+</div><noinclude>
+[[Category:Wikipedia Arbitration Committee|Members]]
+</noinclude>

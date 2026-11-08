@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.4
+Version 0.8.5
 
 =cut
 
-our $VERSION = '0.8.4';
+our $VERSION = '0.8.5';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -135,21 +135,30 @@ sub findLocalGroupMembers {
 
 =head2 findArbComMembers
 
+Process each line of the specific ArbCom page's content to get the users listed.
+Returns a reference to a hash.
+
 =cut
 
-# Process each line of the specific ArbCom page's content to get the users
-# listed.  Returns a reference to a hash.
 sub findArbComMembers {
   my $templateText = shift;
   croak $errData if !$templateText;
 
   my %tmpData;
   for (split /^/, $templateText) {
-    if (/^:?#\s?\{\{user\|(.*)}}/) {
+    # The acutal users
+    if (/^:?#\s*\{\{user\|\s*([^|}]+?)\s*}}/) {
       $tmpData{$1} = 1;
-    } elsif (/(?:\{\{|<)big[\|>]\{\{xtn/) {
+    } elsif (%tmpData && /\b(?:elect(?:ed)?|outgoing|incoming)\b/i) {
       # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
-      # the bottom of the list during transitionary periods
+      # the bottom of the list during transitionary periods.  Once we've made it
+      # past the first member, any mention of these is (likely) (hopefully!)
+      # just the heading for a group that isn't currently sitting.  Optioning on
+      # %tmpData skips the intro text, which has/can have a hidden comment that
+      # mucks up the text there.  Previously this used markup--something like
+      # /(?:\{\{|<)big[\|>]\{\{xtn/-- as the regex, rather than words, but that
+      # changed several times in the past, and clerks should feel free to do so
+      # as they are wont to.
       last;
     }
   }

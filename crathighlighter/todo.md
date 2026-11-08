@@ -7,6 +7,7 @@
 - [ ] Maybe also more logging for things like proveMe?  Can rely on filelog, especially if not redirecting output since no emails that way.
 - [ ] Consider retry?  Or does it just complicate my set up?
 - [ ] Catch login errors?  Something weird.
+- [ ] Note temporary access grants?
 
 ## Main script
 
