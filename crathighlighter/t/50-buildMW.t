@@ -81,7 +81,7 @@ sub checkEntries {
   if ($opts{agent}) {
     $agent = "$opts{agent} ($shortUrl$opts{agent})".$agent;
   } else {
-    $agent = "($shortUrl".'Amorymeltzer)'.$agent;
+    $agent = "(library by $shortUrl".'Amorymeltzer)'.$agent;
   }
   is($mw->{ua}->agent, $agent, "UA $count");
   note 'User agent: '.$mw->{ua}->agent;

@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.3
+Version 0.8.4
 
 =cut
 
-our $VERSION = '0.8.3';
+our $VERSION = '0.8.4';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -460,10 +460,11 @@ sub buildMW {
   # Start with a basic string for the libraries
   my $agent = packageVersion(__PACKAGE__).' (via '.$mw->{ua}->agent.qw{)};
   if (${$opts}{agent}) {
+    # In theory this shouldn't be enWiki only... FIXME TODO
     $agent = ${$opts}{agent}.' (en-wp.org/wiki/User:'.${$opts}{agent}.") $agent";
   } else {
     # No username, provide a link to me
-    $agent = '(en-wp.org/wiki/User:Amorymeltzer)'." $agent";
+    $agent = '(library by en-wp.org/wiki/User:Amorymeltzer)'." $agent";
 }
   $mw->{ua}->agent($agent);
   return $mw;
