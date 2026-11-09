@@ -22,6 +22,9 @@ my %quirks    = (
   incoming     => ["#{{user|Foo}}\n'''Incoming arbitrators'''\n#{{user|Bar}}\n",                                                         ['Foo']],
   newlyElected => ["#{{user|Foo}}\n'''Newly elected arbitrators'''\n#{{user|Bar}}\n",                                                    ['Foo']],
   spaceElect   => ["#{{user|Foo}}\n'''Arbitrators elect'''\n#{{user|Bar}}\n",                                                            ['Foo']],
+  capitalUser  => ["#{{User|Foo}}\n",                                                                                                    ['Foo']],
+  spacedPipe   => ["# {{ user | Foo }}\n",                                                                                               ['Foo']],
+  electBare    => ["#{{user|Foo}}\n'''Arbitrators-elect'''\n#Bar\n",                                                                     ['Foo']],
   introNote    => ["Intro <!--\"Outgoing arbitrators\" are arbitrators who are elected-->\n#{{user|Foo}}\n#{{user|Bar}}\n",              ['Bar', 'Foo']]
 
 );
@@ -30,6 +33,7 @@ plan tests => 1 + scalar @testFiles + scalar keys %quirks;
 
 # Bad data
 like(exception {findArbComMembers()}, qr/Missing data/, 'No data');
+
 
 # Official list compared to testing pages, minor changes to handle sorting
 # differences and resignations

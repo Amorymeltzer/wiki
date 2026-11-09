@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.5
+Version 0.8.6
 
 =cut
 
-our $VERSION = '0.8.5';
+our $VERSION = '0.8.6';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -146,8 +146,8 @@ sub findArbComMembers {
 
   my %tmpData;
   for (split /^/, $templateText) {
-    # The acutal users
-    if (/^:?#\s*\{\{user\|\s*([^|}]+?)\s*}}/) {
+    # The acutal users, generously spaced with an option leading colon
+    if (/^:?#\s*\{\{\s*[Uu]ser\s*\|\s*([^|}]+?)\s*\}\}/) {
       $tmpData{$1} = 1;
     } elsif (%tmpData && /\b(?:elect(?:ed)?|outgoing|incoming)\b/i) {
       # Avoid listing former Arbs or Arbs-elect, which are occasionally found at
@@ -158,7 +158,9 @@ sub findArbComMembers {
       # mucks up the text there.  Previously this used markup--something like
       # /(?:\{\{|<)big[\|>]\{\{xtn/-- as the regex, rather than words, but that
       # changed several times in the past, and clerks should feel free to do so
-      # as they are wont to.
+      # as they are wont to.  In theory, we could add another elsif (/^:?#/)to
+      # catch and croak for anything that specifically isn't a user template,
+      # but maybe that's overkill.
       last;
     }
   }
