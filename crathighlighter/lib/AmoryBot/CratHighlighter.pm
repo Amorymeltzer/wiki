@@ -126,11 +126,6 @@ sub findLocalGroupMembers {
     }
   }
 
-  # As noted above, manually reinsert the Edit filter user .  I'm unsure if this should be
-  # done here or in the body of the script since it's technically a hack, but
-  # for now let's do it here as a drop-in replacement.
-  $dataHash{sysop}{'Edit filter'} = 1;
-
   # Rename suppress to oversight, sigh
   $dataHash{oversight} = delete $dataHash{suppress};
 

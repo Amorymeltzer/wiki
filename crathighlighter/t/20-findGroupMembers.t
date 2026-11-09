@@ -52,7 +52,7 @@ my @localHashes = @{$groupsQuery{allusers}};
 %{$groupsData{steward}} = findStewardMembers($stewRef);
 push @rights, qw (steward);
 
-plan tests => 3 + scalar keys %actual;
+plan tests => 4 + scalar keys %actual;
 
 # Bad data
 like(exception {findLocalGroupMembers()},              qr/Missing data/, 'No localData');
@@ -64,3 +64,7 @@ foreach my $userGroup (keys %actual) {
   my @users = sort keys %{$groupsData{$userGroup}};
   is_deeply(\@users, \@{$actual{$userGroup}}, $userGroup);
 }
+
+# No additional Edit filter user forcibly added
+my %noSysops = findLocalGroupMembers([{name => 'Mido', groups => [qw(* user bureaucrat)]}], [qw(bureaucrat sysop)]);
+ok(!$noSysops{sysop}, 'No sysop group when nobody has it');
