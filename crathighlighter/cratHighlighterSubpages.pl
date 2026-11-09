@@ -302,26 +302,26 @@ sub getCurrentGroups {
 		     utf8          => '1'                          # Alaa and Torai friendly
 		    };
   # JSON, technically a reference to a hash
-  my $groupsReturn = $mw->api($groupsQuery);
+  my $groupsResponse = $mw->api($groupsQuery);
   # Check if warnings
-  logWarnings($groupsReturn);
+  logWarnings($groupsResponse);
 
   # Hash containing each list as a key, with the results as an array of hashes,
   # each hash containing the userid, user name, and (if requested) user groups
-  my %groupsQuery = %{${$groupsReturn}{query}};
+  my %groupsResponseData = %{${$groupsResponse}{query}};
 
   # Need to store stewards for later since they get overwritten by the continue,
   # and it's faster/nicer to only process the (large) set of local groups once,
   # since it's by user, not by group.  Stewards are easy anyway.
-  my $stewRef = $groupsQuery{globalallusers};
+  my $stewRef = $groupsResponseData{globalallusers};
 
   # Likewise, need to store the ArbCom data
-  my $acContent = getPageContent(\%groupsQuery);
+  my $acContent = getPageContent(\%groupsResponseData);
 
   # Local groups need a loop for processing who goes where, but there are a lot
   # of sysops, so we need to either get the bot flag or iterate over everyone
   # every time; fetchAllUsers handles all that
-  my @localHashes = fetchAllUsers($mw, $groupsReturn, $groupsQuery, 'allusers');
+  my @localHashes = fetchAllUsers($mw, $groupsResponse, $groupsQuery, 'allusers');
 
   ## Now that we've got all the data stored properly, it's pretty
   ## straightforward to just go through 'em all!
