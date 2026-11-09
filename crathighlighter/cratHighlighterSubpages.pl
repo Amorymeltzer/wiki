@@ -77,6 +77,11 @@ $mw->login({lgname => $username, lgpassword => $ENV{$envUsername}});
 # Used globally to make edit summaries, page titles, etc. easier
 my $userPage = 'User:'.$user;
 
+# Keep track of any accumulated, non-fatal warnings we run into throughout our
+# various API calls.  Added-to by logWarnings via botQuery and getCurrentGroups,
+# then summarized at the end of the whole thing.
+my @apiWarnings;
+
 ### If this is the bot account, include a few checks for (emergency) shutoff
 botQuery($user);
 
@@ -98,9 +103,8 @@ my %pagesContent = getPageGroups(map {@{$pageTitles{$_}}} @{$groups});
 
 ### Main loop for each group
 # These conveniently function as indicators as well as counters for number of
-# files or pages changed, respectively.  Also keep track of any accumulated
-# warnings we run into throughout our various API calls.
-my (@localChange, @wikiChange, @apiWarnings);
+# files or pages changed, respectively.
+my (@localChange, @wikiChange);
 # Hold all changes for later
 my %changes;
 # Template for generating JSON, sorted and prettyish
