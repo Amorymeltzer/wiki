@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.6
+Version 0.8.7
 
 =cut
 
-our $VERSION = '0.8.6';
+our $VERSION = '0.8.7';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -605,8 +605,8 @@ sub mwErrorMessage {
 	      );
   my $message = $codes{$code} ? q{: }.$codes{$code} : q{};
 
-  # Don't always have details, should maybe check for that FIXME TODO
-  return 'MediaWiki error'.$message.":\n$code: $details";
+  # Don't always have details
+  return 'MediaWiki error'.$message.":\n$code: ".($details // 'no details given');
 }
 
 

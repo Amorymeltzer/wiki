@@ -3,7 +3,7 @@
 use 5.036;
 
 use AmoryBot::CratHighlighter qw (mwErrorMessage);
-use Test::More tests => 6;
+use Test::More tests => 7;
 use Test::Fatal qw(exception);
 
 # Bad data
@@ -15,3 +15,4 @@ is(mwErrorMessage(3,  'api'),       "MediaWiki error: API access:\n3: api",     
 is(mwErrorMessage(4,  'login'),     "MediaWiki error: logging in:\n4: login",           'logging in (4)');
 is(mwErrorMessage(5,  'bad token'), "MediaWiki error: editing the page:\n5: bad token", 'editing the page (5)');
 is(mwErrorMessage(99, 'unknown'),   "MediaWiki error:\n99: unknown",                    'unknown code goes through');
+is(mwErrorMessage(42), "MediaWiki error:\n42: no details given", 'No details');
