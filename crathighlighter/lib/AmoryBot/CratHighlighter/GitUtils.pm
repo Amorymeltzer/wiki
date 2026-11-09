@@ -25,25 +25,28 @@ our %EXPORT_TAGS = (all => \@EXPORT_OK);
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+Small helpers for checking the state of a local Git repository, used by
+F<gitSync.pl>.
 
-Perhaps a little code snippet.
+=head1 EXPORTS
 
-    use AmoryBot::CratHighlighter::GitUtils;
+=over 2
 
-    my $foo = AmoryBot::CratHighlighter::GitUtils->new();
-    ...
+=item * L</gitOnMain>
 
-=head1 EXPORT
+=item * L</gitIsDirty>
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=item * L</gitSHA>
+
+=back
 
 =head1 SUBROUTINES/METHODS
 
 These all mis/abuse @_ for brevity, rather than merely `shift`-ing
 
 =head2 gitOnMain
+
+True if the current branch is C<main>.
 
 =cut
 
@@ -53,6 +56,8 @@ sub gitOnMain {
 
 =head2 gitIsDirty
 
+True if there are any uncommitted (or untracked) changes.
+
 =cut
 
 sub gitIsDirty {
@@ -60,6 +65,8 @@ sub gitIsDirty {
 }
 
 =head2 gitSHA
+
+Get a short SHA.
 
 =cut
 
