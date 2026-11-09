@@ -15,11 +15,11 @@ AmoryBot::CratHighlighter
 
 =head1 VERSION
 
-Version 0.8.7
+Version 0.8.8
 
 =cut
 
-our $VERSION = '0.8.7';
+our $VERSION = '0.8.8';
 
 # Actually allow methods to be exported
 use Exporter 'import';
@@ -199,6 +199,8 @@ sub processPagesData {
     # guarantee getting the group name from each title
     my $title = $pageHash->{title};
 
+    croak "Page \"$title\" does not exist on-wiki" if $pageHash->{missing};
+    # Technically possible once we've passed the above?  I think?
     my $revisionsRef = $pageHash->{revisions};
     croak "No revision data for page \"$title\"" if !$revisionsRef;
 

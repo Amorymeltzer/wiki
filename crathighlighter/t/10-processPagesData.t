@@ -25,14 +25,16 @@ my @arbs = qw(Barkeep49 Beeblebrox Cabayi CaptainEek Enterprisey GeneralNotabili
 my %actual = ('bureaucrat' => \@buro, 'interface-admin' => \@inta, 'oversight' => \@over, 'arbcom' => \@arbs);
 my @rights = keys %actual;
 
-plan tests => 5 + 3 * scalar @rights;
+plan tests => 6 + 3 * scalar @rights;
 
 # Bad data
 like(exception {processPagesData()}, qr/Missing data/, 'No data passed');
 like(exception {processPagesData({query => {yomama => []}})}, qr/No page data in query result/, 'No pages key in query response');
 like(exception {processPagesData({query => {pages  => []}})}, qr/No page data in query result/, 'No pages in query response');
 my $ttitle = 'User:AmoryBot/crathighlighter.js/sysop.json';
-like(exception {processPagesData({query => {pages => [{title => $ttitle}]}})}, qr/No revision data for page "$ttitle"/, 'Page missing revisions');
+like(exception {processPagesData({query => {pages => [{title => $ttitle}]}})},               qr/No revision data for page "$ttitle"/,   'Page missing revisions');
+like(exception {processPagesData({query => {pages => [{title => $ttitle, missing => 1}]}})}, qr/Page "$ttitle" does not exist on-wiki/, 'Nonexistent page');
+
 
 my $file     = 't/file.json';
 my $fileJSON = read_text($file);
