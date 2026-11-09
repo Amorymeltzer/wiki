@@ -10,9 +10,9 @@ use English;
 
 use Getopt::Long qw(GetOptions);
 
-# Parse commandline options
+# Parse commandline options, strictly
 my %opts = ();
-GetOptions(\%opts, 'P', 'n', 'L', 'help' => \&usage);
+GetOptions(\%opts, 'P', 'n', 'L', 'help' => sub {usage(0)}) or usage(1);
 
 # Get ready for local lib by finding out where this script is.  Also used
 # elsewhere for logs and proper reading/writing of files
@@ -373,12 +373,15 @@ sub getPageGroups {
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
 sub usage {
-  print <<"USAGE";
-Usage: $PROGRAM_NAME [-PnLh]
+  my $code = shift;
+  # Treat a bad code from GetOptions as an error, so fail and go to STDERR
+  my $fh = $code ? \*STDERR : \*STDOUT;
+  print {$fh} <<"USAGE";
+Usage: $PROGRAM_NAME [-P] [-n] [-L] [-h]
       -P Don't push live to the wiki
       -n Send a message to STDOUT upon completion of a successful run.  Useful for notifying after a prior failure.
       -L Turn off all logging
       -h Show this message
 USAGE
-  exit;
+  exit $code;
 }

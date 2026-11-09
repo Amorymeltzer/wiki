@@ -9,9 +9,9 @@ use English;
 
 use Getopt::Long qw(GetOptions);
 
-# Parse commandline options
+# Parse commandline options, strictly
 my %opts = ();
-GetOptions(\%opts, 'L', 'help' => \&usage);
+GetOptions(\%opts, 'L', 'help' => sub {usage(0)}) or usage(1);
 
 # Get ready for local lib by finding out where this script is.  Also used
 # elsewhere for logs and proper reading/writing of files
@@ -88,10 +88,13 @@ LOGDIE("Fetched and merged but SHAs are the same: $newSHA");
 # Escapes not necessary but ensure pretty colors
 # Final line must be unindented?
 sub usage {
-  print <<"USAGE";
-Usage: $PROGRAM_NAME [-Lh]
+  my $code = shift;
+  # Treat a bad code from GetOptions as an error, so fail and go to STDERR
+  my $fh = $code ? \*STDERR : \*STDOUT;
+  print {$fh} <<"USAGE";
+Usage: $PROGRAM_NAME [-L] [-h]
       -L Turn off all logging
       -h Show this message
 USAGE
-  exit;
+  exit $code;
 }
